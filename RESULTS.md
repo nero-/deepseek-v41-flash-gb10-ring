@@ -38,7 +38,34 @@ smoke `17×23 = 391` passed; short prose prompt, 512 tokens, temperature 0, thin
 
 ## DeepSeek-V4.1-Flash TP4
 
-Pending.
+### Bring-up (2026-09-27)
+
+- Checkpoint `fb2764a5` on every rank: 52/52 LFS files match Hugging Face's sha256 on all four.
+- Image `dsv41-4x-spark:canary-roce` (`0c28b7b35803`) plus `image/Dockerfile.ring`, identical on all ranks.
+- Boot log: `NCCL_SWITCHLESS_RING_ONLY` with Tree/PAT transport setup disabled; NCCL `ListenerRouting
+  advertised=4 observed=4` and substitutions `preserving PCI root` (both planes carry traffic);
+  `RoCEnante ready: world=4` on all four HCAs at the 262144-byte cap; Engram `packed=True`; every
+  production adapter armed (b12x MoE EP1 deterministic, shared-expert K pad on 43 layers, fp8 `wo_a`
+  twins, replicated splits, fused HC bit-identical, block verification, chunked indexer, prefill SP).
+- KV pool 6,644,224 tokens at 1M context.
+- Smoke (`bench/smoke.py`): 19+23=42, greedy byte-identical x3, tool call, thinking mode, and a
+  125,219-token needle PASS in 29.0 s.
+
+### Weight loading on the GX10s
+
+The first boot failed at SGLang's post-load barrier: `TP rank 0 could finish the model loading, but
+there are other ranks that didn't finish`. The barrier gives the slowest rank 480 s after the first
+finishes (`UNBALANCED_MODEL_LOADING_TIMEOUT_S`). Measured `Load weight end` per rank:
+
+| Boot | spark-r0 | spark-r1 | gx10-r1 | gx10-r0 |
+|---|---:|---:|---:|---:|
+| 1 (cold, right after replication) | 312 s | 144 s | 814 s | >830 s |
+| 2 | 65 s | 61 s | 223 s | — |
+
+The GX10s' drives (1 TB Phison `ESL01TBTLCZ`) read 4.4 GB/s sequential direct against 12 GB/s on the
+Sparks' Samsung 4 TB, and 4.3-4.7 GB/s against 5.8 GB/s with 16-64 threads of 8 MB buffered `pread`.
+Host-to-device copies are identical (57-60 GB/s). `image/Dockerfile.ring` raises the barrier to
+1800 s so a cold GX10 load can no longer fail the boot.
 
 ## Gotchas found on this fleet
 

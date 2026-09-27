@@ -43,7 +43,7 @@ SET = {
     "NFS_SERVER_IPS": '""',
     "NFS_CLIENTS": '""',
     "EP_SIZE": "1",
-    "IMAGE": "dsv41-4x-spark:canary-roce",
+    "IMAGE": "dsv41-4x-spark:canary-roce-ring",  # image/Dockerfile.ring over canary-roce
     "WORKER_DIR": "/home/$WORKER_USER/dsv41-4x-spark",
     "EXTRA_CONTAINER_ENV": '"' + " ".join(f"{k}={v}" for k, v in env.items()) + '"',
 }
