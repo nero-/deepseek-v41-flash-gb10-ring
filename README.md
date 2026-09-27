@@ -90,6 +90,10 @@ v0.6.2 (`ccd9ad8`), the same case definitions as the Qwen TP2 campaign (`bench/l
 gx10-r0). Quality is Mia's `scripts/qeval.py` (75 auto-scored tasks, temperature 0, c1).
 `bench/ringbench.py` is a quicker in-house A/B probe.
 
+## Operating
+
+See [OPERATIONS.md](OPERATIONS.md): switching between DeepSeek and the Qwen pairs, endpoints, restarts.
+
 ## Results
 
 See [RESULTS.md](RESULTS.md).

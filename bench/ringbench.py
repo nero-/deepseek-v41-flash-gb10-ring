@@ -131,8 +131,11 @@ def main():
     ap.add_argument("--prefill", default="4096,16384,32768,65536,131072")
     ap.add_argument("--no-prefill", action="store_true")
     ap.add_argument("--no-decode", action="store_true")
+    ap.add_argument("--concs", default="", help="comma-separated concurrencies (default 1,2,4,8,16)")
     a = ap.parse_args()
     concs, reps = ([1, 8], 3) if a.quick else ([1, 2, 4, 8, 16], 5)
+    if a.concs:
+        concs = [int(c) for c in a.concs.split(",")]
     targets = [16384, 65536] if a.quick else [int(x) for x in a.prefill.split(",")]
     stream(a.url, "Say hi.", 8)  # warm-up
     res = {"url": a.url, "max_tokens": a.max_tokens, "utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
