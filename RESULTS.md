@@ -108,7 +108,21 @@ functions afterwards. Adopted.
 C16 cannot follow: `mlx5_core: Maximum hairpin queue size is 8192`, and Mia measured drops and
 go-back-N retransmits at ~1 MB with 8192-packet queues.
 
-### Tuning experiments
+### Final configuration, full LIL run (2026-09-27)
+
+Mia's production line + ring mesh + RoCEnante cap 491,520 B + 8192-token prefill chunks
+(`config/make_env_tp4.py`). `bench/lilbench.sh final full,coding` from gx10-r0; 0 errors in every cell.
+
+| Context | C1 | C2 | C4 | C8 | C16 | Prefill tok/s |
+|---|---:|---:|---:|---:|---:|---:|
+| 8k | 67.7 | 96.4 | 129.8 | 160.1 | 224.5 | 5,151 |
+| 32k | 64.9 | 91.0 | 125.1 | 145.8 | 196.8 | 5,613 |
+| 64k | 66.8 | 94.6 | 129.3 | 154.2 | 198.5 | 4,877 |
+| 128k | 62.7 | 94.4 | 124.1 | 153.1 | 191.3 | 5,414 |
+
+Decode columns are aggregate tok/s. Coding Peak 104.6 tok/s (100.1-108.4; 97.5 on the baseline).
+qeval 72/75, median 81.6 tok/s. KV pool 5,606,400 tokens at 1M context. Raw files in `results/20260927/final-*`.
+
 
 Each candidate is one boot of the production line with one change (`bench/experiment.sh`), a
 smoke test, qeval (75 tasks), and `bench/ringbench.py` (greedy, thinking off, 256 tokens; four prompt

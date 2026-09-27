@@ -4,7 +4,8 @@
 #
 #   bench/lilbench.sh TAG case[,case...]      (run on gx10-r0, a worker; results in ~/bench/results)
 #
-# Cases: quick (A/B screening), matrix, c16, coding, prose, full (8k-128k x C1-C16 + prefill to 128k).
+# Cases: quick (A/B screening), matrix, c16, coding, prose, hiconc (C1/C16/C32 at 8k/32k),
+#        full (8k-128k x C1-C16 + prefill to 128k).
 set -euo pipefail
 TAG=$1; CASES=$2
 HOST=${HOST:-192.168.50.219} PORT=${PORT:-8888} MODEL=${MODEL:-deepseek-v4.1-flash}
@@ -21,6 +22,7 @@ for c in ${CASES//,/ }; do
     prose)  o=(--completion-stats --prompt "$prose" --profile-concurrency 1 --profile-runs 5 --max-tokens 600
                --completion-stats-temperature 0 --completion-stats-top-p 1 --reasoning-effort none
                --completion-stats-seed 42 --completion-stats-correct-regex "" --completion-stats-no-prefill-scout) ;;
+    hiconc) o=(--skip-prefill --contexts 8192,32768 --concurrency 1,16,32 --duration 30 --max-tokens 2048) ;;
     full)   o=(--contexts 8192,32768,65536,131072 --concurrency 1,2,4,8,16 --duration 30 --max-tokens 2048
                --standalone-prefill --prefill-contexts 8k,32k,64k,128k) ;;
     *) echo "unknown case $c" >&2; exit 2 ;;

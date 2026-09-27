@@ -21,7 +21,7 @@ for tag in tags:
     if q.exists():
         m = re.search(r"(\d+)/(\d+) passed.*?median ([\d.]+) tok/s", q.read_text(), re.S)
         print("  qeval:", f"{m.group(1)}/{m.group(2)} passed, median {m.group(3)} tok/s" if m else "(no summary line)")
-    for case in ("quick", "matrix", "c16", "full"):
+    for case in ("quick", "matrix", "c16", "hiconc", "full"):
         f = root / f"{tag}-{case}.json"
         if not f.exists():
             continue
