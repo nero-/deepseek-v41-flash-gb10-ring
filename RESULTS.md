@@ -67,6 +67,47 @@ Sparks' Samsung 4 TB, and 4.3-4.7 GB/s against 5.8 GB/s with 16-64 threads of 8 
 Host-to-device copies are identical (57-60 GB/s). `image/Dockerfile.ring` raises the barrier to
 1800 s so a cold GX10 load can no longer fail the boot.
 
+### Baseline: Mia's production line on the ring (LIL v0.6.2, 2026-09-27)
+
+`bench/lilbench.sh base matrix,coding` from gx10-r0: 30 s windows, 2,048 max tokens, temperature
+unset (server default), standalone prefill. Quality: `scripts/qeval.py`, 75 tasks, c1, greedy.
+
+| Context | C1 tok/s | C8 aggregate tok/s | Prefill tok/s |
+|---|---:|---:|---:|
+| 8k | 72.0 | 156.2 | 4,680 |
+| 32k | 66.7 | 151.7 | 5,063 |
+| 64k | 62.7 | 150.6 | 4,970 |
+
+Coding Peak 97.5 tok/s (95.6-100.1). qeval 72/75 (the three tasks Mia's stock profile also fails),
+median 80.4 tok/s. Evidence in `results/20260927/`.
+
+### Where a decode step goes (torch profiler on rank 0, Mia's `analyze_steps.py`)
+
+| | C1 (1 request) | C16 (16 requests, 96 verify rows) |
+|---|---:|---:|
+| step wall, median | 35.7 ms | 155.1 ms |
+| routed MoE (b12x) | 14.7 ms | 94.1 ms |
+| other (includes RoCEnante one-shot waits) | 13.8 ms | 10.7 ms |
+| bf16 GEMM | 10.0 ms | 17.9 ms |
+| NCCL | 0.0 ms | 19.7 ms |
+| hyper-connections / attention | 3.3 / 1.5 ms | 6.1 / 5.9 ms |
+| Engram | 0.0 ms (prefetch hides it; 2% of all-reduce wait) | 0.1 ms |
+
+C1 matches Mia's ring figure (33-37 ms). At C16 the MoE streams most of every rank's expert slice
+(bandwidth-bound) and the ~983 KB all-reduces fall back to NCCL.
+
+### RoCEnante size cap
+
+A decode all-reduce is rows x 5,120 x 2 B, with 6 verify rows per request (DSpark k=5): C1 61 KB,
+C4 246 KB, **C8 491,520 B**, C16 983 KB. The planner's 262,144-byte cap sends C5-C8 to NCCL.
+Raising `SGLANG_ROCE_MAX_SIZE` and `DSV41_ROCE_GATHER` to 491,520 moved C8 onto RoCEnante: C8
+aggregate 156.2 / 151.7 / 150.6 -> 162.0 / 150.9 / 155.2 tok/s (8k/32k/64k), prefill +0.3-1.3%, qeval
+72/75 unchanged, and no `out_of_sequence`, `packet_seq_err` or `rx_out_of_buffer` on any of the 16
+functions afterwards. Adopted.
+
+C16 cannot follow: `mlx5_core: Maximum hairpin queue size is 8192`, and Mia measured drops and
+go-back-N retransmits at ~1 MB with 8192-packet queues.
+
 ## Gotchas found on this fleet
 
 - **`netplan apply` on the GX10s** stops NetworkManager and then fails, because
