@@ -1,0 +1,426 @@
+{
+  "metadata": {
+    "version": "0.6.2",
+    "engine": "sglang",
+    "model": "deepseek-v4.1-flash",
+    "server": "192.168.50.219:8888",
+    "timestamp": "2026-09-27T18:33:56.190492",
+    "decode_mode": "duration",
+    "primary_decode_layer": "sustained_decode",
+    "duration_per_test": 15.0,
+    "request_count": 0,
+    "warmup_request_count": 0,
+    "run_burst": false,
+    "prefill_mode": "skipped",
+    "standalone_prefill": false,
+    "prefill_only": false,
+    "skip_prefill": true,
+    "burst_e2e_status": "not_run_use_--run-burst",
+    "burst_request_count": 0,
+    "burst_warmup_request_count": 0,
+    "burst_requests_per_concurrency": 5,
+    "decode_warmup_seconds": 3.0,
+    "decode_warmup_context": 8192,
+    "decode_warmup_loop_diagnostics": [],
+    "loop_detection": {
+      "enabled": true,
+      "scope": "decode_cells_and_their_warmups",
+      "confirmed_min_chars": 4096,
+      "confirmed_min_cycles": 4,
+      "max_period_chars": 32768,
+      "history_chars_per_request_channel": 131072,
+      "check_interval_chars": 256,
+      "invalid_cell_aggregate_tps_sentinel": -3.0,
+      "limitation": "exact repeated text heuristic; not a semantic correctness test"
+    },
+    "decode_warmup_concurrency": 1,
+    "cell_warmup_timeout_seconds": 0.0,
+    "cell_warmup_timeout_policy": "<=32k:60s,64k:120s,>=128k:180s when override is 0",
+    "show_capacity_limited_values": false,
+    "max_tokens": 2048,
+    "temperature": null,
+    "ignore_eos": true,
+    "max_total_tokens": 5606400,
+    "dcp_size": 0,
+    "metrics_available": false,
+    "metrics_warning": "SGLang /metrics is reachable but does not expose sglang:* metrics; scheduler/effective-concurrency and Prometheus validation are disabled. Restart with --enable-metrics for those diagnostics.",
+    "concurrency_levels": [
+      1
+    ],
+    "context_lengths": [
+      8192
+    ],
+    "startup_diagnostics_available": true,
+    "nvidia_p2p_override_effective": false,
+    "p2pmark_status": "not_run",
+    "amd_fabric_status": "not_run"
+  },
+  "startup_diagnostics": {
+    "version": "0.6.2",
+    "server_url": "http://192.168.50.219:8888",
+    "hostname": "gx10-r0",
+    "uname": "Linux gx10-r0 7.0.0-1019-nvidia #19~24.04.2-Ubuntu SMP PREEMPT_DYNAMIC Sun Sep  6 18:35:11 UTC 2 aarch64 aarch64 aarch64 GNU/Linux",
+    "env": {},
+    "args": {
+      "concurrency": "1",
+      "contexts": "8192",
+      "max_tokens": 2048,
+      "duration": 15.0,
+      "request_count": 0,
+      "run_burst": false,
+      "standalone_prefill": false,
+      "prefill_only": false,
+      "skip_prefill": true,
+      "prefill_contexts": "8k,64k,128k",
+      "prefill_metric": "client",
+      "dcp_size": 0,
+      "kv_budget": 0
+    },
+    "nvidia_p2p_override": {
+      "effective": false,
+      "configured": false,
+      "params_path": "/proc/driver/nvidia/params",
+      "params_available": true,
+      "modprobe_path": "/etc/modprobe.d/nvidia-p2p-override.conf",
+      "modprobe_available": false,
+      "runtime": {
+        "ForceP2P": "",
+        "RMForceP2PType": "",
+        "RMPcieP2PType": "",
+        "GrdmaPciTopoCheckOverride": "0",
+        "EnableResizableBar": "0",
+        "DmaRemapPeerMmio": "1"
+      },
+      "expected": {
+        "ForceP2P": "0x11",
+        "RMForceP2PType": "1",
+        "RMPcieP2PType": "2",
+        "GrdmaPciTopoCheckOverride": "1",
+        "EnableResizableBar": "1"
+      },
+      "missing": [
+        "ForceP2P",
+        "RMForceP2PType",
+        "RMPcieP2PType"
+      ],
+      "mismatched": {
+        "GrdmaPciTopoCheckOverride": {
+          "expected": "1",
+          "actual": "0"
+        },
+        "EnableResizableBar": {
+          "expected": "1",
+          "actual": "0"
+        }
+      },
+      "registry_dwords": "",
+      "suggested_modprobe_line": "options nvidia NVreg_RegistryDwords=\"ForceP2P=0x11;RMForceP2PType=1;RMPcieP2PType=2;GrdmaPciTopoCheckOverride=1;EnableResizableBar=1\"",
+      "suggested_reload": "stop GPU workloads, then reload NVIDIA modules or reboot; the modprobe file alone is not enough until the nvidia module is reloaded"
+    },
+    "p2pmark": {
+      "status": "not_run"
+    },
+    "amd_fabric": {
+      "status": "not_run"
+    },
+    "nvidia_smi_query": {
+      "cmd": [
+        "nvidia-smi",
+        "--query-gpu=index,name,driver_version,pci.bus_id,pcie.link.gen.current,pcie.link.width.current,power.limit",
+        "--format=csv,noheader,nounits"
+      ],
+      "returncode": 0,
+      "stdout": "0, NVIDIA GB10, 580.178.04, 0000000F:01:00.0, 1, 1, [N/A]",
+      "stderr": ""
+    },
+    "nvidia_smi_topo": {
+      "cmd": [
+        "nvidia-smi",
+        "topo",
+        "-m"
+      ],
+      "returncode": 0,
+      "stdout": "\u001b[4mGPU0\tNIC0\tNIC1\tNIC2\tNIC3\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nGPU0\t X \tNODE\tNODE\tNODE\tNODE\t0-19\t0\t\tN/A\nNIC0\tNODE\t X \tPIX\tNODE\tNODE\t\t\t\t\nNIC1\tNODE\tPIX\t X \tNODE\tNODE\t\t\t\t\nNIC2\tNODE\tNODE\tNODE\t X \tPIX\t\t\t\t\nNIC3\tNODE\tNODE\tNODE\tPIX\t X \t\t\t\t\n\nLegend:\n\n  X    = Self\n  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)\n  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node\n  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)\n  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)\n  PIX  = Connection traversing at most a single PCIe bridge\n  NV#  = Connection traversing a bonded set of # NVLinks\n\nNIC Legend:\n\n  NIC0: rocep1s0f0\n  NIC1: rocep1s0f1\n  NIC2: roceP2p1s0f0\n  NIC3: roceP2p1s0f1",
+      "stderr": ""
+    }
+  },
+  "nvidia_p2p_override": {
+    "effective": false,
+    "configured": false,
+    "params_path": "/proc/driver/nvidia/params",
+    "params_available": true,
+    "modprobe_path": "/etc/modprobe.d/nvidia-p2p-override.conf",
+    "modprobe_available": false,
+    "runtime": {
+      "ForceP2P": "",
+      "RMForceP2PType": "",
+      "RMPcieP2PType": "",
+      "GrdmaPciTopoCheckOverride": "0",
+      "EnableResizableBar": "0",
+      "DmaRemapPeerMmio": "1"
+    },
+    "expected": {
+      "ForceP2P": "0x11",
+      "RMForceP2PType": "1",
+      "RMPcieP2PType": "2",
+      "GrdmaPciTopoCheckOverride": "1",
+      "EnableResizableBar": "1"
+    },
+    "missing": [
+      "ForceP2P",
+      "RMForceP2PType",
+      "RMPcieP2PType"
+    ],
+    "mismatched": {
+      "GrdmaPciTopoCheckOverride": {
+        "expected": "1",
+        "actual": "0"
+      },
+      "EnableResizableBar": {
+        "expected": "1",
+        "actual": "0"
+      }
+    },
+    "registry_dwords": "",
+    "suggested_modprobe_line": "options nvidia NVreg_RegistryDwords=\"ForceP2P=0x11;RMForceP2PType=1;RMPcieP2PType=2;GrdmaPciTopoCheckOverride=1;EnableResizableBar=1\"",
+    "suggested_reload": "stop GPU workloads, then reload NVIDIA modules or reboot; the modprobe file alone is not enough until the nvidia module is reloaded"
+  },
+  "p2pmark": {
+    "status": "not_run"
+  },
+  "amd_fabric": {
+    "status": "not_run"
+  },
+  "hardware_run_summary": {},
+  "event_log": [
+    "18:33:22 benchmark start engine=sglang",
+    "18:33:22 startup server=http://192.168.50.219:8888 model=deepseek-v4.1-flash",
+    "18:33:22 startup decode concurrency=1 contexts=8k",
+    "18:33:22 startup NVIDIA P2P override: not effective: missing=ForceP2P,RMForceP2PType,RMPcieP2PType; mismatched=GrdmaPciTopoCheckOverride,EnableResizableBar",
+    "18:33:22 startup engine SGLang 0.0.0.dev0 models=['deepseek-v4.1-flash']",
+    "18:33:22 startup KV cache budget: 5,606,400 tokens",
+    "18:33:22 startup WARNING: SGLang /metrics is reachable but does not expose sglang:* metrics; scheduler/effective-concurrency and Prometheus validation are disabled. Restart with --enable-metrics for those diagnostics.",
+    "18:33:22 startup model context length: 1,048,576 tokens",
+    "18:33:22 startup prefill tests: skipped",
+    "18:33:22 startup calibrating padding text run=hiksamnrmufl up_to=8k",
+    "18:33:22 startup token targeting: estimate from 8k",
+    "18:33:22 startup calibrated: 6.25 chars/token (cached, source=8k)",
+    "18:33:22 startup context 8k: 51,192 chars (~8,191 tokens)",
+    "18:33:22 startup startup preparation done",
+    "18:33:22 startup WARNING: SGLang /metrics is reachable but does not expose sglang:* metrics; scheduler/effective-concurrency and Prometheus validation are disabled. Restart with --enable-metrics for those diagnostics.",
+    "18:33:22 startup hardware monitor disabled",
+    "18:33:22 decode warmup start",
+    "18:33:23 decode warmup start C=1 ctx=8k 3s",
+    "18:33:23 cell start C=1 ctx=8k",
+    "18:33:28 ready C=1 ctx=8k metrics_unavailable, active_streams=1/1, stable=3.0s",
+    "18:33:31 cell done C=1 ctx=8k 65.7 tok/s",
+    "18:33:31 decode warmup done C=1 ctx=8k",
+    "18:33:33 cell start C=1 ctx=8k",
+    "18:33:39 ready C=1 ctx=8k metrics_unavailable, active_streams=1/1, stable=3.0s",
+    "18:33:54 cell done C=1 ctx=8k 68.3 tok/s"
+  ],
+  "prefill": {},
+  "results": [
+    {
+      "concurrency": 1,
+      "context_tokens": 8192,
+      "benchmark_mode": "duration",
+      "request_count_target": 0,
+      "warmup_request_count": 0,
+      "measurement_seconds": 14.995792,
+      "measurement_wall_seconds": 15.000975,
+      "client_output_tokens": 1024,
+      "server_output_tokens": 0,
+      "aggregate_source": "openai_continuous_usage",
+      "aggregate_tps": 68.28582242867688,
+      "failure_reason": "",
+      "per_request_avg_tps": 68.28582242867688,
+      "ttft_avg": 0.2965606910001952,
+      "ttft_p50": 0.2965606910001952,
+      "ttft_p90": 0.2965606910001952,
+      "ttft_p99": 0.2965606910001952,
+      "time_to_second_token_avg": 0.043725817988161,
+      "time_to_second_token_p50": 0.043725817988161,
+      "time_to_second_token_p90": 0.043725817988161,
+      "time_to_second_token_p99": 0.043725817988161,
+      "request_latency_avg": 0.0,
+      "request_latency_p50": 0.0,
+      "request_latency_p90": 0.0,
+      "request_latency_p99": 0.0,
+      "inter_token_latency_avg": 0.014383562379940575,
+      "inter_token_latency_p50": 0.014383562379940575,
+      "inter_token_latency_p90": 0.014383562379940575,
+      "inter_token_latency_p99": 0.014383562379940575,
+      "output_tps_per_user_avg": 69.52380596580215,
+      "output_tps_per_user_p50": 69.52380596580215,
+      "output_tps_per_user_p90": 69.52380596580215,
+      "output_tps_per_user_p99": 69.52380596580215,
+      "e2e_output_tps_per_user_avg": 0.0,
+      "e2e_output_tps_per_user_p50": 0.0,
+      "e2e_output_tps_per_user_p90": 0.0,
+      "e2e_output_tps_per_user_p99": 0.0,
+      "chunk_inter_token_latency_avg": 0.037468292125524216,
+      "chunk_inter_token_latency_p50": 0.037468292125524216,
+      "chunk_inter_token_latency_p90": 0.037468292125524216,
+      "chunk_inter_token_latency_p99": 0.037468292125524216,
+      "input_seq_len_avg": 8191.0,
+      "output_seq_len_avg": 1267.0,
+      "output_seq_len_p50": 1267.0,
+      "output_seq_len_p90": 1267.0,
+      "output_seq_len_p99": 1267.0,
+      "request_count": 1,
+      "completed_request_count": 0,
+      "request_samples": [
+        {
+          "ttft": 0.2965606910001952,
+          "time_to_second_token": 0.043725817988161,
+          "latency": 0.0,
+          "inter_token_latency_avg": 0.014383562379940575,
+          "chunk_inter_token_latency_avg": 0.037468292125524216,
+          "input_tokens": 8191,
+          "output_tokens": 1267,
+          "output_tps_per_user": 69.52380596580215,
+          "e2e_output_tps_per_user": 0.0,
+          "completed": false
+        }
+      ],
+      "total_tokens": 1024,
+      "wall_time": 20.553733678010758,
+      "num_completed": 1,
+      "num_errors": 0,
+      "server_gen_throughput": 0.0,
+      "server_utilization": 0.0,
+      "server_spec_accept_rate": 0.0,
+      "server_spec_accept_length": 0.0,
+      "server_spec_drafts": 0,
+      "server_spec_draft_tokens": 0,
+      "server_spec_accepted_tokens": 0,
+      "server_spec_pos_accept": [],
+      "server_engine_steps": 0.0,
+      "server_steps_per_s": 0.0,
+      "server_accept_len_effective": 0.0,
+      "accept_norm_tps": 0.0,
+      "accept_norm_ref_len": 0.0,
+      "avg_running_reqs": 0.0,
+      "max_running_reqs": 0,
+      "effective_concurrency": 0.0,
+      "avg_queue_reqs": 0.0,
+      "max_queue_reqs": 0,
+      "queue_fraction": 0.0,
+      "underfilled": false,
+      "warmup_timed_out": false,
+      "warmup_duration": 5.516,
+      "ready_reason": "metrics_unavailable, active_streams=1/1, stable=3.0s",
+      "timeout_reason": "",
+      "capacity_limited": false,
+      "hardware_summary": {},
+      "loop_detection_enabled": true,
+      "loop_detected": false,
+      "loop_diagnostics": [],
+      "loop_diagnostics_omitted": 0
+    }
+  ],
+  "summary_table": {
+    "8192": {
+      "1": 68.28582242867688
+    }
+  },
+  "burst_results": [],
+  "burst_summary_table": {},
+  "methodology": {
+    "prefill": {
+      "name": "Prefill",
+      "present": false,
+      "mode": "skipped",
+      "formula": "prompt_tokens / TTFT",
+      "notes": "Default mode records the required decode scout request for each non-zero decode context, so normal runs do not pay for a separate prefill phase. Standalone mode repeats cold-prefill samples. Prometheus prefill counters, when available and uncontaminated, are stored as validation."
+    },
+    "sustained_decode": {
+      "name": "Sustained Decode",
+      "present": true,
+      "formula": "OpenAI stream usage completion_tokens per measured window; client chunk fallback only when continuous usage is unavailable",
+      "notes": "Duration-based steady-state cell after warmup. This is the main tuning/regression signal for kernels, NCCL, DCP, MTP, and scheduling. Prometheus metrics are stored as validation and scheduler state, not the default headline."
+    },
+    "burst_e2e_decode": {
+      "name": "Burst / E2E Decode",
+      "present": false,
+      "status": "not run; use --run-burst",
+      "formula": "sum(completion_tokens) / profiling_wall_time",
+      "notes": "Finite client-facing request burst using OpenAI stream usage. It includes request admission, scheduling, prefill/cache behavior, and completion."
+    },
+    "acceptance_normalization": {
+      "name": "Acceptance-normalized decode (MTP / speculative)",
+      "present": false,
+      "formula": "engine_steps = spec_drafts + max(0, output_tokens - (accepted_tokens + spec_drafts)); accept_len_effective = output_tokens / engine_steps; steps_per_s = aggregate_tps / accept_len_effective",
+      "notes": "With speculative decoding tok/s = steps_per_s * accept_len, so raw tok/s mixes engine speed with data-dependent acceptance. steps_per_s (target-model forward passes per second) is the acceptance-independent speed used to compare runs; server_spec_pos_accept holds per-draft-position acceptance probabilities. Counters are vLLM window deltas; SGLang falls back to its lifetime accept-length gauge."
+    },
+    "coding_peak": {
+      "name": "Coding Peak",
+      "present": true,
+      "formula": "usage.completion_tokens / (last_stream_time - first_token_time)",
+      "notes": "Sequential cc1 Sieve-of-Eratosthenes coding prompt, matching /mnt/test.py throughput semantics. Uses OpenAI stream usage with continuous_usage_stats when the server supports it."
+    }
+  },
+  "coding_peak": {
+    "mode": "coding_peak",
+    "prompt": "Write a Python script that implements the Sieve of Eratosthenes.",
+    "runs_requested": 3,
+    "runs_ok": 3,
+    "max_tokens": 2000,
+    "temperature": null,
+    "summary": {
+      "mean_generation_tok_s": 104.62928591640426,
+      "median_generation_tok_s": 105.35359276027458,
+      "max_generation_tok_s": 108.43325309239353,
+      "min_generation_tok_s": 100.10101189654465,
+      "cjk_runs": 0
+    },
+    "samples": [
+      {
+        "run": 1,
+        "ok": true,
+        "finish_reason": "stop",
+        "completion_tokens": 579,
+        "ttft": 0.2036045849963557,
+        "gen_elapsed": 5.784157312999014,
+        "total_elapsed": 5.9877618979953695,
+        "generation_tok_s": 100.10101189654465,
+        "total_tok_s": 96.69723176431619,
+        "content_chars": 1977,
+        "reasoning_chars": 0,
+        "cjk_chars": 0,
+        "content_preview": "```python\ndef sieve_of_eratosthenes(n):\n    \"\"\"\n    Generate all prime numbers up to and including n using the\n    Sieve of Eratosthenes algorithm.\n\n    Args:\n        n (int): The upper limit (inclusive) for finding primes.\n\n    Returns:\n        list[int]: A list of all prime numbers <= n.\n    \"\"\"\n    if n < 2:\n        return []\n\n    # Boolean array where index i represents whether i is prime.\n    # Start by assuming every number >= 2 is prime.\n    is_prime = [True] * (n + 1)\n    is_prime[0] = i"
+      },
+      {
+        "run": 2,
+        "ok": true,
+        "finish_reason": "stop",
+        "completion_tokens": 930,
+        "ttft": 0.21856298600323498,
+        "gen_elapsed": 8.576704778999556,
+        "total_elapsed": 8.79526776500279,
+        "generation_tok_s": 108.43325309239353,
+        "total_tok_s": 105.7386795772789,
+        "content_chars": 2822,
+        "reasoning_chars": 0,
+        "cjk_chars": 0,
+        "content_preview": "# Sieve of Eratosthenes in Python\n\nThe Sieve of Eratosthenes is an efficient algorithm for finding all prime numbers up to a given limit `n`.\n\n## Basic Implementation\n\n```python\ndef sieve_of_eratosthenes(n):\n    \"\"\"\n    Return a list of all prime numbers up to and including n\n    using the Sieve of Eratosthenes algorithm.\n    \"\"\"\n    if n < 2:\n        return []\n\n    # Boolean array: is_prime[i] is True if i is prime\n    is_prime = [True] * (n + 1)\n    is_prime[0] = is_prime[1] = False\n\n    # Onl"
+      },
+      {
+        "run": 3,
+        "ok": true,
+        "finish_reason": "stop",
+        "completion_tokens": 879,
+        "ttft": 0.21641542698489502,
+        "gen_elapsed": 8.343331982992822,
+        "total_elapsed": 8.559747409977717,
+        "generation_tok_s": 105.35359276027458,
+        "total_tok_s": 102.6899460812814,
+        "content_chars": 2923,
+        "reasoning_chars": 0,
+        "cjk_chars": 0,
+        "content_preview": "# Sieve of Eratosthenes in Python\n\nHere's a clean implementation of the Sieve of Eratosthenes algorithm, which efficiently finds all prime numbers up to a given limit.\n\n```python\ndef sieve_of_eratosthenes(limit):\n    \"\"\"\n    Find all prime numbers up to a given limit using the Sieve of Eratosthenes.\n    \n    Args:\n        limit (int): The upper bound (inclusive) for finding primes.\n    \n    Returns:\n        list: A list of all prime numbers <= limit.\n    \"\"\"\n    if limit < 2:\n        return []\n "
+      }
+    ]
+  }
+}
