@@ -13,7 +13,8 @@ below at pinned commits; nothing from them is vendored here.
 | Ring transport: patched NCCL 2.30.7, hardware-forwarded opposite-node paths, path-aware RoCEnante | [FujitsuPolycom/sparkring](https://github.com/FujitsuPolycom/sparkring) (Apache-2.0) | `f16b5f43` |
 | Kernels: b12x (MXFP8 dense, routed MoE, RoCEnante one-shot collectives) | [local-inference-lab/b12x](https://github.com/local-inference-lab/b12x) (Apache-2.0) | `a7d7d29b` (via Mia's `sources.manifest`) |
 | Base image | `lmsysorg/sglang:dev-dsv41` | `sha256:3dbc3130…` |
-| NVIDIA NCCL | [NVIDIA/nccl](https://github.com/NVIDIA/nccl) | `73cf1122` + sparkring `nccl-2.30.7-dual-pci-domain.patch` (blob `f4853e84`) |
+| NVIDIA NCCL | [NVIDIA/nccl](https://github.com/NVIDIA/nccl) | `73cf1122` + sparkring `nccl-2.30.7-dual-pci-domain.patch` (blob `f4853e84`), built with the image's CUDA 13.0 → `libnccl.so.2.30.7` sha256 `68f91a60…` |
+| Serving image | `Dockerfile.canary-roce` built once, `docker save`/`load` to the other ranks | image ID `0c28b7b35803` on all four |
 | Checkpoint | `deepseek-ai/DeepSeek-V4.1-Flash` | `fb2764a5` (weights identical to `dba1be0a`) |
 
 Why this stack: Mia's four-node production line is the fastest published DeepSeek-V4.1-Flash
@@ -81,6 +82,13 @@ starts the pair's own `~/builds/qwen-tp2/cluster.sh`. Both of the pair's HCAs on
 used (one per PCIe root). Each pair's `cluster-config.json` was retargeted with
 `scripts/retarget_tp2.py`; cable modes 1 and 2 now select the same two rails, since only one cable
 joins the pair.
+
+## Benchmarks
+
+Speed is measured with [local-inference-lab/llm-inference-bench](https://github.com/local-inference-lab/llm-inference-bench)
+v0.6.2 (`ccd9ad8`), the same case definitions as the Qwen TP2 campaign (`bench/lilbench.sh`, run from
+gx10-r0). Quality is Mia's `scripts/qeval.py` (75 auto-scored tasks, temperature 0, c1).
+`bench/ringbench.py` is a quicker in-house A/B probe.
 
 ## Results
 

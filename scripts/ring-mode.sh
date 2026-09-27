@@ -14,13 +14,14 @@
 set -euo pipefail
 RANKS=(spark-r0 spark-r1 gx10-r1 gx10-r0)
 DS_HEAD=spark-r0 DS_DIR='~/NewModels/DS4.1'
-declare -A QWEN_HEAD=([spark]=spark-r0 [gx10]=gx10-r0)
 SSH=(ssh -o BatchMode=yes -o ConnectTimeout=10)
 
 ds_stop()   { "${SSH[@]}" $DS_HEAD "cd $DS_DIR && ./start-tp4.sh stop" || true; }
-qwen()      { "${SSH[@]}" "${QWEN_HEAD[$1]}" "bash ~/builds/qwen-tp2/cluster.sh $2"; }
-# Interactive so sudo can prompt on hosts without passwordless sudo (the Sparks).
-mesh()      { for h in "$@"; do ssh -t -o ConnectTimeout=10 "$h" "sudo systemctl $MESH_ACTION dsv41-mesh"; done; }
+qwen_head() { case $1 in spark) echo spark-r0 ;; gx10) echo gx10-r0 ;; esac; }  # bash 3.2 (macOS): no assoc arrays
+qwen()      { "${SSH[@]}" "$(qwen_head "$1")" "bash ~/builds/qwen-tp2/cluster.sh $2"; }
+# Needs passwordless sudo for these unit verbs on every node (the Sparks get it from
+# ring/sudoers-dsv41-mesh; the GX10s already have NOPASSWD sudo).
+mesh()      { for h in "$@"; do "${SSH[@]}" "$h" "sudo -n systemctl $MESH_ACTION dsv41-mesh" & done; wait; }
 
 case "${1:-status}" in
   ds)
