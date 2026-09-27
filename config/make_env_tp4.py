@@ -23,6 +23,9 @@ env.update(NCCL_IB_EXTENDED_IPV4_GIDS="1", NCCL_IB_PRESERVE_PCI_DOMAIN="1",
            NCCL_IB_ROUTE_DIAGNOSTICS="1", NCCL_IB_QPS_PER_CONNECTION="1")
 if mesh:
     env.update(kv.split("=", 1) for kv in mesh)
+    # A C8 decode all-reduce is 8 x 6 verify rows x 5120 x 2 B = 491,520 B. The 8192-packet hairpin
+    # queues carry it without drops (Mia's table: 0 drops to ~480 KB), so raise the planner's cap.
+    env["SGLANG_ROCE_MAX_SIZE"] = env["DSV41_ROCE_GATHER"] = "491520"
 else:  # no opposite-node path: RoCEnante cannot reach rank i+2
     env["SGLANG_ROCE_ALLREDUCE"] = "0"
     for k in ("DSV41_ROCE_GATHER", "SGLANG_ROCE_MAX_SIZE"):
@@ -43,6 +46,8 @@ SET = {
     "NFS_SERVER_IPS": '""',
     "NFS_CLIENTS": '""',
     "EP_SIZE": "1",
+    # +8-12% prefill at 16k-128k; 1M-token needle passes, head MemAvailable low-water 3.2 GiB.
+    "CHUNKED_PREFILL_SIZE": "8192",
     "IMAGE": "dsv41-4x-spark:canary-roce-ring",  # image/Dockerfile.ring over canary-roce
     "WORKER_DIR": "/home/$WORKER_USER/dsv41-4x-spark",
     "EXTRA_CONTAINER_ENV": '"' + " ".join(f"{k}={v}" for k, v in env.items()) + '"',

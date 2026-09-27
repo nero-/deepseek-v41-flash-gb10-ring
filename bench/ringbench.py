@@ -106,6 +106,10 @@ def real_text(n_chars, rnd):
 def prefill(url, targets):
     rnd = random.Random(time.time_ns())
     out = []
+    # A freshly booted engine compiles/tunes kernels on the first prefill of each size class;
+    # run every target once untimed so the measured pass sees a warm engine.
+    for target in targets:
+        stream(url, f"[{rnd.getrandbits(64):016x}] {real_text(int(target * 3.1), rnd)}", 1, timeout=3600)
     for target in targets:
         nonce = f"{rnd.getrandbits(64):016x}"
         text = real_text(int(target * 3.1), rnd)  # ~3.1 chars/token on Python source

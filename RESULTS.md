@@ -108,6 +108,34 @@ functions afterwards. Adopted.
 C16 cannot follow: `mlx5_core: Maximum hairpin queue size is 8192`, and Mia measured drops and
 go-back-N retransmits at ~1 MB with 8192-packet queues.
 
+### Tuning experiments
+
+Each candidate is one boot of the production line with one change (`bench/experiment.sh`), a
+smoke test, qeval (75 tasks), and `bench/ringbench.py` (greedy, thinking off, 256 tokens; four prompt
+types x C1-C16; cold real-text prefill after an untimed warm-up pass). Re-running the unchanged
+baseline on a fresh boot moved individual cells by up to +/-5-8% (batch composition changes greedy
+text at C>1, and the earlier reference ran after a long LIL session), so only consistent effects
+larger than that count.
+
+| Change | Result | Decision |
+|---|---|---|
+| RoCEnante cap 262,144 -> 491,520 B | C8 moves from NCCL to RoCEnante; LIL C8 +3.7% / -0.5% / +3.1%; zero drops or sequence errors | **adopted** |
+| `CHUNKED_PREFILL_SIZE` 4096 -> 8192 | cold prefill +8.5 / +7.6 / +11.9 / +10.7% at 16k/32k/64k/128k; decode within noise; qeval 72/75; 251k and 1,000,169-token needles PASS (1M in 247.6 s vs 305 s on Mia's ring), head MemAvailable low-water 3.2 GiB | **adopted** |
+| `DSV41_VERIFY_CAP` conf:0.1 -> 0.2 / 0.3 | indistinguishable from a fresh-boot repeat of the baseline | kept 0.1 |
+| `DSPARK_BLOCK_SIZE` 5 -> 7 | engine fails at warm-up: `mat1 and mat2 shapes cannot be multiplied (80x7424 and 5376x1)` | not supported |
+| `SPARK_PREFILL_TP_MIN_CONTEXT` 32768 -> 8192 | adapter refuses: `if context<32768 ... raise ValueError` | not supported |
+| hairpin queue 8192 -> 16384 (for C16 on RoCEnante) | `mlx5_core: Maximum hairpin queue size is 8192` | not possible |
+| CPU governor / GPU clocks | already `performance`, identical clocks, no throttle reasons on all four | nothing to change |
+
+### Why these numbers sit below Mia's headline figures
+
+Mia's 87.7 prose C1 and ~240 prose C8 are sparkDash 1.8.8 on a **switched** fabric: one short prose
+prompt, 256 tokens, temperature 0. Her own ring run of the same line measured 80.9 and 221.3. On
+varied prompts the same image does 58-94 tok/s at C1, and 66-67 tok/s sampled at T=1 (her docs).
+LIL leaves temperature at the server default and runs 8k-128k of context with up to 2,048 new
+tokens, which lowers DSpark acceptance per step and lengthens each step. The engine itself runs at
+parity: a C1 decode step is 35.7 ms here against 35.2 ms on Mia's ring.
+
 ## Gotchas found on this fleet
 
 - **`netplan apply` on the GX10s** stops NetworkManager and then fails, because
