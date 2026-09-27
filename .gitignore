@@ -1,0 +1,5 @@
+.env.tp4
+*.log
+__pycache__/
+ring-mesh/
+.DS_Store

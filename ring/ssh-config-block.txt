@@ -1,0 +1,16 @@
+# >>> dsv41-ring (managed) >>>
+Host spark-r0
+  HostName 192.168.50.219
+Host spark-r1
+  HostName 192.168.50.129
+Host gx10-r1
+  HostName 192.168.50.192
+Host gx10-r0
+  HostName 192.168.50.23
+Host spark-r0 spark-r1 gx10-r0 gx10-r1
+  User nero
+  IdentityFile ~/.ssh/id_ed25519_ring
+  IdentitiesOnly yes
+  StrictHostKeyChecking accept-new
+# <<< dsv41-ring (managed) <<<
+
