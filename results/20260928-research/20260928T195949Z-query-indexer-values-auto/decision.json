@@ -1,0 +1,1 @@
+{"decision":"rejected before qualification","reason":"Synthetic worker warmup requests reached add_requests before startup completed; strengthened gate must observe whole worker warmup completion before real request activation."}

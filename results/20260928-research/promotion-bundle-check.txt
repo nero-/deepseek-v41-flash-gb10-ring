@@ -1,0 +1,2 @@
+PASS: install/rollback byte restoration, removal of additions, stale-state rejection, symlink escape rejection, and rollback prevalidation
+writer_sha256=e270359c6ea2166bcdd6b761c86ae41f518772f651e6bf2b2a4ade61e0ae345a

@@ -1,0 +1,11 @@
+{
+  "rank": 3,
+  "argv": [
+    "env",
+    "MATCHED=1",
+    "bash",
+    "/home/nero/bench/lilbench.sh",
+    "research-20260928T193307Z-baseline-return",
+    "matrix"
+  ]
+}

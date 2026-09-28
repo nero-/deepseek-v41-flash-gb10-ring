@@ -1,0 +1,21 @@
+{
+  "enabled": 12,
+  "disabled": 0,
+  "lines": [
+    "[local-indexer-tp] armed: >=256 rows, >=8192 compressed positions, candidate-free prefill only",
+    "(EngineCore pid=210) [local-indexer-tp] armed: >=256 rows, >=8192 compressed positions, candidate-free prefill only",
+    "[local-indexer-tp] armed: >=256 rows, >=8192 compressed positions, candidate-free prefill only",
+    "(Worker_TP0 pid=303) [local-indexer-tp] rows=1024 width=8192 guard=local-scores-and-topk-values score-exact=ON indices_exact=0",
+    "(Worker_TP0 pid=303) [local-indexer-tp] rows=1024 width=8192 guard=local-scores-and-topk-values score-exact=ON indices_exact=0",
+    "(Worker_TP0 pid=303) [local-indexer-tp] rows=1024 width=8192 guard=local-scores-and-topk-values score-exact=ON indices_exact=0",
+    "(Worker_TP0 pid=303) [local-indexer-tp] rows=1024 width=12288 guard=local-scores-and-topk-values score-exact=ON indices_exact=0",
+    "(Worker_TP0 pid=303) [local-indexer-tp] rows=1024 width=12288 guard=local-scores-and-topk-values score-exact=ON indices_exact=0",
+    "(Worker_TP0 pid=303) [local-indexer-tp] rows=1024 width=12288 guard=local-scores-and-topk-values score-exact=ON indices_exact=0",
+    "(Worker_TP0 pid=303) [local-indexer-tp] rows=256 width=20480 guard=local-scores-and-topk-values score-exact=ON indices_exact=0",
+    "(Worker_TP0 pid=303) [local-indexer-tp] rows=256 width=20480 guard=local-scores-and-topk-values score-exact=ON indices_exact=0",
+    "(Worker_TP0 pid=303) [local-indexer-tp] rows=256 width=20480 guard=local-scores-and-topk-values score-exact=ON indices_exact=0",
+    "(Worker_TP0 pid=303) [local-indexer-tp] rows=256 width=36864 guard=local-scores-and-topk-values score-exact=ON indices_exact=0",
+    "(Worker_TP0 pid=303) [local-indexer-tp] rows=256 width=36864 guard=local-scores-and-topk-values score-exact=ON indices_exact=0",
+    "(Worker_TP0 pid=303) [local-indexer-tp] rows=256 width=36864 guard=local-scores-and-topk-values score-exact=ON indices_exact=0"
+  ]
+}

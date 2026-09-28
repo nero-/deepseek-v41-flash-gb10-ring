@@ -1,0 +1,12 @@
+{
+  "profile": "engram-adaptive4k-query-indexer",
+  "receipt": "/Users/jg/Agent/Builds/deepseek-v41-flash-ring/results/20260928-research/20260928T200635Z-query-indexer-values-auto",
+  "plugin_manifest": {
+    "dsv41_adaptive_prefill.py": "dfb6a8d70194306e08850a1f56865f7984d5a8df40ea8032cf485e590486ca58",
+    "dsv41_indexer_tp.py": "1bfe0450fa342bed52a87ed67388a065c0b79aa97c02debcd0e0f35b8ad845d5",
+    "dsv41_local-0.1.dist-info/METADATA": "94fa6ab17962b38be8ab32506c1218ecf616a203bdbc30bb325136cdeb7e3824",
+    "dsv41_local-0.1.dist-info/entry_points.txt": "ab6c572e33dd7bd10ad83863b787b1592401bf64a57564a69f6c591a7f3bb5f5"
+  },
+  "backup_directory_name": ".before-20260928T202948Z",
+  "startup_health_passed": true
+}

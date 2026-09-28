@@ -1,0 +1,7 @@
+{
+  "functional": 0,
+  "functional_checks_passed": 7,
+  "tune": 0,
+  "matrix": 0,
+  "health_verified_over_ssh": true
+}

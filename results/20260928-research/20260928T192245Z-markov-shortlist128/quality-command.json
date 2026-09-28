@@ -1,0 +1,13 @@
+{
+  "rank": 0,
+  "argv": [
+    "env",
+    "PYTHONPATH=/home/nero/sparkring-migration-20260927/baseline",
+    "python3",
+    "/home/nero/sparkring-migration-20260927/baseline/qeval.py",
+    "run",
+    "research-markov-shortlist128",
+    "--url",
+    "http://127.0.0.1:8015/v1/chat/completions"
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "args": {
+    "suite": "/home/nero/sparkring-migration-20260927/probes/functional.py",
+    "url": "http://127.0.0.1:8015/v1",
+    "output": "/home/nero/dsv41-research-20260928/query-indexer-values-auto-long-functional.json"
+  },
+  "exit_code": 0,
+  "all_long_prefills": true,
+  "requests": [
+    {
+      "request_sha256": "60e2ae229b919530d0de69d2eded9132997ba72bc013c79ee6ce2861440ab501",
+      "body_bytes": 361162,
+      "elapsed_seconds": 22.657625473977532,
+      "usage": {
+        "prompt_tokens": 93745,
+        "total_tokens": 93804,
+        "completion_tokens": 59,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "created_cache_tokens": 93440,
+          "multimodal_tokens": null
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
+    },
+    {
+      "request_sha256": "b958250b095f04a3e294a8b414b335681b087a26353e1992387761c78421fb6f",
+      "body_bytes": 361143,
+      "elapsed_seconds": 22.642967619001865,
+      "usage": {
+        "prompt_tokens": 93742,
+        "total_tokens": 93744,
+        "completion_tokens": 2,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "created_cache_tokens": 93440,
+          "multimodal_tokens": null
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
+    },
+    {
+      "request_sha256": "0ed162dc2855000cac81601c407b3b8399085b8e73e555a741b10698cf399484",
+      "body_bytes": 361148,
+      "elapsed_seconds": 23.519775447959546,
+      "usage": {
+        "prompt_tokens": 93741,
+        "total_tokens": 93824,
+        "completion_tokens": 83,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "created_cache_tokens": 93440,
+          "multimodal_tokens": null
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
+    },
+    {
+      "request_sha256": "1bd7f1d364127a458380759c3dbebaa4ff0b39cb113b7dc3dc1fa25d5c63b653",
+      "body_bytes": 361345,
+      "elapsed_seconds": 23.064757127023768,
+      "usage": {
+        "prompt_tokens": 93998,
+        "total_tokens": 94068,
+        "completion_tokens": 70,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "created_cache_tokens": 93696,
+          "multimodal_tokens": null
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
+    },
+    {
+      "request_sha256": "866ae5af6dbf26637473dc33aa8c9d7e6f576c83d1b8d55f44d15dd2c65062b5",
+      "body_bytes": 361409,
+      "elapsed_seconds": 22.999974412028678,
+      "usage": {
+        "prompt_tokens": 93997,
+        "total_tokens": 94036,
+        "completion_tokens": 39,
+        "prompt_tokens_details": {
+          "cached_tokens": 256,
+          "created_cache_tokens": 93440,
+          "multimodal_tokens": null
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
+    },
+    {
+      "request_sha256": "9fb382ddf405b386747b2cb9b9bc7a36b00a80fdae30306a3b33f0ca1008d513",
+      "body_bytes": 361500,
+      "elapsed_seconds": 22.3863301310339,
+      "usage": {
+        "prompt_tokens": 93937,
+        "total_tokens": 93950,
+        "completion_tokens": 13,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "created_cache_tokens": 93696,
+          "multimodal_tokens": {
+            "image": 184
+          }
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
+    },
+    {
+      "request_sha256": "8e273f784eb49edfbb8cdda6b9d141c720cece493ed22239ede0f5b5d9534be1",
+      "body_bytes": 361099,
+      "elapsed_seconds": 22.227242590975948,
+      "usage": {
+        "prompt_tokens": 93770,
+        "total_tokens": 93797,
+        "completion_tokens": 27,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "created_cache_tokens": 93440,
+          "multimodal_tokens": null
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 24
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "rank": 0,
+  "argv": [
+    "python3",
+    "/home/nero/sparkring-migration-20260927/mixed_traffic.py",
+    "research-query-indexer-values-auto",
+    "--output",
+    "/home/nero/dsv41-research-20260928/query-indexer-values-auto-mixed.json"
+  ]
+}

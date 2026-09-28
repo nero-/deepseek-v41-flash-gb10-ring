@@ -102,3 +102,22 @@ ssh gx10-r0 'MATCHED=1 PORT=8015 MODEL=DeepSeek-V4.1-Flash-TP4 bash ~/bench/lilb
 The installer owns its stock deployment. `bench/installer_variant.py` records separate experimental specs and source hashes on the head; it never overwrites the upstream receipt. After reviewing a qualified adaptive-budget trial, stop serving and use `scripts/install-selected.py RECEIPT --profile engram-adaptive4k` as root on the head. It checks the pinned image and per-rank plugin hashes, installs only the selected plugin in a root-owned directory on all four nodes, and writes `/etc/deepseek-ring/optimized-specs.json`. It refuses to replace an existing selection automatically.
 
 The root-owned lifecycle helper verifies the selected configuration, image/command/environment/mounts, plugin ownership and SHA-256 hashes before startup. Its sudoers rule grants only fixed lifecycle actions. It runs the installed SparkRing mesh gate before starting the selected containers. To change a selection later, stop it, archive its configuration and logs, then explicitly replace its owned containers/configuration with the newly qualified specs. Do not edit a live shell script or plugin in place.
+
+For a qualified follow-up indexer receipt, the workstation controller supports
+replacement with automatic rollback:
+
+```bash
+/opt/homebrew/bin/python3.12 scripts/promote-research.py RECEIPT --profile engram-adaptive4k-query-indexer
+/opt/homebrew/bin/python3.12 scripts/promote-research.py RECEIPT --profile engram-adaptive4k-query-indexer --execute
+```
+
+The first command validates evidence and prints the proposed manifest. Execution
+requires the recorded selection decision, passing long-input/mixed checks,
+request-based startup activation and zero rejected numerical geometries. It
+checks that the current selection still matches the trial snapshot, preserves
+root-owned backups, and replaces only the selected plugin bundle, configuration
+and stopped optimized containers. It retains the checkpoint and stock fallback.
+If startup fails, it restores the previous bundle/configuration and starts that
+profile. Trial launch receipts are host-specific and kept locally; measurement
+and source/hash evidence are tracked in Git. The query-indexer plugin arms on
+real requests after each worker starts, without an activation sentinel.

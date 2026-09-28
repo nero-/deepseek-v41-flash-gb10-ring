@@ -1,0 +1,64 @@
+{
+  "decision": "selected",
+  "profile": "engram-adaptive4k-query-indexer",
+  "baseline_receipt": "results/20260928-research/20260928T193307Z-baseline-return",
+  "qualification_receipt": "results/20260928-research/20260928T200635Z-query-indexer-values-auto",
+  "reason": "Repeatable long-prefill improvement with exact score/value guards, passing long-input and under-load functionality, and retained native decode performance. No additional decode optimization selected.",
+  "cold_retrieval": {
+    "near_256k": {
+      "baseline_prompt_tokens": 245590,
+      "candidate_prompt_tokens": 245589,
+      "baseline_ttft_s": 70.84303097898373,
+      "candidate_ttft_s": 61.11924913601251,
+      "ttft_reduction_fraction": 0.1372581284086486,
+      "both_retrieval_pass": true,
+      "both_zero_cached_tokens": true
+    },
+    "near_1m": {
+      "baseline_prompt_tokens": 1008433,
+      "candidate_prompt_tokens": 1008427,
+      "baseline_ttft_s": 529.542294171988,
+      "candidate_ttft_s": 333.8860967620276,
+      "ttft_reduction_fraction": 0.369481719521376,
+      "both_retrieval_pass": true,
+      "both_zero_cached_tokens": true
+    }
+  },
+  "baseline_decode_tps": {
+    "8192": {
+      "1": 64.62967808779081,
+      "3": 119.35656954211684,
+      "5": 146.52482852026236,
+      "8": 178.2577117819345,
+      "16": 239.87092903325717
+    }
+  },
+  "candidate_decode_tps": {
+    "8192": {
+      "1": 73.65189932133595,
+      "3": 112.74441315587228,
+      "5": 144.95492410938053,
+      "8": 181.5574082333341,
+      "16": 240.90803005670304
+    }
+  },
+  "baseline_prefill_tps": {
+    "8192": 4460.0,
+    "65536": 4299.0
+  },
+  "candidate_prefill_tps": {
+    "8192": 4486.0,
+    "65536": 4316.0
+  },
+  "mixed_tradeoff": "Fresh-request TTFT and p95 SSE content-chunk gaps remain close to baseline; maximum gaps were 1.186-1.273 s versus 1.074-1.123 s. This is a measured tradeoff, not a claimed mixed-traffic win.",
+  "guards": {
+    "enabled": 24,
+    "disabled": 0
+  },
+  "limits": [
+    "Finite exact-score and task checks do not prove universal output equivalence. Different legal tied index choices remain possible.",
+    "Legacy smoke returned 1 only for greedy byte-repeatability, which also fails on the pinned baseline.",
+    "Cold means zero prompt KV-cache reuse, not an empty OS file cache.",
+    "Individual short stochastic throughput samples are not confidence intervals. No new decode gain is attributed to this prefill-only plugin."
+  ]
+}

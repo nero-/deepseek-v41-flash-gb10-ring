@@ -1,0 +1,101 @@
+{
+  "timestamp_utc": "2026-09-28T20:44:35Z",
+  "profile": "engram-adaptive4k-query-indexer",
+  "nodes": [
+    {
+      "rank": 0,
+      "name": "ds41-optimized-r0",
+      "running": true,
+      "mesh": "ActiveState=active\nUnitFileState=enabled\n",
+      "started_at": "2026-09-28T20:30:22.860266859Z",
+      "image": "sha256:8e4de5f05f0287c4d0326f3a6ed5d25d3248ec4d482f369308a08a36a2f893bf",
+      "profile": "engram-adaptive4k-query-indexer",
+      "manifest_verified": true,
+      "checkpoint_safetensors": 48,
+      "free_space": "Filesystem         1B-blocks         Used     Available Use% Mounted on\n/dev/nvme0n1p2 4031871553536 917545365504 2909485338624  24% /models/target\n",
+      "indexer_lines": [
+        "[local-indexer-tp] armed: >=128 rows, >=8192 compressed positions, candidate-free prefill only",
+        "(EngineCore pid=219) [local-indexer-tp] armed: >=128 rows, >=8192 compressed positions, candidate-free prefill only",
+        "[local-indexer-tp] armed: >=128 rows, >=8192 compressed positions, candidate-free prefill only",
+        "(Worker_TP0 pid=311) [local-indexer-tp] worker startup complete; awaiting real request",
+        "(Worker_TP0 pid=311) [local-indexer-tp] first real request observed; numerical guards pending",
+        "(Worker_TP0 pid=311) [local-indexer-tp] rows=1024 width=8192 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+        "(Worker_TP0 pid=311) [local-indexer-tp] rows=1024 width=8192 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+        "(Worker_TP0 pid=311) [local-indexer-tp] rows=1024 width=8192 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+        "(Worker_TP0 pid=311) [local-indexer-tp] rows=1024 width=12288 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+        "(Worker_TP0 pid=311) [local-indexer-tp] rows=1024 width=12288 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+        "(Worker_TP0 pid=311) [local-indexer-tp] rows=1024 width=12288 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+        "(Worker_TP0 pid=311) [local-indexer-tp] rows=256 width=20480 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+        "(Worker_TP0 pid=311) [local-indexer-tp] rows=256 width=20480 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+        "(Worker_TP0 pid=311) [local-indexer-tp] rows=256 width=20480 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+        "(Worker_TP0 pid=311) [local-indexer-tp] rows=256 width=36864 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+        "(Worker_TP0 pid=311) [local-indexer-tp] rows=256 width=36864 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+        "(Worker_TP0 pid=311) [local-indexer-tp] rows=256 width=36864 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+        "(Worker_TP0 pid=311) [local-indexer-tp] rows=256 width=69632 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+        "(Worker_TP0 pid=311) [local-indexer-tp] rows=256 width=69632 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+        "(Worker_TP0 pid=311) [local-indexer-tp] rows=256 width=69632 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+        "(Worker_TP0 pid=311) [local-indexer-tp] rows=256 width=135168 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+        "(Worker_TP0 pid=311) [local-indexer-tp] rows=256 width=135168 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+        "(Worker_TP0 pid=311) [local-indexer-tp] rows=256 width=135168 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+        "(Worker_TP0 pid=311) [local-indexer-tp] rows=256 width=266240 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+        "(Worker_TP0 pid=311) [local-indexer-tp] rows=256 width=266240 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+        "(Worker_TP0 pid=311) [local-indexer-tp] rows=256 width=266240 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1"
+      ]
+    },
+    {
+      "rank": 1,
+      "name": "ds41-optimized-r1",
+      "running": true,
+      "mesh": "ActiveState=active\nUnitFileState=enabled\n",
+      "started_at": "2026-09-28T20:30:23.018488067Z",
+      "image": "sha256:8e4de5f05f0287c4d0326f3a6ed5d25d3248ec4d482f369308a08a36a2f893bf",
+      "profile": "engram-adaptive4k-query-indexer",
+      "manifest_verified": true,
+      "checkpoint_safetensors": 48,
+      "free_space": "Filesystem         1B-blocks         Used     Available Use% Mounted on\n/dev/nvme0n1p2 4031871553536 965187153920 2861843550208  26% /models/target\n",
+      "indexer_lines": [
+        "[local-indexer-tp] armed: >=128 rows, >=8192 compressed positions, candidate-free prefill only",
+        "[local-indexer-tp] armed: >=128 rows, >=8192 compressed positions, candidate-free prefill only",
+        "(Worker_TP1 pid=159) [local-indexer-tp] worker startup complete; awaiting real request",
+        "(Worker_TP1 pid=159) [local-indexer-tp] first real request observed; numerical guards pending"
+      ]
+    },
+    {
+      "rank": 2,
+      "name": "ds41-optimized-r2",
+      "running": true,
+      "mesh": "ActiveState=active\nUnitFileState=enabled\n",
+      "started_at": "2026-09-28T20:30:22.887731489Z",
+      "image": "sha256:8e4de5f05f0287c4d0326f3a6ed5d25d3248ec4d482f369308a08a36a2f893bf",
+      "profile": "engram-adaptive4k-query-indexer",
+      "manifest_verified": true,
+      "checkpoint_safetensors": 48,
+      "free_space": "Filesystem        1B-blocks         Used    Available Use% Mounted on\n/dev/nvme0n1p2 982819848192 759675772928 173144039424  82% /models/target\n",
+      "indexer_lines": [
+        "[local-indexer-tp] armed: >=128 rows, >=8192 compressed positions, candidate-free prefill only",
+        "[local-indexer-tp] armed: >=128 rows, >=8192 compressed positions, candidate-free prefill only",
+        "(Worker_TP2 pid=158) [local-indexer-tp] worker startup complete; awaiting real request",
+        "(Worker_TP2 pid=158) [local-indexer-tp] first real request observed; numerical guards pending"
+      ]
+    },
+    {
+      "rank": 3,
+      "name": "ds41-optimized-r3",
+      "running": true,
+      "mesh": "ActiveState=active\nUnitFileState=enabled\n",
+      "started_at": "2026-09-28T20:30:22.89252705Z",
+      "image": "sha256:8e4de5f05f0287c4d0326f3a6ed5d25d3248ec4d482f369308a08a36a2f893bf",
+      "profile": "engram-adaptive4k-query-indexer",
+      "manifest_verified": true,
+      "checkpoint_safetensors": 48,
+      "free_space": "Filesystem        1B-blocks         Used    Available Use% Mounted on\n/dev/nvme0n1p2 982819848192 754153005056 178666807296  81% /models/target\n",
+      "indexer_lines": [
+        "[local-indexer-tp] armed: >=128 rows, >=8192 compressed positions, candidate-free prefill only",
+        "[local-indexer-tp] armed: >=128 rows, >=8192 compressed positions, candidate-free prefill only",
+        "(Worker_TP3 pid=156) [local-indexer-tp] worker startup complete; awaiting real request",
+        "(Worker_TP3 pid=156) [local-indexer-tp] first real request observed; numerical guards pending"
+      ]
+    }
+  ],
+  "api_healthy": true
+}

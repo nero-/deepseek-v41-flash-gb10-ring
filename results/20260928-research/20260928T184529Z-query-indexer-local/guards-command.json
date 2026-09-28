@@ -1,0 +1,8 @@
+{
+  "rank": 0,
+  "argv": [
+    "docker",
+    "logs",
+    "ds41-research-query-indexer-local-r0"
+  ]
+}

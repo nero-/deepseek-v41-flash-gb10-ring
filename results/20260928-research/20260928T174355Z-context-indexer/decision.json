@@ -1,0 +1,6 @@
+{
+  "decision": "not selected",
+  "reason": "no real-input geometry passed exactness guard",
+  "enabled": 0,
+  "disabled": 15
+}

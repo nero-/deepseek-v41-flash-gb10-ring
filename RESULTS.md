@@ -1,8 +1,72 @@
 # vLLM results — 2026-09-28 UTC
 
-Four GB10 nodes: two DGX Sparks and two ASUS Ascent GX10s. Runtime and checkpoint pins are in [README.md](README.md). The full trial record is [MIGRATION-20260927.md](MIGRATION-20260927.md); measurements are in [results/20260928](results/20260928).
+Four GB10 nodes: two DGX Sparks and two ASUS Ascent GX10s. Runtime and checkpoint pins are in [README.md](README.md). The initial migration record is [MIGRATION-20260927.md](MIGRATION-20260927.md); the follow-up campaign is [RESEARCH-20260928.md](RESEARCH-20260928.md).
 
-Selected configuration: **Engram projection TP + adaptive 4K under contention**, with the recipe's stock graph sizes, DSpark5 and 8K allocation ceiling. Expanded graphs did not establish a balanced gain in the combined screen and are not selected.
+Selected configuration: **Engram projection TP + adaptive 4K under contention + guarded query-row indexer sharding**, with native DSpark5, graph sizes and an 8K allocation ceiling.
+
+## Follow-up selection
+
+The query-row port distributes eligible long-prefill indexer work across the four
+ranks and gathers integer selections. Exact raw scores and selected score values
+must match the original local computation; legal tied indices may differ. It
+activates only after complete worker warmup and real input. The checkpoint,
+target precision and full vocabulary are preserved.
+
+Fresh within-vLLM comparison, thinking off, temperature 1, top_p 1, top_k -1:
+
+| Configuration | C1 | C3 | C5 | C8 | C16 | Prefill 8K | Prefill 64K |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Prior adaptive 4K, baseline return | 64.6 | 119.4 | 146.5 | 178.3 | 239.9 | 4460 | 4299 |
+| **Query sharding, qualification** | **73.7** | **112.7** | **145.0** | **181.6** | **240.9** | **4486** | **4316** |
+
+All throughput values are aggregate tokens/s; both runs had zero benchmark
+errors. These short stochastic samples do not establish a new decode gain.
+The ordinary decode path is unchanged, and C1's higher acceptance, rather than
+higher engine step rate, explains its throughput rise. C3 was lower in this run.
+
+| Uncached retrieval | Baseline TTFT | Query sharding TTFT | Reduction |
+|---|---:|---:|---:|
+| ~245.6K prompt tokens | 70.84 s | 61.12 s | 13.7% |
+| ~1.008M prompt tokens | 529.54 s | 333.89 s | 36.9% |
+
+All four retrievals returned the correct code with cached_tokens=0. The earlier
+query-sharding run also passed the million-token test in 328.09 s. Cold here
+means no prompt KV-cache reuse, not an empty operating-system file cache.
+
+Qualification passed 24/24 numerical guards, seven ordinary and seven ~94K-token
+functional probes, and two ~94K retrievals under eight ongoing decoders.
+Ordinary mixed traffic retained similar p95 chunk gaps and fresh-request TTFT,
+but worst gaps increased from 1.07–1.12 s to 1.19–1.27 s. That is a tradeoff,
+not a claimed mixed-traffic improvement. The legacy smoke still fails its
+byte-identical greedy-repeatability requirement, as the pinned baseline does.
+
+All six research directions were tested. Context-axis sharding also improved
+long prefill but was less balanced on short prefill. Context-aware verification
+costs, timed prefill, Engram read-ahead, mHC row ownership, and top-20/top-128
+Markov shortlists were not selected. See the [research record](RESEARCH-20260928.md)
+for measurements, source hashes, failure details and finite-test limitations.
+
+## Permanent deployment verification
+
+The installed `engram-adaptive4k-query-indexer` profile repeated uncached
+retrieval at **1,008,431 prompt tokens in 315.76 seconds** to first content,
+**40.4% less TTFT** than the fresh 529.54-second baseline. The correct code was
+returned with cached_tokens=0. Both standard and ~94K functional suites passed
+7/7 again. Its fresh process passed 21 numerical geometries with zero rejected cases.
+
+All four selected containers are running, the API is healthy, and root-owned
+plugin hashes match the qualified source. All 48 regular checkpoint weight files
+remain on each node. The mesh is active and enabled; no research container is
+running. GX10 free space is 161.3/166.4 GiB. The delegated cleanup audit found no
+remaining SGLang runtime to remove; Qwen and the stock vLLM fallback are preserved.
+See the [deployment and health receipt](results/20260928-research/20260928T202948Z-selection)
+and [cleanup audit](results/20260928-research/cleanup-audit.json).
+
+## Initial migration measurements
+
+The remaining sections describe the earlier migration and its then-selected
+adaptive-4K profile, before query sharding. Engine-default screens below use
+different request settings from the explicit non-thinking follow-up above.
 
 ## Controlled vLLM screens
 
@@ -15,13 +79,13 @@ LIL v0.6.2, 8K decode context, 20-second cells, engine-default thinking and samp
 | Engram TP return | 64.7 | 118.5 | 152.4 | 193.2 | 276.9 | 4127 | 4101 |
 | Engram + expanded graphs | 62.8 | 120.8 | 161.9 | 202.1 | 276.8 | 4274 | 4242 |
 | Engram + adaptive 4K | 57.5 | 117.0 | 166.8 | 193.7 | 274.4 | 4449 | 4160 |
-| **Selected adaptive 4K, permanent restart** | **63.1** | **122.6** | **148.5** | **202.7** | **280.4** | **4201** | **4117** |
+| **Prior adaptive 4K, permanent restart** | **63.1** | **122.6** | **148.5** | **202.7** | **280.4** | **4201** | **4117** |
 | Engram + adaptive 4K + expanded graphs | 54.8 | 120.1 | 157.9 | 188.9 | 277.1 | 4458 | 4121 |
 | Engram + top-20 proposals¹ | 62.4 | 119.7 | 160.2 | 193.8 | 278.6 | 4006 | 4053 |
 
 ¹ The benchmark JSON completed, but replacing its executing shell wrapper caused a trailing command error (exit 127). The campaign is recorded as failed, not a clean pass. Top-20 is not selected: no clear overall gain, qeval 71/75. Its independent GPU checks passed 19/19.
 
-The selected profile's permanent-restart screen completed with zero errors and
+The prior profile's permanent-restart screen completed with zero errors and
 reproduced C1/C16/64K-prefill gains: approximately +12%/+5%/+23% against the
 stock tuning screen. Its 8K prefill was lower (4201 versus 4433), and C5 varied
 substantially across runs (148.5 versus the earlier 166.8); do not claim a uniform
@@ -31,7 +95,7 @@ Engram TP reproduced gains in C1, C16 and 64K prefill relative to stock. The C8 
 
 ## Explicit non-thinking baseline
 
-The final selected profile also completed a separate run with **thinking off,
+The prior adaptive-4K profile also completed a separate run with **thinking off,
 temperature 1.0, top_p 1.0, top_k -1**, with zero errors:
 
 | C1 | C3 | C5 | C8 | C16 | Prefill 8K | Prefill 64K |
@@ -64,11 +128,11 @@ The 16K default was rejected: little concurrency benefit and much larger stalls.
 
 Stock passed all seven functional probes and scored 71/75 on the retained task suite. Engram TP and adaptive 4K each scored 72/75; expanded graphs scored 73/75. Differences of one or two tasks do not establish quality improvements. Greedy byte-repeatability fails on the stock image as well as the optimized trials. The deterministic-kernel override failed preparation and was rejected.
 
-The SGLang-inspired Q/KV projection and indexer-row ports failed their exactness guards (0/43 and 0/12 enabled cases). Their fallbacks passed functional checks; neither port is selected or credited with a speed gain. Adaptive HC's Qwen communication pattern does not exist in this DeepSeek mHC implementation; copying its cutoff would not provide the same optimization.
+The initial SGLang-inspired Q/KV projection and indexer-row attempts failed their original guards (0/43 and 0/12 enabled cases). Their fallbacks passed functional checks; those attempts received no speed credit. The later exact-score/value query-indexer guard and its selected results are reported above. Adaptive HC's Qwen communication pattern does not exist in this DeepSeek mHC implementation; copying its cutoff would not provide the same optimization.
 
 ## Million-token retrieval and limits
 
-After the permanent restart, the selected profile retrieved the correct code
+After the initial permanent restart, the adaptive-4K profile retrieved the correct code
 from **1,008,411 prompt tokens in 526.4 seconds** (1,916 prompt tokens/s including
 decode). Arithmetic, tools and thinking also passed. The overall smoke command
 returned 1 because greedy repeatability still failed; it is not reported as an
@@ -78,7 +142,7 @@ This verifies one long retrieval request, not general 1M-context quality or
 16 simultaneous million-token sessions. The historical SGLang probe reported
 1,000,169 tokens in 247.6 seconds. That is a historical comparison with a slightly
 different token count, not a fresh matched run, but the large latency gap matters:
-**the selected vLLM profile has not recovered SGLang's very-long-context prefill speed.**
+**the initial adaptive-4K profile had not recovered that historical long-context speed.** The later query-sharding measurements above close much of the gap, but remain slower than this historical SGLang probe and do not establish a matched cross-engine comparison.
 Full prefill sequence parallelism remains unported. No RDMA error/retry counters
 changed between the selected before/after snapshots, and the API remained healthy.
 
@@ -101,7 +165,7 @@ the mode switch. Both Qwen pairs reached healthy APIs and returned `391` for
 `hc-adaptive+cg4+m5500h` selection and 24 GiB KV allocation were preserved.
 See [handoff receipt](results/20260928/qwen-handoff.json).
 
-The selected deployment restarted successfully, and fixed passwordless up/status
+The initial selected deployment restarted successfully, and fixed passwordless up/status
 controls passed after removal of the temporary broad sudo grants. A fresh request
 after the million-token test returned 27×19 = 513 in 0.17 seconds. All four
 selected containers and native mesh services were left running; see

@@ -1,0 +1,11 @@
+{
+  "rank": 0,
+  "argv": [
+    "python3",
+    "/home/nero/dsv41-research-20260928/cold-needle.py",
+    "--tokens",
+    "256000",
+    "--output",
+    "/home/nero/dsv41-research-20260928/context-indexer-local-cold-256k.json"
+  ]
+}

@@ -6,3 +6,7 @@ ring-mesh/
 results/20260928/SESSION-NOTES.md
 # Preserve host-specific trial specs/logs locally, outside the published recipe.
 results/20260928/variants/
+# Site-specific research launch receipts remain local; measurements are tracked.
+results/20260928-research/active.json
+results/20260928-research/*/selected.json
+results/20260928-research/*/specs.json

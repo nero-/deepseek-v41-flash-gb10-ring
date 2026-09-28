@@ -1,0 +1,11 @@
+{
+  "rank": 0,
+  "argv": [
+    "python3",
+    "/home/nero/sparkring-migration-20260927/smoke.py",
+    "--url",
+    "http://127.0.0.1:8015",
+    "--needle",
+    "128000"
+  ]
+}

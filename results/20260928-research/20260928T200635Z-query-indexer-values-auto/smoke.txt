@@ -1,0 +1,6 @@
+arithmetic: '42'
+greedy identical x3: False "A ring of GPUs,\nHumming in the server's heat,\nWorlds are born and die."
+tool call: True [{"id": "chatcmpl-tool-818ea249d9359a69", "type": "function", "function": {"name": "get_weather", "arguments": "{\"city\": \"Paris\"}"}}]
+thinking: True reasoning=177 chars, answer tail='  \n\\(2x = 0.10\\)  \n\\(x = 0.05\\)\n\nThe ball costs **5 cents**.', 111 tok in 1.5s
+needle 122260 tokens: PASS got='RING-6305-COBALT' in 30.7s (3986 tok/s incl. decode)
+SMOKE FAIL

@@ -1,0 +1,5 @@
+{"tensor": "layers.14.engram.embed.weight", "buffered": false, "rows_exact": 64}
+{"tensor": "layers.14.engram.embed.weight", "buffered": true, "rows_exact": 64}
+{"tensor": "layers.1.engram.embed.weight", "buffered": false, "rows_exact": 64}
+{"tensor": "layers.1.engram.embed.weight", "buffered": true, "rows_exact": 64}
+{"status": "PASS", "row_checks": 256}

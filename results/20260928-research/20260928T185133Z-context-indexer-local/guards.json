@@ -1,0 +1,24 @@
+{
+  "enabled": 15,
+  "disabled": 0,
+  "lines": [
+    "[context-indexer] armed: candidate-free prefill >=8192 compressed positions",
+    "(EngineCore pid=211) [context-indexer] armed: candidate-free prefill >=8192 compressed positions",
+    "[context-indexer] armed: candidate-free prefill >=8192 compressed positions",
+    "(Worker_TP0 pid=302) [context-indexer] rows=1024 width=8192 guard=local-scores exact=ON local_scores_exact=1 local_max_delta=0 overlap=0.994366 original_replicas_exact=0",
+    "(Worker_TP0 pid=302) [context-indexer] rows=1024 width=8192 guard=local-scores exact=ON local_scores_exact=1 local_max_delta=0 overlap=0.996925 original_replicas_exact=0",
+    "(Worker_TP0 pid=302) [context-indexer] rows=1024 width=8192 guard=local-scores exact=ON local_scores_exact=1 local_max_delta=0 overlap=0.999056 original_replicas_exact=0",
+    "(Worker_TP0 pid=302) [context-indexer] rows=1024 width=12288 guard=local-scores exact=ON local_scores_exact=1 local_max_delta=0 overlap=0.992868 original_replicas_exact=0",
+    "(Worker_TP0 pid=302) [context-indexer] rows=1024 width=12288 guard=local-scores exact=ON local_scores_exact=1 local_max_delta=0 overlap=0.996784 original_replicas_exact=0",
+    "(Worker_TP0 pid=302) [context-indexer] rows=1024 width=12288 guard=local-scores exact=ON local_scores_exact=1 local_max_delta=0 overlap=0.999407 original_replicas_exact=0",
+    "(Worker_TP0 pid=302) [context-indexer] rows=256 width=20480 guard=local-scores exact=ON local_scores_exact=1 local_max_delta=0 overlap=0.991920 original_replicas_exact=0",
+    "(Worker_TP0 pid=302) [context-indexer] rows=256 width=20480 guard=local-scores exact=ON local_scores_exact=1 local_max_delta=0 overlap=0.996063 original_replicas_exact=0",
+    "(Worker_TP0 pid=302) [context-indexer] rows=256 width=20480 guard=local-scores exact=ON local_scores_exact=1 local_max_delta=0 overlap=0.999435 original_replicas_exact=0",
+    "(Worker_TP0 pid=302) [context-indexer] rows=256 width=36864 guard=local-scores exact=ON local_scores_exact=1 local_max_delta=0 overlap=0.990318 original_replicas_exact=0",
+    "(Worker_TP0 pid=302) [context-indexer] rows=256 width=36864 guard=local-scores exact=ON local_scores_exact=1 local_max_delta=0 overlap=0.995804 original_replicas_exact=0",
+    "(Worker_TP0 pid=302) [context-indexer] rows=256 width=36864 guard=local-scores exact=ON local_scores_exact=1 local_max_delta=0 overlap=0.999535 original_replicas_exact=0",
+    "(Worker_TP0 pid=302) [context-indexer] rows=148 width=61130 guard=local-scores exact=ON local_scores_exact=1 local_max_delta=0 overlap=0.988888 original_replicas_exact=0",
+    "(Worker_TP0 pid=302) [context-indexer] rows=148 width=61130 guard=local-scores exact=ON local_scores_exact=1 local_max_delta=0 overlap=0.994814 original_replicas_exact=0",
+    "(Worker_TP0 pid=302) [context-indexer] rows=148 width=61130 guard=local-scores exact=ON local_scores_exact=1 local_max_delta=0 overlap=0.998760 original_replicas_exact=0"
+  ]
+}

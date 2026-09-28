@@ -1,0 +1,4 @@
+{
+  "decision": "startup failure; no performance result",
+  "reason": "Native online NVFP4 packing did not retain the legacy gathered-head attributes. Next revision retains the exact row-major packed values before B12x swizzles scales."
+}

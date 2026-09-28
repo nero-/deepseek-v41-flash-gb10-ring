@@ -1,0 +1,28 @@
+{
+  "args": {
+    "tokens": 1048576,
+    "output": "/home/nero/dsv41-research-20260928/query-indexer-values-auto-cold-1m.json",
+    "url": "http://127.0.0.1:8015"
+  },
+  "nonce": "4a801240dbcb47ac86835ac349fa28ba",
+  "prompt_sha256": "858529a7ce06379143fd570b5504f39aceb521895d22006338e812865f87c3b0",
+  "expected": "RING-6305-COBALT",
+  "answer": "RING-6305-COBALT",
+  "usage": {
+    "prompt_tokens": 1008427,
+    "total_tokens": 1008436,
+    "completion_tokens": 9,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "created_cache_tokens": 1008128
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  },
+  "ttft_seconds": 333.8860967620276,
+  "elapsed_seconds": 333.8959658280364,
+  "cached_tokens": 0,
+  "needle_pass": true,
+  "cold_confirmed": true
+}

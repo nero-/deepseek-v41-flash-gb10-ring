@@ -1,0 +1,19 @@
+{
+  "enabled": 10,
+  "disabled": 0,
+  "lines": [
+    "[owned-mhc] armed guarded native prefill row slices retain_residuals=True",
+    "(EngineCore pid=210) [owned-mhc] armed guarded native prefill row slices retain_residuals=True",
+    "[owned-mhc] armed guarded native prefill row slices retain_residuals=True",
+    "(Worker_TP0 pid=293) [owned-mhc] operation=b12x_mhc_pre rows=8192 guard=local-mhc-rows exact=ON rank0_fields={'out': True, 'post_buffer': True, 'comb_buffer': True, 'y': True, 'pre_out': True} native_ms=7.494 owned_gather_ms=16.428",
+    "(Worker_TP0 pid=293) [owned-mhc] operation=b12x_mhc_post_pre rows=8192 guard=local-mhc-rows exact=ON rank0_fields={'out': True, 'post_buffer': True, 'comb_buffer': True, 'y': True, 'pre_out': True} native_ms=6.822 owned_gather_ms=16.594",
+    "(Worker_TP0 pid=293) [owned-mhc] operation=post rows=8192 guard=local-mhc-rows exact=ON",
+    "(Worker_TP0 pid=293) [owned-mhc] operation=b12x_mhc_pre rows=8192 guard=local-mhc-rows exact=ON rank0_fields={'out': True, 'post_buffer': True, 'comb_buffer': True, 'y': True, 'pre_out': True} native_ms=6.535 owned_gather_ms=16.681",
+    "(Worker_TP0 pid=293) [owned-mhc] operation=post rows=8192 guard=local-mhc-rows exact=ON",
+    "(Worker_TP0 pid=293) [owned-mhc] operation=b12x_mhc_pre rows=7572 guard=local-mhc-rows exact=ON rank0_fields={'out': True, 'post_buffer': True, 'comb_buffer': True, 'y': True, 'pre_out': True} native_ms=6.892 owned_gather_ms=15.310",
+    "(Worker_TP0 pid=293) [owned-mhc] operation=b12x_mhc_post_pre rows=7572 guard=local-mhc-rows exact=ON rank0_fields={'out': True, 'post_buffer': True, 'comb_buffer': True, 'y': True, 'pre_out': True} native_ms=6.292 owned_gather_ms=15.579",
+    "(Worker_TP0 pid=293) [owned-mhc] operation=post rows=7572 guard=local-mhc-rows exact=ON",
+    "(Worker_TP0 pid=293) [owned-mhc] operation=b12x_mhc_pre rows=7572 guard=local-mhc-rows exact=ON rank0_fields={'out': True, 'post_buffer': True, 'comb_buffer': True, 'y': True, 'pre_out': True} native_ms=6.023 owned_gather_ms=15.190",
+    "(Worker_TP0 pid=293) [owned-mhc] operation=post rows=7572 guard=local-mhc-rows exact=ON"
+  ]
+}

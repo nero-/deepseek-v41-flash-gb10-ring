@@ -1,0 +1,24 @@
+{
+  "enabled": 0,
+  "disabled": 15,
+  "lines": [
+    "[context-indexer] armed: candidate-free prefill >=8192 compressed positions",
+    "(EngineCore pid=220) [context-indexer] armed: candidate-free prefill >=8192 compressed positions",
+    "[context-indexer] armed: candidate-free prefill >=8192 compressed positions",
+    "(Worker_TP0 pid=311) [context-indexer] rows=1024 width=8192 exact=OFF overlap=0.994373 original_replicas_exact=0",
+    "(Worker_TP0 pid=311) [context-indexer] rows=1024 width=8192 exact=OFF overlap=0.996838 original_replicas_exact=0",
+    "(Worker_TP0 pid=311) [context-indexer] rows=1024 width=8192 exact=OFF overlap=0.999001 original_replicas_exact=0",
+    "(Worker_TP0 pid=311) [context-indexer] rows=1024 width=12288 exact=OFF overlap=0.993137 original_replicas_exact=0",
+    "(Worker_TP0 pid=311) [context-indexer] rows=1024 width=12288 exact=OFF overlap=0.996544 original_replicas_exact=0",
+    "(Worker_TP0 pid=311) [context-indexer] rows=1024 width=12288 exact=OFF overlap=0.999317 original_replicas_exact=0",
+    "(Worker_TP0 pid=311) [context-indexer] rows=256 width=20480 exact=OFF overlap=0.991554 original_replicas_exact=0",
+    "(Worker_TP0 pid=311) [context-indexer] rows=256 width=20480 exact=OFF overlap=0.996086 original_replicas_exact=0",
+    "(Worker_TP0 pid=311) [context-indexer] rows=256 width=20480 exact=OFF overlap=0.999352 original_replicas_exact=0",
+    "(Worker_TP0 pid=311) [context-indexer] rows=256 width=36864 exact=OFF overlap=0.990692 original_replicas_exact=0",
+    "(Worker_TP0 pid=311) [context-indexer] rows=256 width=36864 exact=OFF overlap=0.996063 original_replicas_exact=0",
+    "(Worker_TP0 pid=311) [context-indexer] rows=256 width=36864 exact=OFF overlap=0.999550 original_replicas_exact=0",
+    "(Worker_TP0 pid=311) [context-indexer] rows=148 width=61130 exact=OFF overlap=0.988360 original_replicas_exact=0",
+    "(Worker_TP0 pid=311) [context-indexer] rows=148 width=61130 exact=OFF overlap=0.995104 original_replicas_exact=0",
+    "(Worker_TP0 pid=311) [context-indexer] rows=148 width=61130 exact=OFF overlap=0.998918 original_replicas_exact=0"
+  ]
+}

@@ -1,0 +1,1 @@
+The model probes all passed. The initial final audit could not traverse the root-owned checkpoint path as nero. The read-only file count and filesystem query were rerun inside the already-running selected containers at their /models/target bind mount; model tests were not repeated.

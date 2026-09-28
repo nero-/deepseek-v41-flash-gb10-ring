@@ -1,0 +1,21 @@
+{
+  "enabled": 0,
+  "disabled": 12,
+  "lines": [
+    "[local-indexer-tp] armed: >=256 rows, >=8192 compressed positions, candidate-free prefill only",
+    "(EngineCore pid=213) [local-indexer-tp] armed: >=256 rows, >=8192 compressed positions, candidate-free prefill only",
+    "[local-indexer-tp] armed: >=256 rows, >=8192 compressed positions, candidate-free prefill only",
+    "(Worker_TP0 pid=304) [local-indexer-tp] rows=1024 width=8192 guard=local-query-selection bit-exact=OFF",
+    "(Worker_TP0 pid=304) [local-indexer-tp] rows=1024 width=8192 guard=local-query-selection bit-exact=OFF",
+    "(Worker_TP0 pid=304) [local-indexer-tp] rows=1024 width=8192 guard=local-query-selection bit-exact=OFF",
+    "(Worker_TP0 pid=304) [local-indexer-tp] rows=1024 width=12288 guard=local-query-selection bit-exact=OFF",
+    "(Worker_TP0 pid=304) [local-indexer-tp] rows=1024 width=12288 guard=local-query-selection bit-exact=OFF",
+    "(Worker_TP0 pid=304) [local-indexer-tp] rows=1024 width=12288 guard=local-query-selection bit-exact=OFF",
+    "(Worker_TP0 pid=304) [local-indexer-tp] rows=256 width=20480 guard=local-query-selection bit-exact=OFF",
+    "(Worker_TP0 pid=304) [local-indexer-tp] rows=256 width=20480 guard=local-query-selection bit-exact=OFF",
+    "(Worker_TP0 pid=304) [local-indexer-tp] rows=256 width=20480 guard=local-query-selection bit-exact=OFF",
+    "(Worker_TP0 pid=304) [local-indexer-tp] rows=256 width=36864 guard=local-query-selection bit-exact=OFF",
+    "(Worker_TP0 pid=304) [local-indexer-tp] rows=256 width=36864 guard=local-query-selection bit-exact=OFF",
+    "(Worker_TP0 pid=304) [local-indexer-tp] rows=256 width=36864 guard=local-query-selection bit-exact=OFF"
+  ]
+}

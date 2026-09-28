@@ -1,0 +1,11 @@
+{
+  "rank": 0,
+  "argv": [
+    "python3",
+    "/home/nero/dsv41-research-20260928/long-functional.py",
+    "--suite",
+    "/home/nero/sparkring-migration-20260927/probes/functional.py",
+    "--output",
+    "/home/nero/dsv41-research-20260928/20260928T193307Z-baseline-return-long-functional.json"
+  ]
+}

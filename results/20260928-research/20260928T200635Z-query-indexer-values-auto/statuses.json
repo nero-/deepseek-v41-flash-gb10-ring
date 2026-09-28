@@ -1,0 +1,12 @@
+{
+  "functional": 0,
+  "needle": 1,
+  "guards": 0,
+  "cold-256k": 0,
+  "cold-1m": 0,
+  "long-functional": 0,
+  "mixed": 0,
+  "mixed-integrity": 0,
+  "tune": 0,
+  "guards-final": 0
+}

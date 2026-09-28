@@ -1,0 +1,15 @@
+{
+  "enabled": 6,
+  "disabled": 0,
+  "lines": [
+    "[owned-mhc] armed guarded native prefill row slices retain_residuals=False",
+    "(EngineCore pid=210) [owned-mhc] armed guarded native prefill row slices retain_residuals=False",
+    "[owned-mhc] armed guarded native prefill row slices retain_residuals=False",
+    "(Worker_TP0 pid=302) [owned-mhc] operation=b12x_mhc_pre rows=8192 guard=local-mhc-rows exact=ON rank0_fields={'out': True, 'post_buffer': True, 'comb_buffer': True, 'y': True, 'pre_out': True} native_ms=7.789 owned_gather_ms=16.279",
+    "(Worker_TP0 pid=302) [owned-mhc] operation=b12x_mhc_post_pre rows=8192 guard=local-mhc-rows exact=ON rank0_fields={'out': True, 'post_buffer': True, 'comb_buffer': True, 'y': True, 'pre_out': True} native_ms=7.040 owned_gather_ms=16.664",
+    "(Worker_TP0 pid=302) [owned-mhc] operation=b12x_mhc_pre rows=8192 guard=local-mhc-rows exact=ON rank0_fields={'out': True, 'post_buffer': True, 'comb_buffer': True, 'y': True, 'pre_out': True} native_ms=6.909 owned_gather_ms=16.432",
+    "(Worker_TP0 pid=302) [owned-mhc] operation=b12x_mhc_pre rows=7572 guard=local-mhc-rows exact=ON rank0_fields={'out': True, 'post_buffer': True, 'comb_buffer': True, 'y': True, 'pre_out': True} native_ms=7.698 owned_gather_ms=187.321",
+    "(Worker_TP0 pid=302) [owned-mhc] operation=b12x_mhc_post_pre rows=7572 guard=local-mhc-rows exact=ON rank0_fields={'out': True, 'post_buffer': True, 'comb_buffer': True, 'y': True, 'pre_out': True} native_ms=6.403 owned_gather_ms=15.135",
+    "(Worker_TP0 pid=302) [owned-mhc] operation=b12x_mhc_pre rows=7572 guard=local-mhc-rows exact=ON rank0_fields={'out': True, 'post_buffer': True, 'comb_buffer': True, 'y': True, 'pre_out': True} native_ms=6.470 owned_gather_ms=16.042"
+  ]
+}

@@ -2,8 +2,15 @@
 
 Each plugin is explicitly selected through `VLLM_PLUGINS`; installing this
 directory does not enable every experiment. The selected deployment installs
-only `dsv41_adaptive_prefill`, with its own restricted entry-point metadata and
-a root-owned SHA-256 manifest. The other plugins remain unselected experiments.
+`dsv41_adaptive_prefill` and `dsv41_indexer_tp`, with restricted entry-point
+metadata and a root-owned SHA-256 manifest. The other plugins remain unselected experiments.
+
+The follow-up prototypes `dsv41_context_cost`, `dsv41_timed_prefill`,
+`dsv41_context_indexer`, `dsv41_engram_readahead`, `dsv41_owned_mhc`, and
+`dsv41_markov_shortlist` are staged only by `scripts/research-trial.py`, which
+creates isolated entry-point metadata and snapshots the actual source used.
+They are not added to the selected plugin manifest. See
+[the research record](../../RESEARCH-20260928.md) for qualification and outcomes.
 
 ## Top-20 draft proposals (`dsv41_draft_topk`)
 
@@ -18,14 +25,25 @@ See [the transfer review](../../QWEN-TRANSFER.md) for adaptive HC and other chan
 
 ## Long-prefill indexer TP (`dsv41_indexer_tp`)
 
-**Rejected in its current form:** 0 of 12 real-input cases passed exact
+**Original selection guard rejected:** 0 of 12 real-input cases passed exact
 selection checks. Fallback functional checks passed 7/7 and the 122,260-token
 needle passed. The throughput screen was interrupted once rejection was clear;
-no optimization speedup is claimed. The mismatch cause is not yet established.
+no optimization speedup is claimed for that attempt. Follow-up score/value
+checks distinguish tied selected keys from arithmetic errors. The explicit
+`DSV41_QUERY_VALUE_GUARD=1` mode requires exact raw scores and exact selected
+score multisets, with valid distinct indices, against each rank's own original
+computation. It permits different keys tied at the cutoff, not a score tolerance.
+See the research record for the serving results. `DSV41_INDEXER_ARM_ON_REQUEST=1`
+adds restart-safe activation through the pinned runner's real-request branch;
+the selected mode requires the complete worker warmup to finish before
+observing a real request. It passed 24/24 numerical geometry guards, seven short
+and seven ~94K functional probes, uncached million-token retrieval, and mixed-load
+retrieval. The legacy smoke repeatability check still fails as on the baseline.
 
 Transfers the query-row partition idea from the historical SGLang
 `spark_prefill_dense.py` adapter. On candidate-free native MXFP4 indexer passes
-with at least 256 rows and 8,192 compressed positions, each rank scores one
+with at least 128 rows in the selected profile (256 in the earlier trials) and 8,192
+compressed positions, each rank scores one
 quarter of the rows. Only the resulting int32 top-k selections are gathered.
 Q/K projection and quantization, candidate source/consumer passes, short
 contexts, decode and residual sequence parallelism remain unchanged.
@@ -33,15 +51,23 @@ contexts, decode and residual sequence parallelism remain unchanged.
 The existing prepared DSA plan supports a smaller live row count, so this
 experiment reuses its kernels and scratch allocation. For each layer/row-count/
 context-width bucket, the first eligible real request also runs the original
-full scorer. All ranks must agree that the gathered integer output is exactly
-equal before the split is retained. A mismatch restores the original output
-and disables that case. Finite input checks are not an exhaustive proof.
+full scorer. The original mode requires identical selected indices; the explicit value-guard
+mode requires each rank's local scores and selected score multiset to equal its
+own full-compute reference. An all-rank MIN must pass before retaining a case.
+A mismatch restores the original output and disables that case. Finite input
+checks are not an exhaustive proof; alternative legal tie selections can change
+the model output.
 
 `installer_variant.py engram-indexer-tp` removes the activation sentinel before
 startup and creates it on all ranks only after API readiness. An all-rank
 activation handshake prevents staggered file creation from enabling only some
 ranks. This keeps empty startup inputs from satisfying the real-input guard.
-Restart through that controller; raw container restarts bypass this lifecycle.
+That older file-armed experiment must restart through its controller. The new
+request-armed mode does not depend on a persistent sentinel: every fresh worker
+stays disabled through startup and graph capture, then arms after its runner
+receives real requests after the entire worker warmup method returns.
+Synthetic sampler warmups also call the runner's request method, so that method
+alone is insufficient as a startup boundary. All ranks still synchronize activation.
 
 ## Adaptive token quantum (`dsv41_adaptive_prefill`)
 

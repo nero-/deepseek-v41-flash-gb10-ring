@@ -1,0 +1,28 @@
+{
+  "args": {
+    "tokens": 256000,
+    "output": "/home/nero/dsv41-research-20260928/context-indexer-local-cold-256k.json",
+    "url": "http://127.0.0.1:8015"
+  },
+  "nonce": "2036624badbc43febcee84da2a933077",
+  "prompt_sha256": "06eb34ab59c2eb32474c88342112944aed87dd2c64a4369c3bf71ce174b0d1e9",
+  "expected": "RING-6305-COBALT",
+  "answer": "RING-6305-COBALT",
+  "usage": {
+    "prompt_tokens": 245584,
+    "total_tokens": 245593,
+    "completion_tokens": 9,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "created_cache_tokens": 245248
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  },
+  "ttft_seconds": 66.69736409297911,
+  "elapsed_seconds": 66.70064990699757,
+  "cached_tokens": 0,
+  "needle_pass": true,
+  "cold_confirmed": true
+}
