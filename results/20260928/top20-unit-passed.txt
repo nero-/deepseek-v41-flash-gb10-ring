@@ -1,0 +1,20 @@
+PASS distribution depth=5 dtype=torch.float32 temperature=0.6 top_k=3 block=False
+PASS distribution depth=5 dtype=torch.float32 temperature=0.6 top_k=3 block=True
+PASS distribution depth=5 dtype=torch.float32 temperature=0.6 top_k=8 block=False
+PASS distribution depth=5 dtype=torch.float32 temperature=0.6 top_k=8 block=True
+PASS distribution depth=5 dtype=torch.float32 temperature=1.0 top_k=3 block=False
+PASS distribution depth=5 dtype=torch.float32 temperature=1.0 top_k=3 block=True
+PASS distribution depth=5 dtype=torch.float32 temperature=1.0 top_k=8 block=False
+PASS distribution depth=5 dtype=torch.float32 temperature=1.0 top_k=8 block=True
+PASS distribution depth=5 dtype=torch.bfloat16 temperature=0.6 top_k=3 block=False
+PASS distribution depth=5 dtype=torch.bfloat16 temperature=0.6 top_k=3 block=True
+PASS distribution depth=5 dtype=torch.bfloat16 temperature=0.6 top_k=8 block=False
+PASS distribution depth=5 dtype=torch.bfloat16 temperature=0.6 top_k=8 block=True
+PASS distribution depth=5 dtype=torch.bfloat16 temperature=1.0 top_k=3 block=False
+PASS distribution depth=5 dtype=torch.bfloat16 temperature=1.0 top_k=3 block=True
+PASS distribution depth=5 dtype=torch.bfloat16 temperature=1.0 top_k=8 block=False
+PASS distribution depth=5 dtype=torch.bfloat16 temperature=1.0 top_k=8 block=True
+PASS cache/graph temperature=0.0
+PASS cache/graph temperature=0.6
+PASS cache/graph temperature=1.0
+19/19 GPU checks passed

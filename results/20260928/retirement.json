@@ -1,0 +1,102 @@
+{
+  "192.168.50.219": {
+    "removed_paths": [
+      "/home/nero/NewModels/DeepSeek-V4.1-Flash",
+      "/home/nero/NewModels/DS4.1",
+      "/home/nero/dsv41-engram",
+      "/home/nero/dsv41-4x-spark",
+      "/home/nero/nccl-2.30.7",
+      "/opt/dsv41-mesh",
+      "/home/nero/.cache/sglang"
+    ],
+    "removed_images": [
+      "dsv41-4x-spark:trial-paced-roce",
+      "dsv41-4x-spark:canary-roce-ring",
+      "dsv41-4x-spark:canary-roce"
+    ],
+    "removed_units": [
+      "dsv41-mesh.service",
+      "dsv41-mesh-marker@.service"
+    ],
+    "verified_new_weight_files": 48,
+    "checkpoint_symlinks": 0,
+    "free_before_bytes": 2858713665536,
+    "free_after_bytes": 2909970886656,
+    "disk": "Filesystem         1B-blocks         Used     Available Use% Mounted on\n/dev/nvme0n1p2 4031871553536 917059817472 2909970886656  24% /\n"
+  },
+  "192.168.50.129": {
+    "removed_paths": [
+      "/home/nero/NewModels/DeepSeek-V4.1-Flash",
+      "/home/nero/NewModels/DS4.1",
+      "/home/nero/dsv41-engram",
+      "/home/nero/dsv41-4x-spark",
+      "/home/nero/nccl-2.30.7",
+      "/opt/dsv41-mesh",
+      "/home/nero/.cache/sglang"
+    ],
+    "removed_images": [
+      "dsv41-4x-spark:trial-paced-roce",
+      "dsv41-4x-spark:canary-roce-ring",
+      "dsv41-4x-spark:canary-roce"
+    ],
+    "removed_units": [
+      "dsv41-mesh.service",
+      "dsv41-mesh-marker@.service"
+    ],
+    "verified_new_weight_files": 48,
+    "checkpoint_symlinks": 0,
+    "free_before_bytes": 2811068219392,
+    "free_after_bytes": 2862312542208,
+    "disk": "Filesystem         1B-blocks         Used     Available Use% Mounted on\n/dev/nvme0n1p2 4031871553536 964718161920 2862312542208  26% /\n"
+  },
+  "192.168.50.192": {
+    "removed_paths": [
+      "/home/nero/NewModels/DeepSeek-V4.1-Flash",
+      "/home/nero/NewModels/DS4.1",
+      "/home/nero/dsv41-engram",
+      "/home/nero/dsv41-4x-spark",
+      "/home/nero/nccl-2.30.7",
+      "/opt/dsv41-mesh",
+      "/home/nero/.cache/sglang"
+    ],
+    "removed_images": [
+      "dsv41-4x-spark:trial-paced-roce",
+      "dsv41-4x-spark:canary-roce-ring",
+      "dsv41-4x-spark:canary-roce"
+    ],
+    "removed_units": [
+      "dsv41-mesh-marker@.service",
+      "dsv41-mesh.service"
+    ],
+    "verified_new_weight_files": 48,
+    "checkpoint_symlinks": 0,
+    "free_before_bytes": 122401828864,
+    "free_after_bytes": 173646123008,
+    "disk": "Filesystem        1B-blocks         Used    Available Use% Mounted on\n/dev/nvme0n1p2 982819848192 759173689344 173646123008  82% /\n"
+  },
+  "192.168.50.23": {
+    "removed_paths": [
+      "/home/nero/NewModels/DeepSeek-V4.1-Flash",
+      "/home/nero/NewModels/DS4.1",
+      "/home/nero/dsv41-engram",
+      "/home/nero/dsv41-4x-spark",
+      "/home/nero/nccl-2.30.7",
+      "/opt/dsv41-mesh",
+      "/home/nero/.cache/sglang"
+    ],
+    "removed_images": [
+      "dsv41-4x-spark:trial-paced-roce",
+      "dsv41-4x-spark:canary-roce-ring",
+      "dsv41-4x-spark:canary-roce"
+    ],
+    "removed_units": [
+      "dsv41-mesh-marker@.service",
+      "dsv41-mesh.service"
+    ],
+    "verified_new_weight_files": 48,
+    "checkpoint_symlinks": 0,
+    "free_before_bytes": 127918092288,
+    "free_after_bytes": 179162423296,
+    "disk": "Filesystem        1B-blocks         Used    Available Use% Mounted on\n/dev/nvme0n1p2 982819848192 753657389056 179162423296  81% /\n"
+  }
+}

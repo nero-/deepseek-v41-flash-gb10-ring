@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Functional smoke test: arithmetic, greedy determinism, tool calling, thinking mode, 128k needle.
 
-    python3 smoke.py [--url http://192.168.50.219:8888] [--needle]
+    python3 smoke.py [--url http://192.168.50.219:8015] [--needle N]
 """
 import argparse
 import json
@@ -20,10 +20,11 @@ def ask(url, body, timeout=1800):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--url", default="http://192.168.50.219:8888")
+    ap.add_argument("--url", default="http://192.168.50.219:8015")
+    ap.add_argument("--model", default="DeepSeek-V4.1-Flash-TP4")
     ap.add_argument("--needle", type=int, default=0, help="also run a needle test of ~N prompt tokens")
     a = ap.parse_args()
-    base = {"model": "deepseek-v4.1-flash", "temperature": 0, "chat_template_kwargs": {"thinking": False}}
+    base = {"model": a.model, "temperature": 0, "chat_template_kwargs": {"thinking": False}}
     ok = True
 
     r, _ = ask(a.url, dict(base, max_tokens=16, messages=[{"role": "user", "content": "What is 19 + 23? Answer with the number only."}]))
@@ -46,8 +47,9 @@ def main():
                  messages=[{"role": "user", "content": "A bat and a ball cost 1.10 in total. The bat costs 1.00 more than the ball. How much is the ball? End with the answer."}])
     r, dt = ask(a.url, think)
     m = r["choices"][0]["message"]
-    good = len(m.get("reasoning_content") or "") > 0 and "0.05" in (m.get("content") or "")
-    print(f"thinking: {good} reasoning={len(m.get('reasoning_content') or '')} chars, answer tail={(m.get('content') or '')[-60:]!r}, "
+    reasoning = m.get("reasoning_content") or m.get("reasoning") or ""
+    good = len(reasoning) > 0 and "0.05" in (m.get("content") or "")
+    print(f"thinking: {good} reasoning={len(reasoning)} chars, answer tail={(m.get('content') or '')[-60:]!r}, "
           f"{r['usage']['completion_tokens']} tok in {dt:.1f}s"); ok &= good
 
     if a.needle:
@@ -64,6 +66,7 @@ def main():
         ok &= code in got
 
     print("SMOKE", "PASS" if ok else "FAIL")
+    raise SystemExit(0 if ok else 1)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,14 @@
+{
+  "functional": {
+    "source_sha256": "b6208f42b3df5503544f575118275ffdbb1d63ef90f3aa3fb7acff078bf34423",
+    "output": "PASS count: '1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20'\nPASS arithmetic: '391'\nPASS code: '```python\\ndef is_prime(n):\\n    if n < 2:\\n        return False\\n    if n < 4:\\n        return True\\n    if n % 2 == 0 or n %'\nPASS tool call: [{'id': 'chatcmpl-tool-922f24b90f11e37c', 'type': 'function', 'function': {'name': 'get_weather', 'arguments': '{\"city\": \"Paris\"}'}}]\nPASS forced tool call: [{'id': 'chatcmpl-tool-b22f206d08466f7b', 'type': 'function', 'function': {'name': 'get_weather', 'arguments': '{\"city\": \"Rome\"}'}}]\nPASS image: 'The left half is red and the right half is blue.'\nPASS thinking on: {'reasoning_chars': 62, 'content': '391'}\n0 failed\n"
+  },
+  "smoke": {
+    "source_sha256": "7a2ada58ffa275f2ca4f562c1b12bb27b7ce9916ae6fe1353dcfb926ec0be46e",
+    "output": "arithmetic: '42'\ngreedy identical x3: False \"A ring of GPUs,\\nHumming in the server's heat,\\nWorlds are born and die.\"\ntool call: True [{\"id\": \"chatcmpl-tool-abdc06b464e2351f\", \"type\": \"function\", \"function\": {\"name\": \"get_weather\", \"arguments\": \"{\\\"city\\\": \\\"Paris\\\"}\"}}]\nthinking: True reasoning=194 chars, answer tail='The ball costs **$0.05** (5 cents).', 61 tok in 1.1s\nSMOKE FAIL\n"
+  },
+  "prompt-decode": {
+    "source_sha256": "9fafd457de362258ed6aa183c811027dbc471e91f2a84151acba692c94a5ab12",
+    "output": "model DeepSeek-V4.1-Flash-TP4\nprose  end-to-end  56.09 tok/s | after first token  56.70 tok/s | acceptance 0.33 | per position [0.59, 0.3, 0.12, 0.02, 0.0, 1.0, 0.98, 0.83, 0.24, 0.03] | tokens per step 2.03\ncode   end-to-end  98.91 tok/s | after first token 100.88 tok/s | acceptance 0.73 | per position [0.91, 0.81, 0.71, 0.58, 0.4, 1.0, 1.0, 1.0, 0.97, 0.7] | tokens per step 4.42\njson   end-to-end 107.81 tok/s | after first token 110.42 tok/s | acceptance 0.76 | per position [0.93, 0.82, 0.76, 0.67, 0.62, 1.0, 1.0, 1.0, 1.0, 0.99] | tokens per step 4.79\n"
+  }
+}

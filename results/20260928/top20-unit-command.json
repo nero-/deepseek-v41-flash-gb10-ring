@@ -1,0 +1,19 @@
+[
+  "docker",
+  "run",
+  "--rm",
+  "--name",
+  "ds41-top20-qualification",
+  "--gpus",
+  "all",
+  "--ipc",
+  "host",
+  "-e",
+  "PYTHONPATH=/evidence/vllm-local-plugins",
+  "-v",
+  "/home/nero/sparkring-migration-20260927:/evidence:ro",
+  "--entrypoint",
+  "python3",
+  "sha256:8e4de5f05f0287c4d0326f3a6ed5d25d3248ec4d482f369308a08a36a2f893bf",
+  "/evidence/draft_topk_tests/check_topk.py"
+]

@@ -1,0 +1,7 @@
+{
+  "functional": 0,
+  "smoke": 1,
+  "tune": 127,
+  "prompt-decode": 0,
+  "qeval": 0
+}

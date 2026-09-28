@@ -1,0 +1,9 @@
+{
+  "enabled": 0,
+  "disabled": 12,
+  "decision": "rejected: no checked indexer case enabled",
+  "functional": "7/7",
+  "needle_tokens": 122260,
+  "needle_pass": true,
+  "performance": "tune interrupted; no optimization performance claim"
+}

@@ -1,0 +1,10 @@
+{
+  "temporary_sudo_removed": [
+    "192.168.50.129",
+    "192.168.50.219"
+  ],
+  "validation": {
+    "192.168.50.129": "present_before=True\n/etc/sudoers: parsed OK\n/etc/sudoers.d/README: parsed OK\n",
+    "192.168.50.219": "present_before=True\n/etc/sudoers: parsed OK\n/etc/sudoers.d/README: parsed OK\n/etc/sudoers.d/deepseek-ring-control: parsed OK\n"
+  }
+}

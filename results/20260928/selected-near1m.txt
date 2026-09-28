@@ -1,0 +1,6 @@
+arithmetic: '42'
+greedy identical x3: False 'Silicon ring hums,\nA thousand cores pulse as one—\nDreams of light take'
+tool call: True [{"id": "chatcmpl-tool-96adc86e7acdef11", "type": "function", "function": {"name": "get_weather", "arguments": "{\"city\": \"Paris\"}"}}]
+thinking: True reasoning=158 chars, answer tail='\\)  \n\\(2x = 0.10\\)  \n\\(x = 0.05\\)\n\nThe ball costs **$0.05**.', 109 tok in 1.6s
+needle 1008411 tokens: PASS got='RING-6305-COBALT' in 526.4s (1916 tok/s incl. decode)
+SMOKE FAIL

@@ -4,7 +4,7 @@ Four GB10 nodes, one fabric, two kinds of workload:
 
 | Mode | Nodes | API | Model name |
 |---|---|---|---|
-| DeepSeek-V4.1-Flash TP4 | all four | `http://192.168.50.219:8888/v1` (spark-r0) | `deepseek-v4.1-flash` |
+| SparkRing vLLM TP4 | all four | `http://192.168.50.219:8015/v1` | `DeepSeek-V4.1-Flash-TP4` |
 | Qwen3.8 TP2, Spark pair | spark-r0 + spark-r1 | `http://192.168.50.219:8000/v1` | `qwen3.8-flash-next-4p89bpw` |
 | Qwen3.8 TP2, GX10 pair | gx10-r0 + gx10-r1 | `http://192.168.50.23:8000/v1` | `qwen3.8-flash-next-4p89bpw` |
 
@@ -15,16 +15,19 @@ either one or both. No API keys are set.
 
 ```bash
 scripts/ring-mode.sh status              # mesh state and containers on every node
-scripts/ring-mode.sh ds                  # stop Qwen on both pairs, mesh up, start DeepSeek (~5-15 min)
-scripts/ring-mode.sh qwen gx10           # stop DeepSeek, mesh down on that pair, start the GX10 Qwen pair
+scripts/ring-mode.sh ds                  # selected vLLM configuration (~7 min warm)
+scripts/ring-mode.sh ds-vllm-stock        # unchanged official SparkRing defaults
+scripts/ring-mode.sh qwen gx10           # stop DeepSeek and both meshes; start the GX10 Qwen pair
 scripts/ring-mode.sh qwen spark          # same for the Spark pair
 scripts/ring-mode.sh qwen both           # both Qwen pairs
 scripts/ring-mode.sh stop                # stop everything (mesh left as is)
 ```
 
-`ds` returns once the API is up and its built-in smoke test passed. `qwen` returns once each pair's
-`/health` answers. The mesh (`dsv41-mesh`) is only needed by DeepSeek; stopping and starting it is
-passwordless on all four nodes (`ring/sudoers-dsv41-mesh` on the Sparks).
+`ds` returns once the selected vLLM API is healthy. `qwen` returns once each pair's
+`/health` answers. The root-owned `/usr/local/sbin/deepseek-ring-control` helper on
+spark-r0 has fixed passwordless lifecycle actions. It coordinates the SparkRing
+mesh, which is disabled in Qwen mode. The retired SGLang mesh is removed. A local selected profile is stored separately from the official
+installer deployment, under `/etc/deepseek-ring/optimized-specs.json`.
 
 Your existing Qwen controller still works for the pairs themselves
 (`~/Agent/Builds/qwen38-flash-next-spark/spark-ctl.sh start|stop|status [spark|gx10]`), but it does
@@ -33,71 +36,69 @@ not stop DeepSeek first. Use `ring-mode.sh` when switching between the two.
 ## Using DeepSeek
 
 ```bash
-curl http://192.168.50.219:8888/v1/chat/completions -H 'Content-Type: application/json' -d '{
-  "model": "deepseek-v4.1-flash",
+curl http://192.168.50.219:8015/v1/chat/completions -H 'Content-Type: application/json' -d '{
+  "model": "DeepSeek-V4.1-Flash-TP4",
   "messages": [{"role": "user", "content": "Hello"}],
   "max_tokens": 1024,
   "chat_template_kwargs": {"thinking": false}
 }'
 ```
 
-- **Thinking** is off by default. Turn it on per request with `"chat_template_kwargs": {"thinking": true}`
-  (`enable_thinking` also works). Budget: `"reasoning_effort": "low" | "high" | "max"` (50 / 75 / 100;
-  default 75).
-- **Always send `max_tokens`.** Without it a request is capped at 32,768 new tokens.
-- Tool calling, JSON output and images work through the normal OpenAI fields.
-- Context up to 1,048,576 tokens; up to 16 requests decode at once, the rest queue.
-- A stream that starts looping (repeated n-grams or lines) is stopped with `finish_reason=stop`.
+- **Thinking is on by default in the new vLLM profile.** Set `"chat_template_kwargs": {"thinking": false}` explicitly for non-thinking requests and comparable benchmarks.
+- Send `max_tokens` to bound the response. Tools and images passed the functional probes.
+- Configured context limit is 1,048,576 tokens, with 16 active sequences. The 8K batch ceiling controls scheduler work per iteration; it is not the context limit or per-request reservation. The selected adaptive plugin lowers a step to 4K only when at least four runnable decoders contend with prefill. Sixteen active sequences does not imply sixteen simultaneous 1M-token contexts; aggregate KV capacity still applies.
+- Greedy repeatability currently fails in the pinned vLLM stack, including the untouched stock profile. See the migration report for quality results and the rejected deterministic-kernel trial.
 
-## DeepSeek, by hand (on spark-r0)
+## vLLM lifecycle on spark-r0
 
 ```bash
-ssh spark-r0
-cd ~/NewModels/DS4.1
-./start-tp4.sh status        # containers, health
-./start-tp4.sh logs          # head log (logs-tp4/dsv41.log); ./start-tp4.sh logs gx10-r0 for a worker
-./start-tp4.sh stop
-./start-tp4.sh serve         # boots all four ranks and waits for the smoke test
-./start-tp4.sh doctor        # preflight: image, checkpoint, NCCL, HCAs, GIDs, SSH
+sudo -n deepseek-ring-control up
+sudo -n deepseek-ring-control down
+sudo -n deepseek-ring-control status
+sudo -n deepseek-ring-control stock-up
 ```
 
-The configuration is `~/NewModels/DS4.1/.env.tp4` (a copy of `.env.tp4.prod`, generated by
-`config/make_env_tp4.py`). Boot time is 5-6 minutes warm; a cold boot (right after copying weights or a
-reboot) is longer because the GX10 drives load at about a third of the Sparks' speed.
+Use `ring-mode.sh` when changing engines: the fixed helper does not stop Qwen
+containers for you. The selected local containers use `ds41-optimized-r0`
+through `r3`; official stock containers retain their installer-generated names.
+Inspect a selected rank with `docker logs --tail 100 ds41-optimized-r0`.
+`status` reports the local selected deployment first, then the official stock
+deployment; a stopped stock deployment is expected while the selected one runs.
 
 ## After a reboot
 
-- The fabric addresses (netplan) and `dsv41-mesh` come back on their own.
+- SparkRing manages the fabric through NetworkManager. The enabled mesh service follows the last selected mode; old netplan files are preserved in the migration backup. Do not reapply the original setup recipe over the installed fabric.
 - Nothing starts serving by itself: run `scripts/ring-mode.sh ds` or `qwen ...`.
-- Check the fabric if anything looks off: `ring/rdma_links.sh` (8 direct links, ~13.3 GB/s each) and,
-  on a node, `ring/mesh_paths.sh` (8 opposite-node paths, ~10 us each).
+- Check the fabric if anything looks off: `ring/rdma_links.sh` (8 direct links, ~13.3 GB/s each) The startup controller also runs the installer's mesh gate on every rank. `ring/mesh_paths.sh` is the historical path probe; do not run fabric benchmarks during serving.
 
 ## Health checks
 
 ```bash
-ssh gx10-r0 'python3 ~/bench/smoke.py'                  # arithmetic, determinism, tool call, thinking
-ssh gx10-r0 'python3 ~/bench/smoke.py --needle 131072'  # plus a 128k needle
-ssh gx10-r0 'bash ~/bench/lilbench.sh mytag matrix'     # LIL v0.6.2, same cases as the Qwen campaign
+ssh spark-r0 'python3 ~/sparkring-migration-20260927/smoke.py --url http://127.0.0.1:8015 --model DeepSeek-V4.1-Flash-TP4 --needle 131072'
+ssh gx10-r0 'MATCHED=1 PORT=8015 MODEL=DeepSeek-V4.1-Flash-TP4 bash ~/bench/lilbench.sh mytag matrix'     # LIL v0.6.2, same cases as the Qwen campaign
 ```
 
 ## Where things live
 
 | What | Where |
 |---|---|
-| Checkpoint (`fb2764a5`, sha256-verified) | `~/NewModels/DeepSeek-V4.1-Flash` on every node |
-| Packed Engram shards | spark-r0 `~/dsv41-engram`; workers `~/dsv41-4x-spark/engram` |
-| Patched NCCL 2.30.7 | `~/nccl-2.30.7/libnccl.so.2.30.7` on every node |
-| Serving image | `dsv41-4x-spark:canary-roce-ring` (`image/Dockerfile.ring` over `canary-roce`) on every node |
-| Mia's launcher and `.env.tp4` | spark-r0 `~/NewModels/DS4.1`; recipe copy on workers `~/dsv41-4x-spark` |
-| Mesh units and scripts | `/etc/systemd/system/dsv41-mesh*.service`, `/opt/dsv41-mesh/` |
-| Fabric netplan | `/etc/netplan/41-dsv41-ring.yaml`; the previous files are in `/etc/netplan/backup-dsv41-*` |
+| SparkRing checkpoint | `/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277` on all ranks (independent regular files; the old hard-link names were removed) |
+| Local selected configuration | `/etc/deepseek-ring/optimized-specs.json`; root-owned plugins under `/usr/local/lib/deepseek-ring/plugins` |
+| SparkRing deployment | `/var/lib/sparkring/controller/deployments/deepseek-v41-flash-tp4-iba1b36389e5d` on spark-r0 |
+| Migration evidence | spark-r0 `~/sparkring-migration-20260927` and local `results/20260928` |
+| Fabric | SparkRing NetworkManager profiles; pre-migration netplan snapshots in the migration evidence |
 | Qwen TP2 | `~/builds/qwen-tp2` on each pair; GX10s keep only `model-5500h` |
 | Bench tools and results | gx10-r0 `~/bench` |
 
 ## Things not to do
 
-- Don't restart `dsv41-mesh` or re-run `/opt/dsv41-mesh/hairpin.sh` while DeepSeek is serving: it
-  re-initialises the fabric functions and drops every RDMA connection.
+- Do not restart the SparkRing mesh while DeepSeek is serving: fabric reinitialization drops RDMA connections.
 - Don't `netplan apply` on the GX10s (it stops NetworkManager there); use `netplan generate` and
   `sudo systemctl restart NetworkManager`.
 - Don't run DeepSeek and a Qwen pair at the same time: DeepSeek needs every node's memory.
+
+## Recording a local selection
+
+The installer owns its stock deployment. `bench/installer_variant.py` records separate experimental specs and source hashes on the head; it never overwrites the upstream receipt. After reviewing a qualified adaptive-budget trial, stop serving and use `scripts/install-selected.py RECEIPT --profile engram-adaptive4k` as root on the head. It checks the pinned image and per-rank plugin hashes, installs only the selected plugin in a root-owned directory on all four nodes, and writes `/etc/deepseek-ring/optimized-specs.json`. It refuses to replace an existing selection automatically.
+
+The root-owned lifecycle helper verifies the selected configuration, image/command/environment/mounts, plugin ownership and SHA-256 hashes before startup. Its sudoers rule grants only fixed lifecycle actions. It runs the installed SparkRing mesh gate before starting the selected containers. To change a selection later, stop it, archive its configuration and logs, then explicitly replace its owned containers/configuration with the newly qualified specs. Do not edit a live shell script or plugin in place.

@@ -1,0 +1,5 @@
+[vllm.general_plugins]
+dsv41_decode_split = dsv41_decode_split:register
+dsv41_indexer_tp = dsv41_indexer_tp:register
+dsv41_adaptive_prefill = dsv41_adaptive_prefill:register
+dsv41_draft_topk = dsv41_draft_topk:register

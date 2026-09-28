@@ -1,0 +1,3 @@
+# Install on spark-r0 as root, mode 0440, after installing the root-owned helper.
+# Fixed actions only; replaces the temporary migration-wide sudo authorization.
+nero ALL=(root) NOPASSWD: /usr/local/sbin/deepseek-ring-control up, /usr/local/sbin/deepseek-ring-control stock-up, /usr/local/sbin/deepseek-ring-control down, /usr/local/sbin/deepseek-ring-control mesh-off, /usr/local/sbin/deepseek-ring-control status

@@ -1,0 +1,10 @@
+{
+  "functional": {
+    "source_sha256": "6099f3922fb5acaa5020b710c3ed8c57ed4ea09be37b1a8e7232407c803d34a6",
+    "output": "PASS count: '1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20'\nPASS arithmetic: '391'\nPASS code: '```python\\ndef is_prime(n):\\n    if n < 2:\\n        return False\\n    if n < 4:\\n        return True\\n    if n % 2 == 0 or n %'\nPASS tool call: [{'id': 'chatcmpl-tool-97728db4c687e9f7', 'type': 'function', 'function': {'name': 'get_weather', 'arguments': '{\"city\": \"Paris\"}'}}]\nPASS forced tool call: [{'id': 'chatcmpl-tool-ad59b8ffefd6abc2', 'type': 'function', 'function': {'name': 'get_weather', 'arguments': '{\"city\": \"Rome\"}'}}]\nPASS image: 'Based on the image provided:\\n\\n*   The color of the **left half** is **red**.\\n*   The color of the **right half** is **blue**.'\nPASS thinking on: {'reasoning_chars': 62, 'content': '391'}\n0 failed\n"
+  },
+  "smoke": {
+    "source_sha256": "2e46ca937b85b147ba5c3d996e9f9779fa7e263650483ba8a959964ca99359fe",
+    "output": "arithmetic: '42'\ngreedy identical x3: False 'Silicon ring hums,\\nA thousand cores pulse as one\u2014\\nThoughts bloom in th'\ntool call: True [{\"id\": \"chatcmpl-tool-98e44860495619f5\", \"type\": \"function\", \"function\": {\"name\": \"get_weather\", \"arguments\": \"{\\\"city\\\": \\\"Paris\\\"}\"}}]\nthinking: True reasoning=158 chars, answer tail='\\\\)  \\n\\\\(2x = 0.10\\\\)  \\n\\\\(x = 0.05\\\\)\\n\\nThe ball costs **$0.05**.', 109 tok in 1.6s\nneedle 122260 tokens: PASS got='RING-6305-COBALT' in 33.6s (3634 tok/s incl. decode)\nSMOKE FAIL\n"
+  }
+}

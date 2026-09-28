@@ -1,0 +1,11 @@
+[
+  "env",
+  "PYTHONPATH=/home/nero/NewModels/DS4.1/scripts",
+  "python3",
+  "-u",
+  "/home/nero/sparkring-migration-20260927/baseline/qeval.py",
+  "run",
+  "engram-top20",
+  "--url",
+  "http://127.0.0.1:8015/v1/chat/completions"
+]

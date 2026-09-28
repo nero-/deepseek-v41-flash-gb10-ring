@@ -3,3 +3,6 @@
 __pycache__/
 ring-mesh/
 .DS_Store
+results/20260928/SESSION-NOTES.md
+# Preserve host-specific trial specs/logs locally, outside the published recipe.
+results/20260928/variants/

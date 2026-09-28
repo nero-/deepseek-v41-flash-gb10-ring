@@ -1,0 +1,14 @@
+{
+  "functional": {
+    "source_sha256": "0e1709eb61e0609e60c7beb4a2efa7039086bf665d1064412fb0dabf7bcc45a8",
+    "output": "PASS count: '1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20'\nPASS arithmetic: '391'\nPASS code: '```python\\ndef is_prime(n):\\n    if n < 2:\\n        return False\\n    if n < 4:\\n        return True\\n    if n % 2 == 0 or n %'\nPASS tool call: [{'id': 'chatcmpl-tool-8088b33c4d31cc03', 'type': 'function', 'function': {'name': 'get_weather', 'arguments': '{\"city\": \"Paris\"}'}}]\nPASS forced tool call: [{'id': 'chatcmpl-tool-a6992d110da574f0', 'type': 'function', 'function': {'name': 'get_weather', 'arguments': '{\"city\": \"Rome\"}'}}]\nPASS image: 'The left half is red and the right half is blue.'\nPASS thinking on: {'reasoning_chars': 62, 'content': '391'}\n0 failed\n"
+  },
+  "smoke": {
+    "source_sha256": "101979a966288d8de1d646c0390b5d0fb12e2612b2de3b5ef19f84d13fad3cf3",
+    "output": "arithmetic: '42'\ngreedy identical x3: False \"A ring of GPUs,\\nHumming in the server's heat\u2014\\nOne mind, split in parts\"\ntool call: True [{\"id\": \"chatcmpl-tool-a5dc2c59858d4ee3\", \"type\": \"function\", \"function\": {\"name\": \"get_weather\", \"arguments\": \"{\\\"city\\\": \\\"Paris\\\"}\"}}]\nthinking: True reasoning=245 chars, answer tail='\\\\)  \\n\\\\(2x = 0.10\\\\)  \\n\\\\(x = 0.05\\\\)\\n\\nThe ball costs **$0.05**.', 147 tok in 1.9s\nSMOKE FAIL\n"
+  },
+  "prompt-decode": {
+    "source_sha256": "4c650143e29b857beeb4d2c5c2686b0ea1a8b3f43f5af2fa382e5afadcfe89f7",
+    "output": "model DeepSeek-V4.1-Flash-TP4\nprose  end-to-end  54.90 tok/s | after first token  55.47 tok/s | acceptance 0.34 | per position [0.6, 0.25, 0.06, 0.02, 0.0, 1.0, 0.92, 0.35, 0.35, 0.11] | tokens per step 1.93\ncode   end-to-end  95.35 tok/s | after first token  97.18 tok/s | acceptance 0.67 | per position [0.88, 0.78, 0.65, 0.55, 0.4, 1.0, 1.0, 0.98, 0.98, 0.88] | tokens per step 4.25\njson   end-to-end 106.82 tok/s | after first token 110.16 tok/s | acceptance 0.75 | per position [0.94, 0.81, 0.72, 0.66, 0.63, 1.0, 1.0, 1.0, 1.0, 1.0] | tokens per step 4.75\n"
+  }
+}

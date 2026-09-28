@@ -1,0 +1,5 @@
+[
+  "ssh",
+  "gx10-r0",
+  "PORT=8015 MODEL=DeepSeek-V4.1-Flash-TP4 bash ~/bench/lilbench.sh installer-engram-adaptive4k tune"
+]

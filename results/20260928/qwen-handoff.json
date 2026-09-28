@@ -1,0 +1,39 @@
+{
+  "mode_switch_command": "scripts/ring-mode.sh qwen both",
+  "mode_switch_completed": true,
+  "selected_profile_both": "hc-adaptive+cg4+m5500h",
+  "kv_gib_per_rank": 24,
+  "corrected_arithmetic_probe": {
+    "192.168.50.219": {
+      "health": 200,
+      "model": "qwen3.8-flash-next-4p89bpw",
+      "answer": "391",
+      "elapsed_s": 0.20136841699999763,
+      "usage": {
+        "prompt_tokens": 28,
+        "total_tokens": 32,
+        "completion_tokens": 4,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
+    },
+    "192.168.50.23": {
+      "health": 200,
+      "model": "qwen3.8-flash-next-4p89bpw",
+      "answer": "391",
+      "elapsed_s": 0.19531200000000126,
+      "usage": {
+        "prompt_tokens": 28,
+        "total_tokens": 32,
+        "completion_tokens": 4,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
+    }
+  },
+  "earlier_probe_error": "An earlier client probe incorrectly used DeepSeek thinking=false instead of Qwen enable_thinking=false and received null content at max_tokens=32. The corrected requests above validate both pairs."
+}

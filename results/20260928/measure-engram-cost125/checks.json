@@ -1,0 +1,14 @@
+{
+  "functional": {
+    "source_sha256": "6c8b55df77310e44dd1f0d0d2757a0a689ec694abaf720292723e8fe905696d6",
+    "output": "PASS count: '1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20'\nPASS arithmetic: '391'\nPASS code: '```python\\ndef is_prime(n):\\n    if n < 2:\\n        return False\\n    if n < 4:\\n        return True\\n    if n % 2 == 0 or n %'\nPASS tool call: [{'id': 'chatcmpl-tool-b9a5197a97855baa', 'type': 'function', 'function': {'name': 'get_weather', 'arguments': '{\"city\": \"Paris\"}'}}]\nPASS forced tool call: [{'id': 'chatcmpl-tool-bd07388064693665', 'type': 'function', 'function': {'name': 'get_weather', 'arguments': '{\"city\": \"Rome\"}'}}]\nPASS image: 'The left half is red and the right half is blue.'\nPASS thinking on: {'reasoning_chars': 62, 'content': '391'}\n0 failed\n"
+  },
+  "smoke": {
+    "source_sha256": "e72b243ee3ba1b917152e00f1761a68272cfd48be846b2eb2ce02bceeccaa636",
+    "output": "arithmetic: '42'\ngreedy identical x3: False 'Silicon ring hums,\\nA thousand cores glow as one\u2014\\nThoughts bloom in the'\ntool call: True [{\"id\": \"chatcmpl-tool-bed4b0bbe8afedae\", \"type\": \"function\", \"function\": {\"name\": \"get_weather\", \"arguments\": \"{\\\"city\\\": \\\"Paris\\\"}\"}}]\nthinking: True reasoning=347 chars, answer tail='\\\\)  \\n\\\\(2x = 0.10\\\\)  \\n\\\\(x = 0.05\\\\)\\n\\nThe ball costs **$0.05**.', 172 tok in 2.0s\nSMOKE FAIL\n"
+  },
+  "prompt-decode": {
+    "source_sha256": "d085749eddb55b3a9e89eb3a1f68195a44f159f0c3fdf59b8d9e9d6357e2a833",
+    "output": "model DeepSeek-V4.1-Flash-TP4\nprose  end-to-end  52.40 tok/s | after first token  52.77 tok/s | acceptance 0.30 | per position [0.57, 0.26, 0.1, 0.01, 0.0, 1.0, 1.0, 1.0, 0.15, 0.01] | tokens per step 1.94\ncode   end-to-end  94.58 tok/s | after first token  97.07 tok/s | acceptance 0.69 | per position [0.91, 0.77, 0.64, 0.53, 0.32, 1.0, 1.0, 1.0, 0.94, 0.63] | tokens per step 4.17\njson   end-to-end 106.58 tok/s | after first token 109.92 tok/s | acceptance 0.76 | per position [0.95, 0.81, 0.74, 0.67, 0.59, 1.0, 1.0, 1.0, 1.0, 0.94] | tokens per step 4.77\n"
+  }
+}

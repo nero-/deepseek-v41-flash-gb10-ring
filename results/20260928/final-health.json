@@ -1,0 +1,26 @@
+{
+  "url": "http://192.168.50.219:8015/v1",
+  "post_long_context_answer": "513",
+  "elapsed_s": 0.174007041,
+  "usage": {
+    "prompt_tokens": 18,
+    "total_tokens": 20,
+    "completion_tokens": 2,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "created_cache_tokens": 0,
+      "multimodal_tokens": null
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  },
+  "fixed_passwordless_up_output": "Optimized DeepSeek is already healthy",
+  "status_tail": [
+    "spark-r0  mesh=active   ds41-optimized-r0 ",
+    "spark-r1  mesh=active   ds41-optimized-r1 ",
+    "gx10-r1   mesh=active   ds41-optimized-r2 ",
+    "gx10-r0   mesh=active   ds41-optimized-r3 "
+  ],
+  "fixed_controls_verified_after_temporary_sudo_removal": true
+}

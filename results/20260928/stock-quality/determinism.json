@@ -1,0 +1,474 @@
+[
+  {
+    "seed": null,
+    "unique": 5,
+    "responses": [
+      {
+        "id": "chatcmpl-aa2d438ce356782c",
+        "object": "chat.completion",
+        "created": 1790580104,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "A ring of GPUs,\nHumming in the server's heat,\nWorlds are born and die.",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.1.dev21510+g1794dcf18.d20260924-tp4-43c95413",
+        "usage": {
+          "prompt_tokens": 15,
+          "total_tokens": 37,
+          "completion_tokens": 22,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "created_cache_tokens": 0,
+            "multimodal_tokens": null
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      {
+        "id": "chatcmpl-887ce4ecfc330766",
+        "object": "chat.completion",
+        "created": 1790580105,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "A ring of GPUs,\nHumming in the cool, dark air\u2014\nWorlds are born and die.",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.1.dev21510+g1794dcf18.d20260924-tp4-43c95413",
+        "usage": {
+          "prompt_tokens": 15,
+          "total_tokens": 38,
+          "completion_tokens": 23,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "created_cache_tokens": 0,
+            "multimodal_tokens": null
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      {
+        "id": "chatcmpl-87c27614dd4e02e3",
+        "object": "chat.completion",
+        "created": 1790580105,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "Silicon ring hums,\nA thousand cores glow as one,\nDreams of light take form.",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.1.dev21510+g1794dcf18.d20260924-tp4-43c95413",
+        "usage": {
+          "prompt_tokens": 15,
+          "total_tokens": 36,
+          "completion_tokens": 21,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "created_cache_tokens": 0,
+            "multimodal_tokens": null
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      {
+        "id": "chatcmpl-8d300b01a4853130",
+        "object": "chat.completion",
+        "created": 1790580106,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "Silicon ring hums,\nA thousand cores pulse as one\u2014\nThoughts bloom in the light.",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.1.dev21510+g1794dcf18.d20260924-tp4-43c95413",
+        "usage": {
+          "prompt_tokens": 15,
+          "total_tokens": 36,
+          "completion_tokens": 21,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "created_cache_tokens": 0,
+            "multimodal_tokens": null
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      {
+        "id": "chatcmpl-9e418a5dd66e2af2",
+        "object": "chat.completion",
+        "created": 1790580106,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "Silicon ring hums,\nA thousand cores glow and spin,\nOne thought, split and shared.",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.1.dev21510+g1794dcf18.d20260924-tp4-43c95413",
+        "usage": {
+          "prompt_tokens": 15,
+          "total_tokens": 36,
+          "completion_tokens": 21,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "created_cache_tokens": 0,
+            "multimodal_tokens": null
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      }
+    ]
+  },
+  {
+    "seed": 42,
+    "unique": 5,
+    "responses": [
+      {
+        "id": "chatcmpl-81492d31ad6e5038",
+        "object": "chat.completion",
+        "created": 1790580107,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "Silicon ring hums,\nA single thought splits and spreads\u2014\nWorlds are born and die.",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.1.dev21510+g1794dcf18.d20260924-tp4-43c95413",
+        "usage": {
+          "prompt_tokens": 15,
+          "total_tokens": 36,
+          "completion_tokens": 21,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "created_cache_tokens": 0,
+            "multimodal_tokens": null
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      {
+        "id": "chatcmpl-acf544ce044ffd57",
+        "object": "chat.completion",
+        "created": 1790580108,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "Silicon ring hums,\nA thousand cores pulse as one,\nWorlds are born and die.",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.1.dev21510+g1794dcf18.d20260924-tp4-43c95413",
+        "usage": {
+          "prompt_tokens": 15,
+          "total_tokens": 36,
+          "completion_tokens": 21,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "created_cache_tokens": 0,
+            "multimodal_tokens": null
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      {
+        "id": "chatcmpl-8318043cae386f48",
+        "object": "chat.completion",
+        "created": 1790580108,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "A ring of GPUs,\nHumming in the cool, dark room\u2014\nWorlds are born and die.",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.1.dev21510+g1794dcf18.d20260924-tp4-43c95413",
+        "usage": {
+          "prompt_tokens": 15,
+          "total_tokens": 38,
+          "completion_tokens": 23,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "created_cache_tokens": 0,
+            "multimodal_tokens": null
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      {
+        "id": "chatcmpl-a29547398bb3fe1b",
+        "object": "chat.completion",
+        "created": 1790580109,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "Silicon ring hums,\nA thousand cores glow and churn,\nOne mind, forged in light.",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.1.dev21510+g1794dcf18.d20260924-tp4-43c95413",
+        "usage": {
+          "prompt_tokens": 15,
+          "total_tokens": 37,
+          "completion_tokens": 22,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "created_cache_tokens": 0,
+            "multimodal_tokens": null
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      {
+        "id": "chatcmpl-926860bc62b052d4",
+        "object": "chat.completion",
+        "created": 1790580110,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "Silicon ring hums,\nA thousand cores glow as one,\nWorlds are born and die.",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.1.dev21510+g1794dcf18.d20260924-tp4-43c95413",
+        "usage": {
+          "prompt_tokens": 15,
+          "total_tokens": 36,
+          "completion_tokens": 21,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "created_cache_tokens": 0,
+            "multimodal_tokens": null
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      }
+    ]
+  }
+]

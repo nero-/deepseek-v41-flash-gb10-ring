@@ -1,0 +1,10 @@
+[
+  "python3",
+  "/home/nero/sparkring-migration-20260927/smoke.py",
+  "--url",
+  "http://127.0.0.1:8015",
+  "--model",
+  "DeepSeek-V4.1-Flash-TP4",
+  "--needle",
+  "128000"
+]

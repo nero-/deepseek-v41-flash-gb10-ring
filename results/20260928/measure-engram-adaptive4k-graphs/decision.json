@@ -1,0 +1,7 @@
+{
+  "decision": "Not selected; expanded graphs did not establish a balanced improvement",
+  "functional": "7/7",
+  "qeval": "72/75",
+  "tune_exit": 0,
+  "campaign_interruption": "Stopped controller after completed functional/performance/quality screens. Started mixed-traffic child was cancelled; no combined mixed result is used. Queued matched/near1M checks were cancelled before execution and moved to the selected stock-graph profile."
+}

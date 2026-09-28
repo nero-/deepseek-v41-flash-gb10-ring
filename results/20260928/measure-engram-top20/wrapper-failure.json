@@ -1,0 +1,9 @@
+{
+  "decision": "Not selected: no clear gain over Engram TP",
+  "tune_wrapper_exit": 127,
+  "benchmark_json_completed": true,
+  "error": "lilbench.sh: line 41: one: command not found",
+  "cause": "The shell file was replaced in place during execution; the completed benchmark JSON is preserved, but the overall campaign is not a clean pass. Future deployment uses atomic rename.",
+  "qeval": "71/75",
+  "functional": "7/7"
+}

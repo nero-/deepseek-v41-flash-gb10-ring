@@ -1,0 +1,20 @@
+{
+  "profile": "engram-adaptive4k",
+  "image_id": "sha256:8e4de5f05f0287c4d0326f3a6ed5d25d3248ec4d482f369308a08a36a2f893bf",
+  "plugin_manifest": {
+    "dsv41_adaptive_prefill.py": "dfb6a8d70194306e08850a1f56865f7984d5a8df40ea8032cf485e590486ca58",
+    "dsv41_local-0.1.dist-info/METADATA": "94fa6ab17962b38be8ab32506c1218ecf616a203bdbc30bb325136cdeb7e3824",
+    "dsv41_local-0.1.dist-info/entry_points.txt": "00745db7bdc63f285d74a0eca367b9ef5624a5489945e2976072b90d29173190"
+  },
+  "command_settings": {
+    "--engram-config": "{\"table_memory\": \"disk\", \"disk_resident_scales\": true, \"projection_tp\": true}",
+    "--speculative-config": "{\"method\":\"dspark\",\"num_speculative_tokens\":5,\"draft_sample_method\":\"probabilistic\",\"rejection_sample_method\":\"block\",\"enable_adaptive_verification\":true}",
+    "--compilation-config": "{\"cudagraph_mode\":\"FULL_AND_PIECEWISE\",\"cudagraph_capture_sizes\":[5,6,10,12,15,18,20,24,25,30,35,36,40,42,45,48,50,54,55,60,65,66,70,72,75,78,80,84,90,96]}",
+    "--max-model-len": "1048576",
+    "--max-num-seqs": "16",
+    "--max-num-batched-tokens": "8192",
+    "--gpu-memory-utilization": "0.83"
+  },
+  "plugins": "b12x_loader,sparkring_status,dsv41_adaptive_prefill",
+  "runtime_binding_present": false
+}

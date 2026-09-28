@@ -1,0 +1,40 @@
+{
+  "commands": [
+    "scripts/ring-mode.sh ds",
+    "scripts/ring-mode.sh qwen both",
+    "scripts/ring-mode.sh ds"
+  ],
+  "all_completed": true,
+  "logs": {
+    "initial_start": {
+      "sha256": "6e181ba99a1ea852fc51cb571c829ca57289f546eb4732ce999e9973271b1fe0",
+      "tail": [
+        "Created symlink /etc/systemd/system/multi-user.target.wants/sparkring-sparkring-deepseek-v41-flash-adaefa-mesh.service \u2192 /etc/systemd/system/sparkring-sparkring-deepseek-v41-flash-adaefa-mesh.service.",
+        "Created symlink /etc/systemd/system/multi-user.target.wants/sparkring-sparkring-deepseek-v41-flash-adaefa-mesh.service \u2192 /etc/systemd/system/sparkring-sparkring-deepseek-v41-flash-adaefa-mesh.service.",
+        "Created symlink /etc/systemd/system/multi-user.target.wants/sparkring-sparkring-deepseek-v41-flash-adaefa-mesh.service \u2192 /etc/systemd/system/sparkring-sparkring-deepseek-v41-flash-adaefa-mesh.service.",
+        "Created symlink /etc/systemd/system/multi-user.target.wants/sparkring-sparkring-deepseek-v41-flash-adaefa-mesh.service \u2192 /etc/systemd/system/sparkring-sparkring-deepseek-v41-flash-adaefa-mesh.service.",
+        "Optimized DeepSeek ready: http://192.168.50.219:8015/v1"
+      ]
+    },
+    "selected_to_qwen": {
+      "sha256": "e641246672092ea81165b68e4f9545e2e493c38a54ac6ffd08418faf83610fec",
+      "tail": [
+        "qwen-tp2",
+        "qwen-tp2",
+        "Both ranks started. Run wait or logs to follow startup.",
+        "TP2 API ready.",
+        "TP2 API ready."
+      ]
+    },
+    "selected_restart": {
+      "sha256": "7402fb4ff809fd51a8521c0af876d2fd1600bca30199bfbaa4a3a9e3c80adf4f",
+      "tail": [
+        "Created symlink /etc/systemd/system/multi-user.target.wants/sparkring-sparkring-deepseek-v41-flash-adaefa-mesh.service \u2192 /etc/systemd/system/sparkring-sparkring-deepseek-v41-flash-adaefa-mesh.service.",
+        "Created symlink /etc/systemd/system/multi-user.target.wants/sparkring-sparkring-deepseek-v41-flash-adaefa-mesh.service \u2192 /etc/systemd/system/sparkring-sparkring-deepseek-v41-flash-adaefa-mesh.service.",
+        "Created symlink /etc/systemd/system/multi-user.target.wants/sparkring-sparkring-deepseek-v41-flash-adaefa-mesh.service \u2192 /etc/systemd/system/sparkring-sparkring-deepseek-v41-flash-adaefa-mesh.service.",
+        "Created symlink /etc/systemd/system/multi-user.target.wants/sparkring-sparkring-deepseek-v41-flash-adaefa-mesh.service \u2192 /etc/systemd/system/sparkring-sparkring-deepseek-v41-flash-adaefa-mesh.service.",
+        "Optimized DeepSeek ready: http://192.168.50.219:8015/v1"
+      ]
+    }
+  }
+}

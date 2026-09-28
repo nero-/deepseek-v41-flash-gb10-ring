@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Run local-inference-lab/llm-inference-bench v0.6.2 (ccd9ad8) against the DeepSeek head, with the
-# same case definitions as the Qwen TP2 campaign so results compare directly.
+# same case definitions as the Qwen TP2 campaign. Request defaults must also match
+# before comparing engines; use MATCHED=1 for explicit non-thinking settings.
 #
 #   bench/lilbench.sh TAG case[,case...]      (run on gx10-r0, a worker; results in ~/bench/results)
 #
@@ -8,14 +9,20 @@
 #        full (8k-128k x C1-C16 + prefill to 128k).
 set -euo pipefail
 TAG=$1; CASES=$2
-HOST=${HOST:-192.168.50.219} PORT=${PORT:-8888} MODEL=${MODEL:-deepseek-v4.1-flash}
+HOST=${HOST:-192.168.50.219} PORT=${PORT:-8015} MODEL=${MODEL:-DeepSeek-V4.1-Flash-TP4}
 B=$HOME/bench; OUT=$B/results; mkdir -p "$OUT"
 common=("$B/.venv/bin/python" -u "$B/llm-inference-bench/llm_decode_bench.py"
         --host "$HOST" --port "$PORT" --model "$MODEL" --no-hw-monitor --display-mode plain --no-resume)
+if [[ ${MATCHED:-0} == 1 ]]; then
+  common=("$B/.venv/bin/python" -u "$B/lil_matched.py" "$B/llm-inference-bench/llm_decode_bench.py"
+          --host "$HOST" --port "$PORT" --model "$MODEL" --no-hw-monitor --display-mode plain --no-resume --temperature 1.0)
+fi
 prose="Write a detailed step-by-step explanation of how a hash map works, including collision handling, resizing, and time complexity. Be thorough."
+failed=0
 for c in ${CASES//,/ }; do
   case $c in
     quick)  o=(--contexts 8192 --concurrency 1,8 --duration 20 --max-tokens 2048 --standalone-prefill --prefill-contexts 8k,64k) ;;
+    tune)   o=(--contexts 8192 --concurrency 1,3,5,8,16 --duration 20 --max-tokens 2048 --standalone-prefill --prefill-contexts 8k,64k) ;;
     matrix) o=(--contexts 8192,32768,65536 --concurrency 1,8 --duration 30 --max-tokens 2048 --standalone-prefill --prefill-contexts 8k,32k,64k) ;;
     c16)    o=(--skip-prefill --contexts 8192,32768 --concurrency 16 --duration 30 --max-tokens 2048) ;;
     coding) o=(--skip-prefill --contexts 8192 --concurrency 1 --duration 15 --max-tokens 2048 --coding-peak --coding-peak-runs 3 --coding-peak-max-tokens 2000) ;;
@@ -29,6 +36,7 @@ for c in ${CASES//,/ }; do
   esac
   prefix=$OUT/$TAG-$c
   printf '%s\n' "${common[@]}" "${o[@]}" --output "$prefix.json" > "$prefix-command.txt"
-  "${common[@]}" "${o[@]}" --output "$prefix.json" > "$prefix.log" 2>&1 || { echo "$c FAILED (see $prefix.log)"; tail -5 "$prefix.log"; }
+  "${common[@]}" "${o[@]}" --output "$prefix.json" > "$prefix.log" 2>&1 || { failed=1; echo "$c FAILED (see $prefix.log)"; tail -5 "$prefix.log"; }
   echo "$c done: $prefix.json"
 done
+exit "$failed"

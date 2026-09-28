@@ -1,3 +1,0 @@
-# /etc/sudoers.d/dsv41-mesh on the Sparks (mode 0440): lets scripts/ring-mode.sh start/stop the
-# opposite-node mesh without a password. Install with visudo -c to validate.
-nero ALL=(root) NOPASSWD: /usr/bin/systemctl start dsv41-mesh, /usr/bin/systemctl stop dsv41-mesh, /usr/bin/systemctl restart dsv41-mesh
