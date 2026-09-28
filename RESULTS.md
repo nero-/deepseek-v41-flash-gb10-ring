@@ -4,6 +4,26 @@ Four GB10 nodes: two DGX Sparks and two ASUS Ascent GX10s. Runtime and checkpoin
 
 Selected configuration: **Engram projection TP + adaptive 4K under contention + guarded query-row indexer sharding**, with native DSpark5, graph sizes and an 8K allocation ceiling.
 
+## Full deployed-profile benchmark
+
+The [full benchmark report](FULL-BENCHMARK-20260928.md) covers the deployed
+profile with thinking off: 8K/32K/64K/128K × C1/C2/C4/C8/C16, 30-second
+sustained cells, a separate complete-response burst grid, five coding prompts,
+and fresh retrieval probes through 1,008,432 tokens. Original-run C1 sustained
+decode was 64.3–66.2 tok/s and C16 was 235.1–240.7 aggregate tok/s. Standalone
+8K–128K prefill was 4,517–4,624 prompt tok/s. Million-token first-content
+latency was 308.79 seconds, with correct retrieval and zero cached prompt tokens.
+
+The original full run was **not error-free**: exact repetition invalidated
+128K/C2 sustained and 128K/C16 burst, leaving 19/20 valid cells in each grid.
+The report preserves both failures and records focused repeats separately:
+128K/C2 sustained passed at 118.9 tok/s, and the 128K/C16 burst passed at
+221.3 tok/s with 16/16 completions. No fix was applied between these runs;
+passing repeats do not establish that the intermittent repetition is resolved.
+No cell was capacity-limited or marked with a warmup timeout. Overlapping
+30-second baseline decode cells changed by −3.1% to +3.5%; this does not
+establish a new decode gain.
+
 ## Follow-up selection
 
 The query-row port distributes eligible long-prefill indexer work across the four

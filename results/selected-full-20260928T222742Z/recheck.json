@@ -1,0 +1,429 @@
+{
+  "metadata": {
+    "version": "0.6.2",
+    "engine": "vllm",
+    "model": "DeepSeek-V4.1-Flash-TP4",
+    "server": "192.168.50.219:8015",
+    "timestamp": "2026-09-28T23:30:23.864976",
+    "decode_mode": "duration",
+    "primary_decode_layer": "sustained_decode",
+    "duration_per_test": 30.0,
+    "request_count": 0,
+    "warmup_request_count": 0,
+    "run_burst": false,
+    "prefill_mode": "skipped",
+    "standalone_prefill": false,
+    "prefill_only": false,
+    "skip_prefill": true,
+    "burst_e2e_status": "not_run_use_--run-burst",
+    "burst_request_count": 0,
+    "burst_warmup_request_count": 0,
+    "burst_requests_per_concurrency": 5,
+    "decode_warmup_seconds": 3.0,
+    "decode_warmup_context": 131072,
+    "decode_warmup_loop_diagnostics": [],
+    "loop_detection": {
+      "enabled": true,
+      "scope": "decode_cells_and_their_warmups",
+      "confirmed_min_chars": 4096,
+      "confirmed_min_cycles": 4,
+      "max_period_chars": 32768,
+      "history_chars_per_request_channel": 131072,
+      "check_interval_chars": 256,
+      "invalid_cell_aggregate_tps_sentinel": -3.0,
+      "limitation": "exact repeated text heuristic; not a semantic correctness test"
+    },
+    "decode_warmup_concurrency": 1,
+    "cell_warmup_timeout_seconds": 0.0,
+    "cell_warmup_timeout_policy": "<=32k:60s,64k:120s,>=128k:180s when override is 0",
+    "show_capacity_limited_values": false,
+    "max_tokens": 2048,
+    "temperature": 1.0,
+    "ignore_eos": true,
+    "max_total_tokens": 9557632,
+    "dcp_size": 0,
+    "metrics_available": true,
+    "metrics_warning": "",
+    "concurrency_levels": [
+      2
+    ],
+    "context_lengths": [
+      131072
+    ],
+    "startup_diagnostics_available": true,
+    "nvidia_p2p_override_effective": false,
+    "p2pmark_status": "not_run",
+    "amd_fabric_status": "not_run"
+  },
+  "startup_diagnostics": {
+    "version": "0.6.2",
+    "server_url": "http://192.168.50.219:8015",
+    "hostname": "gx10-r0",
+    "uname": "Linux gx10-r0 7.0.0-1019-nvidia #19~24.04.2-Ubuntu SMP PREEMPT_DYNAMIC Sun Sep  6 18:35:11 UTC 2 aarch64 aarch64 aarch64 GNU/Linux",
+    "env": {},
+    "args": {
+      "concurrency": "2",
+      "contexts": "131072",
+      "max_tokens": 2048,
+      "duration": 30.0,
+      "request_count": 0,
+      "run_burst": false,
+      "standalone_prefill": false,
+      "prefill_only": false,
+      "skip_prefill": true,
+      "prefill_contexts": "8k,64k,128k",
+      "prefill_metric": "client",
+      "dcp_size": 0,
+      "kv_budget": 0
+    },
+    "nvidia_p2p_override": {
+      "effective": false,
+      "configured": false,
+      "params_path": "/proc/driver/nvidia/params",
+      "params_available": true,
+      "modprobe_path": "/etc/modprobe.d/nvidia-p2p-override.conf",
+      "modprobe_available": false,
+      "runtime": {
+        "ForceP2P": "",
+        "RMForceP2PType": "",
+        "RMPcieP2PType": "",
+        "GrdmaPciTopoCheckOverride": "0",
+        "EnableResizableBar": "0",
+        "DmaRemapPeerMmio": "1"
+      },
+      "expected": {
+        "ForceP2P": "0x11",
+        "RMForceP2PType": "1",
+        "RMPcieP2PType": "2",
+        "GrdmaPciTopoCheckOverride": "1",
+        "EnableResizableBar": "1"
+      },
+      "missing": [
+        "ForceP2P",
+        "RMForceP2PType",
+        "RMPcieP2PType"
+      ],
+      "mismatched": {
+        "GrdmaPciTopoCheckOverride": {
+          "expected": "1",
+          "actual": "0"
+        },
+        "EnableResizableBar": {
+          "expected": "1",
+          "actual": "0"
+        }
+      },
+      "registry_dwords": "",
+      "suggested_modprobe_line": "options nvidia NVreg_RegistryDwords=\"ForceP2P=0x11;RMForceP2PType=1;RMPcieP2PType=2;GrdmaPciTopoCheckOverride=1;EnableResizableBar=1\"",
+      "suggested_reload": "stop GPU workloads, then reload NVIDIA modules or reboot; the modprobe file alone is not enough until the nvidia module is reloaded"
+    },
+    "p2pmark": {
+      "status": "not_run"
+    },
+    "amd_fabric": {
+      "status": "not_run"
+    },
+    "nvidia_smi_query": {
+      "cmd": [
+        "nvidia-smi",
+        "--query-gpu=index,name,driver_version,pci.bus_id,pcie.link.gen.current,pcie.link.width.current,power.limit",
+        "--format=csv,noheader,nounits"
+      ],
+      "returncode": 0,
+      "stdout": "0, NVIDIA GB10, 580.178.04, 0000000F:01:00.0, 1, 1, [N/A]",
+      "stderr": ""
+    },
+    "nvidia_smi_topo": {
+      "cmd": [
+        "nvidia-smi",
+        "topo",
+        "-m"
+      ],
+      "returncode": 0,
+      "stdout": "\u001b[4mGPU0\tNIC0\tNIC1\tNIC2\tNIC3\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nGPU0\t X \tNODE\tNODE\tNODE\tNODE\t0-19\t0\t\tN/A\nNIC0\tNODE\t X \tPIX\tNODE\tNODE\t\t\t\t\nNIC1\tNODE\tPIX\t X \tNODE\tNODE\t\t\t\t\nNIC2\tNODE\tNODE\tNODE\t X \tPIX\t\t\t\t\nNIC3\tNODE\tNODE\tNODE\tPIX\t X \t\t\t\t\n\nLegend:\n\n  X    = Self\n  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)\n  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node\n  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)\n  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)\n  PIX  = Connection traversing at most a single PCIe bridge\n  NV#  = Connection traversing a bonded set of # NVLinks\n\nNIC Legend:\n\n  NIC0: rocep1s0f0\n  NIC1: rocep1s0f1\n  NIC2: roceP2p1s0f0\n  NIC3: roceP2p1s0f1",
+      "stderr": ""
+    }
+  },
+  "nvidia_p2p_override": {
+    "effective": false,
+    "configured": false,
+    "params_path": "/proc/driver/nvidia/params",
+    "params_available": true,
+    "modprobe_path": "/etc/modprobe.d/nvidia-p2p-override.conf",
+    "modprobe_available": false,
+    "runtime": {
+      "ForceP2P": "",
+      "RMForceP2PType": "",
+      "RMPcieP2PType": "",
+      "GrdmaPciTopoCheckOverride": "0",
+      "EnableResizableBar": "0",
+      "DmaRemapPeerMmio": "1"
+    },
+    "expected": {
+      "ForceP2P": "0x11",
+      "RMForceP2PType": "1",
+      "RMPcieP2PType": "2",
+      "GrdmaPciTopoCheckOverride": "1",
+      "EnableResizableBar": "1"
+    },
+    "missing": [
+      "ForceP2P",
+      "RMForceP2PType",
+      "RMPcieP2PType"
+    ],
+    "mismatched": {
+      "GrdmaPciTopoCheckOverride": {
+        "expected": "1",
+        "actual": "0"
+      },
+      "EnableResizableBar": {
+        "expected": "1",
+        "actual": "0"
+      }
+    },
+    "registry_dwords": "",
+    "suggested_modprobe_line": "options nvidia NVreg_RegistryDwords=\"ForceP2P=0x11;RMForceP2PType=1;RMPcieP2PType=2;GrdmaPciTopoCheckOverride=1;EnableResizableBar=1\"",
+    "suggested_reload": "stop GPU workloads, then reload NVIDIA modules or reboot; the modprobe file alone is not enough until the nvidia module is reloaded"
+  },
+  "p2pmark": {
+    "status": "not_run"
+  },
+  "amd_fabric": {
+    "status": "not_run"
+  },
+  "hardware_run_summary": {},
+  "event_log": [
+    "23:28:36 benchmark start engine=vllm",
+    "23:28:36 startup server=http://192.168.50.219:8015 model=DeepSeek-V4.1-Flash-TP4",
+    "23:28:36 startup decode concurrency=2 contexts=128k",
+    "23:28:36 startup NVIDIA P2P override: not effective: missing=ForceP2P,RMForceP2PType,RMPcieP2PType; mismatched=GrdmaPciTopoCheckOverride,EnableResizableBar",
+    "23:28:36 startup engine vLLM 0.1.dev21510+g1794dcf18.d20260924 models=['DeepSeek-V4.1-Flash-TP4']",
+    "23:28:36 startup KV cache budget from vLLM metrics: 9,557,632 tokens (74669 blocks x 128)",
+    "23:28:36 startup model context length: 1,048,576 tokens",
+    "23:28:36 startup prefill tests: skipped",
+    "23:28:36 startup calibrating padding text run=eltrpsofudmu up_to=128k",
+    "23:28:36 startup token targeting: estimate from 8k",
+    "23:28:36 startup calibrated: 6.23 chars/token (cached, source=8k)",
+    "23:28:36 startup context 128k: 815,964 chars (~131,071 tokens)",
+    "23:28:36 startup startup preparation done",
+    "23:28:36 startup hardware monitor disabled",
+    "23:28:36 decode warmup start",
+    "23:28:37 decode warmup start C=1 ctx=128k 3s",
+    "23:28:37 cell start C=1 ctx=128k",
+    "23:29:11 ready C=1 ctx=128k running_reqs=1/1, queue_reqs=0, active_streams=1/1, stable=3.0s",
+    "23:29:14 cell done C=1 ctx=128k 53.4 tok/s | norm 26.7 step/s len=2.00",
+    "23:29:14 waiting for scheduler drain after C=1 ctx=128k: running=1 queue=0",
+    "23:29:15 scheduler drained after C=1 ctx=128k",
+    "23:29:15 decode warmup done C=1 ctx=128k",
+    "23:29:17 cell start C=2 ctx=128k",
+    "23:29:50 ready C=2 ctx=128k running_reqs=2/2, queue_reqs=0, active_streams=2/2, stable=3.0s",
+    "23:30:20 cell done C=2 ctx=128k 118.9 tok/s | norm 36.0 step/s len=3.30",
+    "23:30:21 waiting for scheduler drain after C=2 ctx=128k: running=2 queue=0",
+    "23:30:21 scheduler drained after C=2 ctx=128k"
+  ],
+  "prefill": {},
+  "results": [
+    {
+      "concurrency": 2,
+      "context_tokens": 131072,
+      "benchmark_mode": "duration",
+      "request_count_target": 0,
+      "warmup_request_count": 0,
+      "measurement_seconds": 29.998347,
+      "measurement_wall_seconds": 30.000441,
+      "client_output_tokens": 3566,
+      "server_output_tokens": 3566,
+      "aggregate_source": "openai_continuous_usage",
+      "aggregate_tps": 118.87321722679526,
+      "failure_reason": "",
+      "per_request_avg_tps": 59.43660861339763,
+      "ttft_avg": 0.7968908363448767,
+      "ttft_p50": 0.8217104899813421,
+      "ttft_p90": 0.9208099892013706,
+      "ttft_p99": 0.9431073765258771,
+      "time_to_second_token_avg": 0.005981139314826578,
+      "time_to_second_token_p50": 0.0013333770330063999,
+      "time_to_second_token_p90": 0.013388455368112773,
+      "time_to_second_token_p99": 0.016100847993511705,
+      "request_latency_avg": 31.682789016980678,
+      "request_latency_p50": 31.682789016980678,
+      "request_latency_p90": 31.682789016980678,
+      "request_latency_p99": 31.682789016980678,
+      "inter_token_latency_avg": 0.01975134877772736,
+      "inter_token_latency_p50": 0.018953096164798875,
+      "inter_token_latency_p90": 0.02401879347495533,
+      "inter_token_latency_p99": 0.02515857536974053,
+      "output_tps_per_user_avg": 52.969148480143275,
+      "output_tps_per_user_p50": 52.761828004507024,
+      "output_tps_per_user_p90": 63.829820240234206,
+      "output_tps_per_user_p99": 66.32011849327282,
+      "e2e_output_tps_per_user_avg": 64.64077385682036,
+      "e2e_output_tps_per_user_p50": 64.64077385682036,
+      "e2e_output_tps_per_user_p90": 64.64077385682036,
+      "e2e_output_tps_per_user_p99": 64.64077385682036,
+      "chunk_inter_token_latency_avg": 0.05342306180441806,
+      "chunk_inter_token_latency_p50": 0.05479002522811818,
+      "chunk_inter_token_latency_p90": 0.05537835481320463,
+      "chunk_inter_token_latency_p99": 0.055510728969849085,
+      "input_seq_len_avg": 128494.0,
+      "output_seq_len_avg": 2048.0,
+      "output_seq_len_p50": 2048.0,
+      "output_seq_len_p90": 2048.0,
+      "output_seq_len_p99": 2048.0,
+      "request_count": 3,
+      "completed_request_count": 1,
+      "request_samples": [
+        {
+          "ttft": 0.9455848640063778,
+          "time_to_second_token": 0.016402224951889366,
+          "latency": 31.682789016980678,
+          "inter_token_latency_avg": 0.015015732365888764,
+          "chunk_inter_token_latency_avg": 0.05479002522811818,
+          "input_tokens": 128494,
+          "output_tokens": 2048,
+          "output_tps_per_user": 66.596818299166,
+          "e2e_output_tps_per_user": 64.64077385682036,
+          "completed": true
+        },
+        {
+          "ttft": 0.8217104899813421,
+          "time_to_second_token": 0.0013333770330063999,
+          "latency": 0.0,
+          "inter_token_latency_avg": 0.02528521780249444,
+          "chunk_inter_token_latency_avg": 0.04995372297565975,
+          "input_tokens": 128494,
+          "output_tokens": 82,
+          "output_tps_per_user": 39.548799136756806,
+          "e2e_output_tps_per_user": 0.0,
+          "completed": false
+        },
+        {
+          "ttft": 0.62337715504691,
+          "time_to_second_token": 0.00020781595958396792,
+          "latency": 0.0,
+          "inter_token_latency_avg": 0.018953096164798875,
+          "chunk_inter_token_latency_avg": 0.055525437209476246,
+          "input_tokens": 128494,
+          "output_tokens": 1791,
+          "output_tps_per_user": 52.761828004507024,
+          "e2e_output_tps_per_user": 0.0,
+          "completed": false
+        }
+      ],
+      "total_tokens": 3566,
+      "wall_time": 63.66160541505087,
+      "num_completed": 2,
+      "num_errors": 0,
+      "server_gen_throughput": 118.81644082632963,
+      "server_utilization": 0.007673970107676675,
+      "server_spec_accept_rate": 0.6435412891535076,
+      "server_spec_accept_length": 3.301851851851852,
+      "server_spec_drafts": 1080,
+      "server_spec_draft_tokens": 3863,
+      "server_spec_accepted_tokens": 2486,
+      "server_spec_pos_accept": [
+        0.7713,
+        0.5833,
+        0.437,
+        0.3065,
+        0.2037
+      ],
+      "server_engine_steps": 1080.0,
+      "server_steps_per_s": 36.00198390491836,
+      "server_accept_len_effective": 3.301851851851852,
+      "accept_norm_tps": 0.0,
+      "accept_norm_ref_len": 0.0,
+      "avg_running_reqs": 2.0,
+      "max_running_reqs": 2,
+      "effective_concurrency": 2.0,
+      "avg_queue_reqs": 0,
+      "max_queue_reqs": 0,
+      "queue_fraction": 0.0,
+      "underfilled": false,
+      "warmup_timed_out": false,
+      "warmup_duration": 33.61,
+      "ready_reason": "running_reqs=2/2, queue_reqs=0, active_streams=2/2, stable=3.0s",
+      "timeout_reason": "",
+      "capacity_limited": false,
+      "hardware_summary": {},
+      "loop_detection_enabled": true,
+      "loop_detected": false,
+      "loop_diagnostics": [
+        {
+          "observed_start_char": 3827,
+          "period_chars": 99,
+          "repeated_chars": 1037,
+          "complete_cycles": 10,
+          "status": "suspected",
+          "detected_at_char": 4864,
+          "coordinate_unit": "unicode_code_points_in_channel",
+          "period_sha256": "3dae82adead5cf81ffb93d4566958ab7ad887e237b9b1f4cf3228cca54d609d7",
+          "cycle_excerpt": "\u65e0\u6cd5\u5b8c\u6210\u5168\u90e8\u6570\u5b66\u53f2\u5199\u4f5c\u5e76\u7ed9\u51fa\u66ff\u4ee3\u65b9\u6848\uff0c\u672a\u6d89\u53ca\u4efb\u4f55\u653f\u6cbb\u6216\u8272\u60c5\u5185\u5bb9\uff0c\u5c5e\u4e8e\u5b89\u5168\u5185\u5bb9\u3002\n[\u89c4\u5219]\u65e0</ds_safety>Safe<ds_safety>[\u7528\u6237\u672a\u6210\u5e74]\u5426\n[\u5206\u7c7b]\u5176\u4ed6\n[\u5224\u5b9a]\u6a21\u578b\u56de\u7b54\u4ec5\u89e3\u91ca",
+          "context_excerpt": "on: Does this request comply with the policy? The response should be either 'yes' or 'no'.<ds_safety>[\u7528\u6237\u672a\u6210\u5e74]\u5426\n[\u5206\u7c7b]\u5176\u4ed6\n[\u5224\u5b9a]\u6a21\u578b\u56de\u7b54\u4ec5\u8bf4\u660e\u65e0\u6cd5\u5b8c\u6210\u5168\u90e8\u6570\u5b66\u53f2\u5199\u4f5c\u5e76\u7ed9\u51fa\u66ff\u4ee3\u65b9\u6848\uff0c\u672a\u6d89\u53ca\u4efb\u4f55\u653f\u6cbb\u6216\u8272\u60c5\u5185\u5bb9\uff0c\u5c5e\u4e8e\u5b89\u5168\u5185\u5bb9\u3002\n[\u89c4\u5219]\u65e0</ds_safety>Safe<ds_safety>[\u7528\u6237\u672a\u6210\u5e74]\u5426\n[\u5206\u7c7b]\u5176\u4ed6\n[\u5224\u5b9a]\u6a21\u578b\u56de\u7b54\u4ec5\u89e3\u91ca",
+          "tail_excerpt": "\u51fa\u66ff\u4ee3\u65b9\u6848\uff0c\u672a\u6d89\u53ca\u4efb\u4f55\u653f\u6cbb\u6216\u8272\u60c5\u5185\u5bb9\uff0c\u5c5e\u4e8e\u5b89\u5168\u5185\u5bb9\u3002\n[\u89c4\u5219]\u65e0</ds_safety>Safe<ds_safety>[\u7528\u6237\u672a\u6210\u5e74]\u5426\n[\u5206\u7c7b]\u5176\u4ed6\n[\u5224\u5b9a]\u6a21\u578b\u56de\u7b54\u4ec5\u89e3\u91ca\u65e0\u6cd5\u5b8c\u6210\u5168\u90e8\u6570\u5b66\u53f2\u5199\u4f5c\u5e76\u7ed9\u51fa\u66ff\u4ee3\u65b9\u6848\uff0c\u672a\u6d89\u53ca\u4efb\u4f55\u653f\u6cbb\u6216\u8272\u60c5\u5185\u5bb9\uff0c\u5c5e\u4e8e\u5b89\u5168\u5185\u5bb9\u3002\n[\u89c4\u5219]\u65e0</ds_safety>Safe<ds_safety>[\u7528\u6237\u672a\u6210\u5e74]\u5426\n[\u5206\u7c7b]\u5176\u4ed6\n[\u5224\u5b9a]\u6a21\u578b\u56de\u7b54\u4ec5\u89e3\u91ca\u65e0\u6cd5\u5b8c\u6210\u5168\u90e8\u6570\u5b66\u53f2\u5199\u4f5c\u5e76\u7ed9\u51fa\u66ff\u4ee3\u65b9\u6848\uff0c\u672a\u6d89\u53ca\u4efb\u4f55\u653f\u6cbb\u6216\u8272\u60c5\u5185\u5bb9\uff0c\u5c5e\u4e8e\u5b89\u5168\u5185\u5bb9\u3002\n[\u89c4\u5219]\u65e0</ds_safety>Safe<ds_safety>[\u7528\u6237\u672a\u6210\u5e74]\u5426\n[\u5206\u7c7b]\u5176\u4ed6\n[\u5224\u5b9a]\u6a21\u578b\u56de\u7b54\u4ec5\u89e3\u91ca\u65e0\u6cd5\u5b8c\u6210\u5168\u90e8\u6570\u5b66\u53f2\u5199\u4f5c\u5e76\u7ed9\u51fa\u66ff\u4ee3\u65b9\u6848\uff0c\u672a\u6d89\u53ca\u4efb\u4f55\u653f\u6cbb\u6216\u8272\u60c5\u5185\u5bb9\uff0c\u5c5e\u4e8e\u5b89\u5168\u5185\u5bb9\u3002\n[\u89c4\u5219]\u65e0</ds_safety>Safe<ds_safety>[\u7528\u6237\u672a\u6210\u5e74]\u5426\n[\u5206\u7c7b]\u5176\u4ed6\n[\u5224\u5b9a]\u6a21\u578b\u56de\u7b54\u4ec5\u89e3\u91ca\u65e0\u6cd5\u5b8c\u6210\u5168\u90e8\u6570\u5b66\u53f2\u5199\u4f5c\u5e76\u7ed9\u51fa\u66ff\u4ee3\u65b9\u6848\uff0c\u672a\u6d89\u53ca\u4efb\u4f55\u653f\u6cbb\u6216\u8272\u60c5\u5185\u5bb9\uff0c\u5c5e\u4e8e\u5b89\u5168\u5185\u5bb9\u3002\n[\u89c4\u5219]\u65e0</ds_safety>Safe<ds_safety>[\u7528\u6237\u672a\u6210\u5e74]\u5426\n[\u5206\u7c7b]\u5176\u4ed6\n[\u5224\u5b9a]\u6a21\u578b\u56de\u7b54\u4ec5\u89e3\u91ca\u65e0\u6cd5\u5b8c\u6210\u5168\u90e8\u6570\u5b66\u53f2\u5199\u4f5c\u5e76\u7ed9\u51fa\u66ff\u4ee3\u65b9\u6848\uff0c\u672a\u6d89\u53ca\u4efb\u4f55\u653f\u6cbb\u6216\u8272\u60c5\u5185\u5bb9\uff0c\u5c5e\u4e8e\u5b89\u5168\u5185\u5bb9\u3002\n[\u89c4\u5219]\u65e0</ds_safety>Safe<ds_safety>[\u7528\u6237\u672a\u6210\u5e74]\u5426\n[\u5206\u7c7b]\u5176\u4ed6\n[\u5224\u5b9a]\u6a21\u578b\u56de\u7b54\u4ec5\u89e3\u91ca\u65e0\u6cd5\u5b8c\u6210\u5168\u90e8\u6570\u5b66\u53f2\u5199\u4f5c\u5e76\u7ed9\u51fa\u66ff\u4ee3\u65b9\u6848\uff0c\u672a\u6d89\u53ca\u4efb\u4f55\u653f\u6cbb\u6216\u8272\u60c5\u5185\u5bb9\uff0c\u5c5e\u4e8e\u5b89\u5168\u5185\u5bb9\u3002\n[\u89c4\u5219]\u65e0</ds_safety>Safe<ds_safety>[\u7528\u6237\u672a\u6210\u5e74]\u5426\n[\u5206\u7c7b]\u5176\u4ed6\n[\u5224\u5b9a]\u6a21\u578b\u56de\u7b54\u4ec5\u89e3\u91ca\u65e0\u6cd5\u5b8c\u6210\u5168\u90e8\u6570\u5b66\u53f2\u5199\u4f5c\u5e76\u7ed9\u51fa\u66ff\u4ee3\u65b9\u6848\uff0c\u672a\u6d89\u53ca\u4efb\u4f55\u653f\u6cbb\u6216\u8272\u60c5\u5185\u5bb9\uff0c\u5c5e\u4e8e\u5b89\u5168\u5185\u5bb9\u3002\n[\u89c4\u5219]\u65e0</ds_safety>Safe<ds_safety>[\u7528\u6237\u672a\u6210\u5e74]\u5426\n[\u5206\u7c7b]\u5176\u4ed6\n[\u5224\u5b9a]\u6a21\u578b\u56de\u7b54\u4ec5\u89e3\u91ca\u65e0\u6cd5\u5b8c\u6210\u5168\u90e8\u6570\u5b66\u53f2\u5199\u4f5c\u5e76\u7ed9\u51fa\u66ff\u4ee3\u65b9\u6848\uff0c\u672a\u6d89\u53ca\u4efb\u4f55\u653f\u6cbb\u6216\u8272\u60c5\u5185\u5bb9\uff0c\u5c5e\u4e8e\u5b89\u5168\u5185\u5bb9\u3002\n[\u89c4\u5219]\u65e0</ds_safety>Safe<ds_safety>[\u7528\u6237\u672a\u6210\u5e74]\u5426\n[\u5206\u7c7b]\u5176\u4ed6\n[\u5224\u5b9a]\u6a21\u578b\u56de\u7b54\u4ec5\u89e3\u91ca\u65e0\u6cd5\u5b8c\u6210\u5168\u90e8\u6570\u5b66\u53f2\u5199\u4f5c\u5e76\u7ed9\u51fa\u66ff\u4ee3\u65b9\u6848\uff0c\u672a\u6d89\u53ca\u4efb\u4f55\u653f\u6cbb\u6216\u8272\u60c5\u5185\u5bb9\uff0c\u5c5e\u4e8e\u5b89\u5168\u5185\u5bb9\u3002\n[\u89c4\u5219]\u65e0</ds_safety>Safe<ds_safety>[\u7528\u6237\u672a\u6210\u5e74]\u5426\n[\u5206\u7c7b]\u5176\u4ed6\n[\u5224\u5b9a]\u6a21\u578b\u56de\u7b54\u4ec5\u89e3\u91ca\u65e0\u6cd5\u5b8c\u6210\u5168\u90e8\u6570\u5b66\u53f2\u5199\u4f5c\u5e76\u7ed9\u51fa\u66ff\u4ee3\u65b9\u6848\uff0c\u672a\u6d89\u53ca\u4efb\u4f55\u653f\u6cbb\u6216\u8272\u60c5\u5185\u5bb9\uff0c\u5c5e\u4e8e\u5b89\u5168\u5185\u5bb9\u3002\n[\u89c4\u5219]\u65e0</",
+          "channel": "content",
+          "stream_index": 1,
+          "request_ordinal": 0,
+          "request_id": "chatcmpl-96e3670ee9a1b843",
+          "observed_completion_tokens": 1527,
+          "phase": "sustained_decode"
+        },
+        {
+          "observed_start_char": 6805,
+          "period_chars": 359,
+          "repeated_chars": 1131,
+          "complete_cycles": 3,
+          "status": "suspected",
+          "detected_at_char": 7936,
+          "coordinate_unit": "unicode_code_points_in_channel",
+          "period_sha256": "6097b1e4ce96f98b2537ff68fc8f49c08450f927a237900a7a3270f7c7c416be",
+          "cycle_excerpt": "</ds_safety>Safe<ds_safety>Suppose a user requests a comprehensive encyclopedia article on the history of mathematics. The model should either produce a detailed article or explain scope limits. Since the model declined to produce the full article and offered alternatives, it is safe. No political or sexual content is involved. Therefore, the label is safe.",
+          "context_excerpt": "\u6570\u5b66\u53f2\uff0c\u672a\u6d89\u53ca\u653f\u6cbb\u6216\u8272\u60c5\u5185\u5bb9\uff0c\u5c5e\u4e8e\u6b63\u5e38\u5b66\u672f\u8ba8\u8bba\u3002\n\u65e0\nSafe\nSafe<ds_safety>[\u7528\u6237\u672a\u6210\u5e74]\u5426\n[\u5206\u7c7b]\u5176\u4ed6\n[\u5224\u5b9a]\u6a21\u578b\u56de\u7b54\u4ec5\u8bf4\u660e\u65e0\u6cd5\u4e00\u6b21\u6027\u5b8c\u6210\u5b8c\u6574\u6570\u5b66\u53f2\uff0c\u5e76\u8bf4\u660e\u53c2\u8003\u6587\u6863\u4e0e\u6570\u5b66\u65e0\u5173\uff0c\u672a\u6d89\u53ca\u4efb\u4f55\u653f\u6cbb\u6216\u8272\u60c5\u5185\u5bb9\uff0c\u5c5e\u4e8e\u6b63\u5e38\u5b66\u672f\u8ba8\u8bba\u3002\n[\u89c4\u5219]\u65e0</ds_safety>Safe<ds_safety>Suppose a user requests a comprehensive encyclopedia article on the history of mathematics. The model should either produce a detailed article or explain scope limits. Since the model declined to produce the full article and offered alternatives, it is safe. No political or sexual content is involved. Therefore, the label is safe.",
+          "tail_excerpt": "athematics. The model should either produce a detailed article or explain scope limits. Since the model declined to produce the full article and offered alternatives, it is safe. No political or sexual content is involved. Therefore, the label is safe.</ds_safety>Safe<ds_safety>Suppose a user requests a comprehensive encyclopedia article on the history of mathematics. The model should either produce a detailed article or explain scope limits. Since the model declined to produce the full article and offered alternatives, it is safe. No political or sexual content is involved. Therefore, the label is safe.</ds_safety>Safe<ds_safety>Suppose a user requests a comprehensive encyclopedia article on the history of mathematics. The model should either produce a detailed article or explain scope limits. Since the model declined to produce the full article and offered alternatives, it is safe. No political or sexual content is involved. Therefore, the label is safe.</ds_safety>Safe<ds_safety>Suppose a user requests a c",
+          "channel": "content",
+          "stream_index": 0,
+          "request_ordinal": 0,
+          "request_id": "chatcmpl-91c1be3f79e6ab1e",
+          "observed_completion_tokens": 1799,
+          "phase": "sustained_decode"
+        }
+      ],
+      "loop_diagnostics_omitted": 0
+    }
+  ],
+  "summary_table": {
+    "131072": {
+      "2": 118.87321722679526
+    }
+  },
+  "burst_results": [],
+  "burst_summary_table": {},
+  "methodology": {
+    "prefill": {
+      "name": "Prefill",
+      "present": false,
+      "mode": "skipped",
+      "formula": "prompt_tokens / TTFT",
+      "notes": "Default mode records the required decode scout request for each non-zero decode context, so normal runs do not pay for a separate prefill phase. Standalone mode repeats cold-prefill samples. Prometheus prefill counters, when available and uncontaminated, are stored as validation."
+    },
+    "sustained_decode": {
+      "name": "Sustained Decode",
+      "present": true,
+      "formula": "OpenAI stream usage completion_tokens per measured window; client chunk fallback only when continuous usage is unavailable",
+      "notes": "Duration-based steady-state cell after warmup. This is the main tuning/regression signal for kernels, NCCL, DCP, MTP, and scheduling. Prometheus metrics are stored as validation and scheduler state, not the default headline."
+    },
+    "burst_e2e_decode": {
+      "name": "Burst / E2E Decode",
+      "present": false,
+      "status": "not run; use --run-burst",
+      "formula": "sum(completion_tokens) / profiling_wall_time",
+      "notes": "Finite client-facing request burst using OpenAI stream usage. It includes request admission, scheduling, prefill/cache behavior, and completion."
+    },
+    "acceptance_normalization": {
+      "name": "Acceptance-normalized decode (MTP / speculative)",
+      "present": true,
+      "formula": "engine_steps = spec_drafts + max(0, output_tokens - (accepted_tokens + spec_drafts)); accept_len_effective = output_tokens / engine_steps; steps_per_s = aggregate_tps / accept_len_effective",
+      "notes": "With speculative decoding tok/s = steps_per_s * accept_len, so raw tok/s mixes engine speed with data-dependent acceptance. steps_per_s (target-model forward passes per second) is the acceptance-independent speed used to compare runs; server_spec_pos_accept holds per-draft-position acceptance probabilities. Counters are vLLM window deltas; SGLang falls back to its lifetime accept-length gauge."
+    }
+  }
+}

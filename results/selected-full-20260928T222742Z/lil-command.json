@@ -1,0 +1,9 @@
+{
+  "rank": 3,
+  "argv": [
+    "python3",
+    "-c",
+    "import json,subprocess,sys\nargv=json.loads(sys.stdin.readline())\nwith open(sys.argv[1], 'w') as log:\n r=subprocess.run(argv, input='n\\n', text=True, stdout=log, stderr=subprocess.STDOUT)\nraise SystemExit(r.returncode)\n",
+    "/home/nero/bench/results/selected-full-20260928T222742Z.log"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "api_healthy": true,
+  "configuration_unchanged": true,
+  "nodes": [
+    {
+      "name": "/ds41-optimized-r0",
+      "running": true,
+      "started_at": "2026-09-28T20:30:22.860266859Z"
+    },
+    {
+      "name": "/ds41-optimized-r1",
+      "running": true,
+      "started_at": "2026-09-28T20:30:23.018488067Z"
+    },
+    {
+      "name": "/ds41-optimized-r2",
+      "running": true,
+      "started_at": "2026-09-28T20:30:22.887731489Z"
+    },
+    {
+      "name": "/ds41-optimized-r3",
+      "running": true,
+      "started_at": "2026-09-28T20:30:22.89252705Z"
+    }
+  ]
+}

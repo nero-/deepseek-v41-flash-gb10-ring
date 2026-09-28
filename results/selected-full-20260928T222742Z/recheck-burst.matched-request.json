@@ -1,0 +1,13 @@
+{
+  "request_overrides": {
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "top_k": -1,
+    "chat_template_kwargs": {
+      "thinking": false
+    }
+  },
+  "harness": "/home/nero/bench/llm-inference-bench/llm_decode_bench.py",
+  "harness_sha256": "053989edff8c9c93e2b96e61342b2ffbd9851e03deba17e6d3fc96fcd6694c1e",
+  "adapter_sha256": "ffd8ca58dcf704bcb2dd3cc5b50227f9f0acb2dc9dccde7f8e907883b38e5380"
+}

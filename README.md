@@ -34,6 +34,11 @@ The selected profile is `engram-adaptive4k-query-indexer`: Engram projection TP,
 
 Read [RESULTS.md](RESULTS.md) for the selected result and its limits, [RESEARCH-20260928.md](RESEARCH-20260928.md) for all six follow-up directions, [MIGRATION-20260927.md](MIGRATION-20260927.md) for the experiment record, and [QWEN-TRANSFER.md](QWEN-TRANSFER.md) for which actual Qwen changes apply. The projection split, context-axis indexer, timed scheduler, Engram read-ahead, mHC ownership and Markov shortlists remain unselected research code. Plugin installation alone does not enable them.
 
+The [full deployed-profile benchmark](FULL-BENCHMARK-20260928.md) includes the
+20-cell sustained grid, 20-cell burst grid, coding throughput and cold retrieval
+through one million tokens. Two original 128K cells were rejected for output
+repetition; their diagnostic repeats are reported separately.
+
 The engine defaults to thinking on. Historical SGLang and new vLLM engine-default decode measurements have different thinking settings and are **not a fully matched comparison**. `MATCHED=1 bench/lilbench.sh ...` explicitly fixes thinking and sampling without changing the benchmark's timing or accounting. The stock vLLM image also fails byte-identical greedy-repeatability checks; task scores do not establish universal quality equivalence.
 
 ## Fabric and Qwen
