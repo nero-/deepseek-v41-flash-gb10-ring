@@ -1,0 +1,30 @@
+{
+  "ranks": [
+    {
+      "rank": 0,
+      "image": "sha256:24c4ca01e0e653a2c0e84d1b86bc29d314d6a328e9cce0a77629f2162769e3d6",
+      "flag": "1"
+    },
+    {
+      "rank": 1,
+      "image": "sha256:c7ff3c8690f190806cbaf35010f5ea87946e3ea6273d81a489d42f7e0731a006",
+      "flag": "1"
+    },
+    {
+      "rank": 2,
+      "image": "sha256:b555d1530320cc97b7f2bc8ccf74c8362a5db428e934b0dd08ffc1c89ffed7a5",
+      "flag": "1"
+    },
+    {
+      "rank": 3,
+      "image": "sha256:859a3caf0d825a3f26f7c047d62067f9ea69925bf1165dfc4c09bea047b7aa2d",
+      "flag": "1"
+    }
+  ],
+  "api_log": [
+    "(APIServer pid=55) [fastokens] patch_transformers: successfully patched transformers v5.17.0",
+    "(APIServer pid=55) [fastokens] patch_transformers: already patched.",
+    "[fastokens] patch_transformers: successfully patched transformers v5.17.0",
+    "(EngineCore pid=243) [fastokens] patch_transformers: successfully patched transformers v5.17.0"
+  ]
+}

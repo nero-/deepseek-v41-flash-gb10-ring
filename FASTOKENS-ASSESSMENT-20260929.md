@@ -2,8 +2,10 @@
 
 `VLLM_USE_FASTOKENS=1` is supported by our pinned vLLM source and its
 `deepseek_v41` tokenizer, which wraps the Hugging Face backend. The package
-itself is absent from the serving image and the flag is unset. Setting the
-flag alone would raise an import error at tokenizer load. See the
+itself was absent from the serving image and the flag was unset during this
+initial assessment. Setting the flag alone would have raised an import error
+at tokenizer load. The subsequent [serving trial](FASTOKENS-SERVING-20260929.md)
+measures the installed backend end to end. See the
 [live inspection](results/20260929-kk926/fastokens-inspection.json) and
 [vLLM integration documentation](https://docs.vllm.ai/en/latest/configuration/optimization/#fastokens-backend).
 

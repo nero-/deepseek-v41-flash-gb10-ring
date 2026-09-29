@@ -1,0 +1,1 @@
+{"compressor_hashes_verified": true, "fastokens_enabled": false}

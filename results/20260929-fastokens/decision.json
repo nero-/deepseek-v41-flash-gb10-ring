@@ -1,0 +1,12 @@
+{
+  "decision": "retain-corrected-hf",
+  "performance_reviewed": true,
+  "reason": "Fastokens improves cached long-prompt TTFT, but both C8 runs are below both HF runs. Preserve decode/concurrency priority.",
+  "caveats": [
+    "Small sequential campaign, not randomized statistical proof",
+    "Different generated continuations and speculative acceptance",
+    "No full 40-cell benchmark was repeated"
+  ],
+  "candidate": "fastokens-0.3.2",
+  "flag_enabled": false
+}

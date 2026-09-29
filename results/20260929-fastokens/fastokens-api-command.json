@@ -1,0 +1,16 @@
+{
+  "rank": 0,
+  "argv": [
+    "python3",
+    "-u",
+    "/home/nero/fastokens-20260929/tokenizer-serving.py",
+    "--label",
+    "fastokens",
+    "--output",
+    "/home/nero/fastokens-20260929/fastokens-api.json",
+    "--nonce",
+    "65a0ad4ff2794d41ac4aa2f257a239f2",
+    "--prompt-label",
+    "hf"
+  ]
+}

@@ -1,0 +1,802 @@
+{
+  "label": "hf",
+  "nonce": "65a0ad4ff2794d41ac4aa2f257a239f2",
+  "method": "first content SSE; same deterministic corpus, phase-specific nonce; 16 output tokens max",
+  "cases": [
+    {
+      "label": "8k",
+      "prompt_sha256": "15fdd93f3d2a7ac5098737a97759e3a96d739d6ccab4fda89947482e7569c9bb",
+      "cold": {
+        "ttft_seconds": 1.9161443549674004,
+        "elapsed_seconds": 2.055268084979616,
+        "usage": {
+          "prompt_tokens": 7448,
+          "total_tokens": 7457,
+          "completion_tokens": 9,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "created_cache_tokens": 7168
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "answer": "RING-7825-COBALT"
+      },
+      "warmup": {
+        "ttft_seconds": 0.2941338090458885,
+        "elapsed_seconds": 0.4314097070018761,
+        "usage": {
+          "prompt_tokens": 7448,
+          "total_tokens": 7457,
+          "completion_tokens": 9,
+          "prompt_tokens_details": {
+            "cached_tokens": 7168,
+            "created_cache_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "answer": "RING-7825-COBALT"
+      },
+      "cached_c1": [
+        {
+          "ttft_seconds": 0.30675188900204375,
+          "elapsed_seconds": 0.5026083629927598,
+          "usage": {
+            "prompt_tokens": 7448,
+            "total_tokens": 7457,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 7168,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 0.33226237003691494,
+          "elapsed_seconds": 0.4698055690387264,
+          "usage": {
+            "prompt_tokens": 7448,
+            "total_tokens": 7457,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 7168,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 0.2847119579673745,
+          "elapsed_seconds": 0.42986317101167515,
+          "usage": {
+            "prompt_tokens": 7448,
+            "total_tokens": 7457,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 7168,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 0.285725598980207,
+          "elapsed_seconds": 0.43552681495202705,
+          "usage": {
+            "prompt_tokens": 7448,
+            "total_tokens": 7457,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 7168,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 0.28617392998421565,
+          "elapsed_seconds": 0.42120661900844425,
+          "usage": {
+            "prompt_tokens": 7448,
+            "total_tokens": 7457,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 7168,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        }
+      ],
+      "cached_c8": [
+        {
+          "ttft_seconds": 1.0799427999882028,
+          "elapsed_seconds": 1.2986403389950283,
+          "usage": {
+            "prompt_tokens": 7448,
+            "total_tokens": 7457,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 7168,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 1.0795206439797767,
+          "elapsed_seconds": 1.2995800619828515,
+          "usage": {
+            "prompt_tokens": 7448,
+            "total_tokens": 7457,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 7168,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 1.0785779610159807,
+          "elapsed_seconds": 1.2988854019786231,
+          "usage": {
+            "prompt_tokens": 7448,
+            "total_tokens": 7457,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 7168,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 1.0785406800569035,
+          "elapsed_seconds": 1.2983647790388204,
+          "usage": {
+            "prompt_tokens": 7448,
+            "total_tokens": 7457,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 7168,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 0.3214878529543057,
+          "elapsed_seconds": 1.148519470996689,
+          "usage": {
+            "prompt_tokens": 7448,
+            "total_tokens": 7457,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 7168,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 1.0771860479726456,
+          "elapsed_seconds": 1.2973225719761103,
+          "usage": {
+            "prompt_tokens": 7448,
+            "total_tokens": 7457,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 7168,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 1.0755193600198254,
+          "elapsed_seconds": 1.2954957520123571,
+          "usage": {
+            "prompt_tokens": 7448,
+            "total_tokens": 7457,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 7168,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 1.0752850490389392,
+          "elapsed_seconds": 1.2953378109959885,
+          "usage": {
+            "prompt_tokens": 7448,
+            "total_tokens": 7457,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 7168,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        }
+      ],
+      "cached_c1_median_ttft": 0.28617392998421565,
+      "cached_c8_median_ttft": 1.0778633640147746
+    },
+    {
+      "label": "128k",
+      "prompt_sha256": "4209ff178ec9051c5e5187f5ea0380a4653a3ce55e5e458d65b32973b1c114a6",
+      "cold": {
+        "ttft_seconds": 33.22598529799143,
+        "elapsed_seconds": 33.28112348198192,
+        "usage": {
+          "prompt_tokens": 125247,
+          "total_tokens": 125256,
+          "completion_tokens": 9,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "created_cache_tokens": 124928
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "answer": "RING-7825-COBALT"
+      },
+      "warmup": {
+        "ttft_seconds": 0.8717004120117053,
+        "elapsed_seconds": 0.982275604037568,
+        "usage": {
+          "prompt_tokens": 125247,
+          "total_tokens": 125256,
+          "completion_tokens": 9,
+          "prompt_tokens_details": {
+            "cached_tokens": 124928,
+            "created_cache_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "answer": "RING-7825-COBALT"
+      },
+      "cached_c1": [
+        {
+          "ttft_seconds": 0.5393549659638666,
+          "elapsed_seconds": 0.6414040119852871,
+          "usage": {
+            "prompt_tokens": 125247,
+            "total_tokens": 125256,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 124928,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 0.5445488920086063,
+          "elapsed_seconds": 0.6358995379996486,
+          "usage": {
+            "prompt_tokens": 125247,
+            "total_tokens": 125256,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 124928,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 0.564951863954775,
+          "elapsed_seconds": 0.6443435299443081,
+          "usage": {
+            "prompt_tokens": 125247,
+            "total_tokens": 125256,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 124928,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 0.571626283985097,
+          "elapsed_seconds": 0.6433700050110929,
+          "usage": {
+            "prompt_tokens": 125247,
+            "total_tokens": 125256,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 124928,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 0.584590750047937,
+          "elapsed_seconds": 0.6393365029944107,
+          "usage": {
+            "prompt_tokens": 125247,
+            "total_tokens": 125256,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 124928,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        }
+      ],
+      "cached_c8": [
+        {
+          "ttft_seconds": 2.843527098011691,
+          "elapsed_seconds": 3.059768670995254,
+          "usage": {
+            "prompt_tokens": 125247,
+            "total_tokens": 125256,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 124928,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 0.5765107090119272,
+          "elapsed_seconds": 0.9118822590098716,
+          "usage": {
+            "prompt_tokens": 125247,
+            "total_tokens": 125256,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 124928,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 0.8995956720318645,
+          "elapsed_seconds": 1.3275769840111025,
+          "usage": {
+            "prompt_tokens": 125247,
+            "total_tokens": 125256,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 124928,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 2.1103838330018334,
+          "elapsed_seconds": 2.8856129529885948,
+          "usage": {
+            "prompt_tokens": 125247,
+            "total_tokens": 125256,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 124928,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 2.541461315995548,
+          "elapsed_seconds": 2.968740220007021,
+          "usage": {
+            "prompt_tokens": 125247,
+            "total_tokens": 125256,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 124928,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 1.82197129400447,
+          "elapsed_seconds": 2.8344814970041625,
+          "usage": {
+            "prompt_tokens": 125247,
+            "total_tokens": 125256,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 124928,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 2.5378740790183656,
+          "elapsed_seconds": 2.9644475870300084,
+          "usage": {
+            "prompt_tokens": 125247,
+            "total_tokens": 125256,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 124928,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 1.2618989250040613,
+          "elapsed_seconds": 2.102485818963032,
+          "usage": {
+            "prompt_tokens": 125247,
+            "total_tokens": 125256,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 124928,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        }
+      ],
+      "cached_c1_median_ttft": 0.564951863954775,
+      "cached_c8_median_ttft": 1.9661775635031518
+    },
+    {
+      "label": "1m",
+      "prompt_sha256": "60ca1b79c1c7c0165e0f100497549887c85eebded3c3cacc6791d70524f6c76e",
+      "cold": {
+        "ttft_seconds": 342.1679451459786,
+        "elapsed_seconds": 342.18172713398235,
+        "usage": {
+          "prompt_tokens": 1008439,
+          "total_tokens": 1008448,
+          "completion_tokens": 9,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "created_cache_tokens": 1008128
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "answer": "RING-7825-COBALT"
+      },
+      "warmup": {
+        "ttft_seconds": 2.7000489760539494,
+        "elapsed_seconds": 2.7132090130471624,
+        "usage": {
+          "prompt_tokens": 1008439,
+          "total_tokens": 1008448,
+          "completion_tokens": 9,
+          "prompt_tokens_details": {
+            "cached_tokens": 1008128,
+            "created_cache_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "answer": "RING-7825-COBALT"
+      },
+      "cached_c1": [
+        {
+          "ttft_seconds": 2.718676919990685,
+          "elapsed_seconds": 2.743274459033273,
+          "usage": {
+            "prompt_tokens": 1008439,
+            "total_tokens": 1008448,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 1008128,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 2.522296100971289,
+          "elapsed_seconds": 2.8895340359886177,
+          "usage": {
+            "prompt_tokens": 1008439,
+            "total_tokens": 1008448,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 1008128,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 2.516993415018078,
+          "elapsed_seconds": 2.849719438003376,
+          "usage": {
+            "prompt_tokens": 1008439,
+            "total_tokens": 1008448,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 1008128,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 3.2232452140306123,
+          "elapsed_seconds": 3.2476879309979267,
+          "usage": {
+            "prompt_tokens": 1008439,
+            "total_tokens": 1008448,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 1008128,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 2.566119731985964,
+          "elapsed_seconds": 2.5910806200117804,
+          "usage": {
+            "prompt_tokens": 1008439,
+            "total_tokens": 1008448,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 1008128,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        }
+      ],
+      "cached_c8": [
+        {
+          "ttft_seconds": 9.133534574008081,
+          "elapsed_seconds": 9.147189482988324,
+          "usage": {
+            "prompt_tokens": 1008439,
+            "total_tokens": 1008448,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 1008128,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 3.363902116951067,
+          "elapsed_seconds": 3.3740522289881483,
+          "usage": {
+            "prompt_tokens": 1008439,
+            "total_tokens": 1008448,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 1008128,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 5.0697887989808805,
+          "elapsed_seconds": 5.08559300302295,
+          "usage": {
+            "prompt_tokens": 1008439,
+            "total_tokens": 1008448,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 1008128,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 6.592054773995187,
+          "elapsed_seconds": 6.617909119988326,
+          "usage": {
+            "prompt_tokens": 1008439,
+            "total_tokens": 1008448,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 1008128,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 14.211086658004206,
+          "elapsed_seconds": 14.232062030991074,
+          "usage": {
+            "prompt_tokens": 1008439,
+            "total_tokens": 1008448,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 1008128,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 12.331663284043316,
+          "elapsed_seconds": 12.354405864025466,
+          "usage": {
+            "prompt_tokens": 1008439,
+            "total_tokens": 1008448,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 1008128,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 10.466118062962778,
+          "elapsed_seconds": 10.49742355098715,
+          "usage": {
+            "prompt_tokens": 1008439,
+            "total_tokens": 1008448,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 1008128,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        },
+        {
+          "ttft_seconds": 16.01289055700181,
+          "elapsed_seconds": 16.04195250599878,
+          "usage": {
+            "prompt_tokens": 1008439,
+            "total_tokens": 1008448,
+            "completion_tokens": 9,
+            "prompt_tokens_details": {
+              "cached_tokens": 1008128,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer": "RING-7825-COBALT"
+        }
+      ],
+      "cached_c1_median_ttft": 2.566119731985964,
+      "cached_c8_median_ttft": 9.79982631848543
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+8k cold 1.8199087499524467 cached C1 0.28938103903783485 cached C8 1.0055820105189923
+Traceback (most recent call last):
+  File "/home/nero/fastokens-20260929/tokenizer-serving.py", line 33, in <module>
+    with concurrent.futures.ThreadPoolExecutor(8) as pool:concurrent=list(pool.map(lambda _:request(prompt),range(8)))
+         ^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'futures'

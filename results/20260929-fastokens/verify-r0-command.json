@@ -1,0 +1,15 @@
+{
+  "rank": 0,
+  "argv": [
+    "docker",
+    "run",
+    "--rm",
+    "--network",
+    "none",
+    "--entrypoint",
+    "python3",
+    "sha256:24c4ca01e0e653a2c0e84d1b86bc29d314d6a328e9cce0a77629f2162769e3d6",
+    "/opt/sparkring/toolchain/toolchain.py",
+    "verify"
+  ]
+}

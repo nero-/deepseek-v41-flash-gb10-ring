@@ -1,0 +1,9 @@
+{
+  "rank": 3,
+  "argv": [
+    "python3",
+    "-c",
+    "import json,subprocess,sys\na=json.load(sys.stdin)\nwith open(sys.argv[1],'w') as out:r=subprocess.run(a,input='n'+chr(10),text=True,stdout=out,stderr=subprocess.STDOUT)\nraise SystemExit(r.returncode)",
+    "/home/nero/fastokens-20260929/hf-c8-repeat.json.log"
+  ]
+}

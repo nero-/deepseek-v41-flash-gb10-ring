@@ -15,3 +15,5 @@ results/20260929-kk926/before-rank*.json
 results/20260929-kk926/selected-before.json
 results/20260929-kk926/selected-corrected.json
 results/20260929-kk926/trial-specs.json
+results/20260929-fastokens/selected-before.json
+results/20260929-fastokens/selected-candidate.json

@@ -203,4 +203,6 @@ those guards. [Guard receipt](results/20260929-kk926/guards-final.json).
 
 The separately requested [Fastokens assessment](FASTOKENS-ASSESSMENT-20260929.md)
 found 14–16× faster CPU prompt encoding with matching tested token IDs. It
-remains disabled in serving; no result above includes that tokenizer change.
+was disabled during this campaign; no result above includes that tokenizer
+change. See the subsequent [Fastokens serving trial](FASTOKENS-SERVING-20260929.md)
+for its end-to-end measurements.

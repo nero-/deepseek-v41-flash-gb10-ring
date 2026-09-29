@@ -1,0 +1,13 @@
+{
+  "rank": 0,
+  "argv": [
+    "docker",
+    "build",
+    "--network",
+    "none",
+    "--pull=false",
+    "-t",
+    "dsv41-sparkring:kk926-fastokens-032",
+    "/home/nero/fastokens-20260929/build"
+  ]
+}

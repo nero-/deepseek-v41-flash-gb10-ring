@@ -1,0 +1,5 @@
+{
+  "hf": "7ca317f21d350cf32b9b7e051d89b76f1e270397afd42d95efbef4c1ae4ee659",
+  "fastokens": "d847320fb584b4575de85023aa56e5d8da8e0aeb9249ccf63ac3368561618ffe",
+  "difference": "Candidate adds CLI overrides to reuse the baseline nonce and prompt label; request/timing/cache-check logic is unchanged."
+}

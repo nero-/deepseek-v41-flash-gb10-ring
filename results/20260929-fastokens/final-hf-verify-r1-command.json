@@ -1,0 +1,11 @@
+{
+  "rank": 1,
+  "argv": [
+    "docker",
+    "exec",
+    "ds41-optimized-r1",
+    "python3",
+    "-c",
+    "import hashlib,json,os;from pathlib import Path\nassert os.environ.get('VLLM_USE_FASTOKENS','0')=='0'\nm=json.loads(Path('/opt/kk926/manifest.json').read_text())\nfor name,pin in m['files'].items():assert hashlib.sha256((Path('/usr/local/lib/python3.12/dist-packages')/name).read_bytes()).hexdigest()==pin['after']\nprint(json.dumps({'compressor_hashes_verified':True,'fastokens_enabled':False}))"
+  ]
+}

@@ -68,8 +68,19 @@ correction, layered on the pinned SparkRing/eugr stack. Per-rank immutable
 image IDs and source hashes are in
 [the correction receipt](results/20260929-kk926/images.json) and
 [manifest](image/kk926/manifest.json). The endpoint and performance profile
-are unchanged. `VLLM_USE_FASTOKENS` remains unset; the separate
-[CPU assessment](FASTOKENS-ASSESSMENT-20260929.md) did not modify serving.
+are unchanged. `VLLM_USE_FASTOKENS` remains unset after the completed
+[serving trial](FASTOKENS-SERVING-20260929.md): long-prompt TTFT improved, but
+C8 decode was lower in both candidate runs. The trial restored the exact
+KK926-corrected HF configuration and verified the live source hashes on all
+four ranks. [Final selection receipt](results/20260929-fastokens/deployment.json).
+
+The unused candidate images `dsv41-sparkring:kk926-fastokens-032` are retained;
+[per-rank IDs](results/20260929-fastokens/images.json) distinguish them from
+the selected corrected HF parents. The temporary `ds41-before-fastokens-r*`
+containers were renamed back to `ds41-optimized-r*` during rollback. The trial
+backup is `/etc/deepseek-ring/.before-fastokens-20260929T203153Z/optimized-specs.json`.
+Do not rerun the trial's `rollback` now: it has already completed. The trial
+scripts are campaign-specific and preserve local launch receipts.
 
 The pre-correction optimized containers are retained, stopped, as
 `ds41-before-kk926-r0` through `r3`, with restart policy `no`. Their old image

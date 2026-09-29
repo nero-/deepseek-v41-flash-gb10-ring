@@ -14,8 +14,14 @@ tok/s versus a 73.9 tok/s baseline sample. Million-token uncached retrieval
 passed in 322.1 seconds. One initial long-context automatic-tool miss remains
 recorded; the full repeat passed 7/7. Historical numbers below predate the fix.
 
-The [Fastokens assessment](FASTOKENS-ASSESSMENT-20260929.md) is CPU-only and
-separate; `VLLM_USE_FASTOKENS` is not enabled in serving.
+The subsequent [Fastokens serving trial](FASTOKENS-SERVING-20260929.md)
+reduced cached 1M TTFT from 2.57 to 1.11 seconds at C1 and 9.80 to 3.74 seconds
+at C8. However, repeated C8 decode was 167–169 tok/s at 8K and 156.6–156.8
+at 128K, versus HF's 171.8–179.0 and 164.8–168.5. All integration checks passed,
+but the corrected HF backend was restored to prioritize decode/concurrency.
+`VLLM_USE_FASTOKENS` is not enabled. This was a six-cell screen plus C8 repeats,
+not a new full benchmark. The historical full benchmark's C1 was 64.3–66.2
+tok/s; the isolated 73.9 result should not be treated as typical fleet speed.
 
 ## Full deployed-profile benchmark
 

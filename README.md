@@ -49,10 +49,11 @@ The [historical pre-correction full benchmark](FULL-BENCHMARK-20260928.md) inclu
 through one million tokens. Two original 128K cells were rejected for output
 repetition; their diagnostic repeats are reported separately.
 
-[Fastokens was assessed separately](FASTOKENS-ASSESSMENT-20260929.md): CPU
-prompt encoding improved 14–16× in isolated tests with matching token IDs,
-but streaming detokenization was slower in that probe. It remains disabled in
-serving pending an end-to-end test.
+[Fastokens was tested end to end](FASTOKENS-SERVING-20260929.md). Cached 1M
+first-token latency improved from 2.57 to 1.11 seconds at C1 and 9.80 to 3.74
+seconds at C8, but both Fastokens C8 decode runs were below both HF runs.
+The corrected HF backend remains selected to preserve decode/concurrency
+performance. Candidate images and all comparison evidence are retained.
 
 The engine defaults to thinking on. Historical SGLang and new vLLM engine-default decode measurements have different thinking settings and are **not a fully matched comparison**. `MATCHED=1 bench/lilbench.sh ...` explicitly fixes thinking and sampling without changing the benchmark's timing or accounting. The stock vLLM image also fails byte-identical greedy-repeatability checks; task scores do not establish universal quality equivalence.
 

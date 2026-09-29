@@ -12,9 +12,9 @@ def run(name,rank,argv,data=None,expected=0):
  print('DONE',name,r.returncode,flush=True);assert r.returncode==expected,(name,r.returncode)
  return r
 
-def screen(name, focused=False):
+def screen(name, focused=False, duration=20):
  out=REMOTE+'/'+name+'.json'
- argv=['/home/nero/bench/.venv/bin/python','-u','/home/nero/bench/lil_matched.py','/home/nero/bench/llm-inference-bench/llm_decode_bench.py','--host','192.168.50.219','--port','8015','--model','DeepSeek-V4.1-Flash-TP4','--no-hw-monitor','--display-mode','plain','--no-resume','--temperature','1','--contexts','8192,131072','--concurrency','1,8,16','--duration','20','--max-tokens','2048','--standalone-prefill','--prefill-contexts','8k,128k','--output',out]
+ argv=['/home/nero/bench/.venv/bin/python','-u','/home/nero/bench/lil_matched.py','/home/nero/bench/llm-inference-bench/llm_decode_bench.py','--host','192.168.50.219','--port','8015','--model','DeepSeek-V4.1-Flash-TP4','--no-hw-monitor','--display-mode','plain','--no-resume','--temperature','1','--contexts','8192,131072','--concurrency','1,8,16','--duration',str(duration),'--max-tokens','2048','--standalone-prefill','--prefill-contexts','8k,128k','--output',out]
  if focused:
   argv[argv.index('--contexts')+1]='131072';argv[argv.index('--concurrency')+1]='2,16';argv[argv.index('--duration')+1]='30'
   argv.remove('--standalone-prefill');i=argv.index('--prefill-contexts');del argv[i:i+2]

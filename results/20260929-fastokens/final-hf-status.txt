@@ -1,0 +1,220 @@
+{
+  "profile": "engram-adaptive4k-query-indexer",
+  "nodes": [
+    {
+      "host": "192.168.50.219",
+      "name": "ds41-optimized-r0",
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 1747458,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-29T20:59:06.255315274Z",
+        "FinishedAt": "2026-09-29T20:31:57.280402794Z",
+        "Health": {
+          "Status": "healthy",
+          "FailingStreak": 0,
+          "Log": [
+            {
+              "Start": "2026-09-29T21:07:24.252304317Z",
+              "End": "2026-09-29T21:07:24.450534051Z",
+              "ExitCode": 0,
+              "Output": ""
+            },
+            {
+              "Start": "2026-09-29T21:07:34.451601176Z",
+              "End": "2026-09-29T21:07:34.653242417Z",
+              "ExitCode": 0,
+              "Output": ""
+            },
+            {
+              "Start": "2026-09-29T21:07:44.654146474Z",
+              "End": "2026-09-29T21:07:44.859333495Z",
+              "ExitCode": 0,
+              "Output": ""
+            },
+            {
+              "Start": "2026-09-29T21:07:54.859781332Z",
+              "End": "2026-09-29T21:07:55.051799135Z",
+              "ExitCode": 0,
+              "Output": ""
+            },
+            {
+              "Start": "2026-09-29T21:08:05.053474472Z",
+              "End": "2026-09-29T21:08:05.386969535Z",
+              "ExitCode": 0,
+              "Output": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "host": "192.168.50.129",
+      "name": "ds41-optimized-r1",
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 3712745,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-29T20:59:06.261759837Z",
+        "FinishedAt": "2026-09-29T20:32:07.454408849Z"
+      }
+    },
+    {
+      "host": "192.168.50.192",
+      "name": "ds41-optimized-r2",
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 3448651,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-29T20:59:06.181180252Z",
+        "FinishedAt": "2026-09-29T20:32:07.56468115Z"
+      }
+    },
+    {
+      "host": "192.168.50.23",
+      "name": "ds41-optimized-r3",
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 3576816,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-29T20:59:06.131471737Z",
+        "FinishedAt": "2026-09-29T20:32:07.623067952Z"
+      }
+    }
+  ]
+}
+network-configured | next: sparkring models
+  rank 0 (spark-r0) root@192.168.50.219: network-configured
+  rank 1 (spark-r1) root@192.168.50.129: network-configured
+  rank 2 (gx10-r1) root@192.168.50.192: network-configured
+  rank 3 (gx10-r0) root@192.168.50.23: network-configured
+Saved model operation: deepseek-v41-flash-tp4 | down complete
+Checkpoint: deepseek-ai/DeepSeek-V4.1-Flash @ dba1be0a40aa | Image: dev-20260927-mimovision-cuda1342-nccl2323-status032
+http://192.168.50.219:8015/v1
+[
+  {
+    "host": "root@192.168.50.219",
+    "result": {
+      "schema": "sparkring-model-observation/v1",
+      "source": "installer-docker-inspect",
+      "observed_at": 1790716109.993676,
+      "deployment_id": "81b3d1a970e46e3ecb66caed65696ef44647ebfb1c660720cda90f094994e485",
+      "rank": 0,
+      "node_id": "4d20a55d-3e3d-4a3a-b73e-0e1facee8a39",
+      "boot_id": "700537c7-c83d-472e-866d-4f8ea3bd0178",
+      "identity_errors": {},
+      "expected_node_id": "4d20a55d-3e3d-4a3a-b73e-0e1facee8a39",
+      "node_identity_matches": true,
+      "container_id": "5b3d1ce4a9df2accc09addc3c73508a38ca94589ad753757442fef7d1ced3034",
+      "container_name": "sr-sparkring-deepseek-v41-flash-adaefa-r0",
+      "container_started_at": "2026-09-28T06:53:46.938370171Z",
+      "image_id": "sha256:8e4de5f05f0287c4d0326f3a6ed5d25d3248ec4d482f369308a08a36a2f893bf",
+      "expected_image_id": "sha256:8e4de5f05f0287c4d0326f3a6ed5d25d3248ec4d482f369308a08a36a2f893bf",
+      "present": true,
+      "running": false,
+      "health": "unhealthy"
+    }
+  },
+  {
+    "host": "root@192.168.50.129",
+    "result": {
+      "schema": "sparkring-model-observation/v1",
+      "source": "installer-docker-inspect",
+      "observed_at": 1790716111.1214519,
+      "deployment_id": "81b3d1a970e46e3ecb66caed65696ef44647ebfb1c660720cda90f094994e485",
+      "rank": 1,
+      "node_id": "dd9af365-98ff-43f6-9691-8b999985f847",
+      "boot_id": "877b1d0d-0a99-4e33-86bf-6941de1f34e6",
+      "identity_errors": {},
+      "expected_node_id": "dd9af365-98ff-43f6-9691-8b999985f847",
+      "node_identity_matches": true,
+      "container_id": "218d78bc7ad18d5b56bcac09170ab28cc933558ace20678b5e4fd46e99482199",
+      "container_name": "sr-sparkring-deepseek-v41-flash-adaefa-r1",
+      "container_started_at": "2026-09-28T06:53:39.749298494Z",
+      "image_id": "sha256:8e4de5f05f0287c4d0326f3a6ed5d25d3248ec4d482f369308a08a36a2f893bf",
+      "expected_image_id": "sha256:8e4de5f05f0287c4d0326f3a6ed5d25d3248ec4d482f369308a08a36a2f893bf",
+      "present": true,
+      "running": false,
+      "health": null
+    }
+  },
+  {
+    "host": "root@192.168.50.192",
+    "result": {
+      "schema": "sparkring-model-observation/v1",
+      "source": "installer-docker-inspect",
+      "observed_at": 1790716111.9885836,
+      "deployment_id": "81b3d1a970e46e3ecb66caed65696ef44647ebfb1c660720cda90f094994e485",
+      "rank": 2,
+      "node_id": "f1500d96-23ca-494b-95ab-03a87cac63a4",
+      "boot_id": "f9ffa099-fabb-477c-a25e-0ed23c522079",
+      "identity_errors": {},
+      "expected_node_id": "f1500d96-23ca-494b-95ab-03a87cac63a4",
+      "node_identity_matches": true,
+      "container_id": "2bcdced24d0ca391f423aeb93632822d32c1fe844e3716e2def4058a06b8c351",
+      "container_name": "sr-sparkring-deepseek-v41-flash-adaefa-r2",
+      "container_started_at": "2026-09-28T06:53:37.681923276Z",
+      "image_id": "sha256:8e4de5f05f0287c4d0326f3a6ed5d25d3248ec4d482f369308a08a36a2f893bf",
+      "expected_image_id": "sha256:8e4de5f05f0287c4d0326f3a6ed5d25d3248ec4d482f369308a08a36a2f893bf",
+      "present": true,
+      "running": false,
+      "health": null
+    }
+  },
+  {
+    "host": "root@192.168.50.23",
+    "result": {
+      "schema": "sparkring-model-observation/v1",
+      "source": "installer-docker-inspect",
+      "observed_at": 1790716112.817771,
+      "deployment_id": "81b3d1a970e46e3ecb66caed65696ef44647ebfb1c660720cda90f094994e485",
+      "rank": 3,
+      "node_id": "5ba135c1-b322-4880-ac7d-755f9d91bdc2",
+      "boot_id": "4ce75568-14fd-4cbf-afe8-c5457a7d0821",
+      "identity_errors": {},
+      "expected_node_id": "5ba135c1-b322-4880-ac7d-755f9d91bdc2",
+      "node_identity_matches": true,
+      "container_id": "c7a0d57a0261ceef50885a41be68d5c830fb158e2e99ada9062aecfbcd027966",
+      "container_name": "sr-sparkring-deepseek-v41-flash-adaefa-r3",
+      "container_started_at": "2026-09-28T06:53:39.848937761Z",
+      "image_id": "sha256:8e4de5f05f0287c4d0326f3a6ed5d25d3248ec4d482f369308a08a36a2f893bf",
+      "expected_image_id": "sha256:8e4de5f05f0287c4d0326f3a6ed5d25d3248ec4d482f369308a08a36a2f893bf",
+      "present": true,
+      "running": false,
+      "health": null
+    }
+  }
+]
+Network observations do not qualify GPU/RDMA serving.
+Node 0: status
+Done: Node 0: status (1.1s)
+Node 1: status
+Done: Node 1: status (1.1s)
+Node 2: status
+Done: Node 2: status (0.9s)
+Node 3: status
+Done: Node 3: status (0.9s)

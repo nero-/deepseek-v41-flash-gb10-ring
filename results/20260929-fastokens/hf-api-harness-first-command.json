@@ -1,0 +1,12 @@
+{
+  "rank": 0,
+  "argv": [
+    "python3",
+    "-u",
+    "/home/nero/fastokens-20260929/tokenizer-serving.py",
+    "--label",
+    "hf",
+    "--output",
+    "/home/nero/fastokens-20260929/hf-api.json"
+  ]
+}
