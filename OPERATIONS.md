@@ -62,6 +62,34 @@ Use `ring-mode.sh` when changing engines: the fixed helper does not stop Qwen
 containers for you. The selected local containers use `ds41-optimized-r0`
 through `r3`; official stock containers retain their installer-generated names.
 Inspect a selected rank with `docker logs --tail 100 ds41-optimized-r0`.
+
+The selected images include the complete KK #926/#943 compressor-state
+correction, layered on the pinned SparkRing/eugr stack. Per-rank immutable
+image IDs and source hashes are in
+[the correction receipt](results/20260929-kk926/images.json) and
+[manifest](image/kk926/manifest.json). The endpoint and performance profile
+are unchanged. `VLLM_USE_FASTOKENS` remains unset; the separate
+[CPU assessment](FASTOKENS-ASSESSMENT-20260929.md) did not modify serving.
+
+The pre-correction optimized containers are retained, stopped, as
+`ds41-before-kk926-r0` through `r3`, with restart policy `no`. Their old image
+and the checkpoint are retained too. The original root-owned configuration is
+backed up under
+`/etc/deepseek-ring/.before-kk926-20260929T182649Z/optimized-specs.json` on spark-r0.
+From this existing Mac checkout, explicit rollback is:
+
+```bash
+/opt/homebrew/bin/python3.12 scripts/kk926-rollback.py
+```
+
+That script verifies the current selection and both generations of images,
+stops/removes only the corrected selected containers, restores the configuration
+through the checked root-owned bundle writer, renames the old containers, and
+starts them through the normal controller. Host-specific launch receipts remain
+local and are required by this fleet-specific script. The rollback and
+`ds-vllm-stock` images both predate the compressor fix; they are operational
+fallbacks with the known model-fidelity defect.
+
 `status` reports the local selected deployment first, then the official stock
 deployment; a stopped stock deployment is expected while the selected one runs.
 

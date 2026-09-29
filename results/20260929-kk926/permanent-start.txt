@@ -1,0 +1,24 @@
+SparkRing down. Progress: /var/log/sparkring/install.log
+Follow from another terminal: sudo sparkring logs --follow
+down: deepseek-v41-flash-tp4 on root@192.168.50.219, root@192.168.50.129, root@192.168.50.192, root@192.168.50.23
+owned -> stop
+Prepare native ASIC fabric and install its supervised service.
+Model operation complete. sparkring status --refresh
+Command finished.
+Optimized DeepSeek ready: http://192.168.50.219:8015/v1
+Node 0: owned
+Done: Node 0: owned (0.8s)
+Node 1: owned
+Done: Node 1: owned (0.9s)
+Node 2: owned
+Done: Node 2: owned (0.8s)
+Node 3: owned
+Done: Node 3: owned (0.8s)
+Node 0: Confirm model stopped
+Done: Node 0: Confirm model stopped (0.5s)
+Node 1: Confirm model stopped
+Done: Node 1: Confirm model stopped (0.5s)
+Node 2: Confirm model stopped
+Done: Node 2: Confirm model stopped (0.5s)
+Node 3: Confirm model stopped
+Done: Node 3: Confirm model stopped (0.5s)

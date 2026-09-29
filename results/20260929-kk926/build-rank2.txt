@@ -1,0 +1,32 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 363B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/dsv41-pinned-base:kk926
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 216.17kB done
+#4 DONE 0.0s
+
+#5 [1/3] FROM docker.io/library/dsv41-pinned-base:kk926
+#5 DONE 0.2s
+
+#6 [2/3] COPY . /opt/kk926/
+#6 DONE 0.0s
+
+#7 [3/3] RUN python3 /opt/kk926/install.py
+#7 5.396 {"schema": "sparkring-external-verification/v1", "composition_sha256": "46ecfc99659799934e7429fb0f8c80310b93aee485337114139bb5fe1df096d4", "sources": {"b12x": {"archive": "b12x-source-m3.tar", "archive_sha256": "30c7384bf72c4a02baa8624e1a37769586bf7ae16d433b6fa17ff35db91470fe", "baseline_archive": "b12x-base.tar", "baseline_archive_sha256": "10c8db93ea1453516448fa9f5c06120e0838700c4cc57cc0de95546772420f44", "baseline_commit": "a7d7d29b2ef8869086e0ceaa787321f17544e3c9", "commit": "c8e461281a3872a0e5de2485ef1df3df6556f07c", "upstream": "a7d7d29b2ef8869086e0ceaa787321f17544e3c9"}, "vllm": {"archive": "vllm-source-m3.tar", "archive_sha256": "6cc134c1cac357a7f9ef282c7a94c6fe2a40db18a0979b9bec90949521b46412", "baseline_archive": "vllm-base.tar", "baseline_archive_sha256": "75686a2f3c57a9971fdb59f787a267716a0213d6744644c7ced3d7bbc79fcd41", "baseline_commit": "1794dcf18454900263e0c66711af8ea4a1283ac1", "commit": "03c4af34fbe6d2ff863bd03a6ed255c4de96785b", "upstream": "1794dcf18454900263e0c66711af8ea4a1283ac1"}}, "files_verified": 6107, "framework_native_rebuilt": false, "owned_python_roots": ["/opt/sparkring/python"], "serving_qualified": false}
+#7 DONE 5.5s
+
+#8 exporting to image
+#8 exporting layers 0.0s done
+#8 writing image sha256:4fbff34beec9dfde9ca4e2f197d8a93da0f36fec226027871c4d3d6247d6ac7d done
+#8 naming to docker.io/library/dsv41-sparkring:kk926-20260929 done
+#8 DONE 0.0s

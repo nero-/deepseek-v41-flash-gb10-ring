@@ -1,0 +1,33 @@
+{
+  "selected": "kk926",
+  "healthy": true,
+  "backup_tag": ".before-kk926-20260929T182649Z",
+  "images": [
+    {
+      "rank": 0,
+      "image_id": "sha256:a9f4aa50ac6b2ca8e3961361fc24bc2d4b0c2785080e85248391ff7da7fbf27c",
+      "source_manifest_sha256": "11948e034c8fe93d485ec1cf5f426c41f364175ca041a52682d76bf77a4687e1",
+      "toolchain_verified": true
+    },
+    {
+      "rank": 1,
+      "image_id": "sha256:43e6685cf8f01ebd1aab60a588e523f4b8d0330be27d9c43ab0d6f146d2f6649",
+      "source_manifest_sha256": "11948e034c8fe93d485ec1cf5f426c41f364175ca041a52682d76bf77a4687e1",
+      "toolchain_verified": true
+    },
+    {
+      "rank": 2,
+      "image_id": "sha256:4fbff34beec9dfde9ca4e2f197d8a93da0f36fec226027871c4d3d6247d6ac7d",
+      "source_manifest_sha256": "11948e034c8fe93d485ec1cf5f426c41f364175ca041a52682d76bf77a4687e1",
+      "toolchain_verified": true
+    },
+    {
+      "rank": 3,
+      "image_id": "sha256:7725323e2f86085775349b4bcac3efcdc4c05ee556f471786c886e6f8e544688",
+      "source_manifest_sha256": "11948e034c8fe93d485ec1cf5f426c41f364175ca041a52682d76bf77a4687e1",
+      "toolchain_verified": true
+    }
+  ],
+  "profile": "engram-adaptive4k-query-indexer",
+  "utc": "2026-09-29T18:33:00Z"
+}

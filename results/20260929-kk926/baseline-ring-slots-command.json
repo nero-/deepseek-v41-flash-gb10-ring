@@ -1,0 +1,21 @@
+{
+  "rank": 0,
+  "argv": [
+    "docker",
+    "run",
+    "--rm",
+    "--gpus",
+    "all",
+    "--network",
+    "none",
+    "--shm-size",
+    "1g",
+    "--mount",
+    "type=bind,src=/home/nero/kk926-20260929/tests,dst=/tests,readonly",
+    "--entrypoint",
+    "python3",
+    "sha256:8e4de5f05f0287c4d0326f3a6ed5d25d3248ec4d482f369308a08a36a2f893bf",
+    "/tests/kk926-test-launch.py",
+    "/tests/compressor-ring-slots.py"
+  ]
+}

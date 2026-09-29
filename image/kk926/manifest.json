@@ -1,0 +1,20 @@
+{
+  "base_image": "sha256:8e4de5f05f0287c4d0326f3a6ed5d25d3248ec4d482f369308a08a36a2f893bf",
+  "upstream_pr": "https://github.com/local-inference-lab/vllm/pull/926",
+  "upstream_head": "7b935cb78a3f1f256b04006e82504a651685f72d",
+  "beta_merge": "38283c44a7e574661c5d6a374416a7720b47cf1b",
+  "files": {
+    "vllm/v1/kv_cache_interface.py": {
+      "before": "8544af944dfce216ec0d445a298a74bd65f5cf4dd1b4af78da148784e9db2556",
+      "after": "d6e87b3609db0b8dbf693c591d3a82c0506512f0cfffa928c1973d2e9be844c8"
+    },
+    "vllm/v1/worker/gpu/block_table.py": {
+      "before": "db83f387be74d295c8a393358e0c1bfade0a9fd9390dd6be96d78eaa756c508b",
+      "after": "ecbb2102d53b28864c5015c7f3c6847200d65c0090cc89ed4a9bb5f4c63103b3"
+    },
+    "vllm/v1/worker/gpu/model_runner.py": {
+      "before": "43e9759e09c10c1f33cfe00bcf4e7b3b3f722d4a1c2cb7e83c3b56a9b11adb8d",
+      "after": "dc22764351c96d676333e3bb38078f82706ff9f9295a67fc275804f3acfa3cce"
+    }
+  }
+}

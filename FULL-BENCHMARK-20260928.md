@@ -1,5 +1,11 @@
 # Full deployed-profile benchmark — 2026-09-28 UTC
 
+These measurements predate the KK #926/#943 compressor-state correction.
+The selected runtime now uses corrected images; see
+[the September 29 correction report](KK926-CORRECTION-20260929.md) for its
+measured fidelity gain and throughput tradeoffs. The original benchmark
+results are retained below as historical evidence.
+
 Four GB10 nodes (two DGX Sparks, two GX10s), selected vLLM profile `engram-adaptive4k-query-indexer`. Serving configuration remained fixed throughout.
 
 Original run: **19/20 sustained cells valid; 19/20 burst cells valid**. Both rejected cells passed one focused repeat without changing the serving configuration or disabling the repetition detector. Rejected cells remain visible below; a diagnostic repeat does not erase the original failure.

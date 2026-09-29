@@ -1,0 +1,18 @@
+{
+  "rank": 0,
+  "argv": [
+    "python3",
+    "-u",
+    "/home/nero/kk926-20260929/mixed_traffic.py",
+    "kk926",
+    "--integrity",
+    "--prefill-records",
+    "6144",
+    "--min-uncached-tokens",
+    "65536",
+    "--rounds",
+    "1",
+    "--output",
+    "/home/nero/kk926-20260929/mixed-integrity.json"
+  ]
+}

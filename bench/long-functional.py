@@ -39,7 +39,9 @@ def urlopen(req, *args, **kwargs):
     with original_open(req, *args, **kwargs) as response:
         data = response.read()
     record['elapsed_seconds'] = time.monotonic() - started
-    record['usage'] = json.loads(data).get('usage')
+    record['response'] = json.loads(data)
+    record['usage'] = record['response'].get('usage')
+    record['nonce_prefix'] = prefix.split('\n', 1)[0]
     print('LONG-USAGE', json.dumps(record), flush=True)
     return io.BytesIO(data)
 

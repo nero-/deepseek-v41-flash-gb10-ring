@@ -1,0 +1,2 @@
+# A unified diff uses a significant single-space prefix on blank context lines.
+image/kk926/upstream-runtime.patch whitespace=-blank-at-eol

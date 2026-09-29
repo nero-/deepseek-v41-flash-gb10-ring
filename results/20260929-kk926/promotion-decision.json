@@ -1,0 +1,19 @@
+{
+  "decision": "promote",
+  "performance_reviewed": true,
+  "reason": "Complete upstream fix removes the reproduced disabled compressor writes and reduces measured late-answer coarsened KL by 89.6%; regression and integration qualification passed, with initial long-tool failure retained.",
+  "performance_receipts": [
+    "baseline-screen.json",
+    "corrected-screen.json",
+    "corrected-screen-repeat.json",
+    "corrected-128k-repeat.json",
+    "cold-1m.json"
+  ],
+  "limitations": [
+    "128K/C1 decode remains slower in both corrected screens; no claim of universal throughput parity.",
+    "Initial long-functional automatic-tool selection missed once; full repeat passed 7/7. Intermittent behavior remains documented.",
+    "Top-20 coarsened KL measures internal decode/prefill consistency, not full-model accuracy.",
+    "Finite repetition checks passed; this does not prove all long-output loops resolved."
+  ],
+  "fastokens_serving_enabled": false
+}

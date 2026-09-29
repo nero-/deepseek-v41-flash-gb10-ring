@@ -1,8 +1,21 @@
-# vLLM results — 2026-09-28 UTC
+# vLLM results — updated 2026-09-29 UTC
 
 Four GB10 nodes: two DGX Sparks and two ASUS Ascent GX10s. Runtime and checkpoint pins are in [README.md](README.md). The initial migration record is [MIGRATION-20260927.md](MIGRATION-20260927.md); the follow-up campaign is [RESEARCH-20260928.md](RESEARCH-20260928.md).
 
 Selected configuration: **Engram projection TP + adaptive 4K under contention + guarded query-row indexer sharding**, with native DSpark5, graph sizes and an 8K allocation ceiling.
+
+The selected runtime also includes the **complete KK #926/#943 compressor-state
+correction**. See [the September 29 report](KK926-CORRECTION-20260929.md) for
+fresh baseline/corrected screens and all qualification evidence. Eight long
+generation probes showed 89.6% lower late-answer coarsened decode/prefill KL.
+Corrected prefill was about 4.35–4.42K prompt tok/s; repeated C16 decode reached
+233–236 aggregate tok/s. The matched 128K/C1 screens were slower at 57.8–59.0
+tok/s versus a 73.9 tok/s baseline sample. Million-token uncached retrieval
+passed in 322.1 seconds. One initial long-context automatic-tool miss remains
+recorded; the full repeat passed 7/7. Historical numbers below predate the fix.
+
+The [Fastokens assessment](FASTOKENS-ASSESSMENT-20260929.md) is CPU-only and
+separate; `VLLM_USE_FASTOKENS` is not enabled in serving.
 
 ## Full deployed-profile benchmark
 

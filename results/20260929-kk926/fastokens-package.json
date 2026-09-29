@@ -1,0 +1,16 @@
+{
+  "version": "0.3.2",
+  "requires_dist": null,
+  "aarch64_wheels": [
+    {
+      "filename": "fastokens-0.3.2-cp39-abi3-manylinux_2_28_aarch64.whl",
+      "url": "https://files.pythonhosted.org/packages/4d/2c/b5e9aa3887dc8605a78f4b9ad479fd1adda9d67ce33c2bf94a8688a09da8/fastokens-0.3.2-cp39-abi3-manylinux_2_28_aarch64.whl",
+      "sha256": "cbb29fae028d39a2020d01dfe587e1774a516b6d28641b70e83a285d460bdfb8"
+    },
+    {
+      "filename": "fastokens-0.3.2-cp39-abi3-musllinux_1_2_aarch64.whl",
+      "url": "https://files.pythonhosted.org/packages/9b/99/3d54e5fefe4e7bc4681377216d5519ee4e8e71fe6d6cfb792a951882d63e/fastokens-0.3.2-cp39-abi3-musllinux_1_2_aarch64.whl",
+      "sha256": "54a2b96c336ee0d5ea4d93b672a77f39e2f6f5eff3e5d76d528858d18694f2d5"
+    }
+  ]
+}

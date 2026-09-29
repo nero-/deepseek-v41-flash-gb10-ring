@@ -1,0 +1,32 @@
+{
+  "parity_passed": true,
+  "parity_cases": 17,
+  "timings": [
+    {
+      "label": "8k",
+      "tokens": 7390,
+      "hf_encode_s": 0.008916397986467928,
+      "fastokens_encode_s": 0.0006167859537526965,
+      "encode_speedup": 14.456227370643079,
+      "decode_speedup": 1.4756781575575741
+    },
+    {
+      "label": "128k",
+      "tokens": 125189,
+      "hf_encode_s": 0.18540610099444166,
+      "fastokens_encode_s": 0.011436006054282188,
+      "encode_speedup": 16.21248713181791,
+      "decode_speedup": 1.452631162004873
+    },
+    {
+      "label": "1m",
+      "tokens": 1008381,
+      "hf_encode_s": 1.6071549649932422,
+      "fastokens_encode_s": 0.10615176695864648,
+      "encode_speedup": 15.140162156879981,
+      "decode_speedup": 1.3169447971164332
+    }
+  ],
+  "stream_speedup": 0.8709014901427545,
+  "serving_enabled": false
+}

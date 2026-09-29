@@ -10,3 +10,8 @@ results/20260928/variants/
 results/20260928-research/active.json
 results/20260928-research/*/selected.json
 results/20260928-research/*/specs.json
+# Retain KK correction host/container launch receipts locally.
+results/20260929-kk926/before-rank*.json
+results/20260929-kk926/selected-before.json
+results/20260929-kk926/selected-corrected.json
+results/20260929-kk926/trial-specs.json

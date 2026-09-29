@@ -8,13 +8,23 @@ This repository contains this fleet's operating scripts, bounded vLLM optimizati
 |---|---|
 | [SparkRing one-command-installer](https://github.com/FujitsuPolycom/sparkring/tree/8b152d65c701f557f62ae6a9a1c3db90771c1df3) | `8b152d65c701f557f62ae6a9a1c3db90771c1df3` |
 | Profile | `deepseek-v41-flash-tp4` |
-| Image reference | `ghcr.io/fujitsupolycom/sparkring@sha256:2c45153abf19af4f2b4bf10445cfc96c711c375a6fc5c04d3a2b55496f3acfe3` |
-| Runtime image ID | `sha256:8e4de5f05f0287c4d0326f3a6ed5d25d3248ec4d482f369308a08a36a2f893bf` |
-| vLLM integrated source | `03c4af34fbe6d2ff863bd03a6ed255c4de96785b` |
+| SparkRing parent reference | `ghcr.io/fujitsupolycom/sparkring@sha256:2c45153abf19af4f2b4bf10445cfc96c711c375a6fc5c04d3a2b55496f3acfe3` |
+| Parent image ID | `sha256:8e4de5f05f0287c4d0326f3a6ed5d25d3248ec4d482f369308a08a36a2f893bf` |
+| Selected derived images | `dsv41-sparkring:kk926-20260929`; [immutable per-rank IDs](results/20260929-kk926/images.json) |
+| vLLM integrated source | `03c4af34fbe6d2ff863bd03a6ed255c4de96785b` plus [KK #926 complete correction](image/kk926/manifest.json) at `7b935cb78a3f1f256b04006e82504a651685f72d` |
 | B12x integrated source | `c8e461281a3872a0e5de2485ef1df3df6556f07c` |
 | DeepSeek checkpoint | `dba1be0a40aa45a94ad051997016db3960a90277` |
 
 The vLLM baseline descends from the Karmic Kraken line. This is a native vLLM/B12x deployment, not SGLang. DSpark5, block rejection and adaptive verification are supplied by the recipe. The checkpoint's target precision and full vocabulary are preserved.
+
+The selected image now includes the complete compressor-state correction from
+KK #926/#943 on SparkRing's eugr nightly base. In eight 2,048-token probes,
+late-answer decode/prefill divergence fell 89.6%. Prefill and high-concurrency
+throughput were broadly retained, while 128K single-user decode was slower in
+the matched screens. See the [correction report](KK926-CORRECTION-20260929.md)
+for the speed tradeoff, initial intermittent long-tool miss, passing repeat,
+and qualification evidence. This is a fidelity upgrade, not a claimed general
+decode speedup.
 
 ## Operating
 
@@ -34,10 +44,15 @@ The selected profile is `engram-adaptive4k-query-indexer`: Engram projection TP,
 
 Read [RESULTS.md](RESULTS.md) for the selected result and its limits, [RESEARCH-20260928.md](RESEARCH-20260928.md) for all six follow-up directions, [MIGRATION-20260927.md](MIGRATION-20260927.md) for the experiment record, and [QWEN-TRANSFER.md](QWEN-TRANSFER.md) for which actual Qwen changes apply. The projection split, context-axis indexer, timed scheduler, Engram read-ahead, mHC ownership and Markov shortlists remain unselected research code. Plugin installation alone does not enable them.
 
-The [full deployed-profile benchmark](FULL-BENCHMARK-20260928.md) includes the
+The [historical pre-correction full benchmark](FULL-BENCHMARK-20260928.md) includes the
 20-cell sustained grid, 20-cell burst grid, coding throughput and cold retrieval
 through one million tokens. Two original 128K cells were rejected for output
 repetition; their diagnostic repeats are reported separately.
+
+[Fastokens was assessed separately](FASTOKENS-ASSESSMENT-20260929.md): CPU
+prompt encoding improved 14–16× in isolated tests with matching token IDs,
+but streaming detokenization was slower in that probe. It remains disabled in
+serving pending an end-to-end test.
 
 The engine defaults to thinking on. Historical SGLang and new vLLM engine-default decode measurements have different thinking settings and are **not a fully matched comparison**. `MATCHED=1 bench/lilbench.sh ...` explicitly fixes thinking and sampling without changing the benchmark's timing or accounting. The stock vLLM image also fails byte-identical greedy-repeatability checks; task scores do not establish universal quality equivalence.
 

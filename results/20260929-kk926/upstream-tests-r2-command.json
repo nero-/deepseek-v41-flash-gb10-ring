@@ -1,0 +1,27 @@
+{
+  "rank": 2,
+  "argv": [
+    "docker",
+    "run",
+    "--rm",
+    "--gpus",
+    "all",
+    "--network",
+    "none",
+    "--shm-size",
+    "1g",
+    "--mount",
+    "type=bind,src=/home/nero/kk926-20260929/tests,dst=/tests,readonly",
+    "--entrypoint",
+    "python3",
+    "sha256:4fbff34beec9dfde9ca4e2f197d8a93da0f36fec226027871c4d3d6247d6ac7d",
+    "/tests/kk926-test-launch.py",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "/tests/test_gpu_block_table.py",
+    "/tests/test_deepseek_v4_1_compressor.py"
+  ]
+}

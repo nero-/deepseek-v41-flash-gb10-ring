@@ -1,0 +1,14 @@
+{
+  "rank": 0,
+  "argv": [
+    "python3",
+    "-u",
+    "/home/nero/kk926-20260929/decode-prefill-consistency.py",
+    "--output",
+    "/home/nero/kk926-20260929/corrected-consistency.json",
+    "--tokens",
+    "2048",
+    "--limit",
+    "8"
+  ]
+}

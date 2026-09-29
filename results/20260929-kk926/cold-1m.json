@@ -1,0 +1,28 @@
+{
+  "args": {
+    "tokens": 1048576,
+    "output": "/home/nero/kk926-20260929/cold-1m.json",
+    "url": "http://127.0.0.1:8015"
+  },
+  "nonce": "ff438d1e19294f5c9e901590717bdca0",
+  "prompt_sha256": "418e116f0a6545075f3e111cd6211e8acde491ee14926934e159f3961eb101e5",
+  "expected": "RING-6305-COBALT",
+  "answer": "RING-6305-COBALT",
+  "usage": {
+    "prompt_tokens": 1008430,
+    "total_tokens": 1008439,
+    "completion_tokens": 9,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "created_cache_tokens": 1008128
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  },
+  "ttft_seconds": 322.1120632989914,
+  "elapsed_seconds": 322.12974701001076,
+  "cached_tokens": 0,
+  "needle_pass": true,
+  "cold_confirmed": true
+}

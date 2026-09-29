@@ -1,0 +1,12 @@
+{
+  "rank": 1,
+  "argv": [
+    "docker",
+    "exec",
+    "-i",
+    "ds41-optimized-r1",
+    "python3",
+    "-c",
+    "import hashlib,json,sys;from pathlib import Path\nm=json.load(sys.stdin);result={}\nfor name,pins in m['files'].items():\n p=Path('/usr/local/lib/python3.12/dist-packages')/name;actual=hashlib.sha256(p.read_bytes()).hexdigest();assert actual==pins['after'],name;result[name]=actual\nprint(json.dumps(result))"
+  ]
+}
