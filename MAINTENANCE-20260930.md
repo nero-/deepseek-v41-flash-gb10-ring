@@ -153,3 +153,43 @@ The serving endpoint remains `http://192.168.50.219:8015/v1`, model
 `DeepSeek-V4.1-Flash-TP4`. See the [decision](results/20260930-maintenance/decision.json),
 [functional checks](results/20260930-maintenance/final-functional-r0.json), and
 [container status](results/20260930-maintenance/final-serving-status-r0.json).
+
+
+## Follow-up: 2350 MHz
+
+At the user's request, a further identical six-cell screen tested a 2350 MHz
+upper limit on all four nodes. Actual mean SM clock during each sustained
+window was about 2335 MHz (versus 2278 at the 2300 cap and approximately
+2480–2500 at stock). All six cells completed without request errors, repetition,
+capacity limits or warmup timeouts. Stock clocks were restored successfully on
+all four nodes afterward. This follow-up did not install a persistent cap.
+
+| Context / clients | Stock range tok/s (two runs) | 2300 tok/s | 2350 tok/s | 2350 fleet GPU W | 2350 peak °C |
+|---|---:|---:|---:|---:|---:|
+| 8K / 1 | 64.77–66.54 | 64.31 | 64.62 | 112.7 | 66 |
+| 128K / 1 | 61.65–63.14 | 79.31* | 61.39 | 116.2 | 68 |
+| 8K / 8 | 185.50–195.77 | 179.43 | 187.92 | 124.7 | 69 |
+| 8K / 16 | 243.40–253.62 | 242.74 | 250.78 | 124.4 | 70 |
+| 128K / 8 | 167.38–181.06 | 171.12 | 171.88 | 128.0 | 71 |
+| 128K / 16 | 230.97–238.29 | 239.10 | 232.69 | 128.7 | 72 |
+
+*The earlier 2300 MHz 128K/C1 result had unusually high speculative acceptance;
+it is not evidence that increasing clock reduced performance.
+
+2350 MHz cold prefill: 4503 prompt tok/s at 8K and 4449 at 128K. Relative to
+stock-repeat, those are +1.0% and −1.2%, respectively. Decode GPU-reported power
+was about 27–29% below the first stock run, saving roughly 46–49 W across the
+fleet. Peak GPU temperatures were 4–6°C lower than that stock run, and 4–8°C
+lower than the warmed stock repeat. Compared with 2300, the cap consumed an
+extra 6–9 W across the four GPUs during these windows.
+
+2350 is a promising compromise: the 8K concurrency results recovered into the
+stock range while retaining most of the measured 2300 power savings. The C1
+results were slightly below the stock range; long-context concurrency remained
+within it. This single follow-up, with sampled continuations and no fresh
+interleaved stock repeat, does not prove performance equivalence or establish a
+precise causal speedup over 2300. Power readings exclude whole-system wall power.
+
+[Follow-up comparison](results/20260930-maintenance/2350-comparison.json),
+[raw screen](results/20260930-maintenance/2350-screen.json), and per-rank telemetry
+and clock-reset receipts are retained alongside the earlier evidence.
