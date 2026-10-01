@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "python3",
+    "-c",
+    "from pathlib import Path;import sys;p=Path('/etc/systemd/system/gb10-gpu-clock-cap.service');s=sys.argv[1];assert not p.exists() or p.read_text()==s,'Existing unit differs';p.write_text(s);p.chmod(0o644)",
+    "[Unit]\nDescription=GB10 GPU upper clock limit (2350 MHz)\nWants=nvidia-persistenced.service\nAfter=nvidia-persistenced.service\nBefore=docker.service\nStartLimitIntervalSec=0\n\n[Service]\nType=oneshot\nExecStart=/usr/bin/nvidia-smi -lgc 0,2350\nExecReload=/usr/bin/nvidia-smi -lgc 0,2350\nRemainAfterExit=yes\nRestart=on-failure\nRestartSec=10\n\n[Install]\nWantedBy=multi-user.target\n"
+  ],
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": ""
+}

@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "nvidia-smi",
+    "-q",
+    "-d",
+    "CLOCK"
+  ],
+  "exit_code": 0,
+  "stdout": "\n==============NVSMI LOG==============\n\nTimestamp                                              : Thu Oct  1 06:02:33 2026\nDriver Version                                         : 580.178.04\nCUDA Version                                           : 13.0\n\nAttached GPUs                                          : 1\nGPU 0000000F:01:00.0\n    Clocks\n        Graphics                                       : 2405 MHz\n        SM                                             : 2405 MHz\n        Memory                                         : N/A\n        Video                                          : 2067 MHz\n    Applications Clocks\n        Graphics                                       : 2418 MHz\n        Memory                                         : N/A\n    Default Applications Clocks\n        Graphics                                       : 2418 MHz\n        Memory                                         : N/A\n    Deferred Clocks\n        Memory                                         : N/A\n    Max Clocks\n        Graphics                                       : 3003 MHz\n        SM                                             : 3003 MHz\n        Memory                                         : N/A\n        Video                                          : 3003 MHz\n    Max Customer Boost Clocks\n        Graphics                                       : N/A\n    SM Clock Samples\n        Duration                                       : N/A\n        Number of Samples                              : N/A\n        Max                                            : N/A\n        Min                                            : N/A\n        Avg                                            : N/A\n    Memory Clock Samples\n        Duration                                       : N/A\n        Number of Samples                              : N/A\n        Max                                            : N/A\n        Min                                            : N/A\n        Avg                                            : N/A\n    Clock Policy\n        Auto Boost                                     : N/A\n        Auto Boost Default                             : N/A\n\n",
+  "stderr": ""
+}

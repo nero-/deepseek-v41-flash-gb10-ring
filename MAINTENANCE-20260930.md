@@ -193,3 +193,19 @@ precise causal speedup over 2300. Power readings exclude whole-system wall power
 [Follow-up comparison](results/20260930-maintenance/2350-comparison.json),
 [raw screen](results/20260930-maintenance/2350-screen.json), and per-rank telemetry
 and clock-reset receipts are retained alongside the earlier evidence.
+
+
+## Selected default: persistent 2350 MHz
+
+The user subsequently selected 2350 MHz as the permanent default on all four
+nodes. Installed and enabled `gb10-gpu-clock-cap.service`, applying
+`nvidia-smi -lgc 0,2350` immediately and on boot before Docker. This preserves
+idle downclocking and applies across DeepSeek and Qwen. No model restart was
+needed. All four systemd units passed verification and reported enabled,
+active/exited, and successful execution. Boot persistence is configured but a
+further reboot was not performed. A manual GPU/driver reset requires reloading
+the unit; this is a boot service, not a periodic enforcement daemon.
+
+This supersedes the earlier stock-clock decisions above. Source unit and
+per-host `default-2350-*` receipts are committed. The API health check passed
+after application.

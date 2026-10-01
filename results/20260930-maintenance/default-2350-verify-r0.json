@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "systemd-analyze",
+    "verify",
+    "/etc/systemd/system/gb10-gpu-clock-cap.service"
+  ],
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": ""
+}

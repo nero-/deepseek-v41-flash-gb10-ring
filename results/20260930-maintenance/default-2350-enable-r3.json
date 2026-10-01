@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "systemctl",
+    "enable",
+    "--now",
+    "gb10-gpu-clock-cap.service"
+  ],
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "Created symlink /etc/systemd/system/multi-user.target.wants/gb10-gpu-clock-cap.service \u2192 /etc/systemd/system/gb10-gpu-clock-cap.service.\n"
+}

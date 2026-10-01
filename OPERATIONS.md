@@ -21,9 +21,18 @@ enabled to prevent the observed DHCP/fabric startup race; its next-boot behavior
 has not yet been retested. Host backups are under
 `/var/backups/deepseek-maintenance-20260930/`.
 
-GPU clocks remain stock. The 2300 MHz trial reduced GPU-reported power about
-31–33%, but concurrency results did not establish minimal loss across workloads.
+All four nodes use a persistent **2350 MHz upper GPU clock limit**, selected by
+the user after the clock trials. The GPU can still downclock when idle; observed
+sustained clocks were about 2335 MHz. The cap applies to both DeepSeek and Qwen.
+`gb10-gpu-clock-cap.service` applies it at boot before Docker, retries failures,
+and remains enabled. Its source is [here](host/systemd/gb10-gpu-clock-cap.service).
 See the [maintenance and clock report](MAINTENANCE-20260930.md).
+
+After a manual GPU/driver reset, reapply with
+`sudo systemctl reload gb10-gpu-clock-cap.service`. The unit does not periodically
+poll or enforce clocks. To deliberately return to stock, disable the unit with
+`sudo systemctl disable --now gb10-gpu-clock-cap.service`, then run
+`sudo nvidia-smi -rgc`. Stopping the unit alone does not reset clocks.
 
 ## Switching (from the Mac, in this repo)
 

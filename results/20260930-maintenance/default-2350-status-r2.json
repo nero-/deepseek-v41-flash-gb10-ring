@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "systemctl",
+    "show",
+    "gb10-gpu-clock-cap.service",
+    "-p",
+    "ActiveState",
+    "-p",
+    "SubState",
+    "-p",
+    "UnitFileState",
+    "-p",
+    "ExecMainStatus"
+  ],
+  "exit_code": 0,
+  "stdout": "ExecMainStatus=0\nActiveState=active\nSubState=exited\nUnitFileState=enabled\n",
+  "stderr": ""
+}
