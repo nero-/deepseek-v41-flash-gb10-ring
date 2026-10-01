@@ -1,0 +1,57 @@
+{
+  "rank": 3,
+  "image": "sha256:7725323e2f86085775349b4bcac3efcdc4c05ee556f471786c886e6f8e544688",
+  "fastokens_enabled": false,
+  "firmware": [
+    {
+      "name": "ESL01TBTLCZ-27J2-TYN",
+      "version": "ERFM12.0",
+      "latest_available": null
+    },
+    {
+      "name": "Embedded Controller",
+      "version": "0x02000006",
+      "latest_available": "0x02000006"
+    },
+    {
+      "name": "KEK CA",
+      "version": "2023",
+      "latest_available": null
+    },
+    {
+      "name": "MT2910 Family (ConnectX-7) (Composite)",
+      "version": "28.45.4028",
+      "latest_available": null
+    },
+    {
+      "name": "SBAT",
+      "version": "1.5.4",
+      "latest_available": null
+    },
+    {
+      "name": "UEFI CA",
+      "version": "2023",
+      "latest_available": "2023"
+    },
+    {
+      "name": "UEFI Device Firmware",
+      "version": "0x03000007",
+      "latest_available": "0x03000007"
+    },
+    {
+      "name": "UEFI Device Firmware",
+      "version": "0x00000516",
+      "latest_available": "0x00000516"
+    },
+    {
+      "name": "UEFI dbx",
+      "version": "20230501",
+      "latest_available": null
+    },
+    {
+      "name": "Windows UEFI CA",
+      "version": "2023",
+      "latest_available": null
+    }
+  ]
+}

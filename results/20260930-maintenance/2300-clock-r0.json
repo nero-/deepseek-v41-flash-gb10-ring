@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "nvidia-smi",
+    "-lgc",
+    "0,2300"
+  ],
+  "exit_code": 0,
+  "stdout": "GPU clocks set to \"(gpuClkMin 0, gpuClkMax 2300)\" for GPU 0000000F:01:00.0\nAll done.\n",
+  "stderr": ""
+}

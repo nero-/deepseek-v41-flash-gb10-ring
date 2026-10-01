@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "python3",
+    "-c",
+    "import sys,json\nsys.path.insert(0,'/usr/lib/sparkring')\nfrom scripts.deploy_inventory import _collect_local,_request\nc=json.load(open('/etc/sparkring/fabric.json'));v=c['management']\nf=_collect_local(_request(c['rank'],c['ssh_target'],v['address'],(),v['witness']))\nprint(json.dumps({'expected':v,'observed':f['management']}))\n"
+  ],
+  "exit_code": 0,
+  "stdout": "{\"expected\": {\"address\": \"192.168.50.23\", \"interface\": \"enP7s7\", \"witness\": \"192.168.50.219\"}, \"observed\": {\"address\": \"192.168.50.23\", \"interface\": \"enP7s7\", \"controller_address\": \"192.168.50.219\", \"route_to_controller\": {\"dst\": \"192.168.50.219\", \"dev\": \"enP7s7\", \"prefsrc\": \"192.168.50.23\", \"flags\": [], \"uid\": 0, \"cache\": []}, \"error\": null}}\n",
+  "stderr": ""
+}

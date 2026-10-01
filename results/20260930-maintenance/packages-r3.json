@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "sh",
+    "-c",
+    "dpkg-query -W -f='${Package} ${Version}\\n' 'linux-image*' 'linux-headers*' 'dgx*' 'nvidia-driver*' 2>/dev/null"
+  ],
+  "exit_code": 0,
+  "stdout": "dgx-cpu-governor \ndgx-crashdump \ndgx-dashboard 0.29.2-2\ndgx-docker-options \ndgx-iommu-pt \ndgx-limits \ndgx-logrotate \ndgx-motd \ndgx-oem-config-bmc \ndgx-oem-config-eula \ndgx-oobe 0.25.1\ndgx-oobe-customizations \ndgx-oobe-desktop 0.5.0-116\ndgx-persistence-mode \ndgx-plymouth \ndgx-raid-config \ndgx-release 7.6.0\ndgx-repo 25.10-2\ndgx-repo-keys \ndgx-spark-mlnx-hotplug 26.01-1\ndgx-spark-ota-update-meta 26.09.2\ndgx-update-disable \ndgx-update-manager \ndgxstation-desktop 25.11-1\ndgxstation-grub 25.02-1\ndgxstation-nvidia-xconfig \nlinux-headers \nlinux-headers-3.0 \nlinux-headers-6.11.0-1014-nvidia 6.11.0-1014.14\nlinux-headers-6.17.0-1031-nvidia 6.17.0-1031.31\nlinux-headers-6.17.0-1032-nvidia 6.17.0-1032.32\nlinux-headers-7.0.0-1019-nvidia 7.0.0-1019.19~24.04.2\nlinux-headers-nvidia-hwe-24.04 7.0.0-1019.19~24.04.2\nlinux-image \nlinux-image-6.11.0-1014-nvidia 6.11.0-1014.14\nlinux-image-6.17.0-1031-nvidia 6.17.0-1031.31\nlinux-image-6.17.0-1032-nvidia 6.17.0-1032.32\nlinux-image-7.0.0-1019-nvidia 7.0.0-1019.19~24.04.2\nlinux-image-nvidia-hwe-24.04 7.0.0-1019.19~24.04.2\nlinux-image-unsigned-6.11.0-1014-nvidia \nlinux-image-unsigned-6.17.0-1031-nvidia \nlinux-image-unsigned-6.17.0-1032-nvidia \nlinux-image-unsigned-7.0.0-1019-nvidia \nnvidia-driver-580 \nnvidia-driver-580-open 580.178.04-0ubuntu0.24.04.1\nnvidia-driver-binary \n",
+  "stderr": ""
+}

@@ -1,0 +1,872 @@
+{
+  "stock": {
+    "prefill": {
+      "8192": {
+        "ttft_seconds": 1.789,
+        "prefill_seconds": 1.789,
+        "tok_per_sec": 4579.0,
+        "client_ttft_seconds": 1.789,
+        "client_tok_per_sec": 4579.0,
+        "prompt_tokens": 8192,
+        "samples": 5,
+        "method": "client",
+        "server_validation": {
+          "method": "",
+          "tok_per_sec": 0.0,
+          "prefill_seconds": 0.0,
+          "prompt_tokens": 0,
+          "request_prompt_tokens": 0,
+          "cached_tokens": 0,
+          "token_source": "",
+          "samples": 0,
+          "invalid_reason": ""
+        },
+        "hardware_summary": {}
+      },
+      "131072": {
+        "ttft_seconds": 28.797,
+        "prefill_seconds": 28.797,
+        "tok_per_sec": 4480.0,
+        "client_ttft_seconds": 28.797,
+        "client_tok_per_sec": 4480.0,
+        "prompt_tokens": 129014,
+        "samples": 1,
+        "method": "client",
+        "server_validation": {
+          "method": "",
+          "tok_per_sec": 0.0,
+          "prefill_seconds": 0.0,
+          "prompt_tokens": 0,
+          "request_prompt_tokens": 0,
+          "cached_tokens": 0,
+          "token_source": "",
+          "samples": 0,
+          "invalid_reason": ""
+        },
+        "hardware_summary": {}
+      }
+    },
+    "decode": [
+      {
+        "context": 8192,
+        "concurrency": 1,
+        "tps": 66.54031166898044,
+        "acceptance": 2.587548638132296,
+        "steps_per_second": 25.715579096132288,
+        "ranks": [
+          {
+            "rank": 0,
+            "samples": 30,
+            "mean_watts": 40.11,
+            "peak_celsius": 70.0,
+            "mean_mhz": 2501.8
+          },
+          {
+            "rank": 1,
+            "samples": 30,
+            "mean_watts": 40.75633333333333,
+            "peak_celsius": 70.0,
+            "mean_mhz": 2527.0
+          },
+          {
+            "rank": 2,
+            "samples": 30,
+            "mean_watts": 40.30533333333334,
+            "peak_celsius": 70.0,
+            "mean_mhz": 2495.766666666667
+          },
+          {
+            "rank": 3,
+            "samples": 30,
+            "mean_watts": 37.909,
+            "peak_celsius": 72.0,
+            "mean_mhz": 2489.0
+          }
+        ],
+        "fleet_gpu_watts": 159.08066666666667,
+        "peak_gpu_celsius": 72.0,
+        "valid": true
+      },
+      {
+        "context": 131072,
+        "concurrency": 1,
+        "tps": 61.65025050357447,
+        "acceptance": 2.3900523560209423,
+        "steps_per_second": 25.79451883063028,
+        "ranks": [
+          {
+            "rank": 0,
+            "samples": 31,
+            "mean_watts": 40.61516129032258,
+            "peak_celsius": 70.0,
+            "mean_mhz": 2502.0
+          },
+          {
+            "rank": 1,
+            "samples": 31,
+            "mean_watts": 41.751612903225805,
+            "peak_celsius": 72.0,
+            "mean_mhz": 2527.032258064516
+          },
+          {
+            "rank": 2,
+            "samples": 31,
+            "mean_watts": 41.163225806451614,
+            "peak_celsius": 72.0,
+            "mean_mhz": 2469.1612903225805
+          },
+          {
+            "rank": 3,
+            "samples": 31,
+            "mean_watts": 38.939354838709676,
+            "peak_celsius": 74.0,
+            "mean_mhz": 2470.0
+          }
+        ],
+        "fleet_gpu_watts": 162.46935483870968,
+        "peak_gpu_celsius": 74.0,
+        "valid": true
+      },
+      {
+        "context": 8192,
+        "concurrency": 8,
+        "tps": 185.50212851839274,
+        "acceptance": 2.3974137931034485,
+        "steps_per_second": 77.37593278724759,
+        "ranks": [
+          {
+            "rank": 0,
+            "samples": 30,
+            "mean_watts": 43.041,
+            "peak_celsius": 70.0,
+            "mean_mhz": 2490.233333333333
+          },
+          {
+            "rank": 1,
+            "samples": 30,
+            "mean_watts": 43.531333333333336,
+            "peak_celsius": 69.0,
+            "mean_mhz": 2513.733333333333
+          },
+          {
+            "rank": 2,
+            "samples": 30,
+            "mean_watts": 44.037,
+            "peak_celsius": 73.0,
+            "mean_mhz": 2462.9333333333334
+          },
+          {
+            "rank": 3,
+            "samples": 30,
+            "mean_watts": 41.284,
+            "peak_celsius": 73.0,
+            "mean_mhz": 2471.7
+          }
+        ],
+        "fleet_gpu_watts": 171.89333333333332,
+        "peak_gpu_celsius": 73.0,
+        "valid": true
+      },
+      {
+        "context": 8192,
+        "concurrency": 16,
+        "tps": 253.62145559461368,
+        "acceptance": 2.140765765765766,
+        "steps_per_second": 118.4723054013766,
+        "ranks": [
+          {
+            "rank": 0,
+            "samples": 30,
+            "mean_watts": 42.486333333333334,
+            "peak_celsius": 70.0,
+            "mean_mhz": 2488.2
+          },
+          {
+            "rank": 1,
+            "samples": 30,
+            "mean_watts": 42.715333333333334,
+            "peak_celsius": 69.0,
+            "mean_mhz": 2508.9666666666667
+          },
+          {
+            "rank": 2,
+            "samples": 30,
+            "mean_watts": 43.73733333333333,
+            "peak_celsius": 74.0,
+            "mean_mhz": 2461.6
+          },
+          {
+            "rank": 3,
+            "samples": 30,
+            "mean_watts": 41.169333333333334,
+            "peak_celsius": 75.0,
+            "mean_mhz": 2461.6
+          }
+        ],
+        "fleet_gpu_watts": 170.10833333333335,
+        "peak_gpu_celsius": 75.0,
+        "valid": true
+      },
+      {
+        "context": 131072,
+        "concurrency": 8,
+        "tps": 181.05809986630834,
+        "acceptance": 2.544642857142857,
+        "steps_per_second": 71.15265678956679,
+        "ranks": [
+          {
+            "rank": 0,
+            "samples": 31,
+            "mean_watts": 43.49193548387097,
+            "peak_celsius": 70.0,
+            "mean_mhz": 2488.935483870968
+          },
+          {
+            "rank": 1,
+            "samples": 31,
+            "mean_watts": 43.810967741935485,
+            "peak_celsius": 70.0,
+            "mean_mhz": 2510.3225806451615
+          },
+          {
+            "rank": 2,
+            "samples": 31,
+            "mean_watts": 44.733870967741936,
+            "peak_celsius": 75.0,
+            "mean_mhz": 2459.3225806451615
+          },
+          {
+            "rank": 3,
+            "samples": 31,
+            "mean_watts": 42.413225806451614,
+            "peak_celsius": 76.0,
+            "mean_mhz": 2459.3225806451615
+          }
+        ],
+        "fleet_gpu_watts": 174.45,
+        "peak_gpu_celsius": 76.0,
+        "valid": true
+      },
+      {
+        "context": 131072,
+        "concurrency": 16,
+        "tps": 238.28809499051312,
+        "acceptance": 2.111670616113744,
+        "steps_per_second": 112.84340141506134,
+        "ranks": [
+          {
+            "rank": 0,
+            "samples": 30,
+            "mean_watts": 43.95666666666666,
+            "peak_celsius": 71.0,
+            "mean_mhz": 2488.4
+          },
+          {
+            "rank": 1,
+            "samples": 30,
+            "mean_watts": 44.78333333333333,
+            "peak_celsius": 72.0,
+            "mean_mhz": 2507.6
+          },
+          {
+            "rank": 2,
+            "samples": 30,
+            "mean_watts": 45.343,
+            "peak_celsius": 75.0,
+            "mean_mhz": 2460.0
+          },
+          {
+            "rank": 3,
+            "samples": 30,
+            "mean_watts": 43.157333333333334,
+            "peak_celsius": 77.0,
+            "mean_mhz": 2461.6
+          }
+        ],
+        "fleet_gpu_watts": 177.24033333333333,
+        "peak_gpu_celsius": 77.0,
+        "valid": true
+      }
+    ]
+  },
+  "2300": {
+    "prefill": {
+      "8192": {
+        "ttft_seconds": 1.867,
+        "prefill_seconds": 1.867,
+        "tok_per_sec": 4390.0,
+        "client_ttft_seconds": 1.867,
+        "client_tok_per_sec": 4390.0,
+        "prompt_tokens": 8194,
+        "samples": 5,
+        "method": "client",
+        "server_validation": {
+          "method": "",
+          "tok_per_sec": 0.0,
+          "prefill_seconds": 0.0,
+          "prompt_tokens": 0,
+          "request_prompt_tokens": 0,
+          "cached_tokens": 0,
+          "token_source": "",
+          "samples": 0,
+          "invalid_reason": ""
+        },
+        "hardware_summary": {}
+      },
+      "131072": {
+        "ttft_seconds": 29.27,
+        "prefill_seconds": 29.27,
+        "tok_per_sec": 4408.0,
+        "client_ttft_seconds": 29.27,
+        "client_tok_per_sec": 4408.0,
+        "prompt_tokens": 129016,
+        "samples": 1,
+        "method": "client",
+        "server_validation": {
+          "method": "",
+          "tok_per_sec": 0.0,
+          "prefill_seconds": 0.0,
+          "prompt_tokens": 0,
+          "request_prompt_tokens": 0,
+          "cached_tokens": 0,
+          "token_source": "",
+          "samples": 0,
+          "invalid_reason": ""
+        },
+        "hardware_summary": {}
+      }
+    },
+    "decode": [
+      {
+        "context": 8192,
+        "concurrency": 1,
+        "tps": 64.31412829809497,
+        "acceptance": 2.546895640686922,
+        "steps_per_second": 25.251968424096418,
+        "ranks": [
+          {
+            "rank": 0,
+            "samples": 30,
+            "mean_watts": 26.993333333333332,
+            "peak_celsius": 65.0,
+            "mean_mhz": 2275.0
+          },
+          {
+            "rank": 1,
+            "samples": 30,
+            "mean_watts": 26.99,
+            "peak_celsius": 64.0,
+            "mean_mhz": 2281.0
+          },
+          {
+            "rank": 2,
+            "samples": 30,
+            "mean_watts": 27.042,
+            "peak_celsius": 64.0,
+            "mean_mhz": 2268.0
+          },
+          {
+            "rank": 3,
+            "samples": 30,
+            "mean_watts": 25.593666666666667,
+            "peak_celsius": 66.0,
+            "mean_mhz": 2288.0
+          }
+        ],
+        "fleet_gpu_watts": 106.619,
+        "peak_gpu_celsius": 66.0,
+        "valid": true
+      },
+      {
+        "context": 131072,
+        "concurrency": 1,
+        "tps": 79.30721196928712,
+        "acceptance": 3.3105849582172704,
+        "steps_per_second": 23.955649219162034,
+        "ranks": [
+          {
+            "rank": 0,
+            "samples": 30,
+            "mean_watts": 27.778666666666666,
+            "peak_celsius": 67.0,
+            "mean_mhz": 2275.0
+          },
+          {
+            "rank": 1,
+            "samples": 30,
+            "mean_watts": 27.674333333333333,
+            "peak_celsius": 65.0,
+            "mean_mhz": 2281.0
+          },
+          {
+            "rank": 2,
+            "samples": 30,
+            "mean_watts": 27.861333333333334,
+            "peak_celsius": 66.0,
+            "mean_mhz": 2268.0
+          },
+          {
+            "rank": 3,
+            "samples": 30,
+            "mean_watts": 26.542666666666666,
+            "peak_celsius": 68.0,
+            "mean_mhz": 2288.0
+          }
+        ],
+        "fleet_gpu_watts": 109.857,
+        "peak_gpu_celsius": 68.0,
+        "valid": true
+      },
+      {
+        "context": 8192,
+        "concurrency": 8,
+        "tps": 179.4272861135652,
+        "acceptance": 2.2391666666666667,
+        "steps_per_second": 80.13127775819808,
+        "ranks": [
+          {
+            "rank": 0,
+            "samples": 30,
+            "mean_watts": 29.378333333333334,
+            "peak_celsius": 66.0,
+            "mean_mhz": 2275.0
+          },
+          {
+            "rank": 1,
+            "samples": 30,
+            "mean_watts": 29.543,
+            "peak_celsius": 66.0,
+            "mean_mhz": 2281.0
+          },
+          {
+            "rank": 2,
+            "samples": 30,
+            "mean_watts": 29.648666666666667,
+            "peak_celsius": 66.0,
+            "mean_mhz": 2268.0
+          },
+          {
+            "rank": 3,
+            "samples": 30,
+            "mean_watts": 28.413,
+            "peak_celsius": 69.0,
+            "mean_mhz": 2288.0
+          }
+        ],
+        "fleet_gpu_watts": 116.983,
+        "peak_gpu_celsius": 69.0,
+        "valid": true
+      },
+      {
+        "context": 8192,
+        "concurrency": 16,
+        "tps": 242.7425712977423,
+        "acceptance": 2.0892857142857144,
+        "steps_per_second": 116.18447856985955,
+        "ranks": [
+          {
+            "rank": 0,
+            "samples": 30,
+            "mean_watts": 29.107,
+            "peak_celsius": 65.0,
+            "mean_mhz": 2275.0
+          },
+          {
+            "rank": 1,
+            "samples": 30,
+            "mean_watts": 29.361666666666668,
+            "peak_celsius": 66.0,
+            "mean_mhz": 2281.0
+          },
+          {
+            "rank": 2,
+            "samples": 30,
+            "mean_watts": 29.67,
+            "peak_celsius": 67.0,
+            "mean_mhz": 2268.0
+          },
+          {
+            "rank": 3,
+            "samples": 30,
+            "mean_watts": 28.397,
+            "peak_celsius": 70.0,
+            "mean_mhz": 2288.0
+          }
+        ],
+        "fleet_gpu_watts": 116.53566666666667,
+        "peak_gpu_celsius": 70.0,
+        "valid": true
+      },
+      {
+        "context": 131072,
+        "concurrency": 8,
+        "tps": 171.12216616051387,
+        "acceptance": 2.5142156862745098,
+        "steps_per_second": 68.06184811219502,
+        "ranks": [
+          {
+            "rank": 0,
+            "samples": 31,
+            "mean_watts": 29.620322580645162,
+            "peak_celsius": 65.0,
+            "mean_mhz": 2275.0
+          },
+          {
+            "rank": 1,
+            "samples": 31,
+            "mean_watts": 29.85,
+            "peak_celsius": 66.0,
+            "mean_mhz": 2281.0
+          },
+          {
+            "rank": 2,
+            "samples": 31,
+            "mean_watts": 30.22032258064516,
+            "peak_celsius": 68.0,
+            "mean_mhz": 2268.0
+          },
+          {
+            "rank": 3,
+            "samples": 31,
+            "mean_watts": 29.02709677419355,
+            "peak_celsius": 71.0,
+            "mean_mhz": 2288.0
+          }
+        ],
+        "fleet_gpu_watts": 118.71774193548387,
+        "peak_gpu_celsius": 71.0,
+        "valid": true
+      },
+      {
+        "context": 131072,
+        "concurrency": 16,
+        "tps": 239.09847837515352,
+        "acceptance": 2.1723300970873787,
+        "steps_per_second": 110.06544479392542,
+        "ranks": [
+          {
+            "rank": 0,
+            "samples": 31,
+            "mean_watts": 30.445806451612903,
+            "peak_celsius": 67.0,
+            "mean_mhz": 2275.0
+          },
+          {
+            "rank": 1,
+            "samples": 31,
+            "mean_watts": 30.353870967741937,
+            "peak_celsius": 65.0,
+            "mean_mhz": 2281.0
+          },
+          {
+            "rank": 2,
+            "samples": 31,
+            "mean_watts": 30.906451612903226,
+            "peak_celsius": 68.0,
+            "mean_mhz": 2268.0
+          },
+          {
+            "rank": 3,
+            "samples": 31,
+            "mean_watts": 29.863225806451613,
+            "peak_celsius": 71.0,
+            "mean_mhz": 2288.0
+          }
+        ],
+        "fleet_gpu_watts": 121.56935483870967,
+        "peak_gpu_celsius": 71.0,
+        "valid": true
+      }
+    ]
+  },
+  "stock-repeat": {
+    "prefill": {
+      "8192": {
+        "ttft_seconds": 1.837,
+        "prefill_seconds": 1.837,
+        "tok_per_sec": 4460.0,
+        "client_ttft_seconds": 1.837,
+        "client_tok_per_sec": 4460.0,
+        "prompt_tokens": 8194,
+        "samples": 5,
+        "method": "client",
+        "server_validation": {
+          "method": "",
+          "tok_per_sec": 0.0,
+          "prefill_seconds": 0.0,
+          "prompt_tokens": 0,
+          "request_prompt_tokens": 0,
+          "cached_tokens": 0,
+          "token_source": "",
+          "samples": 0,
+          "invalid_reason": ""
+        },
+        "hardware_summary": {}
+      },
+      "131072": {
+        "ttft_seconds": 28.666,
+        "prefill_seconds": 28.666,
+        "tok_per_sec": 4501.0,
+        "client_ttft_seconds": 28.666,
+        "client_tok_per_sec": 4501.0,
+        "prompt_tokens": 129016,
+        "samples": 1,
+        "method": "client",
+        "server_validation": {
+          "method": "",
+          "tok_per_sec": 0.0,
+          "prefill_seconds": 0.0,
+          "prompt_tokens": 0,
+          "request_prompt_tokens": 0,
+          "cached_tokens": 0,
+          "token_source": "",
+          "samples": 0,
+          "invalid_reason": ""
+        },
+        "hardware_summary": {}
+      }
+    },
+    "decode": [
+      {
+        "context": 8192,
+        "concurrency": 1,
+        "tps": 64.77482178961657,
+        "acceptance": 2.4865556978233037,
+        "steps_per_second": 26.050018443712943,
+        "ranks": [
+          {
+            "rank": 0,
+            "samples": 30,
+            "mean_watts": 40.495333333333335,
+            "peak_celsius": 71.0,
+            "mean_mhz": 2501.366666666667
+          },
+          {
+            "rank": 1,
+            "samples": 30,
+            "mean_watts": 40.358333333333334,
+            "peak_celsius": 68.0,
+            "mean_mhz": 2528.0
+          },
+          {
+            "rank": 2,
+            "samples": 30,
+            "mean_watts": 40.86633333333334,
+            "peak_celsius": 72.0,
+            "mean_mhz": 2495.3333333333335
+          },
+          {
+            "rank": 3,
+            "samples": 30,
+            "mean_watts": 38.58733333333333,
+            "peak_celsius": 74.0,
+            "mean_mhz": 2470.0
+          }
+        ],
+        "fleet_gpu_watts": 160.30733333333333,
+        "peak_gpu_celsius": 74.0,
+        "valid": true
+      },
+      {
+        "context": 131072,
+        "concurrency": 1,
+        "tps": 63.1374895648329,
+        "acceptance": 2.4533678756476682,
+        "steps_per_second": 25.73502742558131,
+        "ranks": [
+          {
+            "rank": 0,
+            "samples": 30,
+            "mean_watts": 41.03933333333333,
+            "peak_celsius": 70.0,
+            "mean_mhz": 2500.9333333333334
+          },
+          {
+            "rank": 1,
+            "samples": 30,
+            "mean_watts": 41.25933333333333,
+            "peak_celsius": 69.0,
+            "mean_mhz": 2525.8
+          },
+          {
+            "rank": 2,
+            "samples": 30,
+            "mean_watts": 41.528,
+            "peak_celsius": 73.0,
+            "mean_mhz": 2469.5666666666666
+          },
+          {
+            "rank": 3,
+            "samples": 30,
+            "mean_watts": 40.06733333333334,
+            "peak_celsius": 76.0,
+            "mean_mhz": 2470.0
+          }
+        ],
+        "fleet_gpu_watts": 163.894,
+        "peak_gpu_celsius": 76.0,
+        "valid": true
+      },
+      {
+        "context": 8192,
+        "concurrency": 8,
+        "tps": 195.76600114509498,
+        "acceptance": 2.2893302180685358,
+        "steps_per_second": 85.5123474979765,
+        "ranks": [
+          {
+            "rank": 0,
+            "samples": 30,
+            "mean_watts": 43.66466666666667,
+            "peak_celsius": 71.0,
+            "mean_mhz": 2495.3
+          },
+          {
+            "rank": 1,
+            "samples": 30,
+            "mean_watts": 43.77766666666667,
+            "peak_celsius": 69.0,
+            "mean_mhz": 2518.733333333333
+          },
+          {
+            "rank": 2,
+            "samples": 30,
+            "mean_watts": 44.211666666666666,
+            "peak_celsius": 73.0,
+            "mean_mhz": 2463.866666666667
+          },
+          {
+            "rank": 3,
+            "samples": 30,
+            "mean_watts": 42.731,
+            "peak_celsius": 77.0,
+            "mean_mhz": 2463.7
+          }
+        ],
+        "fleet_gpu_watts": 174.385,
+        "peak_gpu_celsius": 77.0,
+        "valid": true
+      },
+      {
+        "context": 8192,
+        "concurrency": 16,
+        "tps": 243.40085687164927,
+        "acceptance": 2.1485849056603774,
+        "steps_per_second": 113.28426269328132,
+        "ranks": [
+          {
+            "rank": 0,
+            "samples": 30,
+            "mean_watts": 42.263333333333335,
+            "peak_celsius": 71.0,
+            "mean_mhz": 2487.6
+          },
+          {
+            "rank": 1,
+            "samples": 30,
+            "mean_watts": 42.136,
+            "peak_celsius": 68.0,
+            "mean_mhz": 2508.7
+          },
+          {
+            "rank": 2,
+            "samples": 30,
+            "mean_watts": 43.12166666666667,
+            "peak_celsius": 73.0,
+            "mean_mhz": 2469.5
+          },
+          {
+            "rank": 3,
+            "samples": 30,
+            "mean_watts": 41.29333333333334,
+            "peak_celsius": 77.0,
+            "mean_mhz": 2462.2
+          }
+        ],
+        "fleet_gpu_watts": 168.81433333333334,
+        "peak_gpu_celsius": 77.0,
+        "valid": true
+      },
+      {
+        "context": 131072,
+        "concurrency": 8,
+        "tps": 167.38397773760312,
+        "acceptance": 2.3450374531835205,
+        "steps_per_second": 71.37795497055706,
+        "ranks": [
+          {
+            "rank": 0,
+            "samples": 30,
+            "mean_watts": 43.144,
+            "peak_celsius": 71.0,
+            "mean_mhz": 2488.5333333333333
+          },
+          {
+            "rank": 1,
+            "samples": 30,
+            "mean_watts": 43.385666666666665,
+            "peak_celsius": 70.0,
+            "mean_mhz": 2511.866666666667
+          },
+          {
+            "rank": 2,
+            "samples": 30,
+            "mean_watts": 44.01566666666667,
+            "peak_celsius": 73.0,
+            "mean_mhz": 2465.6
+          },
+          {
+            "rank": 3,
+            "samples": 30,
+            "mean_watts": 42.044666666666664,
+            "peak_celsius": 76.0,
+            "mean_mhz": 2460.4
+          }
+        ],
+        "fleet_gpu_watts": 172.59,
+        "peak_gpu_celsius": 76.0,
+        "valid": true
+      },
+      {
+        "context": 131072,
+        "concurrency": 16,
+        "tps": 230.9714028905807,
+        "acceptance": 2.1151960784313726,
+        "steps_per_second": 109.19621364931277,
+        "ranks": [
+          {
+            "rank": 0,
+            "samples": 30,
+            "mean_watts": 43.718666666666664,
+            "peak_celsius": 71.0,
+            "mean_mhz": 2488.633333333333
+          },
+          {
+            "rank": 1,
+            "samples": 30,
+            "mean_watts": 44.41433333333333,
+            "peak_celsius": 71.0,
+            "mean_mhz": 2509.9333333333334
+          },
+          {
+            "rank": 2,
+            "samples": 30,
+            "mean_watts": 44.86233333333333,
+            "peak_celsius": 75.0,
+            "mean_mhz": 2461.0
+          },
+          {
+            "rank": 3,
+            "samples": 30,
+            "mean_watts": 42.681333333333335,
+            "peak_celsius": 76.0,
+            "mean_mhz": 2462.4
+          }
+        ],
+        "fleet_gpu_watts": 175.67666666666668,
+        "peak_gpu_celsius": 76.0,
+        "valid": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "systemd-run",
+    "--no-block",
+    "--on-active=3s",
+    "--unit=deepseek-maintenance-reboot-20260930",
+    "/usr/bin/systemctl",
+    "reboot"
+  ],
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "Running timer as unit: deepseek-maintenance-reboot-20260930.timer\nWill run service as unit: deepseek-maintenance-reboot-20260930.service\n"
+}

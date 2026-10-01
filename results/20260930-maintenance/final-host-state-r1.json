@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "sh",
+    "-c",
+    "uname -r; nvidia-smi --query-gpu=driver_version --format=csv,noheader; systemctl --failed --no-pager; systemctl is-enabled NetworkManager-wait-online.service; dpkg --audit; timedatectl show --property=NTPSynchronized"
+  ],
+  "exit_code": 0,
+  "stdout": "7.0.0-1019-nvidia\n580.178.04\n  UNIT LOAD ACTIVE SUB DESCRIPTION\n\n0 loaded units listed.\nenabled\nNTPSynchronized=yes\n",
+  "stderr": ""
+}

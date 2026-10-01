@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "fwupdmgr",
+    "get-updates",
+    "--json"
+  ],
+  "exit_code": 0,
+  "stdout": "{\n  \"Devices\" : []\n}\n",
+  "stderr": ""
+}

@@ -1,0 +1,16 @@
+{
+  "utc": "2026-10-01T05:26:41Z",
+  "kernel": "7.0.0-1019-nvidia",
+  "driver": "580.178.04",
+  "firmware_updates_offered": false,
+  "os_updates_completed": true,
+  "obsolete_617_boot_pin_removed": true,
+  "network_wait_online_enabled": true,
+  "clock_decision": "stock",
+  "persistent_clock_cap_installed": false,
+  "reason": "2300 MHz saves approximately 32% GPU-reported decode power, but both capped 8K/C8 runs are below both stock runs. Minimal loss across workloads is not established.",
+  "performance_scope": "three six-cell screens and one 60-second 8K/C8 repeat; not a full benchmark or randomized trial",
+  "endpoint": "http://192.168.50.219:8015/v1",
+  "functional_passes": 7,
+  "kk926_correction_retained": true
+}

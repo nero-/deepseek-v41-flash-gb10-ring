@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "systemctl",
+    "enable",
+    "--now",
+    "NetworkManager-wait-online.service"
+  ],
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "Created symlink /etc/systemd/system/network-online.target.wants/NetworkManager-wait-online.service \u2192 /usr/lib/systemd/system/NetworkManager-wait-online.service.\n"
+}

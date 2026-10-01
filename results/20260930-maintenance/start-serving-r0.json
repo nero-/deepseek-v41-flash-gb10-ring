@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "sudo",
+    "-n",
+    "/usr/local/sbin/deepseek-ring-control",
+    "up"
+  ],
+  "exit_code": 0,
+  "stdout": "SparkRing down. Progress: /var/log/sparkring/install.log\nFollow from another terminal: sudo sparkring logs --follow\ndown: deepseek-v41-flash-tp4 on root@192.168.50.219, root@192.168.50.129, root@192.168.50.192, root@192.168.50.23\nowned -> stop\nPrepare native ASIC fabric and install its supervised service.\nModel operation complete. sparkring status --refresh\nCommand finished.\nOptimized DeepSeek ready: http://192.168.50.219:8015/v1\n",
+  "stderr": "Node 0: owned\nDone: Node 0: owned (0.7s)\nNode 1: owned\nDone: Node 1: owned (0.9s)\nNode 2: owned\nDone: Node 2: owned (0.9s)\nNode 3: owned\nDone: Node 3: owned (0.9s)\nNode 0: Confirm model stopped\nDone: Node 0: Confirm model stopped (0.5s)\nNode 1: Confirm model stopped\nDone: Node 1: Confirm model stopped (0.5s)\nNode 2: Confirm model stopped\nDone: Node 2: Confirm model stopped (0.5s)\nNode 3: Confirm model stopped\nDone: Node 3: Confirm model stopped (0.5s)\n"
+}

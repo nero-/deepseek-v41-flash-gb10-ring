@@ -11,6 +11,20 @@ Four GB10 nodes, one fabric, two kinds of workload:
 DeepSeek needs all four nodes' memory, so it runs alone. The two Qwen pairs are independent: run
 either one or both. No API keys are set.
 
+## Host maintenance baseline
+
+All four nodes were updated and rebooted on September 30, 2026 HST. They run
+kernel `7.0.0-1019-nvidia` and driver `580.178.04`; no newer kernel or firmware
+was offered by their configured feeds. An obsolete 6.17 GRUB pin was removed,
+restoring newest-installed-kernel selection. NetworkManager wait-online is now
+enabled to prevent the observed DHCP/fabric startup race; its next-boot behavior
+has not yet been retested. Host backups are under
+`/var/backups/deepseek-maintenance-20260930/`.
+
+GPU clocks remain stock. The 2300 MHz trial reduced GPU-reported power about
+31–33%, but concurrency results did not establish minimal loss across workloads.
+See the [maintenance and clock report](MAINTENANCE-20260930.md).
+
 ## Switching (from the Mac, in this repo)
 
 ```bash

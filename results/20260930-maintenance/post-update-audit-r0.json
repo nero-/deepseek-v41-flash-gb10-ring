@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "sh",
+    "-c",
+    "dpkg --audit; test ! -f /var/run/reboot-required || cat /var/run/reboot-required; apt-get --simulate dist-upgrade"
+  ],
+  "exit_code": 0,
+  "stdout": "*** System restart required ***\nReading package lists...\nBuilding dependency tree...\nReading state information...\nCalculating upgrade...\nThe following packages were automatically installed and are no longer required:\n  linux-modules-nvidia-fs-6.11.0-1014-nvidia\n  linux-nvidia-6.11-tools-6.11.0-1014 linux-tools-6.11.0-1014-nvidia\nUse 'apt autoremove' to remove them.\nThe following upgrades have been deferred due to phasing:\n  libegl-mesa0 libgbm1 libgl1-mesa-dri libglx-mesa0 mesa-libgallium\n  mesa-vulkan-drivers\n0 upgraded, 0 newly installed, 0 to remove and 6 not upgraded.\n",
+  "stderr": ""
+}

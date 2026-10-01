@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "systemd-run",
+    "--no-block",
+    "--unit=deepseek-os-maintenance-20260930",
+    "--property=Type=oneshot",
+    "/usr/bin/env",
+    "DEBIAN_FRONTEND=noninteractive",
+    "NEEDRESTART_MODE=l",
+    "/usr/bin/apt-get",
+    "-y",
+    "--no-remove",
+    "-o",
+    "Dpkg::Options::=--force-confold",
+    "dist-upgrade"
+  ],
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "Running as unit: deepseek-os-maintenance-20260930.service\n"
+}

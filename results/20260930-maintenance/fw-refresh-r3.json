@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "fwupdmgr",
+    "refresh",
+    "--force"
+  ],
+  "exit_code": 0,
+  "stdout": "Updating lvfs\nSuccessfully downloaded new metadata:\n \u2022 10 devices are updatable\n \u2022 4 devices are supported in the enabled remotes (an update has been published)\n",
+  "stderr": "Idle\u2026: 0%\nDownloading\u2026: 0%\nDownloading\u2026: 89%\nIdle\u2026: 0%\nDownloading\u2026: 0%\nDownloading\u2026: 1%\nDownloading\u2026: 3%\nDownloading\u2026: 4%\nDownloading\u2026: 5%\nDownloading\u2026: 7%\nDownloading\u2026: 8%\nDownloading\u2026: 9%\nDownloading\u2026: 11%\nDownloading\u2026: 14%\nDownloading\u2026: 18%\nDownloading\u2026: 20%\nDownloading\u2026: 23%\nDownloading\u2026: 25%\nDownloading\u2026: 26%\nDownloading\u2026: 27%\nDownloading\u2026: 28%\nDownloading\u2026: 29%\nDownloading\u2026: 31%\nDownloading\u2026: 32%\nDownloading\u2026: 33%\nDownloading\u2026: 34%\nDownloading\u2026: 36%\nDownloading\u2026: 39%\nDownloading\u2026: 40%\nDownloading\u2026: 41%\nDownloading\u2026: 45%\nDownloading\u2026: 46%\nDownloading\u2026: 47%\nDownloading\u2026: 51%\nDownloading\u2026: 53%\nDownloading\u2026: 57%\nDownloading\u2026: 60%\nDownloading\u2026: 61%\nDownloading\u2026: 62%\nDownloading\u2026: 63%\nDownloading\u2026: 65%\nDownloading\u2026: 67%\nDownloading\u2026: 68%\nDownloading\u2026: 71%\nDownloading\u2026: 74%\nDownloading\u2026: 77%\nDownloading\u2026: 80%\nDownloading\u2026: 82%\nDownloading\u2026: 86%\nDownloading\u2026: 89%\nDownloading\u2026: 92%\nDownloading\u2026: 98%\nIdle\u2026: 100%\n"
+}

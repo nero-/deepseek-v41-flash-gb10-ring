@@ -1,0 +1,9 @@
+{
+  "rank": 3,
+  "argv": [
+    "python3",
+    "-c",
+    "import json,subprocess,sys\na=json.load(sys.stdin)\nwith open(sys.argv[1],'w') as f:r=subprocess.run(a,input='n'+chr(10),text=True,stdout=f,stderr=subprocess.STDOUT)\nraise SystemExit(r.returncode)",
+    "/home/nero/maintenance-20260930/2300-repeat-screen.json.log"
+  ]
+}

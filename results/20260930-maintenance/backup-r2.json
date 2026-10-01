@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "sh",
+    "-c",
+    "set -eu\numask 077\nmkdir -p /var/backups/deepseek-maintenance-20260930\ntest ! -f /var/backups/deepseek-maintenance-20260930/packages.txt || exit 0\nif test -f /var/backups/deepseek-maintenance-20260930/config.tar.gz; then mv /var/backups/deepseek-maintenance-20260930/config.tar.gz /var/backups/deepseek-maintenance-20260930/config.incomplete.tar.gz; fi\nset -- /etc/apt /etc/NetworkManager /etc/netplan /etc/systemd/system /etc/docker /var/lib/dpkg/status\nfor p in /etc/deepseek-ring /usr/local/sbin/deepseek-ring-control; do if test -e \"$p\"; then set -- \"$@\" \"$p\"; fi; done\ntar -czf /var/backups/deepseek-maintenance-20260930/config.tar.gz \"$@\"\ncp /proc/sys/kernel/random/boot_id /var/backups/deepseek-maintenance-20260930/boot-id\nuname -a > /var/backups/deepseek-maintenance-20260930/kernel.txt\ndpkg-query -W > /var/backups/deepseek-maintenance-20260930/packages.txt\n"
+  ],
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "tar: Removing leading `/' from member names\ntar: Removing leading `/' from hard link targets\n"
+}

@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "sh",
+    "-c",
+    "dpkg --audit; test ! -f /var/run/reboot-required || cat /var/run/reboot-required; apt-get --simulate dist-upgrade"
+  ],
+  "exit_code": 0,
+  "stdout": "*** System restart required ***\nReading package lists...\nBuilding dependency tree...\nReading state information...\nCalculating upgrade...\nThe following packages were automatically installed and are no longer required:\n  linux-headers-6.17.0-1031-nvidia linux-image-6.17.0-1031-nvidia\n  linux-modules-6.17.0-1031-nvidia linux-modules-nvidia-fs-6.17.0-1031-nvidia\n  linux-nvidia-6.11-tools-6.11.0-1014 linux-nvidia-6.17-headers-6.17.0-1031\n  linux-nvidia-6.17-tools-6.17.0-1031 linux-tools-6.17.0-1031-nvidia\n  nvidia-firmware-580-580.173.02\nUse 'sudo apt autoremove' to remove them.\n0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.\n",
+  "stderr": ""
+}

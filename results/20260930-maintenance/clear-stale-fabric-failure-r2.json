@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "systemctl",
+    "reset-failed",
+    "sparkring-fabric.service"
+  ],
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": ""
+}

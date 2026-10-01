@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "apt-get",
+    "update"
+  ],
+  "exit_code": 0,
+  "stdout": "Hit:1 http://ports.ubuntu.com/ubuntu-ports noble InRelease\nHit:2 https://workbench.download.nvidia.com/stable/linux/debian default InRelease\nHit:3 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/sbsa  InRelease\nHit:4 https://repo.download.nvidia.com/baseos/ubuntu/noble/arm64 noble InRelease\nHit:5 http://ports.ubuntu.com/ubuntu-ports noble-updates InRelease\nHit:6 https://developer.download.nvidia.com/hpc-sdk/ubuntu/arm64  InRelease\nHit:7 http://ports.ubuntu.com/ubuntu-ports noble-backports InRelease\nHit:8 http://ports.ubuntu.com/ubuntu-ports noble-security InRelease\nHit:9 https://repo.download.nvidia.com/baseos/ubuntu/noble/arm64 noble-updates InRelease\nHit:10 https://repo.download.nvidia.com/spark/ubuntu/arm64 noble-updates InRelease\nHit:11 https://esm.ubuntu.com/apps/ubuntu noble-apps-security InRelease\nHit:12 https://esm.ubuntu.com/apps/ubuntu noble-apps-updates InRelease\nHit:13 https://esm.ubuntu.com/infra/ubuntu noble-infra-security InRelease\nHit:14 https://esm.ubuntu.com/infra/ubuntu noble-infra-updates InRelease\nHit:15 https://snapshot.ppa.launchpadcontent.net/canonical-nvidia/nvidia-desktop-edge/ubuntu noble InRelease\nGet:16 https://snapshot.ppa.launchpadcontent.net/canonical-nvidia/vulkan-packages-nv-desktop/ubuntu noble InRelease [17.9 kB]\nFetched 17.9 kB in 3s (6733 B/s)\nReading package lists...\n",
+  "stderr": ""
+}

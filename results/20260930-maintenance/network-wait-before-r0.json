@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "systemctl",
+    "is-enabled",
+    "NetworkManager-wait-online.service"
+  ],
+  "exit_code": 1,
+  "stdout": "disabled\n",
+  "stderr": ""
+}

@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "sh",
+    "-c",
+    "uname -r; nvidia-smi --query-gpu=driver_version --format=csv,noheader; systemctl --failed --no-pager; ip -brief link; test ! -e /var/run/reboot-required"
+  ],
+  "exit_code": 0,
+  "stdout": "7.0.0-1019-nvidia\n580.178.04\n  UNIT                                                       LOAD   ACTIVE SUB    DESCRIPTION\n\u25cf sparkring-fabric.service                                   loaded failed failed Restore the approved SparkRing data fabric\n\u25cf sparkring-sparkring-deepseek-v41-flash-adaefa-mesh.service loaded failed failed SparkRing authenticated four-rank hardware mesh\n\nLegend: LOAD   \u2192 Reflects whether the unit definition was properly loaded.\n        ACTIVE \u2192 The high-level unit activation state, i.e. generalization of SUB.\n        SUB    \u2192 The low-level unit activation state, values depend on unit type.\n\n2 loaded units listed.\nlo               UNKNOWN        00:00:00:00:00:00 <LOOPBACK,UP,LOWER_UP> \nenP7s7           UP             4c:bb:47:2d:b8:1c <BROADCAST,MULTICAST,UP,LOWER_UP> \nwlP9s9           UP             f8:3d:c6:f0:f6:76 <BROADCAST,MULTICAST,UP,LOWER_UP> \nenp1s0f0np0      UP             4c:bb:47:2d:b8:1d <BROADCAST,MULTICAST,UP,LOWER_UP> \nenP2p1s0f0np0    UP             4c:bb:47:2d:b8:21 <BROADCAST,MULTICAST,UP,LOWER_UP> \nenp1s0f1np1      UP             4c:bb:47:2d:b8:1e <BROADCAST,MULTICAST,UP,LOWER_UP> \nenP2p1s0f1np1    UP             4c:bb:47:2d:b8:22 <BROADCAST,MULTICAST,UP,LOWER_UP> \ndocker0          DOWN           be:80:4d:68:90:8e <NO-CARRIER,BROADCAST,MULTICAST,UP> \n",
+  "stderr": ""
+}

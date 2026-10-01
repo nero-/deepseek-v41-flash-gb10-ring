@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "id",
+    "-u"
+  ],
+  "exit_code": 0,
+  "stdout": "0\n",
+  "stderr": "ERROR: ld.so: object '/opt/sparkring/toolchain/nccl/lib/libnccl.so.2' from LD_PRELOAD cannot be preloaded (cannot open shared object file): ignored.\nERROR: ld.so: object '/usr/local/cuda-13.4/lib64/libcudart.so.13' from LD_PRELOAD cannot be preloaded (cannot open shared object file): ignored.\nERROR: ld.so: object '/usr/local/cuda-13.4/lib64/libcublasLt.so.13' from LD_PRELOAD cannot be preloaded (cannot open shared object file): ignored.\nERROR: ld.so: object '/usr/local/cuda-13.4/lib64/libcublas.so.13' from LD_PRELOAD cannot be preloaded (cannot open shared object file): ignored.\nERROR: ld.so: object '/usr/local/cuda-13.4/lib64/libnvJitLink.so.13' from LD_PRELOAD cannot be preloaded (cannot open shared object file): ignored.\nERROR: ld.so: object '/usr/local/cuda-13.4/lib64/libnvrtc.so.13' from LD_PRELOAD cannot be preloaded (cannot open shared object file): ignored.\nERROR: ld.so: object '/usr/local/cuda-13.4/lib64/libcusparse.so.12' from LD_PRELOAD cannot be preloaded (cannot open shared object file): ignored.\nERROR: ld.so: object '/usr/local/cuda-13.4/lib64/libcusolver.so.12' from LD_PRELOAD cannot be preloaded (cannot open shared object file): ignored.\nERROR: ld.so: object '/usr/local/cuda-13.4/lib64/libcurand.so.10' from LD_PRELOAD cannot be preloaded (cannot open shared object file): ignored.\nERROR: ld.so: object '/usr/local/cuda-13.4/lib64/libcufft.so.12' from LD_PRELOAD cannot be preloaded (cannot open shared object file): ignored.\n"
+}

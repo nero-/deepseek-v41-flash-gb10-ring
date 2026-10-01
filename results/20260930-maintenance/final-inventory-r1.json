@@ -1,0 +1,57 @@
+{
+  "rank": 1,
+  "image": "sha256:43e6685cf8f01ebd1aab60a588e523f4b8d0330be27d9c43ab0d6f146d2f6649",
+  "fastokens_enabled": false,
+  "firmware": [
+    {
+      "name": "Embedded Controller",
+      "version": "0x03000508",
+      "latest_available": "0x03000508"
+    },
+    {
+      "name": "KEK CA",
+      "version": "2023",
+      "latest_available": null
+    },
+    {
+      "name": "MT2910 Family (ConnectX-7) (Composite)",
+      "version": "28.45.4028",
+      "latest_available": null
+    },
+    {
+      "name": "MZALC4T0HBL1-00B07",
+      "version": "NXHB202Q",
+      "latest_available": null
+    },
+    {
+      "name": "SBAT",
+      "version": "1.5.4",
+      "latest_available": null
+    },
+    {
+      "name": "UEFI CA",
+      "version": "2023",
+      "latest_available": "2023"
+    },
+    {
+      "name": "UEFI Device Firmware",
+      "version": "0x02009b0b",
+      "latest_available": "0x02009b0b"
+    },
+    {
+      "name": "UEFI Device Firmware",
+      "version": "0x00000516",
+      "latest_available": "0x00000516"
+    },
+    {
+      "name": "UEFI dbx",
+      "version": "20230501",
+      "latest_available": null
+    },
+    {
+      "name": "Windows UEFI CA",
+      "version": "2023",
+      "latest_available": null
+    }
+  ]
+}

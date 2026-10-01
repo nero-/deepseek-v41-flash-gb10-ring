@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "id",
+    "-u"
+  ],
+  "exit_code": 0,
+  "stdout": "0\n",
+  "stderr": ""
+}

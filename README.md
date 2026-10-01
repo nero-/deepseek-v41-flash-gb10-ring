@@ -26,6 +26,10 @@ for the speed tradeoff, initial intermittent long-tool miss, passing repeat,
 and qualification evidence. This is a fidelity upgrade, not a claimed general
 decode speedup.
 
+All four hosts are updated and running kernel `7.0.0-1019-nvidia`. GPU clocks
+remain stock after a measured 2300 MHz efficiency trial; see the
+[maintenance results and clock tradeoff](MAINTENANCE-20260930.md).
+
 ## Operating
 
 ```bash

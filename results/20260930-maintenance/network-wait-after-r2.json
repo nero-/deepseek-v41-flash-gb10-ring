@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "systemctl",
+    "show",
+    "NetworkManager-wait-online.service",
+    "--property=ActiveState,SubState,Result,UnitFileState"
+  ],
+  "exit_code": 0,
+  "stdout": "Result=success\nActiveState=active\nSubState=exited\nUnitFileState=enabled\n",
+  "stderr": ""
+}
