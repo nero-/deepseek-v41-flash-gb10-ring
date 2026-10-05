@@ -1,0 +1,21 @@
+{
+  "rank": 0,
+  "argv": [
+    "python3",
+    "-u",
+    "/home/nero/csf-20261004/tests/update/tool_choice_contract/api_probe.py",
+    "--base-url",
+    "http://127.0.0.1:8015/v1",
+    "--model",
+    "DeepSeek-V4.1-Flash-TP4",
+    "--output",
+    "/home/nero/csf-20261004/tool-policy-api-final",
+    "--policy",
+    "enabled",
+    "--positive-max-tokens",
+    "1024",
+    "--thinking",
+    "default"
+  ],
+  "host_admin": false
+}

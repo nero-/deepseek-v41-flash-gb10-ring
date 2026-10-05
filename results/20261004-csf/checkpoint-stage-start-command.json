@@ -1,0 +1,16 @@
+{
+  "rank": 0,
+  "argv": [
+    "systemd-run",
+    "--unit=ds41-csf-stage",
+    "--property=CPUWeight=10",
+    "--property=IOWeight=10",
+    "--property=Nice=10",
+    "--property=StandardOutput=append:/home/nero/csf-20261004/stage-checkpoint.log",
+    "--property=StandardError=append:/home/nero/csf-20261004/stage-checkpoint.log",
+    "python3",
+    "-u",
+    "/home/nero/csf-20261004/stage-checkpoint.py"
+  ],
+  "host_admin": true
+}

@@ -1,0 +1,11 @@
+{
+  "rank": 0,
+  "argv": [
+    "curl",
+    "-fsS",
+    "--max-time",
+    "10",
+    "http://127.0.0.1:8015/health"
+  ],
+  "host_admin": false
+}

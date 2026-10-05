@@ -1,0 +1,10 @@
+{
+  "rank": 0,
+  "argv": [
+    "sudo",
+    "-n",
+    "/usr/local/sbin/deepseek-ring-control",
+    "status"
+  ],
+  "host_admin": false
+}

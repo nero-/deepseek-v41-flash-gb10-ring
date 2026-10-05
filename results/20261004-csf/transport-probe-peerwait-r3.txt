@@ -1,0 +1,20 @@
+{"rank": 3, "case": "reduce", "status": "passed"}
+{"rank": 3, "case": "reduce", "status": "passed"}
+{"rank": 3, "case": "reduce", "status": "passed"}
+{"rank": 3, "case": "reduce", "status": "passed"}
+{"rank": 3, "case": "reduce", "status": "passed"}
+{"rank": 3, "case": "reduce", "status": "passed"}
+{"rank": 3, "case": "reduce", "status": "passed"}
+{"rank": 3, "case": "reduce", "status": "passed"}
+{"rank": 3, "case": "reduce", "status": "passed"}
+{"rank": 3, "case": "gather", "status": "passed"}
+{"rank": 3, "case": "gather", "status": "passed"}
+{"rank": 3, "case": "gather", "status": "passed"}
+{"rank": 3, "case": "gather-output-ownership", "status": "passed"}
+{"rank": 3, "case": "alternating-grid-frozen-graph", "status": "passed"}
+{"rank": 3, "case": "selected-path-traffic", "status": "passed"}
+{"rank": 3, "case": "delayed-peer", "status": "passed"}
+{"rank": 3, "case": "peer-exit", "status": "passed"}
+RoCEnante rank 3: rank 1 reports waiting for this rank at sequence 48; this rank's doorbell is 47, posted 47, completed 47
+RoCEnante rank 3: rank 2 reports waiting for this rank at sequence 48; this rank's doorbell is 47, posted 47, completed 47
+RoCEnante rank 3: rank 0 reports waiting for this rank at sequence 48; this rank's doorbell is 47, posted 47, completed 47

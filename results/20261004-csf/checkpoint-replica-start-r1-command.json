@@ -1,0 +1,18 @@
+{
+  "rank": 1,
+  "argv": [
+    "systemd-run",
+    "--unit=ds41-csf-replicate",
+    "--property=CPUWeight=10",
+    "--property=IOWeight=10",
+    "--property=Nice=10",
+    "--property=StandardOutput=append:/home/nero/csf-20261004/replicate-checkpoint.log",
+    "--property=StandardError=append:/home/nero/csf-20261004/replicate-checkpoint.log",
+    "python3",
+    "-u",
+    "/home/nero/csf-20261004/replicate-checkpoint.py",
+    "--source",
+    "http://10.10.0.10:8984"
+  ],
+  "host_admin": true
+}

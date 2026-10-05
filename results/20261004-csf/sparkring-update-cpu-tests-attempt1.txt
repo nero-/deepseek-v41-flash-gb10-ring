@@ -1,0 +1,3624 @@
+........................................................................ [ 32%]
+.....FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF [ 64%]
+FEEEEEEEEEEEFFFFFFFFF................................................... [ 96%]
+.......s                                                                 [100%]
+==================================== ERRORS ====================================
+______ ERROR at setup of test_late_peer_is_waited_for_checked_and_logged _______
+
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0xf931baaca2a0>, _basetemp=PosixPath('/tmp/pytest-of-root/pytest-0'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope="module")
+    def supervision(tmp_path_factory):
+        compiler = shutil.which("gcc")
+        if compiler is None or sys.platform != "linux":
+            pytest.skip("GCC on Linux compiles the proxy against stand-in verbs")
+        directory = tmp_path_factory.mktemp("proxy")
+        (directory / "infiniband").mkdir()
+        (directory / "infiniband/verbs.h").write_text(FAKE_VERBS)
+>       shutil.copyfile(PROXY_SOURCE, directory / "proxy_under_test.c")
+
+/tests/update/peerwait/test_peer_wait.py:564: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+src = PosixPath('/tests/update/peerwait/roce/_roce_proxy.c')
+dst = PosixPath('/tmp/pytest-of-root/pytest-0/proxy0/proxy_under_test.c')
+follow_symlinks = True
+
+    def copyfile(src, dst, *, follow_symlinks=True):
+        """Copy data from src to dst in the most efficient way possible.
+    
+        If follow_symlinks is not set and src is a symbolic link, a new
+        symlink will be created instead of copying the file it points to.
+    
+        """
+        sys.audit("shutil.copyfile", src, dst)
+    
+        if _samefile(src, dst):
+            raise SameFileError("{!r} and {!r} are the same file".format(src, dst))
+    
+        file_size = 0
+        for i, fn in enumerate([src, dst]):
+            try:
+                st = _stat(fn)
+            except OSError:
+                # File most likely does not exist
+                pass
+            else:
+                # XXX What about other special files? (sockets, devices...)
+                if stat.S_ISFIFO(st.st_mode):
+                    fn = fn.path if isinstance(fn, os.DirEntry) else fn
+                    raise SpecialFileError("`%s` is a named pipe" % fn)
+                if _WINDOWS and i == 0:
+                    file_size = st.st_size
+    
+        if not follow_symlinks and _islink(src):
+            os.symlink(os.readlink(src), dst)
+        else:
+>           with open(src, 'rb') as fsrc:
+                 ^^^^^^^^^^^^^^^
+E           FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_roce_proxy.c'
+
+/usr/lib/python3.12/shutil.py:260: FileNotFoundError
+__________ ERROR at setup of test_late_peer_across_the_sequence_wrap ___________
+
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0xf931baaca2a0>, _basetemp=PosixPath('/tmp/pytest-of-root/pytest-0'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope="module")
+    def supervision(tmp_path_factory):
+        compiler = shutil.which("gcc")
+        if compiler is None or sys.platform != "linux":
+            pytest.skip("GCC on Linux compiles the proxy against stand-in verbs")
+        directory = tmp_path_factory.mktemp("proxy")
+        (directory / "infiniband").mkdir()
+        (directory / "infiniband/verbs.h").write_text(FAKE_VERBS)
+>       shutil.copyfile(PROXY_SOURCE, directory / "proxy_under_test.c")
+
+/tests/update/peerwait/test_peer_wait.py:564: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+src = PosixPath('/tests/update/peerwait/roce/_roce_proxy.c')
+dst = PosixPath('/tmp/pytest-of-root/pytest-0/proxy0/proxy_under_test.c')
+follow_symlinks = True
+
+    def copyfile(src, dst, *, follow_symlinks=True):
+        """Copy data from src to dst in the most efficient way possible.
+    
+        If follow_symlinks is not set and src is a symbolic link, a new
+        symlink will be created instead of copying the file it points to.
+    
+        """
+        sys.audit("shutil.copyfile", src, dst)
+    
+        if _samefile(src, dst):
+            raise SameFileError("{!r} and {!r} are the same file".format(src, dst))
+    
+        file_size = 0
+        for i, fn in enumerate([src, dst]):
+            try:
+                st = _stat(fn)
+            except OSError:
+                # File most likely does not exist
+                pass
+            else:
+                # XXX What about other special files? (sockets, devices...)
+                if stat.S_ISFIFO(st.st_mode):
+                    fn = fn.path if isinstance(fn, os.DirEntry) else fn
+                    raise SpecialFileError("`%s` is a named pipe" % fn)
+                if _WINDOWS and i == 0:
+                    file_size = st.st_size
+    
+        if not follow_symlinks and _islink(src):
+            os.symlink(os.readlink(src), dst)
+        else:
+>           with open(src, 'rb') as fsrc:
+                 ^^^^^^^^^^^^^^^
+E           FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_roce_proxy.c'
+
+/usr/lib/python3.12/shutil.py:260: FileNotFoundError
+__________ ERROR at setup of test_next_doorbell_ends_a_reported_stall __________
+
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0xf931baaca2a0>, _basetemp=PosixPath('/tmp/pytest-of-root/pytest-0'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope="module")
+    def supervision(tmp_path_factory):
+        compiler = shutil.which("gcc")
+        if compiler is None or sys.platform != "linux":
+            pytest.skip("GCC on Linux compiles the proxy against stand-in verbs")
+        directory = tmp_path_factory.mktemp("proxy")
+        (directory / "infiniband").mkdir()
+        (directory / "infiniband/verbs.h").write_text(FAKE_VERBS)
+>       shutil.copyfile(PROXY_SOURCE, directory / "proxy_under_test.c")
+
+/tests/update/peerwait/test_peer_wait.py:564: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+src = PosixPath('/tests/update/peerwait/roce/_roce_proxy.c')
+dst = PosixPath('/tmp/pytest-of-root/pytest-0/proxy0/proxy_under_test.c')
+follow_symlinks = True
+
+    def copyfile(src, dst, *, follow_symlinks=True):
+        """Copy data from src to dst in the most efficient way possible.
+    
+        If follow_symlinks is not set and src is a symbolic link, a new
+        symlink will be created instead of copying the file it points to.
+    
+        """
+        sys.audit("shutil.copyfile", src, dst)
+    
+        if _samefile(src, dst):
+            raise SameFileError("{!r} and {!r} are the same file".format(src, dst))
+    
+        file_size = 0
+        for i, fn in enumerate([src, dst]):
+            try:
+                st = _stat(fn)
+            except OSError:
+                # File most likely does not exist
+                pass
+            else:
+                # XXX What about other special files? (sockets, devices...)
+                if stat.S_ISFIFO(st.st_mode):
+                    fn = fn.path if isinstance(fn, os.DirEntry) else fn
+                    raise SpecialFileError("`%s` is a named pipe" % fn)
+                if _WINDOWS and i == 0:
+                    file_size = st.st_size
+    
+        if not follow_symlinks and _islink(src):
+            os.symlink(os.readlink(src), dst)
+        else:
+>           with open(src, 'rb') as fsrc:
+                 ^^^^^^^^^^^^^^^
+E           FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_roce_proxy.c'
+
+/usr/lib/python3.12/shutil.py:260: FileNotFoundError
+_ ERROR at setup of test_unreachable_peer_stops_every_wait_and_notifies_on_every_path _
+
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0xf931baaca2a0>, _basetemp=PosixPath('/tmp/pytest-of-root/pytest-0'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope="module")
+    def supervision(tmp_path_factory):
+        compiler = shutil.which("gcc")
+        if compiler is None or sys.platform != "linux":
+            pytest.skip("GCC on Linux compiles the proxy against stand-in verbs")
+        directory = tmp_path_factory.mktemp("proxy")
+        (directory / "infiniband").mkdir()
+        (directory / "infiniband/verbs.h").write_text(FAKE_VERBS)
+>       shutil.copyfile(PROXY_SOURCE, directory / "proxy_under_test.c")
+
+/tests/update/peerwait/test_peer_wait.py:564: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+src = PosixPath('/tests/update/peerwait/roce/_roce_proxy.c')
+dst = PosixPath('/tmp/pytest-of-root/pytest-0/proxy0/proxy_under_test.c')
+follow_symlinks = True
+
+    def copyfile(src, dst, *, follow_symlinks=True):
+        """Copy data from src to dst in the most efficient way possible.
+    
+        If follow_symlinks is not set and src is a symbolic link, a new
+        symlink will be created instead of copying the file it points to.
+    
+        """
+        sys.audit("shutil.copyfile", src, dst)
+    
+        if _samefile(src, dst):
+            raise SameFileError("{!r} and {!r} are the same file".format(src, dst))
+    
+        file_size = 0
+        for i, fn in enumerate([src, dst]):
+            try:
+                st = _stat(fn)
+            except OSError:
+                # File most likely does not exist
+                pass
+            else:
+                # XXX What about other special files? (sockets, devices...)
+                if stat.S_ISFIFO(st.st_mode):
+                    fn = fn.path if isinstance(fn, os.DirEntry) else fn
+                    raise SpecialFileError("`%s` is a named pipe" % fn)
+                if _WINDOWS and i == 0:
+                    file_size = st.st_size
+    
+        if not follow_symlinks and _islink(src):
+            os.symlink(os.readlink(src), dst)
+        else:
+>           with open(src, 'rb') as fsrc:
+                 ^^^^^^^^^^^^^^^
+E           FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_roce_proxy.c'
+
+/usr/lib/python3.12/shutil.py:260: FileNotFoundError
+__________ ERROR at setup of test_inconsistent_flags_stop_the_runtime __________
+
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0xf931baaca2a0>, _basetemp=PosixPath('/tmp/pytest-of-root/pytest-0'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope="module")
+    def supervision(tmp_path_factory):
+        compiler = shutil.which("gcc")
+        if compiler is None or sys.platform != "linux":
+            pytest.skip("GCC on Linux compiles the proxy against stand-in verbs")
+        directory = tmp_path_factory.mktemp("proxy")
+        (directory / "infiniband").mkdir()
+        (directory / "infiniband/verbs.h").write_text(FAKE_VERBS)
+>       shutil.copyfile(PROXY_SOURCE, directory / "proxy_under_test.c")
+
+/tests/update/peerwait/test_peer_wait.py:564: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+src = PosixPath('/tests/update/peerwait/roce/_roce_proxy.c')
+dst = PosixPath('/tmp/pytest-of-root/pytest-0/proxy0/proxy_under_test.c')
+follow_symlinks = True
+
+    def copyfile(src, dst, *, follow_symlinks=True):
+        """Copy data from src to dst in the most efficient way possible.
+    
+        If follow_symlinks is not set and src is a symbolic link, a new
+        symlink will be created instead of copying the file it points to.
+    
+        """
+        sys.audit("shutil.copyfile", src, dst)
+    
+        if _samefile(src, dst):
+            raise SameFileError("{!r} and {!r} are the same file".format(src, dst))
+    
+        file_size = 0
+        for i, fn in enumerate([src, dst]):
+            try:
+                st = _stat(fn)
+            except OSError:
+                # File most likely does not exist
+                pass
+            else:
+                # XXX What about other special files? (sockets, devices...)
+                if stat.S_ISFIFO(st.st_mode):
+                    fn = fn.path if isinstance(fn, os.DirEntry) else fn
+                    raise SpecialFileError("`%s` is a named pipe" % fn)
+                if _WINDOWS and i == 0:
+                    file_size = st.st_size
+    
+        if not follow_symlinks and _islink(src):
+            os.symlink(os.readlink(src), dst)
+        else:
+>           with open(src, 'rb') as fsrc:
+                 ^^^^^^^^^^^^^^^
+E           FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_roce_proxy.c'
+
+/usr/lib/python3.12/shutil.py:260: FileNotFoundError
+__________ ERROR at setup of test_timeout_stops_a_wait_on_a_live_peer __________
+
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0xf931baaca2a0>, _basetemp=PosixPath('/tmp/pytest-of-root/pytest-0'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope="module")
+    def supervision(tmp_path_factory):
+        compiler = shutil.which("gcc")
+        if compiler is None or sys.platform != "linux":
+            pytest.skip("GCC on Linux compiles the proxy against stand-in verbs")
+        directory = tmp_path_factory.mktemp("proxy")
+        (directory / "infiniband").mkdir()
+        (directory / "infiniband/verbs.h").write_text(FAKE_VERBS)
+>       shutil.copyfile(PROXY_SOURCE, directory / "proxy_under_test.c")
+
+/tests/update/peerwait/test_peer_wait.py:564: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+src = PosixPath('/tests/update/peerwait/roce/_roce_proxy.c')
+dst = PosixPath('/tmp/pytest-of-root/pytest-0/proxy0/proxy_under_test.c')
+follow_symlinks = True
+
+    def copyfile(src, dst, *, follow_symlinks=True):
+        """Copy data from src to dst in the most efficient way possible.
+    
+        If follow_symlinks is not set and src is a symbolic link, a new
+        symlink will be created instead of copying the file it points to.
+    
+        """
+        sys.audit("shutil.copyfile", src, dst)
+    
+        if _samefile(src, dst):
+            raise SameFileError("{!r} and {!r} are the same file".format(src, dst))
+    
+        file_size = 0
+        for i, fn in enumerate([src, dst]):
+            try:
+                st = _stat(fn)
+            except OSError:
+                # File most likely does not exist
+                pass
+            else:
+                # XXX What about other special files? (sockets, devices...)
+                if stat.S_ISFIFO(st.st_mode):
+                    fn = fn.path if isinstance(fn, os.DirEntry) else fn
+                    raise SpecialFileError("`%s` is a named pipe" % fn)
+                if _WINDOWS and i == 0:
+                    file_size = st.st_size
+    
+        if not follow_symlinks and _islink(src):
+            os.symlink(os.readlink(src), dst)
+        else:
+>           with open(src, 'rb') as fsrc:
+                 ^^^^^^^^^^^^^^^
+E           FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_roce_proxy.c'
+
+/usr/lib/python3.12/shutil.py:260: FileNotFoundError
+___________ ERROR at setup of test_peer_stop_notice_stops_this_rank ____________
+
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0xf931baaca2a0>, _basetemp=PosixPath('/tmp/pytest-of-root/pytest-0'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope="module")
+    def supervision(tmp_path_factory):
+        compiler = shutil.which("gcc")
+        if compiler is None or sys.platform != "linux":
+            pytest.skip("GCC on Linux compiles the proxy against stand-in verbs")
+        directory = tmp_path_factory.mktemp("proxy")
+        (directory / "infiniband").mkdir()
+        (directory / "infiniband/verbs.h").write_text(FAKE_VERBS)
+>       shutil.copyfile(PROXY_SOURCE, directory / "proxy_under_test.c")
+
+/tests/update/peerwait/test_peer_wait.py:564: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+src = PosixPath('/tests/update/peerwait/roce/_roce_proxy.c')
+dst = PosixPath('/tmp/pytest-of-root/pytest-0/proxy0/proxy_under_test.c')
+follow_symlinks = True
+
+    def copyfile(src, dst, *, follow_symlinks=True):
+        """Copy data from src to dst in the most efficient way possible.
+    
+        If follow_symlinks is not set and src is a symbolic link, a new
+        symlink will be created instead of copying the file it points to.
+    
+        """
+        sys.audit("shutil.copyfile", src, dst)
+    
+        if _samefile(src, dst):
+            raise SameFileError("{!r} and {!r} are the same file".format(src, dst))
+    
+        file_size = 0
+        for i, fn in enumerate([src, dst]):
+            try:
+                st = _stat(fn)
+            except OSError:
+                # File most likely does not exist
+                pass
+            else:
+                # XXX What about other special files? (sockets, devices...)
+                if stat.S_ISFIFO(st.st_mode):
+                    fn = fn.path if isinstance(fn, os.DirEntry) else fn
+                    raise SpecialFileError("`%s` is a named pipe" % fn)
+                if _WINDOWS and i == 0:
+                    file_size = st.st_size
+    
+        if not follow_symlinks and _islink(src):
+            os.symlink(os.readlink(src), dst)
+        else:
+>           with open(src, 'rb') as fsrc:
+                 ^^^^^^^^^^^^^^^
+E           FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_roce_proxy.c'
+
+/usr/lib/python3.12/shutil.py:260: FileNotFoundError
+__________ ERROR at setup of test_waiting_peer_notice_is_logged_once ___________
+
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0xf931baaca2a0>, _basetemp=PosixPath('/tmp/pytest-of-root/pytest-0'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope="module")
+    def supervision(tmp_path_factory):
+        compiler = shutil.which("gcc")
+        if compiler is None or sys.platform != "linux":
+            pytest.skip("GCC on Linux compiles the proxy against stand-in verbs")
+        directory = tmp_path_factory.mktemp("proxy")
+        (directory / "infiniband").mkdir()
+        (directory / "infiniband/verbs.h").write_text(FAKE_VERBS)
+>       shutil.copyfile(PROXY_SOURCE, directory / "proxy_under_test.c")
+
+/tests/update/peerwait/test_peer_wait.py:564: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+src = PosixPath('/tests/update/peerwait/roce/_roce_proxy.c')
+dst = PosixPath('/tmp/pytest-of-root/pytest-0/proxy0/proxy_under_test.c')
+follow_symlinks = True
+
+    def copyfile(src, dst, *, follow_symlinks=True):
+        """Copy data from src to dst in the most efficient way possible.
+    
+        If follow_symlinks is not set and src is a symbolic link, a new
+        symlink will be created instead of copying the file it points to.
+    
+        """
+        sys.audit("shutil.copyfile", src, dst)
+    
+        if _samefile(src, dst):
+            raise SameFileError("{!r} and {!r} are the same file".format(src, dst))
+    
+        file_size = 0
+        for i, fn in enumerate([src, dst]):
+            try:
+                st = _stat(fn)
+            except OSError:
+                # File most likely does not exist
+                pass
+            else:
+                # XXX What about other special files? (sockets, devices...)
+                if stat.S_ISFIFO(st.st_mode):
+                    fn = fn.path if isinstance(fn, os.DirEntry) else fn
+                    raise SpecialFileError("`%s` is a named pipe" % fn)
+                if _WINDOWS and i == 0:
+                    file_size = st.st_size
+    
+        if not follow_symlinks and _islink(src):
+            os.symlink(os.readlink(src), dst)
+        else:
+>           with open(src, 'rb') as fsrc:
+                 ^^^^^^^^^^^^^^^
+E           FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_roce_proxy.c'
+
+/usr/lib/python3.12/shutil.py:260: FileNotFoundError
+_ ERROR at setup of test_flags_the_kernel_does_not_observe_are_reported_and_bounded _
+
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0xf931baaca2a0>, _basetemp=PosixPath('/tmp/pytest-of-root/pytest-0'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope="module")
+    def supervision(tmp_path_factory):
+        compiler = shutil.which("gcc")
+        if compiler is None or sys.platform != "linux":
+            pytest.skip("GCC on Linux compiles the proxy against stand-in verbs")
+        directory = tmp_path_factory.mktemp("proxy")
+        (directory / "infiniband").mkdir()
+        (directory / "infiniband/verbs.h").write_text(FAKE_VERBS)
+>       shutil.copyfile(PROXY_SOURCE, directory / "proxy_under_test.c")
+
+/tests/update/peerwait/test_peer_wait.py:564: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+src = PosixPath('/tests/update/peerwait/roce/_roce_proxy.c')
+dst = PosixPath('/tmp/pytest-of-root/pytest-0/proxy0/proxy_under_test.c')
+follow_symlinks = True
+
+    def copyfile(src, dst, *, follow_symlinks=True):
+        """Copy data from src to dst in the most efficient way possible.
+    
+        If follow_symlinks is not set and src is a symbolic link, a new
+        symlink will be created instead of copying the file it points to.
+    
+        """
+        sys.audit("shutil.copyfile", src, dst)
+    
+        if _samefile(src, dst):
+            raise SameFileError("{!r} and {!r} are the same file".format(src, dst))
+    
+        file_size = 0
+        for i, fn in enumerate([src, dst]):
+            try:
+                st = _stat(fn)
+            except OSError:
+                # File most likely does not exist
+                pass
+            else:
+                # XXX What about other special files? (sockets, devices...)
+                if stat.S_ISFIFO(st.st_mode):
+                    fn = fn.path if isinstance(fn, os.DirEntry) else fn
+                    raise SpecialFileError("`%s` is a named pipe" % fn)
+                if _WINDOWS and i == 0:
+                    file_size = st.st_size
+    
+        if not follow_symlinks and _islink(src):
+            os.symlink(os.readlink(src), dst)
+        else:
+>           with open(src, 'rb') as fsrc:
+                 ^^^^^^^^^^^^^^^
+E           FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_roce_proxy.c'
+
+/usr/lib/python3.12/shutil.py:260: FileNotFoundError
+_____ ERROR at setup of test_device_poll_bound_is_propagated_to_the_peers ______
+
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0xf931baaca2a0>, _basetemp=PosixPath('/tmp/pytest-of-root/pytest-0'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope="module")
+    def supervision(tmp_path_factory):
+        compiler = shutil.which("gcc")
+        if compiler is None or sys.platform != "linux":
+            pytest.skip("GCC on Linux compiles the proxy against stand-in verbs")
+        directory = tmp_path_factory.mktemp("proxy")
+        (directory / "infiniband").mkdir()
+        (directory / "infiniband/verbs.h").write_text(FAKE_VERBS)
+>       shutil.copyfile(PROXY_SOURCE, directory / "proxy_under_test.c")
+
+/tests/update/peerwait/test_peer_wait.py:564: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+src = PosixPath('/tests/update/peerwait/roce/_roce_proxy.c')
+dst = PosixPath('/tmp/pytest-of-root/pytest-0/proxy0/proxy_under_test.c')
+follow_symlinks = True
+
+    def copyfile(src, dst, *, follow_symlinks=True):
+        """Copy data from src to dst in the most efficient way possible.
+    
+        If follow_symlinks is not set and src is a symbolic link, a new
+        symlink will be created instead of copying the file it points to.
+    
+        """
+        sys.audit("shutil.copyfile", src, dst)
+    
+        if _samefile(src, dst):
+            raise SameFileError("{!r} and {!r} are the same file".format(src, dst))
+    
+        file_size = 0
+        for i, fn in enumerate([src, dst]):
+            try:
+                st = _stat(fn)
+            except OSError:
+                # File most likely does not exist
+                pass
+            else:
+                # XXX What about other special files? (sockets, devices...)
+                if stat.S_ISFIFO(st.st_mode):
+                    fn = fn.path if isinstance(fn, os.DirEntry) else fn
+                    raise SpecialFileError("`%s` is a named pipe" % fn)
+                if _WINDOWS and i == 0:
+                    file_size = st.st_size
+    
+        if not follow_symlinks and _islink(src):
+            os.symlink(os.readlink(src), dst)
+        else:
+>           with open(src, 'rb') as fsrc:
+                 ^^^^^^^^^^^^^^^
+E           FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_roce_proxy.c'
+
+/usr/lib/python3.12/shutil.py:260: FileNotFoundError
+_______________ ERROR at setup of test_proxy_loop_gap_is_logged ________________
+
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0xf931baaca2a0>, _basetemp=PosixPath('/tmp/pytest-of-root/pytest-0'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope="module")
+    def supervision(tmp_path_factory):
+        compiler = shutil.which("gcc")
+        if compiler is None or sys.platform != "linux":
+            pytest.skip("GCC on Linux compiles the proxy against stand-in verbs")
+        directory = tmp_path_factory.mktemp("proxy")
+        (directory / "infiniband").mkdir()
+        (directory / "infiniband/verbs.h").write_text(FAKE_VERBS)
+>       shutil.copyfile(PROXY_SOURCE, directory / "proxy_under_test.c")
+
+/tests/update/peerwait/test_peer_wait.py:564: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+src = PosixPath('/tests/update/peerwait/roce/_roce_proxy.c')
+dst = PosixPath('/tmp/pytest-of-root/pytest-0/proxy0/proxy_under_test.c')
+follow_symlinks = True
+
+    def copyfile(src, dst, *, follow_symlinks=True):
+        """Copy data from src to dst in the most efficient way possible.
+    
+        If follow_symlinks is not set and src is a symbolic link, a new
+        symlink will be created instead of copying the file it points to.
+    
+        """
+        sys.audit("shutil.copyfile", src, dst)
+    
+        if _samefile(src, dst):
+            raise SameFileError("{!r} and {!r} are the same file".format(src, dst))
+    
+        file_size = 0
+        for i, fn in enumerate([src, dst]):
+            try:
+                st = _stat(fn)
+            except OSError:
+                # File most likely does not exist
+                pass
+            else:
+                # XXX What about other special files? (sockets, devices...)
+                if stat.S_ISFIFO(st.st_mode):
+                    fn = fn.path if isinstance(fn, os.DirEntry) else fn
+                    raise SpecialFileError("`%s` is a named pipe" % fn)
+                if _WINDOWS and i == 0:
+                    file_size = st.st_size
+    
+        if not follow_symlinks and _islink(src):
+            os.symlink(os.readlink(src), dst)
+        else:
+>           with open(src, 'rb') as fsrc:
+                 ^^^^^^^^^^^^^^^
+E           FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_roce_proxy.c'
+
+/usr/lib/python3.12/shutil.py:260: FileNotFoundError
+=================================== FAILURES ===================================
+____ test_wait_returns_when_the_flag_arrives_without_reading_the_abort_word ____
+
+    def test_wait_returns_when_the_flag_arrives_without_reading_the_abort_word():
+>       assert run_wait_ptx(arrives_at=5) == (0, 5, 0)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/tests/update/peerwait/test_peer_wait.py:136: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:77: in run_wait_ptx
+    ptx = load_intrinsics_constants()["PEER_WAIT_PTX"]
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/update/peerwait/test_peer_wait.py:67: in load_intrinsics_constants
+    return module_constants(ROCE / "_cute_intrinsics.py", {"ABORT_CHECK_POLLS", "PEER_WAIT_PTX"})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/update/peerwait/test_peer_wait.py:43: in module_constants
+    for node in ast.parse(path.read_text()).body:
+                          ^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_cute_intrinsics.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_cute_intrinsics.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+____________ test_wait_reads_the_abort_word_once_per_check_interval ____________
+
+    def test_wait_reads_the_abort_word_once_per_check_interval():
+>       interval = load_intrinsics_constants()["ABORT_CHECK_POLLS"]
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/tests/update/peerwait/test_peer_wait.py:140: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:67: in load_intrinsics_constants
+    return module_constants(ROCE / "_cute_intrinsics.py", {"ABORT_CHECK_POLLS", "PEER_WAIT_PTX"})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/update/peerwait/test_peer_wait.py:43: in module_constants
+    for node in ast.parse(path.read_text()).body:
+                          ^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_cute_intrinsics.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_cute_intrinsics.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_________ test_arrived_flag_wins_over_a_pending_abort_in_the_same_poll _________
+
+    def test_arrived_flag_wins_over_a_pending_abort_in_the_same_poll():
+>       interval = load_intrinsics_constants()["ABORT_CHECK_POLLS"]
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/tests/update/peerwait/test_peer_wait.py:149: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:67: in load_intrinsics_constants
+    return module_constants(ROCE / "_cute_intrinsics.py", {"ABORT_CHECK_POLLS", "PEER_WAIT_PTX"})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/update/peerwait/test_peer_wait.py:43: in module_constants
+    for node in ast.parse(path.read_text()).body:
+                          ^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_cute_intrinsics.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_cute_intrinsics.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_____________ test_device_poll_bound_stops_a_wait_without_the_host _____________
+
+    def test_device_poll_bound_stops_a_wait_without_the_host():
+>       assert run_wait_ptx(limit=10) == (1, 10, 0)
+               ^^^^^^^^^^^^^^^^^^^^^^
+
+/tests/update/peerwait/test_peer_wait.py:154: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:77: in run_wait_ptx
+    ptx = load_intrinsics_constants()["PEER_WAIT_PTX"]
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/update/peerwait/test_peer_wait.py:67: in load_intrinsics_constants
+    return module_constants(ROCE / "_cute_intrinsics.py", {"ABORT_CHECK_POLLS", "PEER_WAIT_PTX"})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tests/update/peerwait/test_peer_wait.py:43: in module_constants
+    for node in ast.parse(path.read_text()).body:
+                          ^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_cute_intrinsics.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_cute_intrinsics.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[1-2-1-2-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 2, rank = 1, paths = 2, sequence = 1
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[1-2-1-2-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 2, rank = 1, paths = 2, sequence = 1
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[1-2-1-4-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 2, rank = 1, paths = 4, sequence = 1
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[1-2-1-4-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 2, rank = 1, paths = 4, sequence = 1
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[1-4-1-2-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 4, rank = 1, paths = 2, sequence = 1
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[1-4-1-2-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 4, rank = 1, paths = 2, sequence = 1
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[1-4-1-4-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 4, rank = 1, paths = 4, sequence = 1
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[1-4-1-4-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 4, rank = 1, paths = 4, sequence = 1
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[2147483648-2-1-2-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 2, rank = 1, paths = 2
+sequence = 2147483648
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[2147483648-2-1-2-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 2, rank = 1, paths = 2
+sequence = 2147483648
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[2147483648-2-1-4-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 2, rank = 1, paths = 4
+sequence = 2147483648
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[2147483648-2-1-4-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 2, rank = 1, paths = 4
+sequence = 2147483648
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[2147483648-4-1-2-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 4, rank = 1, paths = 2
+sequence = 2147483648
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[2147483648-4-1-2-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 4, rank = 1, paths = 2
+sequence = 2147483648
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[2147483648-4-1-4-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 4, rank = 1, paths = 4
+sequence = 2147483648
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[2147483648-4-1-4-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 4, rank = 1, paths = 4
+sequence = 2147483648
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[4294967295-2-1-2-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 2, rank = 1, paths = 2
+sequence = 4294967295
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[4294967295-2-1-2-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 2, rank = 1, paths = 2
+sequence = 4294967295
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[4294967295-2-1-4-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 2, rank = 1, paths = 4
+sequence = 4294967295
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[4294967295-2-1-4-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 2, rank = 1, paths = 4
+sequence = 4294967295
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[4294967295-4-1-2-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 4, rank = 1, paths = 2
+sequence = 4294967295
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[4294967295-4-1-2-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 4, rank = 1, paths = 2
+sequence = 4294967295
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[4294967295-4-1-4-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 4, rank = 1, paths = 4
+sequence = 4294967295
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[4294967295-4-1-4-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 4, rank = 1, paths = 4
+sequence = 4294967295
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[0-2-1-2-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 2, rank = 1, paths = 2, sequence = 0
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[0-2-1-2-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 2, rank = 1, paths = 2, sequence = 0
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[0-2-1-4-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 2, rank = 1, paths = 4, sequence = 0
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[0-2-1-4-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 2, rank = 1, paths = 4, sequence = 0
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[0-4-1-2-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 4, rank = 1, paths = 2, sequence = 0
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[0-4-1-2-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 4, rank = 1, paths = 2, sequence = 0
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[0-4-1-4-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 4, rank = 1, paths = 4, sequence = 0
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_completed_wait_advances_the_epoch_and_publishes_the_sequence[0-4-1-4-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 4, rank = 1, paths = 4, sequence = 0
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_completed_wait_advances_the_epoch_and_publishes_the_sequence(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=False
+        )
+
+/tests/update/peerwait/test_peer_wait.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[1-2-1-2-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 2, rank = 1, paths = 2, sequence = 1
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[1-2-1-2-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 2, rank = 1, paths = 2, sequence = 1
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[1-2-1-4-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 2, rank = 1, paths = 4, sequence = 1
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[1-2-1-4-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 2, rank = 1, paths = 4, sequence = 1
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[1-4-1-2-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 4, rank = 1, paths = 2, sequence = 1
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[1-4-1-2-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 4, rank = 1, paths = 2, sequence = 1
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[1-4-1-4-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 4, rank = 1, paths = 4, sequence = 1
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[1-4-1-4-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 4, rank = 1, paths = 4, sequence = 1
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[2147483648-2-1-2-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 2, rank = 1, paths = 2
+sequence = 2147483648
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[2147483648-2-1-2-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 2, rank = 1, paths = 2
+sequence = 2147483648
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[2147483648-2-1-4-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 2, rank = 1, paths = 4
+sequence = 2147483648
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[2147483648-2-1-4-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 2, rank = 1, paths = 4
+sequence = 2147483648
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[2147483648-4-1-2-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 4, rank = 1, paths = 2
+sequence = 2147483648
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[2147483648-4-1-2-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 4, rank = 1, paths = 2
+sequence = 2147483648
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[2147483648-4-1-4-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 4, rank = 1, paths = 4
+sequence = 2147483648
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[2147483648-4-1-4-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 4, rank = 1, paths = 4
+sequence = 2147483648
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[4294967295-2-1-2-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 2, rank = 1, paths = 2
+sequence = 4294967295
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[4294967295-2-1-2-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 2, rank = 1, paths = 2
+sequence = 4294967295
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[4294967295-2-1-4-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 2, rank = 1, paths = 4
+sequence = 4294967295
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[4294967295-2-1-4-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 2, rank = 1, paths = 4
+sequence = 4294967295
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[4294967295-4-1-2-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 4, rank = 1, paths = 2
+sequence = 4294967295
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[4294967295-4-1-2-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 4, rank = 1, paths = 2
+sequence = 4294967295
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[4294967295-4-1-4-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 4, rank = 1, paths = 4
+sequence = 4294967295
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[4294967295-4-1-4-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 4, rank = 1, paths = 4
+sequence = 4294967295
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[0-2-1-2-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 2, rank = 1, paths = 2, sequence = 0
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[0-2-1-2-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 2, rank = 1, paths = 2, sequence = 0
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[0-2-1-4-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 2, rank = 1, paths = 4, sequence = 0
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[0-2-1-4-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 2, rank = 1, paths = 4, sequence = 0
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[0-4-1-2-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 4, rank = 1, paths = 2, sequence = 0
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[0-4-1-2-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 4, rank = 1, paths = 2, sequence = 0
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[0-4-1-4-_allgather_cute.py] _
+
+filename = '_allgather_cute.py', world = 4, rank = 1, paths = 4, sequence = 0
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_allgather_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_allgather_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_ test_stopped_wait_poisons_without_output_even_at_sequence_zero[0-4-1-4-_oneshot_cute.py] _
+
+filename = '_oneshot_cute.py', world = 4, rank = 1, paths = 4, sequence = 0
+
+    @pytest.mark.parametrize("filename", KERNELS)
+    @pytest.mark.parametrize("world,rank,paths", TOPOLOGIES)
+    @pytest.mark.parametrize("sequence", [1, 0x80000000, 0xFFFFFFFF, 0])
+    def test_stopped_wait_poisons_without_output_even_at_sequence_zero(filename, world, rank, paths, sequence):
+>       memory, outputs, offsets = simulate_kernel(
+            filename, world=world, rank=rank, paths=paths, sequence=sequence, stop=True
+        )
+
+/tests/update/peerwait/test_peer_wait.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:175: in simulate_kernel
+    tree = ast.parse(source.read_text())
+                     ^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_oneshot_cute.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_oneshot_cute.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+______________ test_pure_supervision_helpers_compile_on_their_own ______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_pure_supervision_helpers_0')
+
+    def test_pure_supervision_helpers_compile_on_their_own(tmp_path):
+        """The decisions need no verbs: flag states and notice sequences across wraps."""
+        compiler = shutil.which("gcc")
+        if compiler is None:
+            pytest.skip("GCC is unavailable")
+>       source = PROXY_SOURCE.read_text()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^
+
+/tests/update/peerwait/test_peer_wait.py:676: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_roce_proxy.c'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_roce_proxy.c'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+__________ test_kernel_runtime_and_proxy_agree_on_the_control_record ___________
+
+    def test_kernel_runtime_and_proxy_agree_on_the_control_record():
+>       words = c_defines({
+            "ROCE_CTRL_STOPPED_SEQ", "ROCE_CTRL_MISSING_PEER", "ROCE_CTRL_ABORT", "ROCE_CTRL_DONE",
+            "ROCE_CTRL_FAILED", "ROCE_ABI_VERSION",
+        })
+
+/tests/update/peerwait/test_peer_wait.py:718: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:54: in c_defines
+    source = PROXY_SOURCE.read_text()
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/_roce_proxy.c'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_roce_proxy.c'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_____ test_proxy_binding_reports_supervision_counters_and_sets_the_timeout _____
+
+    def test_proxy_binding_reports_supervision_counters_and_sets_the_timeout():
+>       module = load_proxy_module()
+                 ^^^^^^^^^^^^^^^^^^^
+
+/tests/update/peerwait/test_peer_wait.py:754: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:749: in load_proxy_module
+    spec.loader.exec_module(module)
+<frozen importlib._bootstrap_external>:991: in exec_module
+    ???
+<frozen importlib._bootstrap_external>:1128: in get_code
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <_frozen_importlib_external.SourceFileLoader object at 0xf931b8d7eff0>
+path = '/tests/update/peerwait/roce/_proxy.py'
+
+>   ???
+E   FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/_proxy.py'
+
+<frozen importlib._bootstrap_external>:1186: FileNotFoundError
+________________ test_wait_settings_default_to_host_supervision ________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf931b8c003e0>
+
+    def test_wait_settings_default_to_host_supervision(monkeypatch):
+>       env = runtime_env()
+              ^^^^^^^^^^^^^
+
+/tests/update/peerwait/test_peer_wait.py:821: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:810: in runtime_env
+    env = module_constants(ROCE / "roce_oneshot.py", {
+/tests/update/peerwait/test_peer_wait.py:43: in module_constants
+    for node in ast.parse(path.read_text()).body:
+                          ^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/roce_oneshot.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/roce_oneshot.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+__________________ test_ranks_agree_on_the_peer_wait_timeout ___________________
+
+    def test_ranks_agree_on_the_peer_wait_timeout():
+>       tree = ast.parse((ROCE / "roce_oneshot.py").read_text())
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/tests/update/peerwait/test_peer_wait.py:842: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/roce_oneshot.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/roce_oneshot.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_________________ test_health_reports_the_proxy_verdict_first __________________
+
+    def test_health_reports_the_proxy_verdict_first():
+>       env = runtime_env()
+              ^^^^^^^^^^^^^
+
+/tests/update/peerwait/test_peer_wait.py:867: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:810: in runtime_env
+    env = module_constants(ROCE / "roce_oneshot.py", {
+/tests/update/peerwait/test_peer_wait.py:43: in module_constants
+    for node in ast.parse(path.read_text()).body:
+                          ^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/roce_oneshot.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/roce_oneshot.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_________ test_health_reports_a_device_stopped_wait_at_any_sequence[5] _________
+
+sequence = 5
+
+    @pytest.mark.parametrize("sequence", [5, 0x80000001 - (1 << 32), 0])
+    def test_health_reports_a_device_stopped_wait_at_any_sequence(sequence):
+>       env = runtime_env()
+              ^^^^^^^^^^^^^
+
+/tests/update/peerwait/test_peer_wait.py:880: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:810: in runtime_env
+    env = module_constants(ROCE / "roce_oneshot.py", {
+/tests/update/peerwait/test_peer_wait.py:43: in module_constants
+    for node in ast.parse(path.read_text()).body:
+                          ^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/roce_oneshot.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/roce_oneshot.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+____ test_health_reports_a_device_stopped_wait_at_any_sequence[-2147483647] ____
+
+sequence = -2147483647
+
+    @pytest.mark.parametrize("sequence", [5, 0x80000001 - (1 << 32), 0])
+    def test_health_reports_a_device_stopped_wait_at_any_sequence(sequence):
+>       env = runtime_env()
+              ^^^^^^^^^^^^^
+
+/tests/update/peerwait/test_peer_wait.py:880: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:810: in runtime_env
+    env = module_constants(ROCE / "roce_oneshot.py", {
+/tests/update/peerwait/test_peer_wait.py:43: in module_constants
+    for node in ast.parse(path.read_text()).body:
+                          ^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/roce_oneshot.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/roce_oneshot.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_________ test_health_reports_a_device_stopped_wait_at_any_sequence[0] _________
+
+sequence = 0
+
+    @pytest.mark.parametrize("sequence", [5, 0x80000001 - (1 << 32), 0])
+    def test_health_reports_a_device_stopped_wait_at_any_sequence(sequence):
+>       env = runtime_env()
+              ^^^^^^^^^^^^^
+
+/tests/update/peerwait/test_peer_wait.py:880: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/update/peerwait/test_peer_wait.py:810: in runtime_env
+    env = module_constants(ROCE / "roce_oneshot.py", {
+/tests/update/peerwait/test_peer_wait.py:43: in module_constants
+    for node in ast.parse(path.read_text()).body:
+                          ^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tests/update/peerwait/roce/roce_oneshot.py'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tests/update/peerwait/roce/roce_oneshot.py'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+=========================== short test summary info ============================
+FAILED ../../tests/update/runtime_status::test_wait_returns_when_the_flag_arrives_without_reading_the_abort_word
+FAILED ../../tests/update/runtime_status::test_wait_reads_the_abort_word_once_per_check_interval
+FAILED ../../tests/update/runtime_status::test_arrived_flag_wins_over_a_pending_abort_in_the_same_poll
+FAILED ../../tests/update/runtime_status::test_device_poll_bound_stops_a_wait_without_the_host
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[1-2-1-2-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[1-2-1-2-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[1-2-1-4-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[1-2-1-4-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[1-4-1-2-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[1-4-1-2-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[1-4-1-4-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[1-4-1-4-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[2147483648-2-1-2-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[2147483648-2-1-2-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[2147483648-2-1-4-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[2147483648-2-1-4-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[2147483648-4-1-2-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[2147483648-4-1-2-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[2147483648-4-1-4-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[2147483648-4-1-4-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[4294967295-2-1-2-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[4294967295-2-1-2-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[4294967295-2-1-4-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[4294967295-2-1-4-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[4294967295-4-1-2-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[4294967295-4-1-2-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[4294967295-4-1-4-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[4294967295-4-1-4-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[0-2-1-2-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[0-2-1-2-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[0-2-1-4-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[0-2-1-4-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[0-4-1-2-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[0-4-1-2-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[0-4-1-4-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_completed_wait_advances_the_epoch_and_publishes_the_sequence[0-4-1-4-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[1-2-1-2-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[1-2-1-2-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[1-2-1-4-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[1-2-1-4-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[1-4-1-2-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[1-4-1-2-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[1-4-1-4-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[1-4-1-4-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[2147483648-2-1-2-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[2147483648-2-1-2-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[2147483648-2-1-4-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[2147483648-2-1-4-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[2147483648-4-1-2-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[2147483648-4-1-2-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[2147483648-4-1-4-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[2147483648-4-1-4-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[4294967295-2-1-2-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[4294967295-2-1-2-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[4294967295-2-1-4-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[4294967295-2-1-4-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[4294967295-4-1-2-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[4294967295-4-1-2-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[4294967295-4-1-4-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[4294967295-4-1-4-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[0-2-1-2-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[0-2-1-2-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[0-2-1-4-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[0-2-1-4-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[0-4-1-2-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[0-4-1-2-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[0-4-1-4-_allgather_cute.py]
+FAILED ../../tests/update/runtime_status::test_stopped_wait_poisons_without_output_even_at_sequence_zero[0-4-1-4-_oneshot_cute.py]
+FAILED ../../tests/update/runtime_status::test_pure_supervision_helpers_compile_on_their_own
+FAILED ../../tests/update/runtime_status::test_kernel_runtime_and_proxy_agree_on_the_control_record
+FAILED ../../tests/update/runtime_status::test_proxy_binding_reports_supervision_counters_and_sets_the_timeout
+FAILED ../../tests/update/runtime_status::test_wait_settings_default_to_host_supervision
+FAILED ../../tests/update/runtime_status::test_ranks_agree_on_the_peer_wait_timeout
+FAILED ../../tests/update/runtime_status::test_health_reports_the_proxy_verdict_first
+FAILED ../../tests/update/runtime_status::test_health_reports_a_device_stopped_wait_at_any_sequence[5]
+FAILED ../../tests/update/runtime_status::test_health_reports_a_device_stopped_wait_at_any_sequence[-2147483647]
+FAILED ../../tests/update/runtime_status::test_health_reports_a_device_stopped_wait_at_any_sequence[0]
+ERROR ../../tests/update/runtime_status::test_late_peer_is_waited_for_checked_and_logged
+ERROR ../../tests/update/runtime_status::test_late_peer_across_the_sequence_wrap
+ERROR ../../tests/update/runtime_status::test_next_doorbell_ends_a_reported_stall
+ERROR ../../tests/update/runtime_status::test_unreachable_peer_stops_every_wait_and_notifies_on_every_path
+ERROR ../../tests/update/runtime_status::test_inconsistent_flags_stop_the_runtime
+ERROR ../../tests/update/runtime_status::test_timeout_stops_a_wait_on_a_live_peer
+ERROR ../../tests/update/runtime_status::test_peer_stop_notice_stops_this_rank
+ERROR ../../tests/update/runtime_status::test_waiting_peer_notice_is_logged_once
+ERROR ../../tests/update/runtime_status::test_flags_the_kernel_does_not_observe_are_reported_and_bounded
+ERROR ../../tests/update/runtime_status::test_device_poll_bound_is_propagated_to_the_peers
+ERROR ../../tests/update/runtime_status::test_proxy_loop_gap_is_logged - File...
+77 failed, 135 passed, 1 skipped, 11 errors in 3.75s

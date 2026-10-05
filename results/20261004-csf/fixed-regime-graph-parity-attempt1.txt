@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/tests/csf-fixed-regimes.py", line 34, in <module>
+    session.prepare((plan.request(name='fixed-regime-parity', prepare_call=prepare_call),))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: _CompositePlan.request() got an unexpected keyword argument 'prepare_call'

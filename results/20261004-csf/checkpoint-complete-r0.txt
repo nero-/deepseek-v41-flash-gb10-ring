@@ -1,0 +1,437 @@
+{
+  "revision": "c5c41fe301c4c1d24fc09376883d9168e521dc66",
+  "files": [
+    {
+      "rfilename": "tensors/model-00001-of-00048.safetensors",
+      "size": 970533736,
+      "lfs": {
+        "sha256": "7a503583177450de9ba9bf573f2b7b51c082f10a45b6930db5fdd8b7e6c5b279",
+        "size": 970533736,
+        "pointerSize": 134
+      }
+    },
+    {
+      "rfilename": "tensors/model-00002-of-00048.safetensors",
+      "size": 1323858384,
+      "lfs": {
+        "sha256": "7582cad4247e8d759d80d4ad883545614157ca33bf0c335b41e6c5dbc86a1ad6",
+        "size": 1323858384,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00003-of-00048.safetensors",
+      "size": 7023164484,
+      "lfs": {
+        "sha256": "ce24f95e034549bdc2e01ab3e4bd48a259fd246c87788fa20f682fb6a6af82cd",
+        "size": 7023164484,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00004-of-00048.safetensors",
+      "size": 7022860208,
+      "lfs": {
+        "sha256": "e897f4f9106ef38095c893fe0478726ce0f2f04436c2f6c0550eb200a20dedee",
+        "size": 7022860208,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00005-of-00048.safetensors",
+      "size": 7038874252,
+      "lfs": {
+        "sha256": "25e4b6929a166e68997a46fc80ba1b02095bc31df6c4efd635f5cc508c517930",
+        "size": 7038874252,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00006-of-00048.safetensors",
+      "size": 7022636628,
+      "lfs": {
+        "sha256": "7fcb54a73b4d3ddc8723cd6faaa0da7828047c4911f23737a539bd15f10c9d22",
+        "size": 7022636628,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00007-of-00048.safetensors",
+      "size": 7022644348,
+      "lfs": {
+        "sha256": "c54f51df209fb67e7dfc7c8588e0ad7ec2a342d9f6bb0ce99472c4cfaadbd59d",
+        "size": 7022644348,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00008-of-00048.safetensors",
+      "size": 7022647032,
+      "lfs": {
+        "sha256": "e379683c8c337a311439c7061abfcf4415bbef4e97ae03b828e1fc3d9cb4d7c7",
+        "size": 7022647032,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00009-of-00048.safetensors",
+      "size": 7022656236,
+      "lfs": {
+        "sha256": "26f274864a45c45657a99131108b05c7ba6b805cd48fe1ac1b5d2fe4d63312ab",
+        "size": 7022656236,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00010-of-00048.safetensors",
+      "size": 7022642244,
+      "lfs": {
+        "sha256": "54a7b1b0423f860ff71b2ad7cd2d8b5755e5b24385250308ff4d0b15a47d0a5f",
+        "size": 7022642244,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00011-of-00048.safetensors",
+      "size": 7038855692,
+      "lfs": {
+        "sha256": "a68790a34752c50cc88d4dd093e778f95efe54b2923ecf337841d46f05e23d91",
+        "size": 7038855692,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00012-of-00048.safetensors",
+      "size": 7022658452,
+      "lfs": {
+        "sha256": "8102c986824ef6af326d0c3884bf7cafb22309e0d3522ea9f79b4271e948a29d",
+        "size": 7022658452,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00013-of-00048.safetensors",
+      "size": 7022733580,
+      "lfs": {
+        "sha256": "e16918d2bb60faf29ceb3a1cbe3ecc3256b916314000206f99c84b1bd77d8af7",
+        "size": 7022733580,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00014-of-00048.safetensors",
+      "size": 7022761804,
+      "lfs": {
+        "sha256": "59adfabb37db8ae4a587caf70eb96482d98be35e17578c4552fc98ee0317d619",
+        "size": 7022761804,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00015-of-00048.safetensors",
+      "size": 7022871428,
+      "lfs": {
+        "sha256": "d47caadae0a9aa16fc7e8b7fa5a34fa4835662316df8a5e0bd020e35f01e5687",
+        "size": 7022871428,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00016-of-00048.safetensors",
+      "size": 7023113392,
+      "lfs": {
+        "sha256": "912813c386870c4c25a3dc7940523918deb2f812738eee5cd18504bd49e6d4de",
+        "size": 7023113392,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00017-of-00048.safetensors",
+      "size": 7039251428,
+      "lfs": {
+        "sha256": "614a771280ccd9c499bb57477fad4d366224a55806e9fb0d7e050305c112a537",
+        "size": 7039251428,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00018-of-00048.safetensors",
+      "size": 7023241712,
+      "lfs": {
+        "sha256": "a4418f6ce67646ca014e60feb1620e97790975268cc070d050b00dede8800d05",
+        "size": 7023241712,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00019-of-00048.safetensors",
+      "size": 7023118304,
+      "lfs": {
+        "sha256": "484b00e8ce262abb73ed7b28da2df7bf967c26afea28f2eb552447baba56fa8a",
+        "size": 7023118304,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00020-of-00048.safetensors",
+      "size": 7023246192,
+      "lfs": {
+        "sha256": "9b3293beb1800e1d4a9162456fc14f79300eddd2a5ca07254a5c304abf301f1f",
+        "size": 7023246192,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00021-of-00048.safetensors",
+      "size": 7023325816,
+      "lfs": {
+        "sha256": "5b5cd9d2fa0d269c2b31df7a6f2791e5e3352ee01872d875ec07647421254d28",
+        "size": 7023325816,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00022-of-00048.safetensors",
+      "size": 7023186228,
+      "lfs": {
+        "sha256": "a8ae9f775d24835fc89dcc83708d52e914296c04b7ff80d9d0bb0a083f6c18b8",
+        "size": 7023186228,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00023-of-00048.safetensors",
+      "size": 7033900140,
+      "lfs": {
+        "sha256": "26043b3d4e9851edde929a8364887e93a5d3c3c91424ebedc2d2752f5fc3e4f5",
+        "size": 7033900140,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00024-of-00048.safetensors",
+      "size": 7022902116,
+      "lfs": {
+        "sha256": "18d77548abf6785653786a9f419dd4809153c6d3b1c79d9409d71f6e0340a80b",
+        "size": 7022902116,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00025-of-00048.safetensors",
+      "size": 7022969352,
+      "lfs": {
+        "sha256": "b9a081ebf2c03f6cd9f24162060a685b9f2c976b20d628ed144c5a88bb46a6d5",
+        "size": 7022969352,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00026-of-00048.safetensors",
+      "size": 7022864420,
+      "lfs": {
+        "sha256": "06ba91a8b97c817329920b919f0b083208bff3608db91fce0698e441c15adb9e",
+        "size": 7022864420,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00027-of-00048.safetensors",
+      "size": 7028480384,
+      "lfs": {
+        "sha256": "78a9bb6bb3d22cdb738d7e54fc7765dcebd400349a7682e90ed6e69ed1302cb6",
+        "size": 7028480384,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00028-of-00048.safetensors",
+      "size": 7022741836,
+      "lfs": {
+        "sha256": "a033ca2a78f4c312c88bee4aa2712ef16ebbeb6bb9e636b076b36d14d18d4f4f",
+        "size": 7022741836,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00029-of-00048.safetensors",
+      "size": 7022725384,
+      "lfs": {
+        "sha256": "512e788ee1552eba11ced513061e481d9580ef041e2f09c8bfc11fcaa2bd6e38",
+        "size": 7022725384,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00030-of-00048.safetensors",
+      "size": 7022710112,
+      "lfs": {
+        "sha256": "1f21961b7c84ccdce034c0a1c976e13b8262f7a75ece2d427f8acad19acd129a",
+        "size": 7022710112,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00031-of-00048.safetensors",
+      "size": 7028244180,
+      "lfs": {
+        "sha256": "ab2e549e5edb5aabe0a478cbe6f39918ddaaaf16e868d8903d46d58253efe007",
+        "size": 7028244180,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00032-of-00048.safetensors",
+      "size": 7022669196,
+      "lfs": {
+        "sha256": "fb19798058a32147a2b6fa714d51da31d41d9c714861f6769aaa24c9c9c21b59",
+        "size": 7022669196,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00033-of-00048.safetensors",
+      "size": 7022691924,
+      "lfs": {
+        "sha256": "5d04e3e4307847d8290657e1b4de030d0f7aa92edef9955e69923aa83ed1e594",
+        "size": 7022691924,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00034-of-00048.safetensors",
+      "size": 7022801024,
+      "lfs": {
+        "sha256": "de07bb1bf5fde284481eec4da292a82877655f552ede50b9bbecf8803a7a59cf",
+        "size": 7022801024,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00035-of-00048.safetensors",
+      "size": 7028308124,
+      "lfs": {
+        "sha256": "5451b7142e7211f1ed6f2c22da7aac91e0f21c8ffb51b76f3ac7d793e397a4c8",
+        "size": 7028308124,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00036-of-00048.safetensors",
+      "size": 7022808216,
+      "lfs": {
+        "sha256": "a4c906f8ff00fdaa6966a302a3182fd5f7c6c61649bf0b4c364639bd6fedc2a0",
+        "size": 7022808216,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00037-of-00048.safetensors",
+      "size": 7022799352,
+      "lfs": {
+        "sha256": "dca721bce557b647b21c39cc12b6551118bc0839c7a3ad01998bb0aa7e753b6d",
+        "size": 7022799352,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00038-of-00048.safetensors",
+      "size": 7023491208,
+      "lfs": {
+        "sha256": "ad2a325bf9033e8eabd45c7cb922b3c2d38f78e396b10ae69aa797193f6f02a5",
+        "size": 7023491208,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00039-of-00048.safetensors",
+      "size": 7028775112,
+      "lfs": {
+        "sha256": "d134f54f5a7b7bf1f2425695653592c44967262c3b225eb9f88e7f0face12149",
+        "size": 7028775112,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00040-of-00048.safetensors",
+      "size": 7023655520,
+      "lfs": {
+        "sha256": "d3691d6ffa4b2461870061bd67e7535aa2b3470dc56d7438d6be8279403a8ac8",
+        "size": 7023655520,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00041-of-00048.safetensors",
+      "size": 7024551740,
+      "lfs": {
+        "sha256": "ae31755dfdd72bc9c1512794d26971c1b6a527e377365b03e21ec034b9e2473a",
+        "size": 7024551740,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00042-of-00048.safetensors",
+      "size": 7028034496,
+      "lfs": {
+        "sha256": "8bc460ca51e504da5a1d9222b0968f9211c1a71020f566b74a6bac85da3e5ba0",
+        "size": 7028034496,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00043-of-00048.safetensors",
+      "size": 1323837736,
+      "lfs": {
+        "sha256": "bed0ea6a4c3e25a8f051db2c3d5aeff677aa2f59e845dea167ca2229f66b2baa",
+        "size": 1323837736,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00044-of-00048.safetensors",
+      "size": 2652728848,
+      "lfs": {
+        "sha256": "41ba4af7d57d42284bff0ac26e584f4ee9d81a37ce6490bed42a5c9dd01b5c24",
+        "size": 2652728848,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00045-of-00048.safetensors",
+      "size": 2573998288,
+      "lfs": {
+        "sha256": "1ee4a0103fad8d947ee6c9429a440b289ceeb8452668acf3f5ab324179072575",
+        "size": 2573998288,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00046-of-00048.safetensors",
+      "size": 2706403008,
+      "lfs": {
+        "sha256": "7e5333799713be691f8796e117b71010c284c1f5289bb4203c47473c4d924a7f",
+        "size": 2706403008,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tensors/model-00047-of-00048.safetensors",
+      "size": 101535151048,
+      "lfs": {
+        "sha256": "18523c0ef7ada4252490b3ec4a7b757676d30ccfebaa518af56c58d492b3d0c9",
+        "size": 101535151048,
+        "pointerSize": 137
+      }
+    },
+    {
+      "rfilename": "tensors/model-00048-of-00048.safetensors",
+      "size": 101537926752,
+      "lfs": {
+        "sha256": "d5d45a5fadd4a97385e796b00d907ca1aa96b2bb2f59abaa4577ab9f97a4996d",
+        "size": 101537926752,
+        "pointerSize": 137
+      }
+    }
+  ]
+}

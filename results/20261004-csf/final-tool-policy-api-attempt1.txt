@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/nero/csf-20261004/tests/tool-policy-api-probe.py", line 11, in <module>
+    from contract import StreamChoice
+ModuleNotFoundError: No module named 'contract'

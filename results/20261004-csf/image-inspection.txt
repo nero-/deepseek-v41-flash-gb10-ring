@@ -1,0 +1,26 @@
+total 1116
+drwxrwxr-x 1 root root    4096 Sep 29 17:35 .
+drwxrwxr-x 1 root root    4096 Sep 28 03:00 ..
+-rw-rw-r-- 1 root root    4424 Sep 27 20:25 derived-b12xcache-status032.json
+-rw-rw-r-- 1 root root     976 Sep 28 03:00 derived-mimo-vision.json
+-rw-rw-r-- 1 root root    1775 Sep 25 22:45 derived-qwen-decode.json
+-rw-r--r-- 1 root root    1013 Sep 27 06:22 derived-staging-fix.json
+-rw-r--r-- 1 root root    3424 Sep 25 12:42 derived-tp2-hc.json
+-rw-r--r-- 1 root root    1423 Sep 29 17:35 derived-vllm-kk926.json
+-rw-rw-r-- 1 root root 1096719 Sep 29 17:35 external-base-installed.json
+/usr/local/lib/python3.12/dist-packages/b12x/__init__.py
+b12x-source-commit
+build-metadata.yaml
+vllm
+addons
+bin
+contracts
+features
+licenses
+python
+receipts
+sparkcache
+toolchain
+transports
+fatal: not a git repository (or any of the parent directories): .git
+fatal: not a git repository (or any of the parent directories): .git

@@ -1,0 +1,4 @@
+ExecStart={ path=/usr/bin/nvidia-smi ; argv[]=/usr/bin/nvidia-smi -lgc 0,2350 ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }
+ExecReload={ path=/usr/bin/nvidia-smi ; argv[]=/usr/bin/nvidia-smi -lgc 0,2350 ; ignore_errors=no ; start_time=[Sun 2026-10-04 22:54:01 UTC] ; stop_time=[Sun 2026-10-04 22:54:01 UTC] ; pid=3562687 ; code=exited ; status=0 }
+ActiveState=active
+NeedDaemonReload=no

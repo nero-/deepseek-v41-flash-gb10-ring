@@ -1,0 +1,11 @@
+{
+  "rank": 0,
+  "argv": [
+    "systemd-run",
+    "--unit=ds41-csf-artifacts",
+    "--property=Nice=10",
+    "python3",
+    "/home/nero/csf-20261004/artifact-server.py"
+  ],
+  "host_admin": true
+}

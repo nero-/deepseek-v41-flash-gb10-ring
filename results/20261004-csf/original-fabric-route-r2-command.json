@@ -1,0 +1,10 @@
+{
+  "rank": 2,
+  "argv": [
+    "ip",
+    "route",
+    "get",
+    "10.10.1.10"
+  ],
+  "host_admin": false
+}

@@ -1,0 +1,4 @@
+PASS 9 columns: exact source bytes, no clamp, existing-source verification, corrupt-source rejection
+PASS 18 columns: exact source bytes, no clamp, existing-source verification, corrupt-source rejection
+PASS 160 columns: exact source bytes, no clamp, existing-source verification, corrupt-source rejection
+RESTORE CPU PROOF PASS

@@ -1,0 +1,8 @@
+{
+  "rank": 0,
+  "argv": [
+    "cat",
+    "/srv/sparkring/sparkring/checkpoints/local-inference-lab--DeepSeek-V4.1-Flash-lossless-CSF/c5c41fe301c4c1d24fc09376883d9168e521dc66/verified-shards.json"
+  ],
+  "host_admin": true
+}

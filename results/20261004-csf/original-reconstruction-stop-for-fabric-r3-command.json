@@ -1,0 +1,11 @@
+{
+  "rank": 3,
+  "argv": [
+    "docker",
+    "stop",
+    "--time",
+    "15",
+    "ds41-original-restore-r3"
+  ],
+  "host_admin": false
+}

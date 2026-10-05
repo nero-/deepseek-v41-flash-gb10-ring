@@ -1,0 +1,9 @@
+{
+  "rank": 0,
+  "argv": [
+    "systemctl",
+    "restart",
+    "ds41-csf-stage.service"
+  ],
+  "host_admin": true
+}

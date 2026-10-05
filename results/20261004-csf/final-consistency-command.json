@@ -1,0 +1,11 @@
+{
+  "rank": 0,
+  "argv": [
+    "python3",
+    "-u",
+    "/home/nero/csf-20261004/tests/decode-prefill-consistency.py",
+    "--output",
+    "/home/nero/csf-20261004/final-consistency.json"
+  ],
+  "host_admin": false
+}

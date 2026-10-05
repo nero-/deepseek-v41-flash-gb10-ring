@@ -1,0 +1,78 @@
+{
+  "profile": "engram-adaptive4k-query-indexer",
+  "configuration_unchanged": true,
+  "api_healthy": true,
+  "nodes": [
+    {
+      "name": "/ds41-csf-r0",
+      "running": true,
+      "started_at": "2026-10-05T00:41:50.855837609Z"
+    },
+    {
+      "name": "/ds41-csf-r1",
+      "running": true,
+      "started_at": "2026-10-05T00:41:50.84714296Z"
+    },
+    {
+      "name": "/ds41-csf-r2",
+      "running": true,
+      "started_at": "2026-10-05T00:41:50.790294846Z"
+    },
+    {
+      "name": "/ds41-csf-r3",
+      "running": true,
+      "started_at": "2026-10-05T00:41:50.780409708Z"
+    }
+  ],
+  "indexer_guards_enabled": 42,
+  "indexer_guards_disabled": 0,
+  "indexer_lines": [
+    "[local-indexer-tp] armed: >=128 rows, >=8192 compressed positions, candidate-free prefill only",
+    "(EngineCore pid=403) [local-indexer-tp] armed: >=128 rows, >=8192 compressed positions, candidate-free prefill only",
+    "[local-indexer-tp] armed: >=128 rows, >=8192 compressed positions, candidate-free prefill only",
+    "(Worker_TP0 pid=495) [local-indexer-tp] worker startup complete; awaiting real request",
+    "(Worker_TP0 pid=495) [local-indexer-tp] first real request observed; numerical guards pending",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=1024 width=8192 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=1024 width=8192 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=1024 width=8192 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=1024 width=12288 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=1024 width=12288 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=1024 width=12288 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=256 width=20480 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=256 width=20480 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=256 width=20480 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=256 width=36864 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=256 width=36864 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=256 width=36864 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=236 width=46966 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=236 width=46966 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=236 width=46966 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=252 width=46838 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=252 width=46838 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=252 width=46838 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=248 width=64508 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=248 width=64508 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=248 width=64508 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=396 width=16181 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=396 width=16181 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=396 width=16181 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=244 width=64525 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=244 width=64525 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=244 width=64525 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=128 width=32293 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=128 width=32293 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=128 width=32293 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=232 width=64513 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=232 width=64513 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=232 width=64513 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=256 width=69632 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=256 width=69632 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=256 width=69632 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=256 width=135168 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=256 width=135168 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=256 width=135168 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=256 width=266240 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=256 width=266240 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1",
+    "(Worker_TP0 pid=495) [local-indexer-tp] rows=256 width=266240 guard=local-scores-and-topk-values score-exact=ON indices_exact=0 raw_scores_exact=1 topk_values_exact=1 valid_ids=1"
+  ]
+}

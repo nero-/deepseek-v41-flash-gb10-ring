@@ -1,0 +1,4 @@
+[local-indexer-tp] armed: >=128 rows, >=8192 compressed positions, candidate-free prefill only
+[local-indexer-tp] armed: >=128 rows, >=8192 compressed positions, candidate-free prefill only
+(Worker_TP2 pid=156) [local-indexer-tp] worker startup complete; awaiting real request
+(Worker_TP2 pid=156) [local-indexer-tp] first real request observed; numerical guards pending

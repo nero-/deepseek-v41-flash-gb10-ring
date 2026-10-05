@@ -1,0 +1,9 @@
+(Worker_TP0 pid=313) INFO 09-29 18:29:05 [model_runner.py:444] Model loading took 74.4 GiB memory and 37.694624 seconds
+(Worker_TP0 pid=313) INFO 09-29 18:30:52 [gpu_worker.py:829] Available KV cache memory: 15.72 GiB
+(EngineCore pid=221) INFO 09-29 18:30:52 [kv_cache_utils.py:2850] GPU KV cache size: 12,846,833 tokens, Maximum concurrency for 1,048,576 tokens per request: 12.25x
+(Worker_TP0 pid=310) INFO 09-29 21:00:39 [model_runner.py:444] Model loading took 74.4 GiB memory and 30.158142 seconds
+(Worker_TP0 pid=310) INFO 09-29 21:02:25 [gpu_worker.py:829] Available KV cache memory: 15.76 GiB
+(EngineCore pid=219) INFO 09-29 21:02:26 [kv_cache_utils.py:2850] GPU KV cache size: 12,878,392 tokens, Maximum concurrency for 1,048,576 tokens per request: 12.28x
+(Worker_TP0 pid=318) INFO 10-01 04:53:13 [model_runner.py:444] Model loading took 74.4 GiB memory and 30.004971 seconds
+(Worker_TP0 pid=318) INFO 10-01 04:54:53 [gpu_worker.py:829] Available KV cache memory: 15.93 GiB
+(EngineCore pid=226) INFO 10-01 04:54:53 [kv_cache_utils.py:2850] GPU KV cache size: 12,879,953 tokens, Maximum concurrency for 1,048,576 tokens per request: 12.28x

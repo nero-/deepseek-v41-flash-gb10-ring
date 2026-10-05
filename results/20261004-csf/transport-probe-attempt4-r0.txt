@@ -1,0 +1,16 @@
+NCCL version 2.32.3+cuda13.4
+{"rank": 0, "case": "reduce", "status": "passed"}
+{"rank": 0, "case": "reduce", "status": "passed"}
+{"rank": 0, "case": "reduce", "status": "passed"}
+{"rank": 0, "case": "reduce", "status": "passed"}
+{"rank": 0, "case": "reduce", "status": "passed"}
+{"rank": 0, "case": "reduce", "status": "passed"}
+{"rank": 0, "case": "reduce", "status": "passed"}
+{"rank": 0, "case": "reduce", "status": "passed"}
+{"rank": 0, "case": "reduce", "status": "passed"}
+{"rank": 0, "case": "gather", "status": "passed"}
+{"rank": 0, "case": "gather", "status": "passed"}
+{"rank": 0, "case": "gather", "status": "passed"}
+{"rank": 0, "case": "gather-output-ownership", "status": "passed"}
+{"rank": 0, "case": "alternating-grid-frozen-graph", "status": "passed"}
+{"rank": 0, "case": "selected-path-traffic", "status": "passed"}

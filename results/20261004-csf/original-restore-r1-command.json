@@ -1,0 +1,13 @@
+{
+  "rank": 1,
+  "argv": [
+    "python3",
+    "-u",
+    "-c",
+    "import hashlib,json,sys,time\nfrom pathlib import Path\nroot=Path(sys.argv[1]);manifest=json.loads(Path(sys.argv[2]).read_text());assert manifest['sha']=='dba1be0a40aa45a94ad051997016db3960a90277'\nrecords=[]\nfor row in manifest['siblings']:\n name=row['rfilename']\n if not name.endswith('.safetensors'):continue\n assert Path(name).name==name\n p=root/name;assert p.is_file() and not p.is_symlink() and p.stat().st_nlink==1\n assert p.stat().st_size==row['size']\n with p.open('rb') as f:digest=hashlib.file_digest(f,'sha256').hexdigest()\n assert digest==row['lfs']['sha256'],name\n records.append({'file':name,'bytes':p.stat().st_size,'sha256':digest,'restored':False})\n print(json.dumps(records[-1]),flush=True)\nassert len(records)==48\nPath(sys.argv[3]).write_text(json.dumps({'revision':manifest['sha'],'complete':True,'shards':records},indent=2)+chr(10))\nprint('ORIGINAL CHECKPOINT VERIFIED',flush=True)\n",
+    "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277",
+    "/home/nero/csf-20261004/original-hub-file-manifest.json",
+    "/home/nero/csf-20261004/original-restore-r1.json"
+  ],
+  "host_admin": true
+}

@@ -1,0 +1,262 @@
+{
+  "status": "passed",
+  "rank": 2,
+  "world_size": 4,
+  "elapsed_seconds": 10.018583621014841,
+  "profile": "tp2-rocenante-adaptive-prepared-csf",
+  "manifest_sha256": "b11dcfcce4a75d0244b2ab4d650fee771b5601437904f9136ade7e43ca83ee9b",
+  "harness_sha256": "a667d23385ba7d56a333eb552607021044cd63b880445c0460dd36d0fa92716c",
+  "cases": [
+    {
+      "case": "reduce",
+      "dtype": "torch.bfloat16",
+      "bytes": 16,
+      "rank_identical": true
+    },
+    {
+      "case": "reduce",
+      "dtype": "torch.bfloat16",
+      "bytes": 4096,
+      "rank_identical": true
+    },
+    {
+      "case": "reduce",
+      "dtype": "torch.bfloat16",
+      "bytes": 1048576,
+      "rank_identical": true
+    },
+    {
+      "case": "reduce",
+      "dtype": "torch.float16",
+      "bytes": 16,
+      "rank_identical": true
+    },
+    {
+      "case": "reduce",
+      "dtype": "torch.float16",
+      "bytes": 4096,
+      "rank_identical": true
+    },
+    {
+      "case": "reduce",
+      "dtype": "torch.float16",
+      "bytes": 1048576,
+      "rank_identical": true
+    },
+    {
+      "case": "reduce",
+      "dtype": "torch.float32",
+      "bytes": 16,
+      "rank_identical": true
+    },
+    {
+      "case": "reduce",
+      "dtype": "torch.float32",
+      "bytes": 4096,
+      "rank_identical": true
+    },
+    {
+      "case": "reduce",
+      "dtype": "torch.float32",
+      "bytes": 1048576,
+      "rank_identical": true
+    },
+    {
+      "case": "gather",
+      "shape": [
+        4,
+        32
+      ],
+      "dimension": 0
+    },
+    {
+      "case": "gather",
+      "shape": [
+        4,
+        32
+      ],
+      "dimension": -1
+    },
+    {
+      "case": "gather",
+      "shape": [
+        5,
+        3
+      ],
+      "dimension": -1
+    },
+    {
+      "case": "gather-output-ownership"
+    },
+    {
+      "case": "alternating-grid-frozen-graph",
+      "replays": 4,
+      "stable_addresses": true,
+      "replay_allocations": 0
+    },
+    {
+      "case": "selected-path-traffic",
+      "active_hca_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "bytes_per_hca": [
+        1762064,
+        3524128,
+        3524032,
+        1762016
+      ],
+      "path_counters": [
+        {
+          "peer_rank": 0,
+          "path_index": 0,
+          "device": "rocep1s0f1",
+          "payload_writes": 92,
+          "payload_bytes": 1762128,
+          "physical_hop_payload_bytes": 3524256,
+          "flag_writes": 47,
+          "send_completions": 95,
+          "completion_errors": 0,
+          "qp_number": 561,
+          "remote_qp_number": 306,
+          "local_hca_index": 1,
+          "remote_hca_index": 0,
+          "physical_hops": 2,
+          "retries": null,
+          "retry_events": null
+        },
+        {
+          "peer_rank": 0,
+          "path_index": 1,
+          "device": "roceP2p1s0f0",
+          "payload_writes": 85,
+          "payload_bytes": 1762016,
+          "physical_hop_payload_bytes": 3524032,
+          "flag_writes": 47,
+          "send_completions": 95,
+          "completion_errors": 0,
+          "qp_number": 433,
+          "remote_qp_number": 690,
+          "local_hca_index": 2,
+          "remote_hca_index": 3,
+          "physical_hops": 2,
+          "retries": null,
+          "retry_events": null
+        },
+        {
+          "peer_rank": 1,
+          "path_index": 0,
+          "device": "rocep1s0f1",
+          "payload_writes": 47,
+          "payload_bytes": 1762128,
+          "physical_hop_payload_bytes": 1762128,
+          "flag_writes": 47,
+          "send_completions": 47,
+          "completion_errors": 0,
+          "qp_number": 562,
+          "remote_qp_number": 306,
+          "local_hca_index": 1,
+          "remote_hca_index": 0,
+          "physical_hops": 1,
+          "retries": null,
+          "retry_events": null
+        },
+        {
+          "peer_rank": 1,
+          "path_index": 1,
+          "device": "roceP2p1s0f1",
+          "payload_writes": 40,
+          "payload_bytes": 1762016,
+          "physical_hop_payload_bytes": 1762016,
+          "flag_writes": 47,
+          "send_completions": 47,
+          "completion_errors": 0,
+          "qp_number": 690,
+          "remote_qp_number": 434,
+          "local_hca_index": 3,
+          "remote_hca_index": 2,
+          "physical_hops": 1,
+          "retries": null,
+          "retry_events": null
+        },
+        {
+          "peer_rank": 3,
+          "path_index": 0,
+          "device": "rocep1s0f0",
+          "payload_writes": 47,
+          "payload_bytes": 1762128,
+          "physical_hop_payload_bytes": 1762128,
+          "flag_writes": 47,
+          "send_completions": 47,
+          "completion_errors": 0,
+          "qp_number": 307,
+          "remote_qp_number": 563,
+          "local_hca_index": 0,
+          "remote_hca_index": 1,
+          "physical_hops": 1,
+          "retries": null,
+          "retry_events": null
+        },
+        {
+          "peer_rank": 3,
+          "path_index": 1,
+          "device": "roceP2p1s0f0",
+          "payload_writes": 40,
+          "payload_bytes": 1762016,
+          "physical_hop_payload_bytes": 1762016,
+          "flag_writes": 47,
+          "send_completions": 47,
+          "completion_errors": 0,
+          "qp_number": 435,
+          "remote_qp_number": 691,
+          "local_hca_index": 2,
+          "remote_hca_index": 3,
+          "physical_hops": 1,
+          "retries": null,
+          "retry_events": null
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "world_size": 4,
+    "rank": 2,
+    "hcas": [
+      "rocep1s0f0",
+      "rocep1s0f1",
+      "roceP2p1s0f0",
+      "roceP2p1s0f1"
+    ],
+    "max_size": 1048576,
+    "max_gather_bytes": 1048576,
+    "slot_bytes": 1048576,
+    "epoch": 47,
+    "error_seq": 0,
+    "error_peer": 0,
+    "ctrl_seq": 47,
+    "spin_limit": 20000000,
+    "opposite_paths": 2,
+    "ops_posted": 47,
+    "writes_completed": 378,
+    "last_seq": 47,
+    "two_wave_activations": 3,
+    "two_wave_threshold_bytes": 131072,
+    "wave_mode": "two",
+    "peer_hca": {
+      "0": [
+        1,
+        2
+      ],
+      "1": [
+        1,
+        3
+      ],
+      "3": [
+        0,
+        2
+      ]
+    }
+  }
+}

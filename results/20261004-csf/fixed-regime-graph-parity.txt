@@ -1,0 +1,1 @@
+{"passed": true, "rows": [1, 6, 7, 16], "exact_rows": [1, 6], "capacity": 16, "graph_replays": 3}

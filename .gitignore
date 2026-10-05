@@ -17,3 +17,10 @@ results/20260929-kk926/selected-corrected.json
 results/20260929-kk926/trial-specs.json
 results/20260929-fastokens/selected-before.json
 results/20260929-fastokens/selected-candidate.json
+# Private upgrade sources, host configuration, and launch inventories.
+.csf-work/
+results/20261004-csf/container-before-*.json
+results/20261004-csf/selected-before.json
+results/20261004-csf/trial-specs.json
+results/20261004-csf/trial-specs-*.json
+results/20261004-csf/selected-candidate.json

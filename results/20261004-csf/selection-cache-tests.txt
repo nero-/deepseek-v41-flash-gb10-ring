@@ -1,0 +1,248 @@
+FFFFFFF......                                                            [100%]
+=================================== FAILURES ===================================
+__ test_rank_local_cache_state_does_not_change_shared_tuning_boundary[cold-2] __
+
+world = 2, mode = 'cold'
+
+    @pytest.mark.parametrize("world", [2, 4])
+    @pytest.mark.parametrize("mode", ["cold", "warm", "mixed"])
+    def test_rank_local_cache_state_does_not_change_shared_tuning_boundary(world, mode):
+        ranks = tuple(range(world))
+        hits = {
+            "cold": [False] * world,
+            "warm": [True] * world,
+            "mixed": [True] + [False] * (world - 1),
+        }[mode]
+>       boundaries = [first_boundary(rank, ranks, hit) for rank, hit in enumerate(hits)]
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+../sparkring-installer/runtime/images/upgrades/checks/distributed_selection_cache.py:183: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../sparkring-installer/runtime/images/upgrades/checks/distributed_selection_cache.py:169: in first_boundary
+    boundary = next(iterator)
+               ^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <PreparationJob object at 0x10870ce00>
+
+    def _run(self):
+        if not self.requests:
+            return PreparationResult(plans={})
+        if (self.session.state != "FROZEN" and not self._warmup_only
+                and len(self.session._tuning_ranks) > 1
+>               and not self.session._tuning_cache_synchronized):
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E               AttributeError: 'types.SimpleNamespace' object has no attribute '_tuning_cache_synchronized'
+
+.csf-work/b12x/b12x/preparation/session.py:1693: AttributeError
+__ test_rank_local_cache_state_does_not_change_shared_tuning_boundary[cold-4] __
+
+world = 4, mode = 'cold'
+
+    @pytest.mark.parametrize("world", [2, 4])
+    @pytest.mark.parametrize("mode", ["cold", "warm", "mixed"])
+    def test_rank_local_cache_state_does_not_change_shared_tuning_boundary(world, mode):
+        ranks = tuple(range(world))
+        hits = {
+            "cold": [False] * world,
+            "warm": [True] * world,
+            "mixed": [True] + [False] * (world - 1),
+        }[mode]
+>       boundaries = [first_boundary(rank, ranks, hit) for rank, hit in enumerate(hits)]
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+../sparkring-installer/runtime/images/upgrades/checks/distributed_selection_cache.py:183: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../sparkring-installer/runtime/images/upgrades/checks/distributed_selection_cache.py:169: in first_boundary
+    boundary = next(iterator)
+               ^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <PreparationJob object at 0x108ccb7d0>
+
+    def _run(self):
+        if not self.requests:
+            return PreparationResult(plans={})
+        if (self.session.state != "FROZEN" and not self._warmup_only
+                and len(self.session._tuning_ranks) > 1
+>               and not self.session._tuning_cache_synchronized):
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E               AttributeError: 'types.SimpleNamespace' object has no attribute '_tuning_cache_synchronized'
+
+.csf-work/b12x/b12x/preparation/session.py:1693: AttributeError
+__ test_rank_local_cache_state_does_not_change_shared_tuning_boundary[warm-2] __
+
+world = 2, mode = 'warm'
+
+    @pytest.mark.parametrize("world", [2, 4])
+    @pytest.mark.parametrize("mode", ["cold", "warm", "mixed"])
+    def test_rank_local_cache_state_does_not_change_shared_tuning_boundary(world, mode):
+        ranks = tuple(range(world))
+        hits = {
+            "cold": [False] * world,
+            "warm": [True] * world,
+            "mixed": [True] + [False] * (world - 1),
+        }[mode]
+>       boundaries = [first_boundary(rank, ranks, hit) for rank, hit in enumerate(hits)]
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+../sparkring-installer/runtime/images/upgrades/checks/distributed_selection_cache.py:183: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../sparkring-installer/runtime/images/upgrades/checks/distributed_selection_cache.py:169: in first_boundary
+    boundary = next(iterator)
+               ^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <PreparationJob object at 0x108ccfb30>
+
+    def _run(self):
+        if not self.requests:
+            return PreparationResult(plans={})
+        if (self.session.state != "FROZEN" and not self._warmup_only
+                and len(self.session._tuning_ranks) > 1
+>               and not self.session._tuning_cache_synchronized):
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E               AttributeError: 'types.SimpleNamespace' object has no attribute '_tuning_cache_synchronized'
+
+.csf-work/b12x/b12x/preparation/session.py:1693: AttributeError
+__ test_rank_local_cache_state_does_not_change_shared_tuning_boundary[warm-4] __
+
+world = 4, mode = 'warm'
+
+    @pytest.mark.parametrize("world", [2, 4])
+    @pytest.mark.parametrize("mode", ["cold", "warm", "mixed"])
+    def test_rank_local_cache_state_does_not_change_shared_tuning_boundary(world, mode):
+        ranks = tuple(range(world))
+        hits = {
+            "cold": [False] * world,
+            "warm": [True] * world,
+            "mixed": [True] + [False] * (world - 1),
+        }[mode]
+>       boundaries = [first_boundary(rank, ranks, hit) for rank, hit in enumerate(hits)]
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+../sparkring-installer/runtime/images/upgrades/checks/distributed_selection_cache.py:183: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../sparkring-installer/runtime/images/upgrades/checks/distributed_selection_cache.py:169: in first_boundary
+    boundary = next(iterator)
+               ^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <PreparationJob object at 0x108ccfcb0>
+
+    def _run(self):
+        if not self.requests:
+            return PreparationResult(plans={})
+        if (self.session.state != "FROZEN" and not self._warmup_only
+                and len(self.session._tuning_ranks) > 1
+>               and not self.session._tuning_cache_synchronized):
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E               AttributeError: 'types.SimpleNamespace' object has no attribute '_tuning_cache_synchronized'
+
+.csf-work/b12x/b12x/preparation/session.py:1693: AttributeError
+_ test_rank_local_cache_state_does_not_change_shared_tuning_boundary[mixed-2] __
+
+world = 2, mode = 'mixed'
+
+    @pytest.mark.parametrize("world", [2, 4])
+    @pytest.mark.parametrize("mode", ["cold", "warm", "mixed"])
+    def test_rank_local_cache_state_does_not_change_shared_tuning_boundary(world, mode):
+        ranks = tuple(range(world))
+        hits = {
+            "cold": [False] * world,
+            "warm": [True] * world,
+            "mixed": [True] + [False] * (world - 1),
+        }[mode]
+>       boundaries = [first_boundary(rank, ranks, hit) for rank, hit in enumerate(hits)]
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+../sparkring-installer/runtime/images/upgrades/checks/distributed_selection_cache.py:183: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../sparkring-installer/runtime/images/upgrades/checks/distributed_selection_cache.py:169: in first_boundary
+    boundary = next(iterator)
+               ^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <PreparationJob object at 0x108ccb830>
+
+    def _run(self):
+        if not self.requests:
+            return PreparationResult(plans={})
+        if (self.session.state != "FROZEN" and not self._warmup_only
+                and len(self.session._tuning_ranks) > 1
+>               and not self.session._tuning_cache_synchronized):
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E               AttributeError: 'types.SimpleNamespace' object has no attribute '_tuning_cache_synchronized'
+
+.csf-work/b12x/b12x/preparation/session.py:1693: AttributeError
+_ test_rank_local_cache_state_does_not_change_shared_tuning_boundary[mixed-4] __
+
+world = 4, mode = 'mixed'
+
+    @pytest.mark.parametrize("world", [2, 4])
+    @pytest.mark.parametrize("mode", ["cold", "warm", "mixed"])
+    def test_rank_local_cache_state_does_not_change_shared_tuning_boundary(world, mode):
+        ranks = tuple(range(world))
+        hits = {
+            "cold": [False] * world,
+            "warm": [True] * world,
+            "mixed": [True] + [False] * (world - 1),
+        }[mode]
+>       boundaries = [first_boundary(rank, ranks, hit) for rank, hit in enumerate(hits)]
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+../sparkring-installer/runtime/images/upgrades/checks/distributed_selection_cache.py:183: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../sparkring-installer/runtime/images/upgrades/checks/distributed_selection_cache.py:169: in first_boundary
+    boundary = next(iterator)
+               ^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <PreparationJob object at 0x1083e8620>
+
+    def _run(self):
+        if not self.requests:
+            return PreparationResult(plans={})
+        if (self.session.state != "FROZEN" and not self._warmup_only
+                and len(self.session._tuning_ranks) > 1
+>               and not self.session._tuning_cache_synchronized):
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E               AttributeError: 'types.SimpleNamespace' object has no attribute '_tuning_cache_synchronized'
+
+.csf-work/b12x/b12x/preparation/session.py:1693: AttributeError
+____________ test_distinct_geometry_keeps_distinct_tuning_identity _____________
+
+    def test_distinct_geometry_keeps_distinct_tuning_identity():
+        boundaries = [
+>           first_boundary(rank, (0, 1), hit, query=query)
+            for rank, (hit, query) in enumerate([(True, 128), (False, 256)])
+        ]
+
+../sparkring-installer/runtime/images/upgrades/checks/distributed_selection_cache.py:193: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../sparkring-installer/runtime/images/upgrades/checks/distributed_selection_cache.py:169: in first_boundary
+    boundary = next(iterator)
+               ^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <PreparationJob object at 0x108d04e60>
+
+    def _run(self):
+        if not self.requests:
+            return PreparationResult(plans={})
+        if (self.session.state != "FROZEN" and not self._warmup_only
+                and len(self.session._tuning_ranks) > 1
+>               and not self.session._tuning_cache_synchronized):
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E               AttributeError: 'types.SimpleNamespace' object has no attribute '_tuning_cache_synchronized'
+
+.csf-work/b12x/b12x/preparation/session.py:1693: AttributeError
+=========================== short test summary info ============================
+FAILED ../sparkring-installer/runtime/images/upgrades/checks/distributed_selection_cache.py::test_rank_local_cache_state_does_not_change_shared_tuning_boundary[cold-2]
+FAILED ../sparkring-installer/runtime/images/upgrades/checks/distributed_selection_cache.py::test_rank_local_cache_state_does_not_change_shared_tuning_boundary[cold-4]
+FAILED ../sparkring-installer/runtime/images/upgrades/checks/distributed_selection_cache.py::test_rank_local_cache_state_does_not_change_shared_tuning_boundary[warm-2]
+FAILED ../sparkring-installer/runtime/images/upgrades/checks/distributed_selection_cache.py::test_rank_local_cache_state_does_not_change_shared_tuning_boundary[warm-4]
+FAILED ../sparkring-installer/runtime/images/upgrades/checks/distributed_selection_cache.py::test_rank_local_cache_state_does_not_change_shared_tuning_boundary[mixed-2]
+FAILED ../sparkring-installer/runtime/images/upgrades/checks/distributed_selection_cache.py::test_rank_local_cache_state_does_not_change_shared_tuning_boundary[mixed-4]
+FAILED ../sparkring-installer/runtime/images/upgrades/checks/distributed_selection_cache.py::test_distinct_geometry_keeps_distinct_tuning_identity
+7 failed, 6 passed in 0.22s

@@ -1,0 +1,9 @@
+{
+  "rank": 2,
+  "argv": [
+    "systemctl",
+    "reload",
+    "gb10-gpu-clock-cap.service"
+  ],
+  "host_admin": true
+}

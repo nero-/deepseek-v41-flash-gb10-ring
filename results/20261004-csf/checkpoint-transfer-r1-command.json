@@ -1,0 +1,8 @@
+{
+  "rank": 1,
+  "argv": [
+    "cat",
+    "/home/nero/csf-20261004/replicate-checkpoint.log"
+  ],
+  "host_admin": false
+}

@@ -1,0 +1,8 @@
+{
+  "status": "failed",
+  "rank": 0,
+  "world_size": 4,
+  "error_type": "RuntimeError",
+  "error": "RoCE all-reduce setup failed: rank 0: RoCE proxy setup failed: ibv_reg_mr(pinned region): Cannot allocate memory; rank 1: RoCE proxy setup failed: ibv_reg_mr(pinned region): Cannot allocate memory; rank 2: RoCE proxy setup failed: ibv_reg_mr(pinned region): Cannot allocate memory; rank 3: RoCE proxy setup failed: ibv_reg_mr(pinned region): Cannot allocate memory",
+  "completed_cases": []
+}

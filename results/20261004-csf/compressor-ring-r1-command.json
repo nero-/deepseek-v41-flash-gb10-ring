@@ -1,0 +1,20 @@
+{
+  "rank": 1,
+  "argv": [
+    "docker",
+    "run",
+    "--rm",
+    "--gpus",
+    "all",
+    "--network",
+    "none",
+    "--mount",
+    "type=bind,src=/home/nero/csf-20261004/tests,dst=/tests",
+    "--entrypoint",
+    "python3",
+    "sha256:796ddfda81a8b1d881e341bce93276e28a3934932ab253aed8121d5952e44586",
+    "/tests/kk926-test-launch.py",
+    "/tests/compressor-ring-slots.py"
+  ],
+  "host_admin": false
+}

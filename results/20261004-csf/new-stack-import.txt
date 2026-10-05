@@ -1,0 +1,3 @@
+WARNING 10-04 22:19:06 [indexer_topk.py:29] Failed to import the DeepSelect extension (vllm._deepselect_C): No module named 'vllm._deepselect_C'
+/opt/sparkring/transports/tp2-rocenante-adaptive-prepared-csf/roce/__init__.py
+IMPORT OK 0.1.dev21510+g00a33e231.csf.sparkring

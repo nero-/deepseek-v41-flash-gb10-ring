@@ -1,0 +1,9 @@
+{
+  "rank": 3,
+  "argv": [
+    "docker",
+    "logs",
+    "ds41-peerwait-probe-r3"
+  ],
+  "host_admin": false
+}

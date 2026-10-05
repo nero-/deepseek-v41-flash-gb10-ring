@@ -1,6 +1,12 @@
-# vLLM results — updated 2026-09-29 UTC
+# vLLM results — updated 2026-10-05 UTC
 
 Four GB10 nodes: two DGX Sparks and two ASUS Ascent GX10s. Runtime and checkpoint pins are in [README.md](README.md). The initial migration record is [MIGRATION-20260927.md](MIGRATION-20260927.md); the follow-up campaign is [RESEARCH-20260928.md](RESEARCH-20260928.md).
+
+The [October CSF upgrade](CSF-UPGRADE-20261004.md) was rejected: its
+[full benchmark](FULL-BENCHMARK-CSF-20261004.md) had slower prefill and
+high-concurrency decode than the same-day corrected baseline screen. The
+previous corrected HF runtime remains selected. The candidate combined several
+runtime updates, so these measurements do not isolate CSF storage as the cause.
 
 Selected configuration: **Engram projection TP + adaptive 4K under contention + guarded query-row indexer sharding**, with native DSpark5, graph sizes and an 8K allocation ceiling.
 

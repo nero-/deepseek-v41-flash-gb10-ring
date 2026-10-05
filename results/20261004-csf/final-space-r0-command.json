@@ -1,0 +1,9 @@
+{
+  "rank": 0,
+  "argv": [
+    "df",
+    "-h",
+    "/srv/sparkring/sparkring/checkpoints"
+  ],
+  "host_admin": true
+}

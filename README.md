@@ -30,6 +30,12 @@ All four hosts are updated and running kernel `7.0.0-1019-nvidia`. All four use 
 2350 MHz upper GPU clock limit after measured efficiency trials; see the
 [maintenance results and clock tradeoff](MAINTENANCE-20260930.md).
 
+The October 4 CSF/beta/SparkRing upgrade was rejected for slower prefill and
+concurrent decode. The original corrected recipe remains selected; its pins
+above are unchanged. See [the upgrade record](CSF-UPGRADE-20261004.md),
+[the candidate full benchmark](FULL-BENCHMARK-CSF-20261004.md), and
+[the TensorFold assessment](TENSORFOLD-ASSESSMENT-20261004.md).
+
 ## Operating
 
 ```bash

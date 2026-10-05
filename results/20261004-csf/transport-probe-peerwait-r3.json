@@ -1,0 +1,258 @@
+{
+  "status": "passed",
+  "rank": 3,
+  "world_size": 4,
+  "elapsed_seconds": 38.456555685028434,
+  "profile": "tp2-rocenante-adaptive-prepared-csf-peerwait",
+  "manifest_sha256": "e93d5a5e8180c6956d7dec254be6ec8f9f8392cd9009348147769bea97d0456a",
+  "harness_sha256": "1c907a8d9dceb83a761e856c112d6d81e9ff66da70e57876b0dab9206e64e177",
+  "cases": [
+    {
+      "case": "reduce",
+      "dtype": "torch.bfloat16",
+      "bytes": 16,
+      "rank_identical": true
+    },
+    {
+      "case": "reduce",
+      "dtype": "torch.bfloat16",
+      "bytes": 4096,
+      "rank_identical": true
+    },
+    {
+      "case": "reduce",
+      "dtype": "torch.bfloat16",
+      "bytes": 1048576,
+      "rank_identical": true
+    },
+    {
+      "case": "reduce",
+      "dtype": "torch.float16",
+      "bytes": 16,
+      "rank_identical": true
+    },
+    {
+      "case": "reduce",
+      "dtype": "torch.float16",
+      "bytes": 4096,
+      "rank_identical": true
+    },
+    {
+      "case": "reduce",
+      "dtype": "torch.float16",
+      "bytes": 1048576,
+      "rank_identical": true
+    },
+    {
+      "case": "reduce",
+      "dtype": "torch.float32",
+      "bytes": 16,
+      "rank_identical": true
+    },
+    {
+      "case": "reduce",
+      "dtype": "torch.float32",
+      "bytes": 4096,
+      "rank_identical": true
+    },
+    {
+      "case": "reduce",
+      "dtype": "torch.float32",
+      "bytes": 1048576,
+      "rank_identical": true
+    },
+    {
+      "case": "gather",
+      "shape": [
+        4,
+        32
+      ],
+      "dimension": 0
+    },
+    {
+      "case": "gather",
+      "shape": [
+        4,
+        32
+      ],
+      "dimension": -1
+    },
+    {
+      "case": "gather",
+      "shape": [
+        5,
+        3
+      ],
+      "dimension": -1
+    },
+    {
+      "case": "gather-output-ownership"
+    },
+    {
+      "case": "alternating-grid-frozen-graph",
+      "replays": 4,
+      "stable_addresses": true,
+      "replay_allocations": 0
+    },
+    {
+      "case": "selected-path-traffic",
+      "active_hca_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "bytes_per_hca": [
+        1762064,
+        3524128,
+        3524032,
+        1762016
+      ],
+      "path_counters": [
+        {
+          "peer_rank": 0,
+          "path_index": 0,
+          "device": "rocep1s0f0",
+          "payload_writes": 47,
+          "payload_bytes": 1762128,
+          "physical_hop_payload_bytes": 1762128,
+          "flag_writes": 47,
+          "send_completions": 47,
+          "completion_errors": 0,
+          "qp_number": 337,
+          "remote_qp_number": 595,
+          "local_hca_index": 0,
+          "remote_hca_index": 1,
+          "physical_hops": 1,
+          "retries": null,
+          "retry_events": null
+        },
+        {
+          "peer_rank": 0,
+          "path_index": 1,
+          "device": "roceP2p1s0f0",
+          "payload_writes": 40,
+          "payload_bytes": 1762016,
+          "physical_hop_payload_bytes": 1762016,
+          "flag_writes": 47,
+          "send_completions": 47,
+          "completion_errors": 0,
+          "qp_number": 465,
+          "remote_qp_number": 723,
+          "local_hca_index": 2,
+          "remote_hca_index": 3,
+          "physical_hops": 1,
+          "retries": null,
+          "retry_events": null
+        },
+        {
+          "peer_rank": 1,
+          "path_index": 0,
+          "device": "rocep1s0f1",
+          "payload_writes": 92,
+          "payload_bytes": 1762128,
+          "physical_hop_payload_bytes": 3524256,
+          "flag_writes": 47,
+          "send_completions": 95,
+          "completion_errors": 0,
+          "qp_number": 594,
+          "remote_qp_number": 339,
+          "local_hca_index": 1,
+          "remote_hca_index": 0,
+          "physical_hops": 2,
+          "retries": null,
+          "retry_events": null
+        },
+        {
+          "peer_rank": 1,
+          "path_index": 1,
+          "device": "roceP2p1s0f0",
+          "payload_writes": 85,
+          "payload_bytes": 1762016,
+          "physical_hop_payload_bytes": 3524032,
+          "flag_writes": 47,
+          "send_completions": 95,
+          "completion_errors": 0,
+          "qp_number": 466,
+          "remote_qp_number": 723,
+          "local_hca_index": 2,
+          "remote_hca_index": 3,
+          "physical_hops": 2,
+          "retries": null,
+          "retry_events": null
+        },
+        {
+          "peer_rank": 2,
+          "path_index": 0,
+          "device": "rocep1s0f1",
+          "payload_writes": 47,
+          "payload_bytes": 1762128,
+          "physical_hop_payload_bytes": 1762128,
+          "flag_writes": 47,
+          "send_completions": 47,
+          "completion_errors": 0,
+          "qp_number": 595,
+          "remote_qp_number": 339,
+          "local_hca_index": 1,
+          "remote_hca_index": 0,
+          "physical_hops": 1,
+          "retries": null,
+          "retry_events": null
+        },
+        {
+          "peer_rank": 2,
+          "path_index": 1,
+          "device": "roceP2p1s0f1",
+          "payload_writes": 40,
+          "payload_bytes": 1762016,
+          "physical_hop_payload_bytes": 1762016,
+          "flag_writes": 47,
+          "send_completions": 47,
+          "completion_errors": 0,
+          "qp_number": 723,
+          "remote_qp_number": 467,
+          "local_hca_index": 3,
+          "remote_hca_index": 2,
+          "physical_hops": 1,
+          "retries": null,
+          "retry_events": null
+        }
+      ]
+    },
+    {
+      "case": "delayed-peer",
+      "delay_seconds": 20.0,
+      "waited_seconds": 0.0004882410285063088,
+      "stalls": 0,
+      "stalls_resolved": 0,
+      "notices_received": 3
+    },
+    {
+      "case": "peer-exit",
+      "role": "closed"
+    }
+  ],
+  "stats": {
+    "world_size": 4,
+    "rank": 3,
+    "hcas": [
+      "rocep1s0f0",
+      "rocep1s0f1",
+      "roceP2p1s0f0",
+      "roceP2p1s0f1"
+    ],
+    "max_size": 1048576,
+    "max_gather_bytes": 1048576,
+    "slot_bytes": 1048576,
+    "epoch": 48,
+    "error_seq": 0,
+    "error_peer": 0,
+    "ctrl_seq": 48,
+    "completed_seq": 48,
+    "wait_stopped": false,
+    "abort_seq": 0,
+    "spin_limit": 4294967295,
+    "peer_timeout_s": 300.0,
+    "opposite_paths": 2
+  }
+}

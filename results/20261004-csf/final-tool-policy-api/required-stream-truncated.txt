@@ -1,0 +1,6 @@
+data: {"id":"chatcmpl-8870e6c8dcd93fba","object":"chat.completion.chunk","created":1791162206,"model":"DeepSeek-V4.1-Flash-TP4","choices":[{"index":0,"delta":{"role":"assistant","content":""},"logprobs":null,"finish_reason":null}],"prompt_token_ids":null,"prompt_text":null}
+
+data: {"error": {"message": "Named or required tool_choice produced no tool calls; finish_reason: length. Increase max_tokens so generation can complete the tool call.", "type": "BadRequestError", "param": "max_tokens", "code": 400}}
+
+data: [DONE]
+

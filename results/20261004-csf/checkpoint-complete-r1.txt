@@ -1,0 +1,653 @@
+{
+  "revision": "c5c41fe301c4c1d24fc09376883d9168e521dc66",
+  "receipts": [
+    {
+      "file": ".gitattributes",
+      "size": 1519,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "LICENSE",
+      "size": 1084,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "README.md",
+      "size": 4035,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "build-contract.json",
+      "size": 7471412,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "manifest.json",
+      "size": 16944,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "metadata/LICENSE",
+      "size": 1084,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "metadata/README.md",
+      "size": 13110,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "metadata/config.json",
+      "size": 3311,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "metadata/model.safetensors.index.json",
+      "size": 7470294,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "metadata/tokenizer.json",
+      "size": 6367257,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "metadata/tokenizer_config.json",
+      "size": 801,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00001-of-00048.safetensors.json",
+      "size": 36892,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00002-of-00048.safetensors.json",
+      "size": 854,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00003-of-00048.safetensors.json",
+      "size": 696838,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00004-of-00048.safetensors.json",
+      "size": 696458,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00005-of-00048.safetensors.json",
+      "size": 697682,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00006-of-00048.safetensors.json",
+      "size": 696389,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00007-of-00048.safetensors.json",
+      "size": 696390,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00008-of-00048.safetensors.json",
+      "size": 696385,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00009-of-00048.safetensors.json",
+      "size": 696394,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00010-of-00048.safetensors.json",
+      "size": 696388,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00011-of-00048.safetensors.json",
+      "size": 697672,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00012-of-00048.safetensors.json",
+      "size": 696398,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00013-of-00048.safetensors.json",
+      "size": 700710,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00014-of-00048.safetensors.json",
+      "size": 700719,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00015-of-00048.safetensors.json",
+      "size": 700803,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00016-of-00048.safetensors.json",
+      "size": 700931,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00017-of-00048.safetensors.json",
+      "size": 702194,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00018-of-00048.safetensors.json",
+      "size": 700802,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00019-of-00048.safetensors.json",
+      "size": 700942,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00020-of-00048.safetensors.json",
+      "size": 700955,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00021-of-00048.safetensors.json",
+      "size": 700980,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00022-of-00048.safetensors.json",
+      "size": 700927,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00023-of-00048.safetensors.json",
+      "size": 701920,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00024-of-00048.safetensors.json",
+      "size": 700815,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00025-of-00048.safetensors.json",
+      "size": 700856,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00026-of-00048.safetensors.json",
+      "size": 700791,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00027-of-00048.safetensors.json",
+      "size": 701268,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00028-of-00048.safetensors.json",
+      "size": 700743,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00029-of-00048.safetensors.json",
+      "size": 700728,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00030-of-00048.safetensors.json",
+      "size": 700729,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00031-of-00048.safetensors.json",
+      "size": 701164,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00032-of-00048.safetensors.json",
+      "size": 700697,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00033-of-00048.safetensors.json",
+      "size": 700709,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00034-of-00048.safetensors.json",
+      "size": 700765,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00035-of-00048.safetensors.json",
+      "size": 701165,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00036-of-00048.safetensors.json",
+      "size": 700731,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00037-of-00048.safetensors.json",
+      "size": 700762,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00038-of-00048.safetensors.json",
+      "size": 701031,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00039-of-00048.safetensors.json",
+      "size": 701291,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00040-of-00048.safetensors.json",
+      "size": 700934,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00041-of-00048.safetensors.json",
+      "size": 701161,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00042-of-00048.safetensors.json",
+      "size": 701569,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00043-of-00048.safetensors.json",
+      "size": 630,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00044-of-00048.safetensors.json",
+      "size": 113630,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00045-of-00048.safetensors.json",
+      "size": 113206,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00046-of-00048.safetensors.json",
+      "size": 114550,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00047-of-00048.safetensors.json",
+      "size": 1274,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "receipts/model-00048-of-00048.safetensors.json",
+      "size": 1282,
+      "sha256": null,
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00001-of-00048.safetensors",
+      "size": 970533736,
+      "sha256": "7a503583177450de9ba9bf573f2b7b51c082f10a45b6930db5fdd8b7e6c5b279",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00002-of-00048.safetensors",
+      "size": 1323858384,
+      "sha256": "7582cad4247e8d759d80d4ad883545614157ca33bf0c335b41e6c5dbc86a1ad6",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00003-of-00048.safetensors",
+      "size": 7023164484,
+      "sha256": "ce24f95e034549bdc2e01ab3e4bd48a259fd246c87788fa20f682fb6a6af82cd",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00004-of-00048.safetensors",
+      "size": 7022860208,
+      "sha256": "e897f4f9106ef38095c893fe0478726ce0f2f04436c2f6c0550eb200a20dedee",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00005-of-00048.safetensors",
+      "size": 7038874252,
+      "sha256": "25e4b6929a166e68997a46fc80ba1b02095bc31df6c4efd635f5cc508c517930",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00006-of-00048.safetensors",
+      "size": 7022636628,
+      "sha256": "7fcb54a73b4d3ddc8723cd6faaa0da7828047c4911f23737a539bd15f10c9d22",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00007-of-00048.safetensors",
+      "size": 7022644348,
+      "sha256": "c54f51df209fb67e7dfc7c8588e0ad7ec2a342d9f6bb0ce99472c4cfaadbd59d",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00008-of-00048.safetensors",
+      "size": 7022647032,
+      "sha256": "e379683c8c337a311439c7061abfcf4415bbef4e97ae03b828e1fc3d9cb4d7c7",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00009-of-00048.safetensors",
+      "size": 7022656236,
+      "sha256": "26f274864a45c45657a99131108b05c7ba6b805cd48fe1ac1b5d2fe4d63312ab",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00010-of-00048.safetensors",
+      "size": 7022642244,
+      "sha256": "54a7b1b0423f860ff71b2ad7cd2d8b5755e5b24385250308ff4d0b15a47d0a5f",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00011-of-00048.safetensors",
+      "size": 7038855692,
+      "sha256": "a68790a34752c50cc88d4dd093e778f95efe54b2923ecf337841d46f05e23d91",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00012-of-00048.safetensors",
+      "size": 7022658452,
+      "sha256": "8102c986824ef6af326d0c3884bf7cafb22309e0d3522ea9f79b4271e948a29d",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00013-of-00048.safetensors",
+      "size": 7022733580,
+      "sha256": "e16918d2bb60faf29ceb3a1cbe3ecc3256b916314000206f99c84b1bd77d8af7",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00014-of-00048.safetensors",
+      "size": 7022761804,
+      "sha256": "59adfabb37db8ae4a587caf70eb96482d98be35e17578c4552fc98ee0317d619",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00015-of-00048.safetensors",
+      "size": 7022871428,
+      "sha256": "d47caadae0a9aa16fc7e8b7fa5a34fa4835662316df8a5e0bd020e35f01e5687",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00016-of-00048.safetensors",
+      "size": 7023113392,
+      "sha256": "912813c386870c4c25a3dc7940523918deb2f812738eee5cd18504bd49e6d4de",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00017-of-00048.safetensors",
+      "size": 7039251428,
+      "sha256": "614a771280ccd9c499bb57477fad4d366224a55806e9fb0d7e050305c112a537",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00018-of-00048.safetensors",
+      "size": 7023241712,
+      "sha256": "a4418f6ce67646ca014e60feb1620e97790975268cc070d050b00dede8800d05",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00019-of-00048.safetensors",
+      "size": 7023118304,
+      "sha256": "484b00e8ce262abb73ed7b28da2df7bf967c26afea28f2eb552447baba56fa8a",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00020-of-00048.safetensors",
+      "size": 7023246192,
+      "sha256": "9b3293beb1800e1d4a9162456fc14f79300eddd2a5ca07254a5c304abf301f1f",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00021-of-00048.safetensors",
+      "size": 7023325816,
+      "sha256": "5b5cd9d2fa0d269c2b31df7a6f2791e5e3352ee01872d875ec07647421254d28",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00022-of-00048.safetensors",
+      "size": 7023186228,
+      "sha256": "a8ae9f775d24835fc89dcc83708d52e914296c04b7ff80d9d0bb0a083f6c18b8",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00023-of-00048.safetensors",
+      "size": 7033900140,
+      "sha256": "26043b3d4e9851edde929a8364887e93a5d3c3c91424ebedc2d2752f5fc3e4f5",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00024-of-00048.safetensors",
+      "size": 7022902116,
+      "sha256": "18d77548abf6785653786a9f419dd4809153c6d3b1c79d9409d71f6e0340a80b",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00025-of-00048.safetensors",
+      "size": 7022969352,
+      "sha256": "b9a081ebf2c03f6cd9f24162060a685b9f2c976b20d628ed144c5a88bb46a6d5",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00026-of-00048.safetensors",
+      "size": 7022864420,
+      "sha256": "06ba91a8b97c817329920b919f0b083208bff3608db91fce0698e441c15adb9e",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00027-of-00048.safetensors",
+      "size": 7028480384,
+      "sha256": "78a9bb6bb3d22cdb738d7e54fc7765dcebd400349a7682e90ed6e69ed1302cb6",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00028-of-00048.safetensors",
+      "size": 7022741836,
+      "sha256": "a033ca2a78f4c312c88bee4aa2712ef16ebbeb6bb9e636b076b36d14d18d4f4f",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00029-of-00048.safetensors",
+      "size": 7022725384,
+      "sha256": "512e788ee1552eba11ced513061e481d9580ef041e2f09c8bfc11fcaa2bd6e38",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00030-of-00048.safetensors",
+      "size": 7022710112,
+      "sha256": "1f21961b7c84ccdce034c0a1c976e13b8262f7a75ece2d427f8acad19acd129a",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00031-of-00048.safetensors",
+      "size": 7028244180,
+      "sha256": "ab2e549e5edb5aabe0a478cbe6f39918ddaaaf16e868d8903d46d58253efe007",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00032-of-00048.safetensors",
+      "size": 7022669196,
+      "sha256": "fb19798058a32147a2b6fa714d51da31d41d9c714861f6769aaa24c9c9c21b59",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00033-of-00048.safetensors",
+      "size": 7022691924,
+      "sha256": "5d04e3e4307847d8290657e1b4de030d0f7aa92edef9955e69923aa83ed1e594",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00034-of-00048.safetensors",
+      "size": 7022801024,
+      "sha256": "de07bb1bf5fde284481eec4da292a82877655f552ede50b9bbecf8803a7a59cf",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00035-of-00048.safetensors",
+      "size": 7028308124,
+      "sha256": "5451b7142e7211f1ed6f2c22da7aac91e0f21c8ffb51b76f3ac7d793e397a4c8",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00036-of-00048.safetensors",
+      "size": 7022808216,
+      "sha256": "a4c906f8ff00fdaa6966a302a3182fd5f7c6c61649bf0b4c364639bd6fedc2a0",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00037-of-00048.safetensors",
+      "size": 7022799352,
+      "sha256": "dca721bce557b647b21c39cc12b6551118bc0839c7a3ad01998bb0aa7e753b6d",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00038-of-00048.safetensors",
+      "size": 7023491208,
+      "sha256": "ad2a325bf9033e8eabd45c7cb922b3c2d38f78e396b10ae69aa797193f6f02a5",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00039-of-00048.safetensors",
+      "size": 7028775112,
+      "sha256": "d134f54f5a7b7bf1f2425695653592c44967262c3b225eb9f88e7f0face12149",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00040-of-00048.safetensors",
+      "size": 7023655520,
+      "sha256": "d3691d6ffa4b2461870061bd67e7535aa2b3470dc56d7438d6be8279403a8ac8",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00041-of-00048.safetensors",
+      "size": 7024551740,
+      "sha256": "ae31755dfdd72bc9c1512794d26971c1b6a527e377365b03e21ec034b9e2473a",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00042-of-00048.safetensors",
+      "size": 7028034496,
+      "sha256": "8bc460ca51e504da5a1d9222b0968f9211c1a71020f566b74a6bac85da3e5ba0",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00043-of-00048.safetensors",
+      "size": 1323837736,
+      "sha256": "bed0ea6a4c3e25a8f051db2c3d5aeff677aa2f59e845dea167ca2229f66b2baa",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00044-of-00048.safetensors",
+      "size": 2652728848,
+      "sha256": "41ba4af7d57d42284bff0ac26e584f4ee9d81a37ce6490bed42a5c9dd01b5c24",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00045-of-00048.safetensors",
+      "size": 2573998288,
+      "sha256": "1ee4a0103fad8d947ee6c9429a440b289ceeb8452668acf3f5ab324179072575",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00046-of-00048.safetensors",
+      "size": 2706403008,
+      "sha256": "7e5333799713be691f8796e117b71010c284c1f5289bb4203c47473c4d924a7f",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00047-of-00048.safetensors",
+      "size": 101535151048,
+      "sha256": "18523c0ef7ada4252490b3ec4a7b757676d30ccfebaa518af56c58d492b3d0c9",
+      "old_deleted": false
+    },
+    {
+      "file": "tensors/model-00048-of-00048.safetensors",
+      "size": 101537926752,
+      "sha256": "d5d45a5fadd4a97385e796b00d907ca1aa96b2bb2f59abaa4577ab9f97a4996d",
+      "old_deleted": false
+    },
+    {
+      "file": "verification.json",
+      "size": 14939,
+      "sha256": null,
+      "old_deleted": false
+    }
+  ]
+}

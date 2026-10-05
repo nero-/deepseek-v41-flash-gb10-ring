@@ -1,0 +1,9 @@
+{"file": "model-00041-of-00048.safetensors", "bytes": 7389761368, "sha256": "48a1c08afadf4e73223c587f9c6ad6f32aef57c01342ae75e96b07a001711d42", "restored": false, "fabric_transferred": true, "seconds": 14.893983012007084}
+{"file": "model-00042-of-00048.safetensors", "bytes": 7389761368, "sha256": "e1a4d5d30ae51bafda75078d49b05a585c924b0af9b3481c075b04341507c2ef", "restored": false, "fabric_transferred": true, "seconds": 15.057498759008013}
+{"file": "model-00043-of-00048.safetensors", "bytes": 1323837624, "sha256": "d762b688f138e00a24eac96f27b842715bb4b534ecc9ca39076bed2b8c33201e", "restored": false, "fabric_transferred": true, "seconds": 3.094433920981828}
+{"file": "model-00044-of-00048.safetensors", "bytes": 2652728736, "sha256": "9a6b39fb88a2510487a8efaef77aa7864e8061f6b62c95a0f010e9dd538f3b05", "restored": false, "fabric_transferred": true, "seconds": 7.631750615022611}
+{"file": "model-00045-of-00048.safetensors", "bytes": 2573998176, "sha256": "0cc9d5f6ca3a2158ccc63ce2c70c76aeda8177d54913340481af566680329eb5", "restored": false, "fabric_transferred": true, "seconds": 7.5142508239950985}
+{"file": "model-00046-of-00048.safetensors", "bytes": 2706402896, "sha256": "e625902027b9d23d416f8818c665fab4704e0b96dc1bc778321601b700475a9d", "restored": false, "fabric_transferred": true, "seconds": 7.866228352999315}
+{"file": "model-00047-of-00048.safetensors", "bytes": 101535150936, "sha256": "824db4881320407ac340736d14dcee5ecd748c27d0f5836b8127ecc2e3781b0f", "restored": false, "fabric_transferred": true, "seconds": 509.3481230180478}
+{"file": "model-00048-of-00048.safetensors", "bytes": 101537926640, "sha256": "976330f4954338e1ad8b508c32aa912032c7ad908959fd53c8307650fe4520ed", "restored": false, "fabric_transferred": true, "seconds": 510.7717058060225}
+ORIGINAL CHECKPOINT RECOVERED

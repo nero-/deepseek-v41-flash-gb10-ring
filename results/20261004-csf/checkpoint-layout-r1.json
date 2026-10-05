@@ -1,0 +1,442 @@
+[
+  {
+    "name": "model-00011-of-00048.safetensors",
+    "size": 7405953784,
+    "inode": 17858999,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00011-of-00048.safetensors"
+  },
+  {
+    "name": "model-00031-of-00048.safetensors",
+    "size": 7395337384,
+    "inode": 17859001,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00031-of-00048.safetensors"
+  },
+  {
+    "name": "model-00026-of-00048.safetensors",
+    "size": 7389761368,
+    "inode": 17858998,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00026-of-00048.safetensors"
+  },
+  {
+    "name": "model-00038-of-00048.safetensors",
+    "size": 7389761368,
+    "inode": 17859049,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00038-of-00048.safetensors"
+  },
+  {
+    "name": "model-00041-of-00048.safetensors",
+    "size": 7389761368,
+    "inode": 17859054,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00041-of-00048.safetensors"
+  },
+  {
+    "name": "model-00003-of-00048.safetensors",
+    "size": 7389759032,
+    "inode": 17859003,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00003-of-00048.safetensors"
+  },
+  {
+    "name": "model-00035-of-00048.safetensors",
+    "size": 7395337384,
+    "inode": 17859053,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00035-of-00048.safetensors"
+  },
+  {
+    "name": "model-00028-of-00048.safetensors",
+    "size": 7389761368,
+    "inode": 17859005,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00028-of-00048.safetensors"
+  },
+  {
+    "name": "model-00024-of-00048.safetensors",
+    "size": 7389761368,
+    "inode": 17859007,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00024-of-00048.safetensors"
+  },
+  {
+    "name": "model-00012-of-00048.safetensors",
+    "size": 7389759032,
+    "inode": 17859008,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00012-of-00048.safetensors"
+  },
+  {
+    "name": "model-00004-of-00048.safetensors",
+    "size": 7389759032,
+    "inode": 17859010,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00004-of-00048.safetensors"
+  },
+  {
+    "name": "model-00022-of-00048.safetensors",
+    "size": 7389761368,
+    "inode": 17859013,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00022-of-00048.safetensors"
+  },
+  {
+    "name": "model-00036-of-00048.safetensors",
+    "size": 7389761368,
+    "inode": 17859056,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00036-of-00048.safetensors"
+  },
+  {
+    "name": "tokenizer_config.json",
+    "size": 801,
+    "inode": 2235134,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/tokenizer_config.json"
+  },
+  {
+    "name": "model-00029-of-00048.safetensors",
+    "size": 7389761368,
+    "inode": 17859015,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00029-of-00048.safetensors"
+  },
+  {
+    "name": "model-00005-of-00048.safetensors",
+    "size": 7405953784,
+    "inode": 17859017,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00005-of-00048.safetensors"
+  },
+  {
+    "name": "model-00046-of-00048.safetensors",
+    "size": 2706402896,
+    "inode": 17859058,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00046-of-00048.safetensors"
+  },
+  {
+    "name": "model-00019-of-00048.safetensors",
+    "size": 7389761368,
+    "inode": 17859018,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00019-of-00048.safetensors"
+  },
+  {
+    "name": "model-00016-of-00048.safetensors",
+    "size": 7389761368,
+    "inode": 17859019,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00016-of-00048.safetensors"
+  },
+  {
+    "name": "model-00039-of-00048.safetensors",
+    "size": 7395337384,
+    "inode": 17859059,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00039-of-00048.safetensors"
+  },
+  {
+    "name": "model-00027-of-00048.safetensors",
+    "size": 7395337384,
+    "inode": 17859021,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00027-of-00048.safetensors"
+  },
+  {
+    "name": "config.json",
+    "size": 3311,
+    "inode": 2235074,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/config.json"
+  },
+  {
+    "name": "model-00002-of-00048.safetensors",
+    "size": 1323858272,
+    "inode": 17859023,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00002-of-00048.safetensors"
+  },
+  {
+    "name": "model-00030-of-00048.safetensors",
+    "size": 7389761368,
+    "inode": 17859025,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00030-of-00048.safetensors"
+  },
+  {
+    "name": "model-00021-of-00048.safetensors",
+    "size": 7389761368,
+    "inode": 17859027,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00021-of-00048.safetensors"
+  },
+  {
+    "name": "model-00007-of-00048.safetensors",
+    "size": 7389759032,
+    "inode": 17859029,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00007-of-00048.safetensors"
+  },
+  {
+    "name": "model-00009-of-00048.safetensors",
+    "size": 7389759032,
+    "inode": 17859030,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00009-of-00048.safetensors"
+  },
+  {
+    "name": "model-00040-of-00048.safetensors",
+    "size": 7389761368,
+    "inode": 17859060,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00040-of-00048.safetensors"
+  },
+  {
+    "name": "model-00001-of-00048.safetensors",
+    "size": 970533624,
+    "inode": 17859031,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00001-of-00048.safetensors"
+  },
+  {
+    "name": "model-00023-of-00048.safetensors",
+    "size": 7400713088,
+    "inode": 17859032,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00023-of-00048.safetensors"
+  },
+  {
+    "name": "model-00044-of-00048.safetensors",
+    "size": 2652728736,
+    "inode": 17859061,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00044-of-00048.safetensors"
+  },
+  {
+    "name": "model-00047-of-00048.safetensors",
+    "size": 101535150936,
+    "inode": 17859062,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00047-of-00048.safetensors"
+  },
+  {
+    "name": "model-00034-of-00048.safetensors",
+    "size": 7389761368,
+    "inode": 17859034,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00034-of-00048.safetensors"
+  },
+  {
+    "name": "model-00048-of-00048.safetensors",
+    "size": 101537926640,
+    "inode": 17859063,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00048-of-00048.safetensors"
+  },
+  {
+    "name": "model-00025-of-00048.safetensors",
+    "size": 7389761368,
+    "inode": 17859035,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00025-of-00048.safetensors"
+  },
+  {
+    "name": "model-00015-of-00048.safetensors",
+    "size": 7389761368,
+    "inode": 17859036,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00015-of-00048.safetensors"
+  },
+  {
+    "name": "model-00042-of-00048.safetensors",
+    "size": 7389761368,
+    "inode": 17859064,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00042-of-00048.safetensors"
+  },
+  {
+    "name": "model-00018-of-00048.safetensors",
+    "size": 7389761368,
+    "inode": 17859037,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00018-of-00048.safetensors"
+  },
+  {
+    "name": "model-00006-of-00048.safetensors",
+    "size": 7389759032,
+    "inode": 17859038,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00006-of-00048.safetensors"
+  },
+  {
+    "name": "model-00045-of-00048.safetensors",
+    "size": 2573998176,
+    "inode": 17859065,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00045-of-00048.safetensors"
+  },
+  {
+    "name": "model-00020-of-00048.safetensors",
+    "size": 7389761368,
+    "inode": 17859039,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00020-of-00048.safetensors"
+  },
+  {
+    "name": "model-00008-of-00048.safetensors",
+    "size": 7389759032,
+    "inode": 17859040,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00008-of-00048.safetensors"
+  },
+  {
+    "name": "tokenizer.json",
+    "size": 6367257,
+    "inode": 2235132,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/tokenizer.json"
+  },
+  {
+    "name": "model-00032-of-00048.safetensors",
+    "size": 7389761368,
+    "inode": 17859042,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00032-of-00048.safetensors"
+  },
+  {
+    "name": "model-00033-of-00048.safetensors",
+    "size": 7389761368,
+    "inode": 17859044,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00033-of-00048.safetensors"
+  },
+  {
+    "name": "model-00013-of-00048.safetensors",
+    "size": 7389761368,
+    "inode": 17859045,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00013-of-00048.safetensors"
+  },
+  {
+    "name": "model-00037-of-00048.safetensors",
+    "size": 7389761368,
+    "inode": 17859067,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00037-of-00048.safetensors"
+  },
+  {
+    "name": "model-00043-of-00048.safetensors",
+    "size": 1323837624,
+    "inode": 17859068,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00043-of-00048.safetensors"
+  },
+  {
+    "name": "evaluation",
+    "size": 4096,
+    "inode": 2235079,
+    "links": 2,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/evaluation"
+  },
+  {
+    "name": "model-00010-of-00048.safetensors",
+    "size": 7389759032,
+    "inode": 17859046,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00010-of-00048.safetensors"
+  },
+  {
+    "name": "inference",
+    "size": 4096,
+    "inode": 2235100,
+    "links": 3,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/inference"
+  },
+  {
+    "name": "model-00017-of-00048.safetensors",
+    "size": 7405956128,
+    "inode": 17859047,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00017-of-00048.safetensors"
+  },
+  {
+    "name": "model.safetensors.index.json",
+    "size": 7470294,
+    "inode": 2235130,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model.safetensors.index.json"
+  },
+  {
+    "name": "encoding",
+    "size": 4096,
+    "inode": 2235020,
+    "links": 3,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/encoding"
+  },
+  {
+    "name": "model-00014-of-00048.safetensors",
+    "size": 7389761368,
+    "inode": 17859048,
+    "links": 1,
+    "symlink": false,
+    "resolved": "/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/model-00014-of-00048.safetensors"
+  }
+]

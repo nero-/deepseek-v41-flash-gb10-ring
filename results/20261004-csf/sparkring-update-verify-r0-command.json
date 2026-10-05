@@ -1,0 +1,11 @@
+{
+  "rank": 0,
+  "argv": [
+    "docker",
+    "run",
+    "--rm",
+    "sha256:a845263341df054562e192cbac6ad559b1fec0d49d47379fb625d04f651eae92",
+    "verify"
+  ],
+  "host_admin": false
+}

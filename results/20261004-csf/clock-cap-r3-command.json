@@ -1,0 +1,9 @@
+{
+  "rank": 3,
+  "argv": [
+    "sh",
+    "-c",
+    "systemctl is-enabled gb10-gpu-clock-cap.service; systemctl is-active gb10-gpu-clock-cap.service; systemctl cat gb10-gpu-clock-cap.service; nvidia-smi --query-gpu=name,temperature.gpu,clocks.current.graphics --format=csv,noheader"
+  ],
+  "host_admin": false
+}

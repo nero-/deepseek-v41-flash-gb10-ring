@@ -127,6 +127,24 @@ fallbacks with the known model-fidelity defect.
 `status` reports the local selected deployment first, then the official stock
 deployment; a stopped stock deployment is expected while the selected one runs.
 
+## Rejected October CSF campaign
+
+The integrated CSF/beta/updated-SparkRing candidate was rejected for slower
+prefill and concurrent decode. The exact previous corrected HF images and
+original checkpoint were restored on all four ranks. The permanent controller,
+plugins and selected configuration remain unchanged; normal commands above
+continue to use the original recipe. All original shard hashes were verified,
+the GX10 originals were recovered by lossless reconstruction followed by direct
+fabric transfer from the verified Spark originals. Remaining GX10 CSF trees
+were removed before that transfer; Spark CSF trees were removed after serving
+was healthy. The 2350 MHz cap remains enabled. No repeat full benchmark of the restored recipe was run.
+
+[Campaign and recovery record](CSF-UPGRADE-20261004.md),
+[candidate full benchmark](FULL-BENCHMARK-CSF-20261004.md), and
+[final restored audit](results/20261004-csf/restored-final-audit.json).
+Campaign scripts require private receipts and are historical; do not rerun
+completed promotion, rollback or cleanup phases blindly.
+
 ## After a reboot
 
 - SparkRing manages the fabric through NetworkManager. The enabled mesh service follows the last selected mode; old netplan files are preserved in the migration backup. Do not reapply the original setup recipe over the installed fabric.

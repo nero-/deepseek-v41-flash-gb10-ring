@@ -1,0 +1,10 @@
+{
+  "rank": 0,
+  "argv": [
+    "systemctl",
+    "show",
+    "gb10-gpu-clock-cap.service",
+    "--property=ActiveState,UnitFileState,ExecStart,ExecReload,NeedDaemonReload"
+  ],
+  "host_admin": false
+}

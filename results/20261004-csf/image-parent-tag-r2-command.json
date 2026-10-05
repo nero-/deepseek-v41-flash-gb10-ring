@@ -1,0 +1,10 @@
+{
+  "rank": 2,
+  "argv": [
+    "docker",
+    "tag",
+    "sha256:4fbff34beec9dfde9ca4e2f197d8a93da0f36fec226027871c4d3d6247d6ac7d",
+    "ds41:csf-parent"
+  ],
+  "host_admin": false
+}

@@ -1,0 +1,22 @@
+NCCL version 2.32.3+cuda13.4
+{"rank": 0, "case": "reduce", "status": "passed"}
+{"rank": 0, "case": "reduce", "status": "passed"}
+{"rank": 0, "case": "reduce", "status": "passed"}
+{"rank": 0, "case": "reduce", "status": "passed"}
+{"rank": 0, "case": "reduce", "status": "passed"}
+{"rank": 0, "case": "reduce", "status": "passed"}
+{"rank": 0, "case": "reduce", "status": "passed"}
+{"rank": 0, "case": "reduce", "status": "passed"}
+{"rank": 0, "case": "reduce", "status": "passed"}
+{"rank": 0, "case": "gather", "status": "passed"}
+{"rank": 0, "case": "gather", "status": "passed"}
+{"rank": 0, "case": "gather", "status": "passed"}
+{"rank": 0, "case": "gather-output-ownership", "status": "passed"}
+{"rank": 0, "case": "alternating-grid-frozen-graph", "status": "passed"}
+{"rank": 0, "case": "selected-path-traffic", "status": "passed"}
+{"rank": 0, "case": "delayed-peer", "status": "passed"}
+{"rank": 0, "case": "peer-exit", "status": "passed"}
+RoCEnante rank 0: waited 5.0 s at sequence 48 for rank 3 path 0 (flag 46), rank 3 path 1 (flag 46); waiting up to 300 s while their queue pairs acknowledge checks
+RoCEnante rank 0: the wait at sequence 48 ended within 20.0 s; serving continues
+RoCEnante rank 0: waited 5.0 s at sequence 49 for rank 3 path 0 (flag 47), rank 3 path 1 (flag 47); waiting up to 300 s while their queue pairs acknowledge checks
+RoCEnante rank 0: rank 1 stopped its RoCE runtime at sequence 49 while this rank's doorbell was 49; every RoCE wait on this rank stops and its runtime is poisoned

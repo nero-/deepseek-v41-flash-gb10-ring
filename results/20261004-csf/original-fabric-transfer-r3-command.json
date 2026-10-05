@@ -1,0 +1,15 @@
+{
+  "rank": 3,
+  "argv": [
+    "python3",
+    "-u",
+    "/home/nero/csf-20261004/restore-original-fabric.py",
+    "--source",
+    "http://10.11.3.11:8985",
+    "--manifest",
+    "/home/nero/csf-20261004/original-hub-file-manifest.json",
+    "--proof",
+    "/home/nero/csf-20261004/original-restore-r3.json"
+  ],
+  "host_admin": true
+}

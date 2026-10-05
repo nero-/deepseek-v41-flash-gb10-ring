@@ -1,0 +1,10 @@
+{
+  "rank": 0,
+  "argv": [
+    "python3",
+    "-u",
+    "/home/nero/csf-20261004/tests/functional.py",
+    "http://127.0.0.1:8015/v1"
+  ],
+  "host_admin": false
+}

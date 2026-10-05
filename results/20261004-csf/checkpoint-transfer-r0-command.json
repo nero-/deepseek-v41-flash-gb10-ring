@@ -1,0 +1,8 @@
+{
+  "rank": 0,
+  "argv": [
+    "cat",
+    "/home/nero/csf-20261004/stage-checkpoint.log"
+  ],
+  "host_admin": false
+}

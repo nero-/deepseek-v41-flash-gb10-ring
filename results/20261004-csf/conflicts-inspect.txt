@@ -1,0 +1,214 @@
+
+FILE .csf-work/vllm/vllm/envs.py
+BLOCK 0 NEW:     VLLM_B12X_CSF_SCALE_PREFETCH: bool = True
+ LOCAL:     VLLM_B12X_KDA_PREFILL_COALESCING: bool = False
+    VLLM_B12X_KDA_PREFILL_COALESCING_LOG_LIMIT: int = 0
+    VLLM_GLM53_MHC_PREFILL_SHARD: bool = False
+    VLLM_GLM53_MHC_PREFILL_DIAGNOSTICS: bool = False
+
+BLOCK 1 NEW:     VLLM_KIMI_KDA_PROJECTION_STREAM_TOKEN_THRESHOLD: int = 0
+ LOCAL: 
+BLOCK 2 NEW:     # Partition DFlash auxiliary FC output rows and gather complete activations,
+    # padding widths that do not divide by TP. Divisible widths always shard.
+ LOCAL:     # Partition DFlash auxiliary FC output rows and gather complete activations.
+
+BLOCK 3 NEW:         "VLLM_CHECKPOINT_RESTORE_MAX_WAIT_S",
+ LOCAL: 
+
+FILE .csf-work/vllm/vllm/distributed/parallel_state.py
+BLOCK 0 NEW:         reduce_in_place = getattr(self.device_communicator, "all_reduce_in_place", None)
+        if reduce_in_place is None:
+            raise NotImplementedError("The device communicator cannot reduce in place")
+        return reduce_in_place(input_)
+ LOCAL:         return self.device_communicator.all_reduce_in_place(input_)
+
+
+FILE .csf-work/vllm/vllm/config/vllm.py
+BLOCK 0 NEW:             connector = KVConnectorFactory.get_connector_class(self.kv_transfer_config)
+            # Explicit aligned retention bypasses request-boundary checkpoints;
+            # it is correct only with connectors that move hybrid state at
+            # aligned boundaries, and only validated without DCP.
+            cache_config = getattr(self, "cache_config", None)
+            parallel_config = getattr(self, "parallel_config", None)
+            aligned = (
+                getattr(cache_config, "recurrent_checkpoint_policy", None) == "aligned"
+                and getattr(parallel_config, "decode_context_parallel_size", None) == 1
+                and connector.supports_aligned_hybrid_transfer(self)
+            )
+            if not aligned and not connector.supports_request_boundary_checkpoints(
+                self
+            ):
+                raise ValueError(
+                    "Qwen QSA KV transfer requires an atomic request-boundary "
+                    "checkpoint connector, or --recurrent-checkpoint-policy "
+                    "aligned without DCP and a connector that transfers aligned "
+                    "hybrid state (SimpleCPUOffloadConnector, OffloadingConnector)"
+ LOCAL:             connector = KVConnectorFactory.get_connector_class(
+                self.kv_transfer_config
+            )
+            # The retained SparkCache adapter captures aligned recurrent
+            # blocks through source-bound read leases. It does not implement
+            # atomic target/draft request-boundary checkpoints.
+            aligned_sparkcache = (
+                self.kv_transfer_config.kv_connector == "SparkContextCacheConnector"
+                and self.kv_transfer_config.kv_connector_module_path
+                == "sparkcache.spark_context_cache_connector"
+                and connector.__module__ == "sparkcache.spark_context_cache_connector"
+                and connector.__name__ == "SparkContextCacheConnector"
+                and getattr(connector, "supports_recurrent_boundary_blocks", False)
+                is True
+                and self.cache_config.recurrent_checkpoint_policy == "aligned"
+                and self.cache_config.mamba_cache_mode == "align"
+                and self.cache_config.enable_prefix_caching
+                and self.parallel_config.tensor_parallel_size in (2, 4)
+                and self.parallel_config.decode_context_parallel_size == 1
+                and self.parallel_config.pipeline_parallel_size == 1
+                and self.parallel_config.data_parallel_size == 1
+                and self.parallel_config.prefill_context_parallel_size == 1
+                and self.kv_transfer_config.kv_role == "kv_both"
+            )
+            if (
+                not connector.supports_request_boundary_checkpoints(self)
+                and not aligned_sparkcache
+            ):
+                raise ValueError(
+                    "Qwen QSA KV transfer requires an atomic request-boundary "
+                    "checkpoint connector or the source-bound aligned "
+                    "SparkCache profile"
+
+
+FILE .csf-work/vllm/vllm/distributed/device_communicators/b12x_pcie_all_reduce.py
+BLOCK 0 NEW:         # Key the fused RMSNorm weight by storage, not Python identity: a
+        # compiled graph passes an alias of the declared Parameter (e.g.
+        # ``weight.data``), so ``id()`` never matches and every fused call
+        # would fall back to all-reduce + copy + norm.
+        norm = (
+            None
+            if operation == "all_reduce"
+            else (weight.data_ptr() if weight is not None else None, epsilon)
+        )
+ LOCAL:         norm = None if operation == "all_reduce" else (id(weight), epsilon)
+
+
+FILE .csf-work/vllm/vllm/model_executor/warmup/kernel_warmup.py
+BLOCK 0 NEW:     load_autotune_cache_on_all_ranks,
+    rank_union_cache_path,
+    resolve_flashinfer_autotune_file,
+    save_flashinfer_autotune_cache,
+    save_rank_union_autotune_cache,
+ LOCAL:     read_flashinfer_autotune_cache,
+    resolve_flashinfer_autotune_file,
+    save_flashinfer_autotune_cache,
+    write_flashinfer_autotune_cache,
+
+BLOCK 1 NEW:     # Load the leader's cache on every rank, or on none: a cache hit skips a
+    # profile's all-reduce, so all ranks must make the same hit/miss decisions.
+    load_autotune_cache_on_all_ranks(cache_path, tuner, world)
+ LOCAL:     # Read cached autotune results and broadcast to all ranks.
+    cached_results: bytes | None = None
+    if is_leader:
+        cached_results = read_flashinfer_autotune_cache(cache_path)
+    cached_results = world.broadcast_object(cached_results, src=0)
+    if cached_results is not None:
+        write_flashinfer_autotune_cache(cache_path, cached_results)
+        world.barrier()
+        tuner.load_configs(str(cache_path))
+
+BLOCK 2 NEW:         save_rank_union_autotune_cache(cache_path, tuner, world)
+    else:
+ LOCAL:     if is_leader:
+
+
+FILE .csf-work/vllm/vllm/model_executor/layers/fused_moe/b12x.py
+BLOCK 0 NEW:                 "b12x MoE requires MXFP4, MXFP8, NVFP4, EXL3, IQ2_XS, IQ2_XXS "
+ LOCAL:                 "b12x MoE requires MXFP4, NVFP4, EXL3, IQ2_XS, IQ2_XXS "
+
+BLOCK 1 NEW:         """Install canonical prepared experts without retaining source parameters."""
+        fused_moe = _require_b12x_fused_moe()
+        if not isinstance(prepared, fused_moe.PreparedExperts):
+            raise TypeError("Installation requires B12X PreparedExperts")
+        trellis = self._source_format == "exl3" and isinstance(
+            prepared.plan.source, fused_moe.TrellisSource
+        )
+        packed = (
+            self._source_format == "fp4_e8m0_k32"
+            and isinstance(prepared.plan.source, fused_moe.PackedSource)
+            and prepared.plan.source.format == "fp4_e8m0_k32"
+        )
+        nvfp4 = (
+            self._source_format == "modelopt_nvfp4"
+            and self._quant_mode in ("nvfp4", "w4a16")
+            and isinstance(prepared.plan.source, fused_moe.PackedSource)
+            and prepared.plan.source.format == "modelopt_nvfp4"
+            and prepared.plan.source.w13_layout in (self._w13_layout, "w13")
+        )
+        if not (trellis or packed or nvfp4):
+            raise TypeError("Prepared expert encoding does not match the backend")
+ LOCAL:         """Use a prepared EXL3 package without repacking it as ordinary FP4."""
+        fused_moe = _require_b12x_fused_moe()
+        if (
+            self._source_format != "exl3"
+            or not isinstance(prepared, fused_moe.PreparedExperts)
+            or not isinstance(prepared.plan.source, fused_moe.Exl3Source)
+        ):
+            raise TypeError("EXL3 installation requires a B12X prepared EXL3 package")
+
+BLOCK 2 NEW:             != self.moe_config.intermediate_size_per_partition
+            or prepared.plan.activation.mode
+            != (
+                "a4"
+                if nvfp4 and self._quant_mode == "nvfp4"
+                else "a8"
+                if packed and self._quant_mode == "w4a8_mx"
+                else "a16"
+            )
+            or (trellis and prepared.plan.activation.rotation_dtype != torch.float16)
+            or prepared.plan.activation.io_dtype != self.moe_config.in_dtype
+            or prepared.plan.activation.nonlinearity
+            != _b12x_activation_name(layer.activation)
+            or prepared.plan.activation.swiglu_limit != self.moe_config.swiglu_limit
+            or layer.apply_router_weight_on_input
+        ):
+            raise ValueError(
+                "Prepared expert geometry, activation or routing "
+                "does not match the layer"
+ LOCAL:             > self.moe_config.intermediate_size_per_partition
+            or prepared.plan.activation.io_dtype != self.moe_config.in_dtype
+            or prepared.plan.activation.nonlinearity
+            != _b12x_activation_name(layer.activation)
+            or layer.apply_router_weight_on_input
+        ):
+            raise ValueError(
+                "Prepared EXL3 geometry, activation or routing does not match the layer"
+
+
+FILE .csf-work/vllm/vllm/model_executor/layers/fused_moe/runner/moe_runner.py
+BLOCK 0 NEW:  LOCAL:         defer_tp_reduction: bool = False,
+
+BLOCK 1 NEW:             assert self.routed_output_transform is not None
+ LOCAL: 
+BLOCK 2 NEW:         if reuse_output:
+ LOCAL:         if defer_tp_reduction or reuse_output:
+
+BLOCK 3 NEW:                 in_place=True,
+ LOCAL:                 defer_tp_reduction=defer_tp_reduction,
+                in_place=reuse_output,
+
+
+FILE .csf-work/vllm/vllm/models/deepseek_v4_1/attention.py
+BLOCK 0 NEW:             declaration = mla.plan(caps, invocation=invocation)
+            if compute != "auto":
+                # Pin BF16 arithmetic; the split/single-pass lowering stays the
+                # plan's own default for this query.
+                default = declaration.contract.default_config(declaration.query, None)
+                declaration = mla.plan(
+                    caps,
+                    invocation=invocation,
+                    override=replace(
+                        default, v41_compute_mode="bf16", v41_heads_per_block=16
+                    ),
+                )
+            metadata_specs = (
+ LOCAL:             metadata_specs: tuple[tuple[tuple[int, ...], torch.dtype], ...] = (
+
+FILES 43

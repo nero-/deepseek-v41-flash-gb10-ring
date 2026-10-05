@@ -1,0 +1,1148 @@
+{
+  "candidate_removed": true,
+  "unique_bytes_removed": 226432432805,
+  "files": [
+    {
+      "file": "build-contract.json",
+      "bytes": 7471412,
+      "inode": 27134253,
+      "links": 1
+    },
+    {
+      "file": "verified-shards.json",
+      "bytes": 18546,
+      "inode": 27134473,
+      "links": 1
+    },
+    {
+      "file": "build-contract.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134252,
+      "links": 1
+    },
+    {
+      "file": "README.md",
+      "bytes": 4035,
+      "inode": 27134251,
+      "links": 1
+    },
+    {
+      "file": "verification.json",
+      "bytes": 14939,
+      "inode": 27134470,
+      "links": 1
+    },
+    {
+      "file": "LICENSE.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134248,
+      "links": 1
+    },
+    {
+      "file": "manifest.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134254,
+      "links": 1
+    },
+    {
+      "file": "hub-file-manifest.json",
+      "bytes": 26523,
+      "inode": 27134245,
+      "links": 1
+    },
+    {
+      "file": "manifest.json",
+      "bytes": 16944,
+      "inode": 27134255,
+      "links": 1
+    },
+    {
+      "file": "verification.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134469,
+      "links": 1
+    },
+    {
+      "file": ".gitattributes",
+      "bytes": 1519,
+      "inode": 27134247,
+      "links": 1
+    },
+    {
+      "file": ".gitattributes.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134246,
+      "links": 1
+    },
+    {
+      "file": "LICENSE",
+      "bytes": 1084,
+      "inode": 27134249,
+      "links": 1
+    },
+    {
+      "file": "README.md.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134250,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00026-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134423,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00045-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134461,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00008-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134387,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00038-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134447,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00003-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134377,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00042-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134455,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00002-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134375,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00018-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134407,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00012-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134395,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00016-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134403,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00024-of-00048.safetensors.partial.transfer.log",
+      "bytes": 98,
+      "inode": 27134419,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00031-of-00048.safetensors.partial.transfer.log",
+      "bytes": 1078,
+      "inode": 27134433,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00041-of-00048.safetensors",
+      "bytes": 7024551740,
+      "inode": 27134454,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00007-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134385,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00041-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134453,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00048-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134467,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00021-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134413,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00046-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134463,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00046-of-00048.safetensors",
+      "bytes": 2706403008,
+      "inode": 27134464,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00013-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134397,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00030-of-00048.safetensors.partial.transfer.log",
+      "bytes": 98,
+      "inode": 27134431,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00034-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134439,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00029-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134429,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00037-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134445,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00040-of-00048.safetensors.partial.transfer.log",
+      "bytes": 196,
+      "inode": 27134451,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00048-of-00048.safetensors",
+      "bytes": 101537926752,
+      "inode": 27134468,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00009-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134389,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00005-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134381,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00028-of-00048.safetensors.partial.transfer.log",
+      "bytes": 882,
+      "inode": 27134427,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00035-of-00048.safetensors.partial.transfer.log",
+      "bytes": 882,
+      "inode": 27134441,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00044-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134459,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00006-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134383,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00043-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134457,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00017-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134405,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00014-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134399,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00015-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134401,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00027-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134425,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00047-of-00048.safetensors.partial.transfer.log",
+      "bytes": 1323,
+      "inode": 27134465,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00023-of-00048.safetensors.partial.transfer.log",
+      "bytes": 2058,
+      "inode": 27134417,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00004-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134379,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00010-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134391,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00022-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134415,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00019-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134409,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00043-of-00048.safetensors",
+      "bytes": 1323837736,
+      "inode": 27134458,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00039-of-00048.safetensors.partial.transfer.log",
+      "bytes": 784,
+      "inode": 27134449,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00020-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134411,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00047-of-00048.safetensors",
+      "bytes": 101535151048,
+      "inode": 27134466,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00042-of-00048.safetensors",
+      "bytes": 7028034496,
+      "inode": 27134456,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00001-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134373,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00036-of-00048.safetensors.partial.transfer.log",
+      "bytes": 147,
+      "inode": 27134443,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00011-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134393,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00025-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134421,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00044-of-00048.safetensors",
+      "bytes": 2652728848,
+      "inode": 27134460,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00032-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134435,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00045-of-00048.safetensors",
+      "bytes": 2573998288,
+      "inode": 27134462,
+      "links": 1
+    },
+    {
+      "file": "tensors/model-00033-of-00048.safetensors.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134437,
+      "links": 1
+    },
+    {
+      "file": "serving/README.md",
+      "bytes": 13110,
+      "inode": 27134260,
+      "links": 2
+    },
+    {
+      "file": "serving/tokenizer_config.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134267,
+      "links": 2
+    },
+    {
+      "file": "serving/tokenizer_config.json",
+      "bytes": 801,
+      "inode": 27134268,
+      "links": 2
+    },
+    {
+      "file": "serving/LICENSE.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134257,
+      "links": 2
+    },
+    {
+      "file": "serving/model.safetensors.index.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134263,
+      "links": 2
+    },
+    {
+      "file": "serving/tokenizer.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134265,
+      "links": 2
+    },
+    {
+      "file": "serving/config.json",
+      "bytes": 3380,
+      "inode": 27134472,
+      "links": 1
+    },
+    {
+      "file": "serving/LICENSE",
+      "bytes": 1084,
+      "inode": 27134258,
+      "links": 2
+    },
+    {
+      "file": "serving/model.safetensors.index.json",
+      "bytes": 7470294,
+      "inode": 27134264,
+      "links": 2
+    },
+    {
+      "file": "serving/config.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134261,
+      "links": 2
+    },
+    {
+      "file": "serving/tokenizer.json",
+      "bytes": 6367257,
+      "inode": 27134266,
+      "links": 2
+    },
+    {
+      "file": "serving/README.md.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134259,
+      "links": 2
+    },
+    {
+      "file": "metadata/README.md",
+      "bytes": 13110,
+      "inode": 27134260,
+      "links": 2
+    },
+    {
+      "file": "metadata/tokenizer_config.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134267,
+      "links": 2
+    },
+    {
+      "file": "metadata/tokenizer_config.json",
+      "bytes": 801,
+      "inode": 27134268,
+      "links": 2
+    },
+    {
+      "file": "metadata/LICENSE.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134257,
+      "links": 2
+    },
+    {
+      "file": "metadata/model.safetensors.index.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134263,
+      "links": 2
+    },
+    {
+      "file": "metadata/tokenizer.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134265,
+      "links": 2
+    },
+    {
+      "file": "metadata/config.json",
+      "bytes": 3311,
+      "inode": 27134262,
+      "links": 1
+    },
+    {
+      "file": "metadata/LICENSE",
+      "bytes": 1084,
+      "inode": 27134258,
+      "links": 2
+    },
+    {
+      "file": "metadata/model.safetensors.index.json",
+      "bytes": 7470294,
+      "inode": 27134264,
+      "links": 2
+    },
+    {
+      "file": "metadata/config.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134261,
+      "links": 2
+    },
+    {
+      "file": "metadata/tokenizer.json",
+      "bytes": 6367257,
+      "inode": 27134266,
+      "links": 2
+    },
+    {
+      "file": "metadata/README.md.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134259,
+      "links": 2
+    },
+    {
+      "file": "receipts/model-00003-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134274,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00046-of-00048.safetensors.json",
+      "bytes": 114550,
+      "inode": 27134367,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00020-of-00048.safetensors.json",
+      "bytes": 700955,
+      "inode": 27134314,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00032-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134337,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00047-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134368,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00014-of-00048.safetensors.json",
+      "bytes": 700719,
+      "inode": 27134302,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00019-of-00048.safetensors.json",
+      "bytes": 700942,
+      "inode": 27134312,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00039-of-00048.safetensors.json",
+      "bytes": 701291,
+      "inode": 27134353,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00036-of-00048.safetensors.json",
+      "bytes": 700731,
+      "inode": 27134346,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00026-of-00048.safetensors.json",
+      "bytes": 700791,
+      "inode": 27134326,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00014-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134297,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00003-of-00048.safetensors.json",
+      "bytes": 696838,
+      "inode": 27134275,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00013-of-00048.safetensors.json",
+      "bytes": 700710,
+      "inode": 27134296,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00012-of-00048.safetensors.json",
+      "bytes": 696398,
+      "inode": 27134294,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00042-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134358,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00017-of-00048.safetensors.json",
+      "bytes": 702194,
+      "inode": 27134308,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00002-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134272,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00004-of-00048.safetensors.json",
+      "bytes": 696458,
+      "inode": 27134277,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00001-of-00048.safetensors.json",
+      "bytes": 36892,
+      "inode": 27134271,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00015-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134303,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00010-of-00048.safetensors.json",
+      "bytes": 696388,
+      "inode": 27134290,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00007-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134282,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00005-of-00048.safetensors.json",
+      "bytes": 697682,
+      "inode": 27134279,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00011-of-00048.safetensors.json",
+      "bytes": 697672,
+      "inode": 27134292,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00016-of-00048.safetensors.json",
+      "bytes": 700931,
+      "inode": 27134306,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00013-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134295,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00002-of-00048.safetensors.json",
+      "bytes": 854,
+      "inode": 27134273,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00041-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134356,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00021-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134315,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00037-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134347,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00028-of-00048.safetensors.json",
+      "bytes": 700743,
+      "inode": 27134330,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00045-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134364,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00022-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134317,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00037-of-00048.safetensors.json",
+      "bytes": 700762,
+      "inode": 27134348,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00044-of-00048.safetensors.json",
+      "bytes": 113630,
+      "inode": 27134363,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00024-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134321,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00006-of-00048.safetensors.json",
+      "bytes": 696389,
+      "inode": 27134281,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00024-of-00048.safetensors.json",
+      "bytes": 700815,
+      "inode": 27134322,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00025-of-00048.safetensors.json",
+      "bytes": 700856,
+      "inode": 27134324,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00040-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134354,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00047-of-00048.safetensors.json",
+      "bytes": 1274,
+      "inode": 27134369,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00030-of-00048.safetensors.json",
+      "bytes": 700729,
+      "inode": 27134334,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00027-of-00048.safetensors.json",
+      "bytes": 701268,
+      "inode": 27134328,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00048-of-00048.safetensors.json",
+      "bytes": 1282,
+      "inode": 27134371,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00017-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134307,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00025-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134323,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00018-of-00048.safetensors.json",
+      "bytes": 700802,
+      "inode": 27134310,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00039-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134352,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00011-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134291,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00019-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134311,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00020-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134313,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00045-of-00048.safetensors.json",
+      "bytes": 113206,
+      "inode": 27134365,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00043-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134360,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00015-of-00048.safetensors.json",
+      "bytes": 700803,
+      "inode": 27134304,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00043-of-00048.safetensors.json",
+      "bytes": 630,
+      "inode": 27134361,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00031-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134335,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00016-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134305,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00048-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134370,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00041-of-00048.safetensors.json",
+      "bytes": 701161,
+      "inode": 27134357,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00008-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134284,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00035-of-00048.safetensors.json",
+      "bytes": 701165,
+      "inode": 27134344,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00034-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134341,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00033-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134339,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00046-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134366,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00009-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134286,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00023-of-00048.safetensors.json",
+      "bytes": 701920,
+      "inode": 27134320,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00034-of-00048.safetensors.json",
+      "bytes": 700765,
+      "inode": 27134342,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00032-of-00048.safetensors.json",
+      "bytes": 700697,
+      "inode": 27134338,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00021-of-00048.safetensors.json",
+      "bytes": 700980,
+      "inode": 27134316,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00028-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134329,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00031-of-00048.safetensors.json",
+      "bytes": 701164,
+      "inode": 27134336,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00010-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134288,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00001-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134270,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00030-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134333,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00023-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134319,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00005-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134278,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00040-of-00048.safetensors.json",
+      "bytes": 700934,
+      "inode": 27134355,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00027-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134327,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00029-of-00048.safetensors.json",
+      "bytes": 700728,
+      "inode": 27134332,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00004-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134276,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00029-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134331,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00022-of-00048.safetensors.json",
+      "bytes": 700927,
+      "inode": 27134318,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00035-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134343,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00006-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134280,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00026-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134325,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00038-of-00048.safetensors.json",
+      "bytes": 701031,
+      "inode": 27134351,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00008-of-00048.safetensors.json",
+      "bytes": 696385,
+      "inode": 27134285,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00033-of-00048.safetensors.json",
+      "bytes": 700709,
+      "inode": 27134340,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00044-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134362,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00009-of-00048.safetensors.json",
+      "bytes": 696394,
+      "inode": 27134287,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00007-of-00048.safetensors.json",
+      "bytes": 696390,
+      "inode": 27134283,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00038-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134350,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00042-of-00048.safetensors.json",
+      "bytes": 701569,
+      "inode": 27134359,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00036-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134345,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00018-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134309,
+      "links": 1
+    },
+    {
+      "file": "receipts/model-00012-of-00048.safetensors.json.partial.transfer.log",
+      "bytes": 0,
+      "inode": 27134293,
+      "links": 1
+    }
+  ],
+  "removed_before_original_start": true,
+  "reason": "User selected fabric transfer from complete hash-verified original Spark copies."
+}

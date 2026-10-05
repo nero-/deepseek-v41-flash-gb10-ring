@@ -1,0 +1,9 @@
+{
+  "rank": 0,
+  "argv": [
+    "python3",
+    "-c",
+    "import json,subprocess\nunit='nvidia-cdi-refresh.service'\ndef run(args,check=True):return subprocess.run(args,text=True,capture_output=True,check=check)\nbefore=run(['systemctl','is-enabled',unit],False).stdout.strip()\nif before!='enabled':run(['systemctl','enable',unit])\ndevices=run(['nvidia-ctk','cdi','list']).stdout.split()\nif 'nvidia.com/gpu=all' not in devices:run(['systemctl','start',unit]);devices=run(['nvidia-ctk','cdi','list']).stdout.split()\nassert 'nvidia.com/gpu=all' in devices\nprint(json.dumps({'before_enabled':before,'enabled':run(['systemctl','is-enabled',unit]).stdout.strip(),'devices':devices,'toolkit':run(['nvidia-ctk','--version']).stdout}))\n"
+  ],
+  "host_admin": true
+}

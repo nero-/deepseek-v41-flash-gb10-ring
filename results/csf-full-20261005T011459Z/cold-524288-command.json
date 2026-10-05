@@ -1,0 +1,11 @@
+{
+  "rank": 0,
+  "argv": [
+    "python3",
+    "/home/nero/dsv41-research-20260928/cold-needle.py",
+    "--tokens",
+    "524288",
+    "--output",
+    "/home/nero/dsv41-research-20260928/csf-full-20261005T011459Z-cold-524288.json"
+  ]
+}

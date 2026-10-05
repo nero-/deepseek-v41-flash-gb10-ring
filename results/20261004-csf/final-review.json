@@ -1,0 +1,14 @@
+{
+  "python_syntax": "passed",
+  "python_files": 36,
+  "authored_whitespace_check": "passed",
+  "whitespace_exclusions": [
+    "raw results preserve observed bytes",
+    "pinned unified patches preserve source/context bytes"
+  ],
+  "credential_pattern_scan": "passed",
+  "individual_files_under_100MB": true,
+  "no_original_benchmark_repeated": true,
+  "restored_functional_passed": 7,
+  "unix_time": 1791168954.692985
+}

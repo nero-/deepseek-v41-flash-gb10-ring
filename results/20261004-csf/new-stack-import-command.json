@@ -1,0 +1,22 @@
+{
+  "rank": 0,
+  "argv": [
+    "docker",
+    "run",
+    "--rm",
+    "--network",
+    "none",
+    "--gpus",
+    "all",
+    "--env",
+    "SPARKRING_TRANSPORT_PROFILE=tp2-rocenante-adaptive-prepared-csf",
+    "--env",
+    "SPARKRING_TRANSPORT_MANIFEST_SHA256=b11dcfcce4a75d0244b2ab4d650fee771b5601437904f9136ade7e43ca83ee9b",
+    "--entrypoint",
+    "python3",
+    "ds41:csf-20261004",
+    "-c",
+    "import vllm;import vllm.models.deepseek_v4_1.nvidia.model;import sparkring_transport_selector as s;s.require_active();import b12x.comm.roce as r;print(r.__file__);from b12x.gemm.blockscaled import plan_regimes,FixedBlockscaledQuery;print(\"IMPORT OK\",vllm.__version__)"
+  ],
+  "host_admin": false
+}

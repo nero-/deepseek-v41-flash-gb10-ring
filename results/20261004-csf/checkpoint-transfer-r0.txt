@@ -1,0 +1,137 @@
+{"file": "README.md", "bytes": 4035, "sha256": null, "reused_payload": false, "utc": 1791151340.8851438}
+{"file": "LICENSE", "bytes": 1084, "sha256": null, "reused_payload": false, "utc": 1791151340.900436}
+{"file": ".gitattributes", "bytes": 1519, "sha256": null, "reused_payload": false, "utc": 1791151340.908777}
+{"file": "build-contract.json", "bytes": 7471412, "sha256": null, "reused_payload": false, "utc": 1791151341.2615755}
+{"file": "manifest.json", "bytes": 16944, "sha256": null, "reused_payload": false, "utc": 1791151341.3095293}
+{"file": "metadata/README.md", "bytes": 13110, "sha256": null, "reused_payload": false, "utc": 1791151341.335798}
+{"file": "metadata/LICENSE", "bytes": 1084, "sha256": null, "reused_payload": false, "utc": 1791151341.4109998}
+{"file": "metadata/config.json", "bytes": 3311, "sha256": null, "reused_payload": false, "utc": 1791151341.747475}
+{"file": "metadata/tokenizer_config.json", "bytes": 801, "sha256": null, "reused_payload": false, "utc": 1791151341.8880265}
+{"file": "metadata/model.safetensors.index.json", "bytes": 7470294, "sha256": null, "reused_payload": false, "utc": 1791151342.1630626}
+{"file": "receipts/model-00001-of-00048.safetensors.json", "bytes": 36892, "sha256": null, "reused_payload": false, "utc": 1791151342.2573516}
+{"file": "receipts/model-00002-of-00048.safetensors.json", "bytes": 854, "sha256": null, "reused_payload": false, "utc": 1791151342.3194475}
+{"file": "metadata/tokenizer.json", "bytes": 6367257, "sha256": null, "reused_payload": false, "utc": 1791151342.349442}
+{"file": "receipts/model-00003-of-00048.safetensors.json", "bytes": 696838, "sha256": null, "reused_payload": false, "utc": 1791151342.8252876}
+{"file": "receipts/model-00006-of-00048.safetensors.json", "bytes": 696389, "sha256": null, "reused_payload": false, "utc": 1791151343.0119834}
+{"file": "receipts/model-00004-of-00048.safetensors.json", "bytes": 696458, "sha256": null, "reused_payload": false, "utc": 1791151343.0499551}
+{"file": "receipts/model-00005-of-00048.safetensors.json", "bytes": 697682, "sha256": null, "reused_payload": false, "utc": 1791151343.107554}
+{"file": "receipts/model-00007-of-00048.safetensors.json", "bytes": 696390, "sha256": null, "reused_payload": false, "utc": 1791151343.6210778}
+{"file": "receipts/model-00009-of-00048.safetensors.json", "bytes": 696394, "sha256": null, "reused_payload": false, "utc": 1791151343.7322142}
+{"file": "receipts/model-00008-of-00048.safetensors.json", "bytes": 696385, "sha256": null, "reused_payload": false, "utc": 1791151343.798838}
+{"file": "receipts/model-00010-of-00048.safetensors.json", "bytes": 696388, "sha256": null, "reused_payload": false, "utc": 1791151343.8863323}
+{"file": "receipts/model-00011-of-00048.safetensors.json", "bytes": 697672, "sha256": null, "reused_payload": false, "utc": 1791151344.4837298}
+{"file": "receipts/model-00013-of-00048.safetensors.json", "bytes": 700710, "sha256": null, "reused_payload": false, "utc": 1791151344.4881434}
+{"file": "receipts/model-00012-of-00048.safetensors.json", "bytes": 696398, "sha256": null, "reused_payload": false, "utc": 1791151344.5335002}
+{"file": "receipts/model-00014-of-00048.safetensors.json", "bytes": 700719, "sha256": null, "reused_payload": false, "utc": 1791151344.5494993}
+{"file": "receipts/model-00016-of-00048.safetensors.json", "bytes": 700931, "sha256": null, "reused_payload": false, "utc": 1791151345.168443}
+{"file": "receipts/model-00018-of-00048.safetensors.json", "bytes": 700802, "sha256": null, "reused_payload": false, "utc": 1791151345.24321}
+{"file": "receipts/model-00015-of-00048.safetensors.json", "bytes": 700803, "sha256": null, "reused_payload": false, "utc": 1791151345.3112183}
+{"file": "receipts/model-00017-of-00048.safetensors.json", "bytes": 702194, "sha256": null, "reused_payload": false, "utc": 1791151345.3382518}
+{"file": "receipts/model-00020-of-00048.safetensors.json", "bytes": 700955, "sha256": null, "reused_payload": false, "utc": 1791151345.9010577}
+{"file": "receipts/model-00019-of-00048.safetensors.json", "bytes": 700942, "sha256": null, "reused_payload": false, "utc": 1791151345.9489276}
+{"file": "receipts/model-00021-of-00048.safetensors.json", "bytes": 700980, "sha256": null, "reused_payload": false, "utc": 1791151345.9769824}
+{"file": "receipts/model-00022-of-00048.safetensors.json", "bytes": 700927, "sha256": null, "reused_payload": false, "utc": 1791151346.1278398}
+{"file": "receipts/model-00025-of-00048.safetensors.json", "bytes": 700856, "sha256": null, "reused_payload": false, "utc": 1791151346.6491642}
+{"file": "receipts/model-00023-of-00048.safetensors.json", "bytes": 701920, "sha256": null, "reused_payload": false, "utc": 1791151346.7070992}
+{"file": "receipts/model-00024-of-00048.safetensors.json", "bytes": 700815, "sha256": null, "reused_payload": false, "utc": 1791151346.727773}
+{"file": "receipts/model-00026-of-00048.safetensors.json", "bytes": 700791, "sha256": null, "reused_payload": false, "utc": 1791151346.9096208}
+{"file": "receipts/model-00027-of-00048.safetensors.json", "bytes": 701268, "sha256": null, "reused_payload": false, "utc": 1791151347.309714}
+{"file": "receipts/model-00028-of-00048.safetensors.json", "bytes": 700743, "sha256": null, "reused_payload": false, "utc": 1791151347.374155}
+{"file": "receipts/model-00029-of-00048.safetensors.json", "bytes": 700728, "sha256": null, "reused_payload": false, "utc": 1791151347.3837175}
+{"file": "receipts/model-00030-of-00048.safetensors.json", "bytes": 700729, "sha256": null, "reused_payload": false, "utc": 1791151347.5587487}
+{"file": "receipts/model-00033-of-00048.safetensors.json", "bytes": 700709, "sha256": null, "reused_payload": false, "utc": 1791151348.0436203}
+{"file": "receipts/model-00031-of-00048.safetensors.json", "bytes": 701164, "sha256": null, "reused_payload": false, "utc": 1791151348.086956}
+{"file": "receipts/model-00032-of-00048.safetensors.json", "bytes": 700697, "sha256": null, "reused_payload": false, "utc": 1791151348.1639333}
+{"file": "receipts/model-00034-of-00048.safetensors.json", "bytes": 700765, "sha256": null, "reused_payload": false, "utc": 1791151348.2165358}
+{"file": "receipts/model-00035-of-00048.safetensors.json", "bytes": 701165, "sha256": null, "reused_payload": false, "utc": 1791151348.8249261}
+{"file": "receipts/model-00038-of-00048.safetensors.json", "bytes": 701031, "sha256": null, "reused_payload": false, "utc": 1791151348.874487}
+{"file": "receipts/model-00036-of-00048.safetensors.json", "bytes": 700731, "sha256": null, "reused_payload": false, "utc": 1791151348.8811245}
+{"file": "receipts/model-00037-of-00048.safetensors.json", "bytes": 700762, "sha256": null, "reused_payload": false, "utc": 1791151348.9640663}
+{"file": "receipts/model-00039-of-00048.safetensors.json", "bytes": 701291, "sha256": null, "reused_payload": false, "utc": 1791151349.4860919}
+{"file": "receipts/model-00041-of-00048.safetensors.json", "bytes": 701161, "sha256": null, "reused_payload": false, "utc": 1791151349.6472406}
+{"file": "receipts/model-00040-of-00048.safetensors.json", "bytes": 700934, "sha256": null, "reused_payload": false, "utc": 1791151349.6801505}
+{"file": "receipts/model-00042-of-00048.safetensors.json", "bytes": 701569, "sha256": null, "reused_payload": false, "utc": 1791151349.7169254}
+{"file": "receipts/model-00043-of-00048.safetensors.json", "bytes": 630, "sha256": null, "reused_payload": false, "utc": 1791151349.9607391}
+{"file": "receipts/model-00044-of-00048.safetensors.json", "bytes": 113630, "sha256": null, "reused_payload": false, "utc": 1791151350.160718}
+{"file": "receipts/model-00046-of-00048.safetensors.json", "bytes": 114550, "sha256": null, "reused_payload": false, "utc": 1791151350.2366042}
+{"file": "receipts/model-00045-of-00048.safetensors.json", "bytes": 113206, "sha256": null, "reused_payload": false, "utc": 1791151350.2742574}
+{"file": "receipts/model-00047-of-00048.safetensors.json", "bytes": 1274, "sha256": null, "reused_payload": false, "utc": 1791151350.3681464}
+{"file": "receipts/model-00048-of-00048.safetensors.json", "bytes": 1282, "sha256": null, "reused_payload": false, "utc": 1791151350.5802426}
+{"file": "verification.json", "bytes": 14939, "sha256": null, "reused_payload": false, "utc": 1791151350.6439457}
+{"file": "tensors/model-00001-of-00048.safetensors", "bytes": 970533736, "sha256": "7a503583177450de9ba9bf573f2b7b51c082f10a45b6930db5fdd8b7e6c5b279", "reused_payload": true, "utc": 1791151354.5037942}
+{"file": "tensors/model-00002-of-00048.safetensors", "bytes": 1323858384, "sha256": "7582cad4247e8d759d80d4ad883545614157ca33bf0c335b41e6c5dbc86a1ad6", "reused_payload": true, "utc": 1791151355.3589633}
+{"file": "tensors/model-00004-of-00048.safetensors", "bytes": 7022860208, "sha256": "e897f4f9106ef38095c893fe0478726ce0f2f04436c2f6c0550eb200a20dedee", "reused_payload": false, "utc": 1791151624.360454}
+{"file": "tensors/model-00003-of-00048.safetensors", "bytes": 7023164484, "sha256": "ce24f95e034549bdc2e01ab3e4bd48a259fd246c87788fa20f682fb6a6af82cd", "reused_payload": false, "utc": 1791151631.1503685}
+{"file": "tensors/model-00006-of-00048.safetensors", "bytes": 7022636628, "sha256": "7fcb54a73b4d3ddc8723cd6faaa0da7828047c4911f23737a539bd15f10c9d22", "reused_payload": false, "utc": 1791151631.7303183}
+{"file": "tensors/model-00005-of-00048.safetensors", "bytes": 7038874252, "sha256": "25e4b6929a166e68997a46fc80ba1b02095bc31df6c4efd635f5cc508c517930", "reused_payload": false, "utc": 1791151631.964685}
+{"file": "tensors/model-00007-of-00048.safetensors", "bytes": 7022644348, "sha256": "c54f51df209fb67e7dfc7c8588e0ad7ec2a342d9f6bb0ce99472c4cfaadbd59d", "reused_payload": false, "utc": 1791151886.6138618}
+{"file": "tensors/model-00008-of-00048.safetensors", "bytes": 7022647032, "sha256": "e379683c8c337a311439c7061abfcf4415bbef4e97ae03b828e1fc3d9cb4d7c7", "reused_payload": false, "utc": 1791151892.435064}
+{"file": "tensors/model-00010-of-00048.safetensors", "bytes": 7022642244, "sha256": "54a7b1b0423f860ff71b2ad7cd2d8b5755e5b24385250308ff4d0b15a47d0a5f", "reused_payload": false, "utc": 1791151893.7590582}
+{"file": "tensors/model-00009-of-00048.safetensors", "bytes": 7022656236, "sha256": "26f274864a45c45657a99131108b05c7ba6b805cd48fe1ac1b5d2fe4d63312ab", "reused_payload": false, "utc": 1791151896.0680122}
+{"file": "tensors/model-00011-of-00048.safetensors", "bytes": 7038855692, "sha256": "a68790a34752c50cc88d4dd093e778f95efe54b2923ecf337841d46f05e23d91", "reused_payload": false, "utc": 1791152150.736313}
+{"file": "tensors/model-00013-of-00048.safetensors", "bytes": 7022733580, "sha256": "e16918d2bb60faf29ceb3a1cbe3ecc3256b916314000206f99c84b1bd77d8af7", "reused_payload": false, "utc": 1791152154.7189448}
+{"file": "tensors/model-00012-of-00048.safetensors", "bytes": 7022658452, "sha256": "8102c986824ef6af326d0c3884bf7cafb22309e0d3522ea9f79b4271e948a29d", "reused_payload": false, "utc": 1791152156.902588}
+{"file": "tensors/model-00014-of-00048.safetensors", "bytes": 7022761804, "sha256": "59adfabb37db8ae4a587caf70eb96482d98be35e17578c4552fc98ee0317d619", "reused_payload": false, "utc": 1791152157.375358}
+{"file": "tensors/model-00015-of-00048.safetensors", "bytes": 7022871428, "sha256": "d47caadae0a9aa16fc7e8b7fa5a34fa4835662316df8a5e0bd020e35f01e5687", "reused_payload": false, "utc": 1791152415.8749611}
+{"file": "tensors/model-00016-of-00048.safetensors", "bytes": 7023113392, "sha256": "912813c386870c4c25a3dc7940523918deb2f812738eee5cd18504bd49e6d4de", "reused_payload": false, "utc": 1791152417.9910405}
+{"file": "tensors/model-00018-of-00048.safetensors", "bytes": 7023241712, "sha256": "a4418f6ce67646ca014e60feb1620e97790975268cc070d050b00dede8800d05", "reused_payload": false, "utc": 1791152424.2838116}
+{"file": "tensors/model-00017-of-00048.safetensors", "bytes": 7039251428, "sha256": "614a771280ccd9c499bb57477fad4d366224a55806e9fb0d7e050305c112a537", "reused_payload": false, "utc": 1791152424.5068831}
+{"file": "tensors/model-00020-of-00048.safetensors", "bytes": 7023246192, "sha256": "9b3293beb1800e1d4a9162456fc14f79300eddd2a5ca07254a5c304abf301f1f", "reused_payload": false, "utc": 1791152715.8418424}
+{"file": "tensors/model-00021-of-00048.safetensors", "bytes": 7023325816, "sha256": "5b5cd9d2fa0d269c2b31df7a6f2791e5e3352ee01872d875ec07647421254d28", "reused_payload": false, "utc": 1791152720.0567808}
+{"file": "tensors/model-00019-of-00048.safetensors", "bytes": 7023118304, "sha256": "484b00e8ce262abb73ed7b28da2df7bf967c26afea28f2eb552447baba56fa8a", "reused_payload": false, "utc": 1791152720.2723432}
+{"file": "tensors/model-00022-of-00048.safetensors", "bytes": 7023186228, "sha256": "a8ae9f775d24835fc89dcc83708d52e914296c04b7ff80d9d0bb0a083f6c18b8", "reused_payload": false, "utc": 1791152727.524077}
+{"file": "tensors/model-00027-of-00048.safetensors", "bytes": 7028480384, "sha256": "78a9bb6bb3d22cdb738d7e54fc7765dcebd400349a7682e90ed6e69ed1302cb6", "reused_payload": false, "utc": 1791152978.9783065}
+Traceback (most recent call last):
+  File "/home/nero/csf-20261004/stage-checkpoint.py", line 69, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/home/nero/csf-20261004/stage-checkpoint.py", line 59, in main
+    with cf.ThreadPoolExecutor(4) as pool:list(pool.map(one,small));list(pool.map(one,large))
+                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nero/csf-20261004/stage-checkpoint.py", line 54, in one
+    download(name,tmp,size)
+  File "/home/nero/csf-20261004/stage-checkpoint.py", line 20, in download
+    subprocess.run(['curl','-fL','--retry','8','--retry-delay','5','--connect-timeout','30','--speed-time','120','--speed-limit','1024','-C','-','--output',str(p),BASE+name],check=True,stdout=subprocess.DEVNULL,stderr=open(str(p)+'.curl.log','a'))
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['curl', '-fL', '--retry', '8', '--retry-delay', '5', '--connect-timeout', '30', '--speed-time', '120', '--speed-limit', '1024', '-C', '-', '--output', '/srv/sparkring/sparkring/checkpoints/local-inference-lab--DeepSeek-V4.1-Flash-lossless-CSF/c5c41fe301c4c1d24fc09376883d9168e521dc66/tensors/model-00023-of-00048.safetensors.partial', 'https://huggingface.co/local-inference-lab/DeepSeek-V4.1-Flash-lossless-CSF/resolve/c5c41fe301c4c1d24fc09376883d9168e521dc66/tensors/model-00023-of-00048.safetensors']' returned non-zero exit status 92.
+{"file": "tensors/model-00023-of-00048.safetensors", "bytes": 7033900140, "sha256": "26043b3d4e9851edde929a8364887e93a5d3c3c91424ebedc2d2752f5fc3e4f5", "reused_payload": false, "utc": 1791153325.5169802}
+{"file": "tensors/model-00026-of-00048.safetensors", "bytes": 7022864420, "sha256": "06ba91a8b97c817329920b919f0b083208bff3608db91fce0698e441c15adb9e", "reused_payload": false, "utc": 1791153352.9900343}
+{"file": "tensors/model-00024-of-00048.safetensors", "bytes": 7022902116, "sha256": "18d77548abf6785653786a9f419dd4809153c6d3b1c79d9409d71f6e0340a80b", "reused_payload": false, "utc": 1791153355.157998}
+{"file": "tensors/model-00025-of-00048.safetensors", "bytes": 7022969352, "sha256": "b9a081ebf2c03f6cd9f24162060a685b9f2c976b20d628ed144c5a88bb46a6d5", "reused_payload": false, "utc": 1791153364.9112236}
+{"file": "tensors/model-00028-of-00048.safetensors", "bytes": 7022741836, "sha256": "a033ca2a78f4c312c88bee4aa2712ef16ebbeb6bb9e636b076b36d14d18d4f4f", "reused_payload": false, "utc": 1791153576.9157672}
+{"file": "tensors/model-00029-of-00048.safetensors", "bytes": 7022725384, "sha256": "512e788ee1552eba11ced513061e481d9580ef041e2f09c8bfc11fcaa2bd6e38", "reused_payload": false, "utc": 1791153585.2804253}
+{"file": "tensors/model-00030-of-00048.safetensors", "bytes": 7022710112, "sha256": "1f21961b7c84ccdce034c0a1c976e13b8262f7a75ece2d427f8acad19acd129a", "reused_payload": false, "utc": 1791153609.2838197}
+{"file": "tensors/model-00032-of-00048.safetensors", "bytes": 7022669196, "sha256": "fb19798058a32147a2b6fa714d51da31d41d9c714861f6769aaa24c9c9c21b59", "reused_payload": false, "utc": 1791153823.8146307}
+{"file": "tensors/model-00033-of-00048.safetensors", "bytes": 7022691924, "sha256": "5d04e3e4307847d8290657e1b4de030d0f7aa92edef9955e69923aa83ed1e594", "reused_payload": false, "utc": 1791153834.403953}
+{"file": "tensors/model-00031-of-00048.safetensors", "bytes": 7028244180, "sha256": "ab2e549e5edb5aabe0a478cbe6f39918ddaaaf16e868d8903d46d58253efe007", "reused_payload": false, "utc": 1791153844.6551821}
+{"file": "tensors/model-00034-of-00048.safetensors", "bytes": 7022801024, "sha256": "de07bb1bf5fde284481eec4da292a82877655f552ede50b9bbecf8803a7a59cf", "reused_payload": false, "utc": 1791153861.6042752}
+{"file": "tensors/model-00035-of-00048.safetensors", "bytes": 7028308124, "sha256": "5451b7142e7211f1ed6f2c22da7aac91e0f21c8ffb51b76f3ac7d793e397a4c8", "reused_payload": false, "utc": 1791154055.8248372}
+{"file": "tensors/model-00036-of-00048.safetensors", "bytes": 7022808216, "sha256": "a4c906f8ff00fdaa6966a302a3182fd5f7c6c61649bf0b4c364639bd6fedc2a0", "reused_payload": false, "utc": 1791154098.3016632}
+{"file": "tensors/model-00038-of-00048.safetensors", "bytes": 7023491208, "sha256": "ad2a325bf9033e8eabd45c7cb922b3c2d38f78e396b10ae69aa797193f6f02a5", "reused_payload": false, "utc": 1791154102.3597655}
+{"file": "tensors/model-00037-of-00048.safetensors", "bytes": 7022799352, "sha256": "dca721bce557b647b21c39cc12b6551118bc0839c7a3ad01998bb0aa7e753b6d", "reused_payload": false, "utc": 1791154103.474836}
+{"file": "tensors/model-00039-of-00048.safetensors", "bytes": 7028775112, "sha256": "d134f54f5a7b7bf1f2425695653592c44967262c3b225eb9f88e7f0face12149", "reused_payload": false, "utc": 1791154286.8494728}
+{"file": "tensors/model-00043-of-00048.safetensors", "bytes": 1323837736, "sha256": "bed0ea6a4c3e25a8f051db2c3d5aeff677aa2f59e845dea167ca2229f66b2baa", "reused_payload": true, "utc": 1791154290.8176234}
+{"file": "tensors/model-00044-of-00048.safetensors", "bytes": 2652728848, "sha256": "41ba4af7d57d42284bff0ac26e584f4ee9d81a37ce6490bed42a5c9dd01b5c24", "reused_payload": true, "utc": 1791154296.9471352}
+{"file": "tensors/model-00045-of-00048.safetensors", "bytes": 2573998288, "sha256": "1ee4a0103fad8d947ee6c9429a440b289ceeb8452668acf3f5ab324179072575", "reused_payload": true, "utc": 1791154302.8494794}
+{"file": "tensors/model-00046-of-00048.safetensors", "bytes": 2706403008, "sha256": "7e5333799713be691f8796e117b71010c284c1f5289bb4203c47473c4d924a7f", "reused_payload": true, "utc": 1791154309.463249}
+{"file": "tensors/model-00040-of-00048.safetensors", "bytes": 7023655520, "sha256": "d3691d6ffa4b2461870061bd67e7535aa2b3470dc56d7438d6be8279403a8ac8", "reused_payload": false, "utc": 1791154324.9371886}
+{"file": "tensors/model-00041-of-00048.safetensors", "bytes": 7024551740, "sha256": "ae31755dfdd72bc9c1512794d26971c1b6a527e377365b03e21ec034b9e2473a", "reused_payload": false, "utc": 1791154336.7257712}
+{"file": "tensors/model-00042-of-00048.safetensors", "bytes": 7028034496, "sha256": "8bc460ca51e504da5a1d9222b0968f9211c1a71020f566b74a6bac85da3e5ba0", "reused_payload": false, "utc": 1791154347.2500854}
+{"file": "tensors/model-00047-of-00048.safetensors", "bytes": 101535151048, "sha256": "18523c0ef7ada4252490b3ec4a7b757676d30ccfebaa518af56c58d492b3d0c9", "reused_payload": true, "utc": 1791154500.6623743}
+{"file": "tensors/model-00048-of-00048.safetensors", "bytes": 101537926752, "sha256": "d5d45a5fadd4a97385e796b00d907ca1aa96b2bb2f59abaa4577ab9f97a4996d", "reused_payload": true, "utc": 1791154523.6390524}
+CHECKPOINT VERIFIED

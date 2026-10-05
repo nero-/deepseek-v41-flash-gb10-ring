@@ -1,0 +1,15 @@
+{"rank": 1, "case": "reduce", "status": "passed"}
+{"rank": 1, "case": "reduce", "status": "passed"}
+{"rank": 1, "case": "reduce", "status": "passed"}
+{"rank": 1, "case": "reduce", "status": "passed"}
+{"rank": 1, "case": "reduce", "status": "passed"}
+{"rank": 1, "case": "reduce", "status": "passed"}
+{"rank": 1, "case": "reduce", "status": "passed"}
+{"rank": 1, "case": "reduce", "status": "passed"}
+{"rank": 1, "case": "reduce", "status": "passed"}
+{"rank": 1, "case": "gather", "status": "passed"}
+{"rank": 1, "case": "gather", "status": "passed"}
+{"rank": 1, "case": "gather", "status": "passed"}
+{"rank": 1, "case": "gather-output-ownership", "status": "passed"}
+{"rank": 1, "case": "alternating-grid-frozen-graph", "status": "passed"}
+{"rank": 1, "case": "selected-path-traffic", "status": "passed"}

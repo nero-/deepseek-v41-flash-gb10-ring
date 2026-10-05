@@ -1,0 +1,13 @@
+{
+  "rank": 3,
+  "argv": [
+    "curl",
+    "-fsS",
+    "--connect-timeout",
+    "5",
+    "--max-time",
+    "10",
+    "http://10.11.3.11:8984/manifest.json"
+  ],
+  "host_admin": false
+}

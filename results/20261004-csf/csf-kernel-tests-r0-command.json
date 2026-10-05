@@ -1,0 +1,33 @@
+{
+  "rank": 0,
+  "argv": [
+    "docker",
+    "run",
+    "--rm",
+    "--gpus",
+    "all",
+    "--network",
+    "none",
+    "--shm-size",
+    "2g",
+    "--env",
+    "PYTHONPATH=/tests/deps",
+    "--env",
+    "PYTEST_DISABLE_PLUGIN_AUTOLOAD=1",
+    "--mount",
+    "type=bind,src=/home/nero/csf-20261004/tests,dst=/tests",
+    "--entrypoint",
+    "python3",
+    "sha256:6ffd631ecaf4d158c43634fc432b61457c94865eb7eb5ee503059f9a3452bf50",
+    "/tests/kk926-test-launch.py",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "/tests/b12x/tests/quantization/test_mxfp4_csf_inline.py",
+    "/tests/b12x/tests/quantization/test_mxfp4_csf.py",
+    "/tests/b12x/tests/moe/test_mxfp4_csf.py"
+  ],
+  "host_admin": false
+}

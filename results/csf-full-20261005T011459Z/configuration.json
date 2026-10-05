@@ -1,0 +1,26 @@
+{
+  "profile": "engram-adaptive4k-query-indexer",
+  "configuration_sha256": "a98ad7bd912856b7a12d7aac6e036bed4d8c86119ebbf946ec286e2f0d0087bd",
+  "plugin_manifest": {
+    "dsv41_adaptive_prefill.py": "dfb6a8d70194306e08850a1f56865f7984d5a8df40ea8032cf485e590486ca58",
+    "dsv41_indexer_tp.py": "1bfe0450fa342bed52a87ed67388a065c0b79aa97c02debcd0e0f35b8ad845d5",
+    "dsv41_local-0.1.dist-info/METADATA": "94fa6ab17962b38be8ab32506c1218ecf616a203bdbc30bb325136cdeb7e3824",
+    "dsv41_local-0.1.dist-info/entry_points.txt": "ab6c572e33dd7bd10ad83863b787b1592401bf64a57564a69f6c591a7f3bb5f5"
+  },
+  "image_ids": [
+    "sha256:a845263341df054562e192cbac6ad559b1fec0d49d47379fb625d04f651eae92",
+    "sha256:d487a388525d1f6de68a2f0f2d8aedcda79fd64c203491c02dfb012d8d92b86e",
+    "sha256:cc08e42370eab01ca8a6c113fac8fdb0efc5aa83bbc516004df774425fca2a64",
+    "sha256:8540592943288265be6b2c0bfd92702e1e7f4fba518547c8aadfa652cc560ae7"
+  ],
+  "trial_configuration_sha256": "b2ec1a058a6477d638f074b265b692a1e6c08cee3101f548fc9c64d098af6d99",
+  "runtime_parameters": {
+    "omp_num_threads": "16",
+    "csf_inline": "1",
+    "compile_cache": "/cache/ds41-csf-00a33e231-4bc601a42-c5c41fe301-v2-peerwait/b12x/compile",
+    "checkpoint": "c5c41fe301c4c1d24fc09376883d9168e521dc66",
+    "gpu_clock_upper_mhz": 2350
+  },
+  "started_utc": "2026-10-05T01:15:00Z",
+  "note": "Trial CSF images with immutable launch specs; selected configuration remains unchanged."
+}

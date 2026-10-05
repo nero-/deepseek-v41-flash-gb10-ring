@@ -1,0 +1,3 @@
+{"file": "model-00048-of-00048.safetensors", "bytes": 101537926640, "sha256": "976330f4954338e1ad8b508c32aa912032c7ad908959fd53c8307650fe4520ed", "restored": false, "fabric_transferred": true, "seconds": 421.3526636599563}
+{"file": "model-00047-of-00048.safetensors", "bytes": 101535150936, "sha256": "824db4881320407ac340736d14dcee5ecd748c27d0f5836b8127ecc2e3781b0f", "restored": false, "fabric_transferred": true, "seconds": 421.9292217720067}
+ORIGINAL CHECKPOINT RECOVERED

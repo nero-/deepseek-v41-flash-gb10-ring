@@ -1,0 +1,32 @@
+{
+  "rank": 0,
+  "argv": [
+    "docker",
+    "run",
+    "--rm",
+    "--network",
+    "none",
+    "--env",
+    "PYTHONPATH=/tests/deps:/tests/update/tool_choice_contract",
+    "--env",
+    "PYTEST_DISABLE_PLUGIN_AUTOLOAD=1",
+    "--env",
+    "VLLM_PLUGINS=",
+    "--mount",
+    "type=bind,src=/home/nero/csf-20261004/tests,dst=/tests",
+    "--entrypoint",
+    "python3",
+    "sha256:a845263341df054562e192cbac6ad559b1fec0d49d47379fb625d04f651eae92",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "/tests/update/tool_choice_contract/test_tool_choice_contract_policy.py",
+    "/tests/update/peerwait/test_peer_wait.py",
+    "/tests/update/runtime_status/test_status_views.py",
+    "/tests/update/runtime_status/test_metrics.py",
+    "/tests/update/runtime_status/test_runtime_status.py"
+  ],
+  "host_admin": false
+}

@@ -1,0 +1,1 @@
+{"before_enabled": "enabled", "enabled": "enabled", "devices": ["nvidia.com/gpu=0", "nvidia.com/gpu=GPU-bbf8fc4a-cd1d-67bd-d430-0daef3c6fd62", "nvidia.com/gpu=all"], "toolkit": "NVIDIA Container Toolkit CLI version 1.20.1\ncommit: dffc40b4f820ce5c512633bac9e0418d0e05a2ee\n"}

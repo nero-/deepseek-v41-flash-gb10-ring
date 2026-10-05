@@ -1,0 +1,14 @@
+{
+  "rank": 1,
+  "argv": [
+    "systemd-run",
+    "--unit=ds41-original-artifacts",
+    "python3",
+    "/home/nero/csf-20261004/original-artifact-server.py",
+    "--bind",
+    "10.10.1.10",
+    "--manifest",
+    "/home/nero/csf-20261004/original-hub-file-manifest.json"
+  ],
+  "host_admin": true
+}

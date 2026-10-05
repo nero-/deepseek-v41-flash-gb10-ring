@@ -1,0 +1,11 @@
+{
+  "rank": 2,
+  "argv": [
+    "docker",
+    "stop",
+    "--time",
+    "60",
+    "ds41-csf-r2"
+  ],
+  "host_admin": false
+}

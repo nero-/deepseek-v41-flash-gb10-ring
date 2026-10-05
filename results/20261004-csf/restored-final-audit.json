@@ -1,0 +1,50 @@
+{
+  "healthy": true,
+  "configuration_unchanged": true,
+  "nodes": [
+    {
+      "rank": 0,
+      "running": true,
+      "image_id": "sha256:a9f4aa50ac6b2ca8e3961361fc24bc2d4b0c2785080e85248391ff7da7fbf27c",
+      "clock_cap_unit_active": true,
+      "clock_cap_unit_enabled": true,
+      "indexer_enabled_lines": 0,
+      "indexer_disabled_lines": 0,
+      "started_at": "2026-10-05T02:46:36.657820421Z"
+    },
+    {
+      "rank": 1,
+      "running": true,
+      "image_id": "sha256:43e6685cf8f01ebd1aab60a588e523f4b8d0330be27d9c43ab0d6f146d2f6649",
+      "clock_cap_unit_active": true,
+      "clock_cap_unit_enabled": true,
+      "indexer_enabled_lines": 0,
+      "indexer_disabled_lines": 0,
+      "started_at": "2026-10-05T02:46:36.672162196Z"
+    },
+    {
+      "rank": 2,
+      "running": true,
+      "image_id": "sha256:4fbff34beec9dfde9ca4e2f197d8a93da0f36fec226027871c4d3d6247d6ac7d",
+      "clock_cap_unit_active": true,
+      "clock_cap_unit_enabled": true,
+      "indexer_enabled_lines": 0,
+      "indexer_disabled_lines": 0,
+      "started_at": "2026-10-05T02:46:36.59720515Z"
+    },
+    {
+      "rank": 3,
+      "running": true,
+      "image_id": "sha256:7725323e2f86085775349b4bcac3efcdc4c05ee556f471786c886e6f8e544688",
+      "clock_cap_unit_active": true,
+      "clock_cap_unit_enabled": true,
+      "indexer_enabled_lines": 0,
+      "indexer_disabled_lines": 0,
+      "started_at": "2026-10-05T02:46:36.613776782Z"
+    }
+  ],
+  "gpu_upper_cap_mhz": 2350,
+  "benchmark_repeated": false,
+  "unix_time": 1791168808.723354,
+  "indexer_log_scope": "Restored startup only; short serving checks do not exercise long-prefill sharding."
+}

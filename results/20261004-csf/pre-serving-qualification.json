@@ -1,0 +1,12 @@
+{
+  "csf_kernel_tests_per_gpu": 124,
+  "preparation_cache_tests": 110,
+  "blockscaled_lowering_tests": 14,
+  "compressor_upstream_tests": 16,
+  "compressor_upstream_skipped": 1,
+  "fixed_regime_graph_parity": true,
+  "transport_graph_numerical_parity_all_four": true,
+  "compressor_ring_mapping_all_four": true,
+  "build_context_reproduced": true,
+  "serving_qualified": false
+}

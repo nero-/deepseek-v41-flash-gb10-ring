@@ -1,0 +1,22 @@
+[
+  {
+    "rank": 0,
+    "image_id": "sha256:6ffd631ecaf4d158c43634fc432b61457c94865eb7eb5ee503059f9a3452bf50",
+    "parent_image": "sha256:a9f4aa50ac6b2ca8e3961361fc24bc2d4b0c2785080e85248391ff7da7fbf27c"
+  },
+  {
+    "rank": 1,
+    "image_id": "sha256:796ddfda81a8b1d881e341bce93276e28a3934932ab253aed8121d5952e44586",
+    "parent_image": "sha256:43e6685cf8f01ebd1aab60a588e523f4b8d0330be27d9c43ab0d6f146d2f6649"
+  },
+  {
+    "rank": 2,
+    "image_id": "sha256:c017188498aff23c441858c0f316b67e6165e0fadb889b4fed4f331ecf62fb8c",
+    "parent_image": "sha256:4fbff34beec9dfde9ca4e2f197d8a93da0f36fec226027871c4d3d6247d6ac7d"
+  },
+  {
+    "rank": 3,
+    "image_id": "sha256:97a300d122a50fc2bd7c681b8b6cd79f53568a2067de0dd34f6f7bf3f7ddea74",
+    "parent_image": "sha256:7725323e2f86085775349b4bcac3efcdc4c05ee556f471786c886e6f8e544688"
+  }
+]

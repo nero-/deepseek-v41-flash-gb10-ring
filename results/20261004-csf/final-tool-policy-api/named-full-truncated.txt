@@ -1,0 +1,1 @@
+{"error":{"message":"Named or required tool_choice produced no tool calls; finish_reason: length. Increase max_tokens so generation can complete the tool call.","type":"BadRequestError","param":"max_tokens","code":400}}

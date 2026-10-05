@@ -1,0 +1,520 @@
+{
+  ".csf-work/vllm/vllm/envs.py": [
+    {
+      "new": "    VLLM_B12X_CSF_SCALE_PREFETCH: bool = True\n",
+      "local": "    VLLM_B12X_KDA_PREFILL_COALESCING: bool = False\n    VLLM_B12X_KDA_PREFILL_COALESCING_LOG_LIMIT: int = 0\n    VLLM_GLM53_MHC_PREFILL_SHARD: bool = False\n    VLLM_GLM53_MHC_PREFILL_DIAGNOSTICS: bool = False\n"
+    },
+    {
+      "new": "    VLLM_KIMI_KDA_PROJECTION_STREAM_TOKEN_THRESHOLD: int = 0\n",
+      "local": ""
+    },
+    {
+      "new": "    # Partition DFlash auxiliary FC output rows and gather complete activations,\n    # padding widths that do not divide by TP. Divisible widths always shard.\n",
+      "local": "    # Partition DFlash auxiliary FC output rows and gather complete activations.\n"
+    },
+    {
+      "new": "        \"VLLM_CHECKPOINT_RESTORE_MAX_WAIT_S\",\n",
+      "local": ""
+    }
+  ],
+  ".csf-work/vllm/vllm/distributed/parallel_state.py": [
+    {
+      "new": "        reduce_in_place = getattr(self.device_communicator, \"all_reduce_in_place\", None)\n        if reduce_in_place is None:\n            raise NotImplementedError(\"The device communicator cannot reduce in place\")\n        return reduce_in_place(input_)\n",
+      "local": "        return self.device_communicator.all_reduce_in_place(input_)\n"
+    }
+  ],
+  ".csf-work/vllm/vllm/config/vllm.py": [
+    {
+      "new": "            connector = KVConnectorFactory.get_connector_class(self.kv_transfer_config)\n            # Explicit aligned retention bypasses request-boundary checkpoints;\n            # it is correct only with connectors that move hybrid state at\n            # aligned boundaries, and only validated without DCP.\n            cache_config = getattr(self, \"cache_config\", None)\n            parallel_config = getattr(self, \"parallel_config\", None)\n            aligned = (\n                getattr(cache_config, \"recurrent_checkpoint_policy\", None) == \"aligned\"\n                and getattr(parallel_config, \"decode_context_parallel_size\", None) == 1\n                and connector.supports_aligned_hybrid_transfer(self)\n            )\n            if not aligned and not connector.supports_request_boundary_checkpoints(\n                self\n            ):\n                raise ValueError(\n                    \"Qwen QSA KV transfer requires an atomic request-boundary \"\n                    \"checkpoint connector, or --recurrent-checkpoint-policy \"\n                    \"aligned without DCP and a connector that transfers aligned \"\n                    \"hybrid state (SimpleCPUOffloadConnector, OffloadingConnector)\"\n",
+      "local": "            connector = KVConnectorFactory.get_connector_class(\n                self.kv_transfer_config\n            )\n            # The retained SparkCache adapter captures aligned recurrent\n            # blocks through source-bound read leases. It does not implement\n            # atomic target/draft request-boundary checkpoints.\n            aligned_sparkcache = (\n                self.kv_transfer_config.kv_connector == \"SparkContextCacheConnector\"\n                and self.kv_transfer_config.kv_connector_module_path\n                == \"sparkcache.spark_context_cache_connector\"\n                and connector.__module__ == \"sparkcache.spark_context_cache_connector\"\n                and connector.__name__ == \"SparkContextCacheConnector\"\n                and getattr(connector, \"supports_recurrent_boundary_blocks\", False)\n                is True\n                and self.cache_config.recurrent_checkpoint_policy == \"aligned\"\n                and self.cache_config.mamba_cache_mode == \"align\"\n                and self.cache_config.enable_prefix_caching\n                and self.parallel_config.tensor_parallel_size in (2, 4)\n                and self.parallel_config.decode_context_parallel_size == 1\n                and self.parallel_config.pipeline_parallel_size == 1\n                and self.parallel_config.data_parallel_size == 1\n                and self.parallel_config.prefill_context_parallel_size == 1\n                and self.kv_transfer_config.kv_role == \"kv_both\"\n            )\n            if (\n                not connector.supports_request_boundary_checkpoints(self)\n                and not aligned_sparkcache\n            ):\n                raise ValueError(\n                    \"Qwen QSA KV transfer requires an atomic request-boundary \"\n                    \"checkpoint connector or the source-bound aligned \"\n                    \"SparkCache profile\"\n"
+    }
+  ],
+  ".csf-work/vllm/vllm/v1/core/kv_cache_manager.py": [
+    {
+      "new": "from vllm.v1.core.single_type_kv_cache_manager import (\n    MambaManager,\n    SingleTypeKVCacheManager,\n)\n",
+      "local": "from vllm.v1.core.recurrent_prefill_checkpoint import (\n    CheckpointPlan,\n    continuation_layout,\n    validate_plan,\n)\nfrom vllm.v1.core.single_type_kv_cache_manager import MambaManager\n"
+    }
+  ],
+  ".csf-work/vllm/vllm/v1/attention/ops/dcp.py": [
+    {
+      "new": "            # B12X supplies zero output and -inf LSE for every empty local\n",
+      "local": "            # B12X_MLA supplies zero output and -inf LSE for every empty local\n"
+    }
+  ],
+  ".csf-work/vllm/vllm/v1/core/sched/scheduler.py": [
+    {
+      "new": "            # Frozen boundary capture: the connector releases the manager pin\n            # on a capture block when its store DMA acks or the offer is\n            # dropped (I4). No-op for block ids the manager never pinned.\n            self.connector.bind_boundary_capture_releaser(\n                self.kv_cache_manager.release_boundary_capture\n",
+      "local": "            coordinator = self.kv_cache_manager.coordinator\n            coordinator.recurrent_publication_boundary_provider = getattr(\n                self.connector, \"get_recurrent_publication_boundaries\", None\n"
+    },
+    {
+      "new": "",
+      "local": "            prefill_step_token_limit = min(\n                prefill_step_token_limit, self.prefill_fairness_max_tokens\n            )\n"
+    },
+    {
+      "new": "",
+      "local": "                                prefill_step_token_limit = min(\n                                    prefill_step_token_limit,\n                                    self.prefill_fairness_max_tokens,\n                                )\n"
+    },
+    {
+      "new": "",
+      "local": "                prefill_step_token_limit = min(\n                    prefill_step_token_limit, self.prefill_fairness_max_tokens\n                )\n"
+    },
+    {
+      "new": "                allow_preemption=not num_scheduled_tokens,\n",
+      "local": "                # An empty prefill turn must allow decode preemption to avoid\n                # reselecting prefill forever without a compute-time charge.\n                # Recheck emptiness at each allocation failure so later decode\n                # attempts cannot evict work scheduled by this fallback.\n                preempt_only_if_empty=True,\n"
+    }
+  ],
+  ".csf-work/vllm/vllm/v1/worker/gpu/spec_decode/dflash/speculator.py": [
+    {
+      "new": "        self._setup_vocab_parallel_drafting(model)\n        return model\n\n    def _setup_vocab_parallel_drafting(self, model: nn.Module) -> None:\n        \"\"\"Keep draft logits vocab-sharded (VLLM_DFLASH_VOCAB_PARALLEL_DRAFT=1).\n\n        Probabilistic drafts are Gumbel-sampled per vocab shard and combined\n        from per-rank winners (spec_decode.vocab_parallel), so the [rows, vocab]\n        logits all-gather disappears; the cache holds this rank's shard.  Any\n        layout the sampler does not cover keeps the full-vocab path.\n        \"\"\"\n        from vllm.distributed import get_tensor_model_parallel_world_size\n\n        self._vocab_parallel = None\n        if not envs.VLLM_DFLASH_VOCAB_PARALLEL_DRAFT or self.draft_logits is None:\n            return\n        head = getattr(model, \"lm_head\", None)\n        si = getattr(head, \"shard_indices\", None)\n        tp = get_tensor_model_parallel_world_size()\n        if (\n            tp == 1\n            or si is None\n            or not hasattr(model, \"compute_local_logits\")\n            or getattr(model, \"draft_id_to_target_id\", None) is not None\n            or self.draft_watermarker is not None\n            or self.speculative_config.rejection_sample_method != \"standard\"\n            or si.num_org_vocab_padding != 0\n            or si.num_added_elements != 0\n            or si.num_org_elements * tp != self.vocab_size\n        ):\n            logger.info_once(\n                \"DFlash vocab-parallel drafting not applicable; \"\n                \"keeping the full-vocab draft path\"\n            )\n            return\n        from vllm.v1.worker.gpu.spec_decode.vocab_parallel import VPDraftCache\n\n        dtype, fill = self.draft_logits_spec(self.vllm_config)\n        self.draft_logits = torch.full(\n            (self.max_num_reqs, self.num_speculative_steps, si.num_org_elements),\n            fill,\n            dtype=dtype,\n            device=self.device,\n        )\n        self._vocab_parallel = VPDraftCache(\n            self.draft_logits, si.org_vocab_start_index, self.vocab_size, None\n        )\n        logger.info_once(\n            \"DFlash vocab-parallel drafting: shard [%d, %d) of %d, no draft-logits \"\n            \"all-gather\",\n            si.org_vocab_start_index,\n            si.org_vocab_end_index,\n            self.vocab_size,\n        )\n\n    def sample_draft(\n        self,\n        hidden_states: torch.Tensor,\n        sample_src_positions: torch.Tensor,\n        idx_mapping: torch.Tensor,\n        temperature: torch.Tensor,\n        seeds: torch.Tensor,\n        draft_step: torch.Tensor,\n        draft_logits: torch.Tensor | None,\n    ) -> torch.Tensor:\n        vp = getattr(self, \"_vocab_parallel\", None)\n        if vp is None or draft_logits is None or draft_logits is not vp.logits:\n            return super().sample_draft(\n                hidden_states,\n                sample_src_positions,\n                idx_mapping,\n                temperature,\n                seeds,\n                draft_step,\n                draft_logits,\n            )\n        from vllm.v1.worker.gpu.spec_decode import vocab_parallel as vp_sampling\n\n        local = self.model.compute_local_logits(hidden_states)\n        col = draft_step if draft_step.dim() > 0 else draft_step.expand(local.shape[0])\n        tokens, maxes, sums = vp_sampling.draft_sample(\n            local,\n            idx_mapping,\n            temperature,\n            seeds,\n            sample_src_positions,\n            col,\n            vp,\n            use_fp64=self.use_fp64_gumbel,\n        )\n        est = self.acceptance_estimator\n        if est is not None:\n            # Same predictor as acceptance_estimator.predict, fed with per-rank\n            # (max, sum-exp) partials of logits / T instead of vocab blocks.\n            from vllm.v1.worker.gpu.spec_decode.acceptance_estimator import (\n                _MAX_LOG_ODDS,\n                _predict_kernel,\n            )\n\n            num_tokens, nparts = maxes.shape\n            _predict_kernel[(num_tokens,)](\n                est.features,\n                est.features.stride(0),\n                est.predictions,\n                est.predictions.stride(0),\n                self.draft_token_confidence_probs,\n                self.draft_token_confidence_probs.stride(0),\n                est.slope,\n                est.intercepts,\n                maxes,\n                maxes.stride(0),\n                sums,\n                sums.stride(0),\n                idx_mapping,\n                idx_mapping.stride(0),\n                draft_step,\n                num_tokens,\n                nparts,\n                per_token_step=draft_step.dim() > 0,\n                NUM_SPECULATIVE_STEPS=est.num_speculative_steps,\n                MAX_LOG_ODDS=_MAX_LOG_ODDS,\n                PADDED_VOCAB_NUM_BLOCKS=triton.next_power_of_2(nparts),\n            )\n        return tokens\n",
+      "local": "        return model\n"
+    }
+  ],
+  ".csf-work/vllm/vllm/distributed/device_communicators/b12x_pcie_all_reduce.py": [
+    {
+      "new": "        # Key the fused RMSNorm weight by storage, not Python identity: a\n        # compiled graph passes an alias of the declared Parameter (e.g.\n        # ``weight.data``), so ``id()`` never matches and every fused call\n        # would fall back to all-reduce + copy + norm.\n        norm = (\n            None\n            if operation == \"all_reduce\"\n            else (weight.data_ptr() if weight is not None else None, epsilon)\n        )\n",
+      "local": "        norm = None if operation == \"all_reduce\" else (id(weight), epsilon)\n"
+    }
+  ],
+  ".csf-work/vllm/vllm/distributed/kv_transfer/kv_connector/v1/offloading_connector.py": [
+    {
+      "new": "    def supports_aligned_hybrid_transfer(cls, config: \"VllmConfig\") -> bool:\n        # Boundary captures and padded QSA page refs serve align-mode hits.\n        return True\n\n    @classmethod\n",
+      "local": ""
+    }
+  ],
+  ".csf-work/vllm/vllm/distributed/kv_transfer/kv_connector/v1/offloading/scheduler.py": [
+    {
+      "new": "                if group_config.requires_cow_source:\n                    # CoW (mamba align-mode) groups are persisted through the\n                    # boundary / partial-tail store path, not the chunk path.\n                    # Append a (0, 0) placeholder rather than a bare continue so\n                    # group_store_ranges stays positionally aligned with\n                    # kv_group_configs. The consumer zip below pairs each range\n                    # with its own group; a shorter list truncates group_sizes\n                    # AND misaligns every surviving group's chunk range, which\n                    # trips the worker assert\n                    # len(group_sizes) == len(layer_refs_per_group).\n                    group_store_ranges.append((0, 0))\n                    continue\n\n",
+      "local": ""
+    }
+  ],
+  ".csf-work/vllm/vllm/model_executor/models/mimo_v2.py": [
+    {
+      "new": "def _fused_qkv_kv_chunk_rows(\n    num_heads: int,\n    num_kv_heads: int,\n    head_dim: int,\n    v_head_dim: int,\n    tp_size: int,\n    checkpoint_tp_size: int,\n    block: int = 128,\n) -> int:\n    \"\"\"Rows per checkpoint chunk of a rank's ``K | V`` fused-QKV section.\n\n    Returns 0 when the de-interleaved ``[Q | K | V]`` rank layout is exact:\n    a rank owns at most one checkpoint chunk, or every chunk's Q, K and V\n    rows span whole FP8 scale blocks, so the layout is a block permutation.\n\n    Otherwise, when a rank owns several chunks whose K and V rows share a\n    scale block (MiMo global layers: 192 K + 128 V rows), the rank keeps each\n    chunk's K and V rows together, zero-padded to whole blocks, so every row\n    keeps its checkpoint scale:\n\n        [Q_1 | ... | Q_g | K_1 V_1 pad | ... | K_g V_g pad]\n\n    and this returns the padded ``K | V`` rows per chunk.\n    \"\"\"\n    if checkpoint_tp_size <= tp_size or checkpoint_tp_size % tp_size:\n        return 0\n    q_rows = num_heads // checkpoint_tp_size * head_dim\n    k_rows = num_kv_heads // checkpoint_tp_size * head_dim\n    v_rows = num_kv_heads // checkpoint_tp_size * v_head_dim\n    if q_rows % block or (k_rows % block == 0 and v_rows % block == 0):\n        return 0\n    return cdiv(k_rows + v_rows, block) * block\n\n\ndef _split_qkv(\n    qkv: torch.Tensor, q_size: int, k_size: int, v_size: int, kv_chunk_rows: int\n) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:\n    \"\"\"Split a rank's fused QKV output (see _fused_qkv_kv_chunk_rows).\"\"\"\n    if not kv_chunk_rows:\n        return qkv.split([q_size, k_size, v_size], dim=-1)\n    q, kv = qkv.split([q_size, qkv.shape[-1] - q_size], dim=-1)\n    kv = kv.unflatten(-1, (-1, kv_chunk_rows))\n    k_rows, v_rows = k_size // kv.shape[-2], v_size // kv.shape[-2]\n    k = kv[..., :k_rows].flatten(-2)\n    v = kv[..., k_rows : k_rows + v_rows].flatten(-2)\n    return q, k, v\n",
+      "local": "def _requantize_fp8(\n    grouped: torch.Tensor, rows_rank: int, block: int, dtype: torch.dtype\n) -> tuple[torch.Tensor, torch.Tensor]:\n    \"\"\"Block-quantize a rank's ``[Q | K | V]`` rows back to fp8.\n\n    A rank's rows need not end on a block boundary (a single 1856-row slice is\n    14.5 blocks) while ``scaled_quantize`` requires both dims to be multiples of\n    the block size, so pad the tail with zeros: zero rows cannot raise a block's\n    amax, so every scale -- and the number of scale rows -- is unchanged. The\n    padding is dropped again here.\n    \"\"\"\n    padded = cdiv(rows_rank, block) * block\n    if padded != rows_rank:\n        grouped = torch.cat(\n            [grouped, grouped.new_zeros(padded - rows_rank, grouped.shape[1])], dim=0\n        )\n    w_rank, s_rank = scaled_quantize(\n        grouped, GroupShape(block, block), dtype, compute_dtype=torch.float32\n    )\n    return w_rank[:rows_rank], s_rank\n"
+    },
+    {
+      "new": "    When ``g == 1`` the rank's slice is already ``[Q | K | V]``, so a plain\n    chunk suffices. When Q, K and V each span whole 128-row scale blocks, the\n    layout above is a block permutation of the checkpoint and is exact. When\n    a block straddles the K/V boundary (a 192-row K is 1.5 blocks), the rank\n    uses the padded ``[Q_1 | ... | Q_g | K_1 V_1 pad | ... | K_g V_g pad]``\n    layout of ``_fused_qkv_kv_chunk_rows`` instead (``kv_chunk_rows``), again\n    exact. Only when neither applies do we dequantize this rank's groups to\n    float, reorder the rows into the layout above, and re-quantize to fp8.\n",
+      "local": "    When ``tp_size == checkpoint_tp_size`` the checkpoint chunk *is* that layout, so a\n    plain chunk of both weight and scale suffices. Otherwise each rank's Q, K\n    and V rows are gathered from the chunks that hold them, dequantized with\n    the chunk's own scales, reordered, and re-quantized to fp8.\n"
+    },
+    {
+      "new": "    assert num_kv_heads % checkpoint_tp_size == 0\n\n    groups_per_rank = checkpoint_tp_size // tp_size\n    if groups_per_rank == 1:\n        # One checkpoint shard per rank. Weights and scales can be sharded\n        # without re-quantization.\n        w = w_full.chunk(tp_size, dim=0)[tp_rank]\n        s = s_full.chunk(tp_size, dim=0)[tp_rank]\n        return w, s\n\n    q_rows_per_group = (num_heads // checkpoint_tp_size) * head_dim\n    k_rows_per_group = (num_kv_heads // checkpoint_tp_size) * head_dim\n    v_rows_per_group = (num_kv_heads // checkpoint_tp_size) * v_head_dim\n    rows_per_group = q_rows_per_group + k_rows_per_group + v_rows_per_group\n    scale_rows_per_group = (rows_per_group + block - 1) // block\n    assert w_full.shape[0] == rows_per_group * checkpoint_tp_size\n    assert s_full.shape[0] == scale_rows_per_group * checkpoint_tp_size\n    groups = range(tp_rank * groups_per_rank, (tp_rank + 1) * groups_per_rank)\n    q_end = q_rows_per_group\n    k_end = q_end + k_rows_per_group\n    if kv_chunk_rows or all(\n        n % block == 0 for n in (q_rows_per_group, k_rows_per_group, v_rows_per_group)\n    ):\n        # Exact: every row keeps its checkpoint FP8 value and block scale.\n        def rows(g: int, start: int, stop: int) -> torch.Tensor:\n            base = g * rows_per_group\n            return materialize_weight(w_full[base + start : base + stop])\n\n        def scales(g: int, start: int, stop: int) -> torch.Tensor:\n            base = g * scale_rows_per_group\n            return materialize_weight(\n                s_full[base + start // block : base + cdiv(stop, block)]\n            )\n\n        if kv_chunk_rows:\n            pad = kv_chunk_rows - (rows_per_group - q_end)\n            weights = [rows(g, 0, q_end) for g in groups]\n            for g in groups:\n                kv = rows(g, q_end, rows_per_group).view(torch.uint8)\n                zeros = kv.new_zeros((pad, kv.shape[1]))  # FP8 +0.0\n                weights.append(torch.cat([kv, zeros]).view(w_full.dtype))\n            scale_rows = [scales(g, 0, q_end) for g in groups]\n            scale_rows += [scales(g, q_end, rows_per_group) for g in groups]\n        else:\n            segments = ((0, q_end), (q_end, k_end), (k_end, rows_per_group))\n            weights = [rows(g, *seg) for seg in segments for g in groups]\n            scale_rows = [scales(g, *seg) for seg in segments for g in groups]\n        return (\n            torch.cat([w.view(torch.uint8) for w in weights]).view(w_full.dtype),\n            torch.cat(scale_rows),\n        )\n    qs, ks, vs = [], [], []\n    for g_idx in groups:\n        row_start = g_idx * rows_per_group\n        scale_row_start = g_idx * scale_rows_per_group\n        # Dequantize this group's weights.\n        w_g = materialize_weight(w_full[row_start : row_start + rows_per_group]).to(\n            torch.float32\n        )\n        s_g = materialize_weight(\n            s_full[scale_row_start : scale_row_start + scale_rows_per_group]\n        ).to(torch.float32)\n        s_g_expanded = s_g.repeat_interleave(block, dim=0).repeat_interleave(\n            block, dim=1\n        )[:rows_per_group]\n        w_g_dequant = w_g * s_g_expanded\n        # Track the dequantized q, k, and v weights separately.\n        qs.append(w_g_dequant[:q_rows_per_group])\n        ks.append(w_g_dequant[q_rows_per_group : q_rows_per_group + k_rows_per_group])\n        vs.append(w_g_dequant[q_rows_per_group + k_rows_per_group :])\n\n    # Combine the q, k, and v weights into the following layout:\n    # [Q_1, Q_2, .., Q_g, K_1, K_2, ..., K_g, V_1, V_2, ..., V_g]\n    grouped = torch.cat([torch.cat(qs), torch.cat(ks), torch.cat(vs)], dim=0)\n    # Quantize back to fp8.\n    return scaled_quantize(\n        grouped, GroupShape(block, block), w_full.dtype, compute_dtype=torch.float32\n",
+      "local": "    if (\n        checkpoint_tp_size <= 0\n        or num_heads % checkpoint_tp_size\n        or num_kv_heads % checkpoint_tp_size\n    ):\n        raise ValueError(\n            f\"fused qkv_proj has {checkpoint_tp_size} chunks, which do not \"\n            f\"divide num_heads={num_heads} / num_kv_heads={num_kv_heads}.\"\n        )\n    # When there are fewer KV heads than ranks, vLLM replicates them\n    # (`num_kv_head_replicas`) and rank r owns KV head r // replicas, which\n    # keeps every Q head grouped with the KV head it attends to.\n    if tp_size <= num_kv_heads:\n        assert num_kv_heads % tp_size == 0, (\n            f\"num_kv_heads={num_kv_heads} must be divisible by tp_size={tp_size}.\"\n        )\n        kv_head_ids = list(\n            range(\n                tp_rank * (num_kv_heads // tp_size),\n                (tp_rank + 1) * (num_kv_heads // tp_size),\n            )\n        )\n    else:\n        assert tp_size % num_kv_heads == 0, (\n            f\"tp_size={tp_size} must be divisible by num_kv_heads={num_kv_heads}.\"\n        )\n        kv_head_ids = [tp_rank // (tp_size // num_kv_heads)]\n    q_head_ids = list(\n        range(tp_rank * (num_heads // tp_size), (tp_rank + 1) * (num_heads // tp_size))\n"
+    }
+  ],
+  ".csf-work/vllm/vllm/model_executor/models/qwen3_dflash.py": [
+    {
+      "new": ")\nfrom vllm.distributed.parallel_state import (\n    declare_b12x_fused_allreduce_rms_norm_sites,\n",
+      "local": ""
+    },
+    {
+      "new": "            # Shard the context projection's output features across TP ranks\n            # and all-gather the result: every output element keeps its full\n            # dot product (bit-identical to a replicated layer) while each rank\n            # streams 1/tp of the [hidden, num_aux * hidden] weight per step.\n            # Widths that do not divide evenly are padded only on request.\n            tp_size = get_tensor_model_parallel_world_size()\n            fc_cls = ReplicatedLinear\n            fc_kwargs = {}\n            fc_output_size = self.config.hidden_size\n            if envs.VLLM_DFLASH_SHARD_AUX_PROJECTION or (\n                tp_size > 1 and fc_output_size % tp_size == 0\n            ):\n                fc_cls = ColumnParallelLinear\n                fc_kwargs[\"gather_output\"] = True\n                fc_output_size = _dflash_padded_width(fc_output_size, tp_size)\n                aux_projection_tp_size = tp_size\n",
+      "local": "            fc_cls = ReplicatedLinear\n            fc_kwargs = {}\n            fc_output_size = self.config.hidden_size\n            if envs.VLLM_DFLASH_SHARD_AUX_PROJECTION:\n                fc_cls = ColumnParallelLinear\n                fc_kwargs[\"gather_output\"] = True\n                fc_output_size = _dflash_padded_width(\n                    fc_output_size, get_tensor_model_parallel_world_size()\n                )\n"
+    },
+    {
+      "new": "        self._aux_projection_tp_size = aux_projection_tp_size\n",
+      "local": "        self._aux_projection_tp_size = (\n            get_tensor_model_parallel_world_size()\n            if envs.VLLM_DFLASH_SHARD_AUX_PROJECTION\n            else 1\n        )\n"
+    }
+  ],
+  ".csf-work/vllm/vllm/model_executor/warmup/kernel_warmup.py": [
+    {
+      "new": "    load_autotune_cache_on_all_ranks,\n    rank_union_cache_path,\n    resolve_flashinfer_autotune_file,\n    save_flashinfer_autotune_cache,\n    save_rank_union_autotune_cache,\n",
+      "local": "    read_flashinfer_autotune_cache,\n    resolve_flashinfer_autotune_file,\n    save_flashinfer_autotune_cache,\n    write_flashinfer_autotune_cache,\n"
+    },
+    {
+      "new": "    # Load the leader's cache on every rank, or on none: a cache hit skips a\n    # profile's all-reduce, so all ranks must make the same hit/miss decisions.\n    load_autotune_cache_on_all_ranks(cache_path, tuner, world)\n",
+      "local": "    # Read cached autotune results and broadcast to all ranks.\n    cached_results: bytes | None = None\n    if is_leader:\n        cached_results = read_flashinfer_autotune_cache(cache_path)\n    cached_results = world.broadcast_object(cached_results, src=0)\n    if cached_results is not None:\n        write_flashinfer_autotune_cache(cache_path, cached_results)\n        world.barrier()\n        tuner.load_configs(str(cache_path))\n"
+    },
+    {
+      "new": "        save_rank_union_autotune_cache(cache_path, tuner, world)\n    else:\n",
+      "local": "    if is_leader:\n"
+    }
+  ],
+  ".csf-work/vllm/vllm/model_executor/layers/attention/mla_attention.py": [
+    {
+      "new": "                    self.attn_backend.get_name() == \"B12X\"\n",
+      "local": "                    self.attn_backend.get_name() == \"B12X_MLA\"\n"
+    },
+    {
+      "new": "        prefill_hook = getattr(\n            getattr(self, \"prefill_backend\", None), \"get_b12x_preparation_units\", None\n        )\n",
+      "local": "        prefill_hook = getattr(self.prefill_backend, \"get_b12x_preparation_units\", None)\n"
+    }
+  ],
+  ".csf-work/vllm/vllm/model_executor/layers/fused_moe/b12x.py": [
+    {
+      "new": "                \"b12x MoE requires MXFP4, MXFP8, NVFP4, EXL3, IQ2_XS, IQ2_XXS \"\n",
+      "local": "                \"b12x MoE requires MXFP4, NVFP4, EXL3, IQ2_XS, IQ2_XXS \"\n"
+    },
+    {
+      "new": "        \"\"\"Install canonical prepared experts without retaining source parameters.\"\"\"\n        fused_moe = _require_b12x_fused_moe()\n        if not isinstance(prepared, fused_moe.PreparedExperts):\n            raise TypeError(\"Installation requires B12X PreparedExperts\")\n        trellis = self._source_format == \"exl3\" and isinstance(\n            prepared.plan.source, fused_moe.TrellisSource\n        )\n        packed = (\n            self._source_format == \"fp4_e8m0_k32\"\n            and isinstance(prepared.plan.source, fused_moe.PackedSource)\n            and prepared.plan.source.format == \"fp4_e8m0_k32\"\n        )\n        nvfp4 = (\n            self._source_format == \"modelopt_nvfp4\"\n            and self._quant_mode in (\"nvfp4\", \"w4a16\")\n            and isinstance(prepared.plan.source, fused_moe.PackedSource)\n            and prepared.plan.source.format == \"modelopt_nvfp4\"\n            and prepared.plan.source.w13_layout in (self._w13_layout, \"w13\")\n        )\n        if not (trellis or packed or nvfp4):\n            raise TypeError(\"Prepared expert encoding does not match the backend\")\n",
+      "local": "        \"\"\"Use a prepared EXL3 package without repacking it as ordinary FP4.\"\"\"\n        fused_moe = _require_b12x_fused_moe()\n        if (\n            self._source_format != \"exl3\"\n            or not isinstance(prepared, fused_moe.PreparedExperts)\n            or not isinstance(prepared.plan.source, fused_moe.Exl3Source)\n        ):\n            raise TypeError(\"EXL3 installation requires a B12X prepared EXL3 package\")\n"
+    },
+    {
+      "new": "            != self.moe_config.intermediate_size_per_partition\n            or prepared.plan.activation.mode\n            != (\n                \"a4\"\n                if nvfp4 and self._quant_mode == \"nvfp4\"\n                else \"a8\"\n                if packed and self._quant_mode == \"w4a8_mx\"\n                else \"a16\"\n            )\n            or (trellis and prepared.plan.activation.rotation_dtype != torch.float16)\n            or prepared.plan.activation.io_dtype != self.moe_config.in_dtype\n            or prepared.plan.activation.nonlinearity\n            != _b12x_activation_name(layer.activation)\n            or prepared.plan.activation.swiglu_limit != self.moe_config.swiglu_limit\n            or layer.apply_router_weight_on_input\n        ):\n            raise ValueError(\n                \"Prepared expert geometry, activation or routing \"\n                \"does not match the layer\"\n",
+      "local": "            > self.moe_config.intermediate_size_per_partition\n            or prepared.plan.activation.io_dtype != self.moe_config.in_dtype\n            or prepared.plan.activation.nonlinearity\n            != _b12x_activation_name(layer.activation)\n            or layer.apply_router_weight_on_input\n        ):\n            raise ValueError(\n                \"Prepared EXL3 geometry, activation or routing does not match the layer\"\n"
+    }
+  ],
+  ".csf-work/vllm/vllm/model_executor/layers/fused_moe/runner/moe_runner.py": [
+    {
+      "new": "",
+      "local": "        defer_tp_reduction: bool = False,\n"
+    },
+    {
+      "new": "            assert self.routed_output_transform is not None\n",
+      "local": ""
+    },
+    {
+      "new": "        if reuse_output:\n",
+      "local": "        if defer_tp_reduction or reuse_output:\n"
+    },
+    {
+      "new": "                in_place=True,\n",
+      "local": "                defer_tp_reduction=defer_tp_reduction,\n                in_place=reuse_output,\n"
+    }
+  ],
+  ".csf-work/vllm/vllm/model_executor/model_loader/reload/layerwise.py": [
+    {
+      "new": "    # Loop locals must not keep a replaced full-precision parameter resident\n    # while its quantized replacement is prepared for the execution backend.\n    param = None\n",
+      "local": ""
+    }
+  ],
+  ".csf-work/vllm/vllm/models/deepseek_v4_1/attention.py": [
+    {
+      "new": "            declaration = mla.plan(caps, invocation=invocation)\n            if compute != \"auto\":\n                # Pin BF16 arithmetic; the split/single-pass lowering stays the\n                # plan's own default for this query.\n                default = declaration.contract.default_config(declaration.query, None)\n                declaration = mla.plan(\n                    caps,\n                    invocation=invocation,\n                    override=replace(\n                        default, v41_compute_mode=\"bf16\", v41_heads_per_block=16\n                    ),\n                )\n            metadata_specs = (\n",
+      "local": "            metadata_specs: tuple[tuple[tuple[int, ...], torch.dtype], ...] = (\n"
+    }
+  ],
+  ".csf-work/vllm/vllm/models/kimi_k3/nvidia/kda.py": [
+    {
+      "new": "    projection_checkpoint_dimensions,\n",
+      "local": ""
+    }
+  ],
+  ".csf-work/vllm/vllm/models/kimi_k3/nvidia/model.py": [
+    {
+      "new": "    projection_checkpoint_dimensions,\n",
+      "local": ""
+    },
+    {
+      "new": "            self._tp_checkpoint_dimensions = projection_checkpoint_dimensions(\n                {\n                    \"gate_proj\": (0, checkpoint_intermediate_size),\n                    \"up_proj\": (0, checkpoint_intermediate_size),\n                    \"down_proj\": (1, checkpoint_intermediate_size),\n                }\n            )\n",
+      "local": ""
+    },
+    {
+      "new": "            vllm_config.model_config.quantization in (\"mxfp4\", \"mxfp4_csf\", \"mxfp4_csf\")\n            and vllm_config.kernel_config.moe_backend == \"b12x\"\n        )\n        self._aligned_decode_projections = (\n            is_exl3 and envs.VLLM_KIMI_ALIGNED_DECODE_PROJECTIONS\n        )\n        self.register_buffer(\"_paired_decode_weight\", None, persistent=False)\n        if is_exl3:\n",
+      "local": "            vllm_config.model_config.quantization == \"mxfp4\"\n            and vllm_config.kernel_config.moe_backend == \"b12x\"\n        )\n        exl3_experts = quant_config is not None and quant_config.get_name() == \"exl3\"\n        self._aligned_decode_projections = (\n            exl3_experts and envs.VLLM_KIMI_ALIGNED_DECODE_PROJECTIONS\n        )\n        self.register_buffer(\"_paired_decode_weight\", None, persistent=False)\n        if exl3_experts:\n"
+    },
+    {
+      "new": "            manifest = load_exl3_manifest(vllm_config.model_config.model)\n            if (\n                manifest.geometry.num_slots * manifest.geometry.slot_channels\n                != moe_intermediate_size\n            ):\n                raise ValueError(\"EXL3 manifest intermediate size does not match Kimi\")\n            extent = plan_exl3_extent(\n                manifest, layer_idx, self.tp_size, get_tensor_model_parallel_rank()\n            )\n            # FusedMoE divides this runtime width by TP; storage uses the extent.\n            self.padded_moe_intermediate_size = extent.intermediate_size * self.tp_size\n",
+      "local": "            manifest = load_exl3_manifest(str(vllm_config.model_config.model))\n            # Reserve the widest rank's activation capacity, not padded weights.\n            self.padded_moe_intermediate_size = self.tp_size * max(\n                plan_exl3_extent(\n                    manifest, layer_idx, self.tp_size, rank\n                ).intermediate_size\n                for rank in range(self.tp_size)\n            )\n"
+    },
+    {
+      "new": "        if not is_exl3 and self.padded_moe_intermediate_size != moe_intermediate_size:\n",
+      "local": "        if (\n            self.padded_moe_intermediate_size != moe_intermediate_size\n            and not exl3_experts\n        ):\n"
+    },
+    {
+      "new": "    _attn_res_workspace: torch.Tensor | None\n\n",
+      "local": ""
+    },
+    {
+      "new": "            assert projector is not None\n",
+      "local": ""
+    },
+    {
+      "new": "                assert projector is not None\n",
+      "local": ""
+    },
+    {
+      "new": "                    assert projector is not None\n",
+      "local": ""
+    },
+    {
+      "new": "            assert projector is not None\n",
+      "local": ""
+    }
+  ],
+  ".csf-work/vllm/vllm/models/kimi_k3/nvidia/mla.py": [
+    {
+      "new": "    projection_checkpoint_dimensions,\n",
+      "local": ""
+    },
+    {
+      "new": "",
+      "local": "    KVCacheSpec,\n"
+    },
+    {
+      "new": "            original_heads = config.original_num_attention_heads\n            self._tp_checkpoint_dimensions = projection_checkpoint_dimensions(\n                {\n                    \"q_proj\": (0, original_heads * self.qk_head_dim),\n                    \"q_b_proj\": (0, original_heads * self.qk_head_dim),\n                    \"kv_b_proj\": (\n                        0,\n                        original_heads * (self.qk_nope_head_dim + self.v_head_dim),\n                    ),\n                    \"g_proj\": (0, original_heads * self.v_head_dim),\n                    \"o_proj\": (1, original_heads * self.v_head_dim),\n                }\n            )\n            for projection in (\n                self.q_proj,\n                self.q_b_proj,\n                self.kv_b_proj,\n                self.g_proj,\n                self.o_proj,\n            ):\n",
+      "local": "            for projection in (self.q_b_proj, self.kv_b_proj, self.g_proj, self.o_proj):\n"
+    },
+    {
+      "new": "        provider = getattr(self.impl, \"b12x_preparation_provider\", None)\n        if provider is not None:\n            set_b12x_preparation_provider(self, provider)\n",
+      "local": "        if getattr(self.impl, \"b12x_preparation_provider\", None) is not None:\n            set_b12x_preparation_provider(self, self.impl.b12x_preparation_provider)\n"
+    },
+    {
+      "new": "                    self.attn_backend.get_name() == \"B12X\"\n",
+      "local": "                    self.attn_backend.get_name() == \"B12X_MLA\"\n"
+    },
+    {
+      "new": "\n        if callable(getattr(self.prefill_backend, \"get_b12x_preparation_units\", None)):\n            set_b12x_preparation_provider(self, self)\n",
+      "local": ""
+    },
+    {
+      "new": "            qkv_lora, gate = self.fused_qkv_a_g_proj(hidden_states)[0].split(\n",
+      "local": "            qkv_a_proj = self.fused_qkv_a_g_proj\n            assert qkv_a_proj is not None\n            qkv_lora, gate = qkv_a_proj(hidden_states)[0].split(\n"
+    }
+  ],
+  ".csf-work/vllm/vllm/models/qwen4_exp/nvidia/model.py": [
+    {
+      "new": "from .b12x_ple import B12xNGramEmbedding, _resolve_ple_table_memory\n",
+      "local": "from . import hc_prefill\nfrom .b12x_ple import _resolve_ple_table_memory\n"
+    }
+  ],
+  ".csf-work/b12x/b12x/_lib/compile_pool.py": [
+    {
+      "new": "            return original_getitem(meta_index(tensor), meta_index(index))\n",
+      "local": "            meta = torch.empty_strided(\n                tuple(tensor.shape), tuple(tensor.stride()),\n                dtype=tensor.dtype, device=\"meta\",\n            ).as_strided(\n                tuple(tensor.shape), tuple(tensor.stride()), tensor.storage_offset()\n            )\n            return meta[meta_index(index)]\n"
+    },
+    {
+      "new": "        with no_dispatch():\n            meta = meta_index(tensor)\n            index = meta_index(index)\n            value = meta_index(value)\n            original_setitem(meta, index, value)\n            # Meta index_put_ skips broadcasting checks. Basic assignment to\n            # the selected region validates them, including leading ones.\n            destination = original_getitem(meta, index)\n            original_setitem(destination, Ellipsis, value)\n",
+      "local": "        destination = fake_getitem(tensor, index)\n        if isinstance(value, FakeTensor):\n            destination.fill_(0)\n        elif isinstance(value, (bool, int, float, complex)):\n            destination.fill_(value)\n        else:\n            destination.copy_(value)\n"
+    }
+  ],
+  ".csf-work/b12x/b12x/preparation/session.py": [
+    {
+      "new": "import gc\n",
+      "local": ""
+    },
+    {
+      "new": "    try:\n        timeout = float(os.environ.get(\"B12X_COLLECTIVE_BARRIER_TIMEOUT\", \"120\"))\n    except ValueError as error:\n        raise ValueError(\"B12X_COLLECTIVE_BARRIER_TIMEOUT must be a finite positive number of seconds\") from error\n",
+      "local": "    timeout = float(os.environ.get(\"B12X_COLLECTIVE_BARRIER_TIMEOUT\", \"120\"))\n"
+    },
+    {
+      "new": "class CollectiveBarrierTimeout(RuntimeError):\n    \"\"\"A collective barrier callback exceeded its deadline.\"\"\"\n\n    def __init__(self, key: str, ranks: tuple[int, ...], arrived: tuple[int, ...] | None = None, *, timeout: float = 120.0):\n        \"\"\"Record verified arrivals when the barrier backend supplies them.\"\"\"\n        if arrived is None:\n            message = f\"collective barrier callback timed out for {key!r} after {timeout:g}s\"\n",
+      "local": "_BARRIER_TIMEOUT_SECONDS = _barrier_timeout_seconds()\n\n\nclass CollectiveBarrierTimeout(RuntimeError):\n    \"\"\"A collective barrier callback exceeded its deadline.\"\"\"\n\n    def __init__(self, key: str, ranks: tuple[int, ...], arrived: tuple[int, ...] | None = None):\n        \"\"\"Record verified arrivals when the barrier backend supplies them.\"\"\"\n        if arrived is None:\n            message = f\"collective barrier callback timed out for {key!r} after {_BARRIER_TIMEOUT_SECONDS:g}s\"\n"
+    },
+    {
+      "new": "                f\"{timeout:g}s: ranks {waiting} never entered \"\n",
+      "local": "                f\"{_BARRIER_TIMEOUT_SECONDS:g}s: ranks {waiting} never entered \"\n"
+    },
+    {
+      "new": "        self.timeout = timeout\n",
+      "local": ""
+    },
+    {
+      "new": "        self.device = device if isinstance(device, DetectedDevice) else detect_device(device)\n",
+      "local": ""
+    },
+    {
+      "new": "        self._barrier_timeout = (\n            _barrier_timeout_seconds() if collective_barrier is not None else 120.0\n        )\n",
+      "local": ""
+    },
+    {
+      "new": "            if not completed.wait(self.session._barrier_timeout):\n                raise CollectiveBarrierTimeout(\n                    requirement.key, requirement.ranks, timeout=self.session._barrier_timeout,\n                )\n",
+      "local": "            if not completed.wait(_BARRIER_TIMEOUT_SECONDS):\n                raise CollectiveBarrierTimeout(requirement.key, requirement.ranks)\n"
+    }
+  ],
+  ".csf-work/b12x/b12x/integration/vllm/loader.py": [
+    {
+      "new": "from vllm.model_executor.model_loader import weight_utils\nfrom vllm.model_executor.model_loader.weight_utils import enable_tqdm\n",
+      "local": "from vllm.model_executor.model_loader.weight_utils import (\n    enable_tqdm,\n)\n"
+    }
+  ],
+  ".csf-work/b12x/b12x/comm/pcie/pcie_allreduce.py": [
+    {
+      "new": "# Limit default dispatch to decode vectors of at most 32 KiB.\n",
+      "local": "# Keep default dispatch below its measured NCCL crossover for decode vectors.\n"
+    }
+  ],
+  ".csf-work/b12x/b12x/gemm/blockscaled/_tuning.py": [
+    {
+      "new": "",
+      "local": "    if query.expected_m is None:\n        # Unset expected_m declares dynamic rows up to max_rows. Serialized\n        # operands carry per-call scale storage and tensor-FP8 reads a unit\n        # activation scale prefix, so both run any M within the capacity.\n        if query.call_kind != \"serialized\" and query.recipe != \"tensor_fp8\":\n            raise ValueError(\"dynamic-row fixed execution requires serialized operands or tensor-FP8\")\n    elif type(query.expected_m) is not int or query.expected_m <= 0:\n        raise ValueError(\"expected_m must be positive or None\")\n"
+    }
+  ],
+  ".csf-work/b12x/b12x/gemm/blockscaled/_linear.py": [
+    {
+      "new": "    declaration = plan_from_handle(plan_handle) if plan_handle else None\n    if declaration is None:\n        from ._preparation import heuristic_plan, query_from_call\n        declaration = heuristic_plan(query_from_call(\n            (lhs_values, lhs_scale_storage), (rhs_values, rhs_scale_storage),\n            alpha=alpha, ab_dtype=ab_dtype, sf_dtype=sf_dtype, c_dtype=c_dtype,\n            sf_vec_size=sf_vec_size, block_fp8=block_fp8, expected_m=expected_m,\n        ), lhs_values.device)\n    state = require_prepared(declaration, \"gemm.blockscaled.fixed\", lhs_values.device)\n",
+      "local": "    state = _fixed_state(plan_handle, lhs_values)\n"
+    },
+    {
+      "new": "    declaration = _fixed_plan(plan_handle, source_2d, weight_values, \"mxfp8\", source_2d.dtype, expected_m=expected_m)\n    state = require_prepared(declaration, \"gemm.blockscaled.fixed\", source_2d.device)\n",
+      "local": "    state = _fixed_state(plan_handle, source_2d)\n"
+    },
+    {
+      "new": "    declaration = _fixed_plan(plan_handle, source_values, weight_values, \"mxfp8\", out_dtype,\n                              source_scale_storage, expected_m=expected_m)\n    state = require_prepared(declaration, \"gemm.blockscaled.fixed\", source_values.device)\n",
+      "local": "    state = _fixed_state(plan_handle, source_values)\n"
+    },
+    {
+      "new": "    declaration = _fixed_plan(plan_handle, source_2d, weight_values, \"tensor_fp8\", out_dtype, expected_m=expected_m)\n    state = require_prepared(declaration, \"gemm.blockscaled.fixed\", source_2d.device)\n",
+      "local": "    state = _fixed_state(plan_handle, source_2d)\n"
+    }
+  ],
+  ".csf-work/b12x/b12x/gemm/blockscaled/_preparation.py": [
+    {
+      "new": "@program_cache(scope=\"preparation\")\n",
+      "local": "def _fused_quant_lowering(query, device):\n    from b12x._lib.dense_gemm import _lower_dense_gemm_fused_quant_a\n    from b12x.gemm._preparation import _metadata_operands\n    from b12x.gemm._tuning import DenseGemmQuery\n\n    dense_query = DenseGemmQuery(\n        recipe=\"mxfp8\", entry_point=\"gemm.blockscaled.mm\", weight_storage=\"native\",\n        output_dtype=\"bfloat16\", batch=1, max_rows=query.num_tokens,\n        in_features=query.padded_in_features, out_features=query.out_features,\n        output_mode=\"provided\", alpha_mode=\"unit\", expected_m=query.expected_m,\n    )\n    _, rhs, _, _, _ = _metadata_operands(dense_query)\n    source = torch.empty((query.num_tokens, query.in_features), dtype=torch.bfloat16, device=\"meta\")\n    output = torch.empty_strided(\n        (query.num_tokens, query.out_features, 1),\n        (query.out_features, 1, query.num_tokens * query.out_features),\n        dtype=torch.bfloat16, device=\"meta\",\n    )\n    return _lower_dense_gemm_fused_quant_a(\n        source, rhs[0], rhs[1], sm_count=device.identity.sm_count,\n        out=output, expected_m=query.expected_m,\n    )\n\n\n"
+    },
+    {
+      "new": "            live_m=query.max_rows, expected_m=query.expected_m or query.max_rows,\n",
+      "local": "            live_m=query.max_rows,\n            expected_m=query.max_rows if query.expected_m is None else query.expected_m,\n"
+    },
+    {
+      "new": "        if rows > self.capacity.query.num_tokens:\n            raise ValueError(\n                f\"packed execution rows {rows} exceed capacity \"\n                f\"{self.capacity.query.num_tokens}\"\n            )\n        if rows in self.exact:\n            return self.exact[rows]\n        if self.a16_capacity is not None and rows <= self.a16_capacity.query.num_tokens:\n            return self.a16_capacity\n        return self.capacity\n",
+      "local": "        return _resolve_regime(self, rows, self.capacity.query.num_tokens)\n\n\n@dataclass(frozen=True)\nclass _FixedRegimeState:\n    \"\"\"Exact static-shape fixed states plus one bounded dynamic-row state.\"\"\"\n\n    capacity: _FixedExecutionState\n    exact: MappingProxyType\n\n    def resolve(self, source: torch.Tensor) -> _FixedExecutionState:\n        return _resolve_regime(self, source.shape[0], self.capacity.query.max_rows)\n\n\ndef _resolve_regime(regimes, rows, capacity):\n    if rows > capacity:\n        raise ValueError(f\"packed execution rows {rows} exceed capacity {capacity}\")\n    return regimes.exact.get(rows, regimes.capacity)\n"
+    },
+    {
+      "new": "    \"\"\"Declare exact shapes and capacity fallbacks, forcing A16 up to a cutoff.\n\n    ``a16_max_tokens`` is inclusive; zero leaves precision unconstrained by\n    token count. Larger calls retain the query's activation mode.\n    \"\"\"\n    if not isinstance(query, BlockscaledQuery):\n        raise TypeError(\"packed regime planning requires BlockscaledQuery\")\n",
+      "local": "    \"\"\"Declare exact static shapes and a dynamic fallback through one execution.\n\n    ``query`` is the capacity declaration and must leave ``expected_m`` unset.\n    Each count in ``exact_m`` gets its own static-shape child; every other row\n    count up to the capacity runs the capacity child.\n    \"\"\"\n    if isinstance(query, BlockscaledQuery):\n        capacity, rows_field, contract = query.num_tokens, \"num_tokens\", TUNING\n        child_plan, regime_state = _plan_bf16, _PackedRegimeState\n    elif isinstance(query, FixedBlockscaledQuery):\n        capacity, rows_field, contract = query.max_rows, \"max_rows\", FIXED_TUNING\n        child_plan, regime_state = _plan_fixed, _FixedRegimeState\n    else:\n        raise TypeError(\"packed regime planning requires BlockscaledQuery or FixedBlockscaledQuery\")\n"
+    },
+    {
+      "new": "    child_queries[query.num_tokens] = query\n    if cutoff:\n        child_queries[cutoff] = replace(query, num_tokens=cutoff)\n        child_queries = {\n            rows: replace(child, activation_mode=\"a16\") if rows <= cutoff else child\n            for rows, child in sorted(child_queries.items())\n        }\n",
+      "local": "    child_queries[capacity] = query\n"
+    },
+    {
+      "new": "        return _PackedRegimeState(capacity, exact, states[cutoff] if cutoff else None)\n",
+      "local": "        return regime_state(states[capacity], exact)\n"
+    }
+  ],
+  ".csf-work/b12x/b12x/gemm/tensor_fp8_linear/__init__.py": [
+    {
+      "new": "    entry_points=(\"Weight\", \"FixedBlockscaledQuery\", \"plan\", \"query_from_call\", \"mm\", \"pack_weight\", \"prewarm\", \"is_supported\"),\n",
+      "local": "    entry_points=(\"Weight\", \"FixedBlockscaledQuery\", \"plan\", \"plan_regimes\", \"query_from_call\", \"mm\", \"pack_weight\", \"is_supported\"),\n"
+    },
+    {
+      "new": "    from .api import FixedBlockscaledQuery, Weight, is_supported, mm, pack_weight, plan, prewarm, query_from_call  # noqa: F401\n",
+      "local": "    from .api import FixedBlockscaledQuery, Weight, is_supported, mm, pack_weight, plan, plan_regimes, query_from_call  # noqa: F401\n"
+    }
+  ],
+  ".csf-work/b12x/b12x/gemm/tensor_fp8_linear/api.py": [
+    {
+      "new": "@torch.inference_mode()\ndef prewarm(weight: Weight, token_counts, *, out_dtype=torch.bfloat16, stream=None) -> int:\n    \"\"\"Materialize heuristic plans before graph capture for serving capacities.\"\"\"\n    counts = sorted({int(count) for count in token_counts if int(count) > 0})\n    for count in counts:\n        source = torch.zeros((count, weight.in_features), device=weight.values.device,\n                             dtype=torch.float8_e4m3fn)\n        mm(source, weight, out_dtype=out_dtype, stream=stream)\n    return len(counts)\n\n\n__all__ = [\"Weight\", \"FixedBlockscaledQuery\", \"plan\", \"query_from_call\", \"mm\", \"pack_weight\", \"prewarm\", \"is_supported\"]\n",
+      "local": "__all__ = [\"Weight\", \"FixedBlockscaledQuery\", \"plan\", \"plan_regimes\", \"query_from_call\", \"mm\", \"pack_weight\", \"is_supported\"]\n"
+    }
+  ],
+  ".csf-work/b12x/b12x/sequence/ple/_preparation.py": [
+    {
+      "new": "from b12x._lib.program_cache import program_cache\n",
+      "local": "from b12x._lib.compile_plan import load_programs\n"
+    }
+  ],
+  ".csf-work/b12x/b12x/moe/fused_moe/_impl.py": [
+    {
+      "new": "",
+      "local": "    w4a16_stable_route_pack: bool | None = None\n"
+    },
+    {
+      "new": "",
+      "local": "        if self.w4a16_stable_route_pack is None:\n            object.__setattr__(\n                self, \"w4a16_stable_route_pack\",\n                _env_flag(\"B12X_W4A16_STABLE_ROUTE_PACK\", default=False),\n            )\n"
+    },
+    {
+      "new": "",
+      "local": "            stable_order=caps.w4a16_stable_route_pack,\n"
+    }
+  ],
+  ".csf-work/b12x/b12x/moe/fused_moe/_tuning.py": [
+    {
+      "new": "    query_schema_version=17,\n    config_schema_version=10,\n",
+      "local": "    query_schema_version=12,\n    config_schema_version=9,\n"
+    }
+  ],
+  ".csf-work/b12x/b12x/moe/fused_moe/__init__.py": [
+    {
+      "new": "        \"Caps\",\n        \"plan\",\n        \"TrellisExtent\",\n        \"TrellisSource\",\n        \"TrellisStaging\",\n",
+      "local": "        \"Exl3Source\",\n        \"Exl3Weights\",\n"
+    },
+    {
+      "new": "        Caps,\n        plan,\n        TrellisExtent,\n        TrellisSource,\n        TrellisStaging,\n",
+      "local": "        Exl3Source,\n        Exl3Weights,\n"
+    }
+  ],
+  ".csf-work/b12x/b12x/moe/fused_moe/api.py": [
+    {
+      "new": "from .source import PackedSource, PackedSourceFormat, TrellisExtent, TrellisSource, W13Layout, WeightSource\nfrom .trellis_layout import TrellisStaging\n",
+      "local": "from .source import Exl3Source, PackedSource, PackedSourceFormat, W13Layout, WeightSource\n"
+    },
+    {
+      "new": "def _canonical_prepare_weights(\n    *,\n    plan: WeightPlan,\n    weights: PackedWeights\n    | TrellisWeights\n    | IQ2XSWeights\n    | Mxfp4CsfWeights\n    | Nvfp4CsfWeights,\n    device: torch.device | str | None = None,\n    staging: TrellisStaging | None = None,\n",
+      "local": "def prepare_weights(\n    *, plan: WeightPlan, weights: PackedWeights | TrellisWeights | IQ2XSWeights | Exl3Weights\n"
+    },
+    {
+      "new": "    \"clear_caches\",\n    \"Caps\",\n    \"plan\",\n    \"TrellisExtent\",\n    \"TrellisSource\",\n    \"TrellisStaging\",\n",
+      "local": "    \"Exl3Source\",\n    \"Exl3Weights\",\n"
+    }
+  ],
+  ".csf-work/b12x/b12x/moe/fused_moe/planning.py": [
+    {
+      "new": "from .source import PackedSource, TrellisSource, WeightSource\nfrom .trellis_layout import TrellisStaging\nfrom .weights import (\n    CsfScalePlanes,\n    Nvfp4CsfWeights,\n",
+      "local": "from .source import Exl3Source, PackedSource, WeightSource\nfrom .weights import (\n    Exl3Weights,\n"
+    },
+    {
+      "new": "    if isinstance(source, TrellisSource):\n",
+      "local": "    if isinstance(source, (TrellisConfig, Exl3Source)):\n"
+    },
+    {
+      "new": "    elif isinstance(source, TrellisSource):\n        config = source.config\n        if activation.a16_max_tokens:\n            raise ValueError(\"A16 token cutoff requires ModelOpt NVFP4 weights\")\n",
+      "local": "    elif isinstance(source, Exl3Source):\n        manifest = source.manifest\n        if activation.mode is not ActivationMode.A16:\n            raise ValueError(\"EXL3 canonical preparation requires A16 activations\")\n        if constraints.required_packing not in {\n            None,\n            WeightPacking.TRELLIS_NATIVE,\n        }:\n            raise ValueError(\"EXL3 weights require trellis_native packing\")\n        if manifest.rates.structure != \"uniform\":\n            raise NotImplementedError(\n                \"EXL3 canonical preparation requires uniform rates\"\n            )\n        if (geometry.num_experts, geometry.hidden_size) != (\n            manifest.geometry.num_experts,\n            manifest.geometry.hidden_size,\n        ):\n            raise ValueError(\n                \"EXL3 expert count and hidden width must match the manifest\"\n            )\n        if geometry.intermediate_size > manifest.geometry.intermediate_size:\n            raise ValueError(\"EXL3 local intermediate width exceeds the source width\")\n        recipe = \"w4a16\"\n        raw_plan = plan_b12x_fp4_moe_weights(\n            quant_modes=recipe,\n            source_format=\"exl3\",\n            activation=activation.nonlinearity,\n            params_dtype=activation.io_dtype,\n            num_experts=geometry.num_experts,\n            hidden_size=geometry.hidden_size,\n            intermediate_size=geometry.intermediate_size,\n            w13_layout=\"w31\",\n            w4a16_layout=\"trellis_native\",\n            trellis_bits=manifest.rates.bits,\n            trellis_tile_config=(\n                (128, 128, 128, 128)\n                if manifest.hadamard.intermediate_hadamard and manifest.rates.bits == 2\n                else (64, 256, 64, 256)\n            ),\n            intermediate_hadamard=manifest.hadamard.intermediate_hadamard,\n            trellis_codebook=manifest.codebook,\n            trellis_rate_granularity=manifest.rates.structure,\n            intermediate_hadamard_blocks=(\n                (manifest.hadamard.pre_block, manifest.hadamard.post_block)\n                if manifest.hadamard.intermediate_hadamard\n                else None\n            ),\n        )\n    elif isinstance(source, TrellisConfig):\n"
+    },
+    {
+      "new": "        raise TypeError(\"source must be a PackedSource, TrellisConfig or TrellisSource\")\n",
+      "local": "        raise TypeError(\"source must be a PackedSource, TrellisConfig or Exl3Source\")\n"
+    },
+    {
+      "new": "    weights: PackedWeights\n    | TrellisWeights\n    | IQ2XSWeights\n    | Mxfp4CsfWeights\n    | Nvfp4CsfWeights,\n    device: torch.device | str | None = None,\n    staging: TrellisStaging | None = None,\n",
+      "local": "    weights: PackedWeights | TrellisWeights | IQ2XSWeights | Exl3Weights,\n"
+    },
+    {
+      "new": "    elif isinstance(plan.source, TrellisSource):\n",
+      "local": "    elif isinstance(plan.source, Exl3Source):\n        if not isinstance(weights, Exl3Weights):\n            raise TypeError(\"EXL3 preparation requires Exl3Weights\")\n        if weights.layer.manifest != plan.source.manifest:\n            raise ValueError(\"EXL3 extent manifest differs from its weight plan\")\n        prepared = prepare_b12x_fp4_moe_weights(\n            plan=plan._impl,\n            params_dtype=plan.activation.io_dtype,\n            exl3_layer=weights.layer,\n            exl3_device=weights.device,\n        )\n    elif isinstance(plan.source, TrellisConfig):\n"
+    }
+  ],
+  ".csf-work/b12x/b12x/moe/fused_moe/weights.py": [
+    {
+      "new": "    from b12x._lib.quant.nvfp4_csf import Nvfp4CsfBatch\n    from b12x._lib.quant.x4t_scales import X4TScaleBatch\n\n",
+      "local": "    from .._shared.kernels.w4a16.exl3 import Exl3Layer\n"
+    },
+    {
+      "new": "    \"CsfScalePlanes\",\n    \"Nvfp4CsfWeights\",\n    \"Mxfp4CsfWeights\",\n",
+      "local": "    \"Exl3Weights\",\n"
+    }
+  ],
+  ".csf-work/b12x/b12x/moe/fused_moe/_preparation.py": [
+    {
+      "new": "",
+      "local": "        \"w4a16_stable_route_pack\": _impl._env_flag(\"B12X_W4A16_STABLE_ROUTE_PACK\", default=False),\n"
+    },
+    {
+      "new": "",
+      "local": "        w4a16_stable_route_pack=bool(query.controls.get(\"w4a16_stable_route_pack\", False)),\n"
+    }
+  ],
+  ".csf-work/b12x/b12x/moe/fused_moe/source.py": [
+    {
+      "new": "from .._shared.trellis_codebooks import validate_codebook_bits\nfrom .config import RateGranularity, TrellisConfig\n",
+      "local": "from .._shared.exl3_schema import Exl3Manifest\nfrom .config import TrellisConfig\n"
+    },
+    {
+      "new": "class TrellisExtent:\n    \"\"\"Contiguous 32-channel slots in the checkpoint-global intermediate axis.\n\n    Sign sequences are generated at ``global_intermediate_size`` and sliced,\n    never regenerated using a tensor-parallel rank's shorter local length.\n    \"\"\"\n\n    global_intermediate_size: int\n    first_slot: int\n    slot_count: int\n\n    def __post_init__(self) -> None:\n        for name in (\"global_intermediate_size\", \"first_slot\", \"slot_count\"):\n            if type(getattr(self, name)) is not int:\n                raise TypeError(f\"TrellisExtent.{name} must be an integer\")\n        if self.global_intermediate_size <= 0 or self.global_intermediate_size % 32:\n            raise ValueError(\n                \"global_intermediate_size must be a positive multiple of 32\"\n            )\n        if self.first_slot < 0 or self.slot_count <= 0:\n            raise ValueError(\n                \"a trellis extent requires first_slot >= 0 and slot_count > 0\"\n            )\n        if 32 * (self.first_slot + self.slot_count) > self.global_intermediate_size:\n            raise ValueError(\"trellis extent exceeds the global intermediate axis\")\n\n    @property\n    def intermediate_size(self) -> int:\n        return 32 * self.slot_count\n\n\n@dataclass(frozen=True, kw_only=True)\nclass TrellisSource:\n    \"\"\"Container-independent trellis encoding and optional global coordinates.\n\n    ``uniform_bits`` declares the scalar rate before weights are transferred;\n    preparation verifies it against the rate tensor. Omitting it retains the\n    native config's K3 LUT or K3/K4/K5 projection-tiered MCG contract.\n    \"\"\"\n\n    config: TrellisConfig\n    uniform_bits: int | None = None\n    extent: TrellisExtent | None = None\n\n    def __post_init__(self) -> None:\n        if not isinstance(self.config, TrellisConfig):\n            raise TypeError(\"TrellisSource.config must be a TrellisConfig\")\n        if self.uniform_bits is not None:\n            if type(self.uniform_bits) is not int or self.uniform_bits not in (\n                2,\n                3,\n                4,\n                5,\n                6,\n            ):\n                raise ValueError(\"uniform_bits must be one of 2, 3, 4, 5, 6\")\n            if self.config.rate.granularity is not RateGranularity.UNIFORM:\n                raise ValueError(\"uniform_bits requires uniform rate granularity\")\n            validate_codebook_bits(self.config.codebook.value, self.uniform_bits)\n            if self.config.codebook.value == \"mcg\" and self.uniform_bits < 3:\n                raise ValueError(\"MCG trellis execution requires at least K3\")\n        if self.extent is not None and not isinstance(self.extent, TrellisExtent):\n            raise TypeError(\"TrellisSource.extent must be a TrellisExtent or None\")\n\n\nWeightSource: TypeAlias = PackedSource | TrellisConfig | TrellisSource\n\n\n__all__ = [\n    \"TrellisExtent\",\n    \"TrellisSource\",\n",
+      "local": "class Exl3Source:\n    \"\"\"Trellis slot encoding with checkpoint-global transform coordinates.\"\"\"\n\n    manifest: Exl3Manifest\n\n    def __post_init__(self) -> None:\n        if not isinstance(self.manifest, Exl3Manifest):\n            raise TypeError(\"Exl3Source.manifest must be a Exl3Manifest\")\n\n\nWeightSource: TypeAlias = PackedSource | TrellisConfig | Exl3Source\n\n\n__all__ = [\n    \"Exl3Source\",\n"
+    }
+  ],
+  ".csf-work/b12x/b12x/moe/_shared/kernels/w4a16/route_pack.py": [
+    {
+      "new": "",
+      "local": "    stable_order: bool | None = None,\n"
+    }
+  ],
+  ".csf-work/b12x/b12x/moe/_shared/kernels/w4a16/kernel.py": [
+    {
+      "new": "        # Large-M route blocks only issue the MMAs of 16-row blocks that hold\n        # live routes; padded rows of a partial block are never read back.\n        self.skip_empty_m_blocks = (\n            os.environ.get(\"B12X_W4A16_SKIP_EMPTY_M_BLOCKS\", \"1\") == \"1\"\n        )\n",
+      "local": ""
+    }
+  ],
+  ".csf-work/b12x/b12x/moe/_shared/kernels/w4a16/host.py": [
+    {
+      "new": "",
+      "local": "from b12x._lib.quant.block_codec import BLOCK_CODECS\n\n"
+    },
+    {
+      "new": "from b12x._lib.quant.block_codec import BLOCK_CODECS\n",
+      "local": ""
+    }
+  ]
+}

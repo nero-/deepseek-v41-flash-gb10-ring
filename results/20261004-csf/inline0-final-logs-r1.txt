@@ -1,0 +1,122 @@
+{"schema": "dsv41-csf-derived-image/v1", "versions": {"vllm": "0.1.dev21510+g00a33e231.csf.sparkring", "b12x": "1.3.0", "torch": "2.13.0+cu130", "nvidia-cutlass-dsl": "4.7.1"}, "sources": {"checkpoint": {"model_id": "local-inference-lab/DeepSeek-V4.1-Flash-lossless-CSF", "revision": "c5c41fe301c4c1d24fc09376883d9168e521dc66"}, "parent_images": ["sha256:a9f4aa50ac6b2ca8e3961361fc24bc2d4b0c2785080e85248391ff7da7fbf27c", "sha256:43e6685cf8f01ebd1aab60a588e523f4b8d0330be27d9c43ab0d6f146d2f6649", "sha256:4fbff34beec9dfde9ca4e2f197d8a93da0f36fec226027871c4d3d6247d6ac7d", "sha256:7725323e2f86085775349b4bcac3efcdc4c05ee556f471786c886e6f8e544688"], "vllm": "00a33e23142097f99fef95b1ecab6da4ea271e2e", "b12x": "4bc601a42d9938fc1b33392b5e69b2f2485b4872", "cutlass_dsl": "4.7.1", "native_vllm_abi": {"baseline": "1794dcf18454900263e0c66711af8ea4a1283ac1", "csrc_cmake_setup_diff": [], "parent_native_files": {"/usr/local/lib/python3.12/dist-packages/vllm/_C_stable_libtorch.abi3.so": "97340bf6c08fc72cb8ecb002bedafac56fe43aecc0ca6bd5e4dfd96d057cdd75", "/usr/local/lib/python3.12/dist-packages/vllm/_flashkda_C.abi3.so": "8a47c151d81ad8e64d43d1fe6c0338652aed2bc533954fbc4979b6a294137552", "/usr/local/lib/python3.12/dist-packages/vllm/_moe_C_stable_libtorch.abi3.so": "a33be019eaedba5d7856ee19e81fd672747af2a629654f1ef6d143bdf1ee07ba", "/usr/local/lib/python3.12/dist-packages/vllm/_qutlass_C.abi3.so": "90c38bda6d6e8f16d3e60549c4d10d86dd31497b7767b5ecd16129e10ee9db12", "/usr/local/lib/python3.12/dist-packages/vllm/_rust_tool_parser.abi3.so": "aa0797f61629d2bb47ce818f1d769f956367a2f2c56ae11d14ea77e39a62b672", "/usr/local/lib/python3.12/dist-packages/vllm/cumem_allocator.abi3.so": "4d57931aee05171c50e725965be35ff0aed0c87da50904b6975dd5cf5369fbb3", "/usr/local/lib/python3.12/dist-packages/vllm/fs_io_C.abi3.so": "a4436921888dab143b0cac38a360f21fca0639dec7fdfb00479264def1870684", "/usr/local/lib/python3.12/dist-packages/vllm/spinloop.abi3.so": "6b342a1de56cce3a8e809e117f9472a2925885e3ac13fc6a80ee3423f8ca8ca5", "/usr/local/lib/python3.12/dist-packages/vllm/third_party/deep_gemm/_C.cpython-312-aarch64-linux-gnu.so": "a184f09867dea69974d3d8f6092c5f12293ee4fdf9c75709eceb06d798fc14be", "/usr/local/lib/python3.12/dist-packages/vllm/vllm_flash_attn/_vllm_fa2_C.abi3.so": "c0182d00576e8de9b12ded8f6b5c960c034c5389d9a519430cc5c23cb26a4a80", "/usr/local/lib/python3.12/dist-packages/vllm/vllm_flash_attn/_vllm_fa3_C.abi3.so": "99bf2013b5c94d9c402df239af0eed34b5c389eea3d31335ced7935d6586e762"}}, "serving_qualified": false, "vllm_patch_sha256": "6cad6e4f25ac0f6370becf77655817b6e8111d7b81fc49330c7903acc93286ba", "b12x_patch_sha256": "54975a5774b6a8752397531f3776bc76991f76db0c1cdc13f5a457d4da87259b"}}
+[local-prefill-budget] armed: 4096 tokens when >= 4 decoders contend with prefill
+[local-indexer-tp] armed: >=128 rows, >=8192 compressed positions, candidate-free prefill only
+INFO 10-05 00:11:45 [__init__.py:118] Registered model loader `<class 'b12x.integration.vllm.loader.B12xModelLoader'>` with load format `b12x`
+WARNING 10-05 00:11:45 [envs.py:2644] Unknown vLLM environment variable detected: VLLM_DS41_ENGRAM_OVERLAP
+WARNING 10-05 00:11:45 [envs.py:2644] Unknown vLLM environment variable detected: VLLM_SPARK_TP4_MODE
+WARNING 10-05 00:11:45 [envs.py:2644] Unknown vLLM environment variable detected: VLLM_SPARK_TP4_VOCAB_MODE
+WARNING 10-05 00:11:45 [envs.py:2644] Unknown vLLM environment variable detected: VLLM_BASE_DIR
+INFO 10-05 00:11:45 [config.py:852] Detected quantization_config.scale_fmt=ue8m0; enabling UE8M0 for DeepGEMM.
+INFO 10-05 00:11:45 [model.py:693] Resolved architecture: DeepseekV41ForCausalLM
+INFO 10-05 00:11:45 [model.py:716] Defaulting to tokenizer_mode='deepseek_v41' for DeepseekV41ForCausalLM
+INFO 10-05 00:11:45 [model.py:2062] Using max model len 1048576
+WARNING 10-05 00:11:45 [indexer_topk.py:29] Failed to import the DeepSelect extension (vllm._deepselect_C): No module named 'vllm._deepselect_C'
+INFO 10-05 00:11:47 [arg_utils.py:2430] Inferred data_parallel_rank 0 from node_rank 1
+INFO 10-05 00:11:47 [model.py:693] Resolved architecture: DeepseekV41ForCausalLM
+INFO 10-05 00:11:47 [model.py:2062] Using max model len 1048576
+INFO 10-05 00:11:48 [scheduler.py:404] Chunked prefill is enabled with max_num_batched_tokens=8192.
+INFO 10-05 00:11:48 [engram.py:146] Engram mapped-host RAM: 5.72 GiB packed tables across TP4, 98.60 GiB available, 4 GiB reserve
+INFO 10-05 00:11:48 [vllm.py:1499] Resolved Engram configuration: EngramConfig(cpu_offload=True, embedding_across_dp=False, dp_shared_memory=False, table_memory='disk', disk_resident_scales=True, projection_tp=True)
+INFO 10-05 00:11:48 [vllm.py:928] Auto-enabling VLLM_USE_BREAKABLE_CUDAGRAPH=1. Set VLLM_USE_BREAKABLE_CUDAGRAPH=0 to opt out.
+INFO 10-05 00:11:48 [kernel.py:430] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+INFO 10-05 00:11:48 [compilation.py:336] Enabled custom fusions: norm_quant, act_quant
+INFO 10-05 00:11:48 [serve.py:246] Launching vLLM (v0.1.dev21510+g00a33e231.csf.sparkring) headless multiproc executor, with head node address 192.168.50.219:29778 for torch.distributed process group.
+[local-prefill-budget] armed: 4096 tokens when >= 4 decoders contend with prefill
+[local-indexer-tp] armed: >=128 rows, >=8192 compressed positions, candidate-free prefill only
+INFO 10-05 00:11:56 [__init__.py:118] Registered model loader `<class 'b12x.integration.vllm.loader.B12xModelLoader'>` with load format `b12x`
+WARNING 10-05 00:11:56 [indexer_topk.py:29] Failed to import the DeepSelect extension (vllm._deepselect_C): No module named 'vllm._deepselect_C'
+(Worker pid=154) INFO 10-05 00:11:57 [parallel_state.py:1909] world_size=4 rank=1 local_rank=0 distributed_init_method=tcp://192.168.50.219:29778 backend=nccl
+(Worker pid=154) INFO 10-05 00:12:18 [nccl.py:25] Found nccl from environment variable VLLM_NCCL_SO_PATH=/opt/sparkring/toolchain/nccl/lib/libnccl.so.2
+(Worker pid=154) INFO 10-05 00:12:19 [nccl.py:25] Found nccl from environment variable VLLM_NCCL_SO_PATH=/opt/sparkring/toolchain/nccl/lib/libnccl.so.2
+(Worker pid=154) INFO 10-05 00:12:19 [parallel_state.py:2349] rank 1 in world size 4 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 1, ETP rank 1, EP rank 1, EPLB rank N/A
+(Worker pid=154) INFO 10-05 00:12:19 [gpu_worker.py:483] Using V2 Model Runner
+(Worker_TP1 pid=154) INFO 10-05 00:12:21 [model_runner.py:417] Loading model from scratch...
+(Worker_TP1 pid=154) WARNING 10-05 00:12:26 [compilation.py:1361] Op 'quant_fp8' not present in model, enabling with '+quant_fp8' has no effect
+(Worker_TP1 pid=154) INFO 10-05 00:12:44 [default_loader.py:560] Loading weights took 17.95 seconds
+(Worker_TP1 pid=154) INFO 10-05 00:12:54 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 0 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:13:01 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 1 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:13:07 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 2 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:13:15 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 3 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:13:19 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 4 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:13:23 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 5 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:13:26 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 6 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:13:30 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 7 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:13:33 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 8 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:13:37 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 9 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:13:40 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 10 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:13:44 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 11 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:13:48 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 12 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:13:51 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 13 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:13:54 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 14 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:13:57 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 15 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:14:01 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 16 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:14:06 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 17 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:14:10 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 18 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:14:14 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 19 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:14:17 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 20 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:14:21 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 21 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:14:24 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 22 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:14:28 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 23 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:14:32 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 24 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:14:35 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 25 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:14:38 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 26 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:14:42 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 27 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:14:45 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 28 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:14:49 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 29 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:14:53 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 30 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:14:58 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 31 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:15:03 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 32 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:15:06 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 33 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:15:10 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 34 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:15:14 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 35 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:15:17 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 36 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:15:21 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 37 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:15:24 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 38 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:15:28 [mxfp4_csf.py:223] MXFP4-CSF lossless MXFP4 layer 39 rank 1/4: MXFP8 activations, compressed scales, shared scratch 106168320 bytes
+(Worker_TP1 pid=154) INFO 10-05 00:15:29 [eagle3_utils.py:27] Using Eagle3 auxiliary layers from config: (37, 38, 39)
+(Worker_TP1 pid=154) INFO 10-05 00:15:29 [utils.py:27] Using the target model's B12X attention backend for the DeepSeek-V4 DSpark drafter.
+(Worker_TP1 pid=154) INFO 10-05 00:15:29 [vllm.py:1499] Resolved Engram configuration: EngramConfig(cpu_offload=True, embedding_across_dp=False, dp_shared_memory=False, table_memory='disk', disk_resident_scales=True, projection_tp=True)
+(Worker_TP1 pid=154) INFO 10-05 00:15:29 [kernel.py:430] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(Worker_TP1 pid=154) INFO 10-05 00:15:30 [mxfp4.py:453] Using 'B12X_MXFP4_MXFP8' Mxfp4 MoE backend.
+(Worker_TP1 pid=154) INFO 10-05 00:15:30 [vocab_parallel_embedding.py:437] Quantizing LM head shards to NVFP4 with BF16 activations.
+(Worker_TP1 pid=154) INFO 10-05 00:15:36 [dspark.py:736] DSpark draft model loaded: 98 params
+(Worker_TP1 pid=154) INFO 10-05 00:15:36 [default_loader.py:560] Loading weights took 6.46 seconds
+(Worker_TP1 pid=154) INFO 10-05 00:15:36 [mxfp4.py:1997] Using MoEPrepareAndFinalizeNoDPEPModular
+(Worker_TP1 pid=154) INFO 10-05 00:15:36 [mxfp4.py:1998] Using B12xExperts
+(Worker_TP1 pid=154) WARNING 10-05 00:15:36 [speculator.py:240] Draft model DSparkDeepseekV4ForCausalLM does not support external multimodal embeddings. Embeddings from the target model will not be passed to the drafter; using text-only draft inputs instead.
+(Worker_TP1 pid=154) INFO 10-05 00:15:37 [model_runner.py:449] Model loading took 71.14 GiB memory and 196.533127 seconds
+(Worker_TP1 pid=154) INFO 10-05 00:15:37 [interface.py:639] Setting kv cache block size to 256 for B12X backend.
+WARNING 10-05 00:15:37 [torch_utils.py:275] OMP_NUM_THREADS=16 is set; leaving Torch threads at 16 for serving. Multi-threaded torch CPU ops during serving can degrade performance through spin-wait contention and cgroup CPU-quota throttling.
+(Worker_TP1 pid=154) INFO 10-05 00:15:39 [b12x_prepare.py:584] b12x weights preparation uses 4 compiler workers
+(Worker_TP1 pid=154) INFO 10-05 00:18:25 [b12x_artifacts.py:167] B12X fetched 20 winner programs (1423505 bytes) on rank 1
+(Worker_TP1 pid=154) INFO 10-05 00:18:26 [encoder_runner.py:131] Encoder cache will be initialized with a budget of 8192 tokens, and profiled with 8 image items of the maximum feature size.
+(Worker_TP1 pid=154) INFO 10-05 00:18:30 [l2_prefetch.py:275] [l2_prefetch] CuTe kernel ready (grid=4 block=128 chunk=4096; budgets A/B/C/A_mla=20/50/15/36 MB)
+(Worker_TP1 pid=154) INFO 10-05 00:18:30 [model.py:350] [l2_prefetch] layer 0 WO 6 segs 20.0 MB: wo.wo_a.values:8.4MB, wo.wo_a.scale_rows:0.3MB, wo.wo_a.scale_mma:0.3MB, wo.wo_b.values:10.5MB, wo.wo_b.scale_rows:0.3MB, wo.wo_b.scale_mma[head]:0.3MB | FFN 10 segs 15.7 MB: mhc.hc_ffn_fn:2.0MB, mhc.hc_ffn_base:0.0MB, ffn_norm.weight:0.0MB, gate.weight:3.9MB, gate_up_proj.b12x_weight.weight.values:5.9MB, gate_up_proj.b12x_weight.weight.scale_rows:0.2MB, gate_up_proj.b12x_weight.weight.scale_mma:0.2MB, down_proj.b12x_weight.weight.values:3.3MB | NEXT 7 segs 20.0 MB: mhc.hc_attn_fn:2.0MB, mhc.hc_attn_base:0.0MB, attn_norm.weight:0.0MB, wqa_wkv.b12x_weight.weight.values:9.2MB, wqa_wkv.b12x_weight.weight.scale_rows:0.3MB, wqa_wkv.b12x_weight.weight.scale_mma:0.3MB, wq_b.b12x_weight.weight.values[head]:8.3MB
+(Worker_TP1 pid=154) INFO 10-05 00:18:30 [model.py:350] [l2_prefetch] layer 39 WO 6 segs 20.0 MB: wo.wo_a.values:8.4MB, wo.wo_a.scale_rows:0.3MB, wo.wo_a.scale_mma:0.3MB, wo.wo_b.values:10.5MB, wo.wo_b.scale_rows:0.3MB, wo.wo_b.scale_mma[head]:0.3MB | FFN 10 segs 15.7 MB: mhc.hc_ffn_fn:2.0MB, mhc.hc_ffn_base:0.0MB, ffn_norm.weight:0.0MB, gate.weight:3.9MB, gate_up_proj.b12x_weight.weight.values:5.9MB, gate_up_proj.b12x_weight.weight.scale_rows:0.2MB, gate_up_proj.b12x_weight.weight.scale_mma:0.2MB, down_proj.b12x_weight.weight.values:3.3MB | NEXT -
+(Worker_TP1 pid=154) INFO 10-05 00:18:30 [l2_prefetch.py:516] [l2_prefetch] persisting L2 set-aside on cuda:0: L2 25 MB, max 19 MB, requested 0 MB, now 0 MB
+(Worker_TP1 pid=154) INFO 10-05 00:18:32 [model.py:350] [l2_prefetch] layer 40 WO 6 segs 20.0 MB: wo.wo_a.values:8.4MB, wo.wo_a.scale_rows:0.3MB, wo.wo_a.scale_mma:0.3MB, wo.wo_b.values:10.5MB, wo.wo_b.scale_rows:0.3MB, wo.wo_b.scale_mma[head]:0.3MB | FFN 10 segs 13.0 MB: mhc.hc_ffn_fn:2.0MB, mhc.hc_ffn_base:0.0MB, ffn_norm.weight:0.0MB, gate.weight:1.3MB, gate_up_proj.b12x_weight.weight.values:5.9MB, gate_up_proj.b12x_weight.weight.scale_rows:0.2MB, gate_up_proj.b12x_weight.weight.scale_mma:0.2MB, down_proj.b12x_weight.weight.values:3.3MB | NEXT 7 segs 20.0 MB: mhc.hc_attn_fn:2.0MB, mhc.hc_attn_base:0.0MB, attn_norm.weight:0.0MB, wqa_wkv.b12x_weight.weight.values:9.2MB, wqa_wkv.b12x_weight.weight.scale_rows:0.3MB, wqa_wkv.b12x_weight.weight.scale_mma:0.3MB, wq_b.b12x_weight.weight.values[head]:8.3MB
+(Worker_TP1 pid=154) INFO 10-05 00:18:32 [model.py:350] [l2_prefetch] layer 42 WO 6 segs 20.0 MB: wo.wo_a.values:8.4MB, wo.wo_a.scale_rows:0.3MB, wo.wo_a.scale_mma:0.3MB, wo.wo_b.values:10.5MB, wo.wo_b.scale_rows:0.3MB, wo.wo_b.scale_mma[head]:0.3MB | FFN 10 segs 13.0 MB: mhc.hc_ffn_fn:2.0MB, mhc.hc_ffn_base:0.0MB, ffn_norm.weight:0.0MB, gate.weight:1.3MB, gate_up_proj.b12x_weight.weight.values:5.9MB, gate_up_proj.b12x_weight.weight.scale_rows:0.2MB, gate_up_proj.b12x_weight.weight.scale_mma:0.2MB, down_proj.b12x_weight.weight.values:3.3MB | NEXT -
+(Worker_TP1 pid=154) WARNING 10-05 00:18:32 [logits_processor.py:329] head_dtype=torch.float32: a quantized LM head computes in its own format; its logits are widened to torch.float32.
+(Worker_TP1 pid=154) INFO 10-05 00:18:56 [breakable_cudagraph.py:327] Breakable CUDA graph enabled
+(Worker_TP1 pid=154) INFO 10-05 00:19:08 [speculator.py:153] Capturing model for DSpark speculator...
+(Worker_TP1 pid=154) INFO 10-05 00:19:36 [model_runner.py:1256] Graph capturing finished in 40 secs, took 2.50 GiB
+(Worker_TP1 pid=154) INFO 10-05 00:19:36 [cudagraph_utils.py:1449] CUDA graph memory profile: capture took 2.50 GiB with 3 of 42 FULL graphs (tokens: grown/kept MiB 96: +124.9/6.9, 90: +26.5/26.5, 1: +29.8/29.8); the other 39 FULL graphs add 1.09 GiB; estimate 3.59 GiB.
+(Worker_TP1 pid=154) INFO 10-05 00:19:39 [gpu_worker.py:837] Available KV cache memory: 21.15 GiB
+(Worker_TP1 pid=154) WARNING 10-05 00:19:39 [gpu_worker.py:869] CUDA graph memory profiling is disabled (VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=0). Without it, CUDA graph memory is not accounted for during KV cache allocation, which may require lowering --gpu-memory-utilization to avoid OOM. Consider re-enabling it (the default as of v0.21.0) and increasing --gpu-memory-utilization from 0.8300 to 0.8595.
+(Worker_TP1 pid=154) INFO 10-05 00:19:39 [b12x_prepare.py:644] b12x autotuning uses 66 temporary KV blocks before allocating 88489 serving blocks
+(Worker_TP1 pid=154) INFO 10-05 00:19:39 [b12x_prepare.py:584] b12x state preparation uses 4 compiler workers
+(Worker_TP1 pid=154) INFO 10-05 00:19:44 [gpu_worker.py:942] Cleared 0.07 GiB of cached CUDA allocator memory before KV cache allocation.
+(Worker_TP1 pid=154) INFO 10-05 00:19:46 [b12x_prepare.py:584] b12x bind preparation uses 4 compiler workers
+(Worker_TP1 pid=154) INFO 10-05 00:20:02 [kernel_warmup.py:174] JIT kernel warmup starting.
+(Worker_TP1 pid=154) INFO 10-05 00:20:02 [kernel_warmup.py:187] JIT kernel warmup finished in 0.61s.
+(Worker_TP1 pid=154) INFO 10-05 00:20:02 [kernel_warmup.py:252] Skipping FlashInfer autotune because it is disabled.
+(Worker_TP1 pid=154) INFO 10-05 00:20:28 [speculator.py:153] Capturing model for DSpark speculator...
+(Worker_TP1 pid=154) INFO 10-05 00:21:06 [model_runner.py:1256] Graph capturing finished in 62 secs, took 1.46 GiB
+(Worker_TP1 pid=154) INFO 10-05 00:21:06 [gpu_worker.py:1072] CUDA graph pool memory: 1.46 GiB (actual), 3.59 GiB (estimated), difference: 2.13 GiB (145.3%).
+(Worker_TP1 pid=154) INFO 10-05 00:21:06 [gpu_worker.py:1135] Free memory on device (112.89/121.69 GiB) on startup. Desired GPU memory utilization is (0.83, 101.0 GiB). Actual usage is 78.08 GiB for consumed memory (weights + non-torch), 1.77 GiB for peak activation, and 1.46 GiB for CUDAGraph memory. Replace gpu_memory_utilization config with `--kv-cache-memory=20977925059` (19.54 GiB) to fit into requested memory, or `--kv-cache-memory=33738802688` (31.42 GiB) to fully utilize gpu memory. Current kv cache memory in use is 21.15 GiB.
+(Worker_TP1 pid=154) INFO 10-05 00:21:08 [jit_monitor.py:85] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(Worker_TP1 pid=154) WARNING 10-05 00:21:08 [torch_utils.py:275] OMP_NUM_THREADS=16 is set; leaving Torch threads at 16 for serving. Multi-threaded torch CPU ops during serving can degrade performance through spin-wait contention and cgroup CPU-quota throttling.
+(Worker_TP1 pid=154) [local-indexer-tp] worker startup complete; awaiting real request
+(Worker_TP1 pid=154) [local-indexer-tp] first real request observed; numerical guards pending
+(Worker_TP1 pid=154) /usr/local/lib/python3.12/dist-packages/torch/cuda/graphs.py:169: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:210.)
+(Worker_TP1 pid=154)   super().capture_end()

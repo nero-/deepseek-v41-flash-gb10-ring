@@ -1,0 +1,12 @@
+{
+  "rank": 1,
+  "argv": [
+    "docker",
+    "exec",
+    "ds41-optimized-r1",
+    "nvidia-smi",
+    "--query-gpu=clocks.gr,clocks.max.gr,temperature.gpu,power.draw",
+    "--format=csv"
+  ],
+  "host_admin": false
+}

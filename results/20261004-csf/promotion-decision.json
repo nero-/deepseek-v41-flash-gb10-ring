@@ -1,0 +1,16 @@
+{
+  "decision": "reject",
+  "performance_reviewed": true,
+  "full_benchmark": "/Users/jg/Agent/Builds/deepseek-v41-flash-ring/results/csf-full-20261005T011459Z",
+  "reason": "User selected restoration of the previous corrected runtime after slower prefill and concurrency measurements. Full candidate benchmark completed: 20/20 sustained and 19/20 burst valid; failed warmup retained.",
+  "restore_original": true,
+  "delete_candidate_checkpoint_after_restored_health": true,
+  "repeat_original_benchmark": false,
+  "recovery_method": "reconstruction-then-fabric",
+  "user_selected_fabric_transfer": true,
+  "gx10_candidate_removed_before_fabric_transfer": true,
+  "cleanup_order": {
+    "Sparks": "After restored original serving was healthy.",
+    "GX10s": "After original Spark sources were fully verified, before remaining-shard fabric transfer, under the updated user instruction."
+  }
+}

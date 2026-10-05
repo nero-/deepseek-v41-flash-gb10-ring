@@ -1,0 +1,11 @@
+{
+  "rank": 3,
+  "argv": [
+    "python3",
+    "-c",
+    "import pathlib,shutil,sys;old,new=map(pathlib.Path,sys.argv[1:]);assert old.is_dir() and not new.exists();new.parent.mkdir(parents=True,exist_ok=True);shutil.copytree(old,new);print('Copied content-keyed compile objects into isolated CSF namespace')",
+    "/srv/sparkring/sparkring/cache/deepseek-v41-flash-cuda13.4.2-dba1be0a40aa/b12x",
+    "/srv/sparkring/sparkring/cache/ds41-csf-00a33e231-4bc601a42-c5c41fe301-v1/b12x/compile"
+  ],
+  "host_admin": true
+}

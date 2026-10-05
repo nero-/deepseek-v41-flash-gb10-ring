@@ -1,0 +1,100 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 678B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/ds41:csf-parent
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/6] FROM docker.io/library/ds41:csf-parent
+#4 CACHED
+
+#5 [internal] load build context
+#5 transferring context: 57.76MB 0.6s done
+#5 DONE 0.6s
+
+#6 [2/6] RUN python3 -m pip install --no-cache-dir --no-deps nvidia-cutlass-dsl==4.7.1 nvidia-cutlass-dsl-libs-base==4.7.1 nvidia-cutlass-dsl-libs-core==4.7.1 nvidia-cutlass-dsl-libs-cu12==4.7.1 nvidia-cutlass-dsl-libs-cu13==4.7.1
+#6 1.015 Collecting nvidia-cutlass-dsl==4.7.1
+#6 1.297   Downloading nvidia_cutlass_dsl-4.7.1-py3-none-any.whl.metadata (2.8 kB)
+#6 1.446 Collecting nvidia-cutlass-dsl-libs-base==4.7.1
+#6 1.578   Downloading nvidia_cutlass_dsl_libs_base-4.7.1-cp312-cp312-manylinux_2_28_aarch64.whl.metadata (2.9 kB)
+#6 1.753 Collecting nvidia-cutlass-dsl-libs-core==4.7.1
+#6 1.767   Downloading nvidia_cutlass_dsl_libs_core-4.7.1-py3-none-any.whl.metadata (2.8 kB)
+#6 1.932 Collecting nvidia-cutlass-dsl-libs-cu12==4.7.1
+#6 2.048   Downloading nvidia_cutlass_dsl_libs_cu12-4.7.1-cp312-cp312-manylinux_2_28_aarch64.whl.metadata (2.9 kB)
+#6 2.268 Collecting nvidia-cutlass-dsl-libs-cu13==4.7.1
+#6 2.398   Downloading nvidia_cutlass_dsl_libs_cu13-4.7.1-cp312-cp312-manylinux_2_28_aarch64.whl.metadata (2.9 kB)
+#6 2.415 Downloading nvidia_cutlass_dsl-4.7.1-py3-none-any.whl (10 kB)
+#6 2.552 Downloading nvidia_cutlass_dsl_libs_base-4.7.1-cp312-cp312-manylinux_2_28_aarch64.whl (3.3 MB)
+#6 7.426    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.3/3.3 MB 683.0 kB/s eta 0:00:00
+#6 7.559 Downloading nvidia_cutlass_dsl_libs_core-4.7.1-py3-none-any.whl (1.2 MB)
+#6 8.085    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 2.4 MB/s eta 0:00:00
+#6 8.221 Downloading nvidia_cutlass_dsl_libs_cu12-4.7.1-cp312-cp312-manylinux_2_28_aarch64.whl (87.3 MB)
+#6 53.06    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 87.3/87.3 MB 6.0 MB/s eta 0:00:00
+#6 53.20 Downloading nvidia_cutlass_dsl_libs_cu13-4.7.1-cp312-cp312-manylinux_2_28_aarch64.whl (87.0 MB)
+#6 95.52    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 87.0/87.0 MB 1.0 MB/s eta 0:00:00
+#6 95.64 Installing collected packages: nvidia-cutlass-dsl-libs-cu13, nvidia-cutlass-dsl-libs-cu12, nvidia-cutlass-dsl-libs-core, nvidia-cutlass-dsl-libs-base, nvidia-cutlass-dsl
+#6 95.64   Attempting uninstall: nvidia-cutlass-dsl-libs-cu13
+#6 95.67     Found existing installation: nvidia-cutlass-dsl-libs-cu13 4.7.0
+#6 95.68     Uninstalling nvidia-cutlass-dsl-libs-cu13-4.7.0:
+#6 95.86       Successfully uninstalled nvidia-cutlass-dsl-libs-cu13-4.7.0
+#6 96.44   Attempting uninstall: nvidia-cutlass-dsl-libs-cu12
+#6 96.47     Found existing installation: nvidia-cutlass-dsl-libs-cu12 4.7.0
+#6 96.47     Uninstalling nvidia-cutlass-dsl-libs-cu12-4.7.0:
+#6 96.68       Successfully uninstalled nvidia-cutlass-dsl-libs-cu12-4.7.0
+#6 97.25   Attempting uninstall: nvidia-cutlass-dsl-libs-core
+#6 97.28     Found existing installation: nvidia-cutlass-dsl-libs-core 4.7.0
+#6 97.29     Uninstalling nvidia-cutlass-dsl-libs-core-4.7.0:
+#6 97.36       Successfully uninstalled nvidia-cutlass-dsl-libs-core-4.7.0
+#6 97.71   Attempting uninstall: nvidia-cutlass-dsl-libs-base
+#6 97.73     Found existing installation: nvidia-cutlass-dsl-libs-base 4.7.0
+#6 97.74     Uninstalling nvidia-cutlass-dsl-libs-base-4.7.0:
+#6 97.80       Successfully uninstalled nvidia-cutlass-dsl-libs-base-4.7.0
+#6 98.16   Attempting uninstall: nvidia-cutlass-dsl
+#6 98.19     Found existing installation: nvidia-cutlass-dsl 4.7.0
+#6 98.19     Uninstalling nvidia-cutlass-dsl-4.7.0:
+#6 100.3       Successfully uninstalled nvidia-cutlass-dsl-4.7.0
+#6 100.3 Successfully installed nvidia-cutlass-dsl-4.7.1 nvidia-cutlass-dsl-libs-base-4.7.1 nvidia-cutlass-dsl-libs-core-4.7.1 nvidia-cutlass-dsl-libs-cu12-4.7.1 nvidia-cutlass-dsl-libs-cu13-4.7.1
+#6 100.3 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#6 DONE 100.5s
+
+#7 [3/6] COPY src/ /tmp/csf-src/
+#7 DONE 0.6s
+
+#8 [4/6] RUN python3 -m pip install --no-deps --no-build-isolation /tmp/csf-src && cp -a /tmp/csf-src/vllm/. /usr/local/lib/python3.12/dist-packages/vllm/ && rm -rf /tmp/csf-src
+#8 0.655 Processing /tmp/csf-src
+#8 0.656   Preparing metadata (pyproject.toml): started
+#8 1.054   Preparing metadata (pyproject.toml): finished with status 'done'
+#8 1.058 Building wheels for collected packages: b12x
+#8 1.059   Building wheel for b12x (pyproject.toml): started
+#8 1.705   Building wheel for b12x (pyproject.toml): finished with status 'done'
+#8 1.708   Created wheel for b12x: filename=b12x-1.3.0-py3-none-any.whl size=2571992 sha256=b8df03e1563ec628e4a80005ca14a9f873b84000e308363260943baa7a1224b2
+#8 1.708   Stored in directory: /root/.cache/pip/wheels/e5/cf/d0/b69270afb628576e2f4ee5a6aaaf142cd55c8e809709b5f82d
+#8 1.729 Successfully built b12x
+#8 1.729 Installing collected packages: b12x
+#8 1.729   Attempting uninstall: b12x
+#8 1.732     Found existing installation: b12x 1.3.0
+#8 1.746     Uninstalling b12x-1.3.0:
+#8 1.869       Successfully uninstalled b12x-1.3.0
+#8 2.899 Successfully installed b12x-1.3.0
+#8 2.899 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#8 DONE 3.5s
+
+#9 [5/6] COPY runtime.py manifest.json /opt/dsv41-csf/
+#9 DONE 0.1s
+
+#10 [6/6] RUN python3 /opt/dsv41-csf/runtime.py seal
+#10 15.23 {"schema": "dsv41-csf-derived-image/v1", "versions": {"vllm": "0.1.dev21510+g1794dcf18.d20260924", "b12x": "1.3.0", "torch": "2.13.0+cu130", "nvidia-cutlass-dsl": "4.7.1"}, "sources": {"checkpoint": {"model_id": "local-inference-lab/DeepSeek-V4.1-Flash-lossless-CSF", "revision": "c5c41fe301c4c1d24fc09376883d9168e521dc66"}, "parent_image": "sha256:a9f4aa50ac6b2ca8e3961361fc24bc2d4b0c2785080e85248391ff7da7fbf27c", "vllm": "00a33e23142097f99fef95b1ecab6da4ea271e2e", "b12x": "4bc601a42d9938fc1b33392b5e69b2f2485b4872", "cutlass_dsl": "4.7.1", "native_vllm_abi": {"baseline": "1794dcf18454900263e0c66711af8ea4a1283ac1", "csrc_cmake_setup_diff": [], "parent_native_files": {"/usr/local/lib/python3.12/dist-packages/vllm/_C_stable_libtorch.abi3.so": "97340bf6c08fc72cb8ecb002bedafac56fe43aecc0ca6bd5e4dfd96d057cdd75", "/usr/local/lib/python3.12/dist-packages/vllm/_flashkda_C.abi3.so": "8a47c151d81ad8e64d43d1fe6c0338652aed2bc533954fbc4979b6a294137552", "/usr/local/lib/python3.12/dist-packages/vllm/_moe_C_stable_libtorch.abi3.so": "a33be019eaedba5d7856ee19e81fd672747af2a629654f1ef6d143bdf1ee07ba", "/usr/local/lib/python3.12/dist-packages/vllm/_qutlass_C.abi3.so": "90c38bda6d6e8f16d3e60549c4d10d86dd31497b7767b5ecd16129e10ee9db12", "/usr/local/lib/python3.12/dist-packages/vllm/_rust_tool_parser.abi3.so": "aa0797f61629d2bb47ce818f1d769f956367a2f2c56ae11d14ea77e39a62b672", "/usr/local/lib/python3.12/dist-packages/vllm/cumem_allocator.abi3.so": "4d57931aee05171c50e725965be35ff0aed0c87da50904b6975dd5cf5369fbb3", "/usr/local/lib/python3.12/dist-packages/vllm/fs_io_C.abi3.so": "a4436921888dab143b0cac38a360f21fca0639dec7fdfb00479264def1870684", "/usr/local/lib/python3.12/dist-packages/vllm/spinloop.abi3.so": "6b342a1de56cce3a8e809e117f9472a2925885e3ac13fc6a80ee3423f8ca8ca5", "/usr/local/lib/python3.12/dist-packages/vllm/third_party/deep_gemm/_C.cpython-312-aarch64-linux-gnu.so": "a184f09867dea69974d3d8f6092c5f12293ee4fdf9c75709eceb06d798fc14be", "/usr/local/lib/python3.12/dist-packages/vllm/vllm_flash_attn/_vllm_fa2_C.abi3.so": "c0182d00576e8de9b12ded8f6b5c960c034c5389d9a519430cc5c23cb26a4a80", "/usr/local/lib/python3.12/dist-packages/vllm/vllm_flash_attn/_vllm_fa3_C.abi3.so": "99bf2013b5c94d9c402df239af0eed34b5c389eea3d31335ced7935d6586e762"}}, "serving_qualified": false, "vllm_patch_sha256": "6cad6e4f25ac0f6370becf77655817b6e8111d7b81fc49330c7903acc93286ba", "b12x_patch_sha256": "8b67a19e556e0765861a8c410f84d9e1144710ca6f6cd9f1e8b37ede4d583844"}}
+#10 DONE 15.4s
+
+#11 exporting to image
+#11 exporting layers
+#11 exporting layers 2.9s done
+#11 writing image sha256:de3b324cc0b8ae5823fd501d38e0cea29389b34f5c5d9e0132a003bb4f052ebd done
+#11 naming to docker.io/library/ds41:csf-20261004 done
+#11 DONE 3.0s

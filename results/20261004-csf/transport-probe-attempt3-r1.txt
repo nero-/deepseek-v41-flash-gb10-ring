@@ -1,0 +1,92 @@
+[rank1]:[W1004 22:24:39.626487404 TCPStore.cpp:138] [c10d] recvValueWithTimeout failed on SocketImpl(fd=52, addr=[spark-r1]:47072, remote=[spark-r0]:29789): Failed to recv, got 0 bytes. Connection was likely closed. Did the remote server shutdown or crash?
+Exception raised from recvBytes at /__w/pytorch/pytorch/torch/csrc/distributed/c10d/Utils.hpp:787 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0xc8 (0xfe3c56ece158 in /usr/local/lib/python3.12/dist-packages/torch/lib/libc10.so)
+frame #1: c10::DistError::DistError(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x78 (0xfe3c56eced48 in /usr/local/lib/python3.12/dist-packages/torch/lib/libc10.so)
+frame #2: c10::DistNetworkError::DistNetworkError(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x78 (0xfe3c56ecf0c8 in /usr/local/lib/python3.12/dist-packages/torch/lib/libc10.so)
+frame #3: <unknown function> + 0x70b86c4 (0xfe3c748386c4 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+frame #4: <unknown function> + 0x70bb26c (0xfe3c7483b26c in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+frame #5: c10d::TCPStore::doWait(c10::ArrayRef<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::chrono::duration<long, std::ratio<1l, 1000l> >) + 0xc0 (0xfe3c7483c2b0 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+frame #6: c10d::TCPStore::wait(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&, std::chrono::duration<long, std::ratio<1l, 1000l> > const&) + 0x254 (0xfe3c7483c7f4 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+frame #7: c10d::PrefixStore::wait(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&, std::chrono::duration<long, std::ratio<1l, 1000l> > const&) + 0x3c (0xfe3c747d081c in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+frame #8: c10d::PrefixStore::wait(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&, std::chrono::duration<long, std::ratio<1l, 1000l> > const&) + 0x3c (0xfe3c747d081c in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+frame #9: c10d::PrefixStore::wait(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&, std::chrono::duration<long, std::ratio<1l, 1000l> > const&) + 0x3c (0xfe3c747d081c in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+frame #10: c10d::PrefixStore::wait(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&, std::chrono::duration<long, std::ratio<1l, 1000l> > const&) + 0x3c (0xfe3c747d081c in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+frame #11: gloo::rendezvous::PrefixStore::wait(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&, std::chrono::duration<long, std::ratio<1l, 1000l> > const&) + 0x100 (0xfe3c74da8320 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+frame #12: gloo::transport::tcp::Context::createAndConnectAllPairs(std::shared_ptr<gloo::IStore>) + 0x850 (0xfe3c74dc3850 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+frame #13: gloo::rendezvous::Context::connectFullMesh(std::shared_ptr<gloo::rendezvous::Store>, std::shared_ptr<gloo::transport::Device>&) + 0x6c (0xfe3c74da47bc in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+frame #14: c10d::ProcessGroupGloo::ProcessGroupGloo(c10::intrusive_ptr<c10d::Store, c10::detail::intrusive_target_default_null_type<c10d::Store> > const&, int, int, c10::intrusive_ptr<c10d::ProcessGroupGloo::Options, c10::detail::intrusive_target_default_null_type<c10d::ProcessGroupGloo::Options> >) + 0x398 (0xfe3c74809ee8 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+frame #15: <unknown function> + 0x1200580 (0xfe3c79c20580 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_python.so)
+frame #16: <unknown function> + 0x627784 (0xfe3c79047784 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_python.so)
+frame #17: /usr/bin/python3() [0x503dac]
+frame #18: /usr/bin/python3() [0x4c6e48]
+frame #19: _PyObject_Call + 0x104 (0x4c5544 in /usr/bin/python3)
+frame #20: /usr/bin/python3() [0x523058]
+frame #21: /usr/bin/python3() [0x51e604]
+frame #22: <unknown function> + 0x625fdc (0xfe3c79045fdc in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_python.so)
+frame #23: _PyObject_MakeTpCall + 0x130 (0x4c2d00 in /usr/bin/python3)
+frame #24: _PyEval_EvalFrameDefault + 0x8a0 (0x564354 in /usr/bin/python3)
+frame #25: PyEval_EvalCode + 0x130 (0x5626a4 in /usr/bin/python3)
+frame #26: /usr/bin/python3() [0x59b884]
+frame #27: /usr/bin/python3() [0x680274]
+frame #28: _PyRun_SimpleFileObject + 0x194 (0x67fe48 in /usr/bin/python3)
+frame #29: _PyRun_AnyFileObject + 0x54 (0x67fc14 in /usr/bin/python3)
+frame #30: Py_RunMain + 0x2dc (0x68ac1c in /usr/bin/python3)
+frame #31: Py_BytesMain + 0x28 (0x68a7d8 in /usr/bin/python3)
+frame #32: <unknown function> + 0x284c4 (0xfe3d008484c4 in /lib/aarch64-linux-gnu/libc.so.6)
+frame #33: __libc_start_main + 0x98 (0xfe3d00848598 in /lib/aarch64-linux-gnu/libc.so.6)
+frame #34: _start + 0x30 (0x5f6270 in /usr/bin/python3)
+
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/tests/transport-probe.py", line 391, in <module>
+[rank1]:     main()
+[rank1]:   File "/tests/transport-probe.py", line 88, in main
+[rank1]:     control = dist.new_group(
+[rank1]:               ^^^^^^^^^^^^^^^
+[rank1]:   File "/usr/local/lib/python3.12/dist-packages/torch/distributed/c10d_logger.py", line 97, in wrapper
+[rank1]:     func_return = func(*args, **kwargs)
+[rank1]:                   ^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/usr/local/lib/python3.12/dist-packages/torch/distributed/distributed_c10d.py", line 5863, in new_group
+[rank1]:     return _new_group_with_tag(
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/usr/local/lib/python3.12/dist-packages/torch/distributed/distributed_c10d.py", line 6056, in _new_group_with_tag
+[rank1]:     pg, pg_store = _new_process_group_helper(
+[rank1]:                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/usr/local/lib/python3.12/dist-packages/torch/distributed/distributed_c10d.py", line 2169, in _new_process_group_helper
+[rank1]:     backend_class = ProcessGroupGloo(
+[rank1]:                     ^^^^^^^^^^^^^^^^^
+[rank1]: torch.distributed.DistNetworkError: Failed to recv, got 0 bytes. Connection was likely closed. Did the remote server shutdown or crash?
+[rank1]:[W1004 22:24:39.740075985 ProcessGroupNCCL.cpp:1624] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+E1004 22:24:39.448000 1 torch/distributed/elastic/multiprocessing/api.py:1002] failed (exitcode: 1) local_rank: 0 (pid: 74) of binary: /usr/bin/python3
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/usr/local/lib/python3.12/dist-packages/torch/distributed/run.py", line 1032, in <module>
+    main()
+  File "/usr/local/lib/python3.12/dist-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 367, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/distributed/run.py", line 1028, in main
+    run(args)
+  File "/usr/local/lib/python3.12/dist-packages/torch/distributed/run.py", line 1019, in run
+    elastic_launch(
+  File "/usr/local/lib/python3.12/dist-packages/torch/distributed/launcher/api.py", line 194, in __call__
+    return launch_agent(
+           ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/distributed/launcher/api.py", line 383, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+/tests/transport-probe.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-10-04_22:24:39
+  host      : spark-r1
+  rank      : 1 (local_rank: 0)
+  exitcode  : 1 (pid: 74) 
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

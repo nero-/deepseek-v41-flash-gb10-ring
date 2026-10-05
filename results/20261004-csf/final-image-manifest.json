@@ -1,0 +1,74 @@
+{
+  "checkpoint": {
+    "model_id": "local-inference-lab/DeepSeek-V4.1-Flash-lossless-CSF",
+    "revision": "c5c41fe301c4c1d24fc09376883d9168e521dc66"
+  },
+  "parent_images": [
+    "sha256:a9f4aa50ac6b2ca8e3961361fc24bc2d4b0c2785080e85248391ff7da7fbf27c",
+    "sha256:43e6685cf8f01ebd1aab60a588e523f4b8d0330be27d9c43ab0d6f146d2f6649",
+    "sha256:4fbff34beec9dfde9ca4e2f197d8a93da0f36fec226027871c4d3d6247d6ac7d",
+    "sha256:7725323e2f86085775349b4bcac3efcdc4c05ee556f471786c886e6f8e544688"
+  ],
+  "vllm": "00a33e23142097f99fef95b1ecab6da4ea271e2e",
+  "b12x": "4bc601a42d9938fc1b33392b5e69b2f2485b4872",
+  "cutlass_dsl": "4.7.1",
+  "native_vllm_abi": {
+    "baseline": "1794dcf18454900263e0c66711af8ea4a1283ac1",
+    "csrc_cmake_setup_diff": [],
+    "parent_native_files": {
+      "/usr/local/lib/python3.12/dist-packages/vllm/_C_stable_libtorch.abi3.so": "97340bf6c08fc72cb8ecb002bedafac56fe43aecc0ca6bd5e4dfd96d057cdd75",
+      "/usr/local/lib/python3.12/dist-packages/vllm/_flashkda_C.abi3.so": "8a47c151d81ad8e64d43d1fe6c0338652aed2bc533954fbc4979b6a294137552",
+      "/usr/local/lib/python3.12/dist-packages/vllm/_moe_C_stable_libtorch.abi3.so": "a33be019eaedba5d7856ee19e81fd672747af2a629654f1ef6d143bdf1ee07ba",
+      "/usr/local/lib/python3.12/dist-packages/vllm/_qutlass_C.abi3.so": "90c38bda6d6e8f16d3e60549c4d10d86dd31497b7767b5ecd16129e10ee9db12",
+      "/usr/local/lib/python3.12/dist-packages/vllm/_rust_tool_parser.abi3.so": "aa0797f61629d2bb47ce818f1d769f956367a2f2c56ae11d14ea77e39a62b672",
+      "/usr/local/lib/python3.12/dist-packages/vllm/cumem_allocator.abi3.so": "4d57931aee05171c50e725965be35ff0aed0c87da50904b6975dd5cf5369fbb3",
+      "/usr/local/lib/python3.12/dist-packages/vllm/fs_io_C.abi3.so": "a4436921888dab143b0cac38a360f21fca0639dec7fdfb00479264def1870684",
+      "/usr/local/lib/python3.12/dist-packages/vllm/spinloop.abi3.so": "6b342a1de56cce3a8e809e117f9472a2925885e3ac13fc6a80ee3423f8ca8ca5",
+      "/usr/local/lib/python3.12/dist-packages/vllm/third_party/deep_gemm/_C.cpython-312-aarch64-linux-gnu.so": "a184f09867dea69974d3d8f6092c5f12293ee4fdf9c75709eceb06d798fc14be",
+      "/usr/local/lib/python3.12/dist-packages/vllm/vllm_flash_attn/_vllm_fa2_C.abi3.so": "c0182d00576e8de9b12ded8f6b5c960c034c5389d9a519430cc5c23cb26a4a80",
+      "/usr/local/lib/python3.12/dist-packages/vllm/vllm_flash_attn/_vllm_fa3_C.abi3.so": "99bf2013b5c94d9c402df239af0eed34b5c389eea3d31335ced7935d6586e762"
+    }
+  },
+  "serving_qualified": false,
+  "vllm_patch_sha256": "6cad6e4f25ac0f6370becf77655817b6e8111d7b81fc49330c7903acc93286ba",
+  "b12x_patch_sha256": "54975a5774b6a8752397531f3776bc76991f76db0c1cdc13f5a457d4da87259b",
+  "sparkring_update": {
+    "revision": "721db585e2050bef93518c6cced1dae57ff43af4",
+    "tool_choice": "3f48398a5a750e4955efdf8b654f646a2d70e64d3404cd189d0f0802d05339a9",
+    "contract": "667f88dbe6e25857474544084eb9967e56ab85a2ecaec7c43177629215fb094e",
+    "runtime_status": "0.3.3",
+    "transport": {
+      "profile": "tp2-rocenante-adaptive-prepared-csf-peerwait",
+      "manifest_sha256": "e93d5a5e8180c6956d7dec254be6ec8f9f8392cd9009348147769bea97d0456a",
+      "parent_manifest_sha256": "b11dcfcce4a75d0244b2ab4d650fee771b5601437904f9136ade7e43ca83ee9b",
+      "wire_files_unchanged": false,
+      "proxy_abi": 5
+    },
+    "transport_changes": {
+      "roce/_allgather_cute.py": {
+        "before": "2bab616e7a0949fb83b8e933dbb9c531647659840a607bcd0118652569e389e5",
+        "after": "749b839f0db91878c964d21e3af9b921cd6273215d9599b3e35dffa4d3375f09"
+      },
+      "roce/_cute_intrinsics.py": {
+        "before": "11737796a80a0966c04ee347d5ef83a662bde16dc188022134d2cbaa1567410b",
+        "after": "a65f247336a7056e8f161096021e4e9954c3142ba9e76452ccb6d6460756cf6d"
+      },
+      "roce/_oneshot_cute.py": {
+        "before": "2c791413e084f343f782321e0187d5f8e863832a6ef38cff7c2a365e7b83a0ea",
+        "after": "98591c7432cf1ad1af8ec0ad7f3d24741cc9086f42f7763409126e5786b305b0"
+      },
+      "roce/_proxy.py": {
+        "before": "f783d078d06953f79bcf3a26a61c1ba853d5ec56d07f3e927e5c14275852d854",
+        "after": "8ece853f5d05e2bd3b7a8c9a0f41138843a4521cda68ca317c1fba14877e4a71"
+      },
+      "roce/roce_oneshot.py": {
+        "before": "1033895ecd87c6b7d5d0728d7ba598c5a6f50db50a4417db901a87761820bd70",
+        "after": "3aff7e4a78bcb90ddac8aa99985025b301b376aebf8775bc394209d74d315e42"
+      },
+      "roce/_roce_proxy.c": {
+        "before": "1dcdf4d1a5b3bec2f64029d010a628d5ea3554c8c616c02da0d7aee9be123e35",
+        "after": "dae4d94f98650c55a4a2042836324203042b7e4fb279eb2aa6eded976e8b0456"
+      }
+    }
+  }
+}

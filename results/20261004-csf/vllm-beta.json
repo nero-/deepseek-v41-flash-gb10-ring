@@ -1,0 +1,104 @@
+{
+  "name": "integration/karmic-kraken-beta",
+  "commit": {
+    "sha": "00a33e23142097f99fef95b1ecab6da4ea271e2e",
+    "node_id": "C_kwDOShjvwdoAKDAwYTMzZTIzMTQyMDk3Zjk5ZmVmOTViMWVjYWI2ZGE0ZWEyNzFlMmU",
+    "commit": {
+      "author": {
+        "name": "Martin Vit",
+        "email": "martin@voipmonitor.org",
+        "date": "2026-10-04T19:48:36Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2026-10-04T19:48:36Z"
+      },
+      "message": "Merge pull request #980 from local-inference-lab/fix/load-split-expandable-segments\n\n[Worker] Load weights without the split limit under expandable segments",
+      "tree": {
+        "sha": "f2b10e6074ea0dacd55fe6c3db1fac92b0ef4ce3",
+        "url": "https://api.github.com/repos/local-inference-lab/vllm/git/trees/f2b10e6074ea0dacd55fe6c3db1fac92b0ef4ce3"
+      },
+      "url": "https://api.github.com/repos/local-inference-lab/vllm/git/commits/00a33e23142097f99fef95b1ecab6da4ea271e2e",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJqwq2UCRC1aQ7uu5UhlAAA0TcQABZRw3pR3wYY0XXYWsHIwlGi\na3bsMTI/KWlUlYNq15px/JBTM4F4UObuEgW8y7BpYXI/TR4WPZ7VvSRYGeMkNSjD\nVHU6DIShIW7CDkjLDukVa0OudO4JtoRXGuib2GyOrqC+Issx7QMb0cdgg42PDrI5\n6UrVH2RpOhF31/2wLzRwpIPo67iphBIom2/ZwpjHzJF2XsFfCCXnHQ+9fgDmJnJQ\nojq3Xa5+AWyq0dB7Wx8M187hoK9ye/CNoaCSnuen0vo5/H+kXsVW/DPLwz54VHI+\n4UWbFNDO982hZCpu++bDk6lyH68AX7Q4LNxrl1y8ZABfCKJTG3a1axhAHEu9b7Lx\nk8CdRS4ElMgdV700Dfa1KnnziJ0i6vs4kMD6qPLdS98dJJtQKBWNn/kS6zWIcAEw\nAucXSq9+yqMOQyQq8y71o8hKRvwUS0C/+RX/SwHVWnxs6tunGrZ+wSbLhGIwqdWV\ng/RtmGAYyI+v3kRCUPmtSsobJCoQ0IberZhQtkfmApWVtXJGDcPTu8jMH/BXKVIV\nordZUR2VGY7kqP7p09ZZnxyKlrZKnV7jyyjBSpWQVheDz82oB+gXYu5UlAc6UtLz\n75fWTMsn/E4F/0pIVEbClVtQRrQGrTYHZNLwjLvMMrf9xMhcvn2HDfkd/5vZltbt\niB58KGgoybKFfp8Md0Q5\n=Zh7D\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree f2b10e6074ea0dacd55fe6c3db1fac92b0ef4ce3\nparent ff292a9c63caab0698c7ce1fef277bcfd8adf6aa\nparent ffb0d84638c3a9778630869000e3a0f2bcb606c9\nauthor Martin Vit <martin@voipmonitor.org> 1791143316 +0200\ncommitter GitHub <noreply@github.com> 1791143316 +0200\n\nMerge pull request #980 from local-inference-lab/fix/load-split-expandable-segments\n\n[Worker] Load weights without the split limit under expandable segments",
+        "verified_at": "2026-10-04T19:48:36Z"
+      }
+    },
+    "url": "https://api.github.com/repos/local-inference-lab/vllm/commits/00a33e23142097f99fef95b1ecab6da4ea271e2e",
+    "html_url": "https://github.com/local-inference-lab/vllm/commit/00a33e23142097f99fef95b1ecab6da4ea271e2e",
+    "comments_url": "https://api.github.com/repos/local-inference-lab/vllm/commits/00a33e23142097f99fef95b1ecab6da4ea271e2e/comments",
+    "author": {
+      "login": "voipmonitor",
+      "id": 7045031,
+      "node_id": "MDQ6VXNlcjcwNDUwMzE=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7045031?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/voipmonitor",
+      "html_url": "https://github.com/voipmonitor",
+      "followers_url": "https://api.github.com/users/voipmonitor/followers",
+      "following_url": "https://api.github.com/users/voipmonitor/following{/other_user}",
+      "gists_url": "https://api.github.com/users/voipmonitor/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/voipmonitor/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/voipmonitor/subscriptions",
+      "organizations_url": "https://api.github.com/users/voipmonitor/orgs",
+      "repos_url": "https://api.github.com/users/voipmonitor/repos",
+      "events_url": "https://api.github.com/users/voipmonitor/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/voipmonitor/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "ff292a9c63caab0698c7ce1fef277bcfd8adf6aa",
+        "url": "https://api.github.com/repos/local-inference-lab/vllm/commits/ff292a9c63caab0698c7ce1fef277bcfd8adf6aa",
+        "html_url": "https://github.com/local-inference-lab/vllm/commit/ff292a9c63caab0698c7ce1fef277bcfd8adf6aa"
+      },
+      {
+        "sha": "ffb0d84638c3a9778630869000e3a0f2bcb606c9",
+        "url": "https://api.github.com/repos/local-inference-lab/vllm/commits/ffb0d84638c3a9778630869000e3a0f2bcb606c9",
+        "html_url": "https://github.com/local-inference-lab/vllm/commit/ffb0d84638c3a9778630869000e3a0f2bcb606c9"
+      }
+    ]
+  },
+  "_links": {
+    "self": "https://api.github.com/repos/local-inference-lab/vllm/branches/integration/karmic-kraken-beta",
+    "html": "https://github.com/local-inference-lab/vllm/tree/integration/karmic-kraken-beta"
+  },
+  "protected": false,
+  "protection": {
+    "enabled": false,
+    "required_status_checks": {
+      "enforcement_level": "off",
+      "contexts": [],
+      "checks": []
+    }
+  },
+  "protection_url": "https://api.github.com/repos/local-inference-lab/vllm/branches/integration/karmic-kraken-beta/protection"
+}

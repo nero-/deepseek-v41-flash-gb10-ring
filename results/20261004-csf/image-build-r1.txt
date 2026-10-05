@@ -1,0 +1,58 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 988B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/ds41:csf-parent
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/6] FROM docker.io/library/ds41:csf-parent
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 56.71MB 0.3s done
+#5 DONE 0.3s
+
+#6 [2/6] RUN python3 -m pip install --no-cache-dir --no-deps nvidia-cutlass-dsl==4.7.1 nvidia-cutlass-dsl-libs-base==4.7.1 nvidia-cutlass-dsl-libs-core==4.7.1 nvidia-cutlass-dsl-libs-cu12==4.7.1 nvidia-cutlass-dsl-libs-cu13==4.7.1
+#6 CACHED
+
+#7 [3/6] COPY src/ /tmp/csf-src/
+#7 DONE 0.4s
+
+#8 [4/6] RUN python3 -m pip install --no-deps --no-build-isolation /tmp/csf-src && cp -a /tmp/csf-src/vllm/. /usr/local/lib/python3.12/dist-packages/vllm/ && rm -rf /tmp/csf-src
+#8 0.743 Processing /tmp/csf-src
+#8 0.745   Preparing metadata (pyproject.toml): started
+#8 1.124   Preparing metadata (pyproject.toml): finished with status 'done'
+#8 1.127 Building wheels for collected packages: b12x
+#8 1.128   Building wheel for b12x (pyproject.toml): started
+#8 1.764   Building wheel for b12x (pyproject.toml): finished with status 'done'
+#8 1.766   Created wheel for b12x: filename=b12x-1.3.0-py3-none-any.whl size=2572121 sha256=3f89b415a3a6896329d75eee330fbfc3862252bfd8a7f155e2db97f56f3dd47f
+#8 1.766   Stored in directory: /root/.cache/pip/wheels/e5/cf/d0/b69270afb628576e2f4ee5a6aaaf142cd55c8e809709b5f82d
+#8 1.788 Successfully built b12x
+#8 1.788 Installing collected packages: b12x
+#8 1.788   Attempting uninstall: b12x
+#8 1.790     Found existing installation: b12x 1.3.0
+#8 1.803     Uninstalling b12x-1.3.0:
+#8 1.930       Successfully uninstalled b12x-1.3.0
+#8 2.970 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#8 2.970 Successfully installed b12x-1.3.0
+#8 DONE 3.4s
+
+#9 [5/6] COPY runtime.py manifest.json rebind-transport.py /opt/dsv41-csf/
+#9 DONE 0.1s
+
+#10 [6/6] RUN python3 -c "import importlib.metadata as m;from pathlib import Path;p=Path(m.distribution('vllm')._path)/'METADATA';s=p.read_text();s=s.replace('Version: '+m.version('vllm'),'Version: 0.1.dev21510+g00a33e231.csf.sparkring');p.write_text(s)" && python3 /opt/dsv41-csf/rebind-transport.py && python3 /opt/dsv41-csf/runtime.py seal
+#10 14.26 {"schema": "dsv41-csf-derived-image/v1", "versions": {"vllm": "0.1.dev21510+g00a33e231.csf.sparkring", "b12x": "1.3.0", "torch": "2.13.0+cu130", "nvidia-cutlass-dsl": "4.7.1"}, "sources": {"checkpoint": {"model_id": "local-inference-lab/DeepSeek-V4.1-Flash-lossless-CSF", "revision": "c5c41fe301c4c1d24fc09376883d9168e521dc66"}, "parent_images": ["sha256:a9f4aa50ac6b2ca8e3961361fc24bc2d4b0c2785080e85248391ff7da7fbf27c", "sha256:43e6685cf8f01ebd1aab60a588e523f4b8d0330be27d9c43ab0d6f146d2f6649", "sha256:4fbff34beec9dfde9ca4e2f197d8a93da0f36fec226027871c4d3d6247d6ac7d", "sha256:7725323e2f86085775349b4bcac3efcdc4c05ee556f471786c886e6f8e544688"], "vllm": "00a33e23142097f99fef95b1ecab6da4ea271e2e", "b12x": "4bc601a42d9938fc1b33392b5e69b2f2485b4872", "cutlass_dsl": "4.7.1", "native_vllm_abi": {"baseline": "1794dcf18454900263e0c66711af8ea4a1283ac1", "csrc_cmake_setup_diff": [], "parent_native_files": {"/usr/local/lib/python3.12/dist-packages/vllm/_C_stable_libtorch.abi3.so": "97340bf6c08fc72cb8ecb002bedafac56fe43aecc0ca6bd5e4dfd96d057cdd75", "/usr/local/lib/python3.12/dist-packages/vllm/_flashkda_C.abi3.so": "8a47c151d81ad8e64d43d1fe6c0338652aed2bc533954fbc4979b6a294137552", "/usr/local/lib/python3.12/dist-packages/vllm/_moe_C_stable_libtorch.abi3.so": "a33be019eaedba5d7856ee19e81fd672747af2a629654f1ef6d143bdf1ee07ba", "/usr/local/lib/python3.12/dist-packages/vllm/_qutlass_C.abi3.so": "90c38bda6d6e8f16d3e60549c4d10d86dd31497b7767b5ecd16129e10ee9db12", "/usr/local/lib/python3.12/dist-packages/vllm/_rust_tool_parser.abi3.so": "aa0797f61629d2bb47ce818f1d769f956367a2f2c56ae11d14ea77e39a62b672", "/usr/local/lib/python3.12/dist-packages/vllm/cumem_allocator.abi3.so": "4d57931aee05171c50e725965be35ff0aed0c87da50904b6975dd5cf5369fbb3", "/usr/local/lib/python3.12/dist-packages/vllm/fs_io_C.abi3.so": "a4436921888dab143b0cac38a360f21fca0639dec7fdfb00479264def1870684", "/usr/local/lib/python3.12/dist-packages/vllm/spinloop.abi3.so": "6b342a1de56cce3a8e809e117f9472a2925885e3ac13fc6a80ee3423f8ca8ca5", "/usr/local/lib/python3.12/dist-packages/vllm/third_party/deep_gemm/_C.cpython-312-aarch64-linux-gnu.so": "a184f09867dea69974d3d8f6092c5f12293ee4fdf9c75709eceb06d798fc14be", "/usr/local/lib/python3.12/dist-packages/vllm/vllm_flash_attn/_vllm_fa2_C.abi3.so": "c0182d00576e8de9b12ded8f6b5c960c034c5389d9a519430cc5c23cb26a4a80", "/usr/local/lib/python3.12/dist-packages/vllm/vllm_flash_attn/_vllm_fa3_C.abi3.so": "99bf2013b5c94d9c402df239af0eed34b5c389eea3d31335ced7935d6586e762"}}, "serving_qualified": false, "vllm_patch_sha256": "6cad6e4f25ac0f6370becf77655817b6e8111d7b81fc49330c7903acc93286ba", "b12x_patch_sha256": "54975a5774b6a8752397531f3776bc76991f76db0c1cdc13f5a457d4da87259b"}}
+#10 DONE 14.3s
+
+#11 exporting to image
+#11 exporting layers
+#11 exporting layers 1.8s done
+#11 writing image sha256:796ddfda81a8b1d881e341bce93276e28a3934932ab253aed8121d5952e44586 done
+#11 naming to docker.io/library/ds41:csf-20261004 done
+#11 DONE 1.8s

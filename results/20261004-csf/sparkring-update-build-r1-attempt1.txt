@@ -1,0 +1,64 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 464B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/ds41:csf-base
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 465.20kB 0.0s done
+#4 DONE 0.0s
+
+#5 [1/3] FROM docker.io/library/ds41:csf-base
+#5 DONE 0.2s
+
+#6 [2/3] COPY . /tmp/sparkring-update/
+#6 DONE 0.1s
+
+#7 [3/3] RUN python3 -m pip install --no-deps --no-build-isolation --target /tmp/status-install /tmp/sparkring-update/status && python3 /tmp/sparkring-update/apply.py && python3 /opt/dsv41-csf/runtime.py seal && rm -rf /tmp/sparkring-update /tmp/status-install
+#7 1.057 Processing /tmp/sparkring-update/status
+#7 1.059   Preparing metadata (pyproject.toml): started
+#7 1.473   Preparing metadata (pyproject.toml): finished with status 'done'
+#7 1.475 Building wheels for collected packages: sparkring-runtime-status
+#7 1.476   Building wheel for sparkring-runtime-status (pyproject.toml): started
+#7 1.844   Building wheel for sparkring-runtime-status (pyproject.toml): finished with status 'done'
+#7 1.844   Created wheel for sparkring-runtime-status: filename=sparkring_runtime_status-0.3.3-py3-none-any.whl size=50138 sha256=7bea9942d864efc155e8ef392e433cc081938f372187c573171bad3fbef14733
+#7 1.844   Stored in directory: /tmp/pip-ephem-wheel-cache-icdcczn4/wheels/4f/b5/58/7e48b26cc35165fb232d5187e3a03dc1a9bbeb093420f2518b
+#7 1.847 Successfully built sparkring-runtime-status
+#7 1.847 Installing collected packages: sparkring-runtime-status
+#7 1.879 Successfully installed sparkring-runtime-status-0.3.3
+#7 1.879 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#7 2.019 Traceback (most recent call last):
+#7 2.019   File "/tmp/sparkring-update/apply.py", line 18, in <module>
+#7 2.019     m['name']=new.name;m['parent_manifest_sha256']=sha(old/'manifest.json');m['files']=upstream['files'];m['patch_intent']=upstream['patch_intent'];m['source_origins']['sparkring_peer_wait']=source_manifest['sparkring'];m['qualification']={'cpu':'pending','gpu_rdma':'pending','serving':'pending','proxy_abi':5}
+#7 2.019                                                                                                                            ~~~~~~~~^^^^^^^^^^^^^^^^
+#7 2.019 KeyError: 'patch_intent'
+#7 ERROR: process "/bin/sh -c python3 -m pip install --no-deps --no-build-isolation --target /tmp/status-install /tmp/sparkring-update/status && python3 /tmp/sparkring-update/apply.py && python3 /opt/dsv41-csf/runtime.py seal && rm -rf /tmp/sparkring-update /tmp/status-install" did not complete successfully: exit code: 1
+------
+ > [3/3] RUN python3 -m pip install --no-deps --no-build-isolation --target /tmp/status-install /tmp/sparkring-update/status && python3 /tmp/sparkring-update/apply.py && python3 /opt/dsv41-csf/runtime.py seal && rm -rf /tmp/sparkring-update /tmp/status-install:
+1.844   Stored in directory: /tmp/pip-ephem-wheel-cache-icdcczn4/wheels/4f/b5/58/7e48b26cc35165fb232d5187e3a03dc1a9bbeb093420f2518b
+1.847 Successfully built sparkring-runtime-status
+1.847 Installing collected packages: sparkring-runtime-status
+1.879 Successfully installed sparkring-runtime-status-0.3.3
+1.879 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+2.019 Traceback (most recent call last):
+2.019   File "/tmp/sparkring-update/apply.py", line 18, in <module>
+2.019     m['name']=new.name;m['parent_manifest_sha256']=sha(old/'manifest.json');m['files']=upstream['files'];m['patch_intent']=upstream['patch_intent'];m['source_origins']['sparkring_peer_wait']=source_manifest['sparkring'];m['qualification']={'cpu':'pending','gpu_rdma':'pending','serving':'pending','proxy_abi':5}
+2.019                                                                                                                            ~~~~~~~~^^^^^^^^^^^^^^^^
+2.019 KeyError: 'patch_intent'
+------
+Dockerfile:3
+--------------------
+   1 |     FROM ds41:csf-base
+   2 |     COPY . /tmp/sparkring-update/
+   3 | >>> RUN python3 -m pip install --no-deps --no-build-isolation --target /tmp/status-install /tmp/sparkring-update/status && python3 /tmp/sparkring-update/apply.py && python3 /opt/dsv41-csf/runtime.py seal && rm -rf /tmp/sparkring-update /tmp/status-install
+   4 |     ENTRYPOINT ["python3", "/opt/dsv41-csf/runtime.py"]
+   5 |     CMD ["verify"]
+--------------------
+ERROR: failed to build: failed to solve: process "/bin/sh -c python3 -m pip install --no-deps --no-build-isolation --target /tmp/status-install /tmp/sparkring-update/status && python3 /tmp/sparkring-update/apply.py && python3 /opt/dsv41-csf/runtime.py seal && rm -rf /tmp/sparkring-update /tmp/status-install" did not complete successfully: exit code: 1

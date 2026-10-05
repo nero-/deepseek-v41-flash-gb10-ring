@@ -1,0 +1,28 @@
+{
+  "args": {
+    "tokens": 524288,
+    "output": "/home/nero/dsv41-research-20260928/csf-full-20261005T011459Z-cold-524288.json",
+    "url": "http://127.0.0.1:8015"
+  },
+  "nonce": "f78ffc5503a943b5b9e7840fa8c163c5",
+  "prompt_sha256": "f5ef51e85653ae14a2f774217650a1508316d77689cae513ba8893036e1c32bf",
+  "expected": "RING-6305-COBALT",
+  "answer": "RING-6305-COBALT",
+  "usage": {
+    "prompt_tokens": 503898,
+    "total_tokens": 503907,
+    "completion_tokens": 9,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "created_cache_tokens": 503552
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  },
+  "ttft_seconds": 150.841745393991,
+  "elapsed_seconds": 150.84903745900374,
+  "cached_tokens": 0,
+  "needle_pass": true,
+  "cold_confirmed": true
+}

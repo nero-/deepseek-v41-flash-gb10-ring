@@ -1,0 +1,13 @@
+{
+  "rank": 2,
+  "argv": [
+    "docker",
+    "build",
+    "--progress",
+    "plain",
+    "-t",
+    "ds41:csf-sparkring-721db585",
+    "/home/nero/csf-20261004/update-image"
+  ],
+  "host_admin": false
+}

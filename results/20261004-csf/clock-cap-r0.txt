@@ -1,0 +1,25 @@
+enabled
+active
+# /etc/systemd/system/gb10-gpu-clock-cap.service
+[Unit]
+Description=GB10 GPU upper clock limit (2350 MHz)
+Wants=nvidia-persistenced.service
+After=nvidia-persistenced.service
+Before=docker.service
+StartLimitIntervalSec=0
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/nvidia-smi -lgc 0,2350
+ExecReload=/usr/bin/nvidia-smi -lgc 0,2350
+RemainAfterExit=yes
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+NVIDIA GB10, 45, 208 MHz
+# Warning: gb10-gpu-clock-cap.service changed on disk, the version systemd has loaded is outdated.
+# This output shows the current version of the unit's original fragment and drop-in files.
+# If fragments or drop-ins were added or removed, they are not properly reflected in this output.
+# Run 'systemctl daemon-reload' to reload units.

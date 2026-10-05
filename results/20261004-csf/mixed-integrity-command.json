@@ -1,0 +1,21 @@
+{
+  "rank": 0,
+  "argv": [
+    "python3",
+    "-u",
+    "/home/nero/csf-20261004/tests/mixed_traffic.py",
+    "csf",
+    "--decoders",
+    "8",
+    "--rounds",
+    "3",
+    "--prefill-records",
+    "6144",
+    "--min-uncached-tokens",
+    "65536",
+    "--integrity",
+    "--output",
+    "/home/nero/csf-20261004/mixed-integrity.json"
+  ],
+  "host_admin": false
+}

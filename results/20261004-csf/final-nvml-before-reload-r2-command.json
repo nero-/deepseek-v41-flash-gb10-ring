@@ -1,0 +1,12 @@
+{
+  "rank": 2,
+  "argv": [
+    "docker",
+    "exec",
+    "ds41-csf-r2",
+    "python3",
+    "-c",
+    "import ctypes;lib=ctypes.CDLL(\"libnvidia-ml.so.1\");result=lib.nvmlInit_v2();print(result);assert result==0"
+  ],
+  "host_admin": false
+}
