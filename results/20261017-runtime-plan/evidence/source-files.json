@@ -1,0 +1,158 @@
+[
+  {
+    "path": "flashinfer/flashinfer/experimental/b12x/comm/roce/api.py",
+    "url": "https://raw.githubusercontent.com/local-inference-lab/flashinfer/6023d031be8e32b4b8a749dbb5d17d7d246b939b/flashinfer/experimental/b12x/comm/roce/api.py",
+    "sha256": "066c6202d819aa80e3d26b89a3d9821b36f240e04b99e5c115ddbb5a60704f2d",
+    "bytes": 708
+  },
+  {
+    "path": "flashinfer/flashinfer/experimental/b12x/comm/roce/roce_oneshot.py",
+    "url": "https://raw.githubusercontent.com/local-inference-lab/flashinfer/6023d031be8e32b4b8a749dbb5d17d7d246b939b/flashinfer/experimental/b12x/comm/roce/roce_oneshot.py",
+    "sha256": "44802a72762a3af27ad5c97d138612c54f0f177256f3be316de248de83ae9931",
+    "bytes": 58522
+  },
+  {
+    "path": "flashinfer/flashinfer/experimental/b12x/comm/roce/_routes.py",
+    "url": "https://raw.githubusercontent.com/local-inference-lab/flashinfer/6023d031be8e32b4b8a749dbb5d17d7d246b939b/flashinfer/experimental/b12x/comm/roce/_routes.py",
+    "sha256": "e56e378361e8f5bf1093aeb41e786c0786e4732edf9161a557c337dbc1492a60",
+    "bytes": 7693
+  },
+  {
+    "path": "flashinfer/flashinfer/experimental/b12x/comm/roce/_proxy.py",
+    "url": "https://raw.githubusercontent.com/local-inference-lab/flashinfer/6023d031be8e32b4b8a749dbb5d17d7d246b939b/flashinfer/experimental/b12x/comm/roce/_proxy.py",
+    "sha256": "ae1ba421414272302a501f7d2f070b46bce742884d798f0afe9bc5e82c02cfc0",
+    "bytes": 12135
+  },
+  {
+    "path": "flashinfer/tests/experimental/b12x/comm/test_roce_twoshot_gpu.py",
+    "url": "https://raw.githubusercontent.com/local-inference-lab/flashinfer/6023d031be8e32b4b8a749dbb5d17d7d246b939b/tests/experimental/b12x/comm/test_roce_twoshot_gpu.py",
+    "sha256": "25c89a8a9099b3e32e094d775115241b7ce6085c5bf1e14ee077347b79caa0f4",
+    "bytes": 12480
+  },
+  {
+    "path": "flashinfer/benchmarks/experimental/b12x/benchmark_roce_twoshot.py",
+    "url": "https://raw.githubusercontent.com/local-inference-lab/flashinfer/6023d031be8e32b4b8a749dbb5d17d7d246b939b/benchmarks/experimental/b12x/benchmark_roce_twoshot.py",
+    "sha256": "cc0ab6717f96e0096da3ad32e8dde26960c4ad7a90528370ed18462468266af6",
+    "bytes": 7374
+  },
+  {
+    "path": "flashinfer/tests/experimental/b12x/race/test_race_replay.py",
+    "url": "https://raw.githubusercontent.com/local-inference-lab/flashinfer/6023d031be8e32b4b8a749dbb5d17d7d246b939b/tests/experimental/b12x/race/test_race_replay.py",
+    "sha256": "6258e3a9d8f6b4ad4d0a5c56fb2d6652df9ccb1ae51f6b0e0097b3b8d3ec0e0a",
+    "bytes": 3535
+  },
+  {
+    "path": "flashinfer/tests/experimental/b12x/race/scenarios/gemm.py",
+    "url": "https://raw.githubusercontent.com/local-inference-lab/flashinfer/6023d031be8e32b4b8a749dbb5d17d7d246b939b/tests/experimental/b12x/race/scenarios/gemm.py",
+    "sha256": "ac0ba5bcc73b7a51a5bc3e556625492ba0b901911d4269e40e578bb63e8ced96",
+    "bytes": 3717
+  },
+  {
+    "path": "flashinfer/tests/experimental/b12x/race/scenarios/moe.py",
+    "url": "https://raw.githubusercontent.com/local-inference-lab/flashinfer/6023d031be8e32b4b8a749dbb5d17d7d246b939b/tests/experimental/b12x/race/scenarios/moe.py",
+    "sha256": "d2a86805d8ffdb06dd84c57587421d10ad5533631bb82982ce4599a08ba6eabc",
+    "bytes": 14552
+  },
+  {
+    "path": "flashinfer/tests/experimental/b12x/race/replay.py",
+    "url": "https://raw.githubusercontent.com/local-inference-lab/flashinfer/6023d031be8e32b4b8a749dbb5d17d7d246b939b/tests/experimental/b12x/race/replay.py",
+    "sha256": "8ceb3bd74d38f0a896cf4ded2adc48da4094ce1aa63436c081906ba7cf20305b",
+    "bytes": 5499
+  },
+  {
+    "path": "flashinfer/tests/experimental/b12x/conftest.py",
+    "url": "https://raw.githubusercontent.com/local-inference-lab/flashinfer/6023d031be8e32b4b8a749dbb5d17d7d246b939b/tests/experimental/b12x/conftest.py",
+    "sha256": "e9eafdabd0f6654b1942dd4194de887572f9de25cc33d1efe6efadef9be07a59",
+    "bytes": 992
+  },
+  {
+    "path": "old-b12x/b12x/comm/roce/api.py",
+    "url": "https://raw.githubusercontent.com/local-inference-lab/b12x/c8e461281a3872a0e5de2485ef1df3df6556f07c/b12x/comm/roce/api.py",
+    "sha256": "f8cadfa227d9ce3e115353ef5b5e61004ab27e83799270c210d41c32712f0d38",
+    "bytes": 614
+  },
+  {
+    "path": "old-b12x/b12x/comm/roce/roce_oneshot.py",
+    "url": "https://raw.githubusercontent.com/local-inference-lab/b12x/c8e461281a3872a0e5de2485ef1df3df6556f07c/b12x/comm/roce/roce_oneshot.py",
+    "sha256": "572429e67e0cd63c04854797fe6c27eca0ec1afe4ab24fc2b4e7f971f67e7f01",
+    "bytes": 38778
+  },
+  {
+    "path": "old-b12x/b12x/comm/roce/_proxy.py",
+    "url": "https://raw.githubusercontent.com/local-inference-lab/b12x/c8e461281a3872a0e5de2485ef1df3df6556f07c/b12x/comm/roce/_proxy.py",
+    "sha256": "58ed97dd764bdb89fbb680fc439c7d20441e28dbd3b6c5c072d0b1b9472de9b5",
+    "bytes": 9871
+  },
+  {
+    "path": "old-b12x/b12x/_lib/compiler.py",
+    "url": "https://raw.githubusercontent.com/local-inference-lab/b12x/c8e461281a3872a0e5de2485ef1df3df6556f07c/b12x/_lib/compiler.py",
+    "sha256": "895af1e359cadf975b7befb907a0ca184aa90eda873b5b776efe6559cee75ea8",
+    "bytes": 100612
+  },
+  {
+    "path": "old-b12x/b12x/_lib/program_cache.py",
+    "url": "https://raw.githubusercontent.com/local-inference-lab/b12x/c8e461281a3872a0e5de2485ef1df3df6556f07c/b12x/_lib/program_cache.py",
+    "sha256": "63720746570d28f74a1a45d38e20727e4497265c8151f001f0046457ab7e9b8b",
+    "bytes": 5560
+  },
+  {
+    "path": "old-b12x/docs/rocenante.md",
+    "url": "https://raw.githubusercontent.com/local-inference-lab/b12x/c8e461281a3872a0e5de2485ef1df3df6556f07c/docs/rocenante.md",
+    "sha256": "048900cf0183a53d8caedbde24633c7e7c65bcd8152a1f67f5d94281cb7342ac",
+    "bytes": 12415
+  },
+  {
+    "path": "sparkring/runtime/common/switched.py",
+    "url": "https://raw.githubusercontent.com/FujitsuPolycom/sparkring/68a995125bef92e3eb70e37d960ca121f55797fe/runtime/common/switched.py",
+    "sha256": "749d3480a08c469c7b5af03e0aac6550f7002c234ff391c1960447cc06a10728",
+    "bytes": 14360
+  },
+  {
+    "path": "sparkring/runtime/common/fabric_layout.py",
+    "url": "https://raw.githubusercontent.com/FujitsuPolycom/sparkring/68a995125bef92e3eb70e37d960ca121f55797fe/runtime/common/fabric_layout.py",
+    "sha256": "bb10f76bada17743d242f5ae775c0db0ed50ce02637f4fa1b3c2be8f34b5b228",
+    "bytes": 8140
+  },
+  {
+    "path": "sparkring/runtime/profiles/glm53-flash-spark-tp4-switched/profile.json",
+    "url": "https://raw.githubusercontent.com/FujitsuPolycom/sparkring/68a995125bef92e3eb70e37d960ca121f55797fe/runtime/profiles/glm53-flash-spark-tp4-switched/profile.json",
+    "sha256": "a943cb08e7547165fc90ac87fe9ab8dc3a3b7a59626d88996bf37e21fa5c1fb8",
+    "bytes": 6537
+  },
+  {
+    "path": "sparkring/runtime/profiles/glm53-flash-spark-tp4-switched/README.md",
+    "url": "https://raw.githubusercontent.com/FujitsuPolycom/sparkring/68a995125bef92e3eb70e37d960ca121f55797fe/runtime/profiles/glm53-flash-spark-tp4-switched/README.md",
+    "sha256": "a7522ed8361ac6fa402f1a6f47a663614426aa22a0391cb2590904a46cc85117",
+    "bytes": 5518
+  },
+  {
+    "path": "sparkring/integrations/vllm/sitecustomize.py",
+    "url": "https://raw.githubusercontent.com/FujitsuPolycom/sparkring/68a995125bef92e3eb70e37d960ca121f55797fe/integrations/vllm/sitecustomize.py",
+    "sha256": "252cb710cb6ceb1e705b24e2ece6d970ddd27139e867ff8252ea0d4f3440f78f",
+    "bytes": 2823
+  },
+  {
+    "path": "sparkring/integrations/vllm/test_sitecustomize_four_rank_switch.py",
+    "url": "https://raw.githubusercontent.com/FujitsuPolycom/sparkring/68a995125bef92e3eb70e37d960ca121f55797fe/integrations/vllm/test_sitecustomize_four_rank_switch.py",
+    "sha256": "c7ed23a18d269a0ac1b4ae5449beba5e8332ee64d988e1afb2d932f27bdb53f0",
+    "bytes": 4326
+  },
+  {
+    "path": "sparkring/integrations/vllm/rocenante_prepared/roce/_path_config.py",
+    "url": "https://raw.githubusercontent.com/FujitsuPolycom/sparkring/68a995125bef92e3eb70e37d960ca121f55797fe/integrations/vllm/rocenante_prepared/roce/_path_config.py",
+    "sha256": "d0ac6f1de1934e74202118a94b4f911001869e3da514bf599ca5ea696e82f0c9",
+    "bytes": 7295
+  },
+  {
+    "path": "sparkring/integrations/vllm/rocenante_prepared/roce/roce_oneshot.py",
+    "url": "https://raw.githubusercontent.com/FujitsuPolycom/sparkring/68a995125bef92e3eb70e37d960ca121f55797fe/integrations/vllm/rocenante_prepared/roce/roce_oneshot.py",
+    "sha256": "11bd06f9826810de3bfd62a76ee3d012657c3a50e3c4b947e2102044ef39444f",
+    "bytes": 51800
+  },
+  {
+    "path": "sparkring/integrations/vllm/rocenante_prepared/sparkring_transport_selector.py",
+    "url": "https://raw.githubusercontent.com/FujitsuPolycom/sparkring/68a995125bef92e3eb70e37d960ca121f55797fe/integrations/vllm/rocenante_prepared/sparkring_transport_selector.py",
+    "sha256": "256a3a4d189d97ccf87f5cb72011bd38ef1c63c27bf335ddc6e78f090fc745b7",
+    "bytes": 7784
+  }
+]

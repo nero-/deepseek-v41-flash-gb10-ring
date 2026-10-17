@@ -1,2 +1,8 @@
-# A unified diff uses a significant single-space prefix on blank context lines.
-image/kk926/upstream-runtime.patch whitespace=-blank-at-eol
+# CSV receipts retain their original CRLF bytes.
+*.csv whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+
+# Preserve exact captured output and unified-diff context bytes.
+results/20261014-hf-runtime-audit/upstream.diff -whitespace
+results/20261017-checkpoint-upgrade/runtime-review/current-numerics-and-packages.txt -whitespace
+results/20261017-runtime-plan/evidence/current-numerics-and-packages.txt -whitespace
+results/recovery-20261007T094058Z/status-after.txt -whitespace

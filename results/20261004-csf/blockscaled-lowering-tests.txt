@@ -1,2 +1,0 @@
-..............                                                           [100%]
-14 passed, 16 deselected in 3.45s

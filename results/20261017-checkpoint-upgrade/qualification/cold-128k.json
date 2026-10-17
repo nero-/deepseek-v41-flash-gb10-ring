@@ -1,0 +1,28 @@
+{
+  "args": {
+    "tokens": 131072,
+    "output": "/Users/jg/Agent/Diagnostics/deepseek-v41-flash-ring/upgrade-1017-20261017/candidate-quality/cold-128k.json",
+    "url": "http://192.168.50.219:8015"
+  },
+  "nonce": "1afcc56dc10944b0bbded5f6a4b39ce6",
+  "prompt_sha256": "1b82616a6004b0c73a00d99eb0d15483a0f2757e66899c99060f1b05cb4adc06",
+  "expected": "RING-6305-COBALT",
+  "answer": "RING-6305-COBALT",
+  "usage": {
+    "prompt_tokens": 125240,
+    "total_tokens": 125249,
+    "completion_tokens": 9,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "created_cache_tokens": 124928
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  },
+  "ttft_seconds": 32.987343209002574,
+  "elapsed_seconds": 33.04612154200004,
+  "cached_tokens": 0,
+  "needle_pass": true,
+  "cold_confirmed": true
+}

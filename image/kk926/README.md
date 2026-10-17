@@ -1,47 +1,41 @@
-# Compressor-state correction for the pinned SparkRing image
+# Selected compressor-state correction
 
-This is the complete [KK vLLM #926](https://github.com/local-inference-lab/vllm/pull/926)
-fix at `7b935cb78a3f1f256b04006e82504a651685f72d`, also merged into beta by
-[#943](https://github.com/local-inference-lab/vllm/pull/943). The earlier partial
-beta port is insufficient: circular slot mapping **and** enabled ring writes
-are required. The exact three-file upstream diff applied cleanly to our image.
+The selected GPU base layers the complete KK vLLM #926 correction at
+`7b935cb78a3f1f256b04006e82504a651685f72d` onto the pinned SparkRing/eugr
+nightly parent. Both circular slot mapping and enabled ring writes are needed.
+The exact three-file source replacement and preimage/postimage SHA-256 values
+are in [manifest.json](manifest.json); the upstream patch and license are kept.
 
-The parent is the pinned SparkRing image in `manifest.json`, built on
-`eugr/spark-vllm-b12x:nightly-20260924`. We do not replace the SparkRing stack
-with the generic KK beta image. CUDA, NCCL, B12x, RoCEnante, checkpoints and
-local performance plugins are unchanged.
+The parent image ID is
+`sha256:8e4de5f05f0287c4d0326f3a6ed5d25d3248ec4d482f369308a08a36a2f893bf`.
+`install.py` checks parent sources and composition/toolchain receipts, backs
+up the replaced files inside the image, updates the distribution RECORD and
+receipts, and runs the parent verifier. CUDA, NCCL, B12x, RoCEnante and the
+checkpoint remain inherited. Local plugins are a separate read-only mount.
 
-`install.py` rejects unexpected parent source and receipt hashes. It archives
-the original files and receipts, installs the correction, regenerates the vLLM
-distribution RECORD, and updates the composition receipt and its toolchain
-parent hash. It invokes the original external-base verifier; the build script
-also runs the full toolchain verifier. No verification bypass is used.
-The derived receipt deliberately says `serving_qualified: false`: runtime
-qualification belongs to the separately recorded fleet experiment, not the
-image construction step.
+## Rebuilding on an existing node
 
-Fleet scripts are intentionally pinned to the September 29 experiment:
+Copy this repository's image context to the node first. From its repository
+root, with the exact parent already present:
 
-1. `scripts/kk926-build.py` captures the existing deployment, builds on every
-   rank without network/package updates, and verifies each derived image.
-2. `scripts/kk926-trial.py baseline-screen` records matched pre-fix throughput.
-3. Download pure Python test dependencies into `/tmp/kk926-wheels` with
-   `python3 -m pip download --only-binary=:all: --dest /tmp/kk926-wheels pytest==9.1.1 pluggy==1.6.0 iniconfig==2.3.0 packaging==26.3 pygments==2.21.0`.
-4. `scripts/kk926-trial.py gpu-tests` stops the model, reproduces the old slot
-   failure, and runs the corrected probe and 17 upstream tests on every GPU.
-5. `scripts/kk926-trial.py start` launches isolated trial containers from the
-   recorded deployment. GPU-test or startup failure restores the old service.
-6. `scripts/kk926-qualify.py` saves function, distribution-consistency,
-   throughput, long-prefill, mixed-load and million-token retrieval evidence.
-7. Review results and record `promotion-decision.json` before running
-   `scripts/kk926-promote.py`. Promotion retains the old stopped containers,
-   image and root-owned configuration backup and rolls back on startup or
-   functional failure. Do not rerun these historical scripts blindly against
-   an already promoted fleet: their preconditions intentionally reject it.
+```bash
+docker image inspect sha256:8e4de5f05f0287c4d0326f3a6ed5d25d3248ec4d482f369308a08a36a2f893bf
+docker tag sha256:8e4de5f05f0287c4d0326f3a6ed5d25d3248ec4d482f369308a08a36a2f893bf dsv41-pinned-base:kk926
+docker build --network none --pull=false -t dsv41-sparkring:kk926-rebuild image/kk926
+docker run --rm --network none --entrypoint python3 \
+  dsv41-sparkring:kk926-rebuild /opt/sparkring/toolchain/toolchain.py verify
+```
 
-LMCache #106 is not included: this deployment has no active LMCache connector.
-Native prefix caching and the disk-backed Engram implementation are separate.
+A rebuild can have a different image ID. It does not replace the selected
+root-owned configuration or live containers. Qualification and explicit
+selection are required before serving a rebuilt image. The historical
+September 29 promotion/rollback scripts were campaign-specific and are archived.
 
-Upstream source and tests retain their Apache-2.0 notices. File hashes and
-upstream revision are in `manifest.json`; the unchanged tests are in
-`bench/upstream/kk926`.
+The image construction receipt deliberately retains `serving_qualified: false`;
+actual deployment qualification is separate. See
+[the selected image identities](../../results/20260929-kk926/images.json) and
+[retained qualification status](../../results/20260929-kk926/qualification-statuses.json).
+
+The active 1017 images add the two Python frontend corrections described in
+[image/1017](../1017/README.md). September image IDs here identify the retained
+GPU parent; current per-rank identities are in `results/deployment.json`.

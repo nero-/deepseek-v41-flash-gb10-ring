@@ -1,217 +1,183 @@
-# vLLM results — updated 2026-10-05 UTC
+# Selected build results
 
-Four GB10 nodes: two DGX Sparks and two ASUS Ascent GX10s. Runtime and checkpoint pins are in [README.md](README.md). The initial migration record is [MIGRATION-20260927.md](MIGRATION-20260927.md); the follow-up campaign is [RESEARCH-20260928.md](RESEARCH-20260928.md).
+The current configuration is corrected vLLM/SparkRing TP4, official 1017 weights,
+HF tokenization, Engram projection TP, adaptive 4K prefill under contention,
+guarded query-row indexer sharding and a 2350 MHz upper GPU clock limit.
+[Exact deployment identity](results/deployment.json).
 
-The [October CSF upgrade](CSF-UPGRADE-20261004.md) was rejected: its
-[full benchmark](FULL-BENCHMARK-CSF-20261004.md) had slower prefill and
-high-concurrency decode than the same-day corrected baseline screen. The
-previous corrected HF runtime remains selected. The candidate combined several
-runtime updates, so these measurements do not isolate CSF storage as the cause.
+## October 17 official 1017 checkpoint
 
-Selected configuration: **Engram projection TP + adaptive 4K under contention + guarded query-row indexer sharding**, with native DSpark5, graph sizes and an 8K allocation ceiling.
+The official 1017 checkpoint is selected after four-node hash verification,
+serving/tool/vision checks, bounded decode/prefill consistency checks, fresh
+128K and 1M retrieval, and a focused public LIL 0.7.6 8K C1/C8/C16 screen.
+The frontend adds the official tool-turn boundary correction and KK #921's
+Python DSML parser fix. GPU sources, DSpark5, target precision, plugins and
+transport are unchanged.
 
-The selected runtime also includes the **complete KK #926/#943 compressor-state
-correction**. See [the September 29 report](KK926-CORRECTION-20260929.md) for
-fresh baseline/corrected screens and all qualification evidence. Eight long
-generation probes showed 89.6% lower late-answer coarsened decode/prefill KL.
-Corrected prefill was about 4.35–4.42K prompt tok/s; repeated C16 decode reached
-233–236 aggregate tok/s. The matched 128K/C1 screens were slower at 57.8–59.0
-tok/s versus a 73.9 tok/s baseline sample. Million-token uncached retrieval
-passed in 322.1 seconds. One initial long-context automatic-tool miss remains
-recorded; the full repeat passed 7/7. Historical numbers below predate the fix.
+Public LIL 8K C1/C8/C16: **59.68 / 191.09 / 265.63 tokens/s**.
+These are aggregate decode rates with the public request settings, not the
+historical thinking-off wrapper. A new full grid is deferred to the switch
+campaign so the endpoint can return to normal use. No request errors were
+recorded. Single-cell
+stochastic measurements do not establish a statistical speedup; finite
+correctness checks do not establish broad model-quality superiority.
+[Focused results, matched historical comparison, pins and qualification](results/20261017-checkpoint-upgrade/REPORT.md).
 
-The subsequent [Fastokens serving trial](FASTOKENS-SERVING-20260929.md)
-reduced cached 1M TTFT from 2.57 to 1.11 seconds at C1 and 9.80 to 3.74 seconds
-at C8. However, repeated C8 decode was 167–169 tok/s at 8K and 156.6–156.8
-at 128K, versus HF's 171.8–179.0 and 164.8–168.5. All integration checks passed,
-but the corrected HF backend was restored to prioritize decode/concurrency.
-`VLLM_USE_FASTOKENS` is not enabled. This was a six-cell screen plus C8 repeats,
-not a new full benchmark. The historical full benchmark's C1 was 64.3–66.2
-tok/s; the isolated 73.9 result should not be treated as typical fleet speed.
+## October 14 clean upstream comparison
 
-## Full deployed-profile benchmark
+The original corrected build was retained after testing SparkRing's clean
+2026.10.3 DS41 profile on its benchmarked `d52737a109e0` image, without our local
+performance plugins. Both builds completed the published LIL 0.7.6 25-cell grid
+and five coding probes at our 2350 MHz ceiling, with zero request errors.
 
-The [full benchmark report](FULL-BENCHMARK-20260928.md) covers the deployed
-profile with thinking off: 8K/32K/64K/128K × C1/C2/C4/C8/C16, 30-second
-sustained cells, a separate complete-response burst grid, five coding prompts,
-and fresh retrieval probes through 1,008,432 tokens. Original-run C1 sustained
-decode was 64.3–66.2 tok/s and C16 was 235.1–240.7 aggregate tok/s. Standalone
-8K–128K prefill was 4,517–4,624 prompt tok/s. Million-token first-content
-latency was 308.79 seconds, with correct retrieval and zero cached prompt tokens.
+With the **unwrapped upstream request settings**, original 8K C8/C16 measured
+**197.67 / 271.32 tokens/s**, versus **186.86 / 264.79** for the clean copy.
+Original 128K measured **194.18 / 263.89**, versus **175.99 / 252.91**.
+The copy improved C4 and coding, but lost 5–9% at C8 and about 8% in 128K prefill.
+It passed functional, fixed-sequence quality and uncached retrieval checks;
+there was no performance reason to replace the working default.
 
-The original full run was **not error-free**: exact repetition invalidated
-128K/C2 sustained and 128K/C16 burst, leaving 19/20 valid cells in each grid.
-The report preserves both failures and records focused repeats separately:
-128K/C2 sustained passed at 118.9 tok/s, and the 128K/C16 burst passed at
-221.3 tok/s with 16/16 completions. No fix was applied between these runs;
-passing repeats do not establish that the intermittent repetition is resolved.
-No cell was capacity-limited or marked with a warmup timeout. Overlapping
-30-second baseline decode cells changed by −3.1% to +3.5%; this does not
-establish a new decode gain.
+Our historical `lil_matched.py` forces thinking off, top_p=1 and top_k=-1.
+The public invocation leaves those at server/model defaults. Its higher numbers
+on our original build are a **request-setting difference, not an engine gain**.
+Do not compare these rows directly with the historical thinking-off rows below.
 
-## Follow-up selection
+[Both full grids, qualification, exact pins and comparison limits](results/20261014-upstream-baseline/REPORT.md).
 
-The query-row port distributes eligible long-prefill indexer work across the four
-ranks and gathers integer selections. Exact raw scores and selected score values
-must match the original local computation; legal tied indices may differ. It
-activates only after complete worker warmup and real input. The checkpoint,
-target precision and full vocabulary are preserved.
+## October 14 HF inference audit and restoration
 
-Fresh within-vLLM comparison, thinking off, temperature 1, top_p 1, top_k -1:
+GLM was stopped at the user's request and the original DS41 profile restored.
+The October 12 HF changes need no direct port: our native indexer already binds
+its source cache rather than using the affected shared pointer, and the fused
+B12x output projection already quantizes activations before WO-A. The image,
+checkpoint, plugins and root-owned selection were unchanged in that audit.
 
-| Configuration | C1 | C3 | C5 | C8 | C16 | Prefill 8K | Prefill 64K |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| Prior adaptive 4K, baseline return | 64.6 | 119.4 | 146.5 | 178.3 | 239.9 | 4460 | 4299 |
-| **Query sharding, qualification** | **73.7** | **112.7** | **145.0** | **181.6** | **240.9** | **4486** | **4316** |
+The focused LIL screen measured 8K C1/C8/C16 **60.54 / 163.99 / 227.99** and
+128K **69.16 / 153.52 / 217.63** tokens/s aggregate. C8 repeats were **169.95**
+and **153.28**. C8 remains approximately 5–8% below October 11; this is a
+historical comparison, not a patched/unpatched A/B or evidence of a speed gain.
+Cold prefill was **4,255 / 4,129** tokens/s. Seven functional checks and fresh
+125,241-token retrieval passed. Eight 2048-token consistency probes completed;
+late coarsened KL was 0.01837 with 96.875% top-token agreement. These finite
+checks do not establish broad quality equivalence. All four selected images,
+configuration, mesh and clock services passed final verification.
+[Audit, protocols, limitations and raw evidence](results/20261014-hf-runtime-audit/REPORT.md).
 
-All throughput values are aggregate tokens/s; both runs had zero benchmark
-errors. These short stochastic samples do not establish a new decode gain.
-The ordinary decode path is unchanged, and C1's higher acceptance, rather than
-higher engine step rate, explains its throughput rise. C3 was lower in this run.
+## Sustained decode and cold prefill
 
-| Uncached retrieval | Baseline TTFT | Query sharding TTFT | Reduction |
+The October 11 clean-start control remained selected after the SIRCL trial.
+It used the same installed LIL v0.6.2 harness and matched sampling settings as
+the candidates: thinking off, temperature 1, top_p 1, top_k -1, 2,048-token
+output ceiling and 30-second sustained cells.
+
+| Context | C1 | C8 | C16 |
 |---|---:|---:|---:|
-| ~245.6K prompt tokens | 70.84 s | 61.12 s | 13.7% |
-| ~1.008M prompt tokens | 529.54 s | 333.89 s | 36.9% |
+| 8K | 62.90 | 179.31 | 234.12 |
+| 128K | 61.86 | 165.67 | 220.88 |
 
-All four retrievals returned the correct code with cached_tokens=0. The earlier
-query-sharding run also passed the million-token test in 328.09 s. Cold here
-means no prompt KV-cache reuse, not an empty operating-system file cache.
+Values are aggregate output tokens/s. Cold prefill measured 4,285 and 4,179
+prompt tokens/s respectively. These are focused, stochastic screens, not a
+new full grid or confidence intervals; the 128K prefill cell has one sample.
+[October 11 comparison and qualification evidence](results/20261011-sircl/comparison.json).
 
-Qualification passed 24/24 numerical guards, seven ordinary and seven ~94K-token
-functional probes, and two ~94K retrievals under eight ongoing decoders.
-Ordinary mixed traffic retained similar p95 chunk gaps and fresh-request TTFT,
-but worst gaps increased from 1.07–1.12 s to 1.19–1.27 s. That is a tradeoff,
-not a claimed mixed-traffic improvement. The legacy smoke still fails its
-byte-identical greedy-repeatability requirement, as the pinned baseline does.
+The October 4 baseline screen used this exact runtime, thinking off,
+temperature 1, top_p 1, top_k -1, and 30-second sustained cells. These are
+short stochastic measurements, not confidence intervals or a new full grid.
 
-All six research directions were tested. Context-axis sharding also improved
-long prefill but was less balanced on short prefill. Context-aware verification
-costs, timed prefill, Engram read-ahead, mHC row ownership, and top-20/top-128
-Markov shortlists were not selected. See the [research record](RESEARCH-20260928.md)
-for measurements, source hashes, failure details and finite-test limitations.
-
-## Permanent deployment verification
-
-The installed `engram-adaptive4k-query-indexer` profile repeated uncached
-retrieval at **1,008,431 prompt tokens in 315.76 seconds** to first content,
-**40.4% less TTFT** than the fresh 529.54-second baseline. The correct code was
-returned with cached_tokens=0. Both standard and ~94K functional suites passed
-7/7 again. Its fresh process passed 21 numerical geometries with zero rejected cases.
-
-All four selected containers are running, the API is healthy, and root-owned
-plugin hashes match the qualified source. All 48 regular checkpoint weight files
-remain on each node. The mesh is active and enabled; no research container is
-running. GX10 free space is 161.3/166.4 GiB. The delegated cleanup audit found no
-remaining SGLang runtime to remove; Qwen and the stock vLLM fallback are preserved.
-See the [deployment and health receipt](results/20260928-research/20260928T202948Z-selection)
-and [cleanup audit](results/20260928-research/cleanup-audit.json).
-
-## Initial migration measurements
-
-The remaining sections describe the earlier migration and its then-selected
-adaptive-4K profile, before query sharding. Engine-default screens below use
-different request settings from the explicit non-thinking follow-up above.
-
-## Controlled vLLM screens
-
-LIL v0.6.2, 8K decode context, 20-second cells, engine-default thinking and sampling. Decode columns are **aggregate tokens/s**. Short stochastic screens are useful for selection, not confidence intervals.
-
-| Configuration | C1 | C3 | C5 | C8 | C16 | Prefill 8K | Prefill 64K |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| Official stock | 56.4 | 110.6 | 144.3 | 196.2 | 267.5 | 4433 | 3353 |
-| Engram projection TP | 63.1 | 113.8 | 157.1 | 203.7 | 277.0 | 4467 | 4232 |
-| Engram TP return | 64.7 | 118.5 | 152.4 | 193.2 | 276.9 | 4127 | 4101 |
-| Engram + expanded graphs | 62.8 | 120.8 | 161.9 | 202.1 | 276.8 | 4274 | 4242 |
-| Engram + adaptive 4K | 57.5 | 117.0 | 166.8 | 193.7 | 274.4 | 4449 | 4160 |
-| **Prior adaptive 4K, permanent restart** | **63.1** | **122.6** | **148.5** | **202.7** | **280.4** | **4201** | **4117** |
-| Engram + adaptive 4K + expanded graphs | 54.8 | 120.1 | 157.9 | 188.9 | 277.1 | 4458 | 4121 |
-| Engram + top-20 proposals¹ | 62.4 | 119.7 | 160.2 | 193.8 | 278.6 | 4006 | 4053 |
-
-¹ The benchmark JSON completed, but replacing its executing shell wrapper caused a trailing command error (exit 127). The campaign is recorded as failed, not a clean pass. Top-20 is not selected: no clear overall gain, qeval 71/75. Its independent GPU checks passed 19/19.
-
-The prior profile's permanent-restart screen completed with zero errors and
-reproduced C1/C16/64K-prefill gains: approximately +12%/+5%/+23% against the
-stock tuning screen. Its 8K prefill was lower (4201 versus 4433), and C5 varied
-substantially across runs (148.5 versus the earlier 166.8); do not claim a uniform
-speedup at every load.
-
-Engram TP reproduced gains in C1, C16 and 64K prefill relative to stock. The C8 difference varied enough that a small improvement is not established. Prefill still has room to improve; full residual sequence parallelism has not been ported.
-
-## Explicit non-thinking baseline
-
-The prior adaptive-4K profile also completed a separate run with **thinking off,
-temperature 1.0, top_p 1.0, top_k -1**, with zero errors:
-
-| C1 | C3 | C5 | C8 | C16 | Prefill 8K | Prefill 64K |
-|---:|---:|---:|---:|---:|---:|---:|
-| 60.2 | 116.0 | 131.0 | 168.9 | 225.5 | 4433 | 4071 |
-
-The request contract and harness hashes are in
-[the sidecar](results/20260928/final-selected-matched-tune.matched-request.json).
-This differs from the engine-default screen in request settings; it is not an
-isolated thinking-on/off A/B. **280 tok/s is not the non-thinking C16 result.**
-No stock-vLLM or fresh SGLang screen with this complete explicit contract was
-run, so this establishes a future comparison baseline, not a matched
-cross-engine speedup. The within-vLLM improvement claims above use the same
-engine-default settings on stock and selected configurations.
-
-## Mixed traffic
-
-Eight ongoing decoders plus two fresh ~29K-token prompts, three rounds per configuration. These are SSE content-chunk gaps, **not individual-token latency**: speculative decoding can return several tokens per chunk.
-
-| Configuration | Maximum ongoing-stream gap | First fresh request TTFT | Second fresh request TTFT |
+| Context | C1 | C8 | C16 |
 |---|---:|---:|---:|
-| Engram, 16K budget | 3.87–4.10 s | 7.83–8.16 s | 14.06–14.37 s |
-| Engram, 8K budget | 2.05–2.24 s | 8.15–8.79 s | 14.66–15.50 s |
-| Native compute-share fairness, 4K | ~1.3 s | ~16 s | ~28 s |
-| Local adaptive 4K under contention | 1.16–1.24 s | 8.95–9.02 s | 16.00–16.10 s |
+| 8K | 60.98 | 178.40 | 242.96 |
+| 128K | 59.36 | 166.88 | 229.62 |
 
-The 16K default was rejected: little concurrency benefit and much larger stalls. The local adaptive budget retains ordinary scheduling and the 8K allocation ceiling, shrinking the step only when at least four runnable decoders contend with prefill. Its mixed and under-load retrieval checks completed without errors. Native compute-share fairness imposes too much fresh-request latency for the balanced objective.
+Decode values are aggregate output tokens/s. Cold prefill was about 4,434
+prompt tokens/s at 8K and 4,421 at approximately 129K actual prompt tokens.
+[Raw screen](results/20261004-original/baseline-screen.json),
+[request settings](results/20261004-original/baseline-screen.matched-request.json).
 
-## Quality and rejected experiments
+The September 30 2350 MHz screen measured 64.62 / 187.92 / 250.78 at 8K
+and 61.39 / 171.88 / 232.69 at 128K for C1/C8/C16. This illustrates normal
+run-to-run variation. Prefill was 4,503 and 4,449 prompt tokens/s.
+[Raw screen](results/20260930-maintenance/2350-screen.json).
 
-Stock passed all seven functional probes and scored 71/75 on the retained task suite. Engram TP and adaptive 4K each scored 72/75; expanded graphs scored 73/75. Differences of one or two tasks do not establish quality improvements. Greedy byte-repeatability fails on the stock image as well as the optimized trials. The deterministic-kernel override failed preparation and was rejected.
+## Exact sparkDash protocol comparison
 
-The initial SGLang-inspired Q/KV projection and indexer-row attempts failed their original guards (0/43 and 0/12 enabled cases). Their fallbacks passed functional checks; those attempts received no speed credit. The later exact-score/value query-indexer guard and its selected results are reported above. Adaptive HC's Qwen communication pattern does not exist in this DeepSeek mHC implementation; copying its cutoff would not provide the same optimization.
+The October 5 run used sparkDash 1.8.8 at
+`ced96c8553dec4fe2fdaf2b58e345e46db2cf651`, unmodified collectors,
+256 output tokens, temperature 0 and thinking off. C1 is the median of five
+measured runs after two discarded warmups; higher concurrency is one run each.
 
-## Million-token retrieval and limits
+| Prompt | C1 | C2 | C4 | C8 | C16 |
+|---|---:|---:|---:|---:|---:|
+| Prose | 73.79 | 116.77 | 164.68 | 240.25 | 344.61 |
+| Code | 119.71 | 174.76 | 233.42 | 308.14 | 417.36 |
+| Structured | 145.41 | 189.01 | 312.54 | 496.80 | 776.71 |
+| JSON | 117.06 | 185.16 | 271.46 | 405.33 | 612.90 |
 
-After the initial permanent restart, the adaptive-4K profile retrieved the correct code
-from **1,008,411 prompt tokens in 526.4 seconds** (1,916 prompt tokens/s including
-decode). Arithmetic, tools and thinking also passed. The overall smoke command
-returned 1 because greedy repeatability still failed; it is not reported as an
-unconditional smoke pass. See [the exact output](results/20260928/selected-near1m.txt).
+These short-prompt decode rates are workload-dependent and should not be
+compared directly with LIL's long-context sustained rates. Prose C8/C16 was
+close to Mia's published 237.6/342.7 on this protocol. The repeated-token
+prefill sweeps measured roughly 4.2–4.7K prompt tokens/s; they are not a
+real-text prefill benchmark. The external reference is not a same-hardware A/B.
+[Protocol and results](results/mia-sparkdash-20261005T073040Z/summary.json),
+[raw measurements](results/mia-sparkdash-20261005T073040Z/measurements.json),
+[comparison](results/mia-sparkdash-20261005T073040Z/decode-comparison.csv).
 
-This verifies one long retrieval request, not general 1M-context quality or
-16 simultaneous million-token sessions. The historical SGLang probe reported
-1,000,169 tokens in 247.6 seconds. That is a historical comparison with a slightly
-different token count, not a fresh matched run, but the large latency gap matters:
-**the initial adaptive-4K profile had not recovered that historical long-context speed.** The later query-sharding measurements above close much of the gap, but remain slower than this historical SGLang probe and do not establish a matched cross-engine comparison.
-Full prefill sequence parallelism remains unported. No RDMA error/retry counters
-changed between the selected before/after snapshots, and the API remained healthy.
+## Fidelity, retrieval and limits
 
-## Historical comparison limit
+The complete KK #926/#943 compressor correction reduced late-answer coarsened
+decode/prefill KL by 89.6% across eight 2,048-token probes. This finite
+consistency metric is not a universal quality score. The correction addresses
+long-answer drift; it is retained even where single-user decode was slower.
+[Before](results/20260929-kk926/baseline-consistency.txt),
+[after](results/20260929-kk926/corrected-consistency.txt).
 
-[SGLang results](RESULTS-SGLANG-ARCHIVE.md) are retained as historical evidence. Its reported prefill was faster, while new vLLM default-mode concurrency throughput was higher. However, SGLang defaulted to thinking off and this vLLM profile defaults to thinking on. Historical decode numbers are **not a fully matched cross-engine comparison**, and no fresh SGLang test is planned. Explicitly fixed vLLM request settings are recorded by `bench/lil_matched.py` for future comparisons.
+Uncached retrieval returned the correct code from 1,008,432 prompt tokens in
+322.1 seconds to first content.
+[Raw retrieval](results/20260929-kk926/cold-1m.json).
+Seven ordinary and seven fresh long-context functional probes passed in the
+qualification repeat; an initial long-context automatic-tool miss remains
+recorded. Greedy byte-repeatability was already unreliable on the stock
+runtime. Neither finite functional checks nor passing repeats prove universal
+quality or eliminate intermittent output repetition.
 
+## Why this build remains selected
 
-## Storage and mode switching
+- **October 11 SIRCL image:** tested the published 2026.10.2 pre-release image
+  at `4fffc4dc3074…`, SIRCL 0.3.2/native ABI 9, with the original checkpoint and
+  selected local plugins. All four ranks recorded SIRCL traffic with NCCL
+  disabled. Each candidate passed seven serving checks, twelve known-answer
+  checks, uncached 128K retrieval and finite long-answer consistency checks.
+  BF16-target-head SIRCL measured 59.20 / 164.48 / 224.91 at 8K and
+  58.99 / 162.36 / 227.59 at 128K. The fresh original control above was better
+  overall, although SIRCL's 128K C16 sample was higher. MXFP8/A16 target-head
+  quantization and larger 2 MiB all-reduce / 16 MiB gather buffers produced no
+  consistent decode improvement. The MXFP8 8K C1 peak reflected higher draft
+  acceptance while verification-step rate fell. Neither variant was selected.
+  The new image also changes vLLM/B12x, so these results do not isolate SIRCL
+  as the cause. The trial workers and owned relay objects were stopped and
+  the original mesh restored fleet-wide. Checkpoints, selected images, plugins,
+  root-owned selection and the `0,2350` clock policy are unchanged.
+  [Exact identities, all cells, precision settings and limits](results/20261011-sircl/comparison.json).
+- **CSF/beta bundle:** rejected for slower prefill and C8/C16 decode. The final
+  candidate's concurrency rates were 9.8–21.2% below the same-day corrected
+  baseline. Several components changed together; this does not isolate the
+  lossless checkpoint format as the cause. Original checkpoints were restored
+  and all 48 shard hashes per rank verified.
+- **Fastokens:** improved cached 1M first-token latency, but repeated C8 decode
+  was lower than both HF controls. HF remains selected.
+- **TensorFold transfers:** exact Markov caching and paced prefetch failed the
+  promotion gates. The native TP4 adapter remains incomplete and unqualified;
+  no EXL3 checkpoint was downloaded or accepted. Its unfinished source is in
+  the external pre-cleanup snapshot.
+- **Other proposals:** draft top-20, projection splits, context-axis variants,
+  read-ahead and ownership experiments were not selected. Their source and
+  detailed reports are archived rather than included in the active image tree.
+- **2350 MHz cap:** selected for lower power and temperature with acceptable
+  measured throughput. GPU telemetry showed roughly 46–49 W total savings
+  versus the first stock-clock run; this is not whole-system wall power.
+  [Clock comparison](results/20260930-maintenance/2350-comparison.json).
 
-The retired SGLang runtime, old checkpoint paths, packed Engram shards, mesh,
-cache and image tags were removed consistently on all four nodes. The new
-checkpoint retained all 48 regular weight files. Cleanup reclaimed about
-47.7 GiB per node; the GX10s had 161.7/166.9 GiB free immediately afterwards.
-No global Docker prune or Qwen cleanup ran. See [retirement receipt](results/20260928/retirement.json).
-
-The permanent DeepSeek deployment started after cleanup, then stopped through
-the mode switch. Both Qwen pairs reached healthy APIs and returned `391` for
-17×23 with thinking disabled using Qwen's own request option. Their existing
-`hc-adaptive+cg4+m5500h` selection and 24 GiB KV allocation were preserved.
-See [handoff receipt](results/20260928/qwen-handoff.json).
-
-The initial selected deployment restarted successfully, and fixed passwordless up/status
-controls passed after removal of the temporary broad sudo grants. A fresh request
-after the million-token test returned 27×19 = 513 in 0.17 seconds. All four
-selected containers and native mesh services were left running; see
-[final health](results/20260928/final-health.json).
+Earlier full-grid results predate the compressor fix. No complete new LIL grid
+was run after the October rollback; the current evidence above retains that
+limitation. Historical reports and discarded candidate results are recoverable
+from Git at `364eb87` and the external snapshot recorded in `.local/cleanup.json`.

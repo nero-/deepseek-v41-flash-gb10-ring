@@ -1,0 +1,19 @@
+{
+  "promote": true,
+  "time": 1792232587.974068,
+  "checkpoint_revision": "1bae0e1088993b9b82de08f59de5be5a34e42170",
+  "reason": "Official checkpoint upgrade requested by user; all serving/finite consistency/retrieval checks passed. Focused public LIL throughput 2.1\u20134.6% below historical original-weight cells; single stochastic samples do not establish a regression or equivalence. Preserve existing GPU stack and return serving now; full same-checkpoint runtime A/B deferred to switch campaign.",
+  "evidence": [
+    "candidate-quality/status.json",
+    "candidate-quality/tool-roundtrips.json",
+    "candidate-quality/new/quality.json",
+    "candidate-quality/cold-128k.json",
+    "candidate-quality/cold-1m.json",
+    "comparison.json",
+    "candidate-audit.json",
+    "parser-qualification.json",
+    "candidate-encoding-compat.json"
+  ],
+  "full_grid_run": false,
+  "runtime_upgrades_deferred": true
+}

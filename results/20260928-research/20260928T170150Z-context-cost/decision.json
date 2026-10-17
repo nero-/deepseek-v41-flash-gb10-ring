@@ -1,4 +1,0 @@
-{
-  "decision": "startup failed before container creation",
-  "reason": "Docker client could not read root-only installed seccomp profile; fixed by copying identical policy from pinned installer commit."
-}

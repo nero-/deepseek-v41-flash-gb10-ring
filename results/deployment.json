@@ -1,0 +1,76 @@
+{
+  "profile": "engram-adaptive4k-query-indexer-1017",
+  "configuration_sha256": "ad0a36b9f618f1f59a7b75cfdd670974d6ec632ba00adcd51be5f2274eee11fc",
+  "checkpoint": "1bae0e1088993b9b82de08f59de5be5a34e42170",
+  "plugin_manifest": {
+    "dsv41_adaptive_prefill.py": "dfb6a8d70194306e08850a1f56865f7984d5a8df40ea8032cf485e590486ca58",
+    "dsv41_indexer_tp.py": "1bfe0450fa342bed52a87ed67388a065c0b79aa97c02debcd0e0f35b8ad845d5",
+    "dsv41_local-0.1.dist-info/METADATA": "94fa6ab17962b38be8ab32506c1218ecf616a203bdbc30bb325136cdeb7e3824",
+    "dsv41_local-0.1.dist-info/entry_points.txt": "ab6c572e33dd7bd10ad83863b787b1592401bf64a57564a69f6c591a7f3bb5f5"
+  },
+  "images": [
+    {
+      "rank": 0,
+      "image_id": "sha256:8e9d1bff575e6618ae354f557140aa43e9242d85762c83899fd7dfb898959f8f",
+      "parent_image_id": "sha256:eafd5a96741d301ff37f8c9417d486cb67c631112a3eaf052e6f7bc5e90056e3",
+      "original_image_id": "sha256:a9f4aa50ac6b2ca8e3961361fc24bc2d4b0c2785080e85248391ff7da7fbf27c",
+      "parser_cpu_suite_passed": true,
+      "toolchain_verified": true,
+      "source_manifest_sha256": "11948e034c8fe93d485ec1cf5f426c41f364175ca041a52682d76bf77a4687e1"
+    },
+    {
+      "rank": 1,
+      "image_id": "sha256:59f8ae8ffa35952361ae79ac332d5514c91149d88eae47736b02c9d6693aae26",
+      "parent_image_id": "sha256:befeba3e71656924bbf9dc5a214b7f475030ec44869a38b10ebd9057379d076e",
+      "original_image_id": "sha256:43e6685cf8f01ebd1aab60a588e523f4b8d0330be27d9c43ab0d6f146d2f6649",
+      "parser_cpu_suite_passed": true,
+      "toolchain_verified": true,
+      "source_manifest_sha256": "11948e034c8fe93d485ec1cf5f426c41f364175ca041a52682d76bf77a4687e1"
+    },
+    {
+      "rank": 2,
+      "image_id": "sha256:154f685e6e4056f64916d0b604aca5c26b8499779cdf014168624349ba4e2478",
+      "parent_image_id": "sha256:d3ee148052b001372d3ed4f8834ccc88109a514e8c76af3aac1bdb2b047cc29c",
+      "original_image_id": "sha256:4fbff34beec9dfde9ca4e2f197d8a93da0f36fec226027871c4d3d6247d6ac7d",
+      "parser_cpu_suite_passed": true,
+      "toolchain_verified": true,
+      "source_manifest_sha256": "11948e034c8fe93d485ec1cf5f426c41f364175ca041a52682d76bf77a4687e1"
+    },
+    {
+      "rank": 3,
+      "image_id": "sha256:0d51da7e0fd162bc2ac9be3f960f161ec8270bb22ed835e04cd9c323c753cede",
+      "parent_image_id": "sha256:334ef1fd179364718742f28dfc85f24389ade0dadec9e619f7d2d2cbab5aef81",
+      "original_image_id": "sha256:7725323e2f86085775349b4bcac3efcdc4c05ee556f471786c886e6f8e544688",
+      "parser_cpu_suite_passed": true,
+      "toolchain_verified": true,
+      "source_manifest_sha256": "11948e034c8fe93d485ec1cf5f426c41f364175ca041a52682d76bf77a4687e1"
+    }
+  ],
+  "clock_cap_mhz": 2350,
+  "tokenizer": "huggingface",
+  "source_receipt": "results/20261017-checkpoint-upgrade",
+  "recovery_audit": "results/recovery-20261007T094058Z/final-audit.json",
+  "latest_validation": "results/20261017-checkpoint-upgrade/final-audit.json",
+  "checkpoint_repository": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
+  "frontend_corrections": [
+    "1017 tool-result user-turn boundary",
+    "KK #921 optional DSML string attribute"
+  ],
+  "frontend_build_utc": "2026-10-17",
+  "gpu_runtime_unchanged": true,
+  "compressor_source_receipt": "results/20260929-kk926",
+  "rollback": {
+    "campaign": "/Users/jg/Agent/Diagnostics/deepseek-v41-flash-ring/upgrade-1017-20261017",
+    "original_revision": "dba1be0a40aa45a94ad051997016db3960a90277",
+    "verified_weight_ranks": [
+      0,
+      1
+    ],
+    "gx_restore_required": true,
+    "containers": "ds41-rollback-1017-rN"
+  },
+  "frontend_source_manifests": {
+    "image/1017/prompt/manifest.json": "63229cae86eac133332fd59e2e47ef0bcabea0abe2a8a6d221a1db1c3d1ad99c",
+    "image/1017/parser/manifest.json": "fbbb28124f44d81500c6a29063ceac8f00e28da974f507609a891073af1aeb07"
+  }
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "case": "simple",
+    "mode": "chat",
+    "equal": true
+  },
+  {
+    "case": "simple",
+    "mode": "thinking",
+    "equal": true
+  },
+  {
+    "case": "system",
+    "mode": "chat",
+    "equal": true
+  },
+  {
+    "case": "system",
+    "mode": "thinking",
+    "equal": true
+  },
+  {
+    "case": "multi_turn",
+    "mode": "chat",
+    "equal": true
+  },
+  {
+    "case": "multi_turn",
+    "mode": "thinking",
+    "equal": true
+  },
+  {
+    "case": "mid_system",
+    "mode": "chat",
+    "equal": true
+  },
+  {
+    "case": "mid_system",
+    "mode": "thinking",
+    "equal": true
+  },
+  {
+    "case": "tool_roundtrip",
+    "mode": "chat",
+    "equal": true
+  },
+  {
+    "case": "tool_roundtrip",
+    "mode": "thinking",
+    "equal": true
+  },
+  {
+    "case": "tool_history_without_schema",
+    "mode": "chat",
+    "equal": true
+  },
+  {
+    "case": "tool_history_without_schema",
+    "mode": "thinking",
+    "equal": true
+  }
+]

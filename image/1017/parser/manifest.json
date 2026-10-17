@@ -1,0 +1,15 @@
+{
+  "source": "https://github.com/local-inference-lab/vllm/pull/921",
+  "commit": "eba11af7a0502738e67f98cb547494978e84cb14",
+  "scope": "Python parser only; Rust frontend is disabled in selected recipe",
+  "files": {
+    "vllm/parser/deepseek_v4.py": {
+      "before": "4d69cafd56c85061a2c78afd3f9326e7c01178c851032b7ee1c45ba4fdf29049",
+      "after": "709f328fe3b0711c98cc76f572bee14c6342efaaf2160f010517d3fd54794cee"
+    },
+    "vllm/parser/deepseek_v41.py": {
+      "before": "6efe632bedd5d529e12bd62323fb913edc31d2fb46b30296c12db85d18657b7b",
+      "after": "9b5293f5f72b38f9544f06fed2845e877e4dde7b303488d629cb1934b04cdac7"
+    }
+  }
+}

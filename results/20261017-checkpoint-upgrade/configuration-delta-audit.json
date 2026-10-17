@@ -1,0 +1,105 @@
+{
+  "only_checkpoint_image_identity_and_model_cache_changed": true,
+  "command_unchanged": true,
+  "plugins_unchanged": true,
+  "kk926_manifest_unchanged": true,
+  "changes": [
+    {
+      "rank": 0,
+      "changed_spec_keys": [
+        "environment",
+        "labels",
+        "mounts",
+        "image_id"
+      ],
+      "environment": {
+        "XDG_CACHE_HOME": {
+          "before": "/cache/deepseek-v41-flash-8e4de5f05f02-dba1be0a40aa",
+          "after": "/cache/deepseek-v41-flash-1017-1bae0e108899"
+        },
+        "TORCHINDUCTOR_CACHE_DIR": {
+          "before": "/cache/deepseek-v41-flash-8e4de5f05f02-dba1be0a40aa/inductor",
+          "after": "/cache/deepseek-v41-flash-1017-1bae0e108899/inductor"
+        },
+        "VLLM_CACHE_ROOT": {
+          "before": "/cache/deepseek-v41-flash-8e4de5f05f02-dba1be0a40aa/vllm",
+          "after": "/cache/deepseek-v41-flash-1017-1bae0e108899/vllm"
+        }
+      }
+    },
+    {
+      "rank": 1,
+      "changed_spec_keys": [
+        "environment",
+        "labels",
+        "mounts",
+        "image_id"
+      ],
+      "environment": {
+        "XDG_CACHE_HOME": {
+          "before": "/cache/deepseek-v41-flash-8e4de5f05f02-dba1be0a40aa",
+          "after": "/cache/deepseek-v41-flash-1017-1bae0e108899"
+        },
+        "TORCHINDUCTOR_CACHE_DIR": {
+          "before": "/cache/deepseek-v41-flash-8e4de5f05f02-dba1be0a40aa/inductor",
+          "after": "/cache/deepseek-v41-flash-1017-1bae0e108899/inductor"
+        },
+        "VLLM_CACHE_ROOT": {
+          "before": "/cache/deepseek-v41-flash-8e4de5f05f02-dba1be0a40aa/vllm",
+          "after": "/cache/deepseek-v41-flash-1017-1bae0e108899/vllm"
+        }
+      }
+    },
+    {
+      "rank": 2,
+      "changed_spec_keys": [
+        "environment",
+        "labels",
+        "mounts",
+        "image_id"
+      ],
+      "environment": {
+        "XDG_CACHE_HOME": {
+          "before": "/cache/deepseek-v41-flash-8e4de5f05f02-dba1be0a40aa",
+          "after": "/cache/deepseek-v41-flash-1017-1bae0e108899"
+        },
+        "TORCHINDUCTOR_CACHE_DIR": {
+          "before": "/cache/deepseek-v41-flash-8e4de5f05f02-dba1be0a40aa/inductor",
+          "after": "/cache/deepseek-v41-flash-1017-1bae0e108899/inductor"
+        },
+        "VLLM_CACHE_ROOT": {
+          "before": "/cache/deepseek-v41-flash-8e4de5f05f02-dba1be0a40aa/vllm",
+          "after": "/cache/deepseek-v41-flash-1017-1bae0e108899/vllm"
+        }
+      }
+    },
+    {
+      "rank": 3,
+      "changed_spec_keys": [
+        "environment",
+        "labels",
+        "mounts",
+        "image_id"
+      ],
+      "environment": {
+        "XDG_CACHE_HOME": {
+          "before": "/cache/deepseek-v41-flash-8e4de5f05f02-dba1be0a40aa",
+          "after": "/cache/deepseek-v41-flash-1017-1bae0e108899"
+        },
+        "TORCHINDUCTOR_CACHE_DIR": {
+          "before": "/cache/deepseek-v41-flash-8e4de5f05f02-dba1be0a40aa/inductor",
+          "after": "/cache/deepseek-v41-flash-1017-1bae0e108899/inductor"
+        },
+        "VLLM_CACHE_ROOT": {
+          "before": "/cache/deepseek-v41-flash-8e4de5f05f02-dba1be0a40aa/vllm",
+          "after": "/cache/deepseek-v41-flash-1017-1bae0e108899/vllm"
+        }
+      }
+    }
+  ],
+  "new_configuration_sha256": "ad0a36b9f618f1f59a7b75cfdd670974d6ec632ba00adcd51be5f2274eee11fc",
+  "frontend_corrections": [
+    "1017 tool-result turn boundary",
+    "KK #921 optional DSML string attribute"
+  ]
+}

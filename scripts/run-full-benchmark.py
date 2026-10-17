@@ -1,24 +1,24 @@
 #!/usr/bin/env python3
 """Benchmark the existing selected service without changing its configuration."""
 import hashlib
-import importlib.util
 import json
 from pathlib import Path
 import time
 
-spec = importlib.util.spec_from_file_location('trial', Path(__file__).with_name('research-trial.py'))
-trial = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(trial)
+from fleet import parallel, remote
 ROOT = Path(__file__).resolve().parents[1]
 tag = 'selected-full-' + time.strftime('%Y%m%dT%H%M%SZ', time.gmtime())
 folder = ROOT / 'results' / tag
 folder.mkdir(parents=True)
 (folder / 'runner.py').write_text(Path(__file__).read_text())
 remote_root = '/home/nero/bench/results/' + tag
-selected_text = trial.remote(0, ['cat', '/etc/deepseek-ring/optimized-specs.json']).stdout
+selected_text = remote(0, ['cat', '/etc/deepseek-ring/optimized-specs.json']).stdout
 selected = json.loads(selected_text)
-assert selected['profile'] == 'engram-adaptive4k-query-indexer'
-health = trial.remote(0, ['curl', '-fsS', '--max-time', '10', 'http://127.0.0.1:8015/health'])
+deployment = json.loads((ROOT / 'results/deployment.json').read_text())
+assert selected['profile'] == deployment['profile']
+assert hashlib.sha256(selected_text.encode()).hexdigest() == deployment['configuration_sha256']
+assert [s['image_id'] for s in selected['specs']] == [i['image_id'] for i in deployment['images']]
+health = remote(0, ['curl', '-fsS', '--max-time', '10', 'http://127.0.0.1:8015/health'])
 (folder / 'configuration.json').write_text(json.dumps({
     'profile': selected['profile'], 'configuration_sha256': hashlib.sha256(selected_text.encode()).hexdigest(),
     'plugin_manifest': selected['plugin_manifest'],
@@ -32,7 +32,7 @@ statuses = {}
 def run(name, rank, argv, *, input_text=None):
     (folder / (name + '-command.json')).write_text(json.dumps({'rank': rank, 'argv': argv}, indent=2))
     print('START', name, flush=True)
-    result = trial.remote(rank, argv, input_text, check=False)
+    result = remote(rank, argv, input_text, check=False)
     (folder / (name + '.log')).write_text(result.stdout + result.stderr)
     statuses[name] = result.returncode
     (folder / 'statuses.json').write_text(json.dumps(statuses, indent=2))
@@ -63,24 +63,24 @@ print('RESULTS', folder, 'REMOTE', remote_root, flush=True)
 (folder / 'lil-argv.json').write_text(json.dumps(argv, indent=2))
 run('lil', 3, ['python3', '-c', launcher, remote_root + '.log'], input_text=json.dumps(argv) + '\n')
 for suffix in ('.json', '.matched-request.json', '.log'):
-    data = trial.remote(3, ['cat', remote_root + suffix]).stdout
+    data = remote(3, ['cat', remote_root + suffix]).stdout
     (folder / ('lil' + ('.txt' if suffix == '.log' else suffix))).write_text(data)
 # This pinned LIL version caps its prefill grid at 128K. Larger fresh-prefill
 # retrieval probes are explicitly separate measurements, with cache counts.
-probe = '/home/nero/dsv41-research-20260928/cold-needle.py'
+probe = '/home/nero/bench/cold-needle.py'
 source = (ROOT / 'bench/cold-needle.py').read_text()
-trial.remote(0, ['python3', '-c', 'import sys;from pathlib import Path;Path(sys.argv[1]).write_text(sys.stdin.read())', probe], source)
+remote(0, ['python3', '-c', 'import sys;from pathlib import Path;Path(sys.argv[1]).write_text(sys.stdin.read())', probe], source)
 (folder / 'cold-needle.py').write_text(source)
 for size in (256000, 524288, 1048576):
     name = 'cold-' + str(size)
-    output = '/home/nero/dsv41-research-20260928/' + tag + '-' + name + '.json'
+    output = remote_root + '-' + name + '.json'
     run(name, 0, ['python3', probe, '--tokens', str(size), '--output', output])
-    (folder / (name + '.json')).write_text(trial.remote(0, ['cat', output]).stdout)
-assert trial.remote(0, ['cat', '/etc/deepseek-ring/optimized-specs.json']).stdout == selected_text
-nodes = trial.parallel(lambda rank: json.loads(trial.remote(rank, ['docker', 'inspect', f'ds41-optimized-r{rank}']).stdout)[0])
+    (folder / (name + '.json')).write_text(remote(0, ['cat', output]).stdout)
+assert remote(0, ['cat', '/etc/deepseek-ring/optimized-specs.json']).stdout == selected_text
+nodes = parallel(lambda rank: json.loads(remote(rank, ['docker', 'inspect', f'ds41-optimized-r{rank}']).stdout)[0])
 assert all(n['State']['Running'] for n in nodes)
 run('health', 0, ['curl', '-fsS', '--max-time', '10', 'http://127.0.0.1:8015/health'])
-logs = trial.remote(0, ['docker', 'logs', 'ds41-optimized-r0'])
+logs = remote(0, ['docker', 'logs', 'ds41-optimized-r0'])
 lines = [s for s in (logs.stdout + logs.stderr).splitlines() if '[local-indexer-tp]' in s]
 (folder / 'final-health.json').write_text(json.dumps({
     'profile': selected['profile'], 'configuration_unchanged': True, 'api_healthy': True,

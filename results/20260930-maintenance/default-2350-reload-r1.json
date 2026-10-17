@@ -1,9 +1,0 @@
-{
-  "argv": [
-    "systemctl",
-    "daemon-reload"
-  ],
-  "exit_code": 0,
-  "stdout": "",
-  "stderr": ""
-}

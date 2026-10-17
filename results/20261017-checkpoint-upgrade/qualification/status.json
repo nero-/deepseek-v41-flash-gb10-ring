@@ -1,0 +1,7 @@
+{
+  "functional": 0,
+  "tool-roundtrips": 0,
+  "self-consistency": 0,
+  "cold-128k": 0,
+  "coarse_consistency_gate": 0
+}

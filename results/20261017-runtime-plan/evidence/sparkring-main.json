@@ -1,0 +1,253 @@
+{
+  "sha": "68a995125bef92e3eb70e37d960ca121f55797fe",
+  "html_url": "https://github.com/FujitsuPolycom/sparkring/commit/68a995125bef92e3eb70e37d960ca121f55797fe",
+  "committed_at": "2026-10-14T23:41:20Z",
+  "message": "Anchor dashboard durations to lifecycle events across startup\n\nPreserve loading phases, Spark detail cards and ring totals while deriving stopped and serving ages from recorded lifecycle events. Keep startup ages tied to installation or container starts across phases, refreshes and collector restarts; omit elapsed time when no event is recorded.\n\nValidation: requested dashboard/telemetry/start suite 550 passed, 41 skipped; focused lifecycle/startup/installer tests 139 passed; Compose checks 75 passed. Ruff, generated examples, repository layout, Markdown links and release-safety checks pass.",
+  "files": [
+    {
+      "filename": "docs/operations/dashboard.md",
+      "sha": "0b902e774cc84aaf0d777a9f738e1b8bac27d7db",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/deepseek-v41-flash-tp4/compose/compose.rank0.yaml",
+      "sha": "78fc4776a00d3a668e4c53c0d0bc08f18ec03cef",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/deepseek-v41-flash-tp4/compose/compose.rank1.yaml",
+      "sha": "8ef8b912a82f1730dd380eefd96181cd51903da4",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/deepseek-v41-flash-tp4/compose/compose.rank2.yaml",
+      "sha": "158622bdfe0d2067dbae73e63d237e10e9e2a161",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/deepseek-v41-flash-tp4/compose/compose.rank3.yaml",
+      "sha": "d9ff9f6de03b1a69334dedf716bdd142688fa302",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/deepseek-v41-flash-tp4/compose/selection.json",
+      "sha": "7be17ea3e57af4a76ae09f0e74fd33aaee92c885",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/glm53-flash-nvfp4-spark-tp2/compose/compose.rank0.yaml",
+      "sha": "3a8e8498d1b5c4168b834a8bd940cb55fd643ae2",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/glm53-flash-nvfp4-spark-tp2/compose/compose.rank1.yaml",
+      "sha": "674a8efd996c69ea55a2008144b7362101a75630",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/glm53-flash-nvfp4-spark-tp2/compose/selection.json",
+      "sha": "b5e50622c8a20415b87a918992d170a9f5181f84",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/glm53-flash-nvfp4-spark-tp4/compose/compose.rank0.yaml",
+      "sha": "2315fdecc01cd189bd2042865f22444d2aab9731",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/glm53-flash-nvfp4-spark-tp4/compose/compose.rank1.yaml",
+      "sha": "68845b107f4755ba4b8efc238fe6312247c990fd",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/glm53-flash-nvfp4-spark-tp4/compose/compose.rank2.yaml",
+      "sha": "c56597a2196556cb01312fba41b1697de5272b76",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/glm53-flash-nvfp4-spark-tp4/compose/compose.rank3.yaml",
+      "sha": "5cfad36e0f955f8a0eaeb0c073804024045c7296",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/glm53-flash-nvfp4-spark-tp4/compose/selection.json",
+      "sha": "abfb0296e08b83827f4c39ad3e08631f7ef6f2e3",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/mimo-v26-flash-mopd-tp2/compose/compose.rank0.yaml",
+      "sha": "15ab9cc533ab4c7c8102756b597e9c473ab4a064",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/mimo-v26-flash-mopd-tp2/compose/compose.rank1.yaml",
+      "sha": "1fda7a5f404aa15e843a081011f2276397e9e86e",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/mimo-v26-flash-mopd-tp2/compose/selection.json",
+      "sha": "b5fea6997914f4ce8a715d76afde3d7b1bec86f4",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/mimo-v26-flash-mopd-tp4/compose/compose.rank0.yaml",
+      "sha": "30ccb67696a6f1917dee4a7b7390879d87401ee9",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/mimo-v26-flash-mopd-tp4/compose/compose.rank1.yaml",
+      "sha": "2c47f75eca26b7c5f0d5412632a3db40b1b842d9",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/mimo-v26-flash-mopd-tp4/compose/compose.rank2.yaml",
+      "sha": "26adea7e44d4340597ae573159fa5fbef640e98e",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/mimo-v26-flash-mopd-tp4/compose/compose.rank3.yaml",
+      "sha": "ed0a02ae5c6a42f2517d09ed79bc1d50e6275280",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/mimo-v26-flash-mopd-tp4/compose/selection.json",
+      "sha": "87dd3287edb473dfd03b92a431d9b79a124ec64f",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/qwen38-flash-next-qad-tp4-sparkcache/compose/compose.rank0.yaml",
+      "sha": "defe63303355d87ffc824a6fc7eeee3d72767a4a",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/qwen38-flash-next-qad-tp4-sparkcache/compose/compose.rank1.yaml",
+      "sha": "44b79fc06f6093b5fcadd7d9825b6857b0952499",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/qwen38-flash-next-qad-tp4-sparkcache/compose/compose.rank2.yaml",
+      "sha": "f908ac2b7294cb20a5b3fe6bfdfff6e999d116dc",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/qwen38-flash-next-qad-tp4-sparkcache/compose/compose.rank3.yaml",
+      "sha": "b662559eed1f1702322f2a84947b15543538de38",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/qwen38-flash-next-qad-tp4/compose/compose.rank0.yaml",
+      "sha": "f013481828075ff18568372ab1974ae0fa20e59e",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/qwen38-flash-next-qad-tp4/compose/compose.rank1.yaml",
+      "sha": "d69b0795568a4ae751a3a4b9a49d3215d80496d4",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/qwen38-flash-next-qad-tp4/compose/compose.rank2.yaml",
+      "sha": "a2054f63548c7b6f992874558cb52076b51875df",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/qwen38-flash-next-qad-tp4/compose/compose.rank3.yaml",
+      "sha": "6096e5381745a3c6c99be9598d48cc4553a20824",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/qwen38-flash-next-qad-tp4/compose/selection.json",
+      "sha": "11f454c20f740e2ed6ab7b918bdf149ae6d03c12",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/qwen38-flash-next-tp2-sparkcache/compose/compose.rank0.yaml",
+      "sha": "8fae9fe1e01ff63e959981b9c183edc7d8b7269a",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/qwen38-flash-next-tp2-sparkcache/compose/compose.rank1.yaml",
+      "sha": "ca6d98a5d39a5b486d7c4bdc7860070ba5c16998",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/qwen38-flash-next-tp2/compose/compose.rank0.yaml",
+      "sha": "e702207ddeb458466d85f9e5c3c49ceb034e5113",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/qwen38-flash-next-tp2/compose/compose.rank1.yaml",
+      "sha": "89d1f39a3ca39dd9a5c563bc12a3668127037c07",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/qwen38-flash-next-tp2/compose/selection.json",
+      "sha": "9aff8c388bfdbc4fbe32892a9e79471fba40fce0",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/swift15-qwen38-flash-next-tp2/compose/compose.rank0.yaml",
+      "sha": "54aa27981f71d0d250f95ab03937f48ab59bd537",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/swift15-qwen38-flash-next-tp2/compose/compose.rank1.yaml",
+      "sha": "28252ec78aa024e00c683bddad386ec98f0b851c",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/swift15-qwen38-flash-next-tp2/compose/selection.json",
+      "sha": "0ad79b07f460cdfefaa1d16af62fd4c09458bf16",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/swift15-qwen38-flash-next-tp4/compose/compose.rank0.yaml",
+      "sha": "563bf0d3ec6c4ebb23543c5e39d085a1c259e65f",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/swift15-qwen38-flash-next-tp4/compose/compose.rank1.yaml",
+      "sha": "f362ec882870c8722763a04799eb7d3d7673f1d6",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/swift15-qwen38-flash-next-tp4/compose/compose.rank2.yaml",
+      "sha": "60437d8388f61c32370dfae5e296f510c013bad0",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/swift15-qwen38-flash-next-tp4/compose/compose.rank3.yaml",
+      "sha": "11174a874c0316ca70f6759d7e4b3eec17a86ce8",
+      "status": "modified"
+    },
+    {
+      "filename": "profiles/swift15-qwen38-flash-next-tp4/compose/selection.json",
+      "sha": "e0933396a940ffd78c2d3529487de00a5ccb25d4",
+      "status": "modified"
+    },
+    {
+      "filename": "runtime/host/dashboard.py",
+      "sha": "8b8b7a54ceeb6d35b44eea1eaefbf89de7f361ad",
+      "status": "modified"
+    },
+    {
+      "filename": "runtime/host/dashboard_admin.py",
+      "sha": "d68d20c1cacf3c88ad1cabe6f90efc6ca9975f75",
+      "status": "modified"
+    },
+    {
+      "filename": "runtime/host/test_dashboard_since.py",
+      "sha": "92bf673e8e2d0beec724ba46f6c559efa4fe97ec",
+      "status": "added"
+    },
+    {
+      "filename": "scripts/deploy_engine.py",
+      "sha": "827bedd8c2a98a2313429047c67aba4d04bc664d",
+      "status": "modified"
+    },
+    {
+      "filename": "scripts/test_deploy_engine.py",
+      "sha": "420841445ab232f9d1db6fdc45ba84cfa4e4f359",
+      "status": "modified"
+    }
+  ]
+}

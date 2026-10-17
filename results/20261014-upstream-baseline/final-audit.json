@@ -1,0 +1,87 @@
+{
+  "completed_utc": "2026-10-15T04:10:40Z",
+  "healthy": true,
+  "profile": "engram-adaptive4k-query-indexer",
+  "configuration_unchanged": true,
+  "configuration_sha256": "a98ad7bd912856b7a12d7aac6e036bed4d8c86119ebbf946ec286e2f0d0087bd",
+  "nodes": [
+    {
+      "rank": 0,
+      "image": "sha256:a9f4aa50ac6b2ca8e3961361fc24bc2d4b0c2785080e85248391ff7da7fbf27c",
+      "running": true,
+      "oom_killed": false,
+      "containers": [
+        "ds41-optimized-r0"
+      ],
+      "services": [
+        "active",
+        "active"
+      ],
+      "clock_unit": "# /etc/systemd/system/gb10-gpu-clock-cap.service\n[Unit]\nDescription=GB10 GPU upper clock limit (2350 MHz)\nWants=nvidia-persistenced.service\nAfter=nvidia-persistenced.service\nBefore=docker.service\nStartLimitIntervalSec=0\n\n[Service]\nType=oneshot\nExecStart=/usr/bin/nvidia-smi -lgc 0,2350\nExecReload=/usr/bin/nvidia-smi -lgc 0,2350\nRemainAfterExit=yes\nRestart=on-failure\nRestartSec=10\n\n[Install]\nWantedBy=multi-user.target\n",
+      "loaded_gpu_csv": "2333, 93, 26.87, 62",
+      "indexer_exact_on": 12,
+      "indexer_exact_off": 0
+    },
+    {
+      "rank": 1,
+      "image": "sha256:43e6685cf8f01ebd1aab60a588e523f4b8d0330be27d9c43ab0d6f146d2f6649",
+      "running": true,
+      "oom_killed": false,
+      "containers": [
+        "ds41-optimized-r1"
+      ],
+      "services": [
+        "active",
+        "active"
+      ],
+      "clock_unit": "# /etc/systemd/system/gb10-gpu-clock-cap.service\n[Unit]\nDescription=GB10 GPU upper clock limit (2350 MHz)\nWants=nvidia-persistenced.service\nAfter=nvidia-persistenced.service\nBefore=docker.service\nStartLimitIntervalSec=0\n\n[Service]\nType=oneshot\nExecStart=/usr/bin/nvidia-smi -lgc 0,2350\nExecReload=/usr/bin/nvidia-smi -lgc 0,2350\nRemainAfterExit=yes\nRestart=on-failure\nRestartSec=10\n\n[Install]\nWantedBy=multi-user.target\n",
+      "loaded_gpu_csv": "2320, 95, 26.12, 62",
+      "indexer_exact_on": 0,
+      "indexer_exact_off": 0
+    },
+    {
+      "rank": 2,
+      "image": "sha256:4fbff34beec9dfde9ca4e2f197d8a93da0f36fec226027871c4d3d6247d6ac7d",
+      "running": true,
+      "oom_killed": false,
+      "containers": [
+        "ds41-optimized-r2"
+      ],
+      "services": [
+        "active",
+        "active"
+      ],
+      "clock_unit": "# /etc/systemd/system/gb10-gpu-clock-cap.service\n[Unit]\nDescription=GB10 GPU upper clock limit (2350 MHz)\nWants=nvidia-persistenced.service\nAfter=nvidia-persistenced.service\nBefore=docker.service\nStartLimitIntervalSec=0\n\n[Service]\nType=oneshot\nExecStart=/usr/bin/nvidia-smi -lgc 0,2350\nExecReload=/usr/bin/nvidia-smi -lgc 0,2350\nRemainAfterExit=yes\nRestart=on-failure\nRestartSec=10\n\n[Install]\nWantedBy=multi-user.target\n",
+      "loaded_gpu_csv": "2327, 94, 26.80, 61",
+      "indexer_exact_on": 0,
+      "indexer_exact_off": 0
+    },
+    {
+      "rank": 3,
+      "image": "sha256:7725323e2f86085775349b4bcac3efcdc4c05ee556f471786c886e6f8e544688",
+      "running": true,
+      "oom_killed": false,
+      "containers": [
+        "ds41-optimized-r3"
+      ],
+      "services": [
+        "active",
+        "active"
+      ],
+      "clock_unit": "# /etc/systemd/system/gb10-gpu-clock-cap.service\n[Unit]\nDescription=GB10 GPU upper clock limit (2350 MHz)\nWants=nvidia-persistenced.service\nAfter=nvidia-persistenced.service\nBefore=docker.service\nStartLimitIntervalSec=0\n\n[Service]\nType=oneshot\nExecStart=/usr/bin/nvidia-smi -lgc 0,2350\nExecReload=/usr/bin/nvidia-smi -lgc 0,2350\nRemainAfterExit=yes\nRestart=on-failure\nRestartSec=10\n\n[Install]\nWantedBy=multi-user.target\n",
+      "loaded_gpu_csv": "2340, 95, 26.09, 65",
+      "indexer_exact_on": 0,
+      "indexer_exact_off": 0
+    }
+  ],
+  "loaded_probe": {
+    "completion_tokens": 512,
+    "elapsed_seconds": 9.09815458394587,
+    "purpose": "loaded-clock recovery probe; not a benchmark comparison"
+  },
+  "restored_functional_pass": true,
+  "restored_cold_retrieval_pass": true,
+  "candidate_running": false,
+  "selected": "original",
+  "api": "http://192.168.50.219:8015/v1"
+}

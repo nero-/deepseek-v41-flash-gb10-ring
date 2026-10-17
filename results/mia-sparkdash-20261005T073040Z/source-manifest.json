@@ -1,0 +1,108 @@
+{
+  "repository": "https://github.com/MiaAI-Lab/sparkDash",
+  "revision": "ced96c8553dec4fe2fdaf2b58e345e46db2cf651",
+  "version": "1.8.8",
+  "files": {
+    "server/collectors/DecodeBench.js": "65fc472092b6c577f05efe7498c938d5522a784a5762480f71d17abe47a3f8ea",
+    "server/collectors/PrefillBench.js": "6b14c4eb3fb510806024c4a6ccb01d5c4e011014ebc40919a306a1519f1d67d4",
+    "package.json": "df3ef3fcbc7dcb04b2348bfe7ccf435c47bafa613e8e8626e383059142714f7c",
+    "LICENSE": "1126322e2cc8d165adc4c792eeb195717de2bcc7b39be1ce77959d78e87ef685",
+    "server/util/atomicWrite.js": "e4caf1065209d085561fa28a91e6af6c29857f40f8809b3554869e3815d28654",
+    "server/collectors/LlmStreaming.js": "77e117688dc67c4405188795aedab25d4a7ecea124c1974c8f5f1393e554b0cb",
+    "src/shared/llmPrompts.js": "f930fcfa13a041fcfe1ff6cfbf882f2c946293dc1ac29aba9f3768fd1ad327aa",
+    "src/shared/llmTarget.js": "74913ffd206454f31743d8bba76892f12d1204eae21055173bdde3796c793443",
+    "src/shared/prefillBench.js": "2b1c076c92ff491892f414fa733eb9c180914bee75b9ce6df2203a698654207f",
+    "package-lock.json": "8347afd5ff541d7ddd9b7d8d9ddc748fd1dad15f825a1fa2bbebc519d6dc85f7"
+  },
+  "imports": [
+    [
+      "server/collectors/DecodeBench.js",
+      "crypto"
+    ],
+    [
+      "server/collectors/DecodeBench.js",
+      "fs"
+    ],
+    [
+      "server/collectors/DecodeBench.js",
+      "path"
+    ],
+    [
+      "server/collectors/DecodeBench.js",
+      "url"
+    ],
+    [
+      "server/collectors/DecodeBench.js",
+      "../util/atomicWrite.js"
+    ],
+    [
+      "server/collectors/DecodeBench.js",
+      "./LlmStreaming.js"
+    ],
+    [
+      "server/collectors/DecodeBench.js",
+      "../../src/shared/llmPrompts.js"
+    ],
+    [
+      "server/collectors/DecodeBench.js",
+      "../../src/shared/llmTarget.js"
+    ],
+    [
+      "server/collectors/PrefillBench.js",
+      "crypto"
+    ],
+    [
+      "server/collectors/PrefillBench.js",
+      "fs"
+    ],
+    [
+      "server/collectors/PrefillBench.js",
+      "path"
+    ],
+    [
+      "server/collectors/PrefillBench.js",
+      "url"
+    ],
+    [
+      "server/collectors/PrefillBench.js",
+      "../util/atomicWrite.js"
+    ],
+    [
+      "server/collectors/PrefillBench.js",
+      "./LlmStreaming.js"
+    ],
+    [
+      "server/collectors/PrefillBench.js",
+      "./DecodeBench.js"
+    ],
+    [
+      "server/collectors/PrefillBench.js",
+      "../../src/shared/prefillBench.js"
+    ],
+    [
+      "server/collectors/PrefillBench.js",
+      "../../src/shared/llmTarget.js"
+    ],
+    [
+      "server/util/atomicWrite.js",
+      "fs"
+    ],
+    [
+      "server/util/atomicWrite.js",
+      "path"
+    ],
+    [
+      "server/collectors/LlmStreaming.js",
+      "undici"
+    ]
+  ],
+  "undici": {
+    "version": "8.9.0",
+    "resolved": "https://registry.npmjs.org/undici/-/undici-8.9.0.tgz",
+    "integrity": "sha512-aWZpUj7XoGonMClx4gdDRfgBjqeA+F473aDmROQQbM9n6PRfK/u1q/a0X4wMTgcHfT8H6fpbt98PFuDUwFg2YA==",
+    "license": "MIT",
+    "engines": {
+      "node": ">=22.19.0"
+    }
+  }
+}

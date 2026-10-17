@@ -1,0 +1,90 @@
+[
+  {
+    "check": "bf16_prefill",
+    "selected_source_path": "b12x/gemm/bf16_gemv/_prefill.py",
+    "sha256": "d92cf099a097df66627a968e711a40366817b238f1efa7a68d43286e3708edc4",
+    "count": 1,
+    "sites": [
+      {
+        "line": 344,
+        "context": "load_pipeline.producer_acquire(producer_state)\n                cute.copy(\n                    tma_atom_A,\n                    tAgA[(None, m_tile, k_tile)],\n                    tAsA[(None, producer_state.index)],\n                    tma_bar_ptr=load_pipeline.producer_get_barrier(producer_state),\n                )\n                cute.copy(\n                    tma_atom_B,\n                    tBgB[(None, n_tile, k_tile)],\n                    tBsB[(None, producer_state.index)],\n                    tma_bar_ptr=load_pipeline.producer_get_barrier(producer_state),\n                )\n                load_pipeline.producer_commit(producer_state)\n       "
+      }
+    ]
+  },
+  {
+    "check": "moe_ml",
+    "selected_source_path": "b12x/moe/_shared/kernels/dynamic.py",
+    "sha256": "335bce6271c66989a08ea3a00b023e5a07a6746a459e4bd715c4a068f5ac638a",
+    "count": 1,
+    "sites": [
+      {
+        "line": 9545,
+        "context": "ml_pipeline.producer_acquire(prod_state)\n                        cute.copy(\n                            tma_a,\n                            tAgA_mk[(None, k_tile)],\n                            tAsA[(None, prod_state.index)],\n                            tma_bar_ptr=ml_pipeline.producer_get_barrier(prod_state),\n                        )\n                        cute.copy(\n                            tma_sfa,\n                            tAgSFA_mk[(None, k_tile)],\n                            tAsSFA[(None, prod_state.index)],\n                            tma_bar_ptr=ml_pipeline.producer_get_barrier(prod_state),\n                        )\n             "
+      }
+    ]
+  },
+  {
+    "check": "moe_up",
+    "selected_source_path": "b12x/moe/_shared/kernels/dynamic.py",
+    "sha256": "335bce6271c66989a08ea3a00b023e5a07a6746a459e4bd715c4a068f5ac638a",
+    "count": 2,
+    "sites": [
+      {
+        "line": 9599,
+        "context": "up_pipeline.producer_acquire(up_prod_state)\n                            cute.copy(\n                                tma_b_w13,\n                                tBgB_w13_up_nk[(None, k_tile)],\n                                tBsB_w13_up[(None, up_prod_state.index)],\n                                tma_bar_ptr=up_pipeline.producer_get_barrier(\n                                    up_prod_state\n                                ),\n                            )\n                            cute.copy(\n                                tma_sfb_w13,\n                                tBgSFB_w13_up_nk[(None, k_tile)],\n                                tBsSFB_w13_"
+      },
+      {
+        "line": 9637,
+        "context": "up_pipeline.producer_acquire(up_prod_state)\n                            cute.copy(\n                                tma_a,\n                                tAgA_mk[(None, k_tile)],\n                                tAsA[(None, up_prod_state.index)],\n                                tma_bar_ptr=up_pipeline.producer_get_barrier(\n                                    up_prod_state\n                                ),\n                            )\n                            cute.copy(\n                                tma_b_w13,\n                                tBgB_w13_up_nk[(None, k_tile)],\n                                tBsB_w13_up[(None, up_prod_state."
+      }
+    ]
+  },
+  {
+    "check": "moe_phase2",
+    "selected_source_path": "b12x/moe/_shared/kernels/dynamic.py",
+    "sha256": "335bce6271c66989a08ea3a00b023e5a07a6746a459e4bd715c4a068f5ac638a",
+    "count": 1,
+    "sites": [
+      {
+        "line": 9687,
+        "context": "phase2_pipeline.producer_acquire(phase2_prod_state)\n                        cute.copy(\n                            tma_b_down,\n                            tBgB_down[\n                                (\n                                    None,\n                                    output_tile_idx,\n                                    intermediate_slice,\n                                    task_expert_idx,\n                                )\n                            ],\n                            tBsB_down[(None, phase2_prod_state.index)],\n                            tma_bar_ptr=phase2_pipeline.producer_get_barrier(\n                               "
+      }
+    ]
+  },
+  {
+    "check": "dense_mainloop",
+    "selected_source_path": "b12x/_lib/dense_gemm.py",
+    "sha256": "a8cc459c1494cb8de66fa20169c72e12387d0c17475be4bcfb03c4d08fb65e26",
+    "count": 1,
+    "sites": [
+      {
+        "line": 3690,
+        "context": "mainloop_pipeline.producer_acquire(mainloop_producer_state)\n\n                    k_tile_global = k_tile_start + mainloop_producer_state.count\n                    if cutlass.const_expr(self.load_path == \"tma\"):\n                        tBgB_k = tBgB_nkl[(None, k_tile_global)]\n                        tBsB_pipe = tBsB[(None, mainloop_producer_state.index)]\n                        if cutlass.const_expr(\n                            not self.use_m1_non_tma_a\n                            and not self.fused_quant_a\n                            and not self.direct_m1_wo_a_inputs\n                        ):\n                            tAgA_k = tAgA_mkl[(No"
+      }
+    ]
+  },
+  {
+    "check": "dsa_fused",
+    "selected_source_path": "b12x/attention/dsa_indexer/fused_indexer.py",
+    "sha256": "45d0dec6d65e37866c3dde1c6ec8fd9fce1b8afd7b458dca35269709c89faf38",
+    "count": 1,
+    "sites": [
+      {
+        "line": 376,
+        "context": "def _fused_group_barrier(\n    state: cute.Tensor, group_id: Int32, phase: Int32, ctas_per_group: Int32, tx: Int32\n) -> Int32:\n    \"\"\"Grid barrier over the group's CTAs on the arrival counter; returns the next phase.\"\"\"\n    arrival_ptr = _fused_state_ptr(state, group_id, Int32(_FUSED_STATE_ARRIVAL))\n    if tx == Int32(0):\n        red_add_global_release_i32(arrival_ptr, Int32(1))\n        spin_wait_global_ge_i32(arrival_ptr, (phase + Int32(1)) * ctas_per_group)\n    cute.arch.sync_threads()\n    return phase + Int32(1)\n\n\n@cute.jit\ndef _page_id_or_invalid(\n    real_page_table: cute.Tensor, q_idx: Int32, col: Int32, page_end: Int32\n) -> Int32:\n    \""
+      }
+    ]
+  },
+  {
+    "check": "dsa_topk",
+    "selected_source_path": "b12x/attention/dsa_indexer/persistent_topk.py",
+    "sha256": "0d064fa88117d50727df37c12538da99dfab2e1d752c7b530f2219725ef7b0c3",
+    "count": 1,
+    "sites": [
+      {
+        "line": 282,
+        "context": "def _group_barrier(\n    state: cute.Tensor, group_id: Int32, phase: Int32, ctas_per_group: Int32, tx: Int32\n) -> Int32:\n    arrival_ptr = _global_state_ptr(state, group_id, Int32(_STATE_ARRIVAL_COUNTER))\n    if tx == Int32(0):\n        red_add_global_release_i32(arrival_ptr, Int32(1))\n        spin_wait_global_ge_i32(arrival_ptr, (phase + Int32(1)) * ctas_per_group)\n    cute.arch.sync_threads()\n    return phase + Int32(1)\n\n\n@cute.jit\ndef _store_output_index(\n    output: cute.Tensor,\n    page_table: cute.Tensor,\n    row_idx: Int32,\n    output_pos: Int32,\n    logical_idx: Int32,\n    page_table_stride: Int32,\n    output_stride: Int32,\n    paged_ou"
+      }
+    ]
+  }
+]

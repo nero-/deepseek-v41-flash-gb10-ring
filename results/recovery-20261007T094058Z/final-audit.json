@@ -1,0 +1,130 @@
+[
+  {
+    "rank": 0,
+    "image": "sha256:a9f4aa50ac6b2ca8e3961361fc24bc2d4b0c2785080e85248391ff7da7fbf27c",
+    "running": true,
+    "oom": false,
+    "health": "healthy",
+    "mesh": "active",
+    "mesh_enabled": "enabled",
+    "clock_cap_service": "active",
+    "gids": [
+      {
+        "hca": "rocep1s0f0",
+        "gid3": "0000:0000:0000:0000:0000:ffff:0a0a:000a",
+        "type3": "RoCE v2"
+      },
+      {
+        "hca": "roceP2p1s0f0",
+        "gid3": "0000:0000:0000:0000:0000:ffff:0a0b:000a",
+        "type3": "RoCE v2"
+      },
+      {
+        "hca": "rocep1s0f1",
+        "gid3": "0000:0000:0000:0000:0000:ffff:0a0a:030b",
+        "type3": "RoCE v2"
+      },
+      {
+        "hca": "roceP2p1s0f1",
+        "gid3": "0000:0000:0000:0000:0000:ffff:0a0b:030b",
+        "type3": "RoCE v2"
+      }
+    ]
+  },
+  {
+    "rank": 1,
+    "image": "sha256:43e6685cf8f01ebd1aab60a588e523f4b8d0330be27d9c43ab0d6f146d2f6649",
+    "running": true,
+    "oom": false,
+    "health": null,
+    "mesh": "active",
+    "mesh_enabled": "enabled",
+    "clock_cap_service": "active",
+    "gids": [
+      {
+        "hca": "rocep1s0f0",
+        "gid3": "0000:0000:0000:0000:0000:ffff:0a0a:010a",
+        "type3": "RoCE v2"
+      },
+      {
+        "hca": "roceP2p1s0f0",
+        "gid3": "0000:0000:0000:0000:0000:ffff:0a0b:010a",
+        "type3": "RoCE v2"
+      },
+      {
+        "hca": "rocep1s0f1",
+        "gid3": "0000:0000:0000:0000:0000:ffff:0a0a:000b",
+        "type3": "RoCE v2"
+      },
+      {
+        "hca": "roceP2p1s0f1",
+        "gid3": "0000:0000:0000:0000:0000:ffff:0a0b:000b",
+        "type3": "RoCE v2"
+      }
+    ]
+  },
+  {
+    "rank": 2,
+    "image": "sha256:4fbff34beec9dfde9ca4e2f197d8a93da0f36fec226027871c4d3d6247d6ac7d",
+    "running": true,
+    "oom": false,
+    "health": null,
+    "mesh": "active",
+    "mesh_enabled": "enabled",
+    "clock_cap_service": "active",
+    "gids": [
+      {
+        "hca": "rocep1s0f0",
+        "gid3": "0000:0000:0000:0000:0000:ffff:0a0a:020a",
+        "type3": "RoCE v2"
+      },
+      {
+        "hca": "roceP2p1s0f0",
+        "gid3": "0000:0000:0000:0000:0000:ffff:0a0b:020a",
+        "type3": "RoCE v2"
+      },
+      {
+        "hca": "rocep1s0f1",
+        "gid3": "0000:0000:0000:0000:0000:ffff:0a0a:010b",
+        "type3": "RoCE v2"
+      },
+      {
+        "hca": "roceP2p1s0f1",
+        "gid3": "0000:0000:0000:0000:0000:ffff:0a0b:010b",
+        "type3": "RoCE v2"
+      }
+    ]
+  },
+  {
+    "rank": 3,
+    "image": "sha256:7725323e2f86085775349b4bcac3efcdc4c05ee556f471786c886e6f8e544688",
+    "running": true,
+    "oom": false,
+    "health": null,
+    "mesh": "active",
+    "mesh_enabled": "enabled",
+    "clock_cap_service": "active",
+    "gids": [
+      {
+        "hca": "rocep1s0f0",
+        "gid3": "0000:0000:0000:0000:0000:ffff:0a0a:030a",
+        "type3": "RoCE v2"
+      },
+      {
+        "hca": "roceP2p1s0f0",
+        "gid3": "0000:0000:0000:0000:0000:ffff:0a0b:030a",
+        "type3": "RoCE v2"
+      },
+      {
+        "hca": "rocep1s0f1",
+        "gid3": "0000:0000:0000:0000:0000:ffff:0a0a:020b",
+        "type3": "RoCE v2"
+      },
+      {
+        "hca": "roceP2p1s0f1",
+        "gid3": "0000:0000:0000:0000:0000:ffff:0a0b:020b",
+        "type3": "RoCE v2"
+      }
+    ]
+  }
+]

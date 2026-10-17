@@ -1,0 +1,6 @@
+{
+  "source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017/blob/1bae0e1088993b9b82de08f59de5be5a34e42170/encoding/encoding.py",
+  "function": "find_last_user_index",
+  "before_sha256": "45ddceef6627667652055e71ab086bab0d70c4e358683cde2050847ca7adbf8c",
+  "after_sha256": "975347b83ee68f06027893d2a8bcd248323186fe2f778a039cb5c639f85afd51"
+}

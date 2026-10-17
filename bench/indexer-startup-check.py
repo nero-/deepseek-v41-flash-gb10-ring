@@ -9,7 +9,7 @@ import sys
 import types
 
 ROOT = Path(__file__).resolve().parents[1]
-for plugin in ('dsv41_indexer_tp', 'dsv41_context_indexer'):
+for plugin in ('dsv41_indexer_tp',):
     names = ('torch', 'b12x', 'b12x.attention', 'b12x.attention.dsa_indexer',
              'vllm', 'vllm.distributed', 'vllm.v1', 'vllm.v1.worker',
              'vllm.v1.worker.gpu', 'vllm.v1.worker.gpu.model_runner',

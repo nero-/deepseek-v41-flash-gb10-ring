@@ -1,0 +1,255 @@
+{
+  "sha": "68a995125bef92e3eb70e37d960ca121f55797fe",
+  "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/trees/68a995125bef92e3eb70e37d960ca121f55797fe",
+  "note": "Filtered relevant source entries; not a complete repository tree. Original tree was not truncated.",
+  "tree": [
+    {
+      "path": "integrations/vllm/rocenante_prepared/INSTALLATION.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7b640dbc536c6ffe14e9c04fdbedcc24b7f5256f",
+      "size": 5865,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/7b640dbc536c6ffe14e9c04fdbedcc24b7f5256f"
+    },
+    {
+      "path": "integrations/vllm/rocenante_prepared/LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+      "size": 11357,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64"
+    },
+    {
+      "path": "integrations/vllm/rocenante_prepared/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a538a826a0f2f8796928421d590452e12cd5a47f",
+      "size": 14167,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/a538a826a0f2f8796928421d590452e12cd5a47f"
+    },
+    {
+      "path": "integrations/vllm/rocenante_prepared/manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "42e486ff98d1414719f6b8649e9689bfaaaf4c39",
+      "size": 4524,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/42e486ff98d1414719f6b8649e9689bfaaaf4c39"
+    },
+    {
+      "path": "integrations/vllm/rocenante_prepared/package.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aa5fd0f6ea6dc4f9736ed2cc09940497b774fc15",
+      "size": 2023,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/aa5fd0f6ea6dc4f9736ed2cc09940497b774fc15"
+    },
+    {
+      "path": "integrations/vllm/rocenante_prepared/probe.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e23c7c9d09792d219fe74d960b4f7e694da40d20",
+      "size": 22115,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/e23c7c9d09792d219fe74d960b4f7e694da40d20"
+    },
+    {
+      "path": "integrations/vllm/rocenante_prepared/roce/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b4644203b0801e57737ae0d44c8208f437b62774",
+      "size": 2261,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/b4644203b0801e57737ae0d44c8208f437b62774"
+    },
+    {
+      "path": "integrations/vllm/rocenante_prepared/roce/_allgather_cute.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "be9f6579647f728fde62e4551ce8acd2f8c316a9",
+      "size": 15914,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/be9f6579647f728fde62e4551ce8acd2f8c316a9"
+    },
+    {
+      "path": "integrations/vllm/rocenante_prepared/roce/_cute_intrinsics.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "32d16a1f9565e885e78088a519e3bac0baf9b027",
+      "size": 10702,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/32d16a1f9565e885e78088a519e3bac0baf9b027"
+    },
+    {
+      "path": "integrations/vllm/rocenante_prepared/roce/_oneshot_cute.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c75937820ef5891ed862ebc35c66c9eae5bc7dde",
+      "size": 19760,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/c75937820ef5891ed862ebc35c66c9eae5bc7dde"
+    },
+    {
+      "path": "integrations/vllm/rocenante_prepared/roce/_path_config.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "15d4fc74854e2021c3878a00a89c3372f27ece3a",
+      "size": 7295,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/15d4fc74854e2021c3878a00a89c3372f27ece3a"
+    },
+    {
+      "path": "integrations/vllm/rocenante_prepared/roce/_preparation.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f625f8619fbf3ea5554f01f1dbad218a08adbc5d",
+      "size": 5783,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/f625f8619fbf3ea5554f01f1dbad218a08adbc5d"
+    },
+    {
+      "path": "integrations/vllm/rocenante_prepared/roce/_proxy.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e9f0c8819cf41b1b9a8d387ab936d7ab91428000",
+      "size": 16699,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/e9f0c8819cf41b1b9a8d387ab936d7ab91428000"
+    },
+    {
+      "path": "integrations/vllm/rocenante_prepared/roce/_roce_proxy.c",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "70874eacf0fb33053c5e13aab615c39cbfdca3d8",
+      "size": 73005,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/70874eacf0fb33053c5e13aab615c39cbfdca3d8"
+    },
+    {
+      "path": "integrations/vllm/rocenante_prepared/roce/_tuning.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3b7e63b5ead76a9bdbacf7e1ae5e11bce3139543",
+      "size": 2824,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/3b7e63b5ead76a9bdbacf7e1ae5e11bce3139543"
+    },
+    {
+      "path": "integrations/vllm/rocenante_prepared/roce/api.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e884c6686368582201754ce69fee4fc3580c74ae",
+      "size": 614,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/e884c6686368582201754ce69fee4fc3580c74ae"
+    },
+    {
+      "path": "integrations/vllm/rocenante_prepared/roce/roce_oneshot.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "509f2a6c7a15996c79bc3225735516c2bdea2a2f",
+      "size": 51800,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/509f2a6c7a15996c79bc3225735516c2bdea2a2f"
+    },
+    {
+      "path": "integrations/vllm/rocenante_prepared/sparkring_transport_selector.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "afe234de5066d9e8a1537fec878ce58f5461b943",
+      "size": 7784,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/afe234de5066d9e8a1537fec878ce58f5461b943"
+    },
+    {
+      "path": "integrations/vllm/rocenante_prepared/test_peer_wait.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f1348d8c34cc5adc84b4ca27f02f17a980fb8de8",
+      "size": 39831,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/f1348d8c34cc5adc84b4ca27f02f17a980fb8de8"
+    },
+    {
+      "path": "integrations/vllm/rocenante_prepared/test_port_gid.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "205a4b9a212c875cdd12a24723f126d82a1e2dbc",
+      "size": 20278,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/205a4b9a212c875cdd12a24723f126d82a1e2dbc"
+    },
+    {
+      "path": "integrations/vllm/rocenante_prepared/test_prepared_transport.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6199d38671de43718d29d0593b8f56aa6eabd5e7",
+      "size": 21482,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/6199d38671de43718d29d0593b8f56aa6eabd5e7"
+    },
+    {
+      "path": "integrations/vllm/rocenante_prepared/test_probe.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6e8393b83932379e6ed59f539e5105a8395e1641",
+      "size": 1929,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/6e8393b83932379e6ed59f539e5105a8395e1641"
+    },
+    {
+      "path": "integrations/vllm/test_sitecustomize_four_rank_switch.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a53a6962d4b2241ab279979e889f9d1a4a3f4cf8",
+      "size": 4326,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/a53a6962d4b2241ab279979e889f9d1a4a3f4cf8"
+    },
+    {
+      "path": "runtime/common/fabric_layout.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "be6d8d311033e458a7ca42e2c46145cfc434de40",
+      "size": 8140,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/be6d8d311033e458a7ca42e2c46145cfc434de40"
+    },
+    {
+      "path": "runtime/common/switched.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0ccad232abce8c1b4f327ca29841ff213d42f6d4",
+      "size": 14360,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/0ccad232abce8c1b4f327ca29841ff213d42f6d4"
+    },
+    {
+      "path": "runtime/profiles/glm53-flash-spark-tp4-switched/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "917e47f718c630a640459bec6aa5984a880ab7aa",
+      "size": 5518,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/917e47f718c630a640459bec6aa5984a880ab7aa"
+    },
+    {
+      "path": "runtime/profiles/glm53-flash-spark-tp4-switched/dependencies.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2f480bc987596a3f986237406214b62a33d70994",
+      "size": 5886,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/2f480bc987596a3f986237406214b62a33d70994"
+    },
+    {
+      "path": "runtime/profiles/glm53-flash-spark-tp4-switched/launch.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "114332be760dddb768b295ff5b5a151f678ccaf8",
+      "size": 14427,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/114332be760dddb768b295ff5b5a151f678ccaf8"
+    },
+    {
+      "path": "runtime/profiles/glm53-flash-spark-tp4-switched/profile.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b9dbb95fb547203c8de31a4f9dfd7d199b0bcc62",
+      "size": 6537,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/b9dbb95fb547203c8de31a4f9dfd7d199b0bcc62"
+    },
+    {
+      "path": "runtime/profiles/glm53-flash-spark-tp4-switched/rank.env.example",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0fc24a43dfc4101385f6f8205df886476d37193d",
+      "size": 347,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/0fc24a43dfc4101385f6f8205df886476d37193d"
+    },
+    {
+      "path": "runtime/profiles/glm53-flash-spark-tp4-switched/test_glm53_switched_tp4_profile.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "630d32b3121c93465aff436d1dd78882e4b8cdf6",
+      "size": 14402,
+      "url": "https://api.github.com/repos/FujitsuPolycom/sparkring/git/blobs/630d32b3121c93465aff436d1dd78882e4b8cdf6"
+    }
+  ]
+}

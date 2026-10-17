@@ -1,0 +1,2823 @@
+{
+  "schema": "deepseek-sircl-trial/v1",
+  "updated_utc": "2026-10-11T15:40:44Z",
+  "decision": "Retain the original corrected SparkRing/RoCEnante+NCCL recipe. The SIRCL image passed functional and finite fidelity screens but showed no consistent decode gain; MXFP8 and larger buffers are not selected.",
+  "selected": "original",
+  "endpoint": "http://192.168.50.219:8015/v1",
+  "candidate": {
+    "source_commit": "20c9afc1e70b862a5455b1544b84e8362682e913",
+    "image": "ghcr.io/fujitsupolycom/sparkring@sha256:4fffc4dc3074d5539f4e9d3a013ff9ef4e0be570a95b74d4646ee341da1f6911",
+    "image_id": "sha256:d52737a109e083d3eef05c0fc0db4d09fc1bf34485a13467382130963ecfe66b",
+    "release": "2026.10.2 pre-release",
+    "sircl": "0.3.2 / native ABI 9",
+    "libsircl": "0.6.0 not enabled"
+  },
+  "preserved": [
+    "Original checkpoint dba1be0a40aa45a94ad051997016db3960a90277",
+    "Complete compressor-state fidelity correction",
+    "Adaptive 8K/4K scheduling and guarded TP indexer",
+    "HF tokenizer, DSpark5, existing NVFP4 draft head and Markov",
+    "16 sequences; 8192-token batch ceiling",
+    "GPU upper ceiling 2350 MHz, minimum 0 on all ranks"
+  ],
+  "protocol": "Installed LIL v0.6.2 and original matched wrapper; 30-second sustained cells; temperature 1, top_p 1, top_k -1, thinking false, max output 2048.",
+  "scope": "Focused 8K/128K C1/C8/C16 screen. Not a full-grid benchmark.",
+  "limitations": [
+    "Short stochastic measurements without confidence intervals.",
+    "The 128K prefill screen has one sample per arm; 8K has five.",
+    "Output throughput depends on draft acceptance; verification-step rates also reflect adaptive draft work and are not a pure hardware control.",
+    "New image changes vLLM/B12x and transport together; baseline differences do not isolate SIRCL.",
+    "Known answers and finite top-20 distribution comparisons are not proof of universal equivalent quality."
+  ],
+  "mxfp8_configuration": {
+    "VLLM_MXFP8_LM_HEAD": "1",
+    "VLLM_LM_HEAD_A16": "1",
+    "kernel_config": {
+      "linear_backend_per_quant": {
+        "mxfp8": "b12x"
+      }
+    },
+    "note": "Scoped backend required for this image. Global linear backend left auto. Draft head stays NVFP4."
+  },
+  "buffer_trial": {
+    "target_head": "BF16",
+    "allreduce_capacity_and_dispatch_bytes": 2097152,
+    "allgather_capacity_bytes": 16777216,
+    "measured_table_and_forward_flow_control": "unchanged"
+  },
+  "arms": {
+    "original": {
+      "prefill": {
+        "8192": {
+          "ttft_seconds": 1.952,
+          "prefill_seconds": 1.952,
+          "tok_per_sec": 4196.0,
+          "client_ttft_seconds": 1.952,
+          "client_tok_per_sec": 4196.0,
+          "prompt_tokens": 8192,
+          "samples": 5,
+          "method": "client",
+          "server_validation": {
+            "method": "",
+            "tok_per_sec": 0.0,
+            "prefill_seconds": 0.0,
+            "prompt_tokens": 0,
+            "request_prompt_tokens": 0,
+            "cached_tokens": 0,
+            "token_source": "",
+            "samples": 0,
+            "invalid_reason": ""
+          },
+          "hardware_summary": {}
+        },
+        "131072": {
+          "ttft_seconds": 31.594,
+          "prefill_seconds": 31.594,
+          "tok_per_sec": 4083.0,
+          "client_ttft_seconds": 31.594,
+          "client_tok_per_sec": 4083.0,
+          "prompt_tokens": 129014,
+          "samples": 1,
+          "method": "client",
+          "server_validation": {
+            "method": "",
+            "tok_per_sec": 0.0,
+            "prefill_seconds": 0.0,
+            "prompt_tokens": 0,
+            "request_prompt_tokens": 0,
+            "cached_tokens": 0,
+            "token_source": "",
+            "samples": 0,
+            "invalid_reason": ""
+          },
+          "hardware_summary": {}
+        }
+      },
+      "decode": [
+        {
+          "context_tokens": 8192,
+          "concurrency": 1,
+          "aggregate_tps": 71.5810461414241,
+          "server_steps_per_s": 22.1711204862818,
+          "server_accept_len_effective": 3.2285714285714286,
+          "ttft_avg": 0.33883010799763724,
+          "num_errors": 0,
+          "failure_reason": "",
+          "measurement_seconds": 29.993973,
+          "completed_request_count": 1,
+          "underfilled": false,
+          "capacity_limited": false,
+          "effective_concurrency": 1,
+          "avg_running_reqs": 1,
+          "max_running_reqs": 1,
+          "avg_queue_reqs": 0
+        },
+        {
+          "context_tokens": 131072,
+          "concurrency": 1,
+          "aggregate_tps": 76.03672930714568,
+          "server_steps_per_s": 21.019367908513285,
+          "server_accept_len_effective": 3.6174603174603175,
+          "ttft_avg": 0.6256448614876717,
+          "num_errors": 0,
+          "failure_reason": "",
+          "measurement_seconds": 29.959206,
+          "completed_request_count": 1,
+          "underfilled": false,
+          "capacity_limited": false,
+          "effective_concurrency": 1,
+          "avg_running_reqs": 1,
+          "max_running_reqs": 1,
+          "avg_queue_reqs": 0
+        },
+        {
+          "context_tokens": 8192,
+          "concurrency": 8,
+          "aggregate_tps": 165.78799136515622,
+          "server_steps_per_s": 70.31202052656494,
+          "server_accept_len_effective": 2.357889733840304,
+          "ttft_avg": 1.010035435843747,
+          "num_errors": 0,
+          "failure_reason": "",
+          "measurement_seconds": 29.917728,
+          "completed_request_count": 0,
+          "underfilled": false,
+          "capacity_limited": false,
+          "effective_concurrency": 8,
+          "avg_running_reqs": 8,
+          "max_running_reqs": 8,
+          "avg_queue_reqs": 0
+        },
+        {
+          "context_tokens": 8192,
+          "concurrency": 16,
+          "aggregate_tps": 229.89816585050428,
+          "server_steps_per_s": 111.54664344226441,
+          "server_accept_len_effective": 2.061004784688995,
+          "ttft_avg": 1.7205010636607767,
+          "num_errors": 0,
+          "failure_reason": "",
+          "measurement_seconds": 29.974141,
+          "completed_request_count": 0,
+          "underfilled": false,
+          "capacity_limited": false,
+          "effective_concurrency": 16,
+          "avg_running_reqs": 16,
+          "max_running_reqs": 16,
+          "avg_queue_reqs": 0
+        },
+        {
+          "context_tokens": 131072,
+          "concurrency": 8,
+          "aggregate_tps": 168.3657476893134,
+          "server_steps_per_s": 65.44959648374737,
+          "server_accept_len_effective": 2.5724489795918366,
+          "ttft_avg": 1.9774747212213697,
+          "num_errors": 0,
+          "failure_reason": "",
+          "measurement_seconds": 29.940769,
+          "completed_request_count": 0,
+          "underfilled": false,
+          "capacity_limited": false,
+          "effective_concurrency": 8,
+          "avg_running_reqs": 8,
+          "max_running_reqs": 8,
+          "avg_queue_reqs": 0
+        },
+        {
+          "context_tokens": 131072,
+          "concurrency": 16,
+          "aggregate_tps": 227.38860645355055,
+          "server_steps_per_s": 109.63319552662733,
+          "server_accept_len_effective": 2.0740853658536587,
+          "ttft_avg": 3.4523410231704474,
+          "num_errors": 0,
+          "failure_reason": "",
+          "measurement_seconds": 29.917946,
+          "completed_request_count": 0,
+          "underfilled": false,
+          "capacity_limited": false,
+          "effective_concurrency": 16,
+          "avg_running_reqs": 16,
+          "max_running_reqs": 16,
+          "avg_queue_reqs": 0
+        }
+      ],
+      "raw": "/Users/jg/Agent/Diagnostics/deepseek-v41-flash-ring/sircl-20261011T134159Z/original/lil.json",
+      "quality": {
+        "method": "Same original token sequences; top-20 intersection plus other-mass KL(reference||arm). Finite precision/correctness screen, not proof of equivalent quality.",
+        "replay": [
+          {
+            "prompt_index": 0,
+            "thinking": false,
+            "cached_tokens": 0,
+            "decode_consistency": {
+              "positions": 2048,
+              "mean_coarsened_kl": 0.00727461911281109,
+              "top1_agreement": 0.9853515625,
+              "late_mean_coarsened_kl": 0.004553725880374608
+            }
+          },
+          {
+            "prompt_index": 1,
+            "thinking": true,
+            "cached_tokens": 0,
+            "decode_consistency": {
+              "positions": 2048,
+              "mean_coarsened_kl": 0.013845657239280874,
+              "top1_agreement": 0.96826171875,
+              "late_mean_coarsened_kl": 0.013578391618983715
+            }
+          }
+        ],
+        "known_answers_passed": 12,
+        "known_answers_total": 12
+      }
+    },
+    "sircl-bf16": {
+      "prefill": {
+        "8192": {
+          "ttft_seconds": 1.926,
+          "prefill_seconds": 1.926,
+          "tok_per_sec": 4255.0,
+          "client_ttft_seconds": 1.926,
+          "client_tok_per_sec": 4255.0,
+          "prompt_tokens": 8194,
+          "samples": 5,
+          "method": "client",
+          "server_validation": {
+            "method": "",
+            "tok_per_sec": 0.0,
+            "prefill_seconds": 0.0,
+            "prompt_tokens": 0,
+            "request_prompt_tokens": 0,
+            "cached_tokens": 0,
+            "token_source": "",
+            "samples": 0,
+            "invalid_reason": ""
+          },
+          "hardware_summary": {}
+        },
+        "131072": {
+          "ttft_seconds": 30.251,
+          "prefill_seconds": 30.251,
+          "tok_per_sec": 4265.0,
+          "client_ttft_seconds": 30.251,
+          "client_tok_per_sec": 4265.0,
+          "prompt_tokens": 129016,
+          "samples": 1,
+          "method": "client",
+          "server_validation": {
+            "method": "",
+            "tok_per_sec": 0.0,
+            "prefill_seconds": 0.0,
+            "prompt_tokens": 0,
+            "request_prompt_tokens": 0,
+            "cached_tokens": 0,
+            "token_source": "",
+            "samples": 0,
+            "invalid_reason": ""
+          },
+          "hardware_summary": {}
+        }
+      },
+      "decode": [
+        {
+          "context_tokens": 8192,
+          "concurrency": 1,
+          "aggregate_tps": 59.20224992450937,
+          "server_steps_per_s": 24.667604135212237,
+          "server_accept_len_effective": 2.4,
+          "ttft_avg": 0.2929372100625187,
+          "num_errors": 0,
+          "failure_reason": "",
+          "measurement_seconds": 29.965077,
+          "completed_request_count": 0,
+          "underfilled": false,
+          "capacity_limited": false,
+          "effective_concurrency": 1,
+          "avg_running_reqs": 1,
+          "max_running_reqs": 1,
+          "avg_queue_reqs": 0
+        },
+        {
+          "context_tokens": 131072,
+          "concurrency": 1,
+          "aggregate_tps": 58.99453031673711,
+          "server_steps_per_s": 24.329371148825032,
+          "server_accept_len_effective": 2.4248275862068964,
+          "ttft_avg": 0.6028968560276553,
+          "num_errors": 0,
+          "failure_reason": "",
+          "measurement_seconds": 29.782422,
+          "completed_request_count": 1,
+          "underfilled": false,
+          "capacity_limited": false,
+          "effective_concurrency": 1,
+          "avg_running_reqs": 1,
+          "max_running_reqs": 1,
+          "avg_queue_reqs": 0
+        },
+        {
+          "context_tokens": 8192,
+          "concurrency": 8,
+          "aggregate_tps": 164.48433180980794,
+          "server_steps_per_s": 68.55458872916383,
+          "server_accept_len_effective": 2.39931906614786,
+          "ttft_avg": 0.9658051421283744,
+          "num_errors": 0,
+          "failure_reason": "",
+          "measurement_seconds": 29.990698,
+          "completed_request_count": 0,
+          "underfilled": false,
+          "capacity_limited": false,
+          "effective_concurrency": 8,
+          "avg_running_reqs": 8,
+          "max_running_reqs": 8,
+          "avg_queue_reqs": 0
+        },
+        {
+          "context_tokens": 8192,
+          "concurrency": 16,
+          "aggregate_tps": 224.91422322573706,
+          "server_steps_per_s": 105.95215749875614,
+          "server_accept_len_effective": 2.122790404040404,
+          "ttft_avg": 1.6375495107567986,
+          "num_errors": 0,
+          "failure_reason": "",
+          "measurement_seconds": 29.891395,
+          "completed_request_count": 0,
+          "underfilled": false,
+          "capacity_limited": false,
+          "effective_concurrency": 16,
+          "avg_running_reqs": 16,
+          "max_running_reqs": 16,
+          "avg_queue_reqs": 0
+        },
+        {
+          "context_tokens": 131072,
+          "concurrency": 8,
+          "aggregate_tps": 162.35839041016774,
+          "server_steps_per_s": 64.18120436226519,
+          "server_accept_len_effective": 2.5296875,
+          "ttft_avg": 1.9617624562379206,
+          "num_errors": 0,
+          "failure_reason": "",
+          "measurement_seconds": 29.902982,
+          "completed_request_count": 0,
+          "underfilled": false,
+          "capacity_limited": false,
+          "effective_concurrency": 8,
+          "avg_running_reqs": 8,
+          "max_running_reqs": 8,
+          "avg_queue_reqs": 0
+        },
+        {
+          "context_tokens": 131072,
+          "concurrency": 16,
+          "aggregate_tps": 227.5933039657881,
+          "server_steps_per_s": 96.03937222292598,
+          "server_accept_len_effective": 2.3697916666666665,
+          "ttft_avg": 3.262795925445971,
+          "num_errors": 0,
+          "failure_reason": "",
+          "measurement_seconds": 29.983307,
+          "completed_request_count": 0,
+          "underfilled": false,
+          "capacity_limited": false,
+          "effective_concurrency": 16,
+          "avg_running_reqs": 16,
+          "max_running_reqs": 16,
+          "avg_queue_reqs": 0
+        }
+      ],
+      "raw": "/Users/jg/Agent/Diagnostics/deepseek-v41-flash-ring/sircl-20261011T134159Z/sircl-bf16/lil.json",
+      "quality": {
+        "method": "Same original token sequences; top-20 intersection plus other-mass KL(reference||arm). Finite precision/correctness screen, not proof of equivalent quality.",
+        "replay": [
+          {
+            "prompt_index": 0,
+            "thinking": false,
+            "cached_tokens": 0,
+            "vs_original": {
+              "positions": 2048,
+              "mean_coarsened_kl": 0.006323635338769383,
+              "top1_agreement": 0.9853515625,
+              "late_mean_coarsened_kl": 0.004241549299634507
+            }
+          },
+          {
+            "prompt_index": 1,
+            "thinking": true,
+            "cached_tokens": 0,
+            "vs_original": {
+              "positions": 2048,
+              "mean_coarsened_kl": 0.013165875997900306,
+              "top1_agreement": 0.96337890625,
+              "late_mean_coarsened_kl": 0.014507231708922352
+            }
+          }
+        ],
+        "known_answers_passed": 12,
+        "known_answers_total": 12
+      },
+      "decode_prefill_consistency_bins": [
+        {
+          "start": 0,
+          "end": 256,
+          "count": 512,
+          "coarsened_kl": 0.03122782197023317,
+          "top1_agreement": 0.9609375,
+          "prefill_mass": 0.9997158046660862,
+          "decode_mass": 0.9997222754040191,
+          "intersection_tokens": 18.548828125
+        },
+        {
+          "start": 256,
+          "end": 512,
+          "count": 512,
+          "coarsened_kl": 0.022600362136024957,
+          "top1_agreement": 0.962890625,
+          "prefill_mass": 0.9999528898013619,
+          "decode_mass": 0.9999659643255101,
+          "intersection_tokens": 18.5625
+        },
+        {
+          "start": 512,
+          "end": 1024,
+          "count": 1024,
+          "coarsened_kl": 0.01443752176748413,
+          "top1_agreement": 0.982421875,
+          "prefill_mass": 0.9999944616192703,
+          "decode_mass": 0.9999945318192837,
+          "intersection_tokens": 18.5400390625
+        },
+        {
+          "start": 1024,
+          "end": 1536,
+          "count": 1024,
+          "coarsened_kl": 0.014396986682056603,
+          "top1_agreement": 0.98046875,
+          "prefill_mass": 0.9999951439193367,
+          "decode_mass": 0.9999926640752717,
+          "intersection_tokens": 18.5185546875
+        },
+        {
+          "start": 1536,
+          "end": 2048,
+          "count": 1024,
+          "coarsened_kl": 0.011565051157560461,
+          "top1_agreement": 0.9755859375,
+          "prefill_mass": 0.999997597192233,
+          "decode_mass": 0.9999980603188751,
+          "intersection_tokens": 18.515625
+        }
+      ],
+      "cold_128k": {
+        "needle_pass": true,
+        "cold_confirmed": true,
+        "cached_tokens": 0,
+        "ttft_seconds": 31.352570374961942,
+        "usage": {
+          "prompt_tokens": 125240,
+          "total_tokens": 125249,
+          "completion_tokens": 9,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "created_cache_tokens": 124928
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        }
+      },
+      "transport": {
+        "rank0-ep-0.json": {
+          "state": "ready",
+          "nccl": "none",
+          "pynccl": "skipped",
+          "decisions": [],
+          "limits": {
+            "max_size": 131072,
+            "max_gather_bytes": 155648,
+            "dispatch_limit_bytes": 131072,
+            "large_piece_bytes": 4194304,
+            "gather_piece_bytes": 155648,
+            "lane_check": {
+              "lanes": 6,
+              "result": "passed",
+              "seconds": 0.0099
+            },
+            "tuning": {
+              "decisions": {
+                "all_gather/eager/pieces grid 16": 1503,
+                "all_gather/eager/pieces grid 32": 4,
+                "all_gather/eager/pieces grid 4": 24,
+                "all_gather/eager/pieces grid 8": 8,
+                "all_gather/eager/ring piece 262144 gather stagger 1 blocks 1": 390,
+                "all_gather/eager/ring piece 524288 gather stagger 1 blocks 1": 254,
+                "all_gather/graph/pieces grid 16": 54,
+                "all_gather/graph/pieces grid 32": 52,
+                "all_gather/graph/ring piece 262144 gather stagger 1 blocks 1": 52,
+                "all_gather/graph/ring piece 524288 gather stagger 1 blocks 1": 66,
+                "all_gather/graph/ring piece 524288 gather stagger 1 blocks 2": 18,
+                "all_reduce/eager/oneshot grid 32": 1991,
+                "all_reduce/eager/oneshot grid 4": 324,
+                "all_reduce/eager/ring piece 262144 stagger 1 gather stagger 1 blocks 1": 3105,
+                "all_reduce/eager/ring piece 524288 stagger 1 gather stagger 0 blocks 1": 1764,
+                "all_reduce/eager/ring piece 524288 stagger 1 gather stagger 1 blocks 1": 4914,
+                "all_reduce/eager/twoshot grid 8": 678,
+                "all_reduce/graph/oneshot grid 16": 1406,
+                "all_reduce/graph/twoshot grid 8": 664
+              },
+              "key": {
+                "image": "sha256:1a8c10354eb0bbaad898ebcfc1b31d5c5cfc40daab2f9b8eaaeb074524aea952",
+                "kernels": "00f8d50c2cc5d98c",
+                "lanes": 2,
+                "max_relays": 1,
+                "native": "09db871538819191",
+                "shape": "cycle:4",
+                "sircl": "0.3.2/abi9",
+                "world": 4
+              },
+              "path": "/sircl/tables/cycle-4.json",
+              "settings": {
+                "SIRCL_LINK_SLOTS": {
+                  "session": 8,
+                  "table": 8
+                },
+                "SIRCL_LINK_SLOT_BYTES": {
+                  "session": 1048576,
+                  "table": 1048576
+                }
+              },
+              "table": "df333d97acb1a4b2",
+              "unmatched": {},
+              "unusable": {
+                "all_reduce/eager/twoshot grid 16": 5853,
+                "all_reduce/eager/twoshot grid 32": 932,
+                "all_reduce/eager/twoshot grid 8": 263,
+                "all_reduce/graph/twoshot grid 16": 5214,
+                "all_reduce/graph/twoshot grid 32": 16,
+                "all_reduce/graph/twoshot grid 8": 1534
+              }
+            },
+            "forward_windows": {
+              "2": [
+                131072,
+                131072
+              ]
+            }
+          }
+        },
+        "rank0-tp-0.json": {
+          "state": "ready",
+          "nccl": "none",
+          "pynccl": "skipped",
+          "decisions": [
+            {
+              "backend": "sircl",
+              "calls": 1250,
+              "collective": "all_gather",
+              "method": "direct",
+              "reason": "within the gather op limit"
+            },
+            {
+              "backend": "sircl",
+              "calls": 2270,
+              "collective": "all_gather",
+              "method": "large",
+              "reason": "1 rows of 19681280 bytes in 127 session op(s) of at most 155648 bytes (all_gather_large)"
+            },
+            {
+              "backend": "sircl",
+              "calls": 6135,
+              "collective": "all_reduce",
+              "method": "direct",
+              "reason": "within the dispatch ceiling"
+            },
+            {
+              "backend": "sircl",
+              "calls": 23762,
+              "collective": "all_reduce",
+              "method": "large",
+              "reason": "83886080 bytes through the session's all_reduce_large (at most 20 op(s) of at most 4194304 bytes, or one chain op)"
+            },
+            {
+              "backend": "sircl",
+              "calls": 1570,
+              "collective": "broadcast",
+              "method": "gather_bytes",
+              "reason": "all-gather of the bytes, then the source rank's copy"
+            },
+            {
+              "backend": "sircl",
+              "calls": 13,
+              "collective": "torch.all_reduce",
+              "method": "min",
+              "reason": "torch.distributed call carried on the session"
+            },
+            {
+              "backend": "sircl",
+              "calls": 1570,
+              "collective": "torch.broadcast",
+              "method": "bytes",
+              "reason": "torch.distributed call carried on the session"
+            }
+          ],
+          "limits": {
+            "max_size": 131072,
+            "max_gather_bytes": 155648,
+            "dispatch_limit_bytes": 131072,
+            "large_piece_bytes": 4194304,
+            "gather_piece_bytes": 155648,
+            "lane_check": {
+              "lanes": 6,
+              "result": "passed",
+              "seconds": 0.0099
+            },
+            "tuning": {
+              "decisions": {
+                "all_gather/eager/pieces grid 16": 1631,
+                "all_gather/eager/pieces grid 32": 4,
+                "all_gather/eager/pieces grid 4": 24,
+                "all_gather/eager/pieces grid 8": 8,
+                "all_gather/eager/ring piece 262144 gather stagger 1 blocks 1": 616,
+                "all_gather/eager/ring piece 524288 gather stagger 1 blocks 1": 254,
+                "all_gather/graph/pieces grid 16": 54,
+                "all_gather/graph/pieces grid 32": 52,
+                "all_gather/graph/ring piece 262144 gather stagger 1 blocks 1": 52,
+                "all_gather/graph/ring piece 524288 gather stagger 1 blocks 1": 66,
+                "all_gather/graph/ring piece 524288 gather stagger 1 blocks 2": 18,
+                "all_reduce/eager/oneshot grid 32": 2345,
+                "all_reduce/eager/oneshot grid 4": 324,
+                "all_reduce/eager/ring piece 262144 stagger 1 gather stagger 1 blocks 1": 3105,
+                "all_reduce/eager/ring piece 524288 stagger 1 gather stagger 0 blocks 1": 1764,
+                "all_reduce/eager/ring piece 524288 stagger 1 gather stagger 1 blocks 1": 4914,
+                "all_reduce/eager/twoshot grid 8": 678,
+                "all_reduce/graph/oneshot grid 16": 1406,
+                "all_reduce/graph/twoshot grid 8": 664
+              },
+              "key": {
+                "image": "sha256:1a8c10354eb0bbaad898ebcfc1b31d5c5cfc40daab2f9b8eaaeb074524aea952",
+                "kernels": "00f8d50c2cc5d98c",
+                "lanes": 2,
+                "max_relays": 1,
+                "native": "09db871538819191",
+                "shape": "cycle:4",
+                "sircl": "0.3.2/abi9",
+                "world": 4
+              },
+              "path": "/sircl/tables/cycle-4.json",
+              "settings": {
+                "SIRCL_LINK_SLOTS": {
+                  "session": 8,
+                  "table": 8
+                },
+                "SIRCL_LINK_SLOT_BYTES": {
+                  "session": 1048576,
+                  "table": 1048576
+                }
+              },
+              "table": "df333d97acb1a4b2",
+              "unmatched": {},
+              "unusable": {
+                "all_reduce/eager/twoshot grid 16": 5853,
+                "all_reduce/eager/twoshot grid 32": 932,
+                "all_reduce/eager/twoshot grid 8": 263,
+                "all_reduce/graph/twoshot grid 16": 5214,
+                "all_reduce/graph/twoshot grid 32": 16,
+                "all_reduce/graph/twoshot grid 8": 1534
+              }
+            },
+            "forward_windows": {
+              "2": [
+                131072,
+                131072
+              ]
+            }
+          }
+        }
+      },
+      "final_transport": {
+        "0": {
+          "rank0-ep-0.json": {
+            "state": "ready",
+            "nccl": "none",
+            "pynccl": "skipped",
+            "decisions": []
+          },
+          "rank0-tp-0.json": {
+            "state": "ready",
+            "nccl": "none",
+            "pynccl": "skipped",
+            "decisions": [
+              {
+                "backend": "sircl",
+                "calls": 4774,
+                "collective": "all_gather",
+                "method": "direct",
+                "reason": "within the gather op limit"
+              },
+              {
+                "backend": "sircl",
+                "calls": 5506,
+                "collective": "all_gather",
+                "method": "large",
+                "reason": "1 rows of 19681280 bytes in 127 session op(s) of at most 155648 bytes (all_gather_large)"
+              },
+              {
+                "backend": "sircl",
+                "calls": 7969,
+                "collective": "all_reduce",
+                "method": "direct",
+                "reason": "within the dispatch ceiling"
+              },
+              {
+                "backend": "sircl",
+                "calls": 31979,
+                "collective": "all_reduce",
+                "method": "large",
+                "reason": "83886080 bytes through the session's all_reduce_large (at most 20 op(s) of at most 4194304 bytes, or one chain op)"
+              },
+              {
+                "backend": "sircl",
+                "calls": 4472,
+                "collective": "broadcast",
+                "method": "gather_bytes",
+                "reason": "all-gather of the bytes, then the source rank's copy"
+              },
+              {
+                "backend": "sircl",
+                "calls": 19,
+                "collective": "torch.all_reduce",
+                "method": "min",
+                "reason": "torch.distributed call carried on the session"
+              },
+              {
+                "backend": "sircl",
+                "calls": 4472,
+                "collective": "torch.broadcast",
+                "method": "bytes",
+                "reason": "torch.distributed call carried on the session"
+              }
+            ]
+          }
+        },
+        "1": {
+          "rank1-ep-0.json": {
+            "state": "ready",
+            "nccl": "none",
+            "pynccl": "skipped",
+            "decisions": []
+          },
+          "rank1-tp-0.json": {
+            "state": "ready",
+            "nccl": "none",
+            "pynccl": "skipped",
+            "decisions": [
+              {
+                "backend": "sircl",
+                "calls": 4774,
+                "collective": "all_gather",
+                "method": "direct",
+                "reason": "within the gather op limit"
+              },
+              {
+                "backend": "sircl",
+                "calls": 5509,
+                "collective": "all_gather",
+                "method": "large",
+                "reason": "1 rows of 19681280 bytes in 127 session op(s) of at most 155648 bytes (all_gather_large)"
+              },
+              {
+                "backend": "sircl",
+                "calls": 7969,
+                "collective": "all_reduce",
+                "method": "direct",
+                "reason": "within the dispatch ceiling"
+              },
+              {
+                "backend": "sircl",
+                "calls": 31982,
+                "collective": "all_reduce",
+                "method": "large",
+                "reason": "83886080 bytes through the session's all_reduce_large (at most 20 op(s) of at most 4194304 bytes, or one chain op)"
+              },
+              {
+                "backend": "sircl",
+                "calls": 4475,
+                "collective": "broadcast",
+                "method": "gather_bytes",
+                "reason": "all-gather of the bytes, then the source rank's copy"
+              },
+              {
+                "backend": "sircl",
+                "calls": 19,
+                "collective": "torch.all_reduce",
+                "method": "min",
+                "reason": "torch.distributed call carried on the session"
+              },
+              {
+                "backend": "sircl",
+                "calls": 4475,
+                "collective": "torch.broadcast",
+                "method": "bytes",
+                "reason": "torch.distributed call carried on the session"
+              }
+            ]
+          }
+        },
+        "2": {
+          "rank2-ep-0.json": {
+            "state": "ready",
+            "nccl": "none",
+            "pynccl": "skipped",
+            "decisions": []
+          },
+          "rank2-tp-0.json": {
+            "state": "ready",
+            "nccl": "none",
+            "pynccl": "skipped",
+            "decisions": [
+              {
+                "backend": "sircl",
+                "calls": 4774,
+                "collective": "all_gather",
+                "method": "direct",
+                "reason": "within the gather op limit"
+              },
+              {
+                "backend": "sircl",
+                "calls": 5509,
+                "collective": "all_gather",
+                "method": "large",
+                "reason": "1 rows of 19681280 bytes in 127 session op(s) of at most 155648 bytes (all_gather_large)"
+              },
+              {
+                "backend": "sircl",
+                "calls": 7969,
+                "collective": "all_reduce",
+                "method": "direct",
+                "reason": "within the dispatch ceiling"
+              },
+              {
+                "backend": "sircl",
+                "calls": 31982,
+                "collective": "all_reduce",
+                "method": "large",
+                "reason": "83886080 bytes through the session's all_reduce_large (at most 20 op(s) of at most 4194304 bytes, or one chain op)"
+              },
+              {
+                "backend": "sircl",
+                "calls": 4475,
+                "collective": "broadcast",
+                "method": "gather_bytes",
+                "reason": "all-gather of the bytes, then the source rank's copy"
+              },
+              {
+                "backend": "sircl",
+                "calls": 19,
+                "collective": "torch.all_reduce",
+                "method": "min",
+                "reason": "torch.distributed call carried on the session"
+              },
+              {
+                "backend": "sircl",
+                "calls": 4475,
+                "collective": "torch.broadcast",
+                "method": "bytes",
+                "reason": "torch.distributed call carried on the session"
+              }
+            ]
+          }
+        },
+        "3": {
+          "rank3-ep-0.json": {
+            "state": "ready",
+            "nccl": "none",
+            "pynccl": "skipped",
+            "decisions": []
+          },
+          "rank3-tp-0.json": {
+            "state": "ready",
+            "nccl": "none",
+            "pynccl": "skipped",
+            "decisions": [
+              {
+                "backend": "sircl",
+                "calls": 4774,
+                "collective": "all_gather",
+                "method": "direct",
+                "reason": "within the gather op limit"
+              },
+              {
+                "backend": "sircl",
+                "calls": 5509,
+                "collective": "all_gather",
+                "method": "large",
+                "reason": "1 rows of 19681280 bytes in 127 session op(s) of at most 155648 bytes (all_gather_large)"
+              },
+              {
+                "backend": "sircl",
+                "calls": 7969,
+                "collective": "all_reduce",
+                "method": "direct",
+                "reason": "within the dispatch ceiling"
+              },
+              {
+                "backend": "sircl",
+                "calls": 31982,
+                "collective": "all_reduce",
+                "method": "large",
+                "reason": "83886080 bytes through the session's all_reduce_large (at most 20 op(s) of at most 4194304 bytes, or one chain op)"
+              },
+              {
+                "backend": "sircl",
+                "calls": 4475,
+                "collective": "broadcast",
+                "method": "gather_bytes",
+                "reason": "all-gather of the bytes, then the source rank's copy"
+              },
+              {
+                "backend": "sircl",
+                "calls": 19,
+                "collective": "torch.all_reduce",
+                "method": "min",
+                "reason": "torch.distributed call carried on the session"
+              },
+              {
+                "backend": "sircl",
+                "calls": 4475,
+                "collective": "torch.broadcast",
+                "method": "bytes",
+                "reason": "torch.distributed call carried on the session"
+              }
+            ]
+          }
+        }
+      },
+      "versus_fresh_original": [
+        {
+          "context_tokens": 8192,
+          "concurrency": 1,
+          "output_throughput_delta_percent": -5.875380621587977,
+          "verification_step_rate_delta_percent": -3.8296402047788947
+        },
+        {
+          "context_tokens": 131072,
+          "concurrency": 1,
+          "output_throughput_delta_percent": -4.6264812878617505,
+          "verification_step_rate_delta_percent": -2.6291127912889567
+        },
+        {
+          "context_tokens": 8192,
+          "concurrency": 8,
+          "output_throughput_delta_percent": -8.269881187143902,
+          "verification_step_rate_delta_percent": -12.363871375379365
+        },
+        {
+          "context_tokens": 8192,
+          "concurrency": 16,
+          "output_throughput_delta_percent": -3.9301089255636357,
+          "verification_step_rate_delta_percent": 2.1039623994688395
+        },
+        {
+          "context_tokens": 131072,
+          "concurrency": 8,
+          "output_throughput_delta_percent": -1.9972911773040392,
+          "verification_step_rate_delta_percent": -7.373030302296179
+        },
+        {
+          "context_tokens": 131072,
+          "concurrency": 16,
+          "output_throughput_delta_percent": 3.040162011662617,
+          "verification_step_rate_delta_percent": -5.853506422253507
+        }
+      ]
+    },
+    "sircl-mxfp8": {
+      "prefill": {
+        "8192": {
+          "ttft_seconds": 1.872,
+          "prefill_seconds": 1.872,
+          "tok_per_sec": 4377.0,
+          "client_ttft_seconds": 1.872,
+          "client_tok_per_sec": 4377.0,
+          "prompt_tokens": 8192,
+          "samples": 5,
+          "method": "client",
+          "server_validation": {
+            "method": "",
+            "tok_per_sec": 0.0,
+            "prefill_seconds": 0.0,
+            "prompt_tokens": 0,
+            "request_prompt_tokens": 0,
+            "cached_tokens": 0,
+            "token_source": "",
+            "samples": 0,
+            "invalid_reason": ""
+          },
+          "hardware_summary": {}
+        },
+        "131072": {
+          "ttft_seconds": 29.928,
+          "prefill_seconds": 29.928,
+          "tok_per_sec": 4311.0,
+          "client_ttft_seconds": 29.928,
+          "client_tok_per_sec": 4311.0,
+          "prompt_tokens": 129014,
+          "samples": 1,
+          "method": "client",
+          "server_validation": {
+            "method": "",
+            "tok_per_sec": 0.0,
+            "prefill_seconds": 0.0,
+            "prompt_tokens": 0,
+            "request_prompt_tokens": 0,
+            "cached_tokens": 0,
+            "token_source": "",
+            "samples": 0,
+            "invalid_reason": ""
+          },
+          "hardware_summary": {}
+        }
+      },
+      "decode": [
+        {
+          "context_tokens": 8192,
+          "concurrency": 1,
+          "aggregate_tps": 69.15751976400117,
+          "server_steps_per_s": 23.352756312011973,
+          "server_accept_len_effective": 2.9614285714285713,
+          "ttft_avg": 0.3064466475043446,
+          "num_errors": 0,
+          "failure_reason": "",
+          "measurement_seconds": 29.975048,
+          "completed_request_count": 1,
+          "underfilled": false,
+          "capacity_limited": false,
+          "effective_concurrency": 1,
+          "avg_running_reqs": 1,
+          "max_running_reqs": 1,
+          "avg_queue_reqs": 0
+        },
+        {
+          "context_tokens": 131072,
+          "concurrency": 1,
+          "aggregate_tps": 57.68081035782273,
+          "server_steps_per_s": 24.2199354076225,
+          "server_accept_len_effective": 2.381542699724518,
+          "ttft_avg": 0.6091502050403506,
+          "num_errors": 0,
+          "failure_reason": "",
+          "measurement_seconds": 29.95797,
+          "completed_request_count": 0,
+          "underfilled": false,
+          "capacity_limited": false,
+          "effective_concurrency": 1,
+          "avg_running_reqs": 1,
+          "max_running_reqs": 1,
+          "avg_queue_reqs": 0
+        },
+        {
+          "context_tokens": 8192,
+          "concurrency": 8,
+          "aggregate_tps": 162.5556541904345,
+          "server_steps_per_s": 71.17663212288983,
+          "server_accept_len_effective": 2.2838345864661656,
+          "ttft_avg": 1.0742708648758708,
+          "num_errors": 0,
+          "failure_reason": "",
+          "measurement_seconds": 29.897453,
+          "completed_request_count": 0,
+          "underfilled": false,
+          "capacity_limited": false,
+          "effective_concurrency": 8,
+          "avg_running_reqs": 8,
+          "max_running_reqs": 8,
+          "avg_queue_reqs": 0
+        },
+        {
+          "context_tokens": 8192,
+          "concurrency": 16,
+          "aggregate_tps": 224.72674009867424,
+          "server_steps_per_s": 104.88808705900318,
+          "server_accept_len_effective": 2.1425382653061225,
+          "ttft_avg": 1.6430612452313653,
+          "num_errors": 0,
+          "failure_reason": "",
+          "measurement_seconds": 29.898534,
+          "completed_request_count": 0,
+          "underfilled": false,
+          "capacity_limited": false,
+          "effective_concurrency": 16,
+          "avg_running_reqs": 16,
+          "max_running_reqs": 16,
+          "avg_queue_reqs": 0
+        },
+        {
+          "context_tokens": 131072,
+          "concurrency": 8,
+          "aggregate_tps": 156.21626123275675,
+          "server_steps_per_s": 65.87352372939124,
+          "server_accept_len_effective": 2.3714574898785425,
+          "ttft_avg": 1.8964684480743017,
+          "num_errors": 0,
+          "failure_reason": "",
+          "measurement_seconds": 29.996877,
+          "completed_request_count": 0,
+          "underfilled": false,
+          "capacity_limited": false,
+          "effective_concurrency": 8,
+          "avg_running_reqs": 8,
+          "max_running_reqs": 8,
+          "avg_queue_reqs": 0
+        },
+        {
+          "context_tokens": 131072,
+          "concurrency": 16,
+          "aggregate_tps": 222.22581010229683,
+          "server_steps_per_s": 96.48881849760514,
+          "server_accept_len_effective": 2.303125,
+          "ttft_avg": 3.298348432632338,
+          "num_errors": 0,
+          "failure_reason": "",
+          "measurement_seconds": 29.848018,
+          "completed_request_count": 0,
+          "underfilled": false,
+          "capacity_limited": false,
+          "effective_concurrency": 16,
+          "avg_running_reqs": 16,
+          "max_running_reqs": 16,
+          "avg_queue_reqs": 0
+        }
+      ],
+      "raw": "/Users/jg/Agent/Diagnostics/deepseek-v41-flash-ring/sircl-20261011T134159Z/sircl-mxfp8/lil.json",
+      "quality": {
+        "method": "Same original token sequences; top-20 intersection plus other-mass KL(reference||arm). Finite precision/correctness screen, not proof of equivalent quality.",
+        "replay": [
+          {
+            "prompt_index": 0,
+            "thinking": false,
+            "cached_tokens": 0,
+            "vs_original": {
+              "positions": 2048,
+              "mean_coarsened_kl": 0.00708549277767343,
+              "top1_agreement": 0.986328125,
+              "late_mean_coarsened_kl": 0.004805753965130296
+            },
+            "vs_sircl-bf16": {
+              "positions": 2048,
+              "mean_coarsened_kl": 0.005509159848773371,
+              "top1_agreement": 0.984375,
+              "late_mean_coarsened_kl": 0.006111076738006405
+            }
+          },
+          {
+            "prompt_index": 1,
+            "thinking": true,
+            "cached_tokens": 0,
+            "vs_original": {
+              "positions": 2048,
+              "mean_coarsened_kl": 0.01399915175728726,
+              "top1_agreement": 0.96337890625,
+              "late_mean_coarsened_kl": 0.014358600394695215
+            },
+            "vs_sircl-bf16": {
+              "positions": 2048,
+              "mean_coarsened_kl": 0.01186714038151972,
+              "top1_agreement": 0.96875,
+              "late_mean_coarsened_kl": 0.011978697836917468
+            }
+          }
+        ],
+        "known_answers_passed": 12,
+        "known_answers_total": 12
+      },
+      "decode_prefill_consistency_bins": [
+        {
+          "start": 0,
+          "end": 256,
+          "count": 512,
+          "coarsened_kl": 0.030041493540937932,
+          "top1_agreement": 0.9609375,
+          "prefill_mass": 0.999906044997161,
+          "decode_mass": 0.9999257195346192,
+          "intersection_tokens": 18.556640625
+        },
+        {
+          "start": 256,
+          "end": 512,
+          "count": 512,
+          "coarsened_kl": 0.021926415158410456,
+          "top1_agreement": 0.9765625,
+          "prefill_mass": 0.9999088008762796,
+          "decode_mass": 0.9999257658058556,
+          "intersection_tokens": 18.484375
+        },
+        {
+          "start": 512,
+          "end": 1024,
+          "count": 1024,
+          "coarsened_kl": 0.021857481886723287,
+          "top1_agreement": 0.982421875,
+          "prefill_mass": 0.9999642873675267,
+          "decode_mass": 0.9999616312464874,
+          "intersection_tokens": 18.607421875
+        },
+        {
+          "start": 1024,
+          "end": 1536,
+          "count": 1024,
+          "coarsened_kl": 0.02235911688670517,
+          "top1_agreement": 0.9736328125,
+          "prefill_mass": 0.9999907618922519,
+          "decode_mass": 0.9999935213534494,
+          "intersection_tokens": 18.634765625
+        },
+        {
+          "start": 1536,
+          "end": 2048,
+          "count": 1024,
+          "coarsened_kl": 0.016582808880619984,
+          "top1_agreement": 0.978515625,
+          "prefill_mass": 0.9999883858438362,
+          "decode_mass": 0.9999926551707551,
+          "intersection_tokens": 18.603515625
+        }
+      ],
+      "cold_128k": {
+        "needle_pass": true,
+        "cold_confirmed": true,
+        "cached_tokens": 0,
+        "ttft_seconds": 30.064026165986434,
+        "usage": {
+          "prompt_tokens": 125238,
+          "total_tokens": 125247,
+          "completion_tokens": 9,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "created_cache_tokens": 124928
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        }
+      },
+      "transport": {
+        "rank0-ep-0.json": {
+          "state": "ready",
+          "nccl": "none",
+          "pynccl": "skipped",
+          "decisions": [],
+          "limits": {
+            "max_size": 131072,
+            "max_gather_bytes": 155648,
+            "dispatch_limit_bytes": 131072,
+            "large_piece_bytes": 4194304,
+            "gather_piece_bytes": 155648,
+            "lane_check": {
+              "lanes": 6,
+              "result": "passed",
+              "seconds": 0.001
+            },
+            "tuning": {
+              "decisions": {
+                "all_gather/eager/pieces grid 16": 1443,
+                "all_gather/eager/pieces grid 32": 4,
+                "all_gather/eager/pieces grid 4": 24,
+                "all_gather/eager/pieces grid 8": 8,
+                "all_gather/eager/ring piece 262144 gather stagger 1 blocks 1": 500,
+                "all_gather/eager/ring piece 524288 gather stagger 1 blocks 1": 254,
+                "all_gather/graph/pieces grid 16": 54,
+                "all_gather/graph/pieces grid 32": 52,
+                "all_gather/graph/ring piece 262144 gather stagger 1 blocks 1": 52,
+                "all_gather/graph/ring piece 524288 gather stagger 1 blocks 1": 66,
+                "all_gather/graph/ring piece 524288 gather stagger 1 blocks 2": 18,
+                "all_reduce/eager/oneshot grid 32": 2041,
+                "all_reduce/eager/oneshot grid 4": 324,
+                "all_reduce/eager/ring piece 262144 stagger 1 gather stagger 1 blocks 1": 3105,
+                "all_reduce/eager/ring piece 524288 stagger 1 gather stagger 0 blocks 1": 1764,
+                "all_reduce/eager/ring piece 524288 stagger 1 gather stagger 1 blocks 1": 4914,
+                "all_reduce/eager/twoshot grid 8": 678,
+                "all_reduce/graph/oneshot grid 16": 1406,
+                "all_reduce/graph/twoshot grid 8": 664
+              },
+              "key": {
+                "image": "sha256:1a8c10354eb0bbaad898ebcfc1b31d5c5cfc40daab2f9b8eaaeb074524aea952",
+                "kernels": "00f8d50c2cc5d98c",
+                "lanes": 2,
+                "max_relays": 1,
+                "native": "09db871538819191",
+                "shape": "cycle:4",
+                "sircl": "0.3.2/abi9",
+                "world": 4
+              },
+              "path": "/sircl/tables/cycle-4.json",
+              "settings": {
+                "SIRCL_LINK_SLOTS": {
+                  "session": 8,
+                  "table": 8
+                },
+                "SIRCL_LINK_SLOT_BYTES": {
+                  "session": 1048576,
+                  "table": 1048576
+                }
+              },
+              "table": "df333d97acb1a4b2",
+              "unmatched": {},
+              "unusable": {
+                "all_reduce/eager/twoshot grid 16": 5853,
+                "all_reduce/eager/twoshot grid 32": 932,
+                "all_reduce/eager/twoshot grid 8": 263,
+                "all_reduce/graph/twoshot grid 16": 5214,
+                "all_reduce/graph/twoshot grid 32": 16,
+                "all_reduce/graph/twoshot grid 8": 1534
+              }
+            },
+            "forward_windows": {
+              "2": [
+                131072,
+                131072
+              ]
+            }
+          }
+        },
+        "rank0-tp-0.json": {
+          "state": "ready",
+          "nccl": "none",
+          "pynccl": "skipped",
+          "decisions": [
+            {
+              "backend": "sircl",
+              "calls": 1251,
+              "collective": "all_gather",
+              "method": "direct",
+              "reason": "within the gather op limit"
+            },
+            {
+              "backend": "sircl",
+              "calls": 2376,
+              "collective": "all_gather",
+              "method": "large",
+              "reason": "1 rows of 19681280 bytes in 127 session op(s) of at most 155648 bytes (all_gather_large)"
+            },
+            {
+              "backend": "sircl",
+              "calls": 6238,
+              "collective": "all_reduce",
+              "method": "direct",
+              "reason": "within the dispatch ceiling"
+            },
+            {
+              "backend": "sircl",
+              "calls": 23762,
+              "collective": "all_reduce",
+              "method": "large",
+              "reason": "83886080 bytes through the session's all_reduce_large (at most 20 op(s) of at most 4194304 bytes, or one chain op)"
+            },
+            {
+              "backend": "sircl",
+              "calls": 1673,
+              "collective": "broadcast",
+              "method": "gather_bytes",
+              "reason": "all-gather of the bytes, then the source rank's copy"
+            },
+            {
+              "backend": "sircl",
+              "calls": 13,
+              "collective": "torch.all_reduce",
+              "method": "min",
+              "reason": "torch.distributed call carried on the session"
+            },
+            {
+              "backend": "sircl",
+              "calls": 1673,
+              "collective": "torch.broadcast",
+              "method": "bytes",
+              "reason": "torch.distributed call carried on the session"
+            }
+          ],
+          "limits": {
+            "max_size": 131072,
+            "max_gather_bytes": 155648,
+            "dispatch_limit_bytes": 131072,
+            "large_piece_bytes": 4194304,
+            "gather_piece_bytes": 155648,
+            "lane_check": {
+              "lanes": 6,
+              "result": "passed",
+              "seconds": 0.001
+            },
+            "tuning": {
+              "decisions": {
+                "all_gather/eager/pieces grid 16": 1533,
+                "all_gather/eager/pieces grid 32": 4,
+                "all_gather/eager/pieces grid 4": 24,
+                "all_gather/eager/pieces grid 8": 8,
+                "all_gather/eager/ring piece 262144 gather stagger 1 blocks 1": 763,
+                "all_gather/eager/ring piece 524288 gather stagger 1 blocks 1": 254,
+                "all_gather/graph/pieces grid 16": 54,
+                "all_gather/graph/pieces grid 32": 52,
+                "all_gather/graph/ring piece 262144 gather stagger 1 blocks 1": 52,
+                "all_gather/graph/ring piece 524288 gather stagger 1 blocks 1": 66,
+                "all_gather/graph/ring piece 524288 gather stagger 1 blocks 2": 18,
+                "all_reduce/eager/oneshot grid 32": 2394,
+                "all_reduce/eager/oneshot grid 4": 324,
+                "all_reduce/eager/ring piece 262144 stagger 1 gather stagger 1 blocks 1": 3105,
+                "all_reduce/eager/ring piece 524288 stagger 1 gather stagger 0 blocks 1": 1764,
+                "all_reduce/eager/ring piece 524288 stagger 1 gather stagger 1 blocks 1": 4914,
+                "all_reduce/eager/twoshot grid 8": 678,
+                "all_reduce/graph/oneshot grid 16": 1406,
+                "all_reduce/graph/twoshot grid 8": 664
+              },
+              "key": {
+                "image": "sha256:1a8c10354eb0bbaad898ebcfc1b31d5c5cfc40daab2f9b8eaaeb074524aea952",
+                "kernels": "00f8d50c2cc5d98c",
+                "lanes": 2,
+                "max_relays": 1,
+                "native": "09db871538819191",
+                "shape": "cycle:4",
+                "sircl": "0.3.2/abi9",
+                "world": 4
+              },
+              "path": "/sircl/tables/cycle-4.json",
+              "settings": {
+                "SIRCL_LINK_SLOTS": {
+                  "session": 8,
+                  "table": 8
+                },
+                "SIRCL_LINK_SLOT_BYTES": {
+                  "session": 1048576,
+                  "table": 1048576
+                }
+              },
+              "table": "df333d97acb1a4b2",
+              "unmatched": {},
+              "unusable": {
+                "all_reduce/eager/twoshot grid 16": 5853,
+                "all_reduce/eager/twoshot grid 32": 932,
+                "all_reduce/eager/twoshot grid 8": 263,
+                "all_reduce/graph/twoshot grid 16": 5214,
+                "all_reduce/graph/twoshot grid 32": 16,
+                "all_reduce/graph/twoshot grid 8": 1534
+              }
+            },
+            "forward_windows": {
+              "2": [
+                131072,
+                131072
+              ]
+            }
+          }
+        }
+      },
+      "final_transport": {
+        "0": {
+          "rank0-ep-0.json": {
+            "state": "ready",
+            "nccl": "none",
+            "pynccl": "skipped",
+            "decisions": []
+          },
+          "rank0-tp-0.json": {
+            "state": "ready",
+            "nccl": "none",
+            "pynccl": "skipped",
+            "decisions": [
+              {
+                "backend": "sircl",
+                "calls": 4784,
+                "collective": "all_gather",
+                "method": "direct",
+                "reason": "within the gather op limit"
+              },
+              {
+                "backend": "sircl",
+                "calls": 5609,
+                "collective": "all_gather",
+                "method": "large",
+                "reason": "1 rows of 19681280 bytes in 127 session op(s) of at most 155648 bytes (all_gather_large)"
+              },
+              {
+                "backend": "sircl",
+                "calls": 8032,
+                "collective": "all_reduce",
+                "method": "direct",
+                "reason": "within the dispatch ceiling"
+              },
+              {
+                "backend": "sircl",
+                "calls": 32173,
+                "collective": "all_reduce",
+                "method": "large",
+                "reason": "83886080 bytes through the session's all_reduce_large (at most 20 op(s) of at most 4194304 bytes, or one chain op)"
+              },
+              {
+                "backend": "sircl",
+                "calls": 4566,
+                "collective": "broadcast",
+                "method": "gather_bytes",
+                "reason": "all-gather of the bytes, then the source rank's copy"
+              },
+              {
+                "backend": "sircl",
+                "calls": 19,
+                "collective": "torch.all_reduce",
+                "method": "min",
+                "reason": "torch.distributed call carried on the session"
+              },
+              {
+                "backend": "sircl",
+                "calls": 4566,
+                "collective": "torch.broadcast",
+                "method": "bytes",
+                "reason": "torch.distributed call carried on the session"
+              }
+            ]
+          }
+        },
+        "1": {
+          "rank1-ep-0.json": {
+            "state": "ready",
+            "nccl": "none",
+            "pynccl": "skipped",
+            "decisions": []
+          },
+          "rank1-tp-0.json": {
+            "state": "ready",
+            "nccl": "none",
+            "pynccl": "skipped",
+            "decisions": [
+              {
+                "backend": "sircl",
+                "calls": 4784,
+                "collective": "all_gather",
+                "method": "direct",
+                "reason": "within the gather op limit"
+              },
+              {
+                "backend": "sircl",
+                "calls": 5604,
+                "collective": "all_gather",
+                "method": "large",
+                "reason": "1 rows of 19681280 bytes in 127 session op(s) of at most 155648 bytes (all_gather_large)"
+              },
+              {
+                "backend": "sircl",
+                "calls": 8032,
+                "collective": "all_reduce",
+                "method": "direct",
+                "reason": "within the dispatch ceiling"
+              },
+              {
+                "backend": "sircl",
+                "calls": 32169,
+                "collective": "all_reduce",
+                "method": "large",
+                "reason": "83886080 bytes through the session's all_reduce_large (at most 20 op(s) of at most 4194304 bytes, or one chain op)"
+              },
+              {
+                "backend": "sircl",
+                "calls": 4561,
+                "collective": "broadcast",
+                "method": "gather_bytes",
+                "reason": "all-gather of the bytes, then the source rank's copy"
+              },
+              {
+                "backend": "sircl",
+                "calls": 19,
+                "collective": "torch.all_reduce",
+                "method": "min",
+                "reason": "torch.distributed call carried on the session"
+              },
+              {
+                "backend": "sircl",
+                "calls": 4561,
+                "collective": "torch.broadcast",
+                "method": "bytes",
+                "reason": "torch.distributed call carried on the session"
+              }
+            ]
+          }
+        },
+        "2": {
+          "rank2-ep-0.json": {
+            "state": "ready",
+            "nccl": "none",
+            "pynccl": "skipped",
+            "decisions": []
+          },
+          "rank2-tp-0.json": {
+            "state": "ready",
+            "nccl": "none",
+            "pynccl": "skipped",
+            "decisions": [
+              {
+                "backend": "sircl",
+                "calls": 4784,
+                "collective": "all_gather",
+                "method": "direct",
+                "reason": "within the gather op limit"
+              },
+              {
+                "backend": "sircl",
+                "calls": 5605,
+                "collective": "all_gather",
+                "method": "large",
+                "reason": "1 rows of 19681280 bytes in 127 session op(s) of at most 155648 bytes (all_gather_large)"
+              },
+              {
+                "backend": "sircl",
+                "calls": 8032,
+                "collective": "all_reduce",
+                "method": "direct",
+                "reason": "within the dispatch ceiling"
+              },
+              {
+                "backend": "sircl",
+                "calls": 32170,
+                "collective": "all_reduce",
+                "method": "large",
+                "reason": "83886080 bytes through the session's all_reduce_large (at most 20 op(s) of at most 4194304 bytes, or one chain op)"
+              },
+              {
+                "backend": "sircl",
+                "calls": 4562,
+                "collective": "broadcast",
+                "method": "gather_bytes",
+                "reason": "all-gather of the bytes, then the source rank's copy"
+              },
+              {
+                "backend": "sircl",
+                "calls": 19,
+                "collective": "torch.all_reduce",
+                "method": "min",
+                "reason": "torch.distributed call carried on the session"
+              },
+              {
+                "backend": "sircl",
+                "calls": 4562,
+                "collective": "torch.broadcast",
+                "method": "bytes",
+                "reason": "torch.distributed call carried on the session"
+              }
+            ]
+          }
+        },
+        "3": {
+          "rank3-ep-0.json": {
+            "state": "ready",
+            "nccl": "none",
+            "pynccl": "skipped",
+            "decisions": []
+          },
+          "rank3-tp-0.json": {
+            "state": "ready",
+            "nccl": "none",
+            "pynccl": "skipped",
+            "decisions": [
+              {
+                "backend": "sircl",
+                "calls": 4784,
+                "collective": "all_gather",
+                "method": "direct",
+                "reason": "within the gather op limit"
+              },
+              {
+                "backend": "sircl",
+                "calls": 5604,
+                "collective": "all_gather",
+                "method": "large",
+                "reason": "1 rows of 19681280 bytes in 127 session op(s) of at most 155648 bytes (all_gather_large)"
+              },
+              {
+                "backend": "sircl",
+                "calls": 8032,
+                "collective": "all_reduce",
+                "method": "direct",
+                "reason": "within the dispatch ceiling"
+              },
+              {
+                "backend": "sircl",
+                "calls": 32169,
+                "collective": "all_reduce",
+                "method": "large",
+                "reason": "83886080 bytes through the session's all_reduce_large (at most 20 op(s) of at most 4194304 bytes, or one chain op)"
+              },
+              {
+                "backend": "sircl",
+                "calls": 4561,
+                "collective": "broadcast",
+                "method": "gather_bytes",
+                "reason": "all-gather of the bytes, then the source rank's copy"
+              },
+              {
+                "backend": "sircl",
+                "calls": 19,
+                "collective": "torch.all_reduce",
+                "method": "min",
+                "reason": "torch.distributed call carried on the session"
+              },
+              {
+                "backend": "sircl",
+                "calls": 4561,
+                "collective": "torch.broadcast",
+                "method": "bytes",
+                "reason": "torch.distributed call carried on the session"
+              }
+            ]
+          }
+        }
+      },
+      "versus_fresh_original": [
+        {
+          "context_tokens": 8192,
+          "concurrency": 1,
+          "output_throughput_delta_percent": 9.952328386876985,
+          "verification_step_rate_delta_percent": -8.955771933665769
+        },
+        {
+          "context_tokens": 131072,
+          "concurrency": 1,
+          "output_throughput_delta_percent": -6.750306910531101,
+          "verification_step_rate_delta_percent": -3.0670959659485297
+        },
+        {
+          "context_tokens": 8192,
+          "concurrency": 8,
+          "output_throughput_delta_percent": -9.34547194542592,
+          "verification_step_rate_delta_percent": -9.012006294258178
+        },
+        {
+          "context_tokens": 8192,
+          "concurrency": 16,
+          "output_throughput_delta_percent": -4.010190493269306,
+          "verification_step_rate_delta_percent": 1.0785391260239585
+        },
+        {
+          "context_tokens": 131072,
+          "concurrency": 8,
+          "output_throughput_delta_percent": -5.704800815731071,
+          "verification_step_rate_delta_percent": -4.930657705907448
+        },
+        {
+          "context_tokens": 131072,
+          "concurrency": 16,
+          "output_throughput_delta_percent": 0.6100929909418573,
+          "verification_step_rate_delta_percent": -5.41291846511438
+        }
+      ]
+    },
+    "sircl-buffers": {
+      "prefill": {
+        "8192": {
+          "ttft_seconds": 1.901,
+          "prefill_seconds": 1.901,
+          "tok_per_sec": 4309.0,
+          "client_ttft_seconds": 1.901,
+          "client_tok_per_sec": 4309.0,
+          "prompt_tokens": 8193,
+          "samples": 5,
+          "method": "client",
+          "server_validation": {
+            "method": "",
+            "tok_per_sec": 0.0,
+            "prefill_seconds": 0.0,
+            "prompt_tokens": 0,
+            "request_prompt_tokens": 0,
+            "cached_tokens": 0,
+            "token_source": "",
+            "samples": 0,
+            "invalid_reason": ""
+          },
+          "hardware_summary": {}
+        },
+        "131072": {
+          "ttft_seconds": 30.053,
+          "prefill_seconds": 30.053,
+          "tok_per_sec": 4293.0,
+          "client_ttft_seconds": 30.053,
+          "client_tok_per_sec": 4293.0,
+          "prompt_tokens": 129015,
+          "samples": 1,
+          "method": "client",
+          "server_validation": {
+            "method": "",
+            "tok_per_sec": 0.0,
+            "prefill_seconds": 0.0,
+            "prompt_tokens": 0,
+            "request_prompt_tokens": 0,
+            "cached_tokens": 0,
+            "token_source": "",
+            "samples": 0,
+            "invalid_reason": ""
+          },
+          "hardware_summary": {}
+        }
+      },
+      "decode": [
+        {
+          "context_tokens": 8192,
+          "concurrency": 1,
+          "aggregate_tps": 62.63532983058133,
+          "server_steps_per_s": 23.75131707175644,
+          "server_accept_len_effective": 2.6371308016877637,
+          "ttft_avg": 0.3066936479881406,
+          "num_errors": 0,
+          "failure_reason": "",
+          "measurement_seconds": 29.887286,
+          "completed_request_count": 1,
+          "underfilled": false,
+          "capacity_limited": false,
+          "effective_concurrency": 1,
+          "avg_running_reqs": 1,
+          "max_running_reqs": 1,
+          "avg_queue_reqs": 0
+        },
+        {
+          "context_tokens": 131072,
+          "concurrency": 1,
+          "aggregate_tps": 55.39632161940218,
+          "server_steps_per_s": 23.660236161539846,
+          "server_accept_len_effective": 2.3413258110014104,
+          "ttft_avg": 0.5843357889680192,
+          "num_errors": 0,
+          "failure_reason": "",
+          "measurement_seconds": 29.965889,
+          "completed_request_count": 0,
+          "underfilled": false,
+          "capacity_limited": false,
+          "effective_concurrency": 1,
+          "avg_running_reqs": 1,
+          "max_running_reqs": 1,
+          "avg_queue_reqs": 0
+        },
+        {
+          "context_tokens": 8192,
+          "concurrency": 8,
+          "aggregate_tps": 161.97595523448047,
+          "server_steps_per_s": 69.19879984450382,
+          "server_accept_len_effective": 2.3407335907335907,
+          "ttft_avg": 0.9610180651216069,
+          "num_errors": 0,
+          "failure_reason": "",
+          "measurement_seconds": 29.942716,
+          "completed_request_count": 0,
+          "underfilled": false,
+          "capacity_limited": false,
+          "effective_concurrency": 8,
+          "avg_running_reqs": 8,
+          "max_running_reqs": 8,
+          "avg_queue_reqs": 0
+        },
+        {
+          "context_tokens": 8192,
+          "concurrency": 16,
+          "aggregate_tps": 228.2772672183093,
+          "server_steps_per_s": 105.58032960705957,
+          "server_accept_len_effective": 2.1621192893401013,
+          "ttft_avg": 1.6463649162033107,
+          "num_errors": 0,
+          "failure_reason": "",
+          "measurement_seconds": 29.854046,
+          "completed_request_count": 0,
+          "underfilled": false,
+          "capacity_limited": false,
+          "effective_concurrency": 16,
+          "avg_running_reqs": 16,
+          "max_running_reqs": 16,
+          "avg_queue_reqs": 0
+        },
+        {
+          "context_tokens": 131072,
+          "concurrency": 8,
+          "aggregate_tps": 157.62845237877897,
+          "server_steps_per_s": 64.82540965186087,
+          "server_accept_len_effective": 2.4315843621399176,
+          "ttft_avg": 1.8523434781236574,
+          "num_errors": 0,
+          "failure_reason": "",
+          "measurement_seconds": 29.981897,
+          "completed_request_count": 0,
+          "underfilled": false,
+          "capacity_limited": false,
+          "effective_concurrency": 8,
+          "avg_running_reqs": 8,
+          "max_running_reqs": 8,
+          "avg_queue_reqs": 0
+        },
+        {
+          "context_tokens": 131072,
+          "concurrency": 16,
+          "aggregate_tps": 222.84292538616592,
+          "server_steps_per_s": 96.74008573202465,
+          "server_accept_len_effective": 2.303522099447514,
+          "ttft_avg": 3.3956449768083985,
+          "num_errors": 0,
+          "failure_reason": "",
+          "measurement_seconds": 29.935884,
+          "completed_request_count": 0,
+          "underfilled": false,
+          "capacity_limited": false,
+          "effective_concurrency": 16,
+          "avg_running_reqs": 16,
+          "max_running_reqs": 16,
+          "avg_queue_reqs": 0
+        }
+      ],
+      "raw": "/Users/jg/Agent/Diagnostics/deepseek-v41-flash-ring/sircl-20261011T134159Z/sircl-buffers/lil.json",
+      "quality": {
+        "method": "Same original token sequences; top-20 intersection plus other-mass KL(reference||arm). Finite precision/correctness screen, not proof of equivalent quality.",
+        "replay": [
+          {
+            "prompt_index": 0,
+            "thinking": false,
+            "cached_tokens": 0,
+            "vs_original": {
+              "positions": 2048,
+              "mean_coarsened_kl": 0.006271171665409503,
+              "top1_agreement": 0.986328125,
+              "late_mean_coarsened_kl": 0.004664008286244156
+            },
+            "vs_sircl-bf16": {
+              "positions": 2048,
+              "mean_coarsened_kl": 0.005023860994521835,
+              "top1_agreement": 0.98583984375,
+              "late_mean_coarsened_kl": 0.003559101413549584
+            }
+          },
+          {
+            "prompt_index": 1,
+            "thinking": true,
+            "cached_tokens": 0,
+            "vs_original": {
+              "positions": 2048,
+              "mean_coarsened_kl": 0.012935947481430595,
+              "top1_agreement": 0.9619140625,
+              "late_mean_coarsened_kl": 0.012206858307147883
+            },
+            "vs_sircl-bf16": {
+              "positions": 2048,
+              "mean_coarsened_kl": 0.011700994870582713,
+              "top1_agreement": 0.95458984375,
+              "late_mean_coarsened_kl": 0.01222774046672544
+            }
+          }
+        ],
+        "known_answers_passed": 12,
+        "known_answers_total": 12
+      },
+      "decode_prefill_consistency_bins": [
+        {
+          "start": 0,
+          "end": 256,
+          "count": 512,
+          "coarsened_kl": 0.024633564217902817,
+          "top1_agreement": 0.955078125,
+          "prefill_mass": 0.9999767510700842,
+          "decode_mass": 0.9999888313993126,
+          "intersection_tokens": 18.458984375
+        },
+        {
+          "start": 256,
+          "end": 512,
+          "count": 512,
+          "coarsened_kl": 0.03709797186199944,
+          "top1_agreement": 0.955078125,
+          "prefill_mass": 0.9999312062718348,
+          "decode_mass": 0.9999587110427648,
+          "intersection_tokens": 18.31640625
+        },
+        {
+          "start": 512,
+          "end": 1024,
+          "count": 1024,
+          "coarsened_kl": 0.032132079402509145,
+          "top1_agreement": 0.96484375,
+          "prefill_mass": 0.9999667752839224,
+          "decode_mass": 0.9999725969902964,
+          "intersection_tokens": 18.4287109375
+        },
+        {
+          "start": 1024,
+          "end": 1536,
+          "count": 1024,
+          "coarsened_kl": 0.013772727227982407,
+          "top1_agreement": 0.9775390625,
+          "prefill_mass": 0.9999523756274,
+          "decode_mass": 0.9999519899511744,
+          "intersection_tokens": 18.466796875
+        },
+        {
+          "start": 1536,
+          "end": 2048,
+          "count": 1024,
+          "coarsened_kl": 0.01826761585773728,
+          "top1_agreement": 0.978515625,
+          "prefill_mass": 0.9999907650110499,
+          "decode_mass": 0.9999919367458835,
+          "intersection_tokens": 18.5771484375
+        }
+      ],
+      "cold_128k": {
+        "needle_pass": true,
+        "cold_confirmed": true,
+        "cached_tokens": 0,
+        "ttft_seconds": 30.41297029197449,
+        "usage": {
+          "prompt_tokens": 125240,
+          "total_tokens": 125249,
+          "completion_tokens": 9,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "created_cache_tokens": 124928
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        }
+      },
+      "transport": {
+        "rank0-ep-0.json": {
+          "state": "ready",
+          "nccl": "none",
+          "pynccl": "skipped",
+          "decisions": [],
+          "limits": {
+            "max_size": 2097152,
+            "max_gather_bytes": 16777216,
+            "dispatch_limit_bytes": 2097152,
+            "large_piece_bytes": 4194304,
+            "gather_piece_bytes": 16777216,
+            "lane_check": {
+              "lanes": 6,
+              "result": "passed",
+              "seconds": 0.0103
+            },
+            "tuning": {
+              "decisions": {
+                "all_gather/eager/pieces grid 16": 1458,
+                "all_gather/eager/pieces grid 32": 4,
+                "all_gather/eager/pieces grid 4": 24,
+                "all_gather/eager/pieces grid 8": 8,
+                "all_gather/eager/ring piece 262144 gather stagger 1 blocks 1": 489,
+                "all_gather/eager/ring piece 524288 gather stagger 1 blocks 1": 254,
+                "all_gather/graph/pieces grid 16": 54,
+                "all_gather/graph/pieces grid 32": 52,
+                "all_gather/graph/ring piece 262144 gather stagger 1 blocks 1": 52,
+                "all_gather/graph/ring piece 524288 gather stagger 1 blocks 1": 66,
+                "all_gather/graph/ring piece 524288 gather stagger 1 blocks 2": 18,
+                "all_reduce/eager/oneshot grid 32": 2043,
+                "all_reduce/eager/oneshot grid 4": 326,
+                "all_reduce/eager/ring piece 262144 stagger 1 gather stagger 1 blocks 1": 2121,
+                "all_reduce/eager/ring piece 524288 stagger 1 gather stagger 1 blocks 1": 4914,
+                "all_reduce/eager/twoshot grid 16": 5853,
+                "all_reduce/eager/twoshot grid 32": 932,
+                "all_reduce/eager/twoshot grid 8": 941,
+                "all_reduce/graph/oneshot grid 16": 1406,
+                "all_reduce/graph/twoshot grid 16": 5214,
+                "all_reduce/graph/twoshot grid 32": 16,
+                "all_reduce/graph/twoshot grid 8": 2198
+              },
+              "key": {
+                "image": "sha256:1a8c10354eb0bbaad898ebcfc1b31d5c5cfc40daab2f9b8eaaeb074524aea952",
+                "kernels": "00f8d50c2cc5d98c",
+                "lanes": 2,
+                "max_relays": 1,
+                "native": "09db871538819191",
+                "shape": "cycle:4",
+                "sircl": "0.3.2/abi9",
+                "world": 4
+              },
+              "path": "/sircl/tables/cycle-4.json",
+              "settings": {
+                "SIRCL_LINK_SLOTS": {
+                  "session": 8,
+                  "table": 8
+                },
+                "SIRCL_LINK_SLOT_BYTES": {
+                  "session": 1048576,
+                  "table": 1048576
+                }
+              },
+              "table": "df333d97acb1a4b2",
+              "unmatched": {},
+              "unusable": {}
+            },
+            "forward_windows": {
+              "2": [
+                131072,
+                131072
+              ]
+            }
+          }
+        },
+        "rank0-tp-0.json": {
+          "state": "ready",
+          "nccl": "none",
+          "pynccl": "skipped",
+          "decisions": [
+            {
+              "backend": "sircl",
+              "calls": 3205,
+              "collective": "all_gather",
+              "method": "direct",
+              "reason": "within the gather op limit"
+            },
+            {
+              "backend": "sircl",
+              "calls": 461,
+              "collective": "all_gather",
+              "method": "large",
+              "reason": "1 rows of 19681280 bytes in 2 session op(s) of at most 16777216 bytes (all_gather_large)"
+            },
+            {
+              "backend": "sircl",
+              "calls": 22842,
+              "collective": "all_reduce",
+              "method": "direct",
+              "reason": "within the dispatch ceiling"
+            },
+            {
+              "backend": "sircl",
+              "calls": 7201,
+              "collective": "all_reduce",
+              "method": "large",
+              "reason": "83886080 bytes through the session's all_reduce_large (at most 20 op(s) of at most 4194304 bytes, or one chain op)"
+            },
+            {
+              "backend": "sircl",
+              "calls": 1716,
+              "collective": "broadcast",
+              "method": "gather_bytes",
+              "reason": "all-gather of the bytes, then the source rank's copy"
+            },
+            {
+              "backend": "sircl",
+              "calls": 13,
+              "collective": "torch.all_reduce",
+              "method": "min",
+              "reason": "torch.distributed call carried on the session"
+            },
+            {
+              "backend": "sircl",
+              "calls": 1716,
+              "collective": "torch.broadcast",
+              "method": "bytes",
+              "reason": "torch.distributed call carried on the session"
+            }
+          ],
+          "limits": {
+            "max_size": 2097152,
+            "max_gather_bytes": 16777216,
+            "dispatch_limit_bytes": 2097152,
+            "large_piece_bytes": 4194304,
+            "gather_piece_bytes": 16777216,
+            "lane_check": {
+              "lanes": 6,
+              "result": "passed",
+              "seconds": 0.0103
+            },
+            "tuning": {
+              "decisions": {
+                "all_gather/eager/pieces grid 16": 1537,
+                "all_gather/eager/pieces grid 32": 4,
+                "all_gather/eager/pieces grid 4": 24,
+                "all_gather/eager/pieces grid 8": 8,
+                "all_gather/eager/ring piece 262144 gather stagger 1 blocks 1": 760,
+                "all_gather/eager/ring piece 524288 gather stagger 1 blocks 1": 254,
+                "all_gather/graph/pieces grid 16": 54,
+                "all_gather/graph/pieces grid 32": 52,
+                "all_gather/graph/ring piece 262144 gather stagger 1 blocks 1": 52,
+                "all_gather/graph/ring piece 524288 gather stagger 1 blocks 1": 66,
+                "all_gather/graph/ring piece 524288 gather stagger 1 blocks 2": 18,
+                "all_reduce/eager/oneshot grid 32": 2393,
+                "all_reduce/eager/oneshot grid 4": 326,
+                "all_reduce/eager/ring piece 262144 stagger 1 gather stagger 1 blocks 1": 2121,
+                "all_reduce/eager/ring piece 524288 stagger 1 gather stagger 1 blocks 1": 4914,
+                "all_reduce/eager/twoshot grid 16": 5853,
+                "all_reduce/eager/twoshot grid 32": 932,
+                "all_reduce/eager/twoshot grid 8": 941,
+                "all_reduce/graph/oneshot grid 16": 1406,
+                "all_reduce/graph/twoshot grid 16": 5214,
+                "all_reduce/graph/twoshot grid 32": 16,
+                "all_reduce/graph/twoshot grid 8": 2198
+              },
+              "key": {
+                "image": "sha256:1a8c10354eb0bbaad898ebcfc1b31d5c5cfc40daab2f9b8eaaeb074524aea952",
+                "kernels": "00f8d50c2cc5d98c",
+                "lanes": 2,
+                "max_relays": 1,
+                "native": "09db871538819191",
+                "shape": "cycle:4",
+                "sircl": "0.3.2/abi9",
+                "world": 4
+              },
+              "path": "/sircl/tables/cycle-4.json",
+              "settings": {
+                "SIRCL_LINK_SLOTS": {
+                  "session": 8,
+                  "table": 8
+                },
+                "SIRCL_LINK_SLOT_BYTES": {
+                  "session": 1048576,
+                  "table": 1048576
+                }
+              },
+              "table": "df333d97acb1a4b2",
+              "unmatched": {},
+              "unusable": {}
+            },
+            "forward_windows": {
+              "2": [
+                131072,
+                131072
+              ]
+            }
+          }
+        }
+      },
+      "final_transport": {
+        "0": {
+          "rank0-ep-0.json": {
+            "state": "ready",
+            "nccl": "none",
+            "pynccl": "skipped",
+            "decisions": []
+          },
+          "rank0-tp-0.json": {
+            "state": "ready",
+            "nccl": "none",
+            "pynccl": "skipped",
+            "decisions": [
+              {
+                "backend": "sircl",
+                "calls": 8715,
+                "collective": "all_gather",
+                "method": "direct",
+                "reason": "within the gather op limit"
+              },
+              {
+                "backend": "sircl",
+                "calls": 1676,
+                "collective": "all_gather",
+                "method": "large",
+                "reason": "1 rows of 19681280 bytes in 2 session op(s) of at most 16777216 bytes (all_gather_large)"
+              },
+              {
+                "backend": "sircl",
+                "calls": 29003,
+                "collective": "all_reduce",
+                "method": "direct",
+                "reason": "within the dispatch ceiling"
+              },
+              {
+                "backend": "sircl",
+                "calls": 11311,
+                "collective": "all_reduce",
+                "method": "large",
+                "reason": "83886080 bytes through the session's all_reduce_large (at most 20 op(s) of at most 4194304 bytes, or one chain op)"
+              },
+              {
+                "backend": "sircl",
+                "calls": 4592,
+                "collective": "broadcast",
+                "method": "gather_bytes",
+                "reason": "all-gather of the bytes, then the source rank's copy"
+              },
+              {
+                "backend": "sircl",
+                "calls": 13,
+                "collective": "torch.all_reduce",
+                "method": "min",
+                "reason": "torch.distributed call carried on the session"
+              },
+              {
+                "backend": "sircl",
+                "calls": 4592,
+                "collective": "torch.broadcast",
+                "method": "bytes",
+                "reason": "torch.distributed call carried on the session"
+              }
+            ]
+          }
+        },
+        "1": {
+          "rank1-ep-0.json": {
+            "state": "ready",
+            "nccl": "none",
+            "pynccl": "skipped",
+            "decisions": []
+          },
+          "rank1-tp-0.json": {
+            "state": "ready",
+            "nccl": "none",
+            "pynccl": "skipped",
+            "decisions": [
+              {
+                "backend": "sircl",
+                "calls": 8715,
+                "collective": "all_gather",
+                "method": "direct",
+                "reason": "within the gather op limit"
+              },
+              {
+                "backend": "sircl",
+                "calls": 1674,
+                "collective": "all_gather",
+                "method": "large",
+                "reason": "1 rows of 19681280 bytes in 2 session op(s) of at most 16777216 bytes (all_gather_large)"
+              },
+              {
+                "backend": "sircl",
+                "calls": 29001,
+                "collective": "all_reduce",
+                "method": "direct",
+                "reason": "within the dispatch ceiling"
+              },
+              {
+                "backend": "sircl",
+                "calls": 11311,
+                "collective": "all_reduce",
+                "method": "large",
+                "reason": "83886080 bytes through the session's all_reduce_large (at most 20 op(s) of at most 4194304 bytes, or one chain op)"
+              },
+              {
+                "backend": "sircl",
+                "calls": 4590,
+                "collective": "broadcast",
+                "method": "gather_bytes",
+                "reason": "all-gather of the bytes, then the source rank's copy"
+              },
+              {
+                "backend": "sircl",
+                "calls": 13,
+                "collective": "torch.all_reduce",
+                "method": "min",
+                "reason": "torch.distributed call carried on the session"
+              },
+              {
+                "backend": "sircl",
+                "calls": 4590,
+                "collective": "torch.broadcast",
+                "method": "bytes",
+                "reason": "torch.distributed call carried on the session"
+              }
+            ]
+          }
+        },
+        "2": {
+          "rank2-ep-0.json": {
+            "state": "ready",
+            "nccl": "none",
+            "pynccl": "skipped",
+            "decisions": []
+          },
+          "rank2-tp-0.json": {
+            "state": "ready",
+            "nccl": "none",
+            "pynccl": "skipped",
+            "decisions": [
+              {
+                "backend": "sircl",
+                "calls": 8715,
+                "collective": "all_gather",
+                "method": "direct",
+                "reason": "within the gather op limit"
+              },
+              {
+                "backend": "sircl",
+                "calls": 1674,
+                "collective": "all_gather",
+                "method": "large",
+                "reason": "1 rows of 19681280 bytes in 2 session op(s) of at most 16777216 bytes (all_gather_large)"
+              },
+              {
+                "backend": "sircl",
+                "calls": 29001,
+                "collective": "all_reduce",
+                "method": "direct",
+                "reason": "within the dispatch ceiling"
+              },
+              {
+                "backend": "sircl",
+                "calls": 11311,
+                "collective": "all_reduce",
+                "method": "large",
+                "reason": "83886080 bytes through the session's all_reduce_large (at most 20 op(s) of at most 4194304 bytes, or one chain op)"
+              },
+              {
+                "backend": "sircl",
+                "calls": 4590,
+                "collective": "broadcast",
+                "method": "gather_bytes",
+                "reason": "all-gather of the bytes, then the source rank's copy"
+              },
+              {
+                "backend": "sircl",
+                "calls": 13,
+                "collective": "torch.all_reduce",
+                "method": "min",
+                "reason": "torch.distributed call carried on the session"
+              },
+              {
+                "backend": "sircl",
+                "calls": 4590,
+                "collective": "torch.broadcast",
+                "method": "bytes",
+                "reason": "torch.distributed call carried on the session"
+              }
+            ]
+          }
+        },
+        "3": {
+          "rank3-ep-0.json": {
+            "state": "ready",
+            "nccl": "none",
+            "pynccl": "skipped",
+            "decisions": []
+          },
+          "rank3-tp-0.json": {
+            "state": "ready",
+            "nccl": "none",
+            "pynccl": "skipped",
+            "decisions": [
+              {
+                "backend": "sircl",
+                "calls": 8715,
+                "collective": "all_gather",
+                "method": "direct",
+                "reason": "within the gather op limit"
+              },
+              {
+                "backend": "sircl",
+                "calls": 1674,
+                "collective": "all_gather",
+                "method": "large",
+                "reason": "1 rows of 19681280 bytes in 2 session op(s) of at most 16777216 bytes (all_gather_large)"
+              },
+              {
+                "backend": "sircl",
+                "calls": 29001,
+                "collective": "all_reduce",
+                "method": "direct",
+                "reason": "within the dispatch ceiling"
+              },
+              {
+                "backend": "sircl",
+                "calls": 11311,
+                "collective": "all_reduce",
+                "method": "large",
+                "reason": "83886080 bytes through the session's all_reduce_large (at most 20 op(s) of at most 4194304 bytes, or one chain op)"
+              },
+              {
+                "backend": "sircl",
+                "calls": 4590,
+                "collective": "broadcast",
+                "method": "gather_bytes",
+                "reason": "all-gather of the bytes, then the source rank's copy"
+              },
+              {
+                "backend": "sircl",
+                "calls": 13,
+                "collective": "torch.all_reduce",
+                "method": "min",
+                "reason": "torch.distributed call carried on the session"
+              },
+              {
+                "backend": "sircl",
+                "calls": 4590,
+                "collective": "torch.broadcast",
+                "method": "bytes",
+                "reason": "torch.distributed call carried on the session"
+              }
+            ]
+          }
+        }
+      },
+      "versus_fresh_original": [
+        {
+          "context_tokens": 8192,
+          "concurrency": 1,
+          "output_throughput_delta_percent": -0.41718705856055305,
+          "verification_step_rate_delta_percent": -7.40192294797658
+        },
+        {
+          "context_tokens": 131072,
+          "concurrency": 1,
+          "output_throughput_delta_percent": -10.443526066131492,
+          "verification_step_rate_delta_percent": -5.307121481928501
+        },
+        {
+          "context_tokens": 8192,
+          "concurrency": 8,
+          "output_throughput_delta_percent": -9.668760209543626,
+          "verification_step_rate_delta_percent": -11.540350015075019
+        },
+        {
+          "context_tokens": 8192,
+          "concurrency": 16,
+          "output_throughput_delta_percent": -2.4936178695014077,
+          "verification_step_rate_delta_percent": 1.7456393415046234
+        },
+        {
+          "context_tokens": 131072,
+          "concurrency": 8,
+          "output_throughput_delta_percent": -4.852374542373916,
+          "verification_step_rate_delta_percent": -6.443306648285696
+        },
+        {
+          "context_tokens": 131072,
+          "concurrency": 16,
+          "output_throughput_delta_percent": 0.8894845974686705,
+          "verification_step_rate_delta_percent": -5.166603557758831
+        }
+      ]
+    },
+    "original-restored": {
+      "prefill": {
+        "8192": {
+          "ttft_seconds": 1.912,
+          "prefill_seconds": 1.912,
+          "tok_per_sec": 4285.0,
+          "client_ttft_seconds": 1.912,
+          "client_tok_per_sec": 4285.0,
+          "prompt_tokens": 8192,
+          "samples": 5,
+          "method": "client",
+          "server_validation": {
+            "method": "",
+            "tok_per_sec": 0.0,
+            "prefill_seconds": 0.0,
+            "prompt_tokens": 0,
+            "request_prompt_tokens": 0,
+            "cached_tokens": 0,
+            "token_source": "",
+            "samples": 0,
+            "invalid_reason": ""
+          },
+          "hardware_summary": {}
+        },
+        "131072": {
+          "ttft_seconds": 30.87,
+          "prefill_seconds": 30.87,
+          "tok_per_sec": 4179.0,
+          "client_ttft_seconds": 30.87,
+          "client_tok_per_sec": 4179.0,
+          "prompt_tokens": 129014,
+          "samples": 1,
+          "method": "client",
+          "server_validation": {
+            "method": "",
+            "tok_per_sec": 0.0,
+            "prefill_seconds": 0.0,
+            "prompt_tokens": 0,
+            "request_prompt_tokens": 0,
+            "cached_tokens": 0,
+            "token_source": "",
+            "samples": 0,
+            "invalid_reason": ""
+          },
+          "hardware_summary": {}
+        }
+      },
+      "decode": [
+        {
+          "context_tokens": 8192,
+          "concurrency": 1,
+          "aggregate_tps": 62.89773102454395,
+          "server_steps_per_s": 25.649903138282756,
+          "server_accept_len_effective": 2.4521625163826997,
+          "ttft_avg": 0.36682690994348377,
+          "num_errors": 0,
+          "failure_reason": "",
+          "measurement_seconds": 29.746701,
+          "completed_request_count": 1,
+          "underfilled": false,
+          "capacity_limited": false,
+          "effective_concurrency": 1,
+          "avg_running_reqs": 1,
+          "max_running_reqs": 1,
+          "avg_queue_reqs": 0
+        },
+        {
+          "context_tokens": 131072,
+          "concurrency": 1,
+          "aggregate_tps": 61.85630048399256,
+          "server_steps_per_s": 24.986288865455123,
+          "server_accept_len_effective": 2.475609756097561,
+          "ttft_avg": 0.6262209430569783,
+          "num_errors": 0,
+          "failure_reason": "",
+          "measurement_seconds": 29.536199,
+          "completed_request_count": 1,
+          "underfilled": false,
+          "capacity_limited": false,
+          "effective_concurrency": 1,
+          "avg_running_reqs": 1,
+          "max_running_reqs": 1,
+          "avg_queue_reqs": 0
+        },
+        {
+          "context_tokens": 8192,
+          "concurrency": 8,
+          "aggregate_tps": 179.31333125751414,
+          "server_steps_per_s": 78.22640023592278,
+          "server_accept_len_effective": 2.292235494880546,
+          "ttft_avg": 1.0396043899963843,
+          "num_errors": 0,
+          "failure_reason": "",
+          "measurement_seconds": 29.964309,
+          "completed_request_count": 0,
+          "underfilled": false,
+          "capacity_limited": false,
+          "effective_concurrency": 8,
+          "avg_running_reqs": 8,
+          "max_running_reqs": 8,
+          "avg_queue_reqs": 0
+        },
+        {
+          "context_tokens": 8192,
+          "concurrency": 16,
+          "aggregate_tps": 234.11520582600662,
+          "server_steps_per_s": 103.76889888389613,
+          "server_accept_len_effective": 2.2561211340206184,
+          "ttft_avg": 1.6675696692982456,
+          "num_errors": 0,
+          "failure_reason": "",
+          "measurement_seconds": 29.912623,
+          "completed_request_count": 0,
+          "underfilled": false,
+          "capacity_limited": false,
+          "effective_concurrency": 16,
+          "avg_running_reqs": 16,
+          "max_running_reqs": 16,
+          "avg_queue_reqs": 0
+        },
+        {
+          "context_tokens": 131072,
+          "concurrency": 8,
+          "aggregate_tps": 165.66724773281774,
+          "server_steps_per_s": 69.28997523261977,
+          "server_accept_len_effective": 2.390926640926641,
+          "ttft_avg": 2.0088119403953897,
+          "num_errors": 0,
+          "failure_reason": "",
+          "measurement_seconds": 29.903316,
+          "completed_request_count": 0,
+          "underfilled": false,
+          "capacity_limited": false,
+          "effective_concurrency": 8,
+          "avg_running_reqs": 8,
+          "max_running_reqs": 8,
+          "avg_queue_reqs": 0
+        },
+        {
+          "context_tokens": 131072,
+          "concurrency": 16,
+          "aggregate_tps": 220.87824739641607,
+          "server_steps_per_s": 102.0105673331491,
+          "server_accept_len_effective": 2.1652486910994764,
+          "ttft_avg": 3.1074204075775924,
+          "num_errors": 0,
+          "failure_reason": "",
+          "measurement_seconds": 29.957681,
+          "completed_request_count": 0,
+          "underfilled": false,
+          "capacity_limited": false,
+          "effective_concurrency": 16,
+          "avg_running_reqs": 16,
+          "max_running_reqs": 16,
+          "avg_queue_reqs": 0
+        }
+      ],
+      "raw": "/Users/jg/Agent/Diagnostics/deepseek-v41-flash-ring/sircl-20261011T134159Z/original-restored/lil.json",
+      "quality": {
+        "method": "Same original token sequences; top-20 intersection plus other-mass KL(reference||arm). Finite precision/correctness screen, not proof of equivalent quality.",
+        "replay": [
+          {
+            "prompt_index": 0,
+            "thinking": false,
+            "cached_tokens": 0,
+            "vs_original": {
+              "positions": 2048,
+              "mean_coarsened_kl": 0.007147951192424984,
+              "top1_agreement": 0.986328125,
+              "late_mean_coarsened_kl": 0.006446639310443242
+            },
+            "vs_sircl-bf16": {
+              "positions": 2048,
+              "mean_coarsened_kl": 0.006292003304710627,
+              "top1_agreement": 0.9814453125,
+              "late_mean_coarsened_kl": 0.006397060480326116
+            }
+          },
+          {
+            "prompt_index": 1,
+            "thinking": true,
+            "cached_tokens": 0,
+            "vs_original": {
+              "positions": 2048,
+              "mean_coarsened_kl": 0.012565052885128531,
+              "top1_agreement": 0.96875,
+              "late_mean_coarsened_kl": 0.011756609268726993
+            },
+            "vs_sircl-bf16": {
+              "positions": 2048,
+              "mean_coarsened_kl": 0.012228496504721499,
+              "top1_agreement": 0.9609375,
+              "late_mean_coarsened_kl": 0.01358876268186363
+            }
+          }
+        ],
+        "known_answers_passed": 12,
+        "known_answers_total": 12
+      },
+      "cold_128k": {
+        "needle_pass": true,
+        "cold_confirmed": true,
+        "cached_tokens": 0,
+        "ttft_seconds": 31.74809195799753,
+        "usage": {
+          "prompt_tokens": 125242,
+          "total_tokens": 125251,
+          "completion_tokens": 9,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "created_cache_tokens": 124928
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        }
+      }
+    }
+  },
+  "restored_fleet": [
+    {
+      "rank": 0,
+      "container": "/ds41-optimized-r0",
+      "image": "sha256:a9f4aa50ac6b2ca8e3961361fc24bc2d4b0c2785080e85248391ff7da7fbf27c",
+      "mesh": "active",
+      "clock_cap_service": "active"
+    },
+    {
+      "rank": 1,
+      "container": "/ds41-optimized-r1",
+      "image": "sha256:43e6685cf8f01ebd1aab60a588e523f4b8d0330be27d9c43ab0d6f146d2f6649",
+      "mesh": "active",
+      "clock_cap_service": "active"
+    },
+    {
+      "rank": 2,
+      "container": "/ds41-optimized-r2",
+      "image": "sha256:4fbff34beec9dfde9ca4e2f197d8a93da0f36fec226027871c4d3d6247d6ac7d",
+      "mesh": "active",
+      "clock_cap_service": "active"
+    },
+    {
+      "rank": 3,
+      "container": "/ds41-optimized-r3",
+      "image": "sha256:7725323e2f86085775349b4bcac3efcdc4c05ee556f471786c886e6f8e544688",
+      "mesh": "active",
+      "clock_cap_service": "active"
+    }
+  ],
+  "final_clock_check": {
+    "clocks_under_c1_load": [
+      "2333 MHz, 93 %, 26.12 W, 56",
+      "2320 MHz, 94 %, 25.14 W, 55",
+      "2327 MHz, 95 %, 27.51 W, 63",
+      "2333 MHz, 95 %, 25.23 W, 63"
+    ],
+    "usage": {
+      "prompt_tokens": 36,
+      "total_tokens": 1060,
+      "completion_tokens": 1024,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "created_cache_tokens": 0,
+        "multimodal_tokens": null
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "image_ids": [
+      "sha256:a9f4aa50ac6b2ca8e3961361fc24bc2d4b0c2785080e85248391ff7da7fbf27c",
+      "sha256:43e6685cf8f01ebd1aab60a588e523f4b8d0330be27d9c43ab0d6f146d2f6649",
+      "sha256:4fbff34beec9dfde9ca4e2f197d8a93da0f36fec226027871c4d3d6247d6ac7d",
+      "sha256:7725323e2f86085775349b4bcac3efcdc4c05ee556f471786c886e6f8e544688"
+    ]
+  },
+  "cleanup": {
+    "original_checkpoint_images_plugins_and_selection": "unchanged",
+    "temporary_image_transfer_archives": "removed after matching image IDs on all ranks",
+    "sircl_trial_workers": "stopped",
+    "sircl_relay_objects_and_markers": "removed and verified absent on all ranks",
+    "legacy_mesh": "restored active on all four ranks",
+    "candidate_image_and_scoped_caches": "retained for reproducibility"
+  }
+}

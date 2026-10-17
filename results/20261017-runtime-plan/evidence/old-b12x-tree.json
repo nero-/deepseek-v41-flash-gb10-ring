@@ -1,0 +1,135 @@
+{
+  "sha": "c8e461281a3872a0e5de2485ef1df3df6556f07c",
+  "url": "https://api.github.com/repos/local-inference-lab/b12x/git/trees/c8e461281a3872a0e5de2485ef1df3df6556f07c",
+  "note": "Filtered relevant source entries; not a complete repository tree. Original tree was not truncated.",
+  "tree": [
+    {
+      "path": "b12x/_lib/compiler.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7b7e4dd70c3bce77ee8b06e3c8773dacb99a2d78",
+      "size": 100612,
+      "url": "https://api.github.com/repos/local-inference-lab/b12x/git/blobs/7b7e4dd70c3bce77ee8b06e3c8773dacb99a2d78"
+    },
+    {
+      "path": "b12x/_lib/dense_gemm.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eebb606f51beedaa136da32456cd9facdb4f4d4c",
+      "size": 417278,
+      "url": "https://api.github.com/repos/local-inference-lab/b12x/git/blobs/eebb606f51beedaa136da32456cd9facdb4f4d4c"
+    },
+    {
+      "path": "b12x/attention/dsa_indexer/fused_indexer.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e03e6dd421fd7db7ca3fef84678b99c3f090a1a2",
+      "size": 139915,
+      "url": "https://api.github.com/repos/local-inference-lab/b12x/git/blobs/e03e6dd421fd7db7ca3fef84678b99c3f090a1a2"
+    },
+    {
+      "path": "b12x/attention/dsa_indexer/persistent_topk.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3fd88afce960f86aa11ea9493d7e600d6def3081",
+      "size": 35829,
+      "url": "https://api.github.com/repos/local-inference-lab/b12x/git/blobs/3fd88afce960f86aa11ea9493d7e600d6def3081"
+    },
+    {
+      "path": "b12x/comm/roce/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b4644203b0801e57737ae0d44c8208f437b62774",
+      "size": 2261,
+      "url": "https://api.github.com/repos/local-inference-lab/b12x/git/blobs/b4644203b0801e57737ae0d44c8208f437b62774"
+    },
+    {
+      "path": "b12x/comm/roce/_allgather_cute.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0c4de63d941652a49cd953c837199b197e455bbf",
+      "size": 13657,
+      "url": "https://api.github.com/repos/local-inference-lab/b12x/git/blobs/0c4de63d941652a49cd953c837199b197e455bbf"
+    },
+    {
+      "path": "b12x/comm/roce/_cute_intrinsics.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1e0ac9db55d7347ec8c101fe748e78a219a7ea4a",
+      "size": 9737,
+      "url": "https://api.github.com/repos/local-inference-lab/b12x/git/blobs/1e0ac9db55d7347ec8c101fe748e78a219a7ea4a"
+    },
+    {
+      "path": "b12x/comm/roce/_oneshot_cute.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "92fe911c57b629b3494a38a2cbc9166a1b907e19",
+      "size": 17032,
+      "url": "https://api.github.com/repos/local-inference-lab/b12x/git/blobs/92fe911c57b629b3494a38a2cbc9166a1b907e19"
+    },
+    {
+      "path": "b12x/comm/roce/_preparation.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1dc2302d0fe9b476eb6e91238966461a2d33c32d",
+      "size": 5197,
+      "url": "https://api.github.com/repos/local-inference-lab/b12x/git/blobs/1dc2302d0fe9b476eb6e91238966461a2d33c32d"
+    },
+    {
+      "path": "b12x/comm/roce/_proxy.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4a9ce22960ac2798915c694dd38ed7487a7aaad4",
+      "size": 9871,
+      "url": "https://api.github.com/repos/local-inference-lab/b12x/git/blobs/4a9ce22960ac2798915c694dd38ed7487a7aaad4"
+    },
+    {
+      "path": "b12x/comm/roce/_roce_proxy.c",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "27b45a432a3ee0f5a7cb263d27e4305d8d7a692e",
+      "size": 21487,
+      "url": "https://api.github.com/repos/local-inference-lab/b12x/git/blobs/27b45a432a3ee0f5a7cb263d27e4305d8d7a692e"
+    },
+    {
+      "path": "b12x/comm/roce/_tuning.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b4d882432563ecb21cf6ef76ee6bc37813696d5f",
+      "size": 2054,
+      "url": "https://api.github.com/repos/local-inference-lab/b12x/git/blobs/b4d882432563ecb21cf6ef76ee6bc37813696d5f"
+    },
+    {
+      "path": "b12x/comm/roce/api.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e884c6686368582201754ce69fee4fc3580c74ae",
+      "size": 614,
+      "url": "https://api.github.com/repos/local-inference-lab/b12x/git/blobs/e884c6686368582201754ce69fee4fc3580c74ae"
+    },
+    {
+      "path": "b12x/comm/roce/roce_oneshot.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b3436b996fbb353b0ad1852976baf4adf6ce5fa4",
+      "size": 38778,
+      "url": "https://api.github.com/repos/local-inference-lab/b12x/git/blobs/b3436b996fbb353b0ad1852976baf4adf6ce5fa4"
+    },
+    {
+      "path": "b12x/gemm/bf16_gemv/_prefill.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b726b4805166e1cfe125ade64d54004adf21c75a",
+      "size": 18114,
+      "url": "https://api.github.com/repos/local-inference-lab/b12x/git/blobs/b726b4805166e1cfe125ade64d54004adf21c75a"
+    },
+    {
+      "path": "b12x/moe/_shared/kernels/dynamic.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "38e18bf0dcc67f363cb120313bc96f890e2bba29",
+      "size": 524737,
+      "url": "https://api.github.com/repos/local-inference-lab/b12x/git/blobs/38e18bf0dcc67f363cb120313bc96f890e2bba29"
+    }
+  ]
+}

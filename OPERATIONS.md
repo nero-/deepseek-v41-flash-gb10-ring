@@ -1,203 +1,272 @@
 # Operating the ring
 
-Four GB10 nodes, one fabric, two kinds of workload:
-
-| Mode | Nodes | API | Model name |
+| Mode | Nodes | API | Model |
 |---|---|---|---|
-| SparkRing vLLM TP4 | all four | `http://192.168.50.219:8015/v1` | `DeepSeek-V4.1-Flash-TP4` |
-| Qwen3.8 TP2, Spark pair | spark-r0 + spark-r1 | `http://192.168.50.219:8000/v1` | `qwen3.8-flash-next-4p89bpw` |
-| Qwen3.8 TP2, GX10 pair | gx10-r0 + gx10-r1 | `http://192.168.50.23:8000/v1` | `qwen3.8-flash-next-4p89bpw` |
+| DeepSeek vLLM TP4 | all four | `http://192.168.50.219:8015/v1` | `DeepSeek-V4.1-Flash-TP4` |
 
-DeepSeek needs all four nodes' memory, so it runs alone. The two Qwen pairs are independent: run
-either one or both. No API keys are set.
+DeepSeek needs all four nodes. There are no API keys. Qwen serving on this ring
+was retired on 2026-10-12 UTC; the former port-8000 endpoints are no longer
+served. The [GLM handoff](../GLM/HANDOFF.md) records the storage cleanup and
+GLM assignment. On 2026-10-14 the user requested stopping GLM and restoring
+DeepSeek for the HF inference-change audit. DeepSeek is now serving on 8015;
+GLM's qualified Weightless alpha-2 profile remains saved and stopped. Stop
+DeepSeek before switching back. See [GLM operations](../GLM/README.md) and
+[the audit](results/20261014-hf-runtime-audit/REPORT.md).
 
-## Host maintenance baseline
-
-All four nodes were updated and rebooted on September 30, 2026 HST. They run
-kernel `7.0.0-1019-nvidia` and driver `580.178.04`; no newer kernel or firmware
-was offered by their configured feeds. An obsolete 6.17 GRUB pin was removed,
-restoring newest-installed-kernel selection. NetworkManager wait-online is now
-enabled to prevent the observed DHCP/fabric startup race; its next-boot behavior
-has not yet been retested. Host backups are under
-`/var/backups/deepseek-maintenance-20260930/`.
-
-All four nodes use a persistent **2350 MHz upper GPU clock limit**, selected by
-the user after the clock trials. The GPU can still downclock when idle; observed
-sustained clocks were about 2335 MHz. The cap applies to both DeepSeek and Qwen.
-`gb10-gpu-clock-cap.service` applies it at boot before Docker, retries failures,
-and remains enabled. Its source is [here](host/systemd/gb10-gpu-clock-cap.service).
-See the [maintenance and clock report](MAINTENANCE-20260930.md).
-
-After a manual GPU/driver reset, reapply with
-`sudo systemctl reload gb10-gpu-clock-cap.service`. The unit does not periodically
-poll or enforce clocks. To deliberately return to stock, disable the unit with
-`sudo systemctl disable --now gb10-gpu-clock-cap.service`, then run
-`sudo nvidia-smi -rgc`. Stopping the unit alone does not reset clocks.
-
-## Switching (from the Mac, in this repo)
+## Switching from the Mac
 
 ```bash
-scripts/ring-mode.sh status              # mesh state and containers on every node
-scripts/ring-mode.sh ds                  # selected vLLM configuration (~7 min warm)
-scripts/ring-mode.sh ds-vllm-stock        # unchanged official SparkRing defaults
-scripts/ring-mode.sh qwen gx10           # stop DeepSeek and both meshes; start the GX10 Qwen pair
-scripts/ring-mode.sh qwen spark          # same for the Spark pair
-scripts/ring-mode.sh qwen both           # both Qwen pairs
-scripts/ring-mode.sh stop                # stop everything (mesh left as is)
+cd ~/Agent/Builds/deepseek-v41-flash-ring
+./scripts/ring-mode.sh ds
+./scripts/ring-mode.sh recover-ds
+./scripts/ring-mode.sh stop
+./scripts/ring-mode.sh status
 ```
 
-`ds` returns once the selected vLLM API is healthy. `qwen` returns once each pair's
-`/health` answers. The root-owned `/usr/local/sbin/deepseek-ring-control` helper on
-spark-r0 has fixed passwordless lifecycle actions. It coordinates the SparkRing
-mesh, which is disabled in Qwen mode. The retired SGLang mesh is removed. A local selected profile is stored separately from the official
-installer deployment, under `/etc/deepseek-ring/optimized-specs.json`.
-
-Your existing Qwen controller still works for the pairs themselves
-(`~/Agent/Builds/qwen38-flash-next-spark/spark-ctl.sh start|stop|status [spark|gx10]`), but it does
-not stop DeepSeek first. Use `ring-mode.sh` when switching between the two.
+`ds` and `recover-ds` return when the selected API is healthy; allow roughly
+7–16 minutes for startup. `recover-ds` first stops workloads and the entire
+mesh. Both retired Qwen pair stop entry points remain idempotent for DS recovery.
+`ring-mode.sh qwen` reports retirement before any SSH, DS stop or mesh change.
 
 ## Using DeepSeek
 
 ```bash
-curl http://192.168.50.219:8015/v1/chat/completions -H 'Content-Type: application/json' -d '{
-  "model": "DeepSeek-V4.1-Flash-TP4",
-  "messages": [{"role": "user", "content": "Hello"}],
-  "max_tokens": 1024,
-  "chat_template_kwargs": {"thinking": false}
-}'
+curl http://192.168.50.219:8015/v1/chat/completions \
+  -H 'Content-Type: application/json' -d '{
+    "model": "DeepSeek-V4.1-Flash-TP4",
+    "messages": [{"role": "user", "content": "Hello"}],
+    "max_tokens": 1024,
+    "chat_template_kwargs": {"thinking": false}
+  }'
 ```
 
-- **Thinking is on by default in the new vLLM profile.** Set `"chat_template_kwargs": {"thinking": false}` explicitly for non-thinking requests and comparable benchmarks.
-- Send `max_tokens` to bound the response. Tools and images passed the functional probes.
-- Configured context limit is 1,048,576 tokens, with 16 active sequences. The 8K batch ceiling controls scheduler work per iteration; it is not the context limit or per-request reservation. The selected adaptive plugin lowers a step to 4K only when at least four runnable decoders contend with prefill. Sixteen active sequences does not imply sixteen simultaneous 1M-token contexts; aggregate KV capacity still applies.
-- Greedy repeatability currently fails in the pinned vLLM stack, including the untouched stock profile. See the migration report for quality results and the rejected deterministic-kernel trial.
+Thinking is on by default. Set `thinking: false` explicitly for ordinary
+non-thinking requests and comparable benchmarks. Send `max_tokens` to bound
+the answer. Tools and images passed the retained functional checks.
 
-## vLLM lifecycle on spark-r0
+The context limit is 1,048,576 tokens, with 16 active sequences. The 8K batch
+ceiling controls work per iteration; it is not a per-request reservation. The
+adaptive plugin uses 4K steps only when at least four runnable decoders contend
+with prefill. Aggregate KV capacity limits simultaneous long contexts.
+Greedy byte-repeatability is not guaranteed by this pinned runtime.
+
+## Lifecycle on spark-r0
+
+When no competing model workload is running:
 
 ```bash
-sudo -n deepseek-ring-control up
-sudo -n deepseek-ring-control down
-sudo -n deepseek-ring-control status
-sudo -n deepseek-ring-control stock-up
+sudo -n /usr/local/sbin/deepseek-ring-control up
+sudo -n /usr/local/sbin/deepseek-ring-control down
+sudo -n /usr/local/sbin/deepseek-ring-control status
 ```
 
-Use `ring-mode.sh` when changing engines: the fixed helper does not stop Qwen
-containers for you. The selected local containers use `ds41-optimized-r0`
-through `r3`; official stock containers retain their installer-generated names.
-Inspect a selected rank with `docker logs --tail 100 ds41-optimized-r0`.
+These fixed actions already have passwordless sudo. The root-owned helper
+validates recorded images, commands, mounts and plugin hashes, then checks the
+mesh before starting `ds41-optimized-r0` through `r3`.
+Inspect rank 0 with `docker logs --tail 100 ds41-optimized-r0`.
 
-The selected images include the complete KK #926/#943 compressor-state
-correction, layered on the pinned SparkRing/eugr stack. Per-rank immutable
-image IDs and source hashes are in
-[the correction receipt](results/20260929-kk926/images.json) and
-[manifest](image/kk926/manifest.json). The endpoint and performance profile
-are unchanged. `VLLM_USE_FASTOKENS` remains unset after the completed
-[serving trial](FASTOKENS-SERVING-20260929.md): long-prompt TTFT improved, but
-C8 decode was lower in both candidate runs. The trial restored the exact
-KK926-corrected HF configuration and verified the live source hashes on all
-four ranks. [Final selection receipt](results/20260929-fastokens/deployment.json).
+`status` reports the selected deployment first, then the installer stock
+fallback. Stopped stock containers are expected. Its status can also report
+missing broad fabric routes; the selected mesh gate and API health check
+establish serving readiness. `ds-vllm-stock` remains an emergency fallback,
+but its older image predates the compressor-state fidelity fix.
 
-The unused candidate images `dsv41-sparkring:kk926-fastokens-032` are retained;
-[per-rank IDs](results/20260929-fastokens/images.json) distinguish them from
-the selected corrected HF parents. The temporary `ds41-before-fastokens-r*`
-containers were renamed back to `ds41-optimized-r*` during rollback. The trial
-backup is `/etc/deepseek-ring/.before-fastokens-20260929T203153Z/optimized-specs.json`.
-Do not rerun the trial's `rollback` now: it has already completed. The trial
-scripts are campaign-specific and preserve local launch receipts.
+## After a node reboot
 
-The pre-correction optimized containers are retained, stopped, as
-`ds41-before-kk926-r0` through `r3`, with restart policy `no`. Their old image
-and the checkpoint are retained too. The original root-owned configuration is
-backed up under
-`/etc/deepseek-ring/.before-kk926-20260929T182649Z/optimized-specs.json` on spark-r0.
-From this existing Mac checkout, explicit rollback is:
+Wait for SSH on all four nodes, then run on the Mac:
 
 ```bash
-/opt/homebrew/bin/python3.12 scripts/kk926-rollback.py
+./scripts/ring-mode.sh recover-ds
 ```
 
-That script verifies the current selection and both generations of images,
-stops/removes only the corrected selected containers, restores the configuration
-through the checked root-owned bundle writer, renames the old containers, and
-starts them through the normal controller. Host-specific launch receipts remain
-local and are required by this fleet-specific script. The rollback and
-`ds-vllm-stock` images both predate the compressor fix; they are operational
-fallbacks with the known model-fidelity defect.
-
-`status` reports the local selected deployment first, then the official stock
-deployment; a stopped stock deployment is expected while the selected one runs.
-
-## Rejected October CSF campaign
-
-The integrated CSF/beta/updated-SparkRing candidate was rejected for slower
-prefill and concurrent decode. The exact previous corrected HF images and
-original checkpoint were restored on all four ranks. The permanent controller,
-plugins and selected configuration remain unchanged; normal commands above
-continue to use the original recipe. All original shard hashes were verified,
-the GX10 originals were recovered by lossless reconstruction followed by direct
-fabric transfer from the verified Spark originals. Remaining GX10 CSF trees
-were removed before that transfer; Spark CSF trees were removed after serving
-was healthy. The 2350 MHz cap remains enabled. No repeat full benchmark of the restored recipe was run.
-
-[Campaign and recovery record](CSF-UPGRADE-20261004.md),
-[candidate full benchmark](FULL-BENCHMARK-CSF-20261004.md), and
-[final restored audit](results/20261004-csf/restored-final-audit.json).
-Campaign scripts require private receipts and are historical; do not rerun
-completed promotion, rollback or cleanup phases blindly.
-
-## After a reboot
-
-- SparkRing manages the fabric through NetworkManager. The enabled mesh service follows the last selected mode; old netplan files are preserved in the migration backup. Do not reapply the original setup recipe over the installed fabric.
-- Nothing starts serving by itself: run `scripts/ring-mode.sh ds` or `qwen ...`.
-- Check the fabric if anything looks off: `ring/rdma_links.sh` (8 direct links, ~13.3 GB/s each) The startup controller also runs the installer's mesh gate on every rank. `ring/mesh_paths.sh` is the historical path probe; do not run fabric benchmarks during serving.
-
-## Health checks
+From **spark-r0**, with no competing model workload running, the equivalent sequence is:
 
 ```bash
-ssh spark-r0 'python3 ~/sparkring-migration-20260927/smoke.py --url http://127.0.0.1:8015 --model DeepSeek-V4.1-Flash-TP4 --needle 131072'
-ssh gx10-r0 'MATCHED=1 PORT=8015 MODEL=DeepSeek-V4.1-Flash-TP4 bash ~/bench/lilbench.sh mytag matrix'     # LIL v0.6.2, same cases as the Qwen campaign
+sudo -n /usr/local/sbin/deepseek-ring-control down
+sudo -n /usr/local/sbin/deepseek-ring-control mesh-off
+sudo -n /usr/local/sbin/deepseek-ring-control up
 ```
 
-## Where things live
+Restart the fleet together; do not restart one mesh supervisor under surviving
+DeepSeek workers. The selected containers do not serve automatically after
+reboot. SparkRing manages NetworkManager fabric profiles; do not reapply the
+old setup recipe or netplan snapshots.
 
-| What | Where |
+### RoCE GID differs after a peer reboot
+
+In the October 6 HST incident, spark-r1 rebooted and gx10-r1's two
+counterclockwise interfaces placed IPv4 RoCE v2 in GID **4**, leaving required
+GID **3** empty. The checkpoint and images were intact. Restarting supervisors
+alone did not repair that allocation.
+
+First stop all workloads and mesh supervisors from the Mac:
+
+```bash
+./scripts/ring-mode.sh stop
+ssh -o HostName=192.168.50.219 -o ProxyCommand=none spark-r0 \
+  'sudo -n /usr/local/sbin/deepseek-ring-control mesh-off'
+```
+
+Read the affected node's error:
+
+```bash
+ssh -o HostName=192.168.50.192 -o ProxyCommand=none gx10-r1 \
+  'journalctl -u sparkring-sparkring-deepseek-v41-flash-adaefa-mesh.service -n 30 --no-pager'
+```
+
+For the **same gx10-r1 counterclockwise failure**, run on **gx10-r1**:
+
+```bash
+sudo -n nmcli connection down sparkring-sparkring-r2-ccw-primary
+sudo -n nmcli connection down sparkring-sparkring-r2-ccw-secondary
+sudo -n nmcli connection up sparkring-sparkring-r2-ccw-primary
+sudo -n nmcli connection up sparkring-sparkring-r2-ccw-secondary
+for hca in rocep1s0f1 roceP2p1s0f1; do
+  cat /sys/class/infiniband/$hca/ports/1/gids/3
+  cat /sys/class/infiniband/$hca/ports/1/gid_attrs/types/3
+done
+```
+
+Expected GID 3 values are `0000:0000:0000:0000:0000:ffff:0a0a:010b`
+and `0000:0000:0000:0000:0000:ffff:0a0b:010b`, both **RoCE v2**.
+Then run `./scripts/ring-mode.sh ds` from the Mac. The mesh gate checks all ranks.
+
+For another node or port, identify its existing `sparkring-*` profile and
+expected address first. Do not change the recipe to GID 4 or bounce the
+management LAN. `recover-ds` resets supervisors; it does not bounce fabric links.
+[Recovery audit](results/recovery-20261007T094058Z/final-audit.json).
+
+### Decode slows to roughly half speed
+
+Check clocks **during generation**, on every node:
+
+```bash
+nvidia-smi --query-gpu=clocks.sm,utilization.gpu,power.draw,temperature.gpu --format=csv
+```
+
+After the October 6 HST reboot, spark-r1 stayed at **611 MHz** under
+94–96% load and drew about 10–14 W. The other three nodes ran near 2350 MHz.
+Reapplying the clock ceiling and briefly requesting a fixed 2350 MHz both
+reported success but left the actual clock at 611 MHz. The mesh and selected
+image/configuration were intact. A physical power disconnect restored its
+clock to 2320–2333 MHz under load. The underlying power-delivery/firmware cause
+is inferred from the symptoms; stock telemetry did not expose the platform cap.
+
+The investigation also included a clean spark-r0 reboot after a memory-bandwidth
+imbalance. Final sustained LIL 8K C1 measured **60.96 tokens/s**, matching the
+retained original-checkpoint baseline of **60.98 tokens/s**. Three short prose
+C1 probes measured 64.05–69.06 tokens/s. A fresh 125K-token retrieval passed.
+The original image, checkpoint, plugins and 2350 MHz ceiling remained selected.
+
+[Similar GB10 reports](https://forums.developer.nvidia.com/t/dgx-spark-gb10-gpu-clock-pinned-at-721-mhz-under-full-load-no-throttling-not-liftable-via-nvidia-smi/376039)
+were resolved by a full power disconnect. Stop DeepSeek and all mesh
+supervisors as above, shut down the affected node cleanly, then disconnect its
+power adapter from both the wall and node for 1–2 minutes. Reconnect and boot,
+wait for SSH, then run `./scripts/ring-mode.sh recover-ds`. Check GID 3 if the
+mesh gate fails. Verify all four clocks under generation and repeat a short C1
+probe before declaring recovery. A healthy API alone does not prove normal speed.
+
+## Fabric and host maintenance
+
+Rank order is spark-r0 → spark-r1 → gx10-r1 → gx10-r0 → spark-r0.
+Each rank's f0 cable connects to the next rank's f1. Every cable carries two
+Socket Direct RoCE planes, `10.10.N.10/11` and `10.11.N.10/11`. MTU is 9000;
+IPv4 RoCE v2 uses GID 3. SSH and APIs use the management LAN.
+
+All four hosts run kernel `7.0.0-1019-nvidia`, driver `580.178.04`, with
+NetworkManager wait-online enabled. The enabled
+[clock-cap service](host/systemd/gb10-gpu-clock-cap.service) applies a 2350 MHz
+upper limit before Docker at boot; idle downclocking remains enabled. After a
+manual GPU/driver reset, reapply it with:
+
+```bash
+sudo systemctl reload gb10-gpu-clock-cap.service
+```
+
+Do not restart the mesh while serving or overlap DeepSeek with another model. Avoid
+`netplan apply` on GX10s: it can stop NetworkManager. For stopped-fleet fabric
+diagnostics, `bash ring/rdma_links.sh` checks direct links;
+`ring/mesh_paths.sh` checks hardware-forwarded opposite paths and requires
+Bash 4+ on Linux or an explicitly selected newer Bash on the Mac. Do not run
+fabric bandwidth/latency tests during serving.
+
+## Validation and benchmarks
+
+From this checkout:
+
+```bash
+python3 bench/functional.py http://192.168.50.219:8015/v1
+python3 bench/cold-needle.py --url http://192.168.50.219:8015 \
+  --tokens 131072 --output /tmp/deepseek-needle.json
+python3 scripts/run-full-benchmark.py
+```
+
+The full runner uses the already-installed LIL v0.6.2 harness and environment
+on gx10-r0. It runs the 20-cell sustained grid, burst grid, coding probes and
+fresh retrieval through 1M tokens, recording request settings and configuration
+hashes. It requires an already healthy selected service and does not change
+serving settings. Benchmark traffic affects interactive latency; run when idle.
+`bench/indexer-startup-check.py` is the local CPU activation regression check.
+
+### Comparing with public SparkRing results
+
+The runner above uses `lil_matched.py`, which explicitly forces thinking off,
+top_p=1 and top_k=-1. The public SparkRing LIL invocation does not apply those
+overrides. Both are LIL benchmarks, but the request settings differ.
+On October 14, the original build measured 197.67/271.32 tokens/s at 8K C8/C16
+with the public invocation; the clean upstream copy was slower at C8.
+See the [matched comparison](results/20261014-upstream-baseline/REPORT.md).
+
+The comparison's unmodified LIL 0.7.6 script is pinned at
+`~/bench/upstream-baseline-20261014/lil-0.7.6.py` on gx10-r0. Run it directly,
+without `lil_matched.py`, with `LLM_BENCH_NO_UPDATE_CHECK=1` and:
+
+```text
+--host 192.168.50.219 --port 8015 --model DeepSeek-V4.1-Flash-TP4
+--no-hw-monitor --display-mode plain --no-resume --temperature 1
+--concurrency 1,2,4,8,16 --contexts 8k,16k,32k,64k,128k
+--duration 20 --max-tokens 2048 --coding-peak --output <unique-result.json>
+```
+
+Preserve both protocols' labels and raw results. Matching a public command does
+not control different hardware clocks, client placement or stochastic variation.
+
+## Installed paths
+
+| Item | Path |
 |---|---|
-| SparkRing checkpoint | `/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277` on all ranks (independent regular files; the old hard-link names were removed) |
-| Local selected configuration | `/etc/deepseek-ring/optimized-specs.json`; root-owned plugins under `/usr/local/lib/deepseek-ring/plugins` |
+| Selected config | `/etc/deepseek-ring/optimized-specs.json` on spark-r0 |
+| Selected plugins | `/usr/local/lib/deepseek-ring/plugins` on each node |
+| Selected 1017 checkpoint | `/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash-1017/1bae0e1088993b9b82de08f59de5be5a34e42170` on every node |
+| Rollback checkpoint | `/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277` on the two Sparks; GX10 weight shards removed |
+| Tuning cache | `/srv/sparkring/sparkring/cache` on every node |
 | SparkRing deployment | `/var/lib/sparkring/controller/deployments/deepseek-v41-flash-tp4-iba1b36389e5d` on spark-r0 |
-| Migration evidence | spark-r0 `~/sparkring-migration-20260927` and local `results/20260928` |
-| Fabric | SparkRing NetworkManager profiles; pre-migration netplan snapshots in the migration evidence |
-| Qwen TP2 | `~/builds/qwen-tp2` on each pair; GX10s keep only `model-5500h` |
-| Bench tools and results | gx10-r0 `~/bench` |
+| Retired Qwen source/config and stop compatibility | `~/builds/qwen-tp2` on every node; weights/caches/images removed |
+| Benchmark environment | `~/bench` on gx10-r0 |
 
-## Things not to do
+The private local `results/20261017-checkpoint-upgrade/selected-1017.json` matches
+the live selected config and is excluded from Git. The September 29
+`selected-corrected.json` is the old rollback configuration. Preserve both;
+never replace the root-owned live selection without checking image identities,
+plugin manifests and container state.
 
-- Do not restart the SparkRing mesh while DeepSeek is serving: fabric reinitialization drops RDMA connections.
-- Don't `netplan apply` on the GX10s (it stops NetworkManager there); use `netplan generate` and
-  `sudo systemctl restart NetworkManager`.
-- Don't run DeepSeek and a Qwen pair at the same time: DeepSeek needs every node's memory.
+## Rolling back the 1017 checkpoint upgrade
 
-## Recording a local selection
+Normal `ds` / `recover-ds` uses the qualified 1017 selection. Do not use
+`stock-up` or start the retained `ds41-rollback-1017-rN` containers directly:
+the old GX10 weight shards no longer exist. Both Sparks retain verified old
+weights and all four original images remain available.
 
-The installer owns its stock deployment. `bench/installer_variant.py` records separate experimental specs and source hashes on the head; it never overwrites the upstream receipt. After reviewing a qualified adaptive-budget trial, stop serving and use `scripts/install-selected.py RECEIPT --profile engram-adaptive4k` as root on the head. It checks the pinned image and per-rank plugin hashes, installs only the selected plugin in a root-owned directory on all four nodes, and writes `/etc/deepseek-ring/optimized-specs.json`. It refuses to replace an existing selection automatically.
+The campaign at `~/Agent/Diagnostics/deepseek-v41-flash-ring/upgrade-1017-20261017/`
+contains `cutover.py rollback`, the original/qualified configurations and full
+hash/deletion receipts. Inspect current live state and those receipts first.
+The rollback action stops the new fleet, restores old container names and
+selection, removes only the new GX10 weight shards, copies and hash-verifies
+the old shards from adjacent Sparks over the fabric, then starts the old model.
+It needs substantial transfer/startup time and must run with all GPU workloads
+stopped. Its temporary artifact servers must be cleaned up afterward using
+recorded PID/command ownership. Do not overwrite a later unknown selection.
 
-The root-owned lifecycle helper verifies the selected configuration, image/command/environment/mounts, plugin ownership and SHA-256 hashes before startup. Its sudoers rule grants only fixed lifecycle actions. It runs the installed SparkRing mesh gate before starting the selected containers. To change a selection later, stop it, archive its configuration and logs, then explicitly replace its owned containers/configuration with the newly qualified specs. Do not edit a live shell script or plugin in place.
-
-For a qualified follow-up indexer receipt, the workstation controller supports
-replacement with automatic rollback:
-
-```bash
-/opt/homebrew/bin/python3.12 scripts/promote-research.py RECEIPT --profile engram-adaptive4k-query-indexer
-/opt/homebrew/bin/python3.12 scripts/promote-research.py RECEIPT --profile engram-adaptive4k-query-indexer --execute
-```
-
-The first command validates evidence and prints the proposed manifest. Execution
-requires the recorded selection decision, passing long-input/mixed checks,
-request-based startup activation and zero rejected numerical geometries. It
-checks that the current selection still matches the trial snapshot, preserves
-root-owned backups, and replaces only the selected plugin bundle, configuration
-and stopped optimized containers. It retains the checkpoint and stock fallback.
-If startup fails, it restores the previous bundle/configuration and starts that
-profile. Trial launch receipts are host-specific and kept locally; measurement
-and source/hash evidence are tracked in Git. The query-indexer plugin arms on
-real requests after each worker starts, without an activation sentinel.
+The GLM baseline and Weightless starters recognize both exact qualified DS
+configuration hashes. Their host-file receipts were updated without changing
+GLM settings or starting it; see `../GLM/results/ds1017-compatibility/receipt.json`.

@@ -1,0 +1,47 @@
+--- pinned/inference/model.py
++++ latest/inference/model.py
+@@ -533,7 +533,7 @@
+         bsz, seqlen, _ = x.size()
+         ratio, rd, end_pos = self.compress_ratio, self.rope_head_dim, start_pos + seqlen
+ 
+-        # latent is None while a group is still filling up, so there is nothing to publish yet
++        # Append index keys when a compression group completes.
+         if self.owns_k and latent is not None:
+             # a latent stands for the first token of its group, so group j takes position j * ratio
+             freqs = (
+@@ -545,6 +545,7 @@
+             apply_rotary_emb(k[..., -rd:], freqs)
+             fp4_act_quant(k, fp4_block_size, True)
+             self.k_cache[:bsz, start_pos // ratio : start_pos // ratio + k.size(1)] = k
++        if self.owns_k:
+             shared_attn.index_k = self.k_cache
+ 
+         q = self.wq_b(qr).unflatten(-1, (self.n_local_heads, self.index_head_dim))
+@@ -781,8 +782,9 @@
+         apply_rotary_emb(o[..., -rd:], freqs_cis, True)
+ 
+         # wo_a is block-diagonal over groups (each projects only its own heads), hence einsum not
+-        # Linear. convert.py dequantizes it to bf16; an fp8 grouped GEMM would halve the memory.
++        # Linear. convert.py dequantizes it to bf16; quantize/dequantize o before einsum.
+         o = o.view(bsz, seqlen, self.n_local_groups, -1)
++        act_quant(o, fp8_block_size, scale_fmt, scale_dtype, True)
+         wo_a = self.wo_a.weight.view(self.n_local_groups, self.o_lora_rank, -1)
+         o = torch.einsum("bsgd,grd->bsgr", o, wo_a)
+         x = self.wo_b(o.flatten(2))
+@@ -1068,6 +1070,7 @@
+         apply_rotary_emb(o[..., -rd:], freqs_cis, True)
+ 
+         o = o.view(bsz, block_size, self.n_local_groups, -1)
++        act_quant(o, fp8_block_size, scale_fmt, scale_dtype, True)
+         wo_a = self.wo_a.weight.view(self.n_local_groups, self.o_lora_rank, -1)
+         o = torch.einsum("bsgd,grd->bsgr", o, wo_a)
+         x = self.wo_b(o.flatten(2))
+--- pinned/inference/requirements.txt
++++ latest/inference/requirements.txt
+@@ -5,5 +5,5 @@
+ numpy
+ sympy
+ Pillow
+-tilelang==0.1.8
++tilelang==0.1.12
+ tqdm

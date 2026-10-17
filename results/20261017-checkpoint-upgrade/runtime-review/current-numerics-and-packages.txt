@@ -1,0 +1,67 @@
+PACKAGE vllm 0.1.dev21510+g1794dcf18.d20260924
+PACKAGE b12x 1.3.0
+PACKAGE flashinfer-python 0.7.0
+PACKAGE nvidia-cutlass-dsl 4.7.0
+PACKAGE torch 2.13.0+cu130
+FILE /usr/local/lib/python3.12/dist-packages/vllm/models/deepseek_v32/attention.py
+621             seq_lens: torch.Tensor | None
+622             query_start_loc: torch.Tensor | None
+623             if self.use_pcp:
+624                 decode_metadata = getattr(attn_metadata, "decode", None)
+625                 if decode_metadata is not None:
+626                     seq_lens = decode_metadata.seq_lens
+627                 else:
+628                     all_seq_lens = cast(
+629                         torch.Tensor,
+630                         attn_metadata.seq_lens,  # type: ignore[attr-defined]
+FILE /usr/local/lib/python3.12/dist-packages/vllm/models/deepseek_v4_1/attention.py
+1504                 metadata_specs,
+1505             )
+1506             context = get_forward_context()
+1507             shared = context.__dict__.setdefault("_ds41_decode_metadata", {})
+1508             entry = shared.get(key)
+1509             if entry is None or entry[0] is not swa or entry[1] is not main:
+1510                 metadata_buffers = tuple(
+1511                     torch.empty(shape, dtype=dtype, device=q.device)
+1512                     for shape, dtype in metadata_specs
+1513                 )
+1514                 retain_cuda_graph_capture_resource(metadata_buffers)
+1515                 self._write_decode_metadata(metadata_buffers, swa, main, rows)
+1516                 entry = shared[key] = (swa, main, metadata_buffers)
+1517             buffers = [*entry[2], *buffers[metadata_count:]]
+1518         else:
+1519             self._write_decode_metadata(buffers, swa, main, rows)
+1520         swa_indices, swa_lengths, top_lengths = buffers[:3]
+1521         kwargs = {}
+1522         if main is not None:
+1523             kwargs = dict(
+1547             cache_format="deepseek_v41",
+1548         )
+1549 
+1550     def _write_decode_metadata(self, buffers, swa, main, rows):
+1551         swa_indices, swa_lengths, top_lengths = buffers[:3]
+1552         visible = main.cache_lengths if main is not None else swa.cache_lengths
+1553         _chunk[(rows,)](
+1554             swa.positions,
+FILE /usr/local/lib/python3.12/dist-packages/vllm/models/deepseek_v4/amd/rocm.py
+483 
+484 
+485 class DeepseekV4ROCMAiterSparseSWAMetadataBuilder(DeepseekSparseSWAMetadataBuilder):
+486     # Keep fused multi-step decode disabled until update_draft_decode_metadata()
+487     # also refreshes the ROCm-specific ragged SWA indices and indptrs.
+488     supports_draft_decode_metadata_update = False
+489 
+490     def __init__(self, *args, **kwargs):
+491         super().__init__(*args, **kwargs)
+492         max_tokens = self.vllm_config.scheduler_config.max_num_batched_tokens
+FILE /usr/local/lib/python3.12/dist-packages/vllm/models/deepseek_v41/amd/rocm.py
+398 
+399 
+400 class DeepseekV4ROCMAiterSparseSWAMetadataBuilder(DeepseekV41SparseSWAMetadataBuilder):
+401     # Keep fused multi-step decode disabled until update_draft_decode_metadata()
+402     # also refreshes the ROCm-specific ragged SWA indices and indptrs.
+403     supports_draft_decode_metadata_update = False
+404 
+405     def __init__(self, *args, **kwargs):
+406         super().__init__(*args, **kwargs)
+407         max_tokens = self.vllm_config.scheduler_config.max_num_batched_tokens

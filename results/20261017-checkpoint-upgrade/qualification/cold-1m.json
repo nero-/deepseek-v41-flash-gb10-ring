@@ -1,0 +1,28 @@
+{
+  "args": {
+    "tokens": 1048576,
+    "output": "candidate-quality/cold-1m.json",
+    "url": "http://192.168.50.219:8015"
+  },
+  "nonce": "b0962d55ef914ed787e3040adedfeeb2",
+  "prompt_sha256": "cf39512e40bf4e276b9f6fdddd3d243bd5ec461b0538388d3d92375906ec8c47",
+  "expected": "RING-6305-COBALT",
+  "answer": "RING-6305-COBALT",
+  "usage": {
+    "prompt_tokens": 1008428,
+    "total_tokens": 1008437,
+    "completion_tokens": 9,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "created_cache_tokens": 1008128
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  },
+  "ttft_seconds": 345.88328429099784,
+  "elapsed_seconds": 345.89043087499886,
+  "cached_tokens": 0,
+  "needle_pass": true,
+  "cold_confirmed": true
+}

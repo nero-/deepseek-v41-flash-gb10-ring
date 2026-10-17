@@ -1,0 +1,13 @@
+{
+  "source_files_unmodified": true,
+  "measured_decode_streams": 140,
+  "all_decode_http_200": true,
+  "all_decode_exactly_256_tokens": true,
+  "thinking_off_all_streams": true,
+  "zero_failed_streams": true,
+  "generation_counters_match_benchmark_plus_32_token_warmups": true,
+  "prefill_requests": 12,
+  "prefill_errors": 0,
+  "api_healthy": true,
+  "serving_configuration_unchanged": true
+}

@@ -1,9 +1,0 @@
-{
-  "argv": [
-    "nvidia-smi",
-    "-rgc"
-  ],
-  "exit_code": 0,
-  "stdout": "All done.\n",
-  "stderr": ""
-}

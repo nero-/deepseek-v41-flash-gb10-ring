@@ -1,0 +1,121 @@
+{
+  "status": "standby_research_only_not_implemented",
+  "reviewed_utc": "2026-10-17T10:12:08.462696+00:00",
+  "checkpoint": {
+    "repo": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
+    "revision": "1bae0e1088993b9b82de08f59de5be5a34e42170"
+  },
+  "base": {
+    "vllm": "03c4af34fbe6d2ff863bd03a6ed255c4de96785b",
+    "b12x": "c8e461281a3872a0e5de2485ef1df3df6556f07c",
+    "compressor_fix": "7b935cb78a3f1f256b04006e82504a651685f72d",
+    "parser_fix": "eba11af7a0502738e67f98cb547494978e84cb14",
+    "encoder_after_sha256": "975347b83ee68f06027893d2a8bcd248323186fe2f778a039cb5c639f85afd51",
+    "deployment_identity": "Resolve results/deployment.json and 20261017-checkpoint-upgrade completion evidence at execution; candidate IDs are not assumed selected."
+  },
+  "candidate_changes": {
+    "fi-pr25": {
+      "title": "b12x BF16 prefill projection: fence stage reuse before TMA refills",
+      "commit": "bbda89255b955b0d23ff008f41f7d169702e741b",
+      "merged_at": "2026-10-15T15:41:20Z",
+      "url": "https://github.com/local-inference-lab/flashinfer/pull/25"
+    },
+    "fi-pr24": {
+      "title": "b12x dynamic MoE: fence stage reuse before TMA refills",
+      "commit": "0d7906847edffcf168f7277a9eaabbad418f902a",
+      "merged_at": "2026-10-15T15:22:59Z",
+      "url": "https://github.com/local-inference-lab/flashinfer/pull/24"
+    },
+    "fi-pr16": {
+      "title": "b12x dense GEMM: fence stage reuse on every mainloop path",
+      "commit": "eff47835e107f558cc469284bc9f38aef5c8ac1c",
+      "merged_at": "2026-10-15T13:31:53Z",
+      "url": "https://github.com/local-inference-lab/flashinfer/pull/16"
+    },
+    "fi-pr19": {
+      "title": "b12x DSA indexer: synchronize publishing warps before grid-barrier arrival",
+      "commit": "3603bb317bb1f44f00e5c6aa26738d0aca6f0bcc",
+      "merged_at": "2026-10-15T13:42:35Z",
+      "url": "https://github.com/local-inference-lab/flashinfer/pull/19"
+    },
+    "vllm-pr918": {
+      "title": "fix(ds41): share decode page metadata across CUDA graphs",
+      "commit": "1d95593e751e28632a730076fb584b5e4473a4c6",
+      "merged_at": "2026-09-27T17:11:52Z",
+      "url": "https://github.com/local-inference-lab/vllm/pull/918"
+    },
+    "vllm-pr911": {
+      "title": "DS4.1: BF16 sparse attention arithmetic and FP32 logits by default",
+      "commit": "31c6c347f9826b36d1a0d2ade75fc528f56dff12",
+      "merged_at": "2026-09-27T15:19:16Z",
+      "url": "https://github.com/local-inference-lab/vllm/pull/911"
+    }
+  },
+  "two_shot": {
+    "commit": "425fb6b4095d0259228e12432b2635ae833b4a43",
+    "parent": "d4f22893cca5e96c46ff06b3258e189cf0c559c3",
+    "url": "https://github.com/local-inference-lab/flashinfer/commit/425fb6b4095d0259228e12432b2635ae833b4a43"
+  },
+  "releases": {
+    "karmic-kraken-20261016.2": {
+      "flashinfer": {
+        "source_commit": "6023d031be8e32b4b8a749dbb5d17d7d246b939b",
+        "repository": "local-inference-lab/flashinfer",
+        "branch": "community/karmic-kraken-cu134-sm120"
+      },
+      "instanttensor": {
+        "source_commit": "747390dc2bd1e0a18b0c7b13a09a38594edf342f",
+        "repository": "local-inference-lab/InstantTensor",
+        "branch": "main"
+      },
+      "lmcache": {
+        "source_commit": "8ef537d6481b0d7c93277118ffcc6bf7e68d1b22",
+        "repository": "local-inference-lab/LMCache",
+        "branch": "integration/local-inference-lab"
+      },
+      "nccl": {
+        "source_commit": "300f3a73caba7196e436571d9ac34069e81edea4",
+        "repository": "local-inference-lab/nccl-canonical",
+        "branch": "canonical/cu134-nccl2312-amd-turin"
+      },
+      "vllm": {
+        "source_commit": "8244d1c44348ae8a5bbfc9f1b607021652283ed4",
+        "repository": "local-inference-lab/vllm",
+        "branch": "dev/karmic-kraken"
+      }
+    },
+    "karmic-kraken-beta-20261016.2": {
+      "flashinfer": {
+        "source_commit": "79819b112f8bda7d09709c24bb31de16d7ce59c6",
+        "repository": "local-inference-lab/flashinfer",
+        "branch": "integration/karmic-kraken-beta"
+      },
+      "instanttensor": {
+        "source_commit": "747390dc2bd1e0a18b0c7b13a09a38594edf342f",
+        "repository": "local-inference-lab/InstantTensor",
+        "branch": "main"
+      },
+      "lmcache": {
+        "source_commit": "8ef537d6481b0d7c93277118ffcc6bf7e68d1b22",
+        "repository": "local-inference-lab/LMCache",
+        "branch": "integration/local-inference-lab"
+      },
+      "nccl": {
+        "source_commit": "300f3a73caba7196e436571d9ac34069e81edea4",
+        "repository": "local-inference-lab/nccl-canonical",
+        "branch": "canonical/cu134-nccl2312-amd-turin"
+      },
+      "vllm": {
+        "source_commit": "6d66eed35b0ab1cc0e05f00e83ef638ba10ae3db",
+        "repository": "local-inference-lab/vllm",
+        "branch": "integration/karmic-kraken-beta"
+      }
+    }
+  },
+  "observed_heads": {
+    "flashinfer_main": "7e203806a82b588b9113f5a0866a028564847741",
+    "sparkring_main": "68a995125bef92e3eb70e37d960ca121f55797fe"
+  },
+  "platform_evidence": "evidence/kk-platforms.json",
+  "refresh_required_before_build": true
+}

@@ -1,0 +1,97 @@
+{
+  "baseline": "/Users/jg/Agent/Builds/deepseek-v41-flash-ring/results/20261014-upstream-baseline/original-lil.json",
+  "candidate": "new-public/lil.json",
+  "limits": "Historical matched protocol; one stochastic cell per context/concurrency, no confidence intervals. New weights may change acceptance and response content.",
+  "cells": [
+    {
+      "context_tokens": 8192,
+      "concurrency": 1,
+      "previous_tps": 62.552761824916644,
+      "new_tps": 59.68068088907507,
+      "change_percent": -4.591453441944648,
+      "errors": 0,
+      "failure_reason": "",
+      "underfilled": false,
+      "capacity_limited": false,
+      "loop_detected": false,
+      "accept_length_old": 2.455795677799607,
+      "accept_length_new": 2.2156133828996283,
+      "steps_per_s_old": 25.471484615106053,
+      "steps_per_s_new": 26.936414696579185
+    },
+    {
+      "context_tokens": 8192,
+      "concurrency": 8,
+      "previous_tps": 197.67036064585875,
+      "new_tps": 191.08979480050218,
+      "change_percent": -3.3290604741426866,
+      "errors": 0,
+      "failure_reason": "",
+      "underfilled": false,
+      "capacity_limited": false,
+      "loop_detected": false,
+      "accept_length_old": 2.340731853629274,
+      "accept_length_new": 2.3847117794486214,
+      "steps_per_s_old": 85.51162593057714,
+      "steps_per_s_new": 80.24768285585392
+    },
+    {
+      "context_tokens": 8192,
+      "concurrency": 16,
+      "previous_tps": 271.32129617223717,
+      "new_tps": 265.63382753810447,
+      "change_percent": -2.09621165546926,
+      "errors": 0,
+      "failure_reason": "",
+      "underfilled": false,
+      "capacity_limited": false,
+      "loop_detected": false,
+      "accept_length_old": 2.2929771650150794,
+      "accept_length_new": 2.456633849038912,
+      "steps_per_s_old": 121.01019965887485,
+      "steps_per_s_new": 109.88287412031043
+    }
+  ],
+  "summary_by_concurrency": {
+    "1": {
+      "geomean_change_percent": -4.591453441944648,
+      "min_change_percent": -4.591453441944648,
+      "max_change_percent": -4.591453441944648
+    },
+    "8": {
+      "geomean_change_percent": -3.3290604741426866,
+      "min_change_percent": -3.3290604741426866,
+      "max_change_percent": -3.3290604741426866
+    },
+    "16": {
+      "geomean_change_percent": -2.09621165546926,
+      "min_change_percent": -2.09621165546926,
+      "max_change_percent": -2.09621165546926
+    }
+  },
+  "prefill": [
+    {
+      "context_tokens": 8192,
+      "previous_tps": 4091.0,
+      "new_tps": 4074.0,
+      "change_percent": -0.41554632119286117,
+      "cached_tokens": 0
+    },
+    {
+      "context_tokens": 65536,
+      "previous_tps": 4367.0,
+      "new_tps": 4149.0,
+      "change_percent": -4.991985344630178,
+      "cached_tokens": 0
+    },
+    {
+      "context_tokens": 131072,
+      "previous_tps": 4286.0,
+      "new_tps": 4094.0,
+      "change_percent": -4.479701353243115,
+      "cached_tokens": 0
+    }
+  ],
+  "errors": 0,
+  "invalid_cells": []
+}

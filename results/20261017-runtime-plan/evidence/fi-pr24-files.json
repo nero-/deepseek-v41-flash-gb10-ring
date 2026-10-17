@@ -1,0 +1,26 @@
+[
+  {
+    "sha": "18faec22291515a64e5e186ec9e427841a0c6614",
+    "filename": "flashinfer/experimental/b12x/moe/_shared/kernels/dynamic.py",
+    "status": "modified",
+    "additions": 13,
+    "deletions": 0,
+    "changes": 13,
+    "blob_url": "https://github.com/local-inference-lab/flashinfer/blob/66c5b90c1dc1f743407efeff96c93bc4d82994bd/flashinfer%2Fexperimental%2Fb12x%2Fmoe%2F_shared%2Fkernels%2Fdynamic.py",
+    "raw_url": "https://github.com/local-inference-lab/flashinfer/raw/66c5b90c1dc1f743407efeff96c93bc4d82994bd/flashinfer%2Fexperimental%2Fb12x%2Fmoe%2F_shared%2Fkernels%2Fdynamic.py",
+    "contents_url": "https://api.github.com/repos/local-inference-lab/flashinfer/contents/flashinfer%2Fexperimental%2Fb12x%2Fmoe%2F_shared%2Fkernels%2Fdynamic.py?ref=66c5b90c1dc1f743407efeff96c93bc4d82994bd",
+    "patch": "@@ -9626,6 +9626,13 @@ class Storage:\n                         unroll=4,\n                     ):\n                         ml_pipeline.producer_acquire(prod_state)\n+                        # The MMA warps release a stage while their ldmatrix and\n+                        # ld.shared reads of it (generic proxy) can still be in\n+                        # flight; the TMA refill writes it through the async\n+                        # proxy. Order the released reads before the refill, as\n+                        # in the dense GEMM mainloop. Without this fence, M16/M32\n+                        # NVFP4 tiles read refilled operands under SM contention.\n+                        cute.arch.fence_view_async_shared()\n                         cute.copy(\n                             tma_a,\n                             tAgA_mk[(None, k_tile)],\n@@ -9680,6 +9687,8 @@ class Storage:\n                         prod_state.advance()\n                         if cutlass.const_expr(self.w4a4_fc1_fused):\n                             up_pipeline.producer_acquire(up_prod_state)\n+                            # Generic-proxy stage reads before the TMA refill.\n+                            cute.arch.fence_view_async_shared()\n                             cute.copy(\n                                 tma_b_w13,\n                                 tBgB_w13_up_nk[(None, k_tile)],\n@@ -9721,6 +9730,8 @@ class Storage:\n                             unroll=4,\n                         ):\n                             up_pipeline.producer_acquire(up_prod_state)\n+                            # Generic-proxy stage reads before the TMA refill.\n+                            cute.arch.fence_view_async_shared()\n                             cute.copy(\n                                 tma_a,\n                                 tAgA_mk[(None, k_tile)],\n@@ -9771,6 +9782,8 @@ class Storage:\n                         unroll=4,\n                     ):\n                         phase2_pipeline.producer_acquire(phase2_prod_state)\n+                        # Generic-proxy stage reads before the TMA refill.\n+                        cute.arch.fence_view_async_shared()\n                         cute.copy(\n                             tma_b_down,\n                             tBgB_down["
+  },
+  {
+    "sha": "44b2c456807416812f67d473d5f9ab7350b38cf5",
+    "filename": "tests/experimental/b12x/race/scenarios/moe.py",
+    "status": "modified",
+    "additions": 2,
+    "deletions": 8,
+    "changes": 10,
+    "blob_url": "https://github.com/local-inference-lab/flashinfer/blob/66c5b90c1dc1f743407efeff96c93bc4d82994bd/tests%2Fexperimental%2Fb12x%2Frace%2Fscenarios%2Fmoe.py",
+    "raw_url": "https://github.com/local-inference-lab/flashinfer/raw/66c5b90c1dc1f743407efeff96c93bc4d82994bd/tests%2Fexperimental%2Fb12x%2Frace%2Fscenarios%2Fmoe.py",
+    "contents_url": "https://api.github.com/repos/local-inference-lab/flashinfer/contents/tests%2Fexperimental%2Fb12x%2Frace%2Fscenarios%2Fmoe.py?ref=66c5b90c1dc1f743407efeff96c93bc4d82994bd",
+    "patch": "@@ -291,8 +291,6 @@ def moe_micro(device, case) -> Scenario:\n _QWEN = {\"experts\": 16, \"hidden\": 2560, \"intermediate\": 640, \"top_k\": 10}\n _E32 = {\"experts\": 32, \"hidden\": 2048, \"intermediate\": 512, \"top_k\": 4}\n \n-_DYNAMIC_RACE = \"NVFP4 dynamic MoE differs under contention at M16/M32 tiles; root cause under investigation\"\n-\n CASES = {\n     \"moe_w4a16\": [\n         {**_GLM16, \"m\": 9},\n@@ -304,12 +302,8 @@ def moe_micro(device, case) -> Scenario:\n         {**_E64, \"m\": 4},  # direct top-k routes\n     ],\n     \"moe_dynamic\": [\n-        # NVFP4 at M16/M32 dynamic tiles (these two) differs in 3-12% of\n-        # contended replays on GB10 and never on quiet ones; the default atomic\n-        # scatter shows the same corruption against a tolerance. NVFP4 M128\n-        # tiles, W4A8 and W8A8 pass.\n-        {**_E64, \"m\": 64, \"mode\": \"nvfp4\", \"xfail\": _DYNAMIC_RACE},\n-        {**_E64, \"m\": 256, \"mode\": \"nvfp4\", \"xfail\": _DYNAMIC_RACE},\n+        {**_E64, \"m\": 64, \"mode\": \"nvfp4\"},\n+        {**_E64, \"m\": 256, \"mode\": \"nvfp4\"},\n         {**_E32, \"m\": 512, \"mode\": \"nvfp4\"},\n         {**_E64, \"m\": 64, \"mode\": \"w4a8_nvfp4\"},\n         {**_QWEN, \"m\": 64, \"mode\": \"w8a8_mx\"},"
+  }
+]

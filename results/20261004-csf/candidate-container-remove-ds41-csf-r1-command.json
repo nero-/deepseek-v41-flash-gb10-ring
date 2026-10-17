@@ -1,9 +1,0 @@
-{
-  "rank": 1,
-  "argv": [
-    "docker",
-    "rm",
-    "ds41-csf-r1"
-  ],
-  "host_admin": false
-}

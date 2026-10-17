@@ -1,0 +1,17 @@
+{
+  "phase": "promoted",
+  "serving": true,
+  "candidate_promoted": true,
+  "completed_utc": "2026-10-17T10:24:14Z",
+  "campaign": "/Users/jg/Agent/Diagnostics/deepseek-v41-flash-ring/upgrade-1017-20261017",
+  "checkpoint_repository": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
+  "revision": "1bae0e1088993b9b82de08f59de5be5a34e42170",
+  "api": "http://192.168.50.219:8015/v1",
+  "all_four_copies_verified": true,
+  "rollback_verified_on": [
+    0,
+    1
+  ],
+  "old_gx_weights_removed": true,
+  "temporary_servers_stopped": true
+}

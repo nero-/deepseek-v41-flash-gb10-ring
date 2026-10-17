@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-# Switch the four-node ring between DeepSeek-V4.1-Flash TP4 and the Qwen TP2 pairs.
+# Operate DeepSeek-V4.1-Flash TP4 on the four-node ring.
 #
 #   scripts/ring-mode.sh ds                 # serve the selected SparkRing vLLM configuration
+#   scripts/ring-mode.sh recover-ds         # stop workloads, reset all mesh services, start selected vLLM
 #   scripts/ring-mode.sh ds-vllm-stock       # serve the official installer defaults
-#   scripts/ring-mode.sh qwen [spark|gx10|both]   # stop DeepSeek, mesh down, start Qwen pair(s)
+#   scripts/ring-mode.sh qwen               # reports retired; leaves DeepSeek running
 #   scripts/ring-mode.sh stop               # stop everything (mesh left as is)
 #   scripts/ring-mode.sh status
 #
@@ -11,9 +12,8 @@
 # The DeepSeek head is spark-r0.
 # ds/ds-vllm select the qualified local SparkRing configuration; ds-vllm-stock
 # selects the unchanged official installer deployment.
-# Qwen pairs are driven by each pair's own ~/builds/qwen-tp2/cluster.sh.
-# The SparkRing mesh is disabled in Qwen mode. The root-owned helper
-# coordinates its lifecycle with DeepSeek.
+# Retired Qwen pair stop entry points remain compatible with DeepSeek recovery.
+# The root-owned helper coordinates the mesh lifecycle with DeepSeek.
 set -euo pipefail
 RANKS=(spark-r0 spark-r1 gx10-r1 gx10-r0)
 DS_HEAD=spark-r0
@@ -36,17 +36,17 @@ ds_stop()   { control down; }
 qwen_head() { case $1 in spark) echo spark-r0 ;; gx10) echo gx10-r0 ;; esac; }  # bash 3.2 (macOS): no assoc arrays
 qwen()      { ssh_node "$(qwen_head "$1")" "bash ~/builds/qwen-tp2/cluster.sh $2"; }
 case "${1:-status}" in
-  ds|ds-vllm|ds-vllm-stock)
+  ds|ds-vllm|ds-vllm-stock|recover-ds)
     for p in spark gx10; do qwen "$p" stop; done
+    if [[ $1 == recover-ds ]]; then
+      ds_stop
+      control mesh-off
+    fi
     if [[ $1 == ds-vllm-stock ]]; then control stock-up; else control up; fi
     ;;
   qwen)
-    pairs=${2:-both}; [[ $pairs == both ]] && pairs="spark gx10"
-    for p in $pairs; do [[ $p == spark || $p == gx10 ]] || { echo "Unknown Qwen pair: $p" >&2; exit 2; }; done
-    ds_stop
-    control mesh-off
-    for p in $pairs; do qwen "$p" start; done
-    for p in $pairs; do qwen "$p" wait; done
+    echo 'Qwen serving was retired from this ring to reserve storage for GLM. See ../GLM/HANDOFF.md.' >&2
+    exit 2
     ;;
   stop)
     ds_stop

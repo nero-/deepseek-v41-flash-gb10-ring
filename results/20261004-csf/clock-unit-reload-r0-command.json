@@ -1,8 +1,0 @@
-{
-  "rank": 0,
-  "argv": [
-    "systemctl",
-    "daemon-reload"
-  ],
-  "host_admin": true
-}
