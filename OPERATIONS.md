@@ -71,6 +71,45 @@ adaptive plugin uses 4K steps only when at least four runnable decoders contend
 with prefill. Aggregate KV capacity limits simultaneous long contexts.
 Greedy byte-repeatability is not guaranteed by this pinned runtime.
 
+## Images and chat history
+
+The installed selection uses `--limit-mm-per-prompt '{"image":999}'` on
+all four ranks. This counts every image across the **entire request**, including
+images in earlier chat turns. The previous value of 4 caused HTTP 400 when a
+conversation accumulated a fifth image; the engine itself stayed healthy.
+Retry the failed message after the change. A client may need its own retry or
+conversation recovery if it retained the earlier error.
+
+999 is the upstream vLLM default count ceiling, not a guarantee that every
+999-image workload fits in RAM. The model processor exposes no separate fixed
+image-count cap. Resolution, image tokens, text/history, concurrency and
+available memory still matter. The 1,048,576-token context limit and original
+image preprocessing are unchanged. No resizing or quality reduction was added.
+The encoder retains an 8192-token compute/cache budget (eight maximum-size
+1024-token images); it does not reserve 999-image GPU batches.
+Distinct images at counts 5 (1024px square), 16 and 64 (64px fixtures), image
+history, streamed follow-up, and recovery after an over-limit request passed.
+[Validation](results/20261017-image-limit/REPORT.md).
+
+This is a serving flag in root-owned `/etc/deepseek-ring/optimized-specs.json`,
+not an edit to the checkpoint's `config.json`. Container commands must match the
+installed selection on every rank; changing a local README does not deploy it.
+
+If the image-count change itself must be rolled back, use the retained private
+campaign from the Mac:
+
+```bash
+python3 ~/Agent/Diagnostics/deepseek-v41-flash-ring/image-limit-20261017/change_limit.py rollback
+```
+
+That coordinated operation restores the four-image selection with the **same
+current image, 1017 checkpoint and 20 GiB KV**, from `ds41-before-images-rN`.
+Its head backup is
+`/var/lib/deepseek-ring/experiments/image-limit-20261017/original-selection.json`.
+Undo this selection first before using older KV/runtime rollback procedures;
+their configuration identity checks deliberately reject an unfamiliar selection.
+Ordinary `ds` / `recover-ds` keeps 999 images and needs no rollback.
+
 ## Lifecycle on spark-r0
 
 When no competing model workload is running:
@@ -282,6 +321,9 @@ never replace the root-owned selection without checking live image identities,
 plugin manifests and container state.
 
 ## Restoring the previous KV budget on the current image
+
+First undo the later [image-limit selection](#images-and-chat-history); the KV
+rollback helper only accepts its own saved selection.
 
 The previous 16.5 GiB configuration is preserved in stopped
 `ds41-before-tuning-rN` containers. It uses the same current image and 1017

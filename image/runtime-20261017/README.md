@@ -42,3 +42,9 @@ The later [decode and KV campaign](../../results/20261017-decode-tuning/REPORT.m
 decode settings after screening alternatives and sized KV against the
 118 GiB initial-loaded head target. There is no automatic runtime stop guard.
 No SIRCL or new large-message transport is enabled by this image.
+
+The subsequent [image-limit change](../../results/20261017-image-limit/REPORT.md)
+sets `--limit-mm-per-prompt '{"image":999}'` on all four ranks. This removes
+the old four-image request limit without rebuilding the image or changing KV,
+image preprocessing, encoder batch budgets, or decode settings. The cap covers
+images in all chat turns included in each request.

@@ -1,0 +1,226 @@
+[
+  {
+    "name": "5-distinct-images-1024px",
+    "stream": false,
+    "status": 200,
+    "response": {
+      "id": "chatcmpl-89433d8a1ec86a64",
+      "object": "chat.completion",
+      "created": 1792268311,
+      "model": "DeepSeek-V4.1-Flash-TP4",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "Red, blue",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.1.dev21830+g8244d1c44.d20261015-tp4-1b26ae36",
+      "usage": {
+        "prompt_tokens": 3289,
+        "total_tokens": 3293,
+        "completion_tokens": 4,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "created_cache_tokens": 3072,
+          "multimodal_tokens": {
+            "image": 3260
+          }
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    },
+    "reply": "Red, blue",
+    "pass": true,
+    "elapsed_s": 2.472,
+    "health_after": 200
+  },
+  {
+    "name": "16-distinct-images-64px",
+    "stream": true,
+    "status": 200,
+    "usage": {
+      "prompt_tokens": 2984,
+      "total_tokens": 2988,
+      "completion_tokens": 4,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "created_cache_tokens": 2816,
+        "multimodal_tokens": {
+          "image": 2944
+        }
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "done": true,
+    "chunks": 5,
+    "reply": "Red, blue",
+    "pass": true,
+    "elapsed_s": 1.118,
+    "health_after": 200
+  },
+  {
+    "name": "64-distinct-images-64px",
+    "stream": false,
+    "status": 200,
+    "response": {
+      "id": "chatcmpl-8bd54b5f0172346d",
+      "object": "chat.completion",
+      "created": 1792268315,
+      "model": "DeepSeek-V4.1-Flash-TP4",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "Red, blue",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.1.dev21830+g8244d1c44.d20261015-tp4-1b26ae36",
+      "usage": {
+        "prompt_tokens": 11864,
+        "total_tokens": 11868,
+        "completion_tokens": 4,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "created_cache_tokens": 11520,
+          "multimodal_tokens": {
+            "image": 11776
+          }
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    },
+    "reply": "Red, blue",
+    "pass": true,
+    "elapsed_s": 4.073,
+    "health_after": 200
+  },
+  {
+    "name": "six-images-across-chat-history",
+    "stream": true,
+    "status": 200,
+    "usage": {
+      "prompt_tokens": 1144,
+      "total_tokens": 1148,
+      "completion_tokens": 4,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "created_cache_tokens": 768,
+        "multimodal_tokens": {
+          "image": 1104
+        }
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "done": true,
+    "chunks": 4,
+    "reply": "Red, Blue",
+    "pass": true,
+    "elapsed_s": 0.574,
+    "health_after": 200
+  },
+  {
+    "name": "text-followup-with-image-history",
+    "stream": true,
+    "status": 200,
+    "usage": {
+      "prompt_tokens": 1165,
+      "total_tokens": 1167,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 768,
+        "created_cache_tokens": 256,
+        "multimodal_tokens": {
+          "image": 1104
+        }
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "done": true,
+    "chunks": 4,
+    "reply": "391",
+    "pass": true,
+    "elapsed_s": 0.34,
+    "health_after": 200
+  },
+  {
+    "name": "1000-images-rejected",
+    "stream": false,
+    "status": 400,
+    "error": "{\"error\":{\"message\":\"At most 999 image(s) may be provided in one prompt. (parameter=image)\",\"type\":\"BadRequestError\",\"param\":\"image\",\"code\":400}}",
+    "pass": true,
+    "elapsed_s": 0.056,
+    "health_after": 200
+  },
+  {
+    "name": "text-after-rejection",
+    "stream": true,
+    "status": 200,
+    "usage": {
+      "prompt_tokens": 18,
+      "total_tokens": 20,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "created_cache_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "done": true,
+    "chunks": 4,
+    "reply": "391",
+    "pass": true,
+    "elapsed_s": 0.135,
+    "health_after": 200
+  }
+]

@@ -1,6 +1,6 @@
 {
-  "profile": "engram-adaptive4k-query-indexer-1017-runtime1015-kv20",
-  "configuration_sha256": "e7136bf21f3885421e3d0ede9b9f43214f9be43bd8bfc62a1c2a049698b30c47",
+  "profile": "engram-adaptive4k-query-indexer-1017-runtime1015-kv20-images999",
+  "configuration_sha256": "b9178b380923cdfaf2e8e7ac56d7e617031bec7b7acd677622eaaa01f53f8034",
   "checkpoint": "1bae0e1088993b9b82de08f59de5be5a34e42170",
   "plugin_manifest": {
     "dsv41_adaptive_prefill.py": "dfb6a8d70194306e08850a1f56865f7984d5a8df40ea8032cf485e590486ca58",
@@ -46,7 +46,7 @@
   "tokenizer": "huggingface",
   "source_receipt": "results/20261017-decode-tuning",
   "recovery_audit": "results/recovery-20261007T094058Z/final-audit.json",
-  "latest_validation": "results/20261017-decode-tuning/final-audit.json",
+  "latest_validation": "results/20261017-image-limit/final-audit.json",
   "checkpoint_repository": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
   "frontend_corrections": [
     "1017 tool-result user-turn boundary reapplied",
@@ -65,7 +65,7 @@
     "gx_restore_required": true,
     "containers": "ds41-rollback-1017-rN"
   },
-  "selected_utc": "2026-10-17T17:26:14Z",
+  "selected_utc": "2026-10-17T20:18:47Z",
   "versions": {
     "torch": "2.13.0+cu130",
     "vllm": "0.1.dev21830+g8244d1c44.d20261015",
@@ -135,5 +135,28 @@
     "same_checkpoint": true,
     "previous_kv_gib": 16.5,
     "previous_deployment": "results/20261017-decode-tuning/previous-deployment.json"
+  },
+  "multimodal": {
+    "image_limit_per_prompt": 999,
+    "previous_limit": 4,
+    "scope": "Full request, including all images retained in chat history",
+    "model_image_count_cap": null,
+    "encoder_compute_and_cache_tokens": 8192,
+    "max_tokens_per_image": 1024,
+    "full_capacity_999_images_validated": false,
+    "validated_distinct_image_counts": [
+      5,
+      16,
+      64
+    ],
+    "receipt": "results/20261017-image-limit/REPORT.md"
+  },
+  "image_limit_rollback": {
+    "campaign": "/Users/jg/Agent/Diagnostics/deepseek-v41-flash-ring/image-limit-20261017",
+    "head_config_backup": "/var/lib/deepseek-ring/experiments/image-limit-20261017/original-selection.json",
+    "containers": "ds41-before-images-rN",
+    "previous_limit": 4,
+    "same_image": true,
+    "previous_deployment": "results/20261017-image-limit/previous-deployment.json"
   }
 }

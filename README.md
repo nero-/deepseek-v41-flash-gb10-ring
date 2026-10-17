@@ -21,6 +21,12 @@ trials did not establish an overall gain, so the existing decode settings remain
 The checkpoint's published precision is unchanged.
 [Decode trials, larger KV and final qualification](results/20261017-decode-tuning/REPORT.md).
 
+Image input accepts **up to 999 images across the full request**, including
+chat history. The old four-image restriction has been removed. Distinct-image
+requests through 64 images and streamed chat continuation passed; very large
+requests still depend on context length and available memory.
+[Image-limit change and checks](results/20261017-image-limit/REPORT.md).
+
 ## Start, stop and recover
 
 From the PC:
@@ -59,7 +65,7 @@ curl --fail --max-time 5 http://192.168.X.X:8015/health
 | GPU toolchain | Qualified CUDA 13.4.2 / patched NCCL 2.32.3 retained |
 | Checkpoint | Official DeepSeek-V4.1-Flash-1017, revision `1bae0e1088993b9b82de08f59de5be5a34e42170` |
 | Local image | Built October 17; identical immutable image on all four ranks |
-| Local profile | `engram-adaptive4k-query-indexer-1017-runtime1015-kv20` |
+| Local profile | `engram-adaptive4k-query-indexer-1017-runtime1015-kv20-images999` |
 | KV budget | 20 GiB per GPU; 16,344,051 logical tokens |
 | GPU upper clock limit | 2350 MHz, minimum 0, persistent across reboot |
 

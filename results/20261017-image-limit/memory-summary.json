@@ -1,0 +1,51 @@
+{
+  "passive_only": true,
+  "sampler_exited": true,
+  "samples": 5,
+  "ranks": [
+    {
+      "rank": 0,
+      "peak_used_gib": 118.21923065185547,
+      "min_available_gib": 3.4684371948242188,
+      "final": {
+        "rank": 0,
+        "used_gib": 118.20964050292969,
+        "available_gib": 3.47802734375,
+        "swap_used_gib": 0.9893531799316406
+      }
+    },
+    {
+      "rank": 1,
+      "peak_used_gib": 117.0833625793457,
+      "min_available_gib": 4.604305267333984,
+      "final": {
+        "rank": 1,
+        "used_gib": 117.0833625793457,
+        "available_gib": 4.604305267333984,
+        "swap_used_gib": 0.6284027099609375
+      }
+    },
+    {
+      "rank": 2,
+      "peak_used_gib": 116.96878814697266,
+      "min_available_gib": 4.656436920166016,
+      "final": {
+        "rank": 2,
+        "used_gib": 116.88542175292969,
+        "available_gib": 4.739803314208984,
+        "swap_used_gib": 0.0
+      }
+    },
+    {
+      "rank": 3,
+      "peak_used_gib": 117.27311706542969,
+      "min_available_gib": 4.352108001708984,
+      "final": {
+        "rank": 3,
+        "used_gib": 117.23242568969727,
+        "available_gib": 4.392799377441406,
+        "swap_used_gib": 0.0
+      }
+    }
+  ]
+}
