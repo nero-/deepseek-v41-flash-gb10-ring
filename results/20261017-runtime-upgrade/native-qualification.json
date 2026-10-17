@@ -1,0 +1,43 @@
+{
+  "status": "native qualification passed",
+  "cpu_contracts": {
+    "exit": 0
+  },
+  "parser_tests": {
+    "passed": 128,
+    "exit": 0
+  },
+  "math_tests": {
+    "rank0_bf16_contention": {
+      "replays": 5000,
+      "mismatches": 0,
+      "noise_kernels": 38000
+    },
+    "rank1_dsa_bf16_vocab": {
+      "passed": 11
+    },
+    "rank2_dense_races": {
+      "passed": 6,
+      "replays_per_race": 5000
+    },
+    "rank3_dynamic_moe_races": {
+      "passed": 5,
+      "replays_per_race": 5000
+    }
+  },
+  "collectives": {
+    "ranks": 4,
+    "cases_per_rank": 40,
+    "operations_per_rank": 5563,
+    "error_sequence": 0,
+    "fallback": "oversize uses patched NCCL; correctness checked"
+  },
+  "native_artifacts": {
+    "rank": 2,
+    "cached_objects": 15,
+    "embedded_cubins": 15,
+    "cuobjdump_successful": 15,
+    "dense_gemm_fence_view_async_s_present": true
+  },
+  "limits": "Finite native tests are not exhaustive correctness or a broad model-quality equivalence proof. See REPORT.md for serving, performance and final selection."
+}

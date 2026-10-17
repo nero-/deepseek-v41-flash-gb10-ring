@@ -1,0 +1,29 @@
+{
+  "kv-final-screen": {
+    "exit": 0,
+    "utc": "2026-10-17T12:57:06Z"
+  },
+  "kv-mixed-load": {
+    "exit": 0,
+    "utc": "2026-10-17T12:58:57Z"
+  },
+  "kv-cold-1m": {
+    "exit": 0,
+    "utc": "2026-10-17T13:04:18Z"
+  },
+  "kv-audit": {
+    "exit": 0,
+    "utc": "2026-10-17T13:06:02Z",
+    "attempts": [
+      {
+        "exit": 1,
+        "utc": "2026-10-17T13:04:19Z"
+      },
+      {
+        "exit": 0,
+        "log": "kv-audit-retry.log"
+      }
+    ],
+    "harness_correction": "Docker splits the executable from its arguments; validate the complete entrypoint+command argv, as the installed controller does."
+  }
+}

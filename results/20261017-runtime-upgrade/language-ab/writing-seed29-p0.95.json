@@ -1,0 +1,95 @@
+{
+  "request": {
+    "model": "DeepSeek-V4.1-Flash-TP4",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Use English for the entire response, including any reasoning. Do not translate into another language."
+      },
+      {
+        "role": "user",
+        "content": "Write a long, original English science-fiction story about an engineer repairing a remote weather station. Use a coherent plot, natural dialogue and a thoughtful ending."
+      }
+    ],
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": -1,
+    "min_p": 0.0,
+    "repetition_penalty": 1.0,
+    "seed": 29,
+    "max_tokens": 1536,
+    "chat_template_kwargs": {
+      "thinking": false
+    }
+  },
+  "response": {
+    "id": "chatcmpl-8292a33cbcecd535",
+    "object": "chat.completion",
+    "created": 1792240820,
+    "model": "DeepSeek-V4.1-Flash-TP4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "The wind on Aethelred’s Peak didn’t howl; it screamed. It was a constant, metallic shriek that had been the soundtrack to Kaelen’s life for the past three years. He called it the “Aethelred Choir,” a sardonic name for the atmospheric violence that battered the remote weather station he was contracted to maintain.\n\nKaelen was a Grade-IV Field Engineer for Helios Dynamics, a job title that sounded impressive on a resume but in practice meant he was a highly-skilled janitor for a planet-sized sensor array. He was the only human for five hundred kilometers in any direction, a lone speck of warmth and consciousness on a world that was doing its best to kill him with cold and wind shear.\n\nHis current home was Station Gamma-7, a squat, durasteel cylinder bolted to a granite outcrop. It was a nexus point for climate data, a crucial node in the network that fed the great terraforming engines of the southern hemisphere. For six months of the year, the station ran autonomously. For the other six, it was Kaelen’s job to ensure it didn’t fall apart.\n\nThe problem started with a ghost in the machine.\n\nIt began as a persistent, low-level data ghost in the telemetry stream. A phantom signal, just a whisper of noise on the primary sensor feed. Kaelen, sipping his recycled-urine coffee, had initially dismissed it as solar interference or a micrometeorite strike on a secondary antenna. But it persisted, growing stronger each day, a single, repeating pattern buried in the chaotic static of the storm.\n\n`...--...`\n`...--...`\n`...--...`\n\nA three-by-three dot matrix. A ‘S’. Then an ‘O’. Then another ‘S’.\n\n“SOS,” Kaelen muttered, the word tasting absurd in his mouth. He ran a diagnostic. The station’s internal comms were clean. The external antenna array was functioning within nominal parameters. The signal wasn’t coming *from* Gamma-7. It was being *received* by it.\n\nHe spent a week chasing the ghost. He recalibrated the primary sensor dish, a three-meter-wide parabolic monstrosity perched precariously on the station’s roof. He checked the coaxial couplings, their seals brittle with cold. He even suited up and spent four hours in the screaming gale, scraping a layer of ice from the dish’s surface, his movements clumsy in the pressurized suit. The signal remained, unwavering, a digital heartbeat in the noise.\n\nIt was a puzzle, and Kaelen, isolated and bored, was a man who needed a puzzle. The official protocol was to log the anomaly and report it during the next scheduled uplink. But the next uplink was two weeks away. Two weeks of this maddening, impossible SOS.\n\n“Alright, you persistent bastard,” he said to the silent console. “Let’s find you.”\n\nHe began a systematic process of elimination. He checked the data from the other stations on the network, relayed through the geosynchronous satellite. Nothing. Gamma-7 was the only one hearing the ghost. That meant the source had to be local. Within a few hundred kilometers, maybe.\n\nHe pulled up the topographical maps, the geological survey data, the historical records of the planet’s initial, failed colonization attempt. The area was a wasteland of rock and ice, named the Cradle of Storms by the first surveyors. A fitting name.\n\nThen he found it. A small, almost illegible note in the original settlement logs, dated over a century ago. A geological survey team had gone missing in the Cradle of Storms. A search-and-rescue mission was launched, but the storms were too severe. They were declared lost, their shuttle presumed crashed.\n\nKaelen’s heart hammered against his ribs. The coordinates were only fifty kilometers north-east of Gamma-7, nestled in a deep ravine that the wind patterns made nearly impossible to scan from the air.\n\nHe had a choice. He could sit tight, log the anomaly, and let the faceless bureaucracy of Helios Dynamics decide what to do. Or he could go. The contract was clear: maintain the station, don’t take unnecessary risks. But the SOS wasn’t just a signal anymore. It was a story. A century-old story of survival and loss.\n\nThe next morning, he prepped his small, tracked all-terrain vehicle, the ‘Crawler’. He packed a survival kit, extra power cells, and a portable diagnostic kit. The Aethelred Choir was screaming its loudest as he sealed the station’s airlock behind him.\n\nThe journey was a brutal, four-hour crawl. The Crawler bucked and groaned, its tracks fighting for purchase on the slick rock. The world outside the cockpit was a maelstrom of white and grey. Visibility was down to a few dozen meters.\n\nHe found the ravine. It was a jagged scar in the planet’s crust, the wind funneling through it with the force of a jet engine. He anchored the Crawler and began the slow, perilous descent on foot, using a winch and a safety line.\n\nAt the bottom, shielded from the worst of the wind, was a wreck. It wasn’t a modern shuttle, but an old, pre-terraforming era survey craft, its hull pitted and scarred by a century of storms. It was half-buried in a snowdrift.\n\nKaelen’s heart sank. This was a tomb, not a rescue. He approached the craft, its outline vaguely familiar from the old archives. He found the access hatch, frozen shut. He used a thermal lance to carefully cut through the seals, the metal groaning in protest.\n\nInside, the air was still and cold, smelling of dust and decay. The interior was a time capsule. A coffee mug sat on a console, a faded photograph of a smiling family taped to the wall. And in the pilot’s seat, a figure sat slumped over the controls, a desiccated corpse in a tattered thermal suit.\n\nKaelen’s breath caught in his throat. He’d expected this, but the reality of it was a cold weight in his gut.\n\nIt was then he saw the source of the signal. Connected to the craft’s auxiliary power port was a small, jury-rigged device. A transmitter, cobbled together from spare parts, a single red LED blinking rhythmically. `...--...`\n\n`...--...`\n\nHe followed the power cable to a secondary console. A woman’s body lay slumped there, a data-slate clutched in her frozen hand. Kaelen gently pried it from her grip. The screen was cracked, but it flickered to life.\n\nIt was a log. The final log of Dr. Aris Thorne, the team’s engineer.\n\n*Day 45: Power failing. We’ve cannibalized the shuttle’s life support. The others are gone. The cold took them. I’m alone. I’ve set up a beacon. It’s a stupid thing, a child’s code. But it’s all I have. Maybe someone will hear it. Maybe they’ll know we tried.*\n\n*Day 51: The beacon is my only purpose. My hands are so cold",
+          "refusal": null,
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "reasoning": null
+        },
+        "logprobs": null,
+        "finish_reason": "length",
+        "stop_reason": null,
+        "token_ids": null,
+        "routed_experts": null
+      }
+    ],
+    "service_tier": null,
+    "system_fingerprint": "vllm-0.1.dev21830+g8244d1c44.d20261015-tp4-1b26ae36",
+    "usage": {
+      "prompt_tokens": 53,
+      "total_tokens": 1589,
+      "completion_tokens": 1536,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "created_cache_tokens": 0,
+        "multimodal_tokens": null
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "prompt_text": null,
+    "kv_transfer_params": null,
+    "ec_transfer_params": null,
+    "metrics": null
+  },
+  "score": {
+    "id": "writing-seed29-p0.95",
+    "top_p": 0.95,
+    "thinking": false,
+    "seed": 29,
+    "case": "writing",
+    "english_system_instruction": true,
+    "cjk_characters": {
+      "content": 0,
+      "reasoning": 0
+    },
+    "cjk_any": false,
+    "generated_characters": {
+      "content": 6502,
+      "reasoning": 0
+    },
+    "completion_tokens": 1536,
+    "finish_reason": "length",
+    "elapsed_seconds": 50.01606879099563,
+    "excerpts": {
+      "content": [],
+      "reasoning": []
+    }
+  }
+}

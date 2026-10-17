@@ -1,0 +1,55 @@
+FILE engine/arg_utils.py
+    offload_prefetch_step: int = PrefetchOffloadConfig.offload_prefetch_step
+    offload_params: set[str] = get_field(PrefetchOffloadConfig, "offload_params")
+    gpu_memory_utilization: float = CacheConfig.gpu_memory_utilization
+    kv_cache_memory_bytes: int | None = CacheConfig.kv_cache_memory_bytes
+    max_num_batched_tokens: int | None = None
+    max_num_scheduled_tokens: int | None = None
+    long_prefill_token_threshold: int = SchedulerConfig.long_prefill_token_threshold
+    max_num_seqs: int | None = None
+    max_num_queued_reqs: int | None = None
+    max_num_queued_tokens: int | None = None
+    max_logprobs: int = ModelConfig.max_logprobs
+    logprobs_mode: LogprobsMode = ModelConfig.logprobs_mode
+    use_fp64_gumbel: bool = ModelConfig.use_fp64_gumbel
+    enable_trace_replay: bool = ModelConfig.enable_trace_replay
+    disable_log_stats: bool = False
+    aggregate_engine_logging: bool = False
+    revision: str | None = ModelConfig.revision
+    code_revision: str | None = ModelConfig.code_revision
+            "--gpu-memory-utilization", **cache_kwargs["gpu_memory_utilization"]
+        )
+        cache_group.add_argument(
+            "--kv-cache-memory-bytes", **cache_kwargs["kv_cache_memory_bytes"]
+        )
+        cache_group.add_argument("--kv-cache-dtype", **cache_kwargs["cache_dtype"])
+        cache_group.add_argument(
+            "--num-gpu-blocks-override", **cache_kwargs["num_gpu_blocks_override"]
+        )
+        cache_group.add_argument(
+            "--enable-prefix-caching",
+            **{
+                **cache_kwargs["enable_prefix_caching"],
+                "default": None,
+            },
+        )
+        cache_group.add_argument(
+            "--prefix-caching-hash-algo", **cache_kwargs["prefix_caching_hash_algo"]
+FILE config/cache.py
+    necessary for implementing this optimization in some models (e.g. Gemma3n)
+    """
+
+    kv_cache_memory_bytes: int | None = None
+    """Size of KV Cache per GPU in bytes. By default, this is set to None
+    and vllm can automatically infer the kv cache size based on
+    gpu_memory_utilization. However, users may want to manually specify
+    the kv cache memory size. kv_cache_memory_bytes allows more fine-grain
+    control of how much memory gets used when compared with using
+    gpu_memory_utilization. Note that kv_cache_memory_bytes
+    (when not-None) ignores gpu_memory_utilization"""
+
+    kv_offloading_size: float | None = None
+    """Size of the KV cache offloading buffer in GiB. When TP > 1, this is
+    the total buffer size summed across all TP ranks. By default, this is set
+    to None, which means no KV offloading is enabled. When set, vLLM will
+    enable KV cache offloading to CPU using the kv_offloading_backend."""

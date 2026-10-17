@@ -1,0 +1,35 @@
+{
+  "harness_sha256": "c4c7eaed934d41b8e24f1bb9e81c635af599409276dbe580f14de5f837b09553",
+  "configuration_sha256": "d7987e580c42294dc55e6d01f9365dc0e9d89c262939947ac89212fa3d8fba2b",
+  "checkpoint": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
+  "revision": "1bae0e1088993b9b82de08f59de5be5a34e42170",
+  "images": [
+    "sha256:a182696cb59fad1352ca17aae13c248e276d5cb7b7811f0fc8ead1cde4516221",
+    "sha256:a182696cb59fad1352ca17aae13c248e276d5cb7b7811f0fc8ead1cde4516221",
+    "sha256:a182696cb59fad1352ca17aae13c248e276d5cb7b7811f0fc8ead1cde4516221",
+    "sha256:a182696cb59fad1352ca17aae13c248e276d5cb7b7811f0fc8ead1cde4516221"
+  ],
+  "protocol": "public LIL 0.7.6; only top_p injected when requested; server/model defaults otherwise except temperature=1",
+  "scope": {
+    "contexts": "8k,128k",
+    "concurrency": "1,8,16",
+    "coding": false
+  },
+  "clock_cap_mhz": [
+    0,
+    2350
+  ],
+  "top_p_request_override": 1.0,
+  "server_sampling_change": {
+    "top_p": 1.0,
+    "source": "official DeepSeek-V4.1-Flash-1017 recommendation; user requested candidate first",
+    "other_settings": "unchanged",
+    "explicit_defaults": {
+      "temperature": 1.0,
+      "top_p": 1.0,
+      "top_k": -1,
+      "min_p": 0.0,
+      "repetition_penalty": 1.0
+    }
+  }
+}

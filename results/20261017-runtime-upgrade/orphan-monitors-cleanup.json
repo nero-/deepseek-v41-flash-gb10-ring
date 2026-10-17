@@ -1,0 +1,24 @@
+{
+  "completed_utc": "2026-10-17T12:34:32Z",
+  "rank": 3,
+  "terminated_pids": [
+    3110507,
+    3112685,
+    3188496,
+    3190517,
+    3190974,
+    3199860,
+    3204208,
+    3374923,
+    3385155,
+    3392720,
+    3411705,
+    3412882,
+    3423894,
+    3433452
+  ],
+  "verified_no_readers": true,
+  "matched_start_ticks": true,
+  "remaining": [],
+  "scope": "14 historical detached GPU-monitor bash loops, not model workers"
+}

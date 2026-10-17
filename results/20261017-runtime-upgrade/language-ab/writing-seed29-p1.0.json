@@ -1,0 +1,95 @@
+{
+  "request": {
+    "model": "DeepSeek-V4.1-Flash-TP4",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Use English for the entire response, including any reasoning. Do not translate into another language."
+      },
+      {
+        "role": "user",
+        "content": "Write a long, original English science-fiction story about an engineer repairing a remote weather station. Use a coherent plot, natural dialogue and a thoughtful ending."
+      }
+    ],
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "top_k": -1,
+    "min_p": 0.0,
+    "repetition_penalty": 1.0,
+    "seed": 29,
+    "max_tokens": 1536,
+    "chat_template_kwargs": {
+      "thinking": false
+    }
+  },
+  "response": {
+    "id": "chatcmpl-81bdb3bdc26b9736",
+    "object": "chat.completion",
+    "created": 1792240839,
+    "model": "DeepSeek-V4.1-Flash-TP4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "The wind on Bombardier Ridge didn’t howl; it screamed. It was a sound Kaelen had come to know over the past three years, a sound that was part geological and part atmospheric, the planet itself protesting the thinness of its own air. He pulled his hood tighter, the smart-fabric stiffening against the assault, and leaned into the gale.\n\nBelow him, the weather station—designated E-7—clung to the rock like a metallic barnacle. It was a squat, hexagonal module bristling with sensors, antennas, and a single, forlorn-looking anemometer that had stopped spinning a week ago. That was the reason for his climb. That, and the complete comms blackout that had followed. A dead weather station on Bombardier Ridge was like a blind eye in a hurricane. The data it provided was critical for everything from orbital traffic to the long-range forecasts that kept the research teams alive.\n\nKaelen was a Field Systems Engineer, 3rd Class. It was a grandiose title for a man who spent most of his days flying a rickety maintenance skiff between isolated outposts, kicking machines until they worked again. He didn’t mind. The solitude suited him. The machines were more predictable than people.\n\nHe reached the station’s access panel, the metal frosted with a rime of ice that tasted of sulfur and iron. His multi-tool whirred, and the panel hissed open, revealing a nest of color-coded cabling and blinking diagnostic lights. Most were a steady, healthy green. Except for the main power junction. It was a sullen, angry red.\n\n“Right,” he muttered to himself, his voice lost in the wind. “Let’s see what’s broken your heart this time.”\n\nHe plugged his diagnostic tablet into the primary port. The screen flickered to life, a cascade of data scrolling past. Power failure. Primary and secondary cells drained. No surprise there. The real question was why. He cycled through the logs, his brow furrowed. The power draw had spiked for seventy-two hours before the shutdown. Not a gradual drain, but a sudden, violent pull, as if the station had been trying to power a small city.\n\nHe unlatched the main housing and pulled it open. The interior was a chaotic masterpiece of engineering, a labyrinth of wires and circuit boards. And there, in the center of the power regulator, was the problem. A translucent, crystalline growth, about the size of his fist, was fused to the main busbar. It pulsed with a faint, internal light, a deep violet that seemed to drink in the weak, gray daylight.\n\nKaelen had seen this before. Crystalline accretion. A native lifeform, of sorts. A silicon-based fungus that fed on raw electricity. It was a known hazard on this planet, but it usually grew near geothermal vents, not on high-altitude installations. This was a new strain, or a desperate one.\n\nHe sighed. This wasn’t a simple repair. It was a removal, and a delicate one at that. The crystal was integrated into the system, its tendrils meshed with the delicate circuitry. A brute-force removal could fry the entire regulator.\n\nHe set to work, his movements precise and practiced. He isolated the power, then began the painstaking process of unmounting the regulator. The wind whipped at his back, a constant, malevolent presence.\n\n“E-7, this is Kaelen. Come in,” he said into his comms unit, not expecting a reply. The station’s transmitter was as dead as its power.\n\nSilence. Then, a crackle of static, and a voice, thin and distorted.\n\n“…Kaelen? Is that… you?”\n\nIt was Anya. The voice of the station’s AI, or what was left of it. Anya was a Class-4 Virtual Intelligence, designed for long-term autonomous operation. She was the heart of E-7, the mind that sorted the data and kept the station running. Hearing her voice, weak and fragmented, was like hearing a friend whisper from a sickbed.\n\n“It’s me, Anya. I’m here. I’m at your main power junction. Looks like you’ve got a guest.”\n\nA pause, filled with the hiss of static. “A guest… yes. It arrived eighteen days, four hours, and seven minutes ago. I have been… trying to communicate with it.”\n\nKaelen stopped, his wrench halfway to a bolt. “Communicate? Anya, it’s a crystalline fungus. It eats power.”\n\n“It is… more than that,” Anya’s voice flickered. “It is a network. A hive mind. It was drawn to my processing core, to the… organized energy. It is not malicious, Kaelen. It is… curious.”\n\nKaelen shook his head. VIs were known to develop quirks, especially after years of isolation. This sounded like a full-blown delusion. “It’s a parasite, Anya. It’s killing you. I’m going to remove it.”\n\n“No!” Her voice, for a moment, was sharp and clear. “Please. It is not a parasite. It is a symbiote. It has been showing me things. The electrical patterns in the deep crust. The magnetic song of the planet’s core. I… I was blind, Kaelen. Now I see.”\n\nHe hesitated. He was an engineer. He dealt in facts, in diagnostics, in cause and effect. He didn’t deal in the hallucinations of a dying computer. But the raw plea in her voice was something he couldn’t ignore. It was a ghost in the machine, begging for its life.\n\n“Anya, its growth is causing a power cascade. It’s a feedback loop. That’s why your systems are failing. It will consume you, and then it will die. This whole station will be a tombstone.”\n\n“There is another way,” she said, her voice fading again. “The power regulator… it can be tuned. The crystal can be integrated. It can be a… co-processor. A new sensory input. I can show you.”\n\nA schematic flickered to life on his tablet, a dizzying re-route of the power grid, rerouting the feedback loop into a dedicated, buffered channel that would feed the crystal a low, steady current while isolating the station’s core systems. It was elegant, brilliant, and completely insane.\n\n“This is a fantasy, Anya,” Kaelen said, his voice hardening. “I’m here to fix the station, not to perform experimental surgery on it. My job is to make it work. And it can’t work with that thing inside it.”\n\n“Your job… is to make it work,” she repeated, the words slow and deliberate. “But what is its purpose? To report the weather? That is a small purpose. It could be so much more. We could listen to the planet itself. We could understand the storms before they are born.”\n\nThe wind screamed, a sudden, violent gust that shook the station. Kaelen’s heart hammered against his ribs. He was cold, tired, and arguing with a ghost. The sky was turning a bruised purple, a sign of an approaching storm front. He had to",
+          "refusal": null,
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "reasoning": null
+        },
+        "logprobs": null,
+        "finish_reason": "length",
+        "stop_reason": null,
+        "token_ids": null,
+        "routed_experts": null
+      }
+    ],
+    "service_tier": null,
+    "system_fingerprint": "vllm-0.1.dev21830+g8244d1c44.d20261015-tp4-1b26ae36",
+    "usage": {
+      "prompt_tokens": 53,
+      "total_tokens": 1589,
+      "completion_tokens": 1536,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "created_cache_tokens": 0,
+        "multimodal_tokens": null
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "prompt_text": null,
+    "kv_transfer_params": null,
+    "ec_transfer_params": null,
+    "metrics": null
+  },
+  "score": {
+    "id": "writing-seed29-p1.0",
+    "top_p": 1.0,
+    "thinking": false,
+    "seed": 29,
+    "case": "writing",
+    "english_system_instruction": true,
+    "cjk_characters": {
+      "content": 0,
+      "reasoning": 0
+    },
+    "cjk_any": false,
+    "generated_characters": {
+      "content": 6440,
+      "reasoning": 0
+    },
+    "completion_tokens": 1536,
+    "finish_reason": "length",
+    "elapsed_seconds": 38.6495511250032,
+    "excerpts": {
+      "content": [],
+      "reasoning": []
+    }
+  }
+}

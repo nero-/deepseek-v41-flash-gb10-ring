@@ -1,0 +1,91 @@
+{
+  "request": {
+    "model": "DeepSeek-V4.1-Flash-TP4",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write an extensive English tutorial on cache invalidation for a web application. Cover expiration, versioning, event-driven invalidation, stampedes, consistency and failure recovery."
+      }
+    ],
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": -1,
+    "min_p": 0.0,
+    "repetition_penalty": 1.0,
+    "seed": 17,
+    "max_tokens": 1536,
+    "chat_template_kwargs": {
+      "thinking": false
+    }
+  },
+  "response": {
+    "id": "chatcmpl-917788fe990bbe97",
+    "object": "chat.completion",
+    "created": 1792240540,
+    "model": "DeepSeek-V4.1-Flash-TP4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "# Cache Invalidation for Web Applications: A Comprehensive Tutorial\n\n## Table of Contents\n\n1. [Introduction](#1-introduction)\n2. [Foundations: What Cache Invalidation Really Means](#2-foundations-what-cache-invalidation-really-means)\n3. [Expiration (TTL-Based Invalidation)](#3-expiration-ttl-based-invalidation)\n4. [Versioning and Key Namespacing](#4-versioning-and-key-namespacing)\n5. [Event-Driven Invalidation](#5-event-driven-invalidation)\n6. [Cache Stampedes and Thundering Herds](#6-cache-stampedes-and-thundering-herds)\n7. [Consistency Models in Practice](#7-consistency-models-in-practice)\n8. [Failure Recovery](#8-failure-recovery)\n9. [Putting It All Together: A Reference Architecture](#9-putting-it-all-together-a-reference-architecture)\n10. [Testing and Observability](#10-testing-and-observability)\n11. [Checklist and Anti-Patterns](#11-checklist-and-anti-patterns)\n\n---\n\n## 1. Introduction\n\n> \"There are only two hard things in Computer Science: cache invalidation and naming things.\"\n> — attributed to Phil Karlton\n\nCache invalidation is the process of ensuring that a cache does not serve data that is stale, incorrect, or inconsistent with its source of truth. It sounds trivial — \"just delete the key\" — but in practice it is where most caching bugs live. The difficulty is not deletion; it is **knowing when to delete**, **coordinating across multiple caches and nodes**, **handling races between readers and writers**, and **surviving partial failures**.\n\nThis tutorial is written for engineers building or maintaining a web application backed by a database (or any authoritative store) with one or more cache layers: an in-process cache, a shared cache such as Redis or Memcached, a CDN, and possibly a client-side HTTP cache. It walks through the main strategies — expiration, versioning, and event-driven invalidation — and then covers the failure modes you *will* encounter: stampedes, consistency violations, and recovery after outages.\n\nThroughout, examples are given in Python (FastAPI/Flask-style pseudocode) and generic Redis commands, but the concepts translate directly to Node.js, Go, Java, Ruby, or any other stack.\n\n### A mental model\n\nThink of every cached value as a **replica** of a record in your source of truth. Cache invalidation is a *replication protocol*: it is subject to the same problems as any distributed replication scheme — ordering, duplication, lost messages, partition, and clock skew. If you internalize that framing, most of the rules below will feel less like folklore and more like consequences.\n\n### The three questions\n\nFor every cache entry, decide up front:\n\n1. **What is the source of truth?** (Almost always the database, but sometimes it's a derived aggregate, a third-party API, or a file on disk.)\n2. **What is the maximum staleness you can tolerate?** (Seconds? Minutes? Never?)\n3. **What happens if the cache is wrong for a while?** (A stale avatar is fine; a stale account balance is not.)\n\nYour answers dictate which strategy — or combination — you should use.\n\n---\n\n## 2. Foundations: What Cache Invalidation Really Means\n\n### 2.1 Cache-aside vs. write-through\n\nTwo patterns dominate web applications:\n\n**Cache-aside (lazy loading).** The application reads from the cache; on a miss, it reads from the database and populates the cache. Writes go to the database and then invalidate (or update) the cache. This is the most common pattern because it is simple and tolerates cache failures gracefully.\n\n```python\ndef get_user(user_id: int) -> User:\n    key = f\"user:{user_id}\"\n    cached = redis.get(key)\n    if cached is not None:\n        return User.parse_raw(cached)\n\n    user = db.get_user(user_id)          # source of truth\n    if user is None:\n        redis.set(key, \"null\", ex=60)    # negative cache, short TTL\n        return None\n    redis.set(key, user.json(), ex=300)\n    return user\n```\n\n**Write-through / write-behind.** The application writes to both cache and database (synchronously or asynchronously). More consistent, more complex, and every write failure must be reasoned about. Many teams adopt write-through for hot counters or session data and cache-aside for everything else.\n\n### 2.2 Invalidation is not just deletion\n\n\"Invalidate\" can mean any of:\n\n- **Delete** the key (`DEL user:42`) — next read repopulates.\n- **Overwrite** the key with fresh data (`SET user:42 ...`).\n- **Mark** the key as expired (`EXPIRE user:42 1` or set a past expiry).\n- **Bump a version** so old keys become unreachable (see §4).\n- **Push a purge** to downstream layers (CDN, browser).\n\nDeletion is the safest default in cache-aside because it makes the next read *recompute* from the source of truth, avoiding the \"writer computed a value that readers overwrite with an older one\" race described in §7. Overwrite is fine when you know the value is authoritative and no concurrent stale reader can win.\n\n### 2.3 The three fundamental strategies\n\n| Strategy | Trigger | Guarantees | Cost | Typical use |\n|---|---|---|---|---|\n| **Expiration** | Time | Bounded staleness | Wasteful misses, latency spikes | Default for everything |\n| **Versioning** | Key structure | Old data becomes unreachable | Key churn, GC needed | Immutable-ish assets, config, feature flags |\n| **Event-driven** | Write events | Near-real-time correctness | Complexity, delivery guarantees | Mutable business entities |\n\nReal systems combine all three: a TTL as a safety net, a version for bulk operations, and events for prompt correctness.\n\n---\n\n## 3. Expiration (TTL-Based Invalidation)\n\nExpiration is the simplest invalidation mechanism: a value lives for at most `T`, after which the cache refuses to serve it and the next reader repopulates. It requires no coordination and survives every kind of failure — if an invalidation message is lost, the TTL eventually fixes it.\n\n### 3.1 Choosing TTLs\n\nThere is no universal \"right\" TTL. Derive it from three inputs:\n\n1. **Tolerable staleness.** How old may the data be before it hurts? A user's display name: hours. A price: seconds. A feature flag: whatever the product says, but usually seconds to a minute.\n2. **Read/write ratio.** A record read 10,000 times per minute and written once per hour tolerates a long TTL. A record written as often as it's read should barely be cached at all.\n3. **Repopulation cost.** If a miss costs a 200 ms query, longer TTLs pay off. If a miss is cheap, short TTLs reduce staleness for free.\n\nA useful rule of thumb: `TTL ≈ tolerable_staleness × (1 +",
+          "refusal": null,
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "reasoning": null
+        },
+        "logprobs": null,
+        "finish_reason": "length",
+        "stop_reason": null,
+        "token_ids": null,
+        "routed_experts": null
+      }
+    ],
+    "service_tier": null,
+    "system_fingerprint": "vllm-0.1.dev21830+g8244d1c44.d20261015-tp4-1b26ae36",
+    "usage": {
+      "prompt_tokens": 39,
+      "total_tokens": 1575,
+      "completion_tokens": 1536,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "created_cache_tokens": 0,
+        "multimodal_tokens": null
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "prompt_text": null,
+    "kv_transfer_params": null,
+    "ec_transfer_params": null,
+    "metrics": null
+  },
+  "score": {
+    "id": "tutorial-seed17-p0.95",
+    "top_p": 0.95,
+    "thinking": false,
+    "seed": 17,
+    "case": "tutorial",
+    "english_system_instruction": false,
+    "cjk_characters": {
+      "content": 0,
+      "reasoning": 0
+    },
+    "cjk_any": false,
+    "generated_characters": {
+      "content": 6482,
+      "reasoning": 0
+    },
+    "completion_tokens": 1536,
+    "finish_reason": "length",
+    "elapsed_seconds": 45.853412249998655,
+    "excerpts": {
+      "content": [],
+      "reasoning": []
+    }
+  }
+}

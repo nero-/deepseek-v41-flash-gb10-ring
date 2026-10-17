@@ -1,0 +1,91 @@
+{
+  "request": {
+    "model": "DeepSeek-V4.1-Flash-TP4",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a long, original English science-fiction story about an engineer repairing a remote weather station. Use a coherent plot, natural dialogue and a thoughtful ending."
+      }
+    ],
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": -1,
+    "min_p": 0.0,
+    "repetition_penalty": 1.0,
+    "seed": 17,
+    "max_tokens": 1536,
+    "chat_template_kwargs": {
+      "thinking": false
+    }
+  },
+  "response": {
+    "id": "chatcmpl-aaac1b805a9d30a9",
+    "object": "chat.completion",
+    "created": 1792240610,
+    "model": "DeepSeek-V4.1-Flash-TP4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "The silence on Aethelburg Plateau was a physical thing, a dense blanket of white that muffled the world. Kaelen Rourke, a field engineer for the Pan-Continental Weather Array, preferred it to the constant, low-grade hum of the city. Here, at four thousand meters, the only sounds were the crunch of his boots on packed snow, the whisper of wind against his thermal suit, and the rhythmic, reassuring ping from his wrist-mounted locator.\n\nHis destination was Station Gamma-7, a solitary metal spire planted on the roof of the world. It was one of a network of hundreds, a silent sentinel gathering data on atmospheric pressure, temperature, wind velocity, and a dozen other metrics that fed the climate models for the entire northern hemisphere. Gamma-7 had gone dark three days ago. The last transmission was a garbled burst of static, followed by nothing.\n\n“Approaching Gamma-7, Control,” Kaelen said, his voice sounding unnaturally loud in his helmet. “Visual confirmation in two minutes.”\n\nA crackle of static, then a voice, thin and distant. “Roger, Rourke. Be advised, local conditions are deteriorating. You’ve got maybe four hours before the storm front from the west hits you. Make it quick.”\n\n“Always do,” Kaelen muttered, signing off. He wasn’t a man given to wasted words.\n\nThe station loomed into view, a dark skeleton against the endless white. It was a tripod design, thirty meters tall, with a central core bristling with sensors and antennas. As he got closer, he saw the problem. The main communications dish, a three-meter wide parabola, was hanging at a drunken angle, its support arm sheared clean through. The jagged metal was a testament to the immense power of the plateau’s katabatic winds.\n\n“Found the issue, Control,” he reported, snapping a photo with his suit’s camera and sending it through the burst transmitter. “Primary comms array is down. Looks like metal fatigue, maybe a micro-fracture from the last freeze-thaw cycle. The wind finished the job. I’ll have to go up.”\n\n“Understood. We’re seeing a massive spike in barometric pressure readings from the last data packet before it went dark. Anomalous. Be careful up there.”\n\nKaelen grunted in acknowledgement. Anomalous readings were why he was here. He tethered himself to the station’s base and began the slow, laborious climb up the icy ladder rungs of the central core. The wind, as if sensing his vulnerability, began to claw at him, a hungry, keening beast.\n\nThe access panel at the top was frozen shut. He had to use a plasma torch from his tool kit to melt the ice, the blue flame hissing against the white crust. Inside, the maintenance bay was a cramped cylinder of blinking red diagnostic lights and the faint smell of ozone. The main power was on, but the primary comms board was a mess of scorched circuits.\n\n“Control, I’m at the hub. The surge from the shorted dish fried the primary uplink processor. I’m going to have to bypass it and route the transmitter through the secondary science array. It’ll be a low-bandwidth signal, but it should be enough to get the core data out.”\n\n“Negative on the bypass, Rourke,” Control’s voice was sharp, laced with a new tension. “We need the full data stream. The pressure anomaly is… it’s not just a spike. It’s a wave. A massive, localized gravitational and atmospheric distortion. It’s heading your way. We need the high-resolution data from your station’s gravimetric sensor to model it. The primary processor is the only thing that can handle that bandwidth.”\n\nKaelen stared at the charred board. “Control, the primary processor is slag. It’s not a matter of a loose wire. It’s dead. I can’t fix this with a soldering iron and a prayer. I can give you the basics, or you get nothing.”\n\nThere was a long pause, filled only by the howl of the wind. “Understood,” Control finally said, the voice heavy with resignation. “Do what you can. But Rourke… the wave is accelerating. ETA is now under three hours. If you can’t get the data, get yourself to the emergency shelter. That’s an order.”\n\nKaelen looked out the small porthole. The sky to the west was no longer a pale blue. It was a bruise, a deep, angry purple that seemed to swallow the light. The storm was coming, and it was bringing something with it.\n\nHe spent the next hour in a feverish blur of work. His fingers, clumsy in their heated gloves, danced over the delicate wiring. He bypassed the fried processor, rerouting the gravimetric sensor’s feed directly into the secondary array’s buffer. It was like trying to funnel a river through a straw. The data would be corrupted, incomplete, but it was better than nothing.\n\nAs he worked, he felt it. A strange, thrumming vibration in the metal of the station itself, a frequency that wasn’t the wind. It was a deep, resonant hum that seemed to vibrate in his very bones. The hair on his arms stood up. The diagnostic lights flickered erratically.\n\nHe finished the bypass and initiated the transmission. A progress bar on his wrist display crawled with agonizing slowness. “Control, I’ve got a signal. It’s weak, but it’s sending.”\n\n“We’re receiving it, Rourke. It’s fragmented… but we’re getting it. The distortion is… my God.”\n\nThe exclamation was not one of professional surprise. It was one of raw, primal awe. Kaelen felt a chill that had nothing to do with the outside temperature.\n\n“What is it, Control?”\n\n“The wave… it’s not a natural phenomenon. The data shows a structured gravitational lensing effect. It’s… it’s a wake. Something passed through here, Rourke. Something big. And it’s not done.”\n\nThe transmission cut out. The progress bar froze at 87%. The hum in the station intensified, becoming a tooth-rattling roar. The porthole view of the western sky was now a swirling vortex of purple and black, shot through with flashes of silent, unnatural lightning.\n\nKaelen didn’t need Control to tell him to run. He scrambled out of the hub and down the ladder, his descent a controlled fall. He didn’t bother with the tether. He hit the ground, unclipped, and ran for the small, reinforced emergency shelter a hundred meters away, half-buried in the snow.\n\nHe dove inside, sealing the heavy door behind him just as the world outside dissolved into chaos. The shelter shook violently, the sound a deafening, all-consuming roar. He was thrown from his feet, his head slamming against the metal wall. For a moment, there was only darkness and pain.\n\nWhen he came to, the silence was back. The profound, absolute silence of the plateau. He checked his suit’s systems. Minor concussion, bruised ribs. He was alive.\n\nHe unsealed the door and stepped out into",
+          "refusal": null,
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "reasoning": null
+        },
+        "logprobs": null,
+        "finish_reason": "length",
+        "stop_reason": null,
+        "token_ids": null,
+        "routed_experts": null
+      }
+    ],
+    "service_tier": null,
+    "system_fingerprint": "vllm-0.1.dev21830+g8244d1c44.d20261015-tp4-1b26ae36",
+    "usage": {
+      "prompt_tokens": 34,
+      "total_tokens": 1570,
+      "completion_tokens": 1536,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "created_cache_tokens": 0,
+        "multimodal_tokens": null
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "prompt_text": null,
+    "kv_transfer_params": null,
+    "ec_transfer_params": null,
+    "metrics": null
+  },
+  "score": {
+    "id": "writing-seed17-p0.95",
+    "top_p": 0.95,
+    "thinking": false,
+    "seed": 17,
+    "case": "writing",
+    "english_system_instruction": false,
+    "cjk_characters": {
+      "content": 0,
+      "reasoning": 0
+    },
+    "cjk_any": false,
+    "generated_characters": {
+      "content": 6609,
+      "reasoning": 0
+    },
+    "completion_tokens": 1536,
+    "finish_reason": "length",
+    "elapsed_seconds": 56.76658787499764,
+    "excerpts": {
+      "content": [],
+      "reasoning": []
+    }
+  }
+}

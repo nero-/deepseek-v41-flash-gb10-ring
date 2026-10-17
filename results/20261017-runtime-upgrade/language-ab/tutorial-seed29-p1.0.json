@@ -1,0 +1,95 @@
+{
+  "request": {
+    "model": "DeepSeek-V4.1-Flash-TP4",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Use English for the entire response, including any reasoning. Do not translate into another language."
+      },
+      {
+        "role": "user",
+        "content": "Write an extensive English tutorial on cache invalidation for a web application. Cover expiration, versioning, event-driven invalidation, stampedes, consistency and failure recovery."
+      }
+    ],
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "top_k": -1,
+    "min_p": 0.0,
+    "repetition_penalty": 1.0,
+    "seed": 29,
+    "max_tokens": 1536,
+    "chat_template_kwargs": {
+      "thinking": false
+    }
+  },
+  "response": {
+    "id": "chatcmpl-946cd4f93de93b24",
+    "object": "chat.completion",
+    "created": 1792240761,
+    "model": "DeepSeek-V4.1-Flash-TP4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "# Cache Invalidation for Web Applications: A Comprehensive Tutorial\n\nCache invalidation is one of the two hard problems in computer science (alongside naming things and off-by-one errors). This tutorial covers the full lifecycle of cache invalidation in a web application, from simple expiration to sophisticated event-driven strategies, stampede prevention, consistency models, and failure recovery.\n\n---\n\n## 1. Why Cache Invalidation Is Hard\n\nCaching works by trading freshness for speed. When you cache data, you create a second copy that can diverge from the source of truth. Invalidation is the process of reconciling that divergence. The core challenges:\n\n- **Distributed state**: The cache and the database are separate systems with no shared transaction.\n- **Race conditions**: A read that populates the cache can race with a write that must invalidate it.\n- **Partial failures**: A write may succeed while the invalidation message is lost.\n- **Multiple layers**: Browser, CDN, application, and database caches all need coordination.\n- **Concurrency**: Many requests hit the cache simultaneously, especially after invalidation.\n\nThere is no single \"correct\" strategy. The right approach depends on your consistency requirements, read/write ratio, latency budget, and failure tolerance. This tutorial presents the toolkit and when to use each tool.\n\n---\n\n## 2. Foundational Concepts\n\n### 2.1 Cache-Aside (Lazy Loading)\n\nThe most common pattern. The application reads from the cache; on a miss, it reads from the database, populates the cache, and returns the value.\n\n```python\ndef get_user(user_id):\n    key = f\"user:{user_id}\"\n    cached = cache.get(key)\n    if cached is not None:\n        return cached\n    user = db.query(\"SELECT * FROM users WHERE id = %s\", user_id)\n    cache.set(key, user, ttl=300)\n    return user\n```\n\nInvalidation happens on writes: the writer deletes the key. This is simple and resilient (a cache miss just costs a database read), but it introduces the classic **delete-vs-update race**.\n\n### 2.2 Write-Through, Write-Behind, and Write-Around\n\n- **Write-through**: Writes go to cache and database synchronously. Cache stays warm and consistent at the cost of write latency.\n- **Write-behind (write-back)**: Writes hit the cache first and are flushed to the database asynchronously. Fast, but risks data loss.\n- **Write-around**: Writes bypass the cache; reads populate it. Good when written data is not immediately read.\n\n### 2.3 The Delete-vs-Update Race\n\nA subtle but critical bug in cache-aside:\n\n```\nT1 (reader): cache miss on key K\nT1: reads DB -> value V1\nT2 (writer): writes V2 to DB\nT2: deletes K from cache\nT1: writes V1 into cache   <-- stale value now cached indefinitely\n```\n\nThe reader caches a value that was already superseded. TTLs bound the damage, but you can do better (see §4 and §5). Two mitigations:\n\n- **Delete after write, not update**: Always delete rather than set on write, so concurrent readers repopulate from the fresh source.\n- **Delayed double-delete**: Delete, then delete again after a short delay (e.g., 500ms) to catch races. Crude but effective.\n- **Versioning / CAS** (§4) eliminates the race structurally.\n\n---\n\n## 3. Expiration (TTL)\n\nTime-to-live is the simplest invalidation mechanism: cached entries expire after a fixed duration and are recomputed on the next miss.\n\n### 3.1 Choosing a TTL\n\nTTLs are a trade-off between **freshness** and **load**:\n\n- Short TTL → fresher data, more database load, lower hit ratio.\n- Long TTL → staler data, less load, higher hit ratio.\n\nGuidance:\n\n- Derive TTL from **acceptable staleness**, not from gut feeling. If users tolerate 30 seconds of stale prices, set 30s.\n- Add **jitter** to avoid synchronized expiration across many keys.\n- Use different TTLs per data class: catalog data might live hours, user sessions minutes, inventory seconds.\n\n```python\nimport random\n\ndef set_with_jitter(key, value, base_ttl=300):\n    ttl = int(base_ttl * random.uniform(0.9, 1.1))\n    cache.set(key, value, ttl=ttl)\n```\n\n### 3.2 Sliding vs. Absolute Expiration\n\n- **Absolute**: expires at a fixed wall-clock time regardless of access.\n- **Sliding**: TTL resets on each access; used for session data.\n\nSliding expiration can keep stale data alive indefinitely if it is read frequently, so combine it with an absolute upper bound where correctness matters.\n\n### 3.3 Expiration Is Necessary but Not Sufficient\n\nTTL alone means you accept up to TTL seconds of staleness. For data where staleness causes real harm (balances, permissions, inventory), pair TTL with active invalidation (§4–§5) and treat TTL as a **safety net**, not the primary mechanism.\n\n---\n\n## 4. Versioning\n\nVersioning makes cache keys immutable and self-invalidating. Instead of mutating a cached value, you change the *name* under which it is stored.\n\n### 4.1 Entity Version in the Key\n\nStore a monotonically increasing version with each entity. The cache key includes the version, so a write produces a new key; the old key simply ages out via TTL.\n\n```python\ndef get_user(user_id):\n    version = version_store.get(f\"user_version:{user_id}\")  # e.g., Redis INCR\n    key = f\"user:{user_id}:v{version}\"\n    cached = cache.get(key)\n    if cached:\n        return cached\n    user = db.query_user(user_id)\n    cache.set(key, user, ttl=3600)\n    return user\n\ndef update_user(user_id, data):\n    db.update_user(user_id, data)\n    version_store.incr(f\"user_version:{user_id}\")\n```\n\nReads of the old version can still hit the cache briefly, but once the version bumps, no new read will ever fetch the old key. The version counter itself must be durable and consistent — ideally in the same database transaction as the data change.\n\n### 4.2 Global Namespace Versioning\n\nFor coarse invalidation (e.g., \"the entire product catalog changed\"), embed a namespace version in every key:\n\n```\ncatalog:{catalog_version}:product:42\n```\n\nBumping `catalog_version` invalidates every catalog key atomically by making them unreachable. Stale keys age out naturally. This is ideal for bulk changes where enumerating individual keys is impractical.\n\n### 4.3 Content-Based / Hash Versioning\n\nFor expensive computed objects (rendered pages, aggregated reports), include a hash of the inputs in the key:\n\n```\nreport:{sha256(params + data_version)}\n```\n\nIf inputs change, the hash changes, and the cache naturally misses. This is powerful for pure functions but requires that all inputs be cheaply observable.\n\n### 4.4",
+          "refusal": null,
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "reasoning": null
+        },
+        "logprobs": null,
+        "finish_reason": "length",
+        "stop_reason": null,
+        "token_ids": null,
+        "routed_experts": null
+      }
+    ],
+    "service_tier": null,
+    "system_fingerprint": "vllm-0.1.dev21830+g8244d1c44.d20261015-tp4-1b26ae36",
+    "usage": {
+      "prompt_tokens": 58,
+      "total_tokens": 1594,
+      "completion_tokens": 1536,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "created_cache_tokens": 0,
+        "multimodal_tokens": null
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "prompt_text": null,
+    "kv_transfer_params": null,
+    "ec_transfer_params": null,
+    "metrics": null
+  },
+  "score": {
+    "id": "tutorial-seed29-p1.0",
+    "top_p": 1.0,
+    "thinking": false,
+    "seed": 29,
+    "case": "tutorial",
+    "english_system_instruction": true,
+    "cjk_characters": {
+      "content": 0,
+      "reasoning": 0
+    },
+    "cjk_any": false,
+    "generated_characters": {
+      "content": 6456,
+      "reasoning": 0
+    },
+    "completion_tokens": 1536,
+    "finish_reason": "length",
+    "elapsed_seconds": 47.30689716699999,
+    "excerpts": {
+      "content": [],
+      "reasoning": []
+    }
+  }
+}

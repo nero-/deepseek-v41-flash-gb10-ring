@@ -1,0 +1,9 @@
+{
+  "replays": 5000,
+  "bad": 0,
+  "mismatched_bytes": {
+    "output": 0
+  },
+  "first": [],
+  "noise_kernels": 38000
+}

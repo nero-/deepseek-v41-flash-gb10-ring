@@ -1,0 +1,99 @@
+{
+  "completed_utc": "2026-10-17T13:05:55Z",
+  "candidate": true,
+  "healthy": true,
+  "profile": "engram-adaptive4k-query-indexer-1017-runtime1015-kv16p5",
+  "configuration_sha256": "d7987e580c42294dc55e6d01f9365dc0e9d89c262939947ac89212fa3d8fba2b",
+  "nodes": [
+    {
+      "rank": 0,
+      "image": "sha256:a182696cb59fad1352ca17aae13c248e276d5cb7b7811f0fc8ead1cde4516221",
+      "running": true,
+      "oom_killed": false,
+      "containers": [
+        "ds41-kvtrial-r0"
+      ],
+      "services": [
+        "active",
+        "active"
+      ],
+      "clock_unit": "# /etc/systemd/system/gb10-gpu-clock-cap.service\n[Unit]\nDescription=GB10 GPU upper clock limit (2350 MHz)\nWants=nvidia-persistenced.service\nAfter=nvidia-persistenced.service\nBefore=docker.service\nStartLimitIntervalSec=0\n\n[Service]\nType=oneshot\nExecStart=/usr/bin/nvidia-smi -lgc 0,2350\nExecReload=/usr/bin/nvidia-smi -lgc 0,2350\nRemainAfterExit=yes\nRestart=on-failure\nRestartSec=10\n\n[Install]\nWantedBy=multi-user.target\n",
+      "plugin_manifest_verified": true,
+      "command_verified": true,
+      "host_used_gib": 115.01434326171875,
+      "adaptive_contention_activations": 8,
+      "indexer_exact_on": 21,
+      "indexer_exact_off": 0,
+      "loaded_gpu_csv": "2333, 94, 27.10, 59"
+    },
+    {
+      "rank": 1,
+      "image": "sha256:a182696cb59fad1352ca17aae13c248e276d5cb7b7811f0fc8ead1cde4516221",
+      "running": true,
+      "oom_killed": false,
+      "containers": [
+        "ds41-kvtrial-r1"
+      ],
+      "services": [
+        "active",
+        "active"
+      ],
+      "clock_unit": "# /etc/systemd/system/gb10-gpu-clock-cap.service\n[Unit]\nDescription=GB10 GPU upper clock limit (2350 MHz)\nWants=nvidia-persistenced.service\nAfter=nvidia-persistenced.service\nBefore=docker.service\nStartLimitIntervalSec=0\n\n[Service]\nType=oneshot\nExecStart=/usr/bin/nvidia-smi -lgc 0,2350\nExecReload=/usr/bin/nvidia-smi -lgc 0,2350\nRemainAfterExit=yes\nRestart=on-failure\nRestartSec=10\n\n[Install]\nWantedBy=multi-user.target\n",
+      "plugin_manifest_verified": true,
+      "command_verified": true,
+      "host_used_gib": 113.34606170654297,
+      "adaptive_contention_activations": 0,
+      "indexer_exact_on": 0,
+      "indexer_exact_off": 0,
+      "loaded_gpu_csv": "2327, 94, 26.06, 58"
+    },
+    {
+      "rank": 2,
+      "image": "sha256:a182696cb59fad1352ca17aae13c248e276d5cb7b7811f0fc8ead1cde4516221",
+      "running": true,
+      "oom_killed": false,
+      "containers": [
+        "ds41-kvtrial-r2"
+      ],
+      "services": [
+        "active",
+        "active"
+      ],
+      "clock_unit": "# /etc/systemd/system/gb10-gpu-clock-cap.service\n[Unit]\nDescription=GB10 GPU upper clock limit (2350 MHz)\nWants=nvidia-persistenced.service\nAfter=nvidia-persistenced.service\nBefore=docker.service\nStartLimitIntervalSec=0\n\n[Service]\nType=oneshot\nExecStart=/usr/bin/nvidia-smi -lgc 0,2350\nExecReload=/usr/bin/nvidia-smi -lgc 0,2350\nRemainAfterExit=yes\nRestart=on-failure\nRestartSec=10\n\n[Install]\nWantedBy=multi-user.target\n",
+      "plugin_manifest_verified": true,
+      "command_verified": true,
+      "host_used_gib": 113.41524124145508,
+      "adaptive_contention_activations": 0,
+      "indexer_exact_on": 0,
+      "indexer_exact_off": 0,
+      "loaded_gpu_csv": "2327, 95, 27.53, 62"
+    },
+    {
+      "rank": 3,
+      "image": "sha256:a182696cb59fad1352ca17aae13c248e276d5cb7b7811f0fc8ead1cde4516221",
+      "running": true,
+      "oom_killed": false,
+      "containers": [
+        "ds41-kvtrial-r3"
+      ],
+      "services": [
+        "active",
+        "active"
+      ],
+      "clock_unit": "# /etc/systemd/system/gb10-gpu-clock-cap.service\n[Unit]\nDescription=GB10 GPU upper clock limit (2350 MHz)\nWants=nvidia-persistenced.service\nAfter=nvidia-persistenced.service\nBefore=docker.service\nStartLimitIntervalSec=0\n\n[Service]\nType=oneshot\nExecStart=/usr/bin/nvidia-smi -lgc 0,2350\nExecReload=/usr/bin/nvidia-smi -lgc 0,2350\nRemainAfterExit=yes\nRestart=on-failure\nRestartSec=10\n\n[Install]\nWantedBy=multi-user.target\n",
+      "plugin_manifest_verified": true,
+      "command_verified": true,
+      "host_used_gib": 113.70404434204102,
+      "adaptive_contention_activations": 0,
+      "indexer_exact_on": 0,
+      "indexer_exact_off": 0,
+      "loaded_gpu_csv": "2333, 94, 26.44, 64"
+    }
+  ],
+  "loaded_probe": {
+    "completion_tokens": 512,
+    "elapsed_seconds": 7.102612249997037,
+    "purpose": "loaded-clock check; separate from timed benchmark"
+  },
+  "api": "http://192.168.50.219:8015/v1"
+}

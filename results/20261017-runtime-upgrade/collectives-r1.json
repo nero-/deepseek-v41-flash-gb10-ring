@@ -1,0 +1,311 @@
+{
+  "rank": 1,
+  "passed": true,
+  "cases": [
+    {
+      "operation": "all_reduce",
+      "dtype": "torch.bfloat16",
+      "bytes": 16,
+      "graph_replays": 10,
+      "ops_per_graph": 20
+    },
+    {
+      "operation": "all_reduce",
+      "dtype": "torch.bfloat16",
+      "bytes": 10240,
+      "graph_replays": 10,
+      "ops_per_graph": 20
+    },
+    {
+      "operation": "all_reduce",
+      "dtype": "torch.bfloat16",
+      "bytes": 65536,
+      "graph_replays": 10,
+      "ops_per_graph": 20
+    },
+    {
+      "operation": "all_reduce",
+      "dtype": "torch.bfloat16",
+      "bytes": 262144,
+      "graph_replays": 10,
+      "ops_per_graph": 20
+    },
+    {
+      "operation": "all_reduce",
+      "dtype": "torch.bfloat16",
+      "bytes": 524288,
+      "graph_replays": 10,
+      "ops_per_graph": 20
+    },
+    {
+      "operation": "all_reduce",
+      "dtype": "torch.bfloat16",
+      "bytes": 983040,
+      "graph_replays": 10,
+      "ops_per_graph": 20
+    },
+    {
+      "operation": "all_reduce",
+      "dtype": "torch.bfloat16",
+      "bytes": 1048576,
+      "graph_replays": 10,
+      "ops_per_graph": 20
+    },
+    {
+      "operation": "all_reduce",
+      "dtype": "torch.bfloat16",
+      "bytes": 1769472,
+      "graph_replays": 10,
+      "ops_per_graph": 20
+    },
+    {
+      "operation": "all_reduce",
+      "dtype": "torch.bfloat16",
+      "bytes": 2097152,
+      "graph_replays": 10,
+      "ops_per_graph": 20
+    },
+    {
+      "operation": "all_reduce",
+      "dtype": "torch.float16",
+      "bytes": 16,
+      "graph_replays": 10,
+      "ops_per_graph": 20
+    },
+    {
+      "operation": "all_reduce",
+      "dtype": "torch.float16",
+      "bytes": 10240,
+      "graph_replays": 10,
+      "ops_per_graph": 20
+    },
+    {
+      "operation": "all_reduce",
+      "dtype": "torch.float16",
+      "bytes": 65536,
+      "graph_replays": 10,
+      "ops_per_graph": 20
+    },
+    {
+      "operation": "all_reduce",
+      "dtype": "torch.float16",
+      "bytes": 262144,
+      "graph_replays": 10,
+      "ops_per_graph": 20
+    },
+    {
+      "operation": "all_reduce",
+      "dtype": "torch.float16",
+      "bytes": 524288,
+      "graph_replays": 10,
+      "ops_per_graph": 20
+    },
+    {
+      "operation": "all_reduce",
+      "dtype": "torch.float16",
+      "bytes": 983040,
+      "graph_replays": 10,
+      "ops_per_graph": 20
+    },
+    {
+      "operation": "all_reduce",
+      "dtype": "torch.float16",
+      "bytes": 1048576,
+      "graph_replays": 10,
+      "ops_per_graph": 20
+    },
+    {
+      "operation": "all_reduce",
+      "dtype": "torch.float16",
+      "bytes": 1769472,
+      "graph_replays": 10,
+      "ops_per_graph": 20
+    },
+    {
+      "operation": "all_reduce",
+      "dtype": "torch.float16",
+      "bytes": 2097152,
+      "graph_replays": 10,
+      "ops_per_graph": 20
+    },
+    {
+      "operation": "all_reduce",
+      "dtype": "torch.float32",
+      "bytes": 16,
+      "graph_replays": 10,
+      "ops_per_graph": 20
+    },
+    {
+      "operation": "all_reduce",
+      "dtype": "torch.float32",
+      "bytes": 10240,
+      "graph_replays": 10,
+      "ops_per_graph": 20
+    },
+    {
+      "operation": "all_reduce",
+      "dtype": "torch.float32",
+      "bytes": 65536,
+      "graph_replays": 10,
+      "ops_per_graph": 20
+    },
+    {
+      "operation": "all_reduce",
+      "dtype": "torch.float32",
+      "bytes": 262144,
+      "graph_replays": 10,
+      "ops_per_graph": 20
+    },
+    {
+      "operation": "all_reduce",
+      "dtype": "torch.float32",
+      "bytes": 524288,
+      "graph_replays": 10,
+      "ops_per_graph": 20
+    },
+    {
+      "operation": "all_reduce",
+      "dtype": "torch.float32",
+      "bytes": 983040,
+      "graph_replays": 10,
+      "ops_per_graph": 20
+    },
+    {
+      "operation": "all_reduce",
+      "dtype": "torch.float32",
+      "bytes": 1048576,
+      "graph_replays": 10,
+      "ops_per_graph": 20
+    },
+    {
+      "operation": "all_reduce",
+      "dtype": "torch.float32",
+      "bytes": 1769472,
+      "graph_replays": 10,
+      "ops_per_graph": 20
+    },
+    {
+      "operation": "all_reduce",
+      "dtype": "torch.float32",
+      "bytes": 2097152,
+      "graph_replays": 10,
+      "ops_per_graph": 20
+    },
+    {
+      "operation": "all_gather",
+      "dtype": "torch.bfloat16",
+      "shard_bytes": 16,
+      "graph_replays": 10
+    },
+    {
+      "operation": "all_gather",
+      "dtype": "torch.bfloat16",
+      "shard_bytes": 10240,
+      "graph_replays": 10
+    },
+    {
+      "operation": "all_gather",
+      "dtype": "torch.bfloat16",
+      "shard_bytes": 262144,
+      "graph_replays": 10
+    },
+    {
+      "operation": "all_gather",
+      "dtype": "torch.bfloat16",
+      "shard_bytes": 1048576,
+      "graph_replays": 10
+    },
+    {
+      "operation": "all_gather",
+      "dtype": "torch.bfloat16",
+      "shard_bytes": 4194304,
+      "graph_replays": 10
+    },
+    {
+      "operation": "all_gather",
+      "dtype": "torch.bfloat16",
+      "shard_bytes": 16777216,
+      "graph_replays": 10
+    },
+    {
+      "operation": "all_gather",
+      "dtype": "torch.int32",
+      "shard_bytes": 16,
+      "graph_replays": 10
+    },
+    {
+      "operation": "all_gather",
+      "dtype": "torch.int32",
+      "shard_bytes": 10240,
+      "graph_replays": 10
+    },
+    {
+      "operation": "all_gather",
+      "dtype": "torch.int32",
+      "shard_bytes": 262144,
+      "graph_replays": 10
+    },
+    {
+      "operation": "all_gather",
+      "dtype": "torch.int32",
+      "shard_bytes": 1048576,
+      "graph_replays": 10
+    },
+    {
+      "operation": "all_gather",
+      "dtype": "torch.int32",
+      "shard_bytes": 4194304,
+      "graph_replays": 10
+    },
+    {
+      "operation": "all_gather",
+      "dtype": "torch.int32",
+      "shard_bytes": 16777216,
+      "graph_replays": 10
+    },
+    {
+      "operation": "nccl_fallback",
+      "bytes": 4194304
+    }
+  ],
+  "runtime_stats": {
+    "world_size": 4,
+    "rank": 1,
+    "hcas": [
+      "rocep1s0f0",
+      "rocep1s0f1",
+      "roceP2p1s0f0",
+      "roceP2p1s0f1"
+    ],
+    "max_size": 2097152,
+    "max_gather_bytes": 16777216,
+    "slot_bytes": 16777216,
+    "epoch": 5563,
+    "error_seq": 0,
+    "error_peer": 0,
+    "ctrl_seq": 5563,
+    "spin_limit": 20000000,
+    "opposite_paths": 2,
+    "ops_posted": 5563,
+    "writes_completed": 171350,
+    "last_seq": 5563,
+    "two_wave_activations": 3706,
+    "two_wave_threshold_bytes": 131072,
+    "wave_mode": "two",
+    "peer_hca": {
+      "0": [
+        1,
+        3
+      ],
+      "2": [
+        0,
+        2
+      ],
+      "3": [
+        0,
+        3
+      ]
+    }
+  },
+  "completed_utc": "2026-10-17T11:38:00Z"
+}

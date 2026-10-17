@@ -8,3 +8,4 @@ __pycache__/
 # Exact site-specific launch configuration; keep the public deployment summary.
 results/20260929-kk926/selected-corrected.json
 results/20261017-checkpoint-upgrade/selected-1017.json
+results/20261017-runtime-upgrade/selected-runtime.json

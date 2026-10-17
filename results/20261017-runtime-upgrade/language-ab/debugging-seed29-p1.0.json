@@ -1,0 +1,95 @@
+{
+  "request": {
+    "model": "DeepSeek-V4.1-Flash-TP4",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Use English for the entire response, including any reasoning. Do not translate into another language."
+      },
+      {
+        "role": "user",
+        "content": "A Python service occasionally processes the same payment event twice after a network timeout. Reason through the failure modes and design an idempotent PostgreSQL transaction, including tests."
+      }
+    ],
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "top_k": -1,
+    "min_p": 0.0,
+    "repetition_penalty": 1.0,
+    "seed": 29,
+    "max_tokens": 3072,
+    "chat_template_kwargs": {
+      "thinking": true
+    }
+  },
+  "response": {
+    "id": "chatcmpl-b41cd3824e46a98e",
+    "object": "chat.completion",
+    "created": 1792240731,
+    "model": "DeepSeek-V4.1-Flash-TP4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": null,
+          "refusal": null,
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "reasoning": "We need answer. Need reason failure modes, design idempotent PostgreSQL transaction, tests. Need likely Python service, payment event duplicate after network timeout. Need discuss at-least-once delivery, retries, timeout ambiguity, crash, concurrent duplicates, race. Need idempotency keys, DB constraints, transaction, state machine, outbox maybe. Need include schema, SQL, Python pseudocode, tests including concurrency. Need mention isolation levels, advisory locks? Design idempotent PostgreSQL transaction. Need be careful.\n\nWe need answer as English. Desired oververbosity 5. Need not too huge but enough.\n\nLet's structure:\n\n1. Failure modes:\n- Client/service sends request, DB commits, response lost -> retry duplicate.\n- Network timeout before commit / unknown commit -> retry.\n- Worker crash after side effect before marking processed.\n- Duplicate events concurrent (two workers).\n- Retry after partial processing.\n- Out-of-order/status transitions.\n- External payment provider calls non-idempotent, if called twice.\n- DB connection errors and transaction retry.\n- Unique key only catches inserts but not update side effects / double updates.\n- Isolation: read-then-write race.\n\n2. Design:\n- Generate stable idempotency key per logical payment event: provider_event_id or event_id, unique. Do not use random retry key.\n- Store events in processed_events table (or payments with unique idempotency key).\n- Transaction:\n  BEGIN;\n  INSERT INTO idempotency_keys (key, request_hash, state, payment_id) VALUES (..., 'in_progress') ON CONFLICT (key) DO NOTHING RETURNING id;\n  If inserted: process in same transaction? Hmm if external call inside DB transaction bad. Better design with DB as source and outbox. Need idempotent transaction. If external payment provider call must be idempotent too with same key. But question specifically \"design an idempotent PostgreSQL transaction\". Could incorporate: one transaction inserts event, checks conflict, updates payment balance, ledger only once. For external side effect, use outbox and provider idempotency key. But maybe payment event processing records payment, no external call. Need cover.\n\nOption A: Single DB transaction with idempotency table:\n```\nBEGIN;\nWITH ins AS (\n  INSERT INTO processed_events(event_id, event_type, payload_hash, status)\n  VALUES ($1,$2,$3,'processing')\n  ON CONFLICT (event_id) DO NOTHING\n  RETURNING event_id\n)\n...\n```\nIf no insert, select existing status:\n- completed: return prior response.\n- processing: maybe 409/retry later.\n- failed: can retry? Need careful.\nConcurrent duplicate: unique constraint blocks second insert until first commits. If first commits, ON CONFLICT DO NOTHING sees conflict and no row. But in READ COMMITTED, wait? For INSERT ON CONFLICT DO NOTHING, concurrent uncommitted insert may wait then no row after commit. If first rolls back, second inserts. Good. But if we then do side effects outside transaction, need state machine and atomic claim. If entire DB effects inside same transaction, insert + updates commit atomically; duplicates no-op.\n\nSimpler robust transactional SQL:\n```\nINSERT INTO payment_events(event_id, ...) VALUES ($1,...) ON CONFLICT (event_id) DO NOTHING;\n-- then only if inserted, apply:\nUPDATE payments SET ... WHERE payment_id = ... AND status = ...;\nINSERT INTO ledger_entries(event_id unique, ...) ...\nCOMMIT;\n```\nBut need know inserted. In Python:\n```\nwith conn.transaction():\n    row = conn.execute(\"\"\"\n       INSERT INTO processed_events(event_id, payload_hash)\n       VALUES (%s,%s)\n       ON CONFLICT (event_id) DO NOTHING\n       RETURNING event_id\n    \"\"\").fetchone()\n    if row is None:\n       # duplicate. Read stored result; ensure same payload hash\n       ...\n       return prior result\n    # apply business changes\n    conn.execute(\"UPDATE payments ...\")\n    conn.execute(\"INSERT INTO ledger_entries(..., event_id) ...\")\n```\nBecause unique processed_events and all business changes same transaction, duplicate doesn't apply. Need transaction isolation: READ COMMITTED enough with unique constraint, but account balance increments could be safe if only one event applies due to insert guard. Concurrent different events on same payment need row lock or atomic update. Use `SELECT ... FOR UPDATE` on payment row or `UPDATE ... SET balance = balance +` with constraints. But to ensure state transition validation, row lock.\n\nNeed response after commit. If response lost, duplicate returns prior result via processed_events. Store response JSON, status, processed_at. If duplicate arrives while first transaction in progress, unique insert waits until commit/rollback. If commit, returns no row and then read completed. If transaction long, may block. Could use timeout.\n\nNeed idempotency key scope: maybe `(merchant_id, event_id)`, unique. Payload hash to detect same key different payload (409). `request_hash`.\n\nNeed external side effects: If call external provider before commit, crash could commit? If call external provider inside transaction and rollback, external effect remains -> not atomic. Use outbox:\n- Transaction inserts processed_event and outbox message only.\n- Worker sends provider call with provider idempotency key = event_id, then marks outbox sent. Retries safe if provider supports idempotency. Or if payment capture is provider action, do not hold DB transaction during network. Use state machine: pending -> processing with lease, provider idempotency. But question asks PostgreSQL transaction; mention external calls can't be part of DB transaction, make them idempotent and use outbox.\n\nNeed tests:\n- Unit/integration tests with real Postgres (testcontainers). Use transactions? For concurrency need real connections.\n- Test happy path applies once and stores response.\n- Duplicate sequential: same event twice -> one payment/ledger, same response, no extra.\n- Duplicate concurrent: two threads same key; one applies, both return same/one 409? Need expected. Use barrier, two connections, assert one processed_event, one ledger, balance correct, both success or one duplicate returns same result.\n- Payload mismatch same key -> conflict 409, no changes.\n- Timeout/retry simulation: commit but drop response/raise after commit; retry returns prior result.\n- Crash before commit: rollback leaves no processed_event/outbox; retry applies once.\n- Concurrent different events for same payment: ensure row lock/atomic update, correct final balance no lost update.\n- Failure during business update: transaction rollback leaves idempotency key absent, retry succeeds.\n- Isolation test: two duplicates with one transaction holding lock? Maybe.\n\nNeed include SQL schema:\n```\nCREATE TABLE payment_events (\n  event_id text PRIMARY KEY,\n  merchant_id text NOT NULL,\n  payment_id text NOT NULL,\n  event_type text NOT NULL,\n  payload_hash text NOT NULL,\n  status text NOT NULL DEFAULT 'completed' CHECK (status IN ('processing','completed','failed')),\n  response jsonb,\n  created_at timestamptz default now(),\n  completed_at timestamptz\n);\n```\nBut if we need processing state? For single transaction, status completed at commit. We don't need processing. But for duplicate while first in progress, insert conflict waits. If first commits, row completed. If first fails, rollback no row. If we store in_progress in separate transaction? That complicates. Simpler: `processed_events` inserted and completed within same transaction. We can call it `idempotency_keys` with result. No in_progress visible until commit. But if long transaction, duplicate waits. That's okay for DB-only. If external call, need claim state. We can mention variant.\n\nSchema:\n```\nCREATE TABLE payment_events (\n    event_id text PRIMARY KEY,\n    payload_hash text NOT NULL,\n    payment_id uuid NOT NULL,\n    response jsonb NOT NULL,\n    processed_at timestamptz NOT NULL DEFAULT now()\n);\nCREATE TABLE payments (\n    payment_id uuid PRIMARY KEY,\n    amount_cents bigint NOT NULL CHECK (amount_cents >= 0),\n    status text NOT NULL\n);\nCREATE TABLE ledger_entries (\n    entry_id bigserial PRIMARY KEY,\n    event_id text NOT NULL UNIQUE REFERENCES payment_events(event_id),\n    payment_id uuid NOT NULL REFERENCES payments(payment_id),\n    amount_cents bigint NOT NULL,\n    created_at timestamptz NOT NULL DEFAULT now()\n);\n```\nNeed ledger unique event_id ensures one entry per event. But processed_events inserted first. If duplicate insert no row, skip. Unique ledger is defense-in-depth. Maybe use `event_id` PK in ledger? But multiple ledger entries per event? For payment one entry. Fine.\n\nCould design idempotency table with unique `(scope, key)` and response:\n```\nCREATE TABLE idempotency_keys (\n  scope text not null,\n  key text not null,\n  request_hash text not null,\n  response jsonb,\n  status text not null,\n  created_at ...\n  PRIMARY KEY(scope,key)\n);\n```\nBut then need business transaction. Maybe combine.\n\nPseudo Python:\n```\ndef process_payment_event(event, conn):\n    payload_hash = sha256(canonical_json(event))\n    with conn.transaction():\n        inserted = conn.execute(\"\"\"\n            INSERT INTO payment_events(event_id, payload_hash, payment_id, response)\n            VALUES (%s,%s,%s,'{}'::jsonb)\n            ON CONFLICT (event_id) DO NOTHING\n            RETURNING event_id\n        \"\"\", (...)).fetchone()\n        if not inserted:\n            existing = conn.execute(\"SELECT payload_hash, response FROM payment_events WHERE event_id=%s\", ...).fetchone()\n            if existing.payload_hash != payload_hash:\n                raise IdempotencyConflict(...)\n            return existing.response\n        # lock payment row\n        payment = conn.execute(\"SELECT ... FROM payments WHERE payment_id=%s FOR UPDATE\", ...).fetchone()\n        # validate state\n        if payment.status == 'captured':\n            response = {...}\n        else:\n            conn.execute(\"UPDATE payments SET status='captured' WHERE payment_id=%s\", ...)\n            conn.execute(\"INSERT INTO ledger_entries(event_id, payment_id, amount_cents) VALUES (...)\", ...)\n            response = {...}\n        conn.execute(\"UPDATE payment_events SET response=%s, processed_at=now() WHERE event_id=%s\", ...)\n        return response\n```\nBut note: We inserted payment_events before locking payment. If another transaction with different event locks payment, this insert doesn't conflict but then waits on payment. Fine. If duplicate same event waits on unique insert, after first commits, returns no row, reads response. But what if first transaction inserted payment_events then waits on payment and second duplicate? Second INSERT ON CONFLICT DO NOTHING waits on first's uncommitted row. After first commits, second returns no row and can read response in same transaction? In READ COMMITTED, after wait, the SELECT will see committed row. Yes. But if first rolls back, second inserts and processes. Good.\n\nNeed caution: `ON CONFLICT DO NOTHING` with concurrent insert waits; if first transaction is long, duplicate blocks. Use statement/lock timeouts. Alternatively insert with `ON CONFLICT DO NOTHING` and if no row, `SELECT` may not see committed row if transaction snapshot from before? READ COMMITTED each statement new snapshot, so after wait on insert, next SELECT sees it. In REPEATABLE READ, snapshot may not see; use READ COMMITTED or handle serialization. Mention READ COMMITTED. If using REPEATABLE READ, need retry on serialization failures. Simpler use READ COMMITTED. But if first commits after second's INSERT wait, second's SELECT in same READ COMMITTED statement? It's a separate statement, new snapshot. Good.\n\nNeed validate no double update. Unique `payment_events` ensures only inserted transaction applies business changes. But what if duplicate insert returns no row and then code accidentally applies? We return.\n\nNeed store response. If first transaction inserts payment_events with response placeholder and commits, response stored. But if code crashes after commit before returning, retry reads response. Good. If crash before commit, rollback all.\n\nNeed transaction retry for serialization/deadlock errors. Use retry around whole transaction if error code 40001/40P01, but ensure no external side effects inside transaction. For DB-only safe. If external side effect inside, cannot retry blindly. Mention.\n\nNeed test details maybe code snippets. Could include pytest with psycopg. Need not full runnable, but enough.\n\nLet's craft final answer with sections:\n\n- Root cause/failure modes\n- Invariants\n- Schema\n- Transaction algorithm\n- Python code\n- Concurrency and isolation notes\n- External calls/outbox\n- Tests\n\nNeed mention \"exactly-once\" impossible end-to-end; achieve effectively-once for DB state and idempotent external effects.\n\nLet's write.\n\nPotential issue: In schema, `payment_events.response NOT NULL` but insert placeholder. Could allow NULL. Or insert response after. Better:\n```\nresponse jsonb,\nstatus text not null default 'completed'\n```\nActually response can be set at end. We insert `request_hash`. Then update response. Unique. If duplicate reads before response? It can't see uncommitted; after commit response set. So fine. Use `response jsonb NOT NULL`? Insert placeholder then update same transaction. Works not null if placeholder. But placeholder not final. Use nullable to avoid weird. Then duplicate after commit must have response. Good.\n\nMaybe table:\n```\nCREATE TABLE processed_payment_events (\n  event_id text PRIMARY KEY,\n  request_hash text NOT NULL,\n  payment_id uuid NOT NULL REFERENCES payments(payment_id),\n  response jsonb NOT NULL,\n  processed_at timestamptz NOT NULL DEFAULT now()\n);\n```\nBut insert with response computed before? Need know response before locking. Could compute response after business update, but then need insert idempotency first. Could insert with dummy then update. Use nullable response and `completed_at`. Or use separate idempotency table with status. Simpler:\n```\nCREATE TABLE processed_payment_events (\n event_id text PRIMARY KEY,\n request_hash text NOT NULL,\n payment_id uuid NOT NULL,\n response jsonb,\n processed_at timestamptz"
+        },
+        "logprobs": null,
+        "finish_reason": "length",
+        "stop_reason": null,
+        "token_ids": null,
+        "routed_experts": null
+      }
+    ],
+    "service_tier": null,
+    "system_fingerprint": "vllm-0.1.dev21830+g8244d1c44.d20261015-tp4-1b26ae36",
+    "usage": {
+      "prompt_tokens": 81,
+      "total_tokens": 3153,
+      "completion_tokens": 3072,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "created_cache_tokens": 0,
+        "multimodal_tokens": null
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 3072
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "prompt_text": null,
+    "kv_transfer_params": null,
+    "ec_transfer_params": null,
+    "metrics": null
+  },
+  "score": {
+    "id": "debugging-seed29-p1.0",
+    "top_p": 1.0,
+    "thinking": true,
+    "seed": 29,
+    "case": "debugging",
+    "english_system_instruction": true,
+    "cjk_characters": {
+      "content": 0,
+      "reasoning": 0
+    },
+    "cjk_any": false,
+    "generated_characters": {
+      "content": 0,
+      "reasoning": 14033
+    },
+    "completion_tokens": 3072,
+    "finish_reason": "length",
+    "elapsed_seconds": 88.30140333300369,
+    "excerpts": {
+      "content": [],
+      "reasoning": []
+    }
+  }
+}

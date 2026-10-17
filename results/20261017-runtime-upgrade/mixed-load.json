@@ -1,0 +1,150 @@
+{
+  "decoders": [
+    {
+      "rank": 0,
+      "elapsed_seconds": 110.38061458300217,
+      "usage": {
+        "prompt_tokens": 45,
+        "total_tokens": 2093,
+        "completion_tokens": 2048,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "created_cache_tokens": 0,
+          "multimodal_tokens": null
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "finish_reason": "length"
+    },
+    {
+      "rank": 1,
+      "elapsed_seconds": 106.0344311670051,
+      "usage": {
+        "prompt_tokens": 45,
+        "total_tokens": 2093,
+        "completion_tokens": 2048,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "created_cache_tokens": 0,
+          "multimodal_tokens": null
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "finish_reason": "length"
+    },
+    {
+      "rank": 2,
+      "elapsed_seconds": 104.72991308400378,
+      "usage": {
+        "prompt_tokens": 45,
+        "total_tokens": 2093,
+        "completion_tokens": 2048,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "created_cache_tokens": 0,
+          "multimodal_tokens": null
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "finish_reason": "length"
+    },
+    {
+      "rank": 3,
+      "elapsed_seconds": 105.94215458299732,
+      "usage": {
+        "prompt_tokens": 45,
+        "total_tokens": 2093,
+        "completion_tokens": 2048,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "created_cache_tokens": 0,
+          "multimodal_tokens": null
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "finish_reason": "length"
+    },
+    {
+      "rank": 4,
+      "elapsed_seconds": 109.84110162500292,
+      "usage": {
+        "prompt_tokens": 45,
+        "total_tokens": 2093,
+        "completion_tokens": 2048,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "created_cache_tokens": 0,
+          "multimodal_tokens": null
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "finish_reason": "length"
+    },
+    {
+      "rank": 5,
+      "elapsed_seconds": 105.7161058749989,
+      "usage": {
+        "prompt_tokens": 45,
+        "total_tokens": 2093,
+        "completion_tokens": 2048,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "created_cache_tokens": 0,
+          "multimodal_tokens": null
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "finish_reason": "length"
+    },
+    {
+      "rank": 6,
+      "elapsed_seconds": 110.61017633300071,
+      "usage": {
+        "prompt_tokens": 45,
+        "total_tokens": 2093,
+        "completion_tokens": 2048,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "created_cache_tokens": 0,
+          "multimodal_tokens": null
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "finish_reason": "length"
+    },
+    {
+      "rank": 7,
+      "elapsed_seconds": 107.93312491699908,
+      "usage": {
+        "prompt_tokens": 45,
+        "total_tokens": 2093,
+        "completion_tokens": 2048,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "created_cache_tokens": 0,
+          "multimodal_tokens": null
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "finish_reason": "length"
+    }
+  ],
+  "needle_exit": 0,
+  "purpose": "Memory and adaptive-prefill overlap check, not a throughput comparison"
+}

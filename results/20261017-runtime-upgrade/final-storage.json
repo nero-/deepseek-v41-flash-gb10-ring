@@ -1,0 +1,26 @@
+{
+  "utc": "2026-10-17T13:12:27Z",
+  "page_size_bytes": 4096,
+  "nodes": [
+    {
+      "rank": 0,
+      "root_filesystem": "Filesystem         1B-blocks          Used     Available Use% Mounted on\n/dev/nvme0n1p2 4031871553536 1364345987072 2462684717056  36% /\n",
+      "running": "ds41-optimized-r0 a182696cb59f\n"
+    },
+    {
+      "rank": 1,
+      "root_filesystem": "Filesystem         1B-blocks          Used     Available Use% Mounted on\n/dev/nvme0n1p2 4031871553536 1346908033024 2480122671104  36% /\n",
+      "running": "ds41-optimized-r1 a182696cb59f\n"
+    },
+    {
+      "rank": 2,
+      "root_filesystem": "Filesystem        1B-blocks         Used    Available Use% Mounted on\n/dev/nvme0n1p2 982819848192 697030438912 235789373440  75% /\n",
+      "running": "ds41-optimized-r2 a182696cb59f\n"
+    },
+    {
+      "rank": 3,
+      "root_filesystem": "Filesystem        1B-blocks         Used    Available Use% Mounted on\n/dev/nvme0n1p2 982819848192 692671111168 240148701184  75% /\n",
+      "running": "ds41-optimized-r3 a182696cb59f\n"
+    }
+  ]
+}

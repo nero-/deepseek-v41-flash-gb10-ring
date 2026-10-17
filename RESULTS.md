@@ -5,6 +5,34 @@ HF tokenization, Engram projection TP, adaptive 4K prefill under contention,
 guarded query-row indexer sharding and a 2350 MHz upper GPU clock limit.
 [Exact deployment identity](results/deployment.json).
 
+## October 17 runtime and KV upgrade
+
+The October 15 eugr/KK/FlashInfer runtime is now selected with explicit top_p 1
+and 16.5 GiB KV per GPU. All native, parser, serving/tool and fresh long-context
+checks passed. The head peaked at **115.10 GiB total used**, below 118 GiB;
+logical KV capacity is **13,483,747 tokens**. No Chinese ideographs appeared in
+24 paired language responses across top_p 1 and 0.95.
+
+Both old and new runtimes completed the same public LIL 0.7.6 25-cell grid at
+0.83 memory utilization. Prefill was within 1.9%; decode was mixed. Candidate
+C2/C4 often improved, while short-context C8/C16 lost a few percent. Repeats
+cleared the 64K C1 outlier; there is no across-the-board speedup claim.
+
+The final allocation's focused screen, following removal of old monitor loops:
+
+| Context | C1 | C8 | C16 |
+|---|---:|---:|---:|
+| 8K | 64.23 | 180.18 | 262.80 |
+| 128K | 62.57 | 170.31 | 254.73 |
+
+
+The C8 repeat was 189.59 / 175.31 at 8K / 128K. Including the first screen,
+the two-run means were 3.8% / 5.4% below the old baseline; long-context C8
+is the clearest tradeoff.
+
+These final rows are not a full-grid rerun or an isolated KV speedup measurement.
+[Full grids, repeats, quality checks, memory evidence and rollback](results/20261017-runtime-upgrade/REPORT.md).
+
 ## October 17 official 1017 checkpoint
 
 The official 1017 checkpoint is selected after four-node hash verification,
@@ -16,8 +44,8 @@ transport are unchanged.
 
 Public LIL 8K C1/C8/C16: **59.68 / 191.09 / 265.63 tokens/s**.
 These are aggregate decode rates with the public request settings, not the
-historical thinking-off wrapper. A new full grid is deferred to the switch
-campaign so the endpoint can return to normal use. No request errors were
+historical thinking-off wrapper. The later runtime campaign above supplies the full grid; these checkpoint-upgrade
+rows preserve the earlier focused evidence. No request errors were
 recorded. Single-cell
 stochastic measurements do not establish a statistical speedup; finite
 correctness checks do not establish broad model-quality superiority.

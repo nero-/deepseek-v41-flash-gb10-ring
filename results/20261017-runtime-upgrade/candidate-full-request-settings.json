@@ -1,0 +1,8 @@
+{
+  "request_overrides": {
+    "top_p": 1.0
+  },
+  "harness": "/home/nero/bench/upstream-baseline-20261014/lil-0.7.6.py",
+  "harness_sha256": "c4c7eaed934d41b8e24f1bb9e81c635af599409276dbe580f14de5f837b09553",
+  "adapter_sha256": "c69bd7fa7c29f4aa5a969e1710563fdb260b8d45893d676381f839affc05c6fe"
+}

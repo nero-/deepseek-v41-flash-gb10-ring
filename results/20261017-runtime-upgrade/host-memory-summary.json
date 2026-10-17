@@ -1,0 +1,23 @@
+{
+  "samples": 1572,
+  "peak": {
+    "utc": "2026-10-17T13:10:30Z",
+    "used_gib": 115.10189056396484,
+    "available_gib": 6.585777282714844,
+    "raw_nonfree_gib": 120.46196365356445,
+    "swap_used_gib": 0.9866371154785156,
+    "pswpin": 1175179,
+    "pswpout": 9025137
+  },
+  "latest": {
+    "utc": "2026-10-17T13:11:20Z",
+    "used_gib": 115.00972366333008,
+    "available_gib": 6.677944183349609,
+    "raw_nonfree_gib": 119.68189239501953,
+    "swap_used_gib": 0.9875221252441406,
+    "pswpin": 1175615,
+    "pswpout": 9025427
+  },
+  "running": false,
+  "ended_by_stop_marker": true
+}

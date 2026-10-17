@@ -1,0 +1,18 @@
+{
+  "harness_sha256": "c4c7eaed934d41b8e24f1bb9e81c635af599409276dbe580f14de5f837b09553",
+  "configuration_sha256": "ad0a36b9f618f1f59a7b75cfdd670974d6ec632ba00adcd51be5f2274eee11fc",
+  "checkpoint": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
+  "revision": "1bae0e1088993b9b82de08f59de5be5a34e42170",
+  "images": [
+    "sha256:8e9d1bff575e6618ae354f557140aa43e9242d85762c83899fd7dfb898959f8f",
+    "sha256:59f8ae8ffa35952361ae79ac332d5514c91149d88eae47736b02c9d6693aae26",
+    "sha256:154f685e6e4056f64916d0b604aca5c26b8499779cdf014168624349ba4e2478",
+    "sha256:0d51da7e0fd162bc2ac9be3f960f161ec8270bb22ed835e04cd9c323c753cede"
+  ],
+  "protocol": "unwrapped public LIL 0.7.6; server/model defaults except temperature=1",
+  "scope": "full public 25-cell grid and coding probes",
+  "clock_cap_mhz": [
+    0,
+    2350
+  ]
+}

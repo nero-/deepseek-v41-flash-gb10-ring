@@ -1,0 +1,91 @@
+{
+  "request": {
+    "model": "DeepSeek-V4.1-Flash-TP4",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write an extensive English tutorial on cache invalidation for a web application. Cover expiration, versioning, event-driven invalidation, stampedes, consistency and failure recovery."
+      }
+    ],
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "top_k": -1,
+    "min_p": 0.0,
+    "repetition_penalty": 1.0,
+    "seed": 17,
+    "max_tokens": 1536,
+    "chat_template_kwargs": {
+      "thinking": false
+    }
+  },
+  "response": {
+    "id": "chatcmpl-aac7203666a1c56f",
+    "object": "chat.completion",
+    "created": 1792240547,
+    "model": "DeepSeek-V4.1-Flash-TP4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "# Cache Invalidation for Web Applications: A Comprehensive Tutorial\n\n## Table of Contents\n\n1. [Introduction](#introduction)\n2. [The Nature of the Problem](#the-nature-of-the-problem)\n3. [Invalidation Strategies](#invalidation-strategies)\n   - [Time-Based Expiration (TTL)](#time-based-expiration-ttl)\n   - [Versioning](#versioning)\n   - [Event-Driven Invalidation](#event-driven-invalidation)\n4. [Cache Stampedes and Thundering Herds](#cache-stampedes-and-thundering-herds)\n5. [Consistency Models](#consistency-models)\n6. [Failure Recovery](#failure-recovery)\n7. [Putting It All Together](#putting-it-all-together)\n8. [Anti-Patterns and Pitfalls](#anti-patterns-and-pitfalls)\n9. [Summary Checklist](#summary-checklist)\n\n---\n\n## Introduction\n\nThere is a famous quip in computer science, attributed (perhaps apocryphally) to Phil Karlton:\n\n> \"There are only two hard things in Computer Science: cache invalidation and naming things.\"\n\nCaching is one of the most effective ways to make a web application fast and scalable. A cache turns expensive operations — database queries, remote API calls, template rendering — into cheap lookups. But a cache is a **copy** of data, and every copy can become **stale**. Cache invalidation is the discipline of deciding *when* a cached copy is no longer trustworthy and *how* to replace or remove it.\n\nThis tutorial assumes you're building a typical web application: a backend (Node.js, Python, Go, Java, Ruby — the principles are universal), a database, a cache layer (Redis, Memcached, or an in-process cache), and possibly an HTTP layer with CDNs and browser caches. It covers the five central concerns:\n\n- **Expiration** — how long data lives.\n- **Versioning** — how to make old entries unreachable without deleting them.\n- **Event-driven invalidation** — how to react to changes as they happen.\n- **Stampedes** — how to avoid a cache miss taking down your backend.\n- **Consistency and failure recovery** — how to reason about correctness when things go wrong.\n\nBy the end you'll have a mental model and a set of concrete patterns you can combine into a coherent invalidation architecture.\n\n---\n\n## The Nature of the Problem\n\n### Caches are an optimization, not a source of truth\n\nThe first principle: **the database (or the system of record) is the truth; the cache is an optimization.** Any design that requires the cache to be correct to function will eventually fail. The cache can be wiped, evicted, partitioned, or corrupted — and the application must still work, just more slowly.\n\nThis has a corollary that is easy to forget: **a cache miss must be a safe, well-defined path.** If your application can only serve a response from cache, you don't have a cache — you have a database with extra steps and worse reliability.\n\n### The two invalidation problems\n\nPeople often conflate two related problems:\n\n1. **Invalidation** — removing or superseding an entry because the underlying data changed.\n2. **Expiration** — removing an entry because it's \"too old\" to be worth the risk of staleness.\n\nExpiration is a *safety net* that bounds staleness even when invalidation fails (and it will fail sometimes). Invalidation is the *precision tool* that keeps staleness near zero on the hot path. A robust system uses both.\n\n### What \"stale\" costs you\n\nNot all staleness is equal:\n\n- **Read-your-own-writes**: A user updates their profile and immediately sees the old version. This is almost always unacceptable.\n- **Cross-user consistency**: User A updates a shared document; does User B see it within a second? A minute? Rarely matters if the domain tolerates it.\n- **Money and inventory**: Overselling a product, double-charging a customer, or showing the wrong account balance are categorically different from showing a slightly old \"like\" count.\n\n**Decide per data class what staleness budget you can afford.** This decision drives which strategies you use.\n\n### A taxonomy of caches in a typical stack\n\nRequests flow through several caches, and invalidation must consider all of them:\n\n| Layer | Example | Typical TTL | Invalidation mechanism |\n|---|---|---|---|\n| Browser | HTTP cache, service worker | seconds–days | `Cache-Control`, `ETag`, URL versioning |\n| CDN / reverse proxy | Cloudflare, Varnish, nginx | minutes–hours | Purge API, surrogate keys |\n| Application cache | Redis, Memcached | seconds–hours | Explicit delete/set, TTL |\n| In-process cache | LRU maps, Guava/Caffeine | milliseconds–minutes | TTL, local events, version checks |\n| Database cache | Query cache, buffer pool | N/A | Managed by the DB |\n\nA change to data must invalidate **every layer that could be holding a copy**, or you must design each layer to time itself out faster than the staleness you can tolerate.\n\n---\n\n## Invalidation Strategies\n\n### Time-Based Expiration (TTL)\n\n**The idea:** every cached entry gets a time-to-live. After TTL seconds it is considered stale and removed (or, in the case of TTL-based systems like Redis, silently expired).\n\n**How it works in practice:**\n\n```python\n# Pseudocode\ndef get_user(user_id):\n    key = f\"user:{user_id}\"\n    cached = cache.get(key)\n    if cached is not None:\n        return cached\n    user = db.fetch_user(user_id)\n    cache.set(key, user, ttl=300)   # 5 minutes\n    return user\n```\n\n**Strengths:**\n\n- Trivially simple, works without coordination, resilient to bugs in invalidation logic.\n- Bounds maximum staleness: worst case, data is `TTL` seconds old.\n- Naturally limits memory usage and load spikes.\n\n**Weaknesses:**\n\n- You must choose one TTL that trades freshness against load. Too short and you hammer the database; too long and users see stale data.\n- It doesn't handle \"this specific record just changed\" — a change to one row doesn't speed up expiry of that row's entry.\n- TTLs that are too correlated cause *synchronized expiry*, which leads to stampedes (see below).\n\n**Best practices:**\n\n- **Jitter your TTLs.** Instead of `ttl=300`, use `ttl=300 + random(0, 60)`. This spreads expirations over time and dramatically reduces thundering-herd risk.\n- **Set a TTL even when you have explicit invalidation.** It's your safety net for the inevitable bug where an invalidation message is dropped or the publisher crashes mid-operation.\n- **Distinguish \"hard\" and \"soft\" expiry.** Some systems keep a stale value available for a grace period after logical expiry, serving it while refreshing in the background (see \"stale-while-revalidate\").\n\n**HTTP layer:** TTL maps directly to HTTP caching:\n\n```\nCache-Control: public, max-age=60, stale-while-revalidate=30\nETag: \"abc123\"\n",
+          "refusal": null,
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "reasoning": null
+        },
+        "logprobs": null,
+        "finish_reason": "length",
+        "stop_reason": null,
+        "token_ids": null,
+        "routed_experts": null
+      }
+    ],
+    "service_tier": null,
+    "system_fingerprint": "vllm-0.1.dev21830+g8244d1c44.d20261015-tp4-1b26ae36",
+    "usage": {
+      "prompt_tokens": 39,
+      "total_tokens": 1575,
+      "completion_tokens": 1536,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "created_cache_tokens": 0,
+        "multimodal_tokens": null
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "prompt_text": null,
+    "kv_transfer_params": null,
+    "ec_transfer_params": null,
+    "metrics": null
+  },
+  "score": {
+    "id": "tutorial-seed17-p1.0",
+    "top_p": 1.0,
+    "thinking": false,
+    "seed": 17,
+    "case": "tutorial",
+    "english_system_instruction": false,
+    "cjk_characters": {
+      "content": 0,
+      "reasoning": 0
+    },
+    "cjk_any": false,
+    "generated_characters": {
+      "content": 6563,
+      "reasoning": 0
+    },
+    "completion_tokens": 1536,
+    "finish_reason": "length",
+    "elapsed_seconds": 49.17448724999849,
+    "excerpts": {
+      "content": [],
+      "reasoning": []
+    }
+  }
+}

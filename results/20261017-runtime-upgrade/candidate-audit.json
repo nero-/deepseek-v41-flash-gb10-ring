@@ -1,0 +1,87 @@
+{
+  "completed_utc": "2026-10-17T12:06:25Z",
+  "candidate": true,
+  "healthy": true,
+  "profile": "engram-adaptive4k-query-indexer-1017-runtime1015",
+  "configuration_sha256": "9c1d8ebe23552acc0a2418b08511a23760ad0055ebbc940d444388ffb214cc1c",
+  "nodes": [
+    {
+      "rank": 0,
+      "image": "sha256:a182696cb59fad1352ca17aae13c248e276d5cb7b7811f0fc8ead1cde4516221",
+      "running": true,
+      "oom_killed": false,
+      "containers": [
+        "ds41-runtime-r0"
+      ],
+      "services": [
+        "active",
+        "active"
+      ],
+      "clock_unit": "# /etc/systemd/system/gb10-gpu-clock-cap.service\n[Unit]\nDescription=GB10 GPU upper clock limit (2350 MHz)\nWants=nvidia-persistenced.service\nAfter=nvidia-persistenced.service\nBefore=docker.service\nStartLimitIntervalSec=0\n\n[Service]\nType=oneshot\nExecStart=/usr/bin/nvidia-smi -lgc 0,2350\nExecReload=/usr/bin/nvidia-smi -lgc 0,2350\nRemainAfterExit=yes\nRestart=on-failure\nRestartSec=10\n\n[Install]\nWantedBy=multi-user.target\n",
+      "plugin_manifest_verified": true,
+      "indexer_exact_on": 12,
+      "indexer_exact_off": 0,
+      "loaded_gpu_csv": "2333, 94, 27.01, 62"
+    },
+    {
+      "rank": 1,
+      "image": "sha256:a182696cb59fad1352ca17aae13c248e276d5cb7b7811f0fc8ead1cde4516221",
+      "running": true,
+      "oom_killed": false,
+      "containers": [
+        "ds41-runtime-r1"
+      ],
+      "services": [
+        "active",
+        "active"
+      ],
+      "clock_unit": "# /etc/systemd/system/gb10-gpu-clock-cap.service\n[Unit]\nDescription=GB10 GPU upper clock limit (2350 MHz)\nWants=nvidia-persistenced.service\nAfter=nvidia-persistenced.service\nBefore=docker.service\nStartLimitIntervalSec=0\n\n[Service]\nType=oneshot\nExecStart=/usr/bin/nvidia-smi -lgc 0,2350\nExecReload=/usr/bin/nvidia-smi -lgc 0,2350\nRemainAfterExit=yes\nRestart=on-failure\nRestartSec=10\n\n[Install]\nWantedBy=multi-user.target\n",
+      "plugin_manifest_verified": true,
+      "indexer_exact_on": 0,
+      "indexer_exact_off": 0,
+      "loaded_gpu_csv": "2320, 92, 26.10, 62"
+    },
+    {
+      "rank": 2,
+      "image": "sha256:a182696cb59fad1352ca17aae13c248e276d5cb7b7811f0fc8ead1cde4516221",
+      "running": true,
+      "oom_killed": false,
+      "containers": [
+        "ds41-runtime-r2"
+      ],
+      "services": [
+        "active",
+        "active"
+      ],
+      "clock_unit": "# /etc/systemd/system/gb10-gpu-clock-cap.service\n[Unit]\nDescription=GB10 GPU upper clock limit (2350 MHz)\nWants=nvidia-persistenced.service\nAfter=nvidia-persistenced.service\nBefore=docker.service\nStartLimitIntervalSec=0\n\n[Service]\nType=oneshot\nExecStart=/usr/bin/nvidia-smi -lgc 0,2350\nExecReload=/usr/bin/nvidia-smi -lgc 0,2350\nRemainAfterExit=yes\nRestart=on-failure\nRestartSec=10\n\n[Install]\nWantedBy=multi-user.target\n",
+      "plugin_manifest_verified": true,
+      "indexer_exact_on": 0,
+      "indexer_exact_off": 0,
+      "loaded_gpu_csv": "2327, 93, 27.49, 64"
+    },
+    {
+      "rank": 3,
+      "image": "sha256:a182696cb59fad1352ca17aae13c248e276d5cb7b7811f0fc8ead1cde4516221",
+      "running": true,
+      "oom_killed": false,
+      "containers": [
+        "ds41-runtime-r3"
+      ],
+      "services": [
+        "active",
+        "active"
+      ],
+      "clock_unit": "# /etc/systemd/system/gb10-gpu-clock-cap.service\n[Unit]\nDescription=GB10 GPU upper clock limit (2350 MHz)\nWants=nvidia-persistenced.service\nAfter=nvidia-persistenced.service\nBefore=docker.service\nStartLimitIntervalSec=0\n\n[Service]\nType=oneshot\nExecStart=/usr/bin/nvidia-smi -lgc 0,2350\nExecReload=/usr/bin/nvidia-smi -lgc 0,2350\nRemainAfterExit=yes\nRestart=on-failure\nRestartSec=10\n\n[Install]\nWantedBy=multi-user.target\n",
+      "plugin_manifest_verified": true,
+      "indexer_exact_on": 0,
+      "indexer_exact_off": 0,
+      "loaded_gpu_csv": "2333, 94, 26.57, 68"
+    }
+  ],
+  "loaded_probe": {
+    "completion_tokens": 512,
+    "elapsed_seconds": 7.316974500005017,
+    "purpose": "loaded-clock check; separate from timed benchmark"
+  },
+  "api": "http://192.168.50.219:8015/v1"
+}

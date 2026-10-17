@@ -1,0 +1,101 @@
+{
+  "method": "1017 self-consistency: generate with the new checkpoint, then score its own sequence by prefill. Top-20 intersection plus other-mass KL. Finite correctness check, not a comparison of model quality with the old weights.",
+  "replay": [
+    {
+      "prompt_index": 0,
+      "thinking": false,
+      "cached_tokens": 0,
+      "decode_consistency": {
+        "positions": 2048,
+        "mean_coarsened_kl": 0.006369702859954327,
+        "top1_agreement": 0.98486328125,
+        "late_mean_coarsened_kl": 0.004835015032510204
+      }
+    },
+    {
+      "prompt_index": 1,
+      "thinking": true,
+      "cached_tokens": 0,
+      "decode_consistency": {
+        "positions": 2048,
+        "mean_coarsened_kl": 0.011829472838938105,
+        "top1_agreement": 0.96044921875,
+        "late_mean_coarsened_kl": 0.013486920605953915
+      }
+    }
+  ],
+  "exact_answer": [
+    {
+      "prompt": "What is 17*23? Reply with the number only.",
+      "expected": "391",
+      "answer": "391",
+      "pass": true
+    },
+    {
+      "prompt": "What is 38*47? Reply with the number only.",
+      "expected": "1786",
+      "answer": "1786",
+      "pass": true
+    },
+    {
+      "prompt": "What is 123*19? Reply with the number only.",
+      "expected": "2337",
+      "answer": "2337",
+      "pass": true
+    },
+    {
+      "prompt": "What is 271*31? Reply with the number only.",
+      "expected": "8401",
+      "answer": "8401",
+      "pass": true
+    },
+    {
+      "prompt": "What is 83*97? Reply with the number only.",
+      "expected": "8051",
+      "answer": "8051",
+      "pass": true
+    },
+    {
+      "prompt": "What is 144*13? Reply with the number only.",
+      "expected": "1872",
+      "answer": "1872",
+      "pass": true
+    },
+    {
+      "prompt": "What is the greatest common divisor of 252 and 198? Reply with the number only.",
+      "expected": "18",
+      "answer": "18",
+      "pass": true
+    },
+    {
+      "prompt": "Convert hexadecimal 2F to decimal. Reply with the number only.",
+      "expected": "47",
+      "answer": "47",
+      "pass": true
+    },
+    {
+      "prompt": "If all A are B and no B are C, can any A be C? Reply only yes or no.",
+      "expected": "no",
+      "answer": "No",
+      "pass": true
+    },
+    {
+      "prompt": "How many ways are there to tile a 2 by 8 rectangle using 2 by 1 dominoes? Reply with the number only.",
+      "expected": "34",
+      "answer": "34",
+      "pass": true
+    },
+    {
+      "prompt": "A fair six-sided die is rolled. How many possible results are prime numbers? Reply with the number only.",
+      "expected": "3",
+      "answer": "3",
+      "pass": true
+    },
+    {
+      "prompt": "Which is larger: 9.11 or 9.9? Reply with the larger number only.",
+      "expected": "9.9",
+      "answer": "9.9",
+      "pass": true
+    }
+  ]
+}

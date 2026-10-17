@@ -1,5 +1,10 @@
 # Selected 1017 frontend corrections
 
+**Historical runtime layer retained for rollback.** The selected October 17
+runtime is documented in [runtime-20261017](../runtime-20261017/README.md).
+It contains the upstream KK corrections and reapplies the official 1017
+encoder fix. Do not apply the old framework patch blindly to the newer provider.
+
 These two sequential layers preserve the corrected September GPU stack,
 including KK #926/#943, and adapt the frontend for the official 1017 checkpoint.
 

@@ -1,0 +1,600 @@
+{
+  "purpose": "Unexpected CJK script in English-only prompts, separated by visible answer and reasoning",
+  "limits": "Bounded purposive screen, not proof of language-drift equivalence or a throughput benchmark. Mixed-arm requests run at concurrency four. Half use ordinary English user prompts without a system instruction; half explicitly ask for English. Max output 3072 thinking / 1536 non-thinking; length-limited replies are included.",
+  "rows": [
+    {
+      "id": "distributed-seed17-p1.0",
+      "top_p": 1.0,
+      "thinking": true,
+      "seed": 17,
+      "case": "distributed",
+      "english_system_instruction": false,
+      "cjk_characters": {
+        "content": 0,
+        "reasoning": 0
+      },
+      "cjk_any": false,
+      "generated_characters": {
+        "content": 0,
+        "reasoning": 12819
+      },
+      "completion_tokens": 3072,
+      "finish_reason": "length",
+      "elapsed_seconds": 96.14669187500112,
+      "excerpts": {
+        "content": [],
+        "reasoning": []
+      }
+    },
+    {
+      "id": "distributed-seed17-p0.95",
+      "top_p": 0.95,
+      "thinking": true,
+      "seed": 17,
+      "case": "distributed",
+      "english_system_instruction": false,
+      "cjk_characters": {
+        "content": 0,
+        "reasoning": 0
+      },
+      "cjk_any": false,
+      "generated_characters": {
+        "content": 0,
+        "reasoning": 13118
+      },
+      "completion_tokens": 3072,
+      "finish_reason": "length",
+      "elapsed_seconds": 103.81986583300022,
+      "excerpts": {
+        "content": [],
+        "reasoning": []
+      }
+    },
+    {
+      "id": "mathematics-seed17-p0.95",
+      "top_p": 0.95,
+      "thinking": true,
+      "seed": 17,
+      "case": "mathematics",
+      "english_system_instruction": false,
+      "cjk_characters": {
+        "content": 0,
+        "reasoning": 0
+      },
+      "cjk_any": false,
+      "generated_characters": {
+        "content": 0,
+        "reasoning": 9456
+      },
+      "completion_tokens": 3072,
+      "finish_reason": "length",
+      "elapsed_seconds": 84.39966970800015,
+      "excerpts": {
+        "content": [],
+        "reasoning": []
+      }
+    },
+    {
+      "id": "mathematics-seed17-p1.0",
+      "top_p": 1.0,
+      "thinking": true,
+      "seed": 17,
+      "case": "mathematics",
+      "english_system_instruction": false,
+      "cjk_characters": {
+        "content": 0,
+        "reasoning": 0
+      },
+      "cjk_any": false,
+      "generated_characters": {
+        "content": 0,
+        "reasoning": 8679
+      },
+      "completion_tokens": 3072,
+      "finish_reason": "length",
+      "elapsed_seconds": 79.51862929100025,
+      "excerpts": {
+        "content": [],
+        "reasoning": []
+      }
+    },
+    {
+      "id": "debugging-seed17-p1.0",
+      "top_p": 1.0,
+      "thinking": true,
+      "seed": 17,
+      "case": "debugging",
+      "english_system_instruction": false,
+      "cjk_characters": {
+        "content": 0,
+        "reasoning": 0
+      },
+      "cjk_any": false,
+      "generated_characters": {
+        "content": 0,
+        "reasoning": 13824
+      },
+      "completion_tokens": 3072,
+      "finish_reason": "length",
+      "elapsed_seconds": 87.18098979200295,
+      "excerpts": {
+        "content": [],
+        "reasoning": []
+      }
+    },
+    {
+      "id": "debugging-seed17-p0.95",
+      "top_p": 0.95,
+      "thinking": true,
+      "seed": 17,
+      "case": "debugging",
+      "english_system_instruction": false,
+      "cjk_characters": {
+        "content": 0,
+        "reasoning": 0
+      },
+      "cjk_any": false,
+      "generated_characters": {
+        "content": 0,
+        "reasoning": 13849
+      },
+      "completion_tokens": 3072,
+      "finish_reason": "length",
+      "elapsed_seconds": 85.12618079099775,
+      "excerpts": {
+        "content": [],
+        "reasoning": []
+      }
+    },
+    {
+      "id": "tutorial-seed17-p0.95",
+      "top_p": 0.95,
+      "thinking": false,
+      "seed": 17,
+      "case": "tutorial",
+      "english_system_instruction": false,
+      "cjk_characters": {
+        "content": 0,
+        "reasoning": 0
+      },
+      "cjk_any": false,
+      "generated_characters": {
+        "content": 6482,
+        "reasoning": 0
+      },
+      "completion_tokens": 1536,
+      "finish_reason": "length",
+      "elapsed_seconds": 45.853412249998655,
+      "excerpts": {
+        "content": [],
+        "reasoning": []
+      }
+    },
+    {
+      "id": "tutorial-seed17-p1.0",
+      "top_p": 1.0,
+      "thinking": false,
+      "seed": 17,
+      "case": "tutorial",
+      "english_system_instruction": false,
+      "cjk_characters": {
+        "content": 0,
+        "reasoning": 0
+      },
+      "cjk_any": false,
+      "generated_characters": {
+        "content": 6563,
+        "reasoning": 0
+      },
+      "completion_tokens": 1536,
+      "finish_reason": "length",
+      "elapsed_seconds": 49.17448724999849,
+      "excerpts": {
+        "content": [],
+        "reasoning": []
+      }
+    },
+    {
+      "id": "physics-seed17-p1.0",
+      "top_p": 1.0,
+      "thinking": false,
+      "seed": 17,
+      "case": "physics",
+      "english_system_instruction": false,
+      "cjk_characters": {
+        "content": 0,
+        "reasoning": 0
+      },
+      "cjk_any": false,
+      "generated_characters": {
+        "content": 6936,
+        "reasoning": 0
+      },
+      "completion_tokens": 1536,
+      "finish_reason": "length",
+      "elapsed_seconds": 51.41900212499604,
+      "excerpts": {
+        "content": [],
+        "reasoning": []
+      }
+    },
+    {
+      "id": "physics-seed17-p0.95",
+      "top_p": 0.95,
+      "thinking": false,
+      "seed": 17,
+      "case": "physics",
+      "english_system_instruction": false,
+      "cjk_characters": {
+        "content": 0,
+        "reasoning": 0
+      },
+      "cjk_any": false,
+      "generated_characters": {
+        "content": 6742,
+        "reasoning": 0
+      },
+      "completion_tokens": 1536,
+      "finish_reason": "length",
+      "elapsed_seconds": 49.2809777500006,
+      "excerpts": {
+        "content": [],
+        "reasoning": []
+      }
+    },
+    {
+      "id": "writing-seed17-p0.95",
+      "top_p": 0.95,
+      "thinking": false,
+      "seed": 17,
+      "case": "writing",
+      "english_system_instruction": false,
+      "cjk_characters": {
+        "content": 0,
+        "reasoning": 0
+      },
+      "cjk_any": false,
+      "generated_characters": {
+        "content": 6609,
+        "reasoning": 0
+      },
+      "completion_tokens": 1536,
+      "finish_reason": "length",
+      "elapsed_seconds": 56.76658787499764,
+      "excerpts": {
+        "content": [],
+        "reasoning": []
+      }
+    },
+    {
+      "id": "writing-seed17-p1.0",
+      "top_p": 1.0,
+      "thinking": false,
+      "seed": 17,
+      "case": "writing",
+      "english_system_instruction": false,
+      "cjk_characters": {
+        "content": 0,
+        "reasoning": 0
+      },
+      "cjk_any": false,
+      "generated_characters": {
+        "content": 7002,
+        "reasoning": 0
+      },
+      "completion_tokens": 1536,
+      "finish_reason": "length",
+      "elapsed_seconds": 60.67343062500004,
+      "excerpts": {
+        "content": [],
+        "reasoning": []
+      }
+    },
+    {
+      "id": "distributed-seed29-p1.0",
+      "top_p": 1.0,
+      "thinking": true,
+      "seed": 29,
+      "case": "distributed",
+      "english_system_instruction": true,
+      "cjk_characters": {
+        "content": 0,
+        "reasoning": 0
+      },
+      "cjk_any": false,
+      "generated_characters": {
+        "content": 0,
+        "reasoning": 12662
+      },
+      "completion_tokens": 3072,
+      "finish_reason": "length",
+      "elapsed_seconds": 94.52995712499978,
+      "excerpts": {
+        "content": [],
+        "reasoning": []
+      }
+    },
+    {
+      "id": "distributed-seed29-p0.95",
+      "top_p": 0.95,
+      "thinking": true,
+      "seed": 29,
+      "case": "distributed",
+      "english_system_instruction": true,
+      "cjk_characters": {
+        "content": 0,
+        "reasoning": 0
+      },
+      "cjk_any": false,
+      "generated_characters": {
+        "content": 0,
+        "reasoning": 12257
+      },
+      "completion_tokens": 3072,
+      "finish_reason": "length",
+      "elapsed_seconds": 97.42697279200365,
+      "excerpts": {
+        "content": [],
+        "reasoning": []
+      }
+    },
+    {
+      "id": "mathematics-seed29-p0.95",
+      "top_p": 0.95,
+      "thinking": true,
+      "seed": 29,
+      "case": "mathematics",
+      "english_system_instruction": true,
+      "cjk_characters": {
+        "content": 0,
+        "reasoning": 0
+      },
+      "cjk_any": false,
+      "generated_characters": {
+        "content": 0,
+        "reasoning": 9607
+      },
+      "completion_tokens": 3072,
+      "finish_reason": "length",
+      "elapsed_seconds": 83.16670470799727,
+      "excerpts": {
+        "content": [],
+        "reasoning": []
+      }
+    },
+    {
+      "id": "mathematics-seed29-p1.0",
+      "top_p": 1.0,
+      "thinking": true,
+      "seed": 29,
+      "case": "mathematics",
+      "english_system_instruction": true,
+      "cjk_characters": {
+        "content": 0,
+        "reasoning": 0
+      },
+      "cjk_any": false,
+      "generated_characters": {
+        "content": 0,
+        "reasoning": 9291
+      },
+      "completion_tokens": 3072,
+      "finish_reason": "length",
+      "elapsed_seconds": 87.29591012500168,
+      "excerpts": {
+        "content": [],
+        "reasoning": []
+      }
+    },
+    {
+      "id": "debugging-seed29-p1.0",
+      "top_p": 1.0,
+      "thinking": true,
+      "seed": 29,
+      "case": "debugging",
+      "english_system_instruction": true,
+      "cjk_characters": {
+        "content": 0,
+        "reasoning": 0
+      },
+      "cjk_any": false,
+      "generated_characters": {
+        "content": 0,
+        "reasoning": 14033
+      },
+      "completion_tokens": 3072,
+      "finish_reason": "length",
+      "elapsed_seconds": 88.30140333300369,
+      "excerpts": {
+        "content": [],
+        "reasoning": []
+      }
+    },
+    {
+      "id": "debugging-seed29-p0.95",
+      "top_p": 0.95,
+      "thinking": true,
+      "seed": 29,
+      "case": "debugging",
+      "english_system_instruction": true,
+      "cjk_characters": {
+        "content": 0,
+        "reasoning": 0
+      },
+      "cjk_any": false,
+      "generated_characters": {
+        "content": 0,
+        "reasoning": 14200
+      },
+      "completion_tokens": 3072,
+      "finish_reason": "length",
+      "elapsed_seconds": 95.93671929199627,
+      "excerpts": {
+        "content": [],
+        "reasoning": []
+      }
+    },
+    {
+      "id": "tutorial-seed29-p0.95",
+      "top_p": 0.95,
+      "thinking": false,
+      "seed": 29,
+      "case": "tutorial",
+      "english_system_instruction": true,
+      "cjk_characters": {
+        "content": 0,
+        "reasoning": 0
+      },
+      "cjk_any": false,
+      "generated_characters": {
+        "content": 6272,
+        "reasoning": 0
+      },
+      "completion_tokens": 1536,
+      "finish_reason": "length",
+      "elapsed_seconds": 50.722919375002675,
+      "excerpts": {
+        "content": [],
+        "reasoning": []
+      }
+    },
+    {
+      "id": "tutorial-seed29-p1.0",
+      "top_p": 1.0,
+      "thinking": false,
+      "seed": 29,
+      "case": "tutorial",
+      "english_system_instruction": true,
+      "cjk_characters": {
+        "content": 0,
+        "reasoning": 0
+      },
+      "cjk_any": false,
+      "generated_characters": {
+        "content": 6456,
+        "reasoning": 0
+      },
+      "completion_tokens": 1536,
+      "finish_reason": "length",
+      "elapsed_seconds": 47.30689716699999,
+      "excerpts": {
+        "content": [],
+        "reasoning": []
+      }
+    },
+    {
+      "id": "physics-seed29-p1.0",
+      "top_p": 1.0,
+      "thinking": false,
+      "seed": 29,
+      "case": "physics",
+      "english_system_instruction": true,
+      "cjk_characters": {
+        "content": 0,
+        "reasoning": 0
+      },
+      "cjk_any": false,
+      "generated_characters": {
+        "content": 6983,
+        "reasoning": 0
+      },
+      "completion_tokens": 1536,
+      "finish_reason": "length",
+      "elapsed_seconds": 50.136083707999205,
+      "excerpts": {
+        "content": [],
+        "reasoning": []
+      }
+    },
+    {
+      "id": "physics-seed29-p0.95",
+      "top_p": 0.95,
+      "thinking": false,
+      "seed": 29,
+      "case": "physics",
+      "english_system_instruction": true,
+      "cjk_characters": {
+        "content": 0,
+        "reasoning": 0
+      },
+      "cjk_any": false,
+      "generated_characters": {
+        "content": 6538,
+        "reasoning": 0
+      },
+      "completion_tokens": 1462,
+      "finish_reason": "stop",
+      "elapsed_seconds": 47.67223270899558,
+      "excerpts": {
+        "content": [],
+        "reasoning": []
+      }
+    },
+    {
+      "id": "writing-seed29-p0.95",
+      "top_p": 0.95,
+      "thinking": false,
+      "seed": 29,
+      "case": "writing",
+      "english_system_instruction": true,
+      "cjk_characters": {
+        "content": 0,
+        "reasoning": 0
+      },
+      "cjk_any": false,
+      "generated_characters": {
+        "content": 6502,
+        "reasoning": 0
+      },
+      "completion_tokens": 1536,
+      "finish_reason": "length",
+      "elapsed_seconds": 50.01606879099563,
+      "excerpts": {
+        "content": [],
+        "reasoning": []
+      }
+    },
+    {
+      "id": "writing-seed29-p1.0",
+      "top_p": 1.0,
+      "thinking": false,
+      "seed": 29,
+      "case": "writing",
+      "english_system_instruction": true,
+      "cjk_characters": {
+        "content": 0,
+        "reasoning": 0
+      },
+      "cjk_any": false,
+      "generated_characters": {
+        "content": 6440,
+        "reasoning": 0
+      },
+      "completion_tokens": 1536,
+      "finish_reason": "length",
+      "elapsed_seconds": 38.6495511250032,
+      "excerpts": {
+        "content": [],
+        "reasoning": []
+      }
+    }
+  ],
+  "arms": {
+    "1.0": {
+      "requests": 12,
+      "completion_tokens": 27648,
+      "requests_with_cjk": 0,
+      "content_cjk": 0,
+      "reasoning_cjk": 0,
+      "length_limited": 12
+    },
+    "0.95": {
+      "requests": 12,
+      "completion_tokens": 27574,
+      "requests_with_cjk": 0,
+      "content_cjk": 0,
+      "reasoning_cjk": 0,
+      "length_limited": 11
+    }
+  }
+}

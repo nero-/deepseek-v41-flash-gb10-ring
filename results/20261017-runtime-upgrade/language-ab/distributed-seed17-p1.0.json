@@ -1,0 +1,91 @@
+{
+  "request": {
+    "model": "DeepSeek-V4.1-Flash-TP4",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Design a reliable distributed task queue. Explain leases, retries, idempotence, backpressure, crash recovery and observability. Give a detailed technical design with examples."
+      }
+    ],
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "top_k": -1,
+    "min_p": 0.0,
+    "repetition_penalty": 1.0,
+    "seed": 17,
+    "max_tokens": 3072,
+    "chat_template_kwargs": {
+      "thinking": true
+    }
+  },
+  "response": {
+    "id": "chatcmpl-ae906287e4c5b7f8",
+    "object": "chat.completion",
+    "created": 1792240443,
+    "model": "DeepSeek-V4.1-Flash-TP4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": null,
+          "refusal": null,
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "reasoning": "We need answer. Need design reliable distributed task queue with leases, retries, idempotence, backpressure, crash recovery, observability. Detailed technical design examples. Need structure. Need likely discuss architecture: producers, queue (broker), workers, scheduler/leader, metadata store. Need reliability semantics at-least-once, possible exactly-once effects via idempotency. Need leases with visibility timeout, heartbeats, fencing tokens. Retries with exponential backoff + jitter, max attempts, dead letter queue. Idempotence: idempotency keys, dedupe store, state machine, conditional writes, outbox/inbox, external effects. Backpressure: bounded queues, admission control, rate limiting, worker concurrency, pull model, credit-based, DLQ, shedding priorities. Crash recovery: replicated durable log, consensus, leases expiry, worker crash, broker crash, partitioning, rebalancing, WAL, snapshots, leader election. Observability: metrics (throughput, latency, retries, lease expirations, queue depth, age, in-flight, failures), tracing, logs, audit, alerts. Examples: payment processing, email sending, image resize. Need \"reliable distributed task queue\". Provide detailed technical design. Maybe use architecture with partitions and replicated log (Raft/Kafka-like) + metadata DB? Need be coherent.\n\nNeed answer not too huge but detailed. Desired oververbosity 5. We'll provide robust design.\n\nLet's plan:\n\n1. Goals & guarantees:\n- At-least-once delivery, no loss after ack, ordered per partition optional.\n- Lease-based exclusive processing, retry, DLQ.\n- Idempotent consumers for exactly-once effects.\n- Horizontal scalability, crash tolerance.\n\n2. Architecture:\n- API service (producers) writes task to durable commit log partitioned by task key. ACK after replication quorum.\n- Queue partitions: append-only log + per-partition state (pending/inflight/acked/retry) maybe materialized in KV/DB. Or use replicated log + scheduler.\n- Lease manager / scheduler: assigns tasks to workers, tracks leases. Could be separate coordinator per partition. Simpler: workers pull from broker; broker grants lease via visibility timeout. Use durable metadata.\n- Workers pull tasks, execute, heartbeat, ack/nack.\n- Metadata store: RocksDB/Postgres/etcd for task state, leases, idempotency records. But need scalable. Could use partition-local state machine replicated with Raft. Need avoid two systems? Let's define \"control plane\" replicated metadata store per partition with Raft, and \"data plane\" log. But overcomplex. Maybe \"task store\" backed by replicated SQL/KV (Spanner/CockroachDB/etcd) for task metadata; payload in object store/log. For reliability, API writes task and state transactionally. Leases stored in task record with expiry. Assignment via DB transactions. This is simpler and coherent: use a strongly consistent, replicated database (CockroachDB/Spanner) for task metadata and a durable object store for payloads. But queue at high scale? We can partition by queue/partition. Use transactions: \n  - enqueue: insert task row unique idempotency key, state READY.\n  - lease: SELECT ... FOR UPDATE SKIP LOCKED where state READY/FAILED_RETRY available_at <= now and queue partition = p, set state LEASED, lease_owner, lease_expires, fence_token +1.\n  - ack: update state if lease_owner and fence token match, state DONE.\n  - nack: update state RETRY_READY, next_attempt_at.\n  - reaper: UPDATE state READY where state LEASED and lease_expires < now, increment attempts? Need distinguish attempt count. \nThis is reliable if DB replicated. Good. Then mention for extreme throughput, use partitioned replicated logs and per-partition state machines. But design can be DB-backed. Need \"distributed task queue\" reliable. DB-backed is valid and detailed.\n\nNeed discuss leases:\n- Lease = time-bounded exclusive right to process task. Contains task_id, lease_owner worker_id, lease_expires_at, fence_token (monotonic per task), attempt. Worker must heartbeat before expiry. On ack/nack only accepted if token matches. Lease length > max p99 processing + clock skew? Heartbeat interval lease/3. Use server time. If worker pauses (GC/network), lease expires and task can be reassigned; old worker may still run, so idempotence/fencing needed. Fencing token passed to downstream resource to reject stale writes.\n\nRetries:\n- Retry policy per queue/task: max attempts, exponential backoff with jitter, retryable vs non-retryable errors. Store next_attempt_at. Attempts increment on lease grant or failure? Need define. Better attempt_count increments when leased. On nack, if attempt >= max -> dead. On crash lease expiry, reaper increments? If attempt count increments on each lease grant, then crash consumes attempt; after max, DLQ. Need avoid poison loops. Sometimes max attempts counts failures, not crashes. Use attempt_count on lease grant. For crash recovery, reaper requeues with attempt_count+1 maybe. If max exceeded, DLQ. Provide backoff schedule example: base 1s, multiplier 2, cap 5m, full jitter. Use retry_after / rate limit. Non-retryable -> DLQ. DLQ with replay. \n- Important: retries can duplicate effects; idempotence.\n\nIdempotence:\n- At-least-once means duplicate deliveries. Need idempotency key from producer (e.g., business operation ID). Unique constraint on (queue, idempotency_key) to dedupe enqueue. Worker idempotence: use task ID as idempotency key in side effects. Pattern: transactional outbox/inbox: worker begins transaction, checks processed_operations(task_id) unique, performs local DB update and inserts processed record in same transaction; if external side effect, use provider idempotency key or dedupe table + two-phase state (PENDING, COMMITTED) with reconciliation. Example payment: task_id as payment request id; call payment provider with Idempotency-Key: task_id; or update DB with WHERE status='pending'. For email, might send duplicate if crash after send before ack; use provider idempotency or make email idempotent by embedding message id and dedupe at recipient? Hard. Mention not always possible; design effects idempotent or use exactly-once side effect via transactional resource. \n- Fencing tokens for stale worker writes: downstream accepts writes only if fence >= last_fence.\n\nBackpressure:\n- Bounded queues per tenant/queue; max pending tasks, max in-flight leases, max payload size. Admission control at API: reject 429/503 with Retry-After when depth/age thresholds. Token bucket per tenant. Workers pull with concurrency and prefetch/credits. Lease grants limited by worker capacity: worker requests N credits; server grants up to available and global concurrency. Pause low-priority queues. Autoscaling based on queue age, not just depth. Shedding: reject or drop low priority, DLQ expired. Avoid unbounded retries causing retry storms: retry budgets, circuit breakers. \n- Credit-based pull: each worker maintains max concurrent tasks; asks for lease only when slot free. Server enforces max in-flight per queue and per tenant. \n- Backpressure to producers via commit log/DB transaction throughput? Use queue quotas.\n\nCrash recovery:\n- Producer crash: task not acked until commit; retry produce with idempotency key.\n- Worker crash: lease expires, reaper requeues. Heartbeats stop. Fence token increments. Duplicate possible.\n- Broker/coordinator crash: replicated DB with quorum; leases and state durable. Leader election. If using log, committed entries replicated. Reaper idempotent. \n- Reaper: periodic scan leases expired, transaction update to READY with next_attempt and fence++. Avoid race: update WHERE state='LEASED' AND lease_expires_at < now. If worker ack races, only one wins. \n- Network partition: worker may be alive but cannot heartbeat. Lease expires; two workers may execute; fencing/idempotence. Use conservative lease > max clock skew and processing; heartbeat via server.\n- Recovery of stuck tasks: DLQ, quarantine, poison detection. Snapshots/compaction. \n- Exactly once enqueue: unique idempotency key + transaction. \n- Multi-region: quorum commit, failover, leases bounded.\n\nObservability:\n- Metrics: enqueue rate, dequeue rate, ack/nack, success/failure, retries, lease expirations, duplicate detections, queue depth, oldest task age, in-flight leases, worker utilization, heartbeat misses, DLQ size, reaper requeues, latency from enqueue to start and to complete, attempt histogram. Per queue/tenant.\n- Tracing: trace_id propagated producer->task->worker->downstream; spans for enqueue, lease, execution, ack, retries. \n- Logging: structured with task_id, attempt, lease_id/fence, worker_id, error class. Avoid payload PII.\n- Auditing: state transitions.\n- Alerts: queue age SLO, failure rate, lease expiry spike, reaper lag, DLQ growth, replica lag. Dashboards.\n- Health: synthetic canary tasks.\n\nNeed give examples. Maybe walkthrough:\nExample task JSON:\n{\n task_id: uuid,\n queue: \"payments\",\n idempotency_key: \"order-123-charge\",\n payload_ref: \"s3://...\",\n priority: 10,\n max_attempts: 5,\n timeout_ms: 30000,\n created_at\n}\nSchema:\ntasks(task_id PK, queue, partition, idempotency_key unique(queue,key), payload_ref, state, priority, available_at, attempt_count, max_attempts, lease_owner, lease_expires_at, fence_token, last_error, created_at, updated_at)\nprocessed_operations(task_id PK, worker_id, result, completed_at)\nMaybe lease_grant transaction.\n\nPseudo SQL:\nEnqueue:\nINSERT INTO tasks (...) VALUES (...) ON CONFLICT (queue,idempotency_key) DO NOTHING RETURNING task_id; If conflict return existing.\n\nLease:\nBEGIN;\nSELECT task_id FROM tasks\nWHERE queue=$1 AND state='READY' AND available_at <= now()\nORDER BY priority DESC, available_at ASC, task_id\nLIMIT 1\nFOR UPDATE SKIP LOCKED;\nUPDATE tasks SET state='LEASED', lease_owner=$worker, lease_expires_at=now()+interval '30s', fence_token=fence_token+1, attempt_count=attempt_count+1, updated_at=now()\nWHERE task_id=$id AND state='READY'\nRETURNING task_id, fence_token, attempt_count, payload_ref;\nCOMMIT;\nNeed note SKIP LOCKED for high concurrency. Use partition/queue filtering. If attempt_count > max? Maybe lease only if attempt_count < max_attempts else DLQ. On lease, attempt_count increment; if becomes max+1? Better check attempt_count < max_attempts. If max reached after failure, state DEAD. Need avoid leasing beyond. Use WHERE attempt_count < max_attempts. If attempt_count >= max -> reaper moves to DEAD. \nHeartbeat:\nUPDATE tasks SET lease_expires_at=now()+lease_duration\nWHERE task_id=$1 AND lease_owner=$2 AND fence_token=$3 AND state='LEASED';\nAck:\nUPDATE tasks SET state='DONE', completed_at=now(), lease_owner=NULL\nWHERE task_id=$1 AND lease_owner=$2 AND fence_token=$3 AND state='LEASED';\nIf rowcount 0 -> lost lease; worker should stop/cleanup and not retry side effects unless idempotent. \nNack:\nBEGIN;\nUPDATE tasks SET state = CASE WHEN attempt_count >= max_attempts THEN 'DEAD' ELSE 'READY' END,\navailable_at = now()+backoff(attempt_count),\nlast_error=$err, lease_owner=NULL\nWHERE task_id=$1 AND lease_owner=$2 AND fence_token=$3 AND state='LEASED';\nIf DEAD insert into dlq.\nCOMMIT;\nReaper:\nWITH expired AS (\n SELECT task_id FROM tasks WHERE state='LEASED' AND lease_expires_at < now() LIMIT 1000 FOR UPDATE SKIP LOCKED\n)\nUPDATE tasks SET state = CASE WHEN attempt_count >= max_attempts THEN 'DEAD' ELSE 'READY' END,\navailable_at = now()+backoff(attempt_count), lease_owner=NULL, fence_token=fence_token (or increment? fence increment on next lease). \nWHERE task_id IN...\nNeed be careful fence increment on requeue? Fence token should increment each lease grant. Reaper doesn't need increment; next lease increments. But stale worker with old fence and old lease_owner? Ack condition state LEASED + owner + fence. After reaper state READY, old ack fails due state. Next lease increments fence. Good. If reaper requeues but old worker still running and ack before next lease, ack fails because state READY. Good. If reaper not yet run, old worker ack accepted if before expiry? If expired but not reaper, ack condition doesn't check expires. Should ack reject if now>lease_expires? To be safe, ack update WHERE lease_expires_at > now()? But if worker completes just after expiry and no reaper, accepting may be okay, but lease no longer valid. Better require lease not expired: AND lease_expires_at > now(). Then if expired, ack fails; task will be retried; duplicate. This enforces lease. But if clock skew? Use DB now. Heartbeat extends. If worker finishes before expiry but ack network delayed after expiry, ack fails -> duplicate. Acceptable at-least-once. Include condition.\nHeartbeat also WHERE lease_expires_at > now()? If expired, heartbeat fails. Good.\n\nBut with lease expiry, there's a small window: worker completes, ack fails due expiry, reaper requeues. Duplicate. Idempotence.\n\nNeed discuss partitioning and ordering: If order per"
+        },
+        "logprobs": null,
+        "finish_reason": "length",
+        "stop_reason": null,
+        "token_ids": null,
+        "routed_experts": null
+      }
+    ],
+    "service_tier": null,
+    "system_fingerprint": "vllm-0.1.dev21830+g8244d1c44.d20261015-tp4-1b26ae36",
+    "usage": {
+      "prompt_tokens": 65,
+      "total_tokens": 3137,
+      "completion_tokens": 3072,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "created_cache_tokens": 0,
+        "multimodal_tokens": null
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 3072
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "prompt_text": null,
+    "kv_transfer_params": null,
+    "ec_transfer_params": null,
+    "metrics": null
+  },
+  "score": {
+    "id": "distributed-seed17-p1.0",
+    "top_p": 1.0,
+    "thinking": true,
+    "seed": 17,
+    "case": "distributed",
+    "english_system_instruction": false,
+    "cjk_characters": {
+      "content": 0,
+      "reasoning": 0
+    },
+    "cjk_any": false,
+    "generated_characters": {
+      "content": 0,
+      "reasoning": 12819
+    },
+    "completion_tokens": 3072,
+    "finish_reason": "length",
+    "elapsed_seconds": 96.14669187500112,
+    "excerpts": {
+      "content": [],
+      "reasoning": []
+    }
+  }
+}

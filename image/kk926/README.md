@@ -1,6 +1,11 @@
 # Selected compressor-state correction
 
-The selected GPU base layers the complete KK vLLM #926 correction at
+**Historical runtime layer retained for rollback.** The selected October 17
+runtime is documented in [runtime-20261017](../runtime-20261017/README.md).
+It contains the upstream KK corrections and reapplies the official 1017
+encoder fix. Do not apply the old framework patch blindly to the newer provider.
+
+The retained previous GPU base layers the complete KK vLLM #926 correction at
 `7b935cb78a3f1f256b04006e82504a651685f72d` onto the pinned SparkRing/eugr
 nightly parent. Both circular slot mapping and enabled ring writes are needed.
 The exact three-file source replacement and preimage/postimage SHA-256 values

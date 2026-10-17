@@ -1,0 +1,63 @@
+{
+  "adaptation": [
+    "Retain adaptive size-based grids, per-grid arrival counters, peer HCA mapping, proxy wire protocol and native collective math.",
+    "Add caller-owned prepared RoCE declarations and execution handles without runtime kernel resolution.",
+    "Keep stream waits before shared staging writes and completion events after output copies.",
+    "Bind immutable peer-path and capacity settings in prepared query identity; opposite_paths is distinct from HCA inventory count.",
+    "Bind the FlashInfer B12x provider and cache prepared RoCE compilation with its program-cache contract; ring kernels/proxy/path mapping unchanged."
+  ],
+  "api_version": 1,
+  "files": {
+    "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "roce/__init__.py": "0126b2176991804142336b31395e4d5ca1567a4c0a7a6683264f7d0f4965512e",
+    "roce/_allgather_cute.py": "2bab616e7a0949fb83b8e933dbb9c531647659840a607bcd0118652569e389e5",
+    "roce/_cute_intrinsics.py": "11737796a80a0966c04ee347d5ef83a662bde16dc188022134d2cbaa1567410b",
+    "roce/_oneshot_cute.py": "2c791413e084f343f782321e0187d5f8e863832a6ef38cff7c2a365e7b83a0ea",
+    "roce/_path_config.py": "d0ac6f1de1934e74202118a94b4f911001869e3da514bf599ca5ea696e82f0c9",
+    "roce/_preparation.py": "959102c00202f5e91a70f53e24988cddd130d7f1f6142e3f193063a19731f651",
+    "roce/_proxy.py": "f783d078d06953f79bcf3a26a61c1ba853d5ec56d07f3e927e5c14275852d854",
+    "roce/_roce_proxy.c": "1dcdf4d1a5b3bec2f64029d010a628d5ea3554c8c616c02da0d7aee9be123e35",
+    "roce/_tuning.py": "60298918980d092ec09fe59e65cfae0bb9090af3855fb2ffc42c67d853e28c4a",
+    "roce/api.py": "f8cadfa227d9ce3e115353ef5b5e61004ab27e83799270c210d41c32712f0d38",
+    "roce/roce_oneshot.py": "1033895ecd87c6b7d5d0728d7ba598c5a6f50db50a4417db901a87761820bd70"
+  },
+  "image_source_preimages": {
+    "/usr/local/lib/python3.12/dist-packages/flashinfer/experimental/b12x/_lib/compile_plan.py": "272ddb4f674b437e185e6c52274d87333534e0100db29ff5cf88a2e2fefc3e24",
+    "/usr/local/lib/python3.12/dist-packages/flashinfer/experimental/b12x/_lib/program_cache.py": "361952a17724da05a18464b0020618e163b5f5812845275f0929f5302d5faba3",
+    "/usr/local/lib/python3.12/dist-packages/flashinfer/experimental/b12x/preparation/__init__.py": "8becbd277b10ab625803508067a33350902afacb2d96de27d1618cd8b5fc3c0d",
+    "/usr/local/lib/python3.12/dist-packages/flashinfer/experimental/b12x/preparation/session.py": "6d391f535de932619858549c85704332f41d22eb594d274df61337e1ad2548f0",
+    "/usr/local/lib/python3.12/dist-packages/flashinfer/experimental/b12x/preparation/tuning.py": "c807f1f9d9f13081bf5b6ee102fdbf48c5ba9a9e5dd07890c43bdf6adf0dffae",
+    "/usr/local/lib/python3.12/dist-packages/flashinfer/experimental/b12x/preparation/types.py": "fabe8898b7fa2e5bd3a921b2f1318316cad9c7b3e4a4b1892ac59636f309f30f"
+  },
+  "license": "Apache-2.0",
+  "name": "tp2-rocenante-adaptive-prepared",
+  "package": "b12x.comm.roce",
+  "qualification": {
+    "cpu": "pending",
+    "gpu_rdma": "pending",
+    "serving": "pending"
+  },
+  "schema": "sparkring-transport-bundle/v1",
+  "source_origins": {
+    "adaptive_transport": {
+      "commit": "60d8d68486540ce9ddb2702dd545fda6b347c087",
+      "manifest_sha256": "eb03cfde826974811be3bfe5d88f36d9de105b73358f3eaa56b9ed44f19127c4",
+      "repository": "https://github.com/FujitsuPolycom/sparkring",
+      "upstream_credit": "Luke and Local Inference Lab RoCEnante contributors; SparkRing peer-path and adaptive-grid integration"
+    },
+    "flashinfer_host": {
+      "commit": "91271757f7746f3dfb58f7c2aeb44a663389de9e",
+      "repository": "local-inference-lab/flashinfer"
+    },
+    "prepared_interface": {
+      "commit": "a83336581a3a907076e60797df69ab66df5a2ff1",
+      "query_schema_version": 2,
+      "repository": "https://github.com/local-inference-lab/b12x",
+      "semantic_version": 2
+    }
+  },
+  "source_repository": "https://github.com/FujitsuPolycom/sparkring",
+  "source_revision": null,
+  "status": "implemented",
+  "upstream_repository": "https://github.com/local-inference-lab/b12x"
+}

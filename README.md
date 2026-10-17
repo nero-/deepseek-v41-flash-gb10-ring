@@ -4,13 +4,20 @@ Corrected SparkRing vLLM TP4 across two DGX Sparks and two ASUS GX10s.
 API: **http://192.168.X.X:8015/v1**. Model: **DeepSeek-V4.1-Flash-TP4**.
 
 **Selected as of 2026-10-17 UTC:** official **DeepSeek-V4.1-Flash-1017** on
-all four nodes, with the existing corrected GPU runtime and two small prompt/tool
-parser fixes.  [Upgrade results and focused LIL screen](results/20261017-checkpoint-upgrade/REPORT.md).
+the qualified October 15 eugr/KK/FlashInfer runtime. The existing RoCEnante ring
+transport and local performance plugins are preserved.
+[Runtime qualification, full benchmark and final KV screen](results/20261017-runtime-upgrade/REPORT.md).
 
-The September GPU stack and selected performance plugins remain in use. Newer
-vLLM/FlashInfer correctness, memory and collective changes are assessed in the
-[runtime review](results/20261017-checkpoint-upgrade/runtime-review/ASSESSMENT.md);
-they are separate follow-up candidates.
+Generation defaults are explicit: temperature 1, top_p 1, top_k disabled,
+min_p 0 and repetition penalty 1. The 24-response language screen found no
+Chinese ideographs at either top_p 1 or 0.95. This is finite evidence, not a
+promise against rare language drift.
+
+KV allocation is 16.5 GiB per GPU, exposing **13.48M tokens** of logical cache.
+Head total used memory peaked at **115.10 GiB** during qualification,
+below the 118 GiB operating ceiling. Throughput is broadly similar to the old
+runtime, with concurrency tradeoffs (clearest at long-context C8); this is not a
+universal speedup. The checkpoint's published precision is unchanged.
 
 ## Start, stop and recover
 
@@ -25,7 +32,7 @@ cd ~/Agent/Builds/deepseek-v41-flash-ring
 ```
 
 `recover-ds` stops the workload and every mesh supervisor, then starts the
-mesh and selected model together. Allow roughly 7–16 minutes for loading and
+mesh and selected model together. Allow roughly 4–20 minutes for loading and
 warmup. It returns when the API is healthy. The script is `ring-mode.sh`.
 For **RoCE GID differs**, follow the additional link repair in
 [OPERATIONS.md](OPERATIONS.md#roce-gid-differs-after-a-peer-reboot).
@@ -36,26 +43,26 @@ reports retirement without stopping DeepSeek. See the
 [GLM handoff and storage receipt](../GLM/HANDOFF.md#capacity-and-protected-rollback).
 
 ```bash
-curl --fail --max-time 5 http://192.168.50.219:8015/health
+curl --fail --max-time 5 http://192.168.X.X:8015/health
 ```
 
 ## Current build
 
 | Component | Selected version |
 |---|---|
-| SparkRing installer | `8b152d65c701f557f62ae6a9a1c3db90771c1df3`, profile `deepseek-v41-flash-tp4` |
-| Parent | SparkRing/eugr nightly 2026-09-24; image `sha256:8e4de5f05f0287c4d0326f3a6ed5d25d3248ec4d482f369308a08a36a2f893bf` |
-| vLLM source | `03c4af34fbe6d2ff863bd03a6ed255c4de96785b` plus complete KK #926/#943 correction at `7b935cb78a3f1f256b04006e82504a651685f72d` |
-| B12x source | `c8e461281a3872a0e5de2485ef1df3df6556f07c` |
+| SparkRing installer | `8b152d65c701f557f62ae6a9a1c3db90771c1df3`; existing switchless ring |
+| Parent | eugr ARM64 `nightly-20261015`, digest `03a956544e9f9b4b7ba91690469fbe7848bdbef29a7d2e0f5788368467bb3595` |
+| vLLM KK | `8244d1c44348ae8a5bbfc9f1b607021652283ed4` |
+| FlashInfer / B12x provider | FlashInfer 0.7.1, `91271757f7746f3dfb58f7c2aeb44a663389de9e`; B12x compatibility namespace |
+| GPU toolchain | Qualified CUDA 13.4.2 / patched NCCL 2.32.3 retained |
 | Checkpoint | Official DeepSeek-V4.1-Flash-1017, revision `1bae0e1088993b9b82de08f59de5be5a34e42170` |
-| Frontend layer | Built 2026-10-17: official tool-turn boundary + KK #921 Python DSML parser |
-| Local profile | `engram-adaptive4k-query-indexer-1017` |
-| GPU upper clock limit | 2350 MHz on every node, persistent across reboot |
+| Local image | Built October 17; identical immutable image on all four ranks |
+| Local profile | `engram-adaptive4k-query-indexer-1017-runtime1015-kv16p5` |
+| KV budget | 16.5 GiB per GPU; 13,483,747 logical tokens |
+| GPU upper clock limit | 2350 MHz, minimum 0, persistent across reboot |
 
 [Deployment identity and plugin hashes](results/deployment.json),
-[immutable per-rank images](results/20261017-checkpoint-upgrade/candidate-images.json),
-[frontend image recipe](image/1017/README.md),
-[compressor correction](image/kk926/README.md), and
+[selected image recipe](image/runtime-20261017/README.md), and
 [selected plugin sources](image/vllm-local-plugins/README.md).
 
 Engram projection TP, native DSpark5 and adaptive verification come from this
@@ -70,7 +77,7 @@ retains its published precision and full vocabulary. HF tokenization is selected
 - [OPERATIONS.md](OPERATIONS.md): endpoints, thinking, recovery, host maintenance and checks.
 - [RESULTS.md](RESULTS.md): current measurements and concise selection decisions.
 - `scripts/`: fleet lifecycle and full benchmark runner.
-- `image/`: the selected compressor and frontend corrections, plus two selected plugins.
+- `image/`: the selected runtime and transport layer, retained rollback patches and local plugins.
 - `bench/`, `ring/`, `host/`: validation, fabric diagnostics and clock-cap service.
 - `results/`: selected-build evidence and original-checkpoint recovery proofs.
 
@@ -84,6 +91,6 @@ checkout. Tracked history is recoverable from Git at `364eb87`; a complete
 pre-cleanup working snapshot also preserves uncommitted research outside the
 repository. Its local location is recorded in `.local/cleanup.json`.
 
-The [switch and runtime upgrade plan](results/20261017-runtime-plan/PLAN.md) is
-prepared for the switch arrival. It is research and a staged execution plan;
-those runtime and topology changes have not been applied.
+The [switch and large-message collective plan](results/20261017-runtime-plan/PLAN.md)
+remains staged for the switch arrival. Its runtime portion was advanced in the
+campaign above; the topology, new two-shot transport and SIRCL remain unchanged.

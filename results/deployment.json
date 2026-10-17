@@ -1,6 +1,6 @@
 {
-  "profile": "engram-adaptive4k-query-indexer-1017",
-  "configuration_sha256": "ad0a36b9f618f1f59a7b75cfdd670974d6ec632ba00adcd51be5f2274eee11fc",
+  "profile": "engram-adaptive4k-query-indexer-1017-runtime1015-kv16p5",
+  "configuration_sha256": "930c128aa7b7ca2be3fc7cdd9a1a0b4516f52d889fc9903e9159193d69e25af6",
   "checkpoint": "1bae0e1088993b9b82de08f59de5be5a34e42170",
   "plugin_manifest": {
     "dsv41_adaptive_prefill.py": "dfb6a8d70194306e08850a1f56865f7984d5a8df40ea8032cf485e590486ca58",
@@ -11,53 +11,49 @@
   "images": [
     {
       "rank": 0,
-      "image_id": "sha256:8e9d1bff575e6618ae354f557140aa43e9242d85762c83899fd7dfb898959f8f",
-      "parent_image_id": "sha256:eafd5a96741d301ff37f8c9417d486cb67c631112a3eaf052e6f7bc5e90056e3",
-      "original_image_id": "sha256:a9f4aa50ac6b2ca8e3961361fc24bc2d4b0c2785080e85248391ff7da7fbf27c",
-      "parser_cpu_suite_passed": true,
-      "toolchain_verified": true,
-      "source_manifest_sha256": "11948e034c8fe93d485ec1cf5f426c41f364175ca041a52682d76bf77a4687e1"
+      "image_id": "sha256:a182696cb59fad1352ca17aae13c248e276d5cb7b7811f0fc8ead1cde4516221",
+      "base_reference": "eugr/spark-vllm-b12x@sha256:03a956544e9f9b4b7ba91690469fbe7848bdbef29a7d2e0f5788368467bb3595",
+      "previous_runtime_image_id": "sha256:8e9d1bff575e6618ae354f557140aa43e9242d85762c83899fd7dfb898959f8f",
+      "build_utc": "2026-10-17T11:20:44Z",
+      "qualification": "results/20261017-runtime-upgrade/REPORT.md"
     },
     {
       "rank": 1,
-      "image_id": "sha256:59f8ae8ffa35952361ae79ac332d5514c91149d88eae47736b02c9d6693aae26",
-      "parent_image_id": "sha256:befeba3e71656924bbf9dc5a214b7f475030ec44869a38b10ebd9057379d076e",
-      "original_image_id": "sha256:43e6685cf8f01ebd1aab60a588e523f4b8d0330be27d9c43ab0d6f146d2f6649",
-      "parser_cpu_suite_passed": true,
-      "toolchain_verified": true,
-      "source_manifest_sha256": "11948e034c8fe93d485ec1cf5f426c41f364175ca041a52682d76bf77a4687e1"
+      "image_id": "sha256:a182696cb59fad1352ca17aae13c248e276d5cb7b7811f0fc8ead1cde4516221",
+      "base_reference": "eugr/spark-vllm-b12x@sha256:03a956544e9f9b4b7ba91690469fbe7848bdbef29a7d2e0f5788368467bb3595",
+      "previous_runtime_image_id": "sha256:59f8ae8ffa35952361ae79ac332d5514c91149d88eae47736b02c9d6693aae26",
+      "build_utc": "2026-10-17T11:20:44Z",
+      "qualification": "results/20261017-runtime-upgrade/REPORT.md"
     },
     {
       "rank": 2,
-      "image_id": "sha256:154f685e6e4056f64916d0b604aca5c26b8499779cdf014168624349ba4e2478",
-      "parent_image_id": "sha256:d3ee148052b001372d3ed4f8834ccc88109a514e8c76af3aac1bdb2b047cc29c",
-      "original_image_id": "sha256:4fbff34beec9dfde9ca4e2f197d8a93da0f36fec226027871c4d3d6247d6ac7d",
-      "parser_cpu_suite_passed": true,
-      "toolchain_verified": true,
-      "source_manifest_sha256": "11948e034c8fe93d485ec1cf5f426c41f364175ca041a52682d76bf77a4687e1"
+      "image_id": "sha256:a182696cb59fad1352ca17aae13c248e276d5cb7b7811f0fc8ead1cde4516221",
+      "base_reference": "eugr/spark-vllm-b12x@sha256:03a956544e9f9b4b7ba91690469fbe7848bdbef29a7d2e0f5788368467bb3595",
+      "previous_runtime_image_id": "sha256:154f685e6e4056f64916d0b604aca5c26b8499779cdf014168624349ba4e2478",
+      "build_utc": "2026-10-17T11:20:44Z",
+      "qualification": "results/20261017-runtime-upgrade/REPORT.md"
     },
     {
       "rank": 3,
-      "image_id": "sha256:0d51da7e0fd162bc2ac9be3f960f161ec8270bb22ed835e04cd9c323c753cede",
-      "parent_image_id": "sha256:334ef1fd179364718742f28dfc85f24389ade0dadec9e619f7d2d2cbab5aef81",
-      "original_image_id": "sha256:7725323e2f86085775349b4bcac3efcdc4c05ee556f471786c886e6f8e544688",
-      "parser_cpu_suite_passed": true,
-      "toolchain_verified": true,
-      "source_manifest_sha256": "11948e034c8fe93d485ec1cf5f426c41f364175ca041a52682d76bf77a4687e1"
+      "image_id": "sha256:a182696cb59fad1352ca17aae13c248e276d5cb7b7811f0fc8ead1cde4516221",
+      "base_reference": "eugr/spark-vllm-b12x@sha256:03a956544e9f9b4b7ba91690469fbe7848bdbef29a7d2e0f5788368467bb3595",
+      "previous_runtime_image_id": "sha256:0d51da7e0fd162bc2ac9be3f960f161ec8270bb22ed835e04cd9c323c753cede",
+      "build_utc": "2026-10-17T11:20:44Z",
+      "qualification": "results/20261017-runtime-upgrade/REPORT.md"
     }
   ],
   "clock_cap_mhz": 2350,
   "tokenizer": "huggingface",
-  "source_receipt": "results/20261017-checkpoint-upgrade",
+  "source_receipt": "results/20261017-runtime-upgrade",
   "recovery_audit": "results/recovery-20261007T094058Z/final-audit.json",
-  "latest_validation": "results/20261017-checkpoint-upgrade/final-audit.json",
+  "latest_validation": "results/20261017-runtime-upgrade/final-audit.json",
   "checkpoint_repository": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
   "frontend_corrections": [
-    "1017 tool-result user-turn boundary",
-    "KK #921 optional DSML string attribute"
+    "1017 tool-result user-turn boundary reapplied",
+    "upstream KK Python DSML parser correction"
   ],
   "frontend_build_utc": "2026-10-17",
-  "gpu_runtime_unchanged": true,
+  "gpu_runtime_unchanged": false,
   "compressor_source_receipt": "results/20260929-kk926",
   "rollback": {
     "campaign": "/Users/jg/Agent/Diagnostics/deepseek-v41-flash-ring/upgrade-1017-20261017",
@@ -69,8 +65,57 @@
     "gx_restore_required": true,
     "containers": "ds41-rollback-1017-rN"
   },
-  "frontend_source_manifests": {
-    "image/1017/prompt/manifest.json": "63229cae86eac133332fd59e2e47ef0bcabea0abe2a8a6d221a1db1c3d1ad99c",
-    "image/1017/parser/manifest.json": "fbbb28124f44d81500c6a29063ceac8f00e28da974f507609a891073af1aeb07"
+  "selected_utc": "2026-10-17T13:10:59Z",
+  "versions": {
+    "torch": "2.13.0+cu130",
+    "vllm": "0.1.dev21830+g8244d1c44.d20261015",
+    "flashinfer-python": "0.7.1",
+    "nvidia-cutlass-dsl": "4.7.0",
+    "triton": "3.7.1",
+    "transformers": "5.19.0",
+    "instanttensor": "0.2.2"
+  },
+  "sources": {
+    "vllm": {
+      "repository": "local-inference-lab/vllm",
+      "commit": "8244d1c44348ae8a5bbfc9f1b607021652283ed4"
+    },
+    "b12x": {
+      "repository": "local-inference-lab/flashinfer",
+      "commit": "91271757f7746f3dfb58f7c2aeb44a663389de9e",
+      "path": "flashinfer/experimental/b12x"
+    }
+  },
+  "generation_defaults": {
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "top_k": -1,
+    "min_p": 0.0,
+    "repetition_penalty": 1.0,
+    "presence_penalty": 0.0,
+    "frequency_penalty": 0.0
+  },
+  "kv_cache_bytes_per_rank": 17716740096,
+  "kv_cache_logical_tokens": 13483747,
+  "host_memory": {
+    "rank": 0,
+    "metric": "MemTotal - MemAvailable",
+    "ceiling_gib": 118,
+    "observed_qualification_peak_gib": 115.10189056396484,
+    "hard_global_limit": false,
+    "receipt": "results/20261017-runtime-upgrade/host-memory-summary.json"
+  },
+  "transport": {
+    "all_reduce": "retained qualified RoCEnante one-shot through 2 MiB; patched NCCL fallback",
+    "all_gather": "retained qualified RoCEnante through 16 MiB per-rank shards",
+    "sircl": false,
+    "topology": "unchanged switchless dual-plane ring"
+  },
+  "runtime_rollback": {
+    "checkpoint": "same official 1017; no weight transfer",
+    "campaign": "/Users/jg/Agent/Diagnostics/deepseek-v41-flash-ring/runtime-20261017",
+    "head_config_backup": "/var/lib/deepseek-ring/experiments/runtime-20261017/original-selection.json",
+    "containers": "ds41-rollback-runtime-rN",
+    "previous_deployment": "results/20261017-runtime-upgrade/previous-deployment.json"
   }
 }

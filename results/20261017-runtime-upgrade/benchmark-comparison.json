@@ -1,0 +1,724 @@
+{
+  "runtime_comparison": [
+    {
+      "context_tokens": 8192,
+      "concurrency": 1,
+      "baseline_tps": 59.08840884542463,
+      "candidate_tps": 59.295182359753845,
+      "percent_change": 0.34993921543924333,
+      "baseline_accept_length": 2.205607476635514,
+      "baseline_steps_per_s": 26.790083671442527,
+      "candidate_accept_length": 2.4036511156186613,
+      "candidate_steps_per_s": 24.668797386800545
+    },
+    {
+      "context_tokens": 8192,
+      "concurrency": 2,
+      "baseline_tps": 89.97097032949884,
+      "candidate_tps": 89.74515450817883,
+      "percent_change": -0.25098742460263335,
+      "baseline_accept_length": 2.4322493224932247,
+      "baseline_steps_per_s": 37.10864924096061,
+      "candidate_accept_length": 2.3285714285714283,
+      "candidate_steps_per_s": 38.5408638992179
+    },
+    {
+      "context_tokens": 8192,
+      "concurrency": 4,
+      "baseline_tps": 121.70099093696669,
+      "candidate_tps": 126.85438818624264,
+      "percent_change": 4.234474353577844,
+      "baseline_accept_length": 2.3365384615384617,
+      "baseline_steps_per_s": 52.20042503623387,
+      "candidate_accept_length": 2.3076923076923075,
+      "candidate_steps_per_s": 55.42376266181264
+    },
+    {
+      "context_tokens": 8192,
+      "concurrency": 8,
+      "baseline_tps": 192.17569587601852,
+      "candidate_tps": 182.47816588377447,
+      "percent_change": -5.046179199736256,
+      "baseline_accept_length": 2.4066624764299185,
+      "baseline_steps_per_s": 80.1149331426862,
+      "candidate_accept_length": 2.2119731215638363,
+      "candidate_steps_per_s": 83.2356546136515
+    },
+    {
+      "context_tokens": 8192,
+      "concurrency": 16,
+      "baseline_tps": 269.6333341801703,
+      "candidate_tps": 260.40730357794075,
+      "percent_change": -3.421695106905698,
+      "baseline_accept_length": 2.4687644608977326,
+      "baseline_steps_per_s": 110.14466427933904,
+      "candidate_accept_length": 2.3285067873303165,
+      "candidate_steps_per_s": 113.1507852218479
+    },
+    {
+      "context_tokens": 16384,
+      "concurrency": 1,
+      "baseline_tps": 60.58739370336467,
+      "candidate_tps": 60.3558089977915,
+      "percent_change": -0.38223249329225606,
+      "baseline_accept_length": 2.3199233716475094,
+      "baseline_steps_per_s": 26.116118507973873,
+      "candidate_accept_length": 2.507276507276507,
+      "candidate_steps_per_s": 24.072258812552
+    },
+    {
+      "context_tokens": 16384,
+      "concurrency": 2,
+      "baseline_tps": 94.04424890301289,
+      "candidate_tps": 92.32263295046161,
+      "percent_change": -1.830644587662944,
+      "baseline_accept_length": 2.5,
+      "baseline_steps_per_s": 37.67782374803713,
+      "candidate_accept_length": 2.37984496124031,
+      "candidate_steps_per_s": 38.793549350519704
+    },
+    {
+      "context_tokens": 16384,
+      "concurrency": 4,
+      "baseline_tps": 127.15637236402921,
+      "candidate_tps": 128.03197511878298,
+      "percent_change": 0.688603125800924,
+      "baseline_accept_length": 2.43611911623439,
+      "baseline_steps_per_s": 52.284857324949385,
+      "candidate_accept_length": 2.3066424021838037,
+      "candidate_steps_per_s": 56.326079537436506
+    },
+    {
+      "context_tokens": 16384,
+      "concurrency": 8,
+      "baseline_tps": 189.7273149848507,
+      "candidate_tps": 179.20004801089758,
+      "percent_change": -5.548630135198874,
+      "baseline_accept_length": 2.365059486537257,
+      "baseline_steps_per_s": 80.3078581946458,
+      "candidate_accept_length": 2.340383344348975,
+      "candidate_steps_per_s": 77.6867247242774
+    },
+    {
+      "context_tokens": 16384,
+      "concurrency": 16,
+      "baseline_tps": 261.0460244836634,
+      "candidate_tps": 255.86061697871855,
+      "percent_change": -1.9863958913763802,
+      "baseline_accept_length": 2.429172510518934,
+      "baseline_steps_per_s": 108.08116022325339,
+      "candidate_accept_length": 2.2710573476702507,
+      "candidate_steps_per_s": 113.7826035967212
+    },
+    {
+      "context_tokens": 32768,
+      "concurrency": 1,
+      "baseline_tps": 58.395446066259055,
+      "candidate_tps": 58.4406874790895,
+      "percent_change": 0.07747421396371301,
+      "baseline_accept_length": 2.2125237191650853,
+      "baseline_steps_per_s": 26.42056171635371,
+      "candidate_accept_length": 2.4032921810699586,
+      "candidate_steps_per_s": 24.31692989284032
+    },
+    {
+      "context_tokens": 32768,
+      "concurrency": 2,
+      "baseline_tps": 86.37263233525212,
+      "candidate_tps": 90.28622798189423,
+      "percent_change": 4.531059828594364,
+      "baseline_accept_length": 2.330623306233062,
+      "baseline_steps_per_s": 37.23130849213649,
+      "candidate_accept_length": 2.305626598465473,
+      "candidate_steps_per_s": 39.15908501488701
+    },
+    {
+      "context_tokens": 32768,
+      "concurrency": 4,
+      "baseline_tps": 122.47602845671135,
+      "candidate_tps": 128.92841446895426,
+      "percent_change": 5.268284817484492,
+      "baseline_accept_length": 2.4757085020242915,
+      "baseline_steps_per_s": 49.471102254795916,
+      "candidate_accept_length": 2.2619469026548673,
+      "candidate_steps_per_s": 57.61269723360562
+    },
+    {
+      "context_tokens": 32768,
+      "concurrency": 8,
+      "baseline_tps": 193.09341286394803,
+      "candidate_tps": 182.57701897655156,
+      "percent_change": -5.446272729565472,
+      "baseline_accept_length": 2.369164619164619,
+      "baseline_steps_per_s": 81.61835011498658,
+      "candidate_accept_length": 2.258934169278997,
+      "candidate_steps_per_s": 81.85870740926707
+    },
+    {
+      "context_tokens": 32768,
+      "concurrency": 16,
+      "baseline_tps": 255.83136519869961,
+      "candidate_tps": 257.789401653244,
+      "percent_change": 0.7653621568346924,
+      "baseline_accept_length": 2.398961284230406,
+      "baseline_steps_per_s": 107.40208478284941,
+      "candidate_accept_length": 2.2900763358778624,
+      "candidate_steps_per_s": 113.38913825886497
+    },
+    {
+      "context_tokens": 65536,
+      "concurrency": 1,
+      "baseline_tps": 59.645129669327154,
+      "candidate_tps": 52.6169585430162,
+      "percent_change": -11.78331100171156,
+      "baseline_accept_length": 2.2556818181818183,
+      "baseline_steps_per_s": 26.442173354663925,
+      "candidate_accept_length": 2.133874239350913,
+      "candidate_steps_per_s": 24.65794730200284
+    },
+    {
+      "context_tokens": 65536,
+      "concurrency": 2,
+      "baseline_tps": 85.37879460325162,
+      "candidate_tps": 94.07870221143988,
+      "percent_change": 10.18977563294965,
+      "baseline_accept_length": 2.2450331125827816,
+      "baseline_steps_per_s": 38.3353790539805,
+      "candidate_accept_length": 2.4328165374677004,
+      "candidate_steps_per_s": 38.67069331473949
+    },
+    {
+      "context_tokens": 65536,
+      "concurrency": 4,
+      "baseline_tps": 118.27624335464856,
+      "candidate_tps": 122.9093602945444,
+      "percent_change": 3.917199945219396,
+      "baseline_accept_length": 2.4100204498977504,
+      "baseline_steps_per_s": 49.13553136394896,
+      "candidate_accept_length": 2.4043392504930967,
+      "candidate_steps_per_s": 51.64595269705612
+    },
+    {
+      "context_tokens": 65536,
+      "concurrency": 8,
+      "baseline_tps": 186.86080248837536,
+      "candidate_tps": 191.2398140827619,
+      "percent_change": 2.343461836871308,
+      "baseline_accept_length": 2.4222511385816525,
+      "baseline_steps_per_s": 77.34935094961168,
+      "candidate_accept_length": 2.309480122324159,
+      "candidate_steps_per_s": 84.08345659749803
+    },
+    {
+      "context_tokens": 65536,
+      "concurrency": 16,
+      "baseline_tps": 252.67402572928856,
+      "candidate_tps": 253.07355491038805,
+      "percent_change": 0.15812040036420338,
+      "baseline_accept_length": 2.397895743663319,
+      "baseline_steps_per_s": 105.98759530094488,
+      "candidate_accept_length": 2.2832343535861126,
+      "candidate_steps_per_s": 111.82904552368429
+    },
+    {
+      "context_tokens": 131072,
+      "concurrency": 1,
+      "baseline_tps": 57.314546170935266,
+      "candidate_tps": 58.45383743400259,
+      "percent_change": 1.9877872881859604,
+      "baseline_accept_length": 2.2295719844357977,
+      "baseline_steps_per_s": 25.70652419883135,
+      "candidate_accept_length": 2.4282744282744284,
+      "candidate_steps_per_s": 24.07217106657127
+    },
+    {
+      "context_tokens": 131072,
+      "concurrency": 2,
+      "baseline_tps": 85.51644989461104,
+      "candidate_tps": 91.77223999707681,
+      "percent_change": 7.31530613136453,
+      "baseline_accept_length": 2.372739916550765,
+      "baseline_steps_per_s": 36.12807303915107,
+      "candidate_accept_length": 2.3922077922077922,
+      "candidate_steps_per_s": 38.36298848954894
+    },
+    {
+      "context_tokens": 131072,
+      "concurrency": 4,
+      "baseline_tps": 123.34510810069355,
+      "candidate_tps": 123.80099629430237,
+      "percent_change": 0.3696037894236115,
+      "baseline_accept_length": 2.479355488418933,
+      "baseline_steps_per_s": 49.83842907435731,
+      "candidate_accept_length": 2.2788104089219328,
+      "candidate_steps_per_s": 55.00044261863191
+    },
+    {
+      "context_tokens": 131072,
+      "concurrency": 8,
+      "baseline_tps": 182.69874890153145,
+      "candidate_tps": 178.355155725985,
+      "percent_change": -2.3774619156738286,
+      "baseline_accept_length": 2.3419689119170988,
+      "baseline_steps_per_s": 78.24184831544613,
+      "candidate_accept_length": 2.252726106478512,
+      "candidate_steps_per_s": 80.31754831454433
+    },
+    {
+      "context_tokens": 131072,
+      "concurrency": 16,
+      "baseline_tps": 244.9090381306084,
+      "candidate_tps": 244.71360889305595,
+      "percent_change": -0.07979666207672542,
+      "baseline_accept_length": 2.418163672654691,
+      "baseline_steps_per_s": 102.5713108571546,
+      "candidate_accept_length": 2.259916005599627,
+      "candidate_steps_per_s": 109.65090570187625
+    }
+  ],
+  "prefill": [
+    {
+      "context_tokens": 8192,
+      "baseline_tps": 4049.0,
+      "candidate_tps": 4019.0,
+      "percent_change": -0.7409236848604617,
+      "samples_per_arm": [
+        1,
+        1
+      ]
+    },
+    {
+      "context_tokens": 16384,
+      "baseline_tps": 4311.0,
+      "candidate_tps": 4274.0,
+      "percent_change": -0.8582695430294551,
+      "samples_per_arm": [
+        1,
+        1
+      ]
+    },
+    {
+      "context_tokens": 32768,
+      "baseline_tps": 4317.0,
+      "candidate_tps": 4344.0,
+      "percent_change": 0.6254343293954134,
+      "samples_per_arm": [
+        1,
+        1
+      ]
+    },
+    {
+      "context_tokens": 65536,
+      "baseline_tps": 4337.0,
+      "candidate_tps": 4320.0,
+      "percent_change": -0.3919760202905187,
+      "samples_per_arm": [
+        1,
+        1
+      ]
+    },
+    {
+      "context_tokens": 131072,
+      "baseline_tps": 4174.0,
+      "candidate_tps": 4253.0,
+      "percent_change": 1.8926689027311872,
+      "samples_per_arm": [
+        1,
+        1
+      ]
+    }
+  ],
+  "coding": {
+    "baseline": {
+      "mode": "coding_peak",
+      "prompt": "Write a Python script that implements the Sieve of Eratosthenes.",
+      "runs_requested": 5,
+      "runs_ok": 5,
+      "max_tokens": 2000,
+      "temperature": null,
+      "summary": {
+        "mean_generation_tok_s": 93.46990964702466,
+        "median_generation_tok_s": 94.76726349817966,
+        "max_generation_tok_s": 106.43884248803982,
+        "min_generation_tok_s": 83.72587784582095,
+        "cjk_runs": 0
+      },
+      "samples": [
+        {
+          "run": 1,
+          "ok": true,
+          "finish_reason": "stop",
+          "completion_tokens": 474,
+          "ttft": 0.169954207027331,
+          "gen_elapsed": 4.453261506045237,
+          "total_elapsed": 4.623215713072568,
+          "generation_tok_s": 106.43884248803982,
+          "total_tok_s": 102.52604018880653,
+          "content_chars": 738,
+          "reasoning_chars": 874,
+          "cjk_chars": 0,
+          "content_preview": "```python\ndef sieve_of_eratosthenes(n):\n    \"\"\"\n    Return a list of all prime numbers less than or equal to n.\n    \"\"\"\n    if n < 2:\n        return []\n\n    is_prime = [True] * (n + 1)\n    is_prime[0] = is_prime[1] = False\n\n    for p in range(2, int(n ** 0.5) + 1):\n        if is_prime[p]:\n            for multiple in range(p * p, n + 1, p):\n                is_prime[multiple] = False\n\n    return [number for number, prime in enumerate(is_prime) if prime]\n\n\nif __name__ == \"__main__\":\n    limit = int"
+        },
+        {
+          "run": 2,
+          "ok": true,
+          "finish_reason": "length",
+          "completion_tokens": 2000,
+          "ttft": 0.17149458196945488,
+          "gen_elapsed": 21.066091252025217,
+          "total_elapsed": 21.23758583399467,
+          "generation_tok_s": 94.93930203153978,
+          "total_tok_s": 94.17266235593648,
+          "content_chars": 761,
+          "reasoning_chars": 6284,
+          "cjk_chars": 0,
+          "content_preview": "# Sieve of Eratosthenes\n\nHere's a clean, efficient implementation. It uses a `bytearray` for compact memory and slice assignment for fast marking of multiples (much faster than a nested loop in pure Python).\n\n```python\n#!/usr/bin/env python3\n\"\"\"Sieve of Eratosthenes: find all primes up to a given limit.\"\"\"\n\nfrom __future__ import annotations\n\n\ndef sieve_of_eratosthenes(n: int) -> list[int]:\n    \"\"\"Return all prime numbers <= n.\n\n    Time complexity:  O(n log log n)\n    Space complexity: O(n)\n   "
+        },
+        {
+          "run": 3,
+          "ok": true,
+          "finish_reason": "stop",
+          "completion_tokens": 713,
+          "ttft": 0.1699153131339699,
+          "gen_elapsed": 8.515885629924014,
+          "total_elapsed": 8.685800943057984,
+          "generation_tok_s": 83.72587784582095,
+          "total_tok_s": 82.0879967977917,
+          "content_chars": 869,
+          "reasoning_chars": 1479,
+          "cjk_chars": 0,
+          "content_preview": "```python\ndef sieve_of_eratosthenes(limit):\n    \"\"\"Return a list of all prime numbers up to and including limit.\"\"\"\n    if limit < 2:\n        return []\n\n    is_prime = bytearray(b\"\\x01\") * (limit + 1)\n    is_prime[0:2] = b\"\\x00\\x00\"  # 0 and 1 are not prime\n\n    for number in range(2, int(limit ** 0.5) + 1):\n        if is_prime[number]:\n            start = number * number\n            step = number\n            count = ((limit - start) // step) + 1\n            is_prime[start:limit + 1:step] = b\"\\x"
+        },
+        {
+          "run": 4,
+          "ok": true,
+          "finish_reason": "length",
+          "completion_tokens": 2000,
+          "ttft": 0.16918127797544003,
+          "gen_elapsed": 21.104334199102595,
+          "total_elapsed": 21.273515477078035,
+          "generation_tok_s": 94.76726349817966,
+          "total_tok_s": 94.01361059270982,
+          "content_chars": 2456,
+          "reasoning_chars": 3724,
+          "cjk_chars": 0,
+          "content_preview": "# Sieve of Eratosthenes in Python\n\nHere's a clean, efficient implementation with both a basic version (for readability) and an optimized odd-only version (for speed and memory):\n\n```python\n\"\"\"Sieve of Eratosthenes \u2014 find all primes up to n.\"\"\"\n\nimport math\nfrom typing import List\n\n\ndef sieve_of_eratosthenes(n: int) -> List[int]:\n    \"\"\"Return a list of all primes <= n.\n\n    Time  : O(n log log n)\n    Space : O(n)\n    \"\"\"\n    if n < 2:\n        return []\n\n    # is_prime[i] is 1 (True) when i is pr"
+        },
+        {
+          "run": 5,
+          "ok": true,
+          "finish_reason": "stop",
+          "completion_tokens": 1339,
+          "ttft": 0.16548099112696946,
+          "gen_elapsed": 15.306659776950255,
+          "total_elapsed": 15.472140768077224,
+          "generation_tok_s": 87.47826237154311,
+          "total_tok_s": 86.54264591249593,
+          "content_chars": 2559,
+          "reasoning_chars": 1910,
+          "cjk_chars": 0,
+          "content_preview": "# Sieve of Eratosthenes\n\nThe Sieve of Eratosthenes finds all primes up to `n` in **O(n log log n)** time and **O(n)** space. The idea: start with every number assumed prime, then cross out multiples of each prime you encounter.\n\n```python\n#!/usr/bin/env python3\n\"\"\"Sieve of Eratosthenes \u2014 find all primes up to n.\"\"\"\n\nimport sys\n\n\ndef sieve_of_eratosthenes(n: int) -> list[int]:\n    \"\"\"Return a sorted list of every prime number <= n.\"\"\"\n    if n < 2:\n        return []\n\n    # is_prime[i] == 1 means "
+        }
+      ]
+    },
+    "candidate": {
+      "mode": "coding_peak",
+      "prompt": "Write a Python script that implements the Sieve of Eratosthenes.",
+      "runs_requested": 5,
+      "runs_ok": 5,
+      "max_tokens": 2000,
+      "temperature": null,
+      "summary": {
+        "mean_generation_tok_s": 96.03849185434164,
+        "median_generation_tok_s": 94.02175248765478,
+        "max_generation_tok_s": 101.63318979272525,
+        "min_generation_tok_s": 92.0188250714049,
+        "cjk_runs": 0
+      },
+      "samples": [
+        {
+          "run": 1,
+          "ok": true,
+          "finish_reason": "stop",
+          "completion_tokens": 1122,
+          "ttft": 0.1680968499276787,
+          "gen_elapsed": 12.109059532172978,
+          "total_elapsed": 12.277156382100657,
+          "generation_tok_s": 92.65789775159,
+          "total_tok_s": 91.3892407231863,
+          "content_chars": 841,
+          "reasoning_chars": 3176,
+          "cjk_chars": 0,
+          "content_preview": "```python\nimport math\n\n\ndef sieve_of_eratosthenes(limit: int) -> list[int]:\n    \"\"\"Return a list of all prime numbers up to `limit`.\"\"\"\n    if limit < 2:\n        return []\n\n    is_prime = bytearray(b\"\\x01\") * (limit + 1)\n    is_prime[0] = is_prime[1] = 0\n\n    for p in range(2, math.isqrt(limit) + 1):\n        if is_prime[p]:\n            start = p * p\n            count = (limit - start) // p + 1\n            is_prime[start:limit + 1:p] = b\"\\x00\" * count\n\n    return [number for number in range(2, li"
+        },
+        {
+          "run": 2,
+          "ok": true,
+          "finish_reason": "stop",
+          "completion_tokens": 615,
+          "ttft": 0.16854199906811118,
+          "gen_elapsed": 6.158573092892766,
+          "total_elapsed": 6.327115091960877,
+          "generation_tok_s": 99.86079416833326,
+          "total_tok_s": 97.20069748397786,
+          "content_chars": 684,
+          "reasoning_chars": 1534,
+          "cjk_chars": 0,
+          "content_preview": "```python\nimport math\n\ndef sieve_of_eratosthenes(limit):\n    \"\"\"Return a list of all prime numbers up to and including limit.\"\"\"\n    if limit < 2:\n        return []\n\n    is_prime = [True] * (limit + 1)\n    is_prime[0] = is_prime[1] = False\n\n    for number in range(2, math.isqrt(limit) + 1):\n        if is_prime[number]:\n            for multiple in range(number * number, limit + 1, number):\n                is_prime[multiple] = False\n\n    return [number for number, prime in enumerate(is_prime) if p"
+        },
+        {
+          "run": 3,
+          "ok": true,
+          "finish_reason": "stop",
+          "completion_tokens": 786,
+          "ttft": 0.16505009680986404,
+          "gen_elapsed": 8.541730449069291,
+          "total_elapsed": 8.706780545879155,
+          "generation_tok_s": 92.0188250714049,
+          "total_tok_s": 90.27447009354188,
+          "content_chars": 995,
+          "reasoning_chars": 1753,
+          "cjk_chars": 0,
+          "content_preview": "```python\ndef sieve_of_eratosthenes(n):\n    \"\"\"\n    Return a list of all prime numbers less than or equal to n.\n    \"\"\"\n    if n < 2:\n        return []\n\n    # is_prime[i] will be 1 if i is prime, otherwise 0\n    is_prime = bytearray(b'\\x01') * (n + 1)\n    is_prime[0:2] = b'\\x00\\x00'  # 0 and 1 are not prime\n\n    p = 2\n    while p * p <= n:\n        if is_prime[p]:\n            # Mark multiples of p starting at p * p\n            start = p * p\n            count = ((n - start) // p) + 1\n            i"
+        },
+        {
+          "run": 4,
+          "ok": true,
+          "finish_reason": "stop",
+          "completion_tokens": 394,
+          "ttft": 0.17542868689633906,
+          "gen_elapsed": 3.8766863541677594,
+          "total_elapsed": 4.0521150410640985,
+          "generation_tok_s": 101.63318979272525,
+          "total_tok_s": 97.23317230809279,
+          "content_chars": 624,
+          "reasoning_chars": 785,
+          "cjk_chars": 0,
+          "content_preview": "```python\ndef sieve_of_eratosthenes(n):\n    \"\"\"Return a list of all prime numbers less than or equal to n.\"\"\"\n    if n < 2:\n        return []\n\n    is_prime = [True] * (n + 1)\n    is_prime[0] = is_prime[1] = False\n\n    for p in range(2, int(n ** 0.5) + 1):\n        if is_prime[p]:\n            for multiple in range(p * p, n + 1, p):\n                is_prime[multiple] = False\n\n    return [number for number, prime in enumerate(is_prime) if prime]\n\n\nif __name__ == \"__main__\":\n    limit = int(input(\"En"
+        },
+        {
+          "run": 5,
+          "ok": true,
+          "finish_reason": "stop",
+          "completion_tokens": 1289,
+          "ttft": 0.16890674992464483,
+          "gen_elapsed": 13.709593428066,
+          "total_elapsed": 13.878500177990645,
+          "generation_tok_s": 94.02175248765478,
+          "total_tok_s": 92.8774711581712,
+          "content_chars": 729,
+          "reasoning_chars": 3578,
+          "cjk_chars": 0,
+          "content_preview": "```python\nimport sys\nfrom math import isqrt\n\n\ndef sieve_of_eratosthenes(n):\n    \"\"\"Return a list of all prime numbers less than or equal to n.\"\"\"\n    if n < 2:\n        return []\n\n    is_prime = bytearray(b\"\\x01\") * (n + 1)\n    is_prime[0] = 0\n    is_prime[1] = 0\n\n    for p in range(2, isqrt(n) + 1):\n        if is_prime[p]:\n            start = p * p\n            count = ((n - start) // p) + 1\n            is_prime[start:n + 1:p] = b\"\\x00\" * count\n\n    return [i for i in range(2, n + 1) if is_prime["
+        }
+      ]
+    }
+  },
+  "screen_pairs": {
+    "candidate-p095-screen": [
+      {
+        "context_tokens": 8192,
+        "concurrency": 1,
+        "p1_tps": 59.295182359753845,
+        "p095_tps": 57.84789957108268,
+        "p1_vs_p095_percent": 2.5018761258440714
+      },
+      {
+        "context_tokens": 8192,
+        "concurrency": 8,
+        "p1_tps": 182.47816588377447,
+        "p095_tps": 185.4658460024786,
+        "p1_vs_p095_percent": -1.6109058261132403
+      },
+      {
+        "context_tokens": 8192,
+        "concurrency": 16,
+        "p1_tps": 260.40730357794075,
+        "p095_tps": 256.69747592966,
+        "p1_vs_p095_percent": 1.445213917606769
+      },
+      {
+        "context_tokens": 65536,
+        "concurrency": 1,
+        "p1_tps": 52.6169585430162,
+        "p095_tps": 57.47273975372814,
+        "p1_vs_p095_percent": -8.448842410365431
+      },
+      {
+        "context_tokens": 65536,
+        "concurrency": 8,
+        "p1_tps": 191.2398140827619,
+        "p095_tps": 186.35447511540394,
+        "p1_vs_p095_percent": 2.6215302660870465
+      },
+      {
+        "context_tokens": 65536,
+        "concurrency": 16,
+        "p1_tps": 253.07355491038805,
+        "p095_tps": 257.1934784003675,
+        "p1_vs_p095_percent": -1.6018771220808525
+      },
+      {
+        "context_tokens": 131072,
+        "concurrency": 1,
+        "p1_tps": 58.45383743400259,
+        "p095_tps": 55.92661089474362,
+        "p1_vs_p095_percent": 4.518826545766053
+      },
+      {
+        "context_tokens": 131072,
+        "concurrency": 8,
+        "p1_tps": 178.355155725985,
+        "p095_tps": 185.08237888882374,
+        "p1_vs_p095_percent": -3.634718336357512
+      },
+      {
+        "context_tokens": 131072,
+        "concurrency": 16,
+        "p1_tps": 244.71360889305595,
+        "p095_tps": 246.39140697443517,
+        "p1_vs_p095_percent": -0.6809482936039668
+      }
+    ]
+  },
+  "limitations": "Single full-grid pass per runtime, 20-second cells; cold prefill one scout sample each. Repeat decisive cells before attributing small differences. Top-p screens alter sampling distributions and cannot isolate a kernel-speed effect.",
+  "p1_repeat": [
+    {
+      "context_tokens": 8192,
+      "concurrency": 1,
+      "baseline_tps": 59.08840884542463,
+      "candidate_full_tps": 59.295182359753845,
+      "candidate_repeat_tps": 61.44178841561427,
+      "candidate_two_run_mean_tps": 60.36848538768406,
+      "mean_vs_baseline_percent": 2.166375042536872
+    },
+    {
+      "context_tokens": 8192,
+      "concurrency": 8,
+      "baseline_tps": 192.17569587601852,
+      "candidate_full_tps": 182.47816588377447,
+      "candidate_repeat_tps": 187.407716700627,
+      "candidate_two_run_mean_tps": 184.94294129220071,
+      "mean_vs_baseline_percent": -3.763615659538966
+    },
+    {
+      "context_tokens": 8192,
+      "concurrency": 16,
+      "baseline_tps": 269.6333341801703,
+      "candidate_full_tps": 260.40730357794075,
+      "candidate_repeat_tps": 262.45615371518653,
+      "candidate_two_run_mean_tps": 261.43172864656367,
+      "mean_vs_baseline_percent": -3.0417624580966307
+    },
+    {
+      "context_tokens": 65536,
+      "concurrency": 1,
+      "baseline_tps": 59.645129669327154,
+      "candidate_full_tps": 52.6169585430162,
+      "candidate_repeat_tps": 59.15142239842661,
+      "candidate_two_run_mean_tps": 55.88419047072141,
+      "mean_vs_baseline_percent": -6.305526066346756
+    },
+    {
+      "context_tokens": 65536,
+      "concurrency": 8,
+      "baseline_tps": 186.86080248837536,
+      "candidate_full_tps": 191.2398140827619,
+      "candidate_repeat_tps": 178.09031104192087,
+      "candidate_two_run_mean_tps": 184.6650625623414,
+      "mean_vs_baseline_percent": -1.1750671605782914
+    },
+    {
+      "context_tokens": 65536,
+      "concurrency": 16,
+      "baseline_tps": 252.67402572928856,
+      "candidate_full_tps": 253.07355491038805,
+      "candidate_repeat_tps": 253.1261501770114,
+      "candidate_two_run_mean_tps": 253.09985254369974,
+      "mean_vs_baseline_percent": 0.16852813152523627
+    },
+    {
+      "context_tokens": 131072,
+      "concurrency": 1,
+      "baseline_tps": 57.314546170935266,
+      "candidate_full_tps": 58.45383743400259,
+      "candidate_repeat_tps": 58.95506171122254,
+      "candidate_two_run_mean_tps": 58.70444957261256,
+      "mean_vs_baseline_percent": 2.42504476530625
+    },
+    {
+      "context_tokens": 131072,
+      "concurrency": 8,
+      "baseline_tps": 182.69874890153145,
+      "candidate_full_tps": 178.355155725985,
+      "candidate_repeat_tps": 185.61832024917263,
+      "candidate_two_run_mean_tps": 181.9867379875788,
+      "mean_vs_baseline_percent": -0.3897185493790034
+    },
+    {
+      "context_tokens": 131072,
+      "concurrency": 16,
+      "baseline_tps": 244.9090381306084,
+      "candidate_full_tps": 244.71360889305595,
+      "candidate_repeat_tps": 251.2160646763405,
+      "candidate_two_run_mean_tps": 247.9648367846982,
+      "mean_vs_baseline_percent": 1.2477280044112415
+    }
+  ],
+  "sampling_comparison": [
+    {
+      "context_tokens": 8192,
+      "concurrency": 1,
+      "p1_mean_tps": 60.36848538768406,
+      "p095_tps": 57.84789957108268
+    },
+    {
+      "context_tokens": 8192,
+      "concurrency": 8,
+      "p1_mean_tps": 184.94294129220071,
+      "p095_tps": 185.4658460024786
+    },
+    {
+      "context_tokens": 8192,
+      "concurrency": 16,
+      "p1_mean_tps": 261.43172864656367,
+      "p095_tps": 256.69747592966
+    },
+    {
+      "context_tokens": 65536,
+      "concurrency": 1,
+      "p1_mean_tps": 55.88419047072141,
+      "p095_tps": 57.47273975372814
+    },
+    {
+      "context_tokens": 65536,
+      "concurrency": 8,
+      "p1_mean_tps": 184.6650625623414,
+      "p095_tps": 186.35447511540394
+    },
+    {
+      "context_tokens": 65536,
+      "concurrency": 16,
+      "p1_mean_tps": 253.09985254369974,
+      "p095_tps": 257.1934784003675
+    },
+    {
+      "context_tokens": 131072,
+      "concurrency": 1,
+      "p1_mean_tps": 58.70444957261256,
+      "p095_tps": 55.92661089474362
+    },
+    {
+      "context_tokens": 131072,
+      "concurrency": 8,
+      "p1_mean_tps": 181.9867379875788,
+      "p095_tps": 185.08237888882374
+    },
+    {
+      "context_tokens": 131072,
+      "concurrency": 16,
+      "p1_mean_tps": 247.9648367846982,
+      "p095_tps": 246.39140697443517
+    }
+  ]
+}

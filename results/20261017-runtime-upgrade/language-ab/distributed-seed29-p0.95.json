@@ -1,0 +1,95 @@
+{
+  "request": {
+    "model": "DeepSeek-V4.1-Flash-TP4",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Use English for the entire response, including any reasoning. Do not translate into another language."
+      },
+      {
+        "role": "user",
+        "content": "Design a reliable distributed task queue. Explain leases, retries, idempotence, backpressure, crash recovery and observability. Give a detailed technical design with examples."
+      }
+    ],
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": -1,
+    "min_p": 0.0,
+    "repetition_penalty": 1.0,
+    "seed": 29,
+    "max_tokens": 3072,
+    "chat_template_kwargs": {
+      "thinking": true
+    }
+  },
+  "response": {
+    "id": "chatcmpl-814912de00800cd5",
+    "object": "chat.completion",
+    "created": 1792240646,
+    "model": "DeepSeek-V4.1-Flash-TP4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": null,
+          "refusal": null,
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "reasoning": "The user wants a detailed technical design for a reliable distributed task queue, covering leases, retries, idempotence, backpressure, crash recovery, and observability. They want a detailed technical design with examples. Let me produce a thorough design document.\n\nI should structure this well:\n\n1. Requirements & goals (reliability semantics: at-least-once, ordering, throughput)\n2. Architecture overview (brokers, storage, workers, scheduler, control plane)\n3. Data model (task states, lease records, attempt records, DLQ)\n4. Leases (how they work, renewal, expiration, fencing tokens, clock skew, lease vs visibility timeout)\n5. Retries (backoff with jitter, max attempts, retryable vs non-retryable errors, DLQ, poison pill detection)\n6. Idempotence (idempotency keys, dedup window, effect-once via conditional writes, outbox pattern, exactly-once is a lie at the transport layer)\n7. Backpressure (admission control, token buckets, queue depth signals, worker-side concurrency limits, pull vs push, load shedding, priority)\n8. Crash recovery (broker crash: replication, leader election, WAL; worker crash: lease expiry reclaim; split-brain: fencing tokens; durability: fsync, quorum)\n9. Observability (metrics, tracing with trace context propagation, logging, SLOs, key dashboards, alerting)\n10. Failure-mode table\n11. Example: end-to-end flow with a concrete schema and pseudo-code\n12. Trade-offs / alternatives\n\nLet me include concrete pseudo-code / SQL, protobuf-ish schemas, state machines.\n\nLet me think carefully about correctness details.\n\n**State machine for a task:**\n- PENDING (ready, not yet leased)\n- LEASED / IN_FLIGHT (owned by a worker until lease expiry)\n- SUCCEEDED (terminal)\n- FAILED_RETRYABLE → back to PENDING with next_attempt_at\n- DEAD / DLQ (terminal after max attempts)\n- CANCELLED (terminal)\n\n**Lease design:**\n- Lease = (task_id, worker_id, lease_id (fencing token), expires_at, attempt_no)\n- Worker must renew before expiry (heartbeat at lease/3 interval)\n- Broker reclaims expired leases → task back to PENDING, attempt++ or attempt stays? Attempt should increment on delivery, not on completion. Use `attempt` = number of deliveries so far.\n- Fencing token: monotonically increasing lease_id / epoch per task, so stale workers' writes are rejected. This is critical for correctness under long GC pauses / network partitions.\n- Lease duration should be >> p99 task duration, or use renewal. Better: short lease + renewal to detect crashes fast, but renewal must be cheap.\n- Clock skew: use broker's clock as authority; workers compute renewal based on server-provided deadline; use monotonic time locally.\n- Lease expiry is a \"hint\" — correctness comes from fencing tokens, not from clock accuracy.\n\n**Ack semantics:**\n- Ack must be conditional: `UPDATE tasks SET state='SUCCEEDED' WHERE id=? AND lease_id=? AND state='LEASED'`. If 0 rows updated → stale lease, worker must abort / discard its work (or, if work is non-idempotent, this is a problem — hence idempotence).\n\n**Storage / durability:**\n- Option A: Single-node RDBMS with `SELECT ... FOR UPDATE SKIP LOCKED` (Postgres). Simple, correct, good to ~10k/s. Use partitioning, partial indexes.\n- Option B: Log-structured replicated log (Kafka/Raft) with consumer groups. Ordering per partition, but lease semantics need care (offset commit is a lease-ish thing).\n- Option C: Purpose-built (like SQS/Redis Streams) with caveats.\n- I'll present a design with a replicated SQL/metadata store + optional log for throughput, i.e., \"control plane in Raft-replicated KV/SQL, hot path in partitioned queues.\"\n\nActually let me give a clean architecture:\n\n**Components:**\n1. **API/Ingress** — validates, assigns idempotency key, writes task, enqueues.\n2. **Metadata store** — replicated, strongly consistent (Raft or Postgres with sync replica / etcd-like). Holds task records, leases, dedup keys.\n3. **Queue partitions (ready sets)** — ordered by (priority, next_attempt_at, seq). Can be materialized views or in-memory indexes rebuilt from log.\n4. **Dispatcher / Lease manager** — hands out leases, tracks expiry (timer wheel / min-heap), reclaims.\n5. **Workers** — pull or push, execute, renew, ack/nack.\n6. **Scheduler** — promotes delayed retries to ready.\n7. **DLQ + replayer**.\n8. **Control plane** — backpressure, quotas, config.\n\n**Hot path write:** WAL append → apply to state machine → fsync/replicate quorum → ack to client. So tasks survive crash.\n\n**Lease granting:** Worker pulls N tasks. Dispatcher does an atomic transaction:\n```\nBEGIN;\nSELECT id FROM ready_set WHERE partition=? AND next_attempt_at<=now()\n  ORDER BY priority DESC, seq\n  FOR UPDATE SKIP LOCKED LIMIT :n;\nUPDATE tasks SET state='LEASED', lease_id=lease_id+1, worker_id=:w,\n  expires_at=now()+:lease, attempt=attempt+1\n  WHERE id IN (...) ;\nCOMMIT;\n```\nThis is atomic, no double lease, and `SKIP LOCKED` gives concurrency.\n\n**Renewal:** `UPDATE tasks SET expires_at = now()+lease WHERE id=? AND lease_id=? AND state='LEASED'`. Batch renewals. If 0 rows → lease lost → abort.\n\n**Reclaim:** min-heap of (expires_at, task_id, lease_id). On pop, `UPDATE tasks SET state='PENDING', next_attempt_at=backoff(attempt) WHERE id=? AND lease_id=? AND state='LEASED' AND expires_at<=now()`. Conditional on lease_id so a renewal races safely.\n\n**Retries:**\n- Backoff: `delay = min(cap, base * 2^attempt)`, jitter: full jitter `random(0, delay)` or decorrelated jitter. Give numbers.\n- Retry budget: max attempts (e.g., 10) or max elapsed (e.g., 24h) or token-bucket retry budget per dependency (e.g., retries ≤ 10% of successes) to prevent retry storms.\n- Error classification: retryable (5xx, timeout, 429, connection reset), non-retryable (400, validation), and \"unknown\" (treated as retryable but with idempotence).\n- Poison pills: same task fails N times → DLQ with full attempt history.\n- Retry storms: jitter + budget + circuit breaker + backpressure.\n\n**Idempotence:**\n- At-least-once delivery is the only practical guarantee. So handlers must be idempotent.\n- Techniques:\n  1. **Idempotency key** (task_id or business key) + dedup table with conditional insert. `INSERT ... ON CONFLICT DO NOTHING` inside the same transaction as the side effect → effect-once for transactional resources.\n  2. **Fencing/version in the downstream write**: `UPDATE account SET balance = balance - 10 WHERE id=? AND version=?`.\n  3. **Natural idempotence**: PUT semantics, `SET x = 5` vs `x = x + 5`.\n  4. **Outbox / two-phase**: write intent + effect in one DB transaction.\n  5. **Dedup window**: TTL on dedup keys; must be ≥ max retry window. If not possible, need unbounded or business-level reconciliation.\n  6. **Exactly-once = at-least-once + dedup at the sink**, not transport.\n- Note: dedup key must be checked atomically with the effect. If you check-then-act you have a race.\n- Example: Stripe-style idempotency key on the API; task-level: `INSERT INTO effects(task_id) VALUES ($1) ON CONFLICT DO NOTHING RETURNING 1` — if no row returned, skip.\n\n**Backpressure:**\n- Sources: producers (too many enqueues), workers (too slow), downstream dependencies (rate limited).\n- Signals: queue depth (ready count), oldest-ready age (best single SLO metric), in-flight count, lease expiry rate, DLQ rate, worker utilization.\n- Mechanisms:\n  - Admission control at ingress: token bucket per tenant; reject 429 with Retry-After when depth/age exceeds threshold.\n  - Bounded queues: refuse or spill.\n  - Worker-side: bounded concurrency per worker (semaphore), and pull-based leasing means workers naturally take only what they can handle — this is a big advantage of pull over push. Add \"prefetch\" limit.\n  - Lease-based in-flight cap: limit number of outstanding leases per worker/tenant.\n  - Adaptive: AIMD on concurrency based on latency/error rate (like Netflix concurrency limits / TCP Vegas).\n  - Priority + weighted fair queuing across tenants so one tenant can't starve others.\n  - Load shedding: drop low-priority tasks or defer, return 429/503.\n  - Little's Law: concurrency = throughput × latency. Use it to size worker pools.\n  - Delayed retry scheduler also provides natural backpressure against downstream.\n\n**Crash recovery:**\n- Broker crash: WAL + Raft quorum; on restart replay log; leases stored in log so they survive; timers rebuilt from `expires_at` scan. Leader election; clients reconnect with session + resume from cursor. Idempotent enqueue via dedup key so client retries don't duplicate.\n- Worker crash: lease expires → task requeued; attempt incremented; fencing token invalidates any late writes.\n- Network partition: worker may still be running while lease expires (GC pause, partition). Fencing token is the only safe answer. Also: worker must check lease before performing irreversible external effects, or make effects idempotent/fenced.\n- Split brain on broker: quorum-based commit prevents two leaders. Ready-set leasing via `SKIP LOCKED`/CAS is safe even with multiple dispatchers because the store serializes.\n- Partial write: transaction boundary = task state change + lease + dedup; atomic.\n- Data loss of dedup keys: bounded by TTL, must exceed retry horizon.\n- Rebuild: ready set is derivable from tasks table (`state='PENDING' AND next_attempt_at<=now()`), so an index suffices; in-memory heap for lease expiry is a cache, rebuilt by scanning `state='LEASED'`.\n\n**Observability:**\n- Metrics (RED + USE):\n  - Enqueue rate, dequeue rate, ack rate, nack rate, lease expiry rate (this is the key \"silent failure\" signal), renewal failures.\n  - Queue depth, oldest task age (p50/p99), in-flight, worker count, lease utilization.\n  - Task latency: enqueue→start (wait), start→finish (execution), end-to-end.\n  - Attempts histogram, retries per task, DLQ rate.\n  - Error rate by class/code.\n  - Store: WAL fsync latency, replication lag, leader elections, lock contention.\n- Tracing: propagate `trace_id`, `span_id`, `task_id`, `attempt`, `lease_id` in the task envelope; worker starts a child span linked to the enqueue span; use OpenTelemetry links for retries (each attempt links to original).\n- Logging: structured, with task_id + attempt + lease_id; log state transitions in an audit log (append-only) for debugging \"why did this run twice\".\n- Alerting: oldest-ready age SLO, lease-expiry rate > threshold, DLQ growth, replication lag, dispatcher lease-grant latency.\n- Debuggability: task timeline API (`GET /tasks/{id}/timeline`) returning all state transitions, attempts, worker IDs, errors.\n- SLOs: e.g., 99.9% of tasks start within 5s; 99.99% ack; duplicate execution rate < 1e-6.\n\nAlso mention: \n- Ordering: FIFO per partition key; no global ordering. Use partition key = business entity.\n- Priority: multiple ready queues, weighted fair queuing, strict priority risks starvation → use aging or WFQ.\n- Task payload size limits; large payloads in object store with pointer.\n- Visibility timeout vs lease: SQS-style visibility timeout is a lease without fencing; call out why fencing matters.\n- Graceful shutdown: worker stops pulling, finishes in-flight, releases leases (nack with `requeue=true` → immediate re-delivery, no backoff).\n- Long tasks: split into steps (step functions) or use long leases + renewal; avoid leases >> reclaim time.\n- Worker SDK responsibilities: heartbeat, deadline propagation, cancellation.\n\nLet me also give an example end-to-end flow with concrete code.\n\nI'll write this as a design doc. Should be detailed but organized. Use headers, tables, code blocks. Length: this deserves a long answer, but I should keep it tight and information-dense rather than padded. Maybe ~2500-3500 words with code. Let me aim for comprehensive but not bloated.\n\nLet me write the schema:\n\n```sql\nCREATE TABLE tasks (\n  task_id        UUID PRIMARY KEY,\n  queue          TEXT NOT NULL,\n  partition_key  TEXT NOT NULL,\n  priority       SMALLINT NOT NULL DEFAULT 0,\n  payload        BYTEA NOT NULL,\n  state          TEXT NOT NULL,         -- PENDING|LEASED|SUCCEEDED|DEAD|CANCELLED\n  attempt        INT NOT NULL DEFAULT 0,\n  max_attempts   INT NOT NULL DEFAULT 10,\n  next_attempt_at TIMESTAMPTZ NOT NULL,\n  lease_id       BIGINT NOT NULL DEFAULT 0,   -- fencing token\n  lease_owner    TEXT,\n  lease_expires  TIMESTAMPTZ,\n  idempotency_key TEXT,\n  created_at, updated_at"
+        },
+        "logprobs": null,
+        "finish_reason": "length",
+        "stop_reason": null,
+        "token_ids": null,
+        "routed_experts": null
+      }
+    ],
+    "service_tier": null,
+    "system_fingerprint": "vllm-0.1.dev21830+g8244d1c44.d20261015-tp4-1b26ae36",
+    "usage": {
+      "prompt_tokens": 83,
+      "total_tokens": 3155,
+      "completion_tokens": 3072,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "created_cache_tokens": 0,
+        "multimodal_tokens": null
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 3072
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "prompt_text": null,
+    "kv_transfer_params": null,
+    "ec_transfer_params": null,
+    "metrics": null
+  },
+  "score": {
+    "id": "distributed-seed29-p0.95",
+    "top_p": 0.95,
+    "thinking": true,
+    "seed": 29,
+    "case": "distributed",
+    "english_system_instruction": true,
+    "cjk_characters": {
+      "content": 0,
+      "reasoning": 0
+    },
+    "cjk_any": false,
+    "generated_characters": {
+      "content": 0,
+      "reasoning": 12257
+    },
+    "completion_tokens": 3072,
+    "finish_reason": "length",
+    "elapsed_seconds": 97.42697279200365,
+    "excerpts": {
+      "content": [],
+      "reasoning": []
+    }
+  }
+}

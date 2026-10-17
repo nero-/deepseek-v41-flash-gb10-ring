@@ -1,0 +1,95 @@
+{
+  "request": {
+    "model": "DeepSeek-V4.1-Flash-TP4",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Use English for the entire response, including any reasoning. Do not translate into another language."
+      },
+      {
+        "role": "user",
+        "content": "Write an extensive English tutorial on cache invalidation for a web application. Cover expiration, versioning, event-driven invalidation, stampedes, consistency and failure recovery."
+      }
+    ],
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": -1,
+    "min_p": 0.0,
+    "repetition_penalty": 1.0,
+    "seed": 29,
+    "max_tokens": 1536,
+    "chat_template_kwargs": {
+      "thinking": false
+    }
+  },
+  "response": {
+    "id": "chatcmpl-8d959facfc64e79b",
+    "object": "chat.completion",
+    "created": 1792240750,
+    "model": "DeepSeek-V4.1-Flash-TP4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "# Cache Invalidation for Web Applications: A Comprehensive Tutorial\n\nCache invalidation is famously one of the two hard problems in computer science (the other being naming things). This tutorial walks through the full landscape of cache invalidation strategies for web applications, from simple TTLs to event-driven invalidation, stampede protection, and failure recovery.\n\n---\n\n## 1. Why Cache Invalidation Is Hard\n\nA cache is a **copy** of data stored somewhere else (the source of truth). The moment you make a copy, you create the possibility of the copy diverging from the original. Invalidation is the discipline of deciding:\n\n1. **When** a cached value is no longer valid.\n2. **Who** is responsible for marking it invalid.\n3. **How** to do it reliably in a distributed system where messages can be lost, reordered, or delivered twice.\n\nThe core tension:\n\n- **Aggressive caching** → fast reads, but stale data risks.\n- **Aggressive invalidation** → correctness, but more load on the origin and more coordination complexity.\n\nEvery strategy below is a trade-off along this spectrum.\n\n---\n\n## 2. The Layered Cache Landscape\n\nBefore diving into strategies, map out *where* caches live. Invalidation must consider all layers:\n\n```\nBrowser cache → CDN/edge cache → Reverse proxy (Varnish/nginx) → App-level cache (Redis/Memcached) → Database query cache\n```\n\nA change to source data may need to invalidate **several layers**. Most production incidents involving \"stale data\" come from forgetting a layer — typically the CDN or the browser.\n\nKey principle: **The closer the cache is to the user, the harder it is to invalidate.** You cannot reach into a user's browser; you can only influence it via HTTP headers (`Cache-Control`, `ETag`, `Last-Modified`).\n\n---\n\n## 3. Strategy 1: Expiration (TTL)\n\nThe simplest invalidation: give every entry a time-to-live.\n\n```python\nredis.setex(f\"user:{user_id}\", 300, json.dumps(user_data))  # 5 min TTL\n```\n\n### When to use\n- Data where **bounded staleness is acceptable** (e.g., a profile page that can be 5 minutes old).\n- Data that is **expensive to compute** and changes predictably.\n- As a **safety net** for every other strategy (see §9).\n\n### Tuning TTL\n- Too short → cache misses spike, origin overload.\n- Too long → stale data window grows.\n- A good heuristic: `TTL ≈ acceptable_staleness / expected_change_rate`. If data changes once an hour and you can tolerate 10 minutes of staleness, a 10-minute TTL is fine.\n\n### Pitfalls\n- **TTL is not invalidation** — it's *eventual* expiration. Between writes and TTL expiry, readers see stale data.\n- **Thundering herd** on mass expiry (see §7).\n- **Clock skew** across nodes can cause early/late expiry; prefer relative TTLs (`SETEX`) over absolute timestamps where possible.\n\n---\n\n## 4. Strategy 2: Versioning / Cache Keys\n\nInstead of deleting entries, make old entries **unreachable** by changing the key.\n\n### 4.1 Versioned keys\n\n```python\nkey = f\"user:{user_id}:v{version}\"   # version bumped on every write\n```\n\nWhen data changes, bump the version. Old keys become orphaned and expire via TTL. This is **invalidation by reference change** — no explicit delete needed, and it's naturally race-free: a concurrent reader either sees the old version (still consistent) or the new one, never a torn mix.\n\n### 4.2 Content-addressed / hash keys\n\n```python\nkey = f\"article:{article_id}:{sha256(article_body)}\"\n```\n\nImmutable content gets an immutable key. Perfect for assets, rendered fragments, or API responses where the content itself identifies the cache entry.\n\n### 4.3 Global version counters\n\nFor whole-namespace invalidation (e.g., \"flush all product pages after a catalog import\"):\n\n```python\ncatalog_version = redis.get(\"catalog:version\") or 0\nkey = f\"catalog:{catalog_version}:{product_id}\"\n```\n\nBumping `catalog:version` instantly orphans **all** product cache entries without iterating over millions of keys. Combine with a short TTL so old versions get garbage-collected.\n\n### 4.4 HTTP-level versioning\n\n- `ETag` + `If-None-Match` → conditional requests, 304 responses.\n- Filename fingerprinting: `/app.3f9a2c.js` — set `Cache-Control: immutable, max-age=31536000`. The *filename* is the version; changing content changes the filename. This is how most CDNs and SPA build pipelines invalidate static assets.\n\n**Versioning is often the best default** because it avoids the \"delete races\" described in §6 and works across all cache layers.\n\n---\n\n## 5. Strategy 3: Event-Driven Invalidation\n\nWhen data changes, emit an event; consumers invalidate the relevant cache keys.\n\n### 5.1 Synchronous invalidation (write-through invalidation)\n\nOn write, delete the cache key in the same request:\n\n```python\ndef update_user(user_id, data):\n    db.update_user(user_id, data)\n    redis.delete(f\"user:{user_id}\")   # invalidate after write\n```\n\n**Order matters.** The canonical pattern is **write DB, then invalidate cache** (\"cache-aside with delete\"). Do *not* delete before writing — a concurrent read between the delete and the DB write will repopulate the cache with the *old* value.\n\nA subtle failure mode: delete-then-write-DB with a concurrent cache miss can re-cache stale data. Safer ordering:\n\n1. Write to DB.\n2. Delete cache key.\n3. (Optional) Delay a second delete (\"delayed double delete\") to catch reads that raced with step 1.\n\n### 5.2 Asynchronous invalidation (message bus)\n\nFor decoupled systems, publish invalidation events:\n\n```\nOrder Service ──publish──▶ [order.updated] ──▶ Cache Invalidator ──▶ Redis / CDN purge\n```\n\nPros:\n- Decouples writer from cache topology.\n- Handles multiple cache nodes/regions.\n\nCons:\n- **Eventual**: there's a propagation delay.\n- **Delivery guarantees** matter — see §8.\n- **Ordering** matters — an old event arriving after a new one can resurrect stale data. Include a **monotonic version or timestamp** in the event and ignore out-of-order events.\n\n### 5.3 Tag-based / surrogate-key invalidation\n\nAssociate cache entries with tags, then invalidate by tag:\n\n```python\n# Store entry with tags\ncache.set(key, value, tags=[\"product:42\", \"category:shoes\"])\n# On change\ncache.invalidate_tag(\"product:42\")\n```\n\nThis is how CDNs (Fastly surrogate keys, Cloudflare cache tags) and frameworks (Django `cache_page` with vary headers, Rails",
+          "refusal": null,
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "reasoning": null
+        },
+        "logprobs": null,
+        "finish_reason": "length",
+        "stop_reason": null,
+        "token_ids": null,
+        "routed_experts": null
+      }
+    ],
+    "service_tier": null,
+    "system_fingerprint": "vllm-0.1.dev21830+g8244d1c44.d20261015-tp4-1b26ae36",
+    "usage": {
+      "prompt_tokens": 58,
+      "total_tokens": 1594,
+      "completion_tokens": 1536,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "created_cache_tokens": 0,
+        "multimodal_tokens": null
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "prompt_text": null,
+    "kv_transfer_params": null,
+    "ec_transfer_params": null,
+    "metrics": null
+  },
+  "score": {
+    "id": "tutorial-seed29-p0.95",
+    "top_p": 0.95,
+    "thinking": false,
+    "seed": 29,
+    "case": "tutorial",
+    "english_system_instruction": true,
+    "cjk_characters": {
+      "content": 0,
+      "reasoning": 0
+    },
+    "cjk_any": false,
+    "generated_characters": {
+      "content": 6272,
+      "reasoning": 0
+    },
+    "completion_tokens": 1536,
+    "finish_reason": "length",
+    "elapsed_seconds": 50.722919375002675,
+    "excerpts": {
+      "content": [],
+      "reasoning": []
+    }
+  }
+}

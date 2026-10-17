@@ -9,9 +9,12 @@ was retired on 2026-10-12 UTC; the former port-8000 endpoints are no longer
 served. The [GLM handoff](../GLM/HANDOFF.md) records the storage cleanup and
 GLM assignment. On 2026-10-14 the user requested stopping GLM and restoring
 DeepSeek for the HF inference-change audit. DeepSeek is now serving on 8015;
-GLM's qualified Weightless alpha-2 profile remains saved and stopped. Stop
-DeepSeek before switching back. See [GLM operations](../GLM/README.md) and
-[the audit](results/20261014-hf-runtime-audit/REPORT.md).
+GLM's historical Weightless alpha-2 recipe remains saved, but all GLM checkpoint
+copies were deleted at the user's request on October 17. GLM start/restart and
+profile selection are blocked by its retirement marker until a new build is
+downloaded and qualified. See [GLM operations](../GLM/README.md),
+[storage retirement](../GLM/results/checkpoint-retirement-20261017/REPORT.md),
+and [the prior audit](results/20261014-hf-runtime-audit/REPORT.md).
 
 ## Switching from the Mac
 
@@ -24,7 +27,7 @@ cd ~/Agent/Builds/deepseek-v41-flash-ring
 ```
 
 `ds` and `recover-ds` return when the selected API is healthy; allow roughly
-7–16 minutes for startup. `recover-ds` first stops workloads and the entire
+4–20 minutes for startup. `recover-ds` first stops workloads and the entire
 mesh. Both retired Qwen pair stop entry points remain idempotent for DS recovery.
 `ring-mode.sh qwen` reports retirement before any SSH, DS stop or mesh change.
 
@@ -43,6 +46,22 @@ curl http://192.168.50.219:8015/v1/chat/completions \
 Thinking is on by default. Set `thinking: false` explicitly for ordinary
 non-thinking requests and comparable benchmarks. Send `max_tokens` to bound
 the answer. Tools and images passed the retained functional checks.
+
+The official checkpoint has no `generation_config.json`. The selected command
+therefore explicitly sets temperature 1, top_p 1, top_k -1 (disabled), min_p 0
+and repetition penalty 1. Presence/frequency penalties default to zero. Clients
+can override these values. No implicit output-token cap is added by a generation
+config; keep sending a suitable `max_tokens` for the task and remaining context.
+
+KV uses `--kv-cache-memory-bytes 17716740096`: **16.5 GiB per GPU**, exposing
+13,483,747 logical tokens. This **overrides `--gpu-memory-utilization 0.83`**;
+changing that fraction alone has no effect while the explicit byte budget is
+present. The head's operating ceiling is **118 GiB total used**, measured as
+`MemTotal - MemAvailable`, not Docker RSS or GPU allocation alone. Qualification
+peaked at 115.10 GiB across startup, concurrency, mixed prefill/decode and
+fresh 1M retrieval. Preserve this headroom for growth. The temporary trial abort
+guard is no longer running; the allocation is qualified with margin, not an
+OS-wide hard limit against unrelated host processes.
 
 The context limit is 1,048,576 tokens, with 16 active sequences. The 8K batch
 ceiling controls work per iteration; it is not a per-request reservation. The
@@ -207,6 +226,9 @@ fresh retrieval through 1M tokens, recording request settings and configuration
 hashes. It requires an already healthy selected service and does not change
 serving settings. Benchmark traffic affects interactive latency; run when idle.
 `bench/indexer-startup-check.py` is the local CPU activation regression check.
+Use `--no-hw-monitor` and verify temporary benchmark collectors exit. Fourteen
+old detached GPU-polling loops were removed after the October 17 timed comparisons;
+never use broad process-name killing to clean up collectors.
 
 ### Comparing with public SparkRing results
 
@@ -228,7 +250,9 @@ without `lil_matched.py`, with `LLM_BENCH_NO_UPDATE_CHECK=1` and:
 --duration 20 --max-tokens 2048 --coding-peak --output <unique-result.json>
 ```
 
-Preserve both protocols' labels and raw results. Matching a public command does
+The October 17 runtime campaign uses this public 0.7.6 protocol;
+`bench/lil_top_p.py` can inject only top_p without changing thinking. The
+request-parser audit confirms the server defaults above. Preserve both protocols' labels and raw results. Matching a public command does
 not control different hardware clocks, client placement or stochastic variation.
 
 ## Installed paths
@@ -244,11 +268,35 @@ not control different hardware clocks, client placement or stochastic variation.
 | Retired Qwen source/config and stop compatibility | `~/builds/qwen-tp2` on every node; weights/caches/images removed |
 | Benchmark environment | `~/bench` on gx10-r0 |
 
-The private local `results/20261017-checkpoint-upgrade/selected-1017.json` matches
-the live selected config and is excluded from Git. The September 29
-`selected-corrected.json` is the old rollback configuration. Preserve both;
-never replace the root-owned live selection without checking image identities,
+The private local `results/20261017-runtime-upgrade/selected-runtime.json`
+matches the live selection and is excluded from Git. The earlier
+`results/20261017-checkpoint-upgrade/selected-1017.json` records the prior
+September GPU runtime on the same 1017 weights. The September 29
+`selected-corrected.json` predates the checkpoint update. Preserve these;
+never replace the root-owned selection without checking live image identities,
 plugin manifests and container state.
+
+## Rolling back the runtime without changing weights
+
+The previous qualified runtime is retained on every node as
+`ds41-rollback-runtime-rN`. It uses the SAME official 1017 checkpoint, so no
+weight transfer or deletion is needed. Root-owned config backups are on
+spark-r0 in `/var/lib/deepseek-ring/experiments/runtime-20261017/`.
+
+After inspecting the current configuration and stopping benchmark traffic,
+the campaign helper on the workstation can coordinate the rollback:
+
+```bash
+python3 ~/Agent/Diagnostics/deepseek-v41-flash-ring/runtime-20261017/runtime_cutover.py \
+  rollback --specs kv-specs.json
+```
+
+It checks the known selection, stops the new fleet, restores names and the
+previous root config, and starts the old runtime. It refuses an unknown later
+selection. Reconcile `results/deployment.json` using the retained
+`results/20261017-runtime-upgrade/previous-deployment.json` and update the
+operating docs after a rollback. Do not use checkpoint downgrade for an image
+or KV-budget problem.
 
 ## Rolling back the 1017 checkpoint upgrade
 
@@ -260,13 +308,15 @@ weights and all four original images remain available.
 The campaign at `~/Agent/Diagnostics/deepseek-v41-flash-ring/upgrade-1017-20261017/`
 contains `cutover.py rollback`, the original/qualified configurations and full
 hash/deletion receipts. Inspect current live state and those receipts first.
-The rollback action stops the new fleet, restores old container names and
-selection, removes only the new GX10 weight shards, copies and hash-verifies
+First roll back the newer runtime as above so this older campaign recognizes
+the selection. Its checkpoint rollback action then stops the fleet, restores
+old container names and selection, removes only the new GX10 weight shards, copies and hash-verifies
 the old shards from adjacent Sparks over the fabric, then starts the old model.
 It needs substantial transfer/startup time and must run with all GPU workloads
 stopped. Its temporary artifact servers must be cleaned up afterward using
 recorded PID/command ownership. Do not overwrite a later unknown selection.
 
-The GLM baseline and Weightless starters recognize both exact qualified DS
-configuration hashes. Their host-file receipts were updated without changing
-GLM settings or starting it; see `../GLM/results/ds1017-compatibility/receipt.json`.
+The earlier GLM compatibility receipt remains historical. Its checkpoint copies
+were subsequently deleted and its startup controls now reject the retirement
+marker. A future GLM rebuild must qualify against the current DS selection and
+reconcile its workload guards; do not use the historical starter to switch back.

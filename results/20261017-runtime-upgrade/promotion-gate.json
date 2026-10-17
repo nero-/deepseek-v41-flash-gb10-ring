@@ -1,0 +1,28 @@
+{
+  "promote": true,
+  "utc": "2026-10-17T13:09:56Z",
+  "specs_sha256": "d7987e580c42294dc55e6d01f9365dc0e9d89c262939947ac89212fa3d8fba2b",
+  "image_id": "sha256:a182696cb59fad1352ca17aae13c248e276d5cb7b7811f0fc8ead1cde4516221",
+  "qualification": "native/parser/serving/tool/consistency/128K/1M/full runtime grids/sampling/language/mixed-load/final KV screen passed",
+  "performance_decision": "Accept current correctness/provider updates and increased KV with disclosed throughput tradeoffs. This is not an across-the-board speedup. Final C8 repeat is within 5% of old baseline; two-run final 128K C8 mean is about 5.4% lower. No statistical equivalence claim.",
+  "c8_repeat_vs_baseline": [
+    {
+      "context_tokens": 8192,
+      "repeat_tps": 189.5946265986893,
+      "baseline_tps": 192.17569587601852,
+      "percent_change": -1.343077887952282
+    },
+    {
+      "context_tokens": 131072,
+      "repeat_tps": 175.30777036712414,
+      "baseline_tps": 182.69874890153145,
+      "percent_change": -4.045445619548715
+    }
+  ],
+  "host_memory_peak_gib": 115.07651138305664,
+  "host_memory_ceiling_gib": 118,
+  "kv_bytes_per_rank": 17716740096,
+  "top_p": 1.0,
+  "checkpoint_precision_changed": false,
+  "runtime_rollback": "same 1017 checkpoint; original configs and images preserved"
+}

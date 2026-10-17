@@ -1,5 +1,13 @@
 # Standby plan: DS41-1017 runtime and switched TP4 upgrades
 
+> **Scope update, October 17:** the user advanced the full eugr/KK/FlashInfer
+> runtime comparison ahead of the switch. Its live selection and qualification
+> are recorded in [the runtime campaign](../20261017-runtime-upgrade/REPORT.md)
+> and [deployment.json](../deployment.json). This document preserves the earlier
+> research plan; do not apply its small backports blindly to the newer provider.
+> The switch topology and new large-message/two-shot collective experiment remain
+> separate, pending work. Rebase those steps on the actual selected runtime.
+
 Prepared 2026-10-17 UTC for the user's CRS812 arrival in about two days.
 **Research and planning only. No cluster changes, image pulls, GPU tests, or
 network changes were made by this work.** Resume this plan when the switch is

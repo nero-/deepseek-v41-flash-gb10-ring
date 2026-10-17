@@ -1,0 +1,14 @@
+{
+  "baseline_top_p": 1.0,
+  "basis": [
+    "No generation_config.json in verified official 1017 checkpoint",
+    "No sampling overrides in selected command or nested HF config",
+    "HF config fallback returns neutral defaults",
+    "ChatCompletionRequest._DEFAULT_SAMPLING_PARAMS top_p=1.0, used when request and model omit it",
+    "Pinned public LIL throughput payload omits top_p"
+  ],
+  "candidate_server_override": {
+    "top_p": 1.0
+  },
+  "ab_plan": "First candidate run explicitly uses top_p=1.0; compare explicit 0.95 requests on same build; all other request settings unchanged"
+}

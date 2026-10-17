@@ -1,0 +1,10 @@
+{
+  "utc": "2026-10-17T13:09:35Z",
+  "samples": 654,
+  "peak_gib": 115.07651138305664,
+  "latest_gib": 115.01668548583984,
+  "threshold_gib": 117.5,
+  "triggered": false,
+  "running": false,
+  "stop_marker": true
+}

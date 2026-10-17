@@ -1,0 +1,91 @@
+{
+  "request": {
+    "model": "DeepSeek-V4.1-Flash-TP4",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Design a reliable distributed task queue. Explain leases, retries, idempotence, backpressure, crash recovery and observability. Give a detailed technical design with examples."
+      }
+    ],
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": -1,
+    "min_p": 0.0,
+    "repetition_penalty": 1.0,
+    "seed": 17,
+    "max_tokens": 3072,
+    "chat_template_kwargs": {
+      "thinking": true
+    }
+  },
+  "response": {
+    "id": "chatcmpl-902b79f34c1cc7b7",
+    "object": "chat.completion",
+    "created": 1792240443,
+    "model": "DeepSeek-V4.1-Flash-TP4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": null,
+          "refusal": null,
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "reasoning": "We need answer. Need design reliable distributed task queue, explain leases, retries, idempotence, backpressure, crash recovery, observability. Detailed technical design with examples. Need be comprehensive. We can structure. Need likely system design. Need mention components: API/frontend producers, broker/storage, scheduler, workers, lease manager, visibility timeout, retry queue, DLQ, coordinator/control plane, metadata store, observability. Need discuss semantics at-least-once vs exactly-once (impossible end-to-end unless transactional side effects/idempotency). Leases: worker acquires task with lease TTL, heartbeat extends; expiry requeues; fencing tokens? For idempotence need task ID + idempotency key, dedup store, transactional outbox/inbox. Retries: exponential backoff with jitter, max attempts, retry policy, classification (transient/permanent), DLQ, poison pill. Backpressure: bounded queues, admission control, rate limiting, worker concurrency limits, load shedding, priority, quotas, autoscaling, circuit breakers. Crash recovery: replicated durable log/DB, leader election, lease expiry, worker crash, broker crash, scheduler failover, checkpointing, WAL, quorum, outbox, reconciliation. Observability: metrics (queue depth, age, enqueue/dequeue, success/fail/retry, lease expirations, latency p50/p95/p99, worker heartbeats), logs structured with task_id trace_id, traces, alerts, audit, dashboards, DLQ inspection. Need detailed technical design with examples. Maybe propose architecture using Postgres/Kafka? Need reliable distributed task queue. Could design on top of replicated durable log + relational metadata? Or using Kafka + Redis? Need reliability. Better propose broker with storage layer: partition by queue, append-only WAL with quorum; state machine with task records; scheduler; lease manager. Or use database as source of truth with SELECT FOR UPDATE SKIP LOCKED? Need reliable distributed queue. We can present abstract components and implementation choices. Need examples. Let's craft.\n\nNeed answer \"Design a reliable distributed task queue. Explain leases, retries, idempotence, backpressure, crash recovery and observability. Give a detailed technical design with examples.\" So answer likely in system design interview style. Need cover.\n\nLet's outline:\n1. Goals & semantics:\n- At-least-once delivery default; exactly-once effect via idempotent handlers.\n- Durable, highly available, horizontal scale, ordered optional, fair scheduling, delayed tasks, priority, retries, DLQ.\n- API: enqueue, lease, ack, nack, heartbeat, extend lease, stats.\n- Task schema: task_id (UUID), idempotency_key, queue, payload, priority, available_at, max_attempts, attempt, lease_id/fencing_token, deadline, status, created_at, updated_at, trace context.\n\n2. Architecture:\n- Producers -> API Gateway -> Partitioned durable log/DB. Control plane metadata (etcd/ZK) for membership/leader. Storage: replicated WAL (Raft) per partition, or Kafka as log + compacted state? Need reliable. Let's define: queue service with partitions; each partition has leader + replicas via Raft; state machine stores task states (READY, LEASED, DONE, RETRY_WAIT, DEAD). Scheduler per partition picks due tasks. Lease manager tracks leases. Workers poll/stream leases via long-poll. Ack commits completion. Heartbeats extend leases. Expired leases requeued with fencing token.\n- Alternative implementation: PostgreSQL with SKIP LOCKED for moderate scale, Kafka/SQS for high scale. But detailed design should be implementation-agnostic. Could mention production realization: Kafka for durable log + compacted task state in RocksDB? Hmm.\n\nNeed \"reliable distributed task queue\" maybe use etcd? Let's create design with queue partitions and replicated state machine. Need detail.\n\nComponents:\n- API Servers stateless: validate, auth, quota, assign task_id/idempotency key, route to partition, append Enqueue command to partition leader. Return after quorum commit. For delayed tasks, write with available_at.\n- Partition leader: Raft group; state machine holds ready heap by (priority, available_at, seq), leased map by lease expiry, retry heap, DLQ. Replicates commands: Enqueue, Lease, Heartbeat, Ack, Nack, ExpireLease. Wait, workers talk to partition leader. Lease command returns task + lease_id + fencing token + TTL. Leader marks LEASED with expiry and increments fencing token. Heartbeat extends expiry if lease_id valid. Ack marks DONE and removes. Nack marks RETRY_WAIT with next_available. Lease expiry via timer: requeue with attempt+1? Or lease expiry not increment? Need attempt counts. If worker crashed, task retry. Attempt increment on lease or on nack? Usually attempt increments when delivered/leased. But if lease expires, it counts as attempt. Need max_attempts. We'll increment attempt on Lease. On ack done. On nack/expiry if attempt >= max -> DLQ. Lease expiry may requeue. Fencing token ensures stale worker ack rejected after lease expired/reassigned. Need mention ack with lease_id/fencing token; if expired and reassigned, old ack ignored.\n- Scheduler: within partition leader, timers for available_at and lease expiry. Or separate scheduler service? For reliable, integrate into partition leader state machine with deterministic timers. But timers are not deterministic; leader can scan heaps. Since leader changes, new leader scans state and reconstructs timers. Need mention.\n- Workers: pull leases with long polling, execute task, heartbeat while running, idempotent side effects, ack/nack. Concurrency limit. Graceful shutdown: stop leases, finish or nack, stop heartbeat.\n- Storage: Raft log + snapshots. Replicas. Metadata cluster for partition assignment/membership; can use etcd. \n- DLQ: tasks exceeding max attempts or permanent errors; inspect and redrive.\n\n3. Leases:\n- Definition: temporary ownership. Lease ID, TTL, expiry, fencing token. Worker must heartbeat before TTL. Lease prevents two workers processing simultaneously (usually). If expired, task becomes available. At-least-once means duplicate possible.\n- Example timeline: task T leased to W1 TTL 30s token 5. W1 pauses 40s. Lease expires. W2 leases token 6. W1 wakes and tries ack with token 5; broker rejects as stale. W1 side effect must be idempotent because W2 may also process. Heartbeat every TTL/3.\n- Lease extension bounded? max lease duration? To avoid stuck tasks, max processing time; if exceeded, nack/fail.\n- Fencing: external resources can use fencing token to reject stale writes. For idempotence, store token with side effect.\n\n4. Retries:\n- Retry policy per queue/task: max_attempts, backoff exponential with jitter, min/max, retry_on errors. Transient vs permanent. On nack, if retryable and attempts left: set available_at = now + backoff(attempt), status RETRY_WAIT. Else DLQ. On lease expiry: treat as failure, increment? Actually attempt increment on lease; if expiry, check attempt >= max. Backoff. Need avoid retry storms: jitter, global retry budget, dead letter. Example: attempt 1 fail transient -> wait 2s ± jitter; attempt 2 -> 4s; attempt 3 -> 8s; max 5 -> DLQ. Use priority? retry tasks maybe lower priority. \n- Poison messages: same task fails repeatedly; DLQ after max; alert. \n- Retry safety: handler idempotent; use idempotency key. For non-idempotent side effects, use transactional outbox and dedup.\n\n5. Idempotence:\n- Exactly-once delivery impossible in distributed systems with arbitrary crashes; achieve effectively-once processing via idempotent consumers.\n- Producer: idempotency_key to deduplicate enqueue. Broker stores key -> task_id in dedup table with TTL; duplicate enqueue returns existing task_id. This prevents duplicate tasks from producer retries.\n- Consumer: task_id + attempt? Use idempotency key = task_id or explicit key. Handler records processed key in transactional DB with side effect in same transaction. If duplicate, skip. For external APIs, use provider idempotency keys or conditional writes. For side effects across systems, use outbox/inbox: in same DB transaction write result + mark idempotency key; publish downstream via outbox. Or two-phase? \n- Example: charge payment: task_id used as payment idempotency key; insert payment with unique(task_id); if duplicate, return existing. For email: dedup table.\n- Fencing tokens for lease: worker includes lease token; resource update where fencing_token > last_token. But idempotency key enough for same task; fencing for stale worker preventing overwrite after lease expiry. Need distinguish: fencing token doesn't make side effects idempotent but prevents stale writes if resource supports compare-and-set.\n\n6. Backpressure:\n- Producers: quotas per tenant, max queue depth, admission control. If queue full, reject with 429/503 or apply priority; never unbounded. Use token bucket rate limiter. \n- Broker: bounded partitions, disk quotas, spill? Backpressure to producers when replication lag or disk high. \n- Workers: bounded concurrency, prefetch limit, pull model; long poll; only lease up to capacity. If processing slow, stop polling. \n- System: autoscale workers based on queue age/depth; but protect downstream with concurrency limits and circuit breakers. Priority queues and fair scheduling. Load shedding: drop low priority or delay non-urgent. \n- Example: worker pool 100; each worker max 4 in-flight; broker leases max 400; when downstream latency rises, workers stop heartbeats? Actually stop leasing, nack/backoff. Use queue depth and oldest age metrics. If oldest age > SLO, scale out or shed.\n- Retry backpressure: retry queues with lower priority, exponential backoff, retry budget. Dead letter. Avoid retry amplification.\n\n7. Crash recovery:\n- Broker crash: Raft quorum; leader failover; committed log replicated; new leader reconstructs heaps from snapshot/log; leases have wall-clock expiry? Need handle clock. Use lease expiry timestamps; on failover, new leader may expire leases based on current time; or conservatively wait max TTL. Fencing tokens monotonic per task via state machine. If leader fails after sending lease but before commit? Lease only returned after commit; if not committed, worker won't get it. If committed but response lost, worker may not know; lease expires and retries. At-least-once.\n- Worker crash: heartbeat stops; lease expires; requeued. Duplicate possible if side effect completed but ack lost. Idempotence handles.\n- Scheduler crash: integrated with partition leader; failover recovers. If separate scheduler, leader election + idempotent state transitions.\n- Data durability: WAL fsync, quorum, snapshots, backups. Multi-AZ. \n- Network partition: Raft majority; minority cannot lease/ack. Workers with leases may continue but cannot ack; lease expires; fencing token prevents stale writes if used.\n- Recovery reconciliation: scan state; expired leases requeue; orphaned tasks; DLQ. \n- Example: W1 leases T, crashes before side effect. Lease expires, W2 processes. If W1 completed side effect then crashed before ack, W2 reprocesses; idempotency key prevents duplicate charge.\n\n8. Observability:\n- Metrics: enqueue rate, dequeue/lease rate, ack, nack, retry, DLQ, lease expirations, queue depth by queue/priority/tenant, oldest task age, in-flight leases, lease TTL remaining, processing latency, end-to-end latency, worker heartbeats, active workers, throughput, error rate by error class, replication lag, disk usage, Raft commit latency, backpressure rejections. \n- Logs: structured with task_id, queue, attempt, lease_id, worker_id, trace_id; state transitions; errors. Avoid logging payload secrets. \n- Tracing: propagate trace context from producer; span enqueue, lease, process, ack; include retry attempt. \n- Alerts: oldest age SLO breach, DLQ growth, lease expiry rate high, retry storm, worker heartbeat loss, replication lag, disk > threshold. \n- Dashboards: per tenant/queue, red/use metrics. Audit: task history state transitions for debugging. \n- Debug: task inspection API, DLQ redrive, requeue, pause queue, drain, rate limit.\n\n9. Detailed technical design:\nNeed maybe API definitions, data model, state machine, algorithms. Let's define.\n\nTask state:\n- READY: available_at <= now and not leased\n- LEASED: lease_expiry > now, lease_id, fencing_token\n- RETRY_WAIT: available_at > now after failure\n- DONE: completed\n- DEAD: DLQ\nMaybe scheduled = RETRY_WAIT or READY with future available_at. Could use available_at for both delayed and retry.\n\nPartition state machine:\n- tasks: map task_id -> TaskRecord\n- ready_heap: min-heap by (priority, available_at, seq)\n- lease_heap: min-heap by lease_expiry\n- retry_heap or same ready_heap with available_at\n- idempotency_index: key -> task_id\n- lease_id -> task_id? \n- DLQ store.\n\nCommands:\n- Enqueue(task, idempotency_key) -> if key exists return existing; else create READY/RETRY_WAIT? assign seq, append, replicate, commit. If available_at > now, still in ready_heap but not eligible until due.\n- Lease(worker, queue, max_tasks, lease_ttl) -> pop due READY tasks; for each: attempt += 1; if attempt > max_attempts? Actually if already max? Need careful: max_attempts includes first"
+        },
+        "logprobs": null,
+        "finish_reason": "length",
+        "stop_reason": null,
+        "token_ids": null,
+        "routed_experts": null
+      }
+    ],
+    "service_tier": null,
+    "system_fingerprint": "vllm-0.1.dev21830+g8244d1c44.d20261015-tp4-1b26ae36",
+    "usage": {
+      "prompt_tokens": 65,
+      "total_tokens": 3137,
+      "completion_tokens": 3072,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "created_cache_tokens": 0,
+        "multimodal_tokens": null
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 3072
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "prompt_text": null,
+    "kv_transfer_params": null,
+    "ec_transfer_params": null,
+    "metrics": null
+  },
+  "score": {
+    "id": "distributed-seed17-p0.95",
+    "top_p": 0.95,
+    "thinking": true,
+    "seed": 17,
+    "case": "distributed",
+    "english_system_instruction": false,
+    "cjk_characters": {
+      "content": 0,
+      "reasoning": 0
+    },
+    "cjk_any": false,
+    "generated_characters": {
+      "content": 0,
+      "reasoning": 13118
+    },
+    "completion_tokens": 3072,
+    "finish_reason": "length",
+    "elapsed_seconds": 103.81986583300022,
+    "excerpts": {
+      "content": [],
+      "reasoning": []
+    }
+  }
+}
