@@ -1,7 +1,7 @@
 # DeepSeek-V4.1-Flash on the four-node GB10 ring
 
 Corrected SparkRing vLLM TP4 across two DGX Sparks and two ASUS GX10s.
-API: **http://192.168.50.219:8015/v1**. Model: **DeepSeek-V4.1-Flash-TP4**.
+API: **http://192.168.X.X:8015/v1**. Model: **DeepSeek-V4.1-Flash-TP4**.
 
 **Selected as of 2026-10-17 UTC:** official **DeepSeek-V4.1-Flash-1017** on
 all four nodes, with the existing corrected GPU runtime and two small prompt/tool
