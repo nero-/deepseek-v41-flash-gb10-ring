@@ -1,0 +1,10 @@
+{
+  "reporting_rank": 0,
+  "world_size": 4,
+  "note": "Rank-zero transport messages confirm routed collectives; peers do not repeat these messages.",
+  "evidence": [
+    "(Worker pid=311) INFO 10-17 17:04:37 [b12x_roce_all_reduce.py:125] Using RoCEnante (b12x one-shot RoCE collectives): world=4, hcas=rocep1s0f0,rocep1s0f1,roceP2p1s0f0,roceP2p1s0f1, all-reduce max=2097152 bytes, all-gather shard max=16777216 bytes.",
+    "(Worker_TP0 pid=311) INFO 10-17 17:06:00 [b12x_roce_all_reduce.py:277] RoCEnante all-reduce is live: first routed all-reduce is 819200 bytes (bfloat16); NCCL remains the fallback above 2097152.",
+    "(Worker_TP0 pid=311) INFO 10-17 17:06:01 [b12x_roce_all_reduce.py:295] RoCEnante all-gather is live: first routed shard is (80, 32320) float32 along dim 1."
+  ]
+}

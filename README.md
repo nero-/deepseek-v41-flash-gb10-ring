@@ -13,11 +13,13 @@ min_p 0 and repetition penalty 1. The 24-response language screen found no
 Chinese ideographs at either top_p 1 or 0.95. This is finite evidence, not a
 promise against rare language drift.
 
-KV allocation is 16.5 GiB per GPU, exposing **13.48M tokens** of logical cache.
-Head total used memory peaked at **115.10 GiB** during qualification,
-below the 118 GiB operating ceiling. Throughput is broadly similar to the old
-runtime, with concurrency tradeoffs (clearest at long-context C8); this is not a
-universal speedup. The checkpoint's published precision is unchanged.
+KV allocation is **20 GiB per GPU**, exposing **16.34M logical tokens**.
+Head total used memory was **117.40 GiB immediately after loading**,
+leaving **4.28 GiB available**. The 118 GiB goal is the initial
+loaded budget; there is no automatic runtime stop guard. The decode tuning
+trials did not establish an overall gain, so the existing decode settings remain.
+The checkpoint's published precision is unchanged.
+[Decode trials, larger KV and final qualification](results/20261017-decode-tuning/REPORT.md).
 
 ## Start, stop and recover
 
@@ -57,8 +59,8 @@ curl --fail --max-time 5 http://192.168.X.X:8015/health
 | GPU toolchain | Qualified CUDA 13.4.2 / patched NCCL 2.32.3 retained |
 | Checkpoint | Official DeepSeek-V4.1-Flash-1017, revision `1bae0e1088993b9b82de08f59de5be5a34e42170` |
 | Local image | Built October 17; identical immutable image on all four ranks |
-| Local profile | `engram-adaptive4k-query-indexer-1017-runtime1015-kv16p5` |
-| KV budget | 16.5 GiB per GPU; 13,483,747 logical tokens |
+| Local profile | `engram-adaptive4k-query-indexer-1017-runtime1015-kv20` |
+| KV budget | 20 GiB per GPU; 16,344,051 logical tokens |
 | GPU upper clock limit | 2350 MHz, minimum 0, persistent across reboot |
 
 [Deployment identity and plugin hashes](results/deployment.json),

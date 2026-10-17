@@ -1,0 +1,30 @@
+[
+  {
+    "rank": 0,
+    "plugin_armed_count": 3,
+    "full_graph_count_observed": 70,
+    "note": "Progress output is emitted only by rank zero.",
+    "package_inventory_passed": true
+  },
+  {
+    "rank": 1,
+    "plugin_armed_count": 2,
+    "full_graph_count_observed": null,
+    "note": "Progress output is emitted only by rank zero.",
+    "package_inventory_passed": true
+  },
+  {
+    "rank": 2,
+    "plugin_armed_count": 2,
+    "full_graph_count_observed": null,
+    "note": "Progress output is emitted only by rank zero.",
+    "package_inventory_passed": true
+  },
+  {
+    "rank": 3,
+    "plugin_armed_count": 2,
+    "full_graph_count_observed": null,
+    "note": "Progress output is emitted only by rank zero.",
+    "package_inventory_passed": true
+  }
+]

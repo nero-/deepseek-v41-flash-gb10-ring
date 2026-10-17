@@ -1,5 +1,11 @@
 # October 17 runtime upgrade qualification
 
+**Subsequent update:** the current image now uses a qualified 20 GiB KV budget.
+The user clarified that 118 GiB is the initial-loaded memory goal, not a runtime
+ceiling or automatic stop threshold. See the later
+[decode and KV report](../20261017-decode-tuning/REPORT.md).
+The measurements and initial selection below are historical.
+
 **Selected and serving on all four nodes.** The official 1017 checkpoint now
 runs on the qualified October 15 eugr/KK/FlashInfer runtime, with a separately
 qualified 16.5 GiB KV budget per GPU. Head total used memory peaked at

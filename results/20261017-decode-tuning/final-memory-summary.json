@@ -1,0 +1,40 @@
+{
+  "profile": "engram-adaptive4k-query-indexer-1017-runtime1015-kv20",
+  "metric": "MemTotal - MemAvailable",
+  "startup_target_max_gib": 118,
+  "runtime_stop_guard": false,
+  "sample_interval_seconds": 2,
+  "samples": 558,
+  "first": {
+    "utc": "2026-10-17T17:07:53Z",
+    "used_gib": 117.43081665039062,
+    "available_gib": 4.2568511962890625,
+    "raw_nonfree_gib": 120.5200309753418,
+    "swap_used_gib": 0.9875907897949219,
+    "pswpin": 1176090,
+    "pswpout": 9025905
+  },
+  "peak": {
+    "utc": "2026-10-17T17:12:39Z",
+    "used_gib": 118.66268157958984,
+    "available_gib": 3.0249862670898438,
+    "raw_nonfree_gib": 120.88884353637695,
+    "swap_used_gib": 0.9884872436523438,
+    "pswpin": 1176091,
+    "pswpout": 9026156
+  },
+  "last": {
+    "utc": "2026-10-17T17:26:27Z",
+    "used_gib": 118.3808364868164,
+    "available_gib": 3.3068313598632812,
+    "raw_nonfree_gib": 120.76143264770508,
+    "swap_used_gib": 0.98858642578125,
+    "pswpin": 1176115,
+    "pswpout": 9026194
+  },
+  "pswpin_delta_pages": 25,
+  "pswpout_delta_pages": 289,
+  "sampler_running": false,
+  "sampler_stopped_explicitly": true,
+  "samples_sha256": "600e5c8f56676865b3163b04d683eb751a4e43e0d8e8ae81090ffbd5e8b35298"
+}

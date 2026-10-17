@@ -53,15 +53,17 @@ and repetition penalty 1. Presence/frequency penalties default to zero. Clients
 can override these values. No implicit output-token cap is added by a generation
 config; keep sending a suitable `max_tokens` for the task and remaining context.
 
-KV uses `--kv-cache-memory-bytes 17716740096`: **16.5 GiB per GPU**, exposing
-13,483,747 logical tokens. This **overrides `--gpu-memory-utilization 0.83`**;
+KV uses `--kv-cache-memory-bytes 21474836480`: **20 GiB per GPU**, exposing
+16,344,051 logical tokens. This **overrides `--gpu-memory-utilization 0.83`**;
 changing that fraction alone has no effect while the explicit byte budget is
-present. The head's operating ceiling is **118 GiB total used**, measured as
-`MemTotal - MemAvailable`, not Docker RSS or GPU allocation alone. Qualification
-peaked at 115.10 GiB across startup, concurrency, mixed prefill/decode and
-fresh 1M retrieval. Preserve this headroom for growth. The temporary trial abort
-guard is no longer running; the allocation is qualified with margin, not an
-OS-wide hard limit against unrelated host processes.
+present. The head's **initial loaded memory target is at most about 118 GiB
+total used**, measured as `MemTotal - MemAvailable`, not Docker RSS or GPU
+allocation alone. The selected profile started at **117.40 GiB used**,
+leaving **4.28 GiB available**. This is a startup budget,
+not a runtime ceiling; do not install an automatic 118 GiB stop guard.
+KV capacity is largely preallocated at startup; other caches and working
+buffers can grow afterward. Qualification peaked at **118.66 GiB**.
+[Decode trials, memory and final checks](results/20261017-decode-tuning/REPORT.md).
 
 The context limit is 1,048,576 tokens, with 16 active sequences. The 8K batch
 ceiling controls work per iteration; it is not a per-request reservation. The
@@ -268,13 +270,36 @@ not control different hardware clocks, client placement or stochastic variation.
 | Retired Qwen source/config and stop compatibility | `~/builds/qwen-tp2` on every node; weights/caches/images removed |
 | Benchmark environment | `~/bench` on gx10-r0 |
 
-The private local `results/20261017-runtime-upgrade/selected-runtime.json`
-matches the live selection and is excluded from Git. The earlier
+The private workstation campaign
+`~/Agent/Diagnostics/deepseek-v41-flash-ring/decode-tuning-20261017/qualified-selection.json`
+matches the live selection. The private local
+`results/20261017-runtime-upgrade/selected-runtime.json` records the prior
+16.5 GiB configuration on the same current image and is excluded from Git. The earlier
 `results/20261017-checkpoint-upgrade/selected-1017.json` records the prior
 September GPU runtime on the same 1017 weights. The September 29
 `selected-corrected.json` predates the checkpoint update. Preserve these;
 never replace the root-owned selection without checking live image identities,
 plugin manifests and container state.
+
+## Restoring the previous KV budget on the current image
+
+The previous 16.5 GiB configuration is preserved in stopped
+`ds41-before-tuning-rN` containers. It uses the same current image and 1017
+weights. The root-owned config backup is
+`/var/lib/deepseek-ring/experiments/decode-tuning-20261017/original-selection.json`.
+After checking live state and stopping benchmark traffic:
+
+```bash
+python3 ~/Agent/Diagnostics/deepseek-v41-flash-ring/decode-tuning-20261017/tuning_cutover.py \
+  rollback --specs final-specs.json
+```
+
+This restores the previous current-image selection, not the old runtime.
+Reconcile the deployment manifest from
+`results/20261017-decode-tuning/previous-deployment.json` and the selected docs
+afterward. A downgrade to the older runtime below requires this step first
+because its helper correctly
+rejects the later KV selection. No rollback is needed for ordinary recovery.
 
 ## Rolling back the runtime without changing weights
 

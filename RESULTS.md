@@ -5,11 +5,36 @@ HF tokenization, Engram projection TP, adaptive 4K prefill under contention,
 guarded query-row indexer sharding and a 2350 MHz upper GPU clock limit.
 [Exact deployment identity](results/deployment.json).
 
-## October 17 runtime and KV upgrade
+## October 17 decode tuning and selected KV budget
 
-The October 15 eugr/KK/FlashInfer runtime is now selected with explicit top_p 1
-and 16.5 GiB KV per GPU. All native, parser, serving/tool and fresh long-context
-checks passed. The head peaked at **115.10 GiB total used**, below 118 GiB;
+The current image remains selected with **20 GiB KV per rank**
+(**16,344,051 logical tokens**). Startup head usage was **117.40 GiB**,
+leaving **4.28 GiB available**; qualification peaked at
+**118.66 GiB**. The 118 GiB goal applies just after loading,
+with no automatic runtime stop guard.
+
+Adaptive cost scales, L2 prefetch changes, extra graph coverage and greedy
+draft proposals did not establish an overall decode gain. The original
+current-image decode settings remain. Mean of two final public LIL 0.7.6
+focused screens (both raw runs are retained in the report):
+
+| Context | C1 | C8 | C16 |
+|---|---:|---:|---:|
+| 8K | 59.98 | 191.89 | 267.98 |
+| 128K | 59.01 | 185.94 | 251.03 |
+
+Aggregate output tokens/s; temperature 1, top_p 1, default thinking,
+20-second cells, max 2048 tokens, 2350 MHz ceiling. These are focused screens,
+not a new full grid or an isolated KV speedup. Functional, uncached 1M,
+mixed prefill/decode and fleet checks passed.
+[All arms, comparisons, limits and qualification](results/20261017-decode-tuning/REPORT.md).
+
+## October 17 initial runtime and KV upgrade
+
+The initial October 15 eugr/KK/FlashInfer qualification selected explicit top_p 1
+and 16.5 GiB KV per GPU; the later KV sizing is recorded above. All native,
+parser, serving/tool and fresh long-context checks passed. The head peaked at
+**115.10 GiB total used**, below 118 GiB;
 logical KV capacity is **13,483,747 tokens**. No Chinese ideographs appeared in
 24 paired language responses across top_p 1 and 0.95.
 

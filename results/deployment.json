@@ -1,6 +1,6 @@
 {
-  "profile": "engram-adaptive4k-query-indexer-1017-runtime1015-kv16p5",
-  "configuration_sha256": "930c128aa7b7ca2be3fc7cdd9a1a0b4516f52d889fc9903e9159193d69e25af6",
+  "profile": "engram-adaptive4k-query-indexer-1017-runtime1015-kv20",
+  "configuration_sha256": "e7136bf21f3885421e3d0ede9b9f43214f9be43bd8bfc62a1c2a049698b30c47",
   "checkpoint": "1bae0e1088993b9b82de08f59de5be5a34e42170",
   "plugin_manifest": {
     "dsv41_adaptive_prefill.py": "dfb6a8d70194306e08850a1f56865f7984d5a8df40ea8032cf485e590486ca58",
@@ -44,9 +44,9 @@
   ],
   "clock_cap_mhz": 2350,
   "tokenizer": "huggingface",
-  "source_receipt": "results/20261017-runtime-upgrade",
+  "source_receipt": "results/20261017-decode-tuning",
   "recovery_audit": "results/recovery-20261007T094058Z/final-audit.json",
-  "latest_validation": "results/20261017-runtime-upgrade/final-audit.json",
+  "latest_validation": "results/20261017-decode-tuning/final-audit.json",
   "checkpoint_repository": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
   "frontend_corrections": [
     "1017 tool-result user-turn boundary reapplied",
@@ -65,7 +65,7 @@
     "gx_restore_required": true,
     "containers": "ds41-rollback-1017-rN"
   },
-  "selected_utc": "2026-10-17T13:10:59Z",
+  "selected_utc": "2026-10-17T17:26:14Z",
   "versions": {
     "torch": "2.13.0+cu130",
     "vllm": "0.1.dev21830+g8244d1c44.d20261015",
@@ -95,15 +95,19 @@
     "presence_penalty": 0.0,
     "frequency_penalty": 0.0
   },
-  "kv_cache_bytes_per_rank": 17716740096,
-  "kv_cache_logical_tokens": 13483747,
+  "kv_cache_bytes_per_rank": 21474836480,
+  "kv_cache_logical_tokens": 16344051,
   "host_memory": {
     "rank": 0,
     "metric": "MemTotal - MemAvailable",
-    "ceiling_gib": 118,
-    "observed_qualification_peak_gib": 115.10189056396484,
+    "startup_target_max_gib": 118,
+    "observed_startup_used_gib": 117.40415954589844,
+    "observed_startup_available_gib": 4.28350830078125,
+    "observed_qualification_peak_gib": 118.66268157958984,
+    "runtime_stop_guard": false,
     "hard_global_limit": false,
-    "receipt": "results/20261017-runtime-upgrade/host-memory-summary.json"
+    "receipt": "results/20261017-decode-tuning/final-memory-summary.json",
+    "policy_note": "Initial loaded budget, leaving room for growth during use; not a runtime ceiling."
   },
   "transport": {
     "all_reduce": "retained qualified RoCEnante one-shot through 2 MiB; patched NCCL fallback",
@@ -117,5 +121,19 @@
     "head_config_backup": "/var/lib/deepseek-ring/experiments/runtime-20261017/original-selection.json",
     "containers": "ds41-rollback-runtime-rN",
     "previous_deployment": "results/20261017-runtime-upgrade/previous-deployment.json"
+  },
+  "decode_tuning": {
+    "selected": "original current-image decode settings retained",
+    "receipt": "results/20261017-decode-tuning/REPORT.md",
+    "automatic_runtime_memory_guard": false
+  },
+  "kv_rollback": {
+    "campaign": "/Users/jg/Agent/Diagnostics/deepseek-v41-flash-ring/decode-tuning-20261017",
+    "head_config_backup": "/var/lib/deepseek-ring/experiments/decode-tuning-20261017/original-selection.json",
+    "containers": "ds41-before-tuning-rN",
+    "same_image": true,
+    "same_checkpoint": true,
+    "previous_kv_gib": 16.5,
+    "previous_deployment": "results/20261017-decode-tuning/previous-deployment.json"
   }
 }
