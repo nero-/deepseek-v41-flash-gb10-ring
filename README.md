@@ -5,7 +5,7 @@ API: **http://192.168.50.219:8015/v1**. Model: **DeepSeek-V4.1-Flash-TP4**.
 
 **Selected as of 2026-10-17 UTC:** official **DeepSeek-V4.1-Flash-1017** on
 all four nodes, with the existing corrected GPU runtime and two small prompt/tool
-parser fixes. GLM remains stopped. [Upgrade results and focused LIL screen](results/20261017-checkpoint-upgrade/REPORT.md).
+parser fixes.  [Upgrade results and focused LIL screen](results/20261017-checkpoint-upgrade/REPORT.md).
 
 The September GPU stack and selected performance plugins remain in use. Newer
 vLLM/FlashInfer correctness, memory and collective changes are assessed in the
@@ -14,7 +14,7 @@ they are separate follow-up candidates.
 
 ## Start, stop and recover
 
-From the Mac:
+From the PC:
 
 ```bash
 cd ~/Agent/Builds/deepseek-v41-flash-ring
