@@ -1,0 +1,60 @@
+{
+  "scope": "Instrumented correctness/thermal check; latency is not a timed LIL comparison",
+  "configuration": "c1cap3-specs.json",
+  "tokens_requested_from_fixture": 1000000,
+  "actual_prompt_tokens": 961724,
+  "needle_pass": true,
+  "cached_tokens": 0,
+  "ttft_seconds_instrumented": 285.17157137501636,
+  "samples": 54,
+  "nodes": [
+    {
+      "rank": 0,
+      "maximum_used_gib": 118.52695846557617,
+      "minimum_available_gib": 3.1607093811035156,
+      "pswpin_delta": 111,
+      "pswpout_delta": 60,
+      "max_temperature_c": 85.0,
+      "active_sm_clock_min_max_mhz": [
+        2411.0,
+        2476.0
+      ]
+    },
+    {
+      "rank": 1,
+      "maximum_used_gib": 116.94316101074219,
+      "minimum_available_gib": 4.7445068359375,
+      "pswpin_delta": 47,
+      "pswpout_delta": 0,
+      "max_temperature_c": 82.0,
+      "active_sm_clock_min_max_mhz": [
+        2463.0,
+        2528.0
+      ]
+    },
+    {
+      "rank": 2,
+      "maximum_used_gib": 117.16846084594727,
+      "minimum_available_gib": 4.456764221191406,
+      "pswpin_delta": 0,
+      "pswpout_delta": 0,
+      "max_temperature_c": 85.0,
+      "active_sm_clock_min_max_mhz": [
+        2424.0,
+        2450.0
+      ]
+    },
+    {
+      "rank": 3,
+      "maximum_used_gib": 117.13167190551758,
+      "minimum_available_gib": 4.493556976318359,
+      "pswpin_delta": 0,
+      "pswpout_delta": 0,
+      "max_temperature_c": 88.0,
+      "active_sm_clock_min_max_mhz": [
+        2398.0,
+        2450.0
+      ]
+    }
+  ]
+}

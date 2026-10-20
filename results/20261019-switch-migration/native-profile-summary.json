@@ -1,0 +1,433 @@
+{
+  "method": "Native Torch CPU/CUDA capture, eight worker execution intervals at each concurrency; approximately8K record prompts, temperature1, model default thinking. Instrumented durations are not serving throughput. Kernel sums overlap across streams and are not additive critical-path attribution.",
+  "captures": {
+    "1": [
+      {
+        "rank": 0,
+        "trace": "dp0_pp0_tp0_dcp0_ep0_rank0.1792492625439926027.pt.trace.json.gz",
+        "worker_intervals": 8,
+        "annotations": [
+          "execute_context_0(0)_generation_1(5)",
+          "execute_context_0(0)_generation_1(5)",
+          "execute_context_0(0)_generation_1(5)",
+          "execute_context_0(0)_generation_1(5)",
+          "execute_context_0(0)_generation_1(5)",
+          "execute_context_0(0)_generation_1(5)",
+          "execute_context_0(0)_generation_1(5)",
+          "execute_context_0(0)_generation_1(5)"
+        ],
+        "kernel_count": 17120,
+        "kernel_span_ms": 328.2357119140625,
+        "kernel_duration_sum_ms": 392.68943199999995,
+        "groups": {
+          "other": {
+            "duration_sum_ms": 138.34292799999918,
+            "calls": 14288
+          },
+          "roce_allreduce": {
+            "duration_sum_ms": 39.264236000000025,
+            "calls": 720
+          },
+          "l2_prefetch": {
+            "duration_sum_ms": 73.25617100000002,
+            "calls": 1016
+          },
+          "moe_other": {
+            "duration_sum_ms": 6.684843,
+            "calls": 392
+          },
+          "moe_phase1": {
+            "duration_sum_ms": 88.17097099999997,
+            "calls": 320
+          },
+          "moe_phase2": {
+            "duration_sum_ms": 44.040090000000006,
+            "calls": 344
+          },
+          "roce_allgather": {
+            "duration_sum_ms": 2.8382890000000005,
+            "calls": 32
+          },
+          "nccl": {
+            "duration_sum_ms": 0.09190400000000001,
+            "calls": 8
+          }
+        },
+        "cuda_graph_kernel_events": 16208
+      },
+      {
+        "rank": 1,
+        "trace": "dp0_pp0_tp1_dcp0_ep1_rank1.1792492625428719463.pt.trace.json.gz",
+        "worker_intervals": 8,
+        "annotations": [
+          "execute_context_0(0)_generation_1(5)",
+          "execute_context_0(0)_generation_1(5)",
+          "execute_context_0(0)_generation_1(5)",
+          "execute_context_0(0)_generation_1(5)",
+          "execute_context_0(0)_generation_1(5)",
+          "execute_context_0(0)_generation_1(5)",
+          "execute_context_0(0)_generation_1(5)",
+          "execute_context_0(0)_generation_1(5)"
+        ],
+        "kernel_count": 17120,
+        "kernel_span_ms": 328.1401037597656,
+        "kernel_duration_sum_ms": 394.575014,
+        "groups": {
+          "other": {
+            "duration_sum_ms": 135.4681290000001,
+            "calls": 14288
+          },
+          "roce_allreduce": {
+            "duration_sum_ms": 44.760795999999985,
+            "calls": 720
+          },
+          "l2_prefetch": {
+            "duration_sum_ms": 74.09104799999997,
+            "calls": 1016
+          },
+          "moe_other": {
+            "duration_sum_ms": 6.566899999999999,
+            "calls": 392
+          },
+          "moe_phase1": {
+            "duration_sum_ms": 87.01380600000002,
+            "calls": 320
+          },
+          "moe_phase2": {
+            "duration_sum_ms": 43.66376899999999,
+            "calls": 344
+          },
+          "roce_allgather": {
+            "duration_sum_ms": 2.781477,
+            "calls": 32
+          },
+          "nccl": {
+            "duration_sum_ms": 0.229089,
+            "calls": 8
+          }
+        },
+        "cuda_graph_kernel_events": 16208
+      },
+      {
+        "rank": 2,
+        "trace": "dp0_pp0_tp2_dcp0_ep2_rank2.1792492625430422723.pt.trace.json.gz",
+        "worker_intervals": 8,
+        "annotations": [
+          "execute_context_0(0)_generation_1(5)",
+          "execute_context_0(0)_generation_1(5)",
+          "execute_context_0(0)_generation_1(5)",
+          "execute_context_0(0)_generation_1(5)",
+          "execute_context_0(0)_generation_1(5)",
+          "execute_context_0(0)_generation_1(5)",
+          "execute_context_0(0)_generation_1(5)",
+          "execute_context_0(0)_generation_1(5)"
+        ],
+        "kernel_count": 17120,
+        "kernel_span_ms": 328.05929223632813,
+        "kernel_duration_sum_ms": 396.02658,
+        "groups": {
+          "other": {
+            "duration_sum_ms": 138.15189000000007,
+            "calls": 14288
+          },
+          "roce_allreduce": {
+            "duration_sum_ms": 41.03089200000002,
+            "calls": 720
+          },
+          "l2_prefetch": {
+            "duration_sum_ms": 73.17801500000007,
+            "calls": 1016
+          },
+          "moe_other": {
+            "duration_sum_ms": 6.8987649999999965,
+            "calls": 392
+          },
+          "moe_phase1": {
+            "duration_sum_ms": 89.17327499999999,
+            "calls": 320
+          },
+          "moe_phase2": {
+            "duration_sum_ms": 44.122922,
+            "calls": 344
+          },
+          "roce_allgather": {
+            "duration_sum_ms": 3.160836,
+            "calls": 32
+          },
+          "nccl": {
+            "duration_sum_ms": 0.309985,
+            "calls": 8
+          }
+        },
+        "cuda_graph_kernel_events": 16208
+      },
+      {
+        "rank": 3,
+        "trace": "dp0_pp0_tp3_dcp0_ep3_rank3.1792492625434341778.pt.trace.json.gz",
+        "worker_intervals": 8,
+        "annotations": [
+          "execute_context_0(0)_generation_1(5)",
+          "execute_context_0(0)_generation_1(5)",
+          "execute_context_0(0)_generation_1(5)",
+          "execute_context_0(0)_generation_1(5)",
+          "execute_context_0(0)_generation_1(5)",
+          "execute_context_0(0)_generation_1(5)",
+          "execute_context_0(0)_generation_1(5)",
+          "execute_context_0(0)_generation_1(5)"
+        ],
+        "kernel_count": 17120,
+        "kernel_span_ms": 328.36301806640626,
+        "kernel_duration_sum_ms": 397.37201899999997,
+        "groups": {
+          "other": {
+            "duration_sum_ms": 136.2414889999993,
+            "calls": 14288
+          },
+          "roce_allreduce": {
+            "duration_sum_ms": 46.584658999999945,
+            "calls": 720
+          },
+          "l2_prefetch": {
+            "duration_sum_ms": 73.90919000000007,
+            "calls": 1016
+          },
+          "moe_other": {
+            "duration_sum_ms": 6.455365000000001,
+            "calls": 392
+          },
+          "moe_phase1": {
+            "duration_sum_ms": 87.3494470000001,
+            "calls": 320
+          },
+          "moe_phase2": {
+            "duration_sum_ms": 44.02487299999998,
+            "calls": 344
+          },
+          "roce_allgather": {
+            "duration_sum_ms": 2.527283,
+            "calls": 32
+          },
+          "nccl": {
+            "duration_sum_ms": 0.27971300000000004,
+            "calls": 8
+          }
+        },
+        "cuda_graph_kernel_events": 16208
+      }
+    ],
+    "16": [
+      {
+        "rank": 0,
+        "trace": "dp0_pp0_tp0_dcp0_ep0_rank0.1792492728715041902.pt.trace.json.gz",
+        "worker_intervals": 8,
+        "annotations": [
+          "execute_context_0(0)_generation_16(80)",
+          "execute_context_0(0)_generation_16(80)",
+          "execute_context_0(0)_generation_16(80)",
+          "execute_context_0(0)_generation_16(80)",
+          "execute_context_0(0)_generation_16(80)",
+          "execute_context_0(0)_generation_16(80)",
+          "execute_context_0(0)_generation_16(80)",
+          "execute_context_0(0)_generation_16(80)"
+        ],
+        "kernel_count": 18676,
+        "kernel_span_ms": 1163.7191730957031,
+        "kernel_duration_sum_ms": 1164.664018,
+        "groups": {
+          "other": {
+            "duration_sum_ms": 307.5359299999986,
+            "calls": 15868
+          },
+          "l2_prefetch": {
+            "duration_sum_ms": 82.01136700000004,
+            "calls": 1016
+          },
+          "roce_allreduce": {
+            "duration_sum_ms": 111.23290500000013,
+            "calls": 720
+          },
+          "moe_other": {
+            "duration_sum_ms": 6.001184999999996,
+            "calls": 344
+          },
+          "moe_phase1": {
+            "duration_sum_ms": 415.24622,
+            "calls": 344
+          },
+          "moe_phase2": {
+            "duration_sum_ms": 212.6459929999999,
+            "calls": 344
+          },
+          "roce_allgather": {
+            "duration_sum_ms": 29.89189,
+            "calls": 32
+          },
+          "nccl": {
+            "duration_sum_ms": 0.098528,
+            "calls": 8
+          }
+        },
+        "cuda_graph_kernel_events": 17728
+      },
+      {
+        "rank": 1,
+        "trace": "dp0_pp0_tp1_dcp0_ep1_rank1.1792492728717378377.pt.trace.json.gz",
+        "worker_intervals": 8,
+        "annotations": [
+          "execute_context_0(0)_generation_16(80)",
+          "execute_context_0(0)_generation_16(80)",
+          "execute_context_0(0)_generation_16(80)",
+          "execute_context_0(0)_generation_16(80)",
+          "execute_context_0(0)_generation_16(80)",
+          "execute_context_0(0)_generation_16(80)",
+          "execute_context_0(0)_generation_16(80)",
+          "execute_context_0(0)_generation_16(80)"
+        ],
+        "kernel_count": 18676,
+        "kernel_span_ms": 1163.728635986328,
+        "kernel_duration_sum_ms": 1163.948415,
+        "groups": {
+          "other": {
+            "duration_sum_ms": 306.0268689999988,
+            "calls": 15868
+          },
+          "l2_prefetch": {
+            "duration_sum_ms": 81.98980100000013,
+            "calls": 1016
+          },
+          "roce_allreduce": {
+            "duration_sum_ms": 114.90548099999987,
+            "calls": 720
+          },
+          "moe_other": {
+            "duration_sum_ms": 5.828869000000004,
+            "calls": 344
+          },
+          "moe_phase1": {
+            "duration_sum_ms": 412.3445120000001,
+            "calls": 344
+          },
+          "moe_phase2": {
+            "duration_sum_ms": 212.67794999999998,
+            "calls": 344
+          },
+          "roce_allgather": {
+            "duration_sum_ms": 29.961076000000002,
+            "calls": 32
+          },
+          "nccl": {
+            "duration_sum_ms": 0.213857,
+            "calls": 8
+          }
+        },
+        "cuda_graph_kernel_events": 17728
+      },
+      {
+        "rank": 2,
+        "trace": "dp0_pp0_tp2_dcp0_ep2_rank2.1792492728718745791.pt.trace.json.gz",
+        "worker_intervals": 8,
+        "annotations": [
+          "execute_context_0(0)_generation_16(80)",
+          "execute_context_0(0)_generation_16(80)",
+          "execute_context_0(0)_generation_16(80)",
+          "execute_context_0(0)_generation_16(80)",
+          "execute_context_0(0)_generation_16(80)",
+          "execute_context_0(0)_generation_16(80)",
+          "execute_context_0(0)_generation_16(80)",
+          "execute_context_0(0)_generation_16(80)"
+        ],
+        "kernel_count": 18676,
+        "kernel_span_ms": 1163.7379399414062,
+        "kernel_duration_sum_ms": 1220.2561440000002,
+        "groups": {
+          "other": {
+            "duration_sum_ms": 307.7010909999987,
+            "calls": 15868
+          },
+          "l2_prefetch": {
+            "duration_sum_ms": 81.43790999999997,
+            "calls": 1016
+          },
+          "roce_allreduce": {
+            "duration_sum_ms": 168.30896099999995,
+            "calls": 720
+          },
+          "moe_other": {
+            "duration_sum_ms": 6.109966000000006,
+            "calls": 344
+          },
+          "moe_phase1": {
+            "duration_sum_ms": 413.3180789999997,
+            "calls": 344
+          },
+          "moe_phase2": {
+            "duration_sum_ms": 212.34985999999995,
+            "calls": 344
+          },
+          "roce_allgather": {
+            "duration_sum_ms": 30.836901,
+            "calls": 32
+          },
+          "nccl": {
+            "duration_sum_ms": 0.193376,
+            "calls": 8
+          }
+        },
+        "cuda_graph_kernel_events": 17728
+      },
+      {
+        "rank": 3,
+        "trace": "dp0_pp0_tp3_dcp0_ep3_rank3.1792492728720589367.pt.trace.json.gz",
+        "worker_intervals": 8,
+        "annotations": [
+          "execute_context_0(0)_generation_16(80)",
+          "execute_context_0(0)_generation_16(80)",
+          "execute_context_0(0)_generation_16(80)",
+          "execute_context_0(0)_generation_16(80)",
+          "execute_context_0(0)_generation_16(80)",
+          "execute_context_0(0)_generation_16(80)",
+          "execute_context_0(0)_generation_16(80)",
+          "execute_context_0(0)_generation_16(80)"
+        ],
+        "kernel_count": 18676,
+        "kernel_span_ms": 1163.7227770996094,
+        "kernel_duration_sum_ms": 1218.82006,
+        "groups": {
+          "other": {
+            "duration_sum_ms": 304.4206179999998,
+            "calls": 15868
+          },
+          "l2_prefetch": {
+            "duration_sum_ms": 81.66682699999997,
+            "calls": 1016
+          },
+          "roce_allreduce": {
+            "duration_sum_ms": 174.612644,
+            "calls": 720
+          },
+          "moe_other": {
+            "duration_sum_ms": 6.063712000000001,
+            "calls": 344
+          },
+          "moe_phase1": {
+            "duration_sum_ms": 408.22804900000017,
+            "calls": 344
+          },
+          "moe_phase2": {
+            "duration_sum_ms": 212.035578,
+            "calls": 344
+          },
+          "roce_allgather": {
+            "duration_sum_ms": 31.570167,
+            "calls": 32
+          },
+          "nccl": {
+            "duration_sum_ms": 0.22246500000000002,
+            "calls": 8
+          }
+        },
+        "cuda_graph_kernel_events": 17728
+      }
+    ]
+  }
+}

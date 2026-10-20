@@ -1,0 +1,19 @@
+{
+  "time_utc": "2026-10-20T12:39:05Z",
+  "nodes": [
+    {
+      "rank": 1,
+      "removed": "/etc/sudoers.d/90-nero-cluster-maintenance",
+      "backup": "/var/lib/deepseek-ring/experiments/switch-20261020/admin-grant-retirement/90-nero-cluster-maintenance.retired",
+      "sudoers_validation_passed": true
+    },
+    {
+      "rank": 0,
+      "removed": "/etc/sudoers.d/90-nero-cluster-maintenance",
+      "backup": "/var/lib/deepseek-ring/experiments/switch-20261020/admin-grant-retirement/90-nero-cluster-maintenance.retired",
+      "sudoers_validation_passed": true
+    }
+  ],
+  "fixed_action_up_works": true,
+  "gx10_privileges_unchanged": true
+}

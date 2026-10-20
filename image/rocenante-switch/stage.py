@@ -86,6 +86,9 @@ def _two_shot_limits(world_size: int) -> tuple[int, int]:
     )
     replace("self._announced = False", "self._announced_routes: set[str] = set()")
     replace("max_size, max_gather = limits", "max_size, max_gather, pipe_bytes, pipe_threshold = limits")
+    # The compatibility classmethod discards pipe_* in **_ignored. Use the
+    # constructor used by upstream's two-shot tests, still with the Gloo group.
+    replace("roce.AllReduce.from_exchange_group(", "roce.AllReduce(")
     replace(
         "                max_gather_bytes=max_gather,\n",
         "                max_gather_bytes=max_gather,\n"

@@ -1,5 +1,5 @@
 {
-  "status": "source_staged_only",
+  "status": "historical_v1_source_stage_superseded",
   "serving_qualified": false,
   "gpu_tests_run": false,
   "cpu_contract_tests": {
@@ -39,5 +39,6 @@
         "after": "bd064a007f9ef4100afcd99a6140c9790c78e02a79dcf9eab1dd59ec2ec404b9"
       }
     }
-  }
+  },
+  "note": "GPU qualification found the compatibility factory discards pipe settings. V2 uses AllReduce constructor directly; see image/rocenante-switch and the campaign report."
 }

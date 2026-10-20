@@ -1,6 +1,6 @@
 {
-  "profile": "engram-adaptive4k-query-indexer-1017-runtime1015-kv20-images999",
-  "configuration_sha256": "b9178b380923cdfaf2e8e7ac56d7e617031bec7b7acd677622eaaa01f53f8034",
+  "profile": "engram-adaptive4k-query-indexer-1017-runtime1015-kv20-images999-switch-c1cap3",
+  "configuration_sha256": "d86c7e0725efae1ced95a4891da59753853992aaad4fda926814531145e43ca2",
   "checkpoint": "1bae0e1088993b9b82de08f59de5be5a34e42170",
   "plugin_manifest": {
     "dsv41_adaptive_prefill.py": "dfb6a8d70194306e08850a1f56865f7984d5a8df40ea8032cf485e590486ca58",
@@ -11,42 +11,42 @@
   "images": [
     {
       "rank": 0,
-      "image_id": "sha256:a182696cb59fad1352ca17aae13c248e276d5cb7b7811f0fc8ead1cde4516221",
+      "image_id": "sha256:9f26f0b3718ccca889cfd93cb72e2165b6d4c11dd9dc93fe65f585883537f2db",
       "base_reference": "eugr/spark-vllm-b12x@sha256:03a956544e9f9b4b7ba91690469fbe7848bdbef29a7d2e0f5788368467bb3595",
-      "previous_runtime_image_id": "sha256:8e9d1bff575e6618ae354f557140aa43e9242d85762c83899fd7dfb898959f8f",
-      "build_utc": "2026-10-17T11:20:44Z",
-      "qualification": "results/20261017-runtime-upgrade/REPORT.md"
+      "build_utc": "2026-10-20T08:12:09.248500511Z",
+      "qualification": "results/20261019-switch-migration/final-qualification.json",
+      "recipe": "image/rocenante-switch/README.md"
     },
     {
       "rank": 1,
-      "image_id": "sha256:a182696cb59fad1352ca17aae13c248e276d5cb7b7811f0fc8ead1cde4516221",
+      "image_id": "sha256:9f26f0b3718ccca889cfd93cb72e2165b6d4c11dd9dc93fe65f585883537f2db",
       "base_reference": "eugr/spark-vllm-b12x@sha256:03a956544e9f9b4b7ba91690469fbe7848bdbef29a7d2e0f5788368467bb3595",
-      "previous_runtime_image_id": "sha256:59f8ae8ffa35952361ae79ac332d5514c91149d88eae47736b02c9d6693aae26",
-      "build_utc": "2026-10-17T11:20:44Z",
-      "qualification": "results/20261017-runtime-upgrade/REPORT.md"
+      "build_utc": "2026-10-20T08:12:09.248500511Z",
+      "qualification": "results/20261019-switch-migration/final-qualification.json",
+      "recipe": "image/rocenante-switch/README.md"
     },
     {
       "rank": 2,
-      "image_id": "sha256:a182696cb59fad1352ca17aae13c248e276d5cb7b7811f0fc8ead1cde4516221",
+      "image_id": "sha256:9f26f0b3718ccca889cfd93cb72e2165b6d4c11dd9dc93fe65f585883537f2db",
       "base_reference": "eugr/spark-vllm-b12x@sha256:03a956544e9f9b4b7ba91690469fbe7848bdbef29a7d2e0f5788368467bb3595",
-      "previous_runtime_image_id": "sha256:154f685e6e4056f64916d0b604aca5c26b8499779cdf014168624349ba4e2478",
-      "build_utc": "2026-10-17T11:20:44Z",
-      "qualification": "results/20261017-runtime-upgrade/REPORT.md"
+      "build_utc": "2026-10-20T08:12:09.248500511Z",
+      "qualification": "results/20261019-switch-migration/final-qualification.json",
+      "recipe": "image/rocenante-switch/README.md"
     },
     {
       "rank": 3,
-      "image_id": "sha256:a182696cb59fad1352ca17aae13c248e276d5cb7b7811f0fc8ead1cde4516221",
+      "image_id": "sha256:9f26f0b3718ccca889cfd93cb72e2165b6d4c11dd9dc93fe65f585883537f2db",
       "base_reference": "eugr/spark-vllm-b12x@sha256:03a956544e9f9b4b7ba91690469fbe7848bdbef29a7d2e0f5788368467bb3595",
-      "previous_runtime_image_id": "sha256:0d51da7e0fd162bc2ac9be3f960f161ec8270bb22ed835e04cd9c323c753cede",
-      "build_utc": "2026-10-17T11:20:44Z",
-      "qualification": "results/20261017-runtime-upgrade/REPORT.md"
+      "build_utc": "2026-10-20T08:12:09.248500511Z",
+      "qualification": "results/20261019-switch-migration/final-qualification.json",
+      "recipe": "image/rocenante-switch/README.md"
     }
   ],
-  "clock_cap_mhz": 2350,
+  "clock_cap_mhz": null,
   "tokenizer": "huggingface",
-  "source_receipt": "results/20261017-decode-tuning",
-  "recovery_audit": "results/recovery-20261007T094058Z/final-audit.json",
-  "latest_validation": "results/20261017-image-limit/final-audit.json",
+  "source_receipt": "results/20261019-switch-migration",
+  "recovery_audit": "results/20261019-switch-migration/final-qualification.json",
+  "latest_validation": "results/20261019-switch-migration/final-qualification.json",
   "checkpoint_repository": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
   "frontend_corrections": [
     "1017 tool-result user-turn boundary reapplied",
@@ -55,17 +55,7 @@
   "frontend_build_utc": "2026-10-17",
   "gpu_runtime_unchanged": false,
   "compressor_source_receipt": "results/20260929-kk926",
-  "rollback": {
-    "campaign": "/Users/jg/Agent/Diagnostics/deepseek-v41-flash-ring/upgrade-1017-20261017",
-    "original_revision": "dba1be0a40aa45a94ad051997016db3960a90277",
-    "verified_weight_ranks": [
-      0,
-      1
-    ],
-    "gx_restore_required": true,
-    "containers": "ds41-rollback-1017-rN"
-  },
-  "selected_utc": "2026-10-17T20:18:47Z",
+  "selected_utc": "2026-10-20T12:35:55Z",
   "versions": {
     "torch": "2.13.0+cu130",
     "vllm": "0.1.dev21830+g8244d1c44.d20261015",
@@ -84,6 +74,13 @@
       "repository": "local-inference-lab/flashinfer",
       "commit": "91271757f7746f3dfb58f7c2aeb44a663389de9e",
       "path": "flashinfer/experimental/b12x"
+    },
+    "rocenante_transport": {
+      "repository": "local-inference-lab/flashinfer",
+      "base_commit": "91271757f7746f3dfb58f7c2aeb44a663389de9e",
+      "fix_commit": "f3bbd1ce79cb9a62afb88b367580b0583db167ee",
+      "adapter": "image/rocenante-switch/stage.py",
+      "native_proxy_abi": 8
     }
   },
   "generation_defaults": {
@@ -101,40 +98,56 @@
     "rank": 0,
     "metric": "MemTotal - MemAvailable",
     "startup_target_max_gib": 118,
-    "observed_startup_used_gib": 117.40415954589844,
-    "observed_startup_available_gib": 4.28350830078125,
-    "observed_qualification_peak_gib": 118.66268157958984,
+    "observed_startup_used_gib": 117.31111145019531,
+    "observed_startup_available_gib": 4.376556396484375,
+    "observed_qualification_peak_gib": 118.52695846557617,
     "runtime_stop_guard": false,
     "hard_global_limit": false,
-    "receipt": "results/20261017-decode-tuning/final-memory-summary.json",
-    "policy_note": "Initial loaded budget, leaving room for growth during use; not a runtime ceiling."
+    "receipt": "results/20261019-switch-migration/final-memory-thermal.json",
+    "policy_note": "Initial loaded budget, leaving room for growth during use; not a runtime ceiling.",
+    "peak_scope": "Five-second samples during final near-1M retrieval, not a continuous maximum of the whole campaign."
   },
   "transport": {
-    "all_reduce": "retained qualified RoCEnante one-shot through 2 MiB; patched NCCL fallback",
-    "all_gather": "retained qualified RoCEnante through 16 MiB per-rank shards",
+    "all_reduce": "RoCEnante one-shot below 512 KiB; pipelined two-shot for eligible reductions from 512 KiB through 128 MiB; patched NCCL fallback",
+    "all_gather": "RoCEnante one-shot through 16 MiB per-rank shards",
     "sircl": false,
-    "topology": "unchanged switchless dual-plane ring"
-  },
-  "runtime_rollback": {
-    "checkpoint": "same official 1017; no weight transfer",
-    "campaign": "/Users/jg/Agent/Diagnostics/deepseek-v41-flash-ring/runtime-20261017",
-    "head_config_backup": "/var/lib/deepseek-ring/experiments/runtime-20261017/original-selection.json",
-    "containers": "ds41-rollback-runtime-rN",
-    "previous_deployment": "results/20261017-runtime-upgrade/previous-deployment.json"
+    "topology": "CRS812 switched, one physical 200G port-1 per node; two Socket Direct rails share that capacity",
+    "pipe_bytes": 134217728,
+    "pipe_threshold_bytes": 524288,
+    "pipe_blocks": 4,
+    "pipe_chunk_bytes": 131072,
+    "varlen_gather_bytes": 0,
+    "qos_pfc_ecn_audited": false
   },
   "decode_tuning": {
-    "selected": "original current-image decode settings retained",
-    "receipt": "results/20261017-decode-tuning/REPORT.md",
+    "selected": {
+      "source_configuration": "c1cap3-specs.json",
+      "speculation": {
+        "method": "dspark",
+        "num_speculative_tokens": 4,
+        "draft_sample_method": "probabilistic",
+        "rejection_sample_method": "block",
+        "enable_adaptive_verification": true,
+        "num_speculative_tokens_per_batch_size": [
+          [
+            1,
+            1,
+            3
+          ],
+          [
+            2,
+            16,
+            4
+          ]
+        ]
+      },
+      "max_num_batched_tokens": 8192,
+      "contended_min_decoders": 1,
+      "two_shot_threshold": "512KiB",
+      "receipt": "results/20261019-switch-migration/REPORT.md"
+    },
+    "receipt": "results/20261019-switch-migration/REPORT.md",
     "automatic_runtime_memory_guard": false
-  },
-  "kv_rollback": {
-    "campaign": "/Users/jg/Agent/Diagnostics/deepseek-v41-flash-ring/decode-tuning-20261017",
-    "head_config_backup": "/var/lib/deepseek-ring/experiments/decode-tuning-20261017/original-selection.json",
-    "containers": "ds41-before-tuning-rN",
-    "same_image": true,
-    "same_checkpoint": true,
-    "previous_kv_gib": 16.5,
-    "previous_deployment": "results/20261017-decode-tuning/previous-deployment.json"
   },
   "multimodal": {
     "image_limit_per_prompt": 999,
@@ -151,12 +164,134 @@
     ],
     "receipt": "results/20261017-image-limit/REPORT.md"
   },
-  "image_limit_rollback": {
-    "campaign": "/Users/jg/Agent/Diagnostics/deepseek-v41-flash-ring/image-limit-20261017",
-    "head_config_backup": "/var/lib/deepseek-ring/experiments/image-limit-20261017/original-selection.json",
-    "containers": "ds41-before-images-rN",
-    "previous_limit": 4,
-    "same_image": true,
-    "previous_deployment": "results/20261017-image-limit/previous-deployment.json"
+  "historical_ring_rollback": {
+    "safe_on_switch": false,
+    "receipt": "results/20261019-switch-migration/previous-deployment.json",
+    "note": "These historical selections require the retired physical ring. Never start their containers directly on the switch."
+  },
+  "rollback": {
+    "campaign": "/Users/jg/Agent/Diagnostics/deepseek-v41-flash-ring/switch-migration-20261019",
+    "configuration": "baseline-specs.json",
+    "containers": "ds41-before-switch-baseline-rN",
+    "image_id": "sha256:a182696cb59fad1352ca17aae13c248e276d5cb7b7811f0fc8ead1cde4516221",
+    "same_checkpoint": true,
+    "switched_networking": true,
+    "procedure": "OPERATIONS.md#rollback-on-the-switch",
+    "helper": "restore_baseline.py",
+    "helper_requires_stopped_fleet": true
+  },
+  "clock_policy": {
+    "policy": "driver-stock-boost",
+    "clock_cap_mhz": null,
+    "unit": "gb10-gpu-clock-cap.service",
+    "command": "nvidia-smi --reset-gpu-clocks",
+    "receipt": "results/20261019-switch-migration/persistent-clock-policy.json"
+  },
+  "math_runtime_unchanged_from_20261017": true,
+  "fabric": {
+    "type": "switched-roce-v1",
+    "switch": "MikroTik CRS812",
+    "gid_index": 3,
+    "ranks": [
+      {
+        "rank": 0,
+        "addresses": {
+          "enp1s0f1np1": "10.10.10.1/24",
+          "enP2p1s0f1np1": "10.10.11.1/24"
+        }
+      },
+      {
+        "rank": 1,
+        "addresses": {
+          "enp1s0f1np1": "10.10.10.2/24",
+          "enP2p1s0f1np1": "10.10.11.2/24"
+        }
+      },
+      {
+        "rank": 2,
+        "addresses": {
+          "enp1s0f1np1": "10.10.10.4/24",
+          "enP2p1s0f1np1": "10.10.11.4/24"
+        }
+      },
+      {
+        "rank": 3,
+        "addresses": {
+          "enp1s0f1np1": "10.10.10.3/24",
+          "enP2p1s0f1np1": "10.10.11.3/24"
+        }
+      }
+    ]
+  },
+  "serving": {
+    "speculative_config": {
+      "method": "dspark",
+      "num_speculative_tokens": 4,
+      "draft_sample_method": "probabilistic",
+      "rejection_sample_method": "block",
+      "enable_adaptive_verification": true,
+      "num_speculative_tokens_per_batch_size": [
+        [
+          1,
+          1,
+          3
+        ],
+        [
+          2,
+          16,
+          4
+        ]
+      ]
+    },
+    "compilation_config": {
+      "cudagraph_mode": "FULL_AND_PIECEWISE",
+      "cudagraph_capture_sizes": [
+        4,
+        5,
+        8,
+        10,
+        12,
+        15,
+        16,
+        20,
+        24,
+        25,
+        28,
+        30,
+        32,
+        35,
+        36,
+        40,
+        44,
+        45,
+        48,
+        50,
+        52,
+        55,
+        56,
+        60,
+        64,
+        65,
+        70,
+        75,
+        80
+      ]
+    },
+    "engram_config": {
+      "table_memory": "disk",
+      "disk_resident_scales": true,
+      "projection_tp": true
+    },
+    "max_model_len": 1048576,
+    "max_num_seqs": 16,
+    "max_num_batched_tokens": 8192,
+    "max_cudagraph_capture_size": 80,
+    "adaptive_prefill_tokens": 4096,
+    "contended_min_decoders": 1,
+    "target_lm_head": "BF16",
+    "draft_lm_head": "NVFP4",
+    "markov_head": "NVFP4",
+    "full_vocabulary": true,
+    "query_indexer_sharding": "guarded; real requests only"
   }
 }

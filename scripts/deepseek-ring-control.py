@@ -5,6 +5,7 @@ Install on spark-r0 as /usr/local/sbin/deepseek-ring-control, owned by root.
 The controller's existing SSH configuration pins the four host identities.
 """
 import concurrent.futures
+import json
 import os
 from pathlib import Path
 import subprocess
@@ -35,8 +36,20 @@ def main():
     action = sys.argv[1]
     os.environ["PATH"] = "/usr/sbin:/usr/bin:/sbin:/bin"
     os.chdir("/root")
+    switched = False
+    if SELECTED.exists():
+        state = SELECTED.stat()
+        if state.st_uid != 0 or state.st_mode & 0o022:
+            raise RuntimeError("Selected configuration must be root-owned and protected")
+        fabric = json.loads(SELECTED.read_text()).get("fabric")
+        if fabric is not None:
+            if fabric.get("type") != "switched-roce-v1":
+                raise RuntimeError("Unknown selected fabric")
+            switched = True
     if action == "up":
-        if SELECTED.exists():
+        if switched:
+            optimized("up")
+        elif SELECTED.exists():
             subprocess.run(["/usr/bin/sparkring", "down", "--execute"], check=True)
             fleet("enable", "--now", MESH)
             optimized("up")
@@ -44,17 +57,23 @@ def main():
             fleet("enable", "--now", MESH)
             subprocess.run(["/usr/bin/sparkring", "up", "--execute"], check=True)
     elif action == "stock-up":
+        if switched:
+            raise SystemExit("The stock installer uses the retired physical ring; it cannot run on this switch.")
         optimized("down")
         fleet("enable", "--now", MESH)
         subprocess.run(["/usr/bin/sparkring", "up", "--execute"], check=True)
     elif action == "down":
         optimized("down")
-        subprocess.run(["/usr/bin/sparkring", "down", "--execute"], check=True)
+        if not switched:
+            subprocess.run(["/usr/bin/sparkring", "down", "--execute"], check=True)
     elif action == "mesh-off":
         fleet("disable", "--now", MESH)
     elif action == "status":
         optimized("status")
-        subprocess.run(["/usr/bin/sparkring", "status", "--refresh"], check=True)
+        if switched:
+            print("Fabric: switched RoCE; legacy ring mesh stays disabled.")
+        else:
+            subprocess.run(["/usr/bin/sparkring", "status", "--refresh"], check=True)
     else:
         raise SystemExit("Unknown action")
 

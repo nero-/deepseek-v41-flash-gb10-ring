@@ -1,0 +1,28 @@
+{
+  "args": {
+    "tokens": 1000000,
+    "output": "/Users/jg/Agent/Diagnostics/deepseek-v41-flash-ring/switch-migration-20261019/final-cold1m/needle.json",
+    "url": "http://192.168.50.219:8015"
+  },
+  "nonce": "c3fed4cc0ccc47458330d869988b6182",
+  "prompt_sha256": "5776d16ffaa691599ba2d997549c7c8e721e3e3f715ee917c4ebbf292595ce73",
+  "expected": "RING-6305-COBALT",
+  "answer": "RING-6305-COBALT",
+  "usage": {
+    "prompt_tokens": 961724,
+    "total_tokens": 961733,
+    "completion_tokens": 9,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "created_cache_tokens": 961536
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  },
+  "ttft_seconds": 285.17157137501636,
+  "elapsed_seconds": 285.18746866701986,
+  "cached_tokens": 0,
+  "needle_pass": true,
+  "cold_confirmed": true
+}

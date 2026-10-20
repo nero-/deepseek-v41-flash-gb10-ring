@@ -1,0 +1,344 @@
+{
+  "status": "rejected_performance",
+  "image": "sha256:452a5d89b8de34d3a166fc344bc9aef2058f1c6d2f67af8ce355ba2a77d28cd6",
+  "configuration_sha256": "1f06b2ead6f6e0e0bee5769b7e7b8583fae8bdd687eff93ae3101b49effae202",
+  "promoted": false,
+  "initial_memory": [
+    {
+      "rank": 0,
+      "used_gib": 118.20193481445312,
+      "available_gib": 3.4857330322265625,
+      "swap_used_gib": 0.1806793212890625,
+      "time": 1792496784.4123712
+    },
+    {
+      "rank": 1,
+      "used_gib": 117.35124588012695,
+      "available_gib": 4.336421966552734,
+      "swap_used_gib": 0.13881301879882812,
+      "time": 1792496784.4577055
+    },
+    {
+      "rank": 2,
+      "used_gib": 117.49973678588867,
+      "available_gib": 4.12548828125,
+      "swap_used_gib": 0.0,
+      "time": 1792496784.4406579
+    },
+    {
+      "rank": 3,
+      "used_gib": 117.55349349975586,
+      "available_gib": 4.071735382080078,
+      "swap_used_gib": 0.0,
+      "time": 1792496784.3915896
+    }
+  ],
+  "functional_checks": {
+    "passed": 7,
+    "total": 7
+  },
+  "model_distribution_screen": {
+    "method": "Same 1017 fixed token sequences, teacher-forced top-20 intersection plus other-mass KL. Reference is October-17 qualification of October-15 math runtime. Transport, tuning and draft configuration differ; this is a finite distribution screen, not broad quality equivalence.",
+    "reference": "October 17 runtime qualification, same official 1017 fixed sequences",
+    "replay": [
+      {
+        "prompt_index": 0,
+        "thinking": false,
+        "cached_tokens": 0,
+        "reference_fixture_sha256": "e0cb795b2515e51f1d77dc4e92de85b77378782c139d0642cfec799a9b7ee842",
+        "reference_replay_sha256": "90a85774efa9ff03a185c599785684caba647ad8f5bc5194edad97923e4e433f",
+        "vs_retained_runtime": {
+          "positions": 2048,
+          "mean_coarsened_kl": 0.004922984617615227,
+          "late_512_mean_coarsened_kl": 0.0037226646075357835,
+          "top1_agreement": 0.986328125
+        }
+      },
+      {
+        "prompt_index": 1,
+        "thinking": true,
+        "cached_tokens": 0,
+        "reference_fixture_sha256": "157eac95653e35c3d4110e949cfcd14919279f2cee01c9acefe8546bd9e95a10",
+        "reference_replay_sha256": "782eacb2cf9a7f09838dd985f42964153916ce573bb3b87d0bfcdefc4dcd647e",
+        "vs_retained_runtime": {
+          "positions": 2048,
+          "mean_coarsened_kl": 0.011713499949405532,
+          "late_512_mean_coarsened_kl": 0.012396197000167378,
+          "top1_agreement": 0.9609375
+        }
+      }
+    ],
+    "exact_answer": [
+      {
+        "prompt": "What is 17*23? Reply with the number only.",
+        "expected": "391",
+        "answer": "391",
+        "pass": true
+      },
+      {
+        "prompt": "What is 38*47? Reply with the number only.",
+        "expected": "1786",
+        "answer": "1786",
+        "pass": true
+      },
+      {
+        "prompt": "What is 123*19? Reply with the number only.",
+        "expected": "2337",
+        "answer": "2337",
+        "pass": true
+      },
+      {
+        "prompt": "What is 271*31? Reply with the number only.",
+        "expected": "8401",
+        "answer": "8401",
+        "pass": true
+      },
+      {
+        "prompt": "What is 83*97? Reply with the number only.",
+        "expected": "8051",
+        "answer": "8051",
+        "pass": true
+      },
+      {
+        "prompt": "What is 144*13? Reply with the number only.",
+        "expected": "1872",
+        "answer": "1872",
+        "pass": true
+      },
+      {
+        "prompt": "What is the greatest common divisor of 252 and 198? Reply with the number only.",
+        "expected": "18",
+        "answer": "18",
+        "pass": true
+      },
+      {
+        "prompt": "Convert hexadecimal 2F to decimal. Reply with the number only.",
+        "expected": "47",
+        "answer": "47",
+        "pass": true
+      },
+      {
+        "prompt": "If all A are B and no B are C, can any A be C? Reply only yes or no.",
+        "expected": "no",
+        "answer": "No",
+        "pass": true
+      },
+      {
+        "prompt": "How many ways are there to tile a 2 by 8 rectangle using 2 by 1 dominoes? Reply with the number only.",
+        "expected": "34",
+        "answer": "34",
+        "pass": true
+      },
+      {
+        "prompt": "A fair six-sided die is rolled. How many possible results are prime numbers? Reply with the number only.",
+        "expected": "3",
+        "answer": "3",
+        "pass": true
+      },
+      {
+        "prompt": "Which is larger: 9.11 or 9.9? Reply with the larger number only.",
+        "expected": "9.9",
+        "answer": "9.9",
+        "pass": true
+      }
+    ]
+  },
+  "tuning_cache": [
+    {
+      "rank": 0,
+      "cache": "cb1bde01fb4d17369236e55da3810446af20cb472ca05b99fbc0120da5f9175d.json",
+      "schema": 23,
+      "record_count": 2045,
+      "records_sha256": "49b5e382cb1dd3ee4ab67ff185939a4a85e7eb88a8af3d27eec8a7129db6977c",
+      "moe_records": 78,
+      "moe_backend_counts": {
+        "dynamic": 64,
+        "micro": 14
+      },
+      "dynamic_tile_m_counts": {
+        "16": 62,
+        "None": 14,
+        "64": 2
+      },
+      "online_csf": false
+    },
+    {
+      "rank": 1,
+      "cache": "cb1bde01fb4d17369236e55da3810446af20cb472ca05b99fbc0120da5f9175d.json",
+      "schema": 23,
+      "record_count": 2045,
+      "records_sha256": "49b5e382cb1dd3ee4ab67ff185939a4a85e7eb88a8af3d27eec8a7129db6977c",
+      "moe_records": 78,
+      "moe_backend_counts": {
+        "dynamic": 64,
+        "micro": 14
+      },
+      "dynamic_tile_m_counts": {
+        "16": 62,
+        "None": 14,
+        "64": 2
+      },
+      "online_csf": false
+    },
+    {
+      "rank": 2,
+      "cache": "cb1bde01fb4d17369236e55da3810446af20cb472ca05b99fbc0120da5f9175d.json",
+      "schema": 23,
+      "record_count": 2045,
+      "records_sha256": "49b5e382cb1dd3ee4ab67ff185939a4a85e7eb88a8af3d27eec8a7129db6977c",
+      "moe_records": 78,
+      "moe_backend_counts": {
+        "dynamic": 64,
+        "micro": 14
+      },
+      "dynamic_tile_m_counts": {
+        "16": 62,
+        "None": 14,
+        "64": 2
+      },
+      "online_csf": false
+    },
+    {
+      "rank": 3,
+      "cache": "cb1bde01fb4d17369236e55da3810446af20cb472ca05b99fbc0120da5f9175d.json",
+      "schema": 23,
+      "record_count": 2045,
+      "records_sha256": "49b5e382cb1dd3ee4ab67ff185939a4a85e7eb88a8af3d27eec8a7129db6977c",
+      "moe_records": 78,
+      "moe_backend_counts": {
+        "dynamic": 64,
+        "micro": 14
+      },
+      "dynamic_tile_m_counts": {
+        "16": 62,
+        "None": 14,
+        "64": 2
+      },
+      "online_csf": false
+    }
+  ],
+  "updated_utc": "2026-10-20T11:48:04Z",
+  "benchmarks": [
+    {
+      "arm": "moe4-screen",
+      "decode": [
+        {
+          "concurrency": 1,
+          "context_tokens": 8192,
+          "tokens_per_second": 59.55662171067261,
+          "accept_length": 2.2429378531073447,
+          "request_spec_steps_per_second": 26.55295224883892,
+          "errors": 0,
+          "loop_detected": false
+        },
+        {
+          "concurrency": 8,
+          "context_tokens": 8192,
+          "tokens_per_second": 190.28756642767115,
+          "accept_length": 2.289156626506024,
+          "request_spec_steps_per_second": 83.23830455721472,
+          "errors": 0,
+          "loop_detected": false
+        },
+        {
+          "concurrency": 16,
+          "context_tokens": 8192,
+          "tokens_per_second": 254.14213109414598,
+          "accept_length": 2.3979057591623034,
+          "request_spec_steps_per_second": 106.3078195426493,
+          "errors": 0,
+          "loop_detected": false
+        }
+      ],
+      "prefill_tokens_per_second": {
+        "8192": 4661.0,
+        "65536": 4473.0,
+        "131072": 4460.0
+      }
+    },
+    {
+      "arm": "moe4-repeat",
+      "decode": [
+        {
+          "concurrency": 1,
+          "context_tokens": 8192,
+          "tokens_per_second": 59.44087668547061,
+          "accept_length": 2.2846153846153845,
+          "request_spec_steps_per_second": 26.017892151889495,
+          "errors": 0,
+          "loop_detected": false
+        },
+        {
+          "concurrency": 8,
+          "context_tokens": 8192,
+          "tokens_per_second": 198.0840138184717,
+          "accept_length": 2.388050694025347,
+          "request_spec_steps_per_second": 83.15131155245633,
+          "errors": 0,
+          "loop_detected": false
+        },
+        {
+          "concurrency": 16,
+          "context_tokens": 8192,
+          "tokens_per_second": 263.6111763146199,
+          "accept_length": 2.4722222222222223,
+          "request_spec_steps_per_second": 106.74873134110584,
+          "errors": 0,
+          "loop_detected": false
+        }
+      ],
+      "prefill_tokens_per_second": {
+        "8192": 3858.0,
+        "65536": 4596.0,
+        "131072": 3996.0
+      }
+    }
+  ],
+  "reason": "No demonstrated serving benefit from the composition plus fresh tuning. Candidate C1 was 59.56/59.44 versus retained 64.80 before and 63.05 after. Restored C16 was 257.67 versus 273.37 before and 254.14/263.61 candidate; variation weakens isolated C16 attribution. Long-prefill gains were inconsistent. The upstream commit itself is not isolated by this test.",
+  "restoration": {
+    "image": "sha256:9f26f0b3718ccca889cfd93cb72e2165b6d4c11dd9dc93fe65f585883537f2db",
+    "api_health": true,
+    "fabric_all_passed": true,
+    "screen": "draft4-restored-moe-lil.json",
+    "decode": {
+      "8192": {
+        "1": 63.05210975196314,
+        "8": 192.53456788164172,
+        "16": 257.6682892171849
+      }
+    },
+    "prefill": {
+      "8192": 4442.0,
+      "65536": 4567.0,
+      "131072": 4383.0
+    }
+  },
+  "instrumented_cold128k": {
+    "args": {
+      "tokens": 131072,
+      "output": "/Users/jg/Agent/Diagnostics/deepseek-v41-flash-ring/switch-migration-20261019/moe4-cold128k-instrumented.json",
+      "url": "http://192.168.50.219:8015"
+    },
+    "nonce": "b42d0faf321043afa645838ddbab3fa4",
+    "prompt_sha256": "a7cfc9708d1f725045f985ce10756f70b5a19078b3a37ed1a002636ad1b0c603",
+    "expected": "RING-6305-COBALT",
+    "answer": "RING-6305-COBALT",
+    "usage": {
+      "prompt_tokens": 125236,
+      "total_tokens": 125245,
+      "completion_tokens": 9,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "created_cache_tokens": 124928
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "ttft_seconds": 31.94178179098526,
+    "elapsed_seconds": 31.99164816600387,
+    "cached_tokens": 0,
+    "needle_pass": true,
+    "cold_confirmed": true
+  }
+}

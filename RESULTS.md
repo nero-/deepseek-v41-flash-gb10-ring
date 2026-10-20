@@ -1,13 +1,50 @@
 # Selected build results
 
-The current configuration is corrected vLLM/SparkRing TP4, official 1017 weights,
+The current configuration is corrected vLLM TP4 on CRS812, official 1017 weights,
 HF tokenization, Engram projection TP, adaptive 4K prefill under contention,
-guarded query-row indexer sharding and a 2350 MHz upper GPU clock limit.
+guarded query-row indexer sharding and driver stock GPU boost.
 [Exact deployment identity](results/deployment.json).
+
+## October 20 switched profile and full benchmark
+
+The CRS812 profile uses the qualified RoCEnante ABI-8 two-shot image on the
+October 15 model kernels. The selected profile has DSpark4 with the native
+C1 verification cap of three, adaptive verification, 4K prefill from one
+contending decoder, 20 GiB KV per rank and driver stock GPU boost.
+
+Public LIL 0.7.6, temperature 1, model-default thinking, top_p 1,
+20-second cells, max 2048 output tokens, no hardware monitor. C8/C16 are
+aggregate output throughput. All 25 cells completed without request errors,
+underfilled concurrency or detected loops.
+
+| Context | C1 | C2 | C4 | C8 | C16 | Prefill |
+|---|---:|---:|---:|---:|---:|---:|
+| 8K | 64.4 | 93.4 | 147.2 | 198.8 | 268.7 | 4023 |
+| 16K | 65.3 | 95.0 | 140.4 | 195.4 | 261.2 | 4192 |
+| 32K | 60.9 | 96.7 | 139.0 | 192.6 | 263.6 | 4582 |
+| 64K | 62.3 | 96.5 | 133.7 | 189.9 | 256.5 | 4591 |
+| 128K | 64.8 | 92.6 | 134.8 | 188.1 | 252.7 | 4362 |
+
+All rates are tokens/s. Prefill is a fresh integrated scout per context,
+not a multi-sample latency distribution. The five coding probes had a median
+of **91.4 tokens/s**, maximum **95.0**, and zero detected CJK output runs.
+Coding is a separate workload and is not the sustained C1 benchmark.
+
+The focused 8K screen was **67.1 / 192.2 / 270.9** at C1/C8/C16. The full-grid
+repeat above shows that the C1 gain is modest and variable; this is not proof
+of a broad speedup over uncapped draft4. Neither sustained 70 C1 nor 300 C16
+was established. The C1 cap leaves higher-concurrency proposal limits unchanged.
+
+The newer compact-MXFP4 MoE composition passed numerical and functional tests
+but showed no overall serving benefit and was rejected. The October 15 math
+runtime remains. DeepInfer's runtime cost calibration is a researched future
+candidate, not an installed optimization.
+[Full campaign and qualification](results/20261019-switch-migration/REPORT.md),
+[raw full grid](results/20261019-switch-migration/final-full-lil.json).
 
 ## October 17 decode tuning and selected KV budget
 
-The current image remains selected with **20 GiB KV per rank**
+That campaign retained its current image with **20 GiB KV per rank**
 (**16,344,051 logical tokens**). Startup head usage was **117.40 GiB**,
 leaving **4.28 GiB available**; qualification peaked at
 **118.66 GiB**. The 118 GiB goal applies just after loading,
@@ -15,7 +52,7 @@ with no automatic runtime stop guard.
 
 Adaptive cost scales, L2 prefetch changes, extra graph coverage and greedy
 draft proposals did not establish an overall decode gain. The original
-current-image decode settings remain. Mean of two final public LIL 0.7.6
+decode settings were retained then. Mean of two final public LIL 0.7.6
 focused screens (both raw runs are retained in the report):
 
 | Context | C1 | C8 | C16 |
@@ -225,12 +262,15 @@ quality or eliminate intermittent output repetition.
 - **Other proposals:** draft top-20, projection splits, context-axis variants,
   read-ahead and ownership experiments were not selected. Their source and
   detailed reports are archived rather than included in the active image tree.
-- **2350 MHz cap:** selected for lower power and temperature with acceptable
+- **2350 MHz cap (historical):** selected for lower power and temperature with acceptable
   measured throughput. GPU telemetry showed roughly 46–49 W total savings
   versus the first stock-clock run; this is not whole-system wall power.
+  The October 20 campaign subsequently replaced it with driver stock boost
+  at the user's authorization; the old power comparison is not a current
+  system-power measurement.
   [Clock comparison](results/20260930-maintenance/2350-comparison.json).
 
-Earlier full-grid results predate the compressor fix. No complete new LIL grid
-was run after the October rollback; the current evidence above retains that
-limitation. Historical reports and discarded candidate results are recoverable
+The early rollback screen did not include a full grid. Later October 14,
+October 17 and October 20 full grids are recorded above; use their stated
+checkpoint, runtime and request settings. Historical reports and discarded candidate results are recoverable
 from Git at `364eb87` and the external snapshot recorded in `.local/cleanup.json`.

@@ -1,0 +1,789 @@
+{
+  "passed": true,
+  "qualified_utc": "2026-10-20T12:35:51Z",
+  "profile": "engram-adaptive4k-query-indexer-1017-runtime1015-kv20-images999-switch-c1cap3",
+  "image_id": "sha256:9f26f0b3718ccca889cfd93cb72e2165b6d4c11dd9dc93fe65f585883537f2db",
+  "tested_configuration_sha256": "0e92d034735c3e6d3170f693bd6adba706e628bcc0690bc0f74bbfd5cee960c8",
+  "clock_policy": {
+    "policy": "driver stock boost",
+    "explicit_clock_cap_mhz": null,
+    "reset_command": "nvidia-smi --reset-gpu-clocks",
+    "unit": "/etc/systemd/system/gb10-gpu-clock-cap.service",
+    "unit_sha256": "bf8b4c34df61d58fdf490dca33aca7f4cf21f9cf82d0c2cc0f086213e345d511",
+    "old_unit_sha256": "c1a5839ec049a61296cb751c8ccd1ead7be20b41de2051bdc911ecb51b11ebfd",
+    "backup": "/var/lib/deepseek-ring/experiments/stock-clocks-20261020/gb10-gpu-clock-cap.service",
+    "time_utc": "2026-10-20T12:11:09Z",
+    "nodes": [
+      {
+        "rank": 0,
+        "enabled": "enabled",
+        "active": "active",
+        "restart_stdout": "",
+        "restart_stderr": ""
+      },
+      {
+        "rank": 1,
+        "enabled": "enabled",
+        "active": "active",
+        "restart_stdout": "",
+        "restart_stderr": ""
+      },
+      {
+        "rank": 2,
+        "enabled": "enabled",
+        "active": "active",
+        "restart_stdout": "",
+        "restart_stderr": ""
+      },
+      {
+        "rank": 3,
+        "enabled": "enabled",
+        "active": "active",
+        "restart_stdout": "",
+        "restart_stderr": ""
+      }
+    ]
+  },
+  "functional_passes": 7,
+  "full_lil": {
+    "file": "final-full-lil.json",
+    "cells": 25,
+    "errors": 0,
+    "loops": 0,
+    "summary_table": {
+      "8192": {
+        "1": 64.36367497078426,
+        "2": 93.35224786437348,
+        "4": 147.1562243023696,
+        "8": 198.83085319384745,
+        "16": 268.7382201867761
+      },
+      "16384": {
+        "1": 65.31121249104052,
+        "2": 95.00017372207303,
+        "4": 140.38010917287295,
+        "8": 195.41491690164136,
+        "16": 261.2038240814781
+      },
+      "32768": {
+        "1": 60.860093353548756,
+        "2": 96.74589655182493,
+        "4": 139.0226705241983,
+        "8": 192.58976990767698,
+        "16": 263.55910309711965
+      },
+      "65536": {
+        "1": 62.30638203819442,
+        "2": 96.46760989356636,
+        "4": 133.6666380199654,
+        "8": 189.93450317701846,
+        "16": 256.48397164101704
+      },
+      "131072": {
+        "1": 64.77254842847388,
+        "2": 92.6215121757433,
+        "4": 134.77884236445047,
+        "8": 188.05081285070426,
+        "16": 252.70092574931888
+      }
+    },
+    "prefill": {
+      "8192": {
+        "tok_per_sec": 4023.0,
+        "prompt_tokens": 8190
+      },
+      "16384": {
+        "tok_per_sec": 4192.0,
+        "prompt_tokens": 16211
+      },
+      "32768": {
+        "tok_per_sec": 4582.0,
+        "prompt_tokens": 32253
+      },
+      "65536": {
+        "tok_per_sec": 4591.0,
+        "prompt_tokens": 64348
+      },
+      "131072": {
+        "tok_per_sec": 4362.0,
+        "prompt_tokens": 128512
+      }
+    },
+    "coding": {
+      "mean_generation_tok_s": 91.6474938944079,
+      "median_generation_tok_s": 91.44001767484013,
+      "max_generation_tok_s": 95.02431285734245,
+      "min_generation_tok_s": 88.58183920629963,
+      "cjk_runs": 0
+    }
+  },
+  "startup_memory": [
+    {
+      "used_gib": 117.31111145019531,
+      "available_gib": 4.376556396484375,
+      "swap_used_gib": 0.185211181640625
+    },
+    {
+      "used_gib": 116.4088363647461,
+      "available_gib": 5.278831481933594,
+      "swap_used_gib": 0.1410369873046875
+    },
+    {
+      "used_gib": 116.58629608154297,
+      "available_gib": 5.038928985595703,
+      "swap_used_gib": 0.0
+    },
+    {
+      "used_gib": 116.61172485351562,
+      "available_gib": 5.0135040283203125,
+      "swap_used_gib": 0.0
+    }
+  ],
+  "long_context": {
+    "scope": "Instrumented correctness/thermal check; latency is not a timed LIL comparison",
+    "configuration": "c1cap3-specs.json",
+    "tokens_requested_from_fixture": 1000000,
+    "actual_prompt_tokens": 961724,
+    "needle_pass": true,
+    "cached_tokens": 0,
+    "ttft_seconds_instrumented": 285.17157137501636,
+    "samples": 54,
+    "nodes": [
+      {
+        "rank": 0,
+        "maximum_used_gib": 118.52695846557617,
+        "minimum_available_gib": 3.1607093811035156,
+        "pswpin_delta": 111,
+        "pswpout_delta": 60,
+        "max_temperature_c": 85.0,
+        "active_sm_clock_min_max_mhz": [
+          2411.0,
+          2476.0
+        ]
+      },
+      {
+        "rank": 1,
+        "maximum_used_gib": 116.94316101074219,
+        "minimum_available_gib": 4.7445068359375,
+        "pswpin_delta": 47,
+        "pswpout_delta": 0,
+        "max_temperature_c": 82.0,
+        "active_sm_clock_min_max_mhz": [
+          2463.0,
+          2528.0
+        ]
+      },
+      {
+        "rank": 2,
+        "maximum_used_gib": 117.16846084594727,
+        "minimum_available_gib": 4.456764221191406,
+        "pswpin_delta": 0,
+        "pswpout_delta": 0,
+        "max_temperature_c": 85.0,
+        "active_sm_clock_min_max_mhz": [
+          2424.0,
+          2450.0
+        ]
+      },
+      {
+        "rank": 3,
+        "maximum_used_gib": 117.13167190551758,
+        "minimum_available_gib": 4.493556976318359,
+        "pswpin_delta": 0,
+        "pswpout_delta": 0,
+        "max_temperature_c": 88.0,
+        "active_sm_clock_min_max_mhz": [
+          2398.0,
+          2450.0
+        ]
+      }
+    ]
+  },
+  "mixed_image_checks": [
+    {
+      "name": "mixed-five-large-images-padding-4040",
+      "stream": true,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 7340,
+        "total_tokens": 7344,
+        "completion_tokens": 4,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "created_cache_tokens": 7168,
+          "multimodal_tokens": {
+            "image": 3260
+          }
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "done": true,
+      "chunks": 6,
+      "reply": "Red, blue",
+      "pass": true,
+      "elapsed_s": 2.442,
+      "health_after": 200
+    },
+    {
+      "name": "mixed-five-large-images-padding-4096",
+      "stream": true,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 7396,
+        "total_tokens": 7400,
+        "completion_tokens": 4,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "created_cache_tokens": 7168,
+          "multimodal_tokens": {
+            "image": 3260
+          }
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "done": true,
+      "chunks": 6,
+      "reply": "Red, blue",
+      "pass": true,
+      "elapsed_s": 2.528,
+      "health_after": 200
+    },
+    {
+      "name": "mixed-five-large-images-padding-4152",
+      "stream": true,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 7452,
+        "total_tokens": 7456,
+        "completion_tokens": 4,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "created_cache_tokens": 7168,
+          "multimodal_tokens": {
+            "image": 3260
+          }
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "done": true,
+      "chunks": 6,
+      "reply": "Red, blue",
+      "pass": true,
+      "elapsed_s": 2.455,
+      "health_after": 200
+    }
+  ],
+  "controller_audit": {
+    "passed": true,
+    "time_utc": "2026-10-20T12:34:59Z",
+    "idempotent_up": true,
+    "stock_up_rejected_without_stop": true,
+    "containers_unchanged": true,
+    "nodes": [
+      {
+        "rank": 0,
+        "id": "fec5cf4108b4a699be5051690883d98c53fbd156dca6abf2c514fa960423aab7",
+        "image": "sha256:9f26f0b3718ccca889cfd93cb72e2165b6d4c11dd9dc93fe65f585883537f2db",
+        "started_at": "2026-10-20T12:06:39.23441499Z"
+      },
+      {
+        "rank": 1,
+        "id": "5bdb0d952040b82e5e5b7475c480621b31219930a4aaf6999c85d47f694bb643",
+        "image": "sha256:9f26f0b3718ccca889cfd93cb72e2165b6d4c11dd9dc93fe65f585883537f2db",
+        "started_at": "2026-10-20T12:06:39.234812533Z"
+      },
+      {
+        "rank": 2,
+        "id": "49ea81ee8830f7ac81a0dc35e466a9544b19598f793207d191b4a4c2c82fb471",
+        "image": "sha256:9f26f0b3718ccca889cfd93cb72e2165b6d4c11dd9dc93fe65f585883537f2db",
+        "started_at": "2026-10-20T12:06:39.168864367Z"
+      },
+      {
+        "rank": 3,
+        "id": "afb425567654ed73213818686815106b33252799fc09747b2a37f933c42f864b",
+        "image": "sha256:9f26f0b3718ccca889cfd93cb72e2165b6d4c11dd9dc93fe65f585883537f2db",
+        "started_at": "2026-10-20T12:06:39.129296858Z"
+      }
+    ],
+    "source_hashes": {
+      "/usr/local/sbin/deepseek-ring-control": "7f34123d66da1d72ecf8750208fc2f91a89a24db440bd39ab79f960ec0ba291b",
+      "/usr/local/lib/deepseek-ring/optimized_vllm.py": "a58b83905a3c0882b0690b2110d2545af0f9e0dc0292466dfeef3efe7863eb43",
+      "/usr/local/lib/deepseek-ring/switched_fabric.py": "bab73a80be2bec2ccb18a345fa90360cb2655fff7bf8560ff1088162e40158e3"
+    },
+    "clock_unit_sha256": "bf8b4c34df61d58fdf490dca33aca7f4cf21f9cf82d0c2cc0f086213e345d511",
+    "fabric": [
+      {
+        "rank": 0,
+        "passed": true,
+        "rails": [
+          {
+            "interface": "enp1s0f1np1",
+            "hca": "rocep1s0f1",
+            "address": "10.10.10.1/24",
+            "gid_index": 3,
+            "mtu": 9000,
+            "speed_mbps": 200000
+          },
+          {
+            "interface": "enP2p1s0f1np1",
+            "hca": "roceP2p1s0f1",
+            "address": "10.10.11.1/24",
+            "gid_index": 3,
+            "mtu": 9000,
+            "speed_mbps": 200000
+          }
+        ]
+      },
+      {
+        "rank": 1,
+        "passed": true,
+        "rails": [
+          {
+            "interface": "enp1s0f1np1",
+            "hca": "rocep1s0f1",
+            "address": "10.10.10.2/24",
+            "gid_index": 3,
+            "mtu": 9000,
+            "speed_mbps": 200000
+          },
+          {
+            "interface": "enP2p1s0f1np1",
+            "hca": "roceP2p1s0f1",
+            "address": "10.10.11.2/24",
+            "gid_index": 3,
+            "mtu": 9000,
+            "speed_mbps": 200000
+          }
+        ]
+      },
+      {
+        "rank": 2,
+        "passed": true,
+        "rails": [
+          {
+            "interface": "enp1s0f1np1",
+            "hca": "rocep1s0f1",
+            "address": "10.10.10.4/24",
+            "gid_index": 3,
+            "mtu": 9000,
+            "speed_mbps": 200000
+          },
+          {
+            "interface": "enP2p1s0f1np1",
+            "hca": "roceP2p1s0f1",
+            "address": "10.10.11.4/24",
+            "gid_index": 3,
+            "mtu": 9000,
+            "speed_mbps": 200000
+          }
+        ]
+      },
+      {
+        "rank": 3,
+        "passed": true,
+        "rails": [
+          {
+            "interface": "enp1s0f1np1",
+            "hca": "rocep1s0f1",
+            "address": "10.10.10.3/24",
+            "gid_index": 3,
+            "mtu": 9000,
+            "speed_mbps": 200000
+          },
+          {
+            "interface": "enP2p1s0f1np1",
+            "hca": "roceP2p1s0f1",
+            "address": "10.10.11.3/24",
+            "gid_index": 3,
+            "mtu": 9000,
+            "speed_mbps": 200000
+          }
+        ]
+      }
+    ],
+    "switched_fallback_identity_verified_all_ranks": true
+  },
+  "final_api_health": true,
+  "all_ranks_running_selected_image": true,
+  "rdma_nonzero_counter_deltas": [
+    {
+      "rank": 0,
+      "hca": "rocep1s0f1",
+      "counter": "counters/unicast_rcv_packets",
+      "delta": 107100467
+    },
+    {
+      "rank": 0,
+      "hca": "rocep1s0f1",
+      "counter": "counters/port_xmit_data",
+      "delta": 92911104991
+    },
+    {
+      "rank": 0,
+      "hca": "rocep1s0f1",
+      "counter": "counters/port_rcv_packets",
+      "delta": 107100467
+    },
+    {
+      "rank": 0,
+      "hca": "rocep1s0f1",
+      "counter": "counters/unicast_xmit_packets",
+      "delta": 107118397
+    },
+    {
+      "rank": 0,
+      "hca": "rocep1s0f1",
+      "counter": "counters/port_rcv_data",
+      "delta": 92910813291
+    },
+    {
+      "rank": 0,
+      "hca": "rocep1s0f1",
+      "counter": "counters/port_xmit_packets",
+      "delta": 107118397
+    },
+    {
+      "rank": 0,
+      "hca": "rocep1s0f1",
+      "counter": "hw_counters/rx_write_requests",
+      "delta": 4214528
+    },
+    {
+      "rank": 0,
+      "hca": "roceP2p1s0f1",
+      "counter": "counters/unicast_rcv_packets",
+      "delta": 107103600
+    },
+    {
+      "rank": 0,
+      "hca": "roceP2p1s0f1",
+      "counter": "counters/port_xmit_data",
+      "delta": 92911181600
+    },
+    {
+      "rank": 0,
+      "hca": "roceP2p1s0f1",
+      "counter": "counters/port_rcv_packets",
+      "delta": 107103600
+    },
+    {
+      "rank": 0,
+      "hca": "roceP2p1s0f1",
+      "counter": "counters/unicast_xmit_packets",
+      "delta": 107124751
+    },
+    {
+      "rank": 0,
+      "hca": "roceP2p1s0f1",
+      "counter": "counters/port_rcv_data",
+      "delta": 92910853760
+    },
+    {
+      "rank": 0,
+      "hca": "roceP2p1s0f1",
+      "counter": "counters/port_xmit_packets",
+      "delta": 107124751
+    },
+    {
+      "rank": 0,
+      "hca": "roceP2p1s0f1",
+      "counter": "hw_counters/rx_write_requests",
+      "delta": 4214382
+    },
+    {
+      "rank": 1,
+      "hca": "rocep1s0f1",
+      "counter": "counters/unicast_rcv_packets",
+      "delta": 107132867
+    },
+    {
+      "rank": 1,
+      "hca": "rocep1s0f1",
+      "counter": "counters/port_xmit_data",
+      "delta": 92911697238
+    },
+    {
+      "rank": 1,
+      "hca": "rocep1s0f1",
+      "counter": "counters/port_rcv_packets",
+      "delta": 107132867
+    },
+    {
+      "rank": 1,
+      "hca": "rocep1s0f1",
+      "counter": "counters/unicast_xmit_packets",
+      "delta": 107130176
+    },
+    {
+      "rank": 1,
+      "hca": "rocep1s0f1",
+      "counter": "counters/port_rcv_data",
+      "delta": 92911738948
+    },
+    {
+      "rank": 1,
+      "hca": "rocep1s0f1",
+      "counter": "counters/port_xmit_packets",
+      "delta": 107130176
+    },
+    {
+      "rank": 1,
+      "hca": "rocep1s0f1",
+      "counter": "hw_counters/rx_write_requests",
+      "delta": 4214650
+    },
+    {
+      "rank": 1,
+      "hca": "roceP2p1s0f1",
+      "counter": "counters/unicast_rcv_packets",
+      "delta": 107109664
+    },
+    {
+      "rank": 1,
+      "hca": "roceP2p1s0f1",
+      "counter": "counters/port_xmit_data",
+      "delta": 92910945037
+    },
+    {
+      "rank": 1,
+      "hca": "roceP2p1s0f1",
+      "counter": "counters/port_rcv_packets",
+      "delta": 107109664
+    },
+    {
+      "rank": 1,
+      "hca": "roceP2p1s0f1",
+      "counter": "counters/unicast_xmit_packets",
+      "delta": 107110273
+    },
+    {
+      "rank": 1,
+      "hca": "roceP2p1s0f1",
+      "counter": "counters/port_rcv_data",
+      "delta": 92910935597
+    },
+    {
+      "rank": 1,
+      "hca": "roceP2p1s0f1",
+      "counter": "counters/port_xmit_packets",
+      "delta": 107110273
+    },
+    {
+      "rank": 1,
+      "hca": "roceP2p1s0f1",
+      "counter": "hw_counters/rx_write_requests",
+      "delta": 4214382
+    },
+    {
+      "rank": 2,
+      "hca": "rocep1s0f1",
+      "counter": "counters/unicast_rcv_packets",
+      "delta": 107132395
+    },
+    {
+      "rank": 2,
+      "hca": "rocep1s0f1",
+      "counter": "counters/port_xmit_data",
+      "delta": 92911349923
+    },
+    {
+      "rank": 2,
+      "hca": "rocep1s0f1",
+      "counter": "counters/port_rcv_packets",
+      "delta": 107132395
+    },
+    {
+      "rank": 2,
+      "hca": "rocep1s0f1",
+      "counter": "counters/unicast_xmit_packets",
+      "delta": 107118046
+    },
+    {
+      "rank": 2,
+      "hca": "rocep1s0f1",
+      "counter": "counters/port_rcv_data",
+      "delta": 92911572332
+    },
+    {
+      "rank": 2,
+      "hca": "rocep1s0f1",
+      "counter": "counters/port_xmit_packets",
+      "delta": 107118046
+    },
+    {
+      "rank": 2,
+      "hca": "rocep1s0f1",
+      "counter": "hw_counters/rx_write_requests",
+      "delta": 4214698
+    },
+    {
+      "rank": 2,
+      "hca": "roceP2p1s0f1",
+      "counter": "counters/unicast_rcv_packets",
+      "delta": 107134978
+    },
+    {
+      "rank": 2,
+      "hca": "roceP2p1s0f1",
+      "counter": "counters/port_xmit_data",
+      "delta": 92911280904
+    },
+    {
+      "rank": 2,
+      "hca": "roceP2p1s0f1",
+      "counter": "counters/port_rcv_packets",
+      "delta": 107134978
+    },
+    {
+      "rank": 2,
+      "hca": "roceP2p1s0f1",
+      "counter": "counters/unicast_xmit_packets",
+      "delta": 107119930
+    },
+    {
+      "rank": 2,
+      "hca": "roceP2p1s0f1",
+      "counter": "counters/port_rcv_data",
+      "delta": 92911514148
+    },
+    {
+      "rank": 2,
+      "hca": "roceP2p1s0f1",
+      "counter": "counters/port_xmit_packets",
+      "delta": 107119930
+    },
+    {
+      "rank": 2,
+      "hca": "roceP2p1s0f1",
+      "counter": "hw_counters/rx_write_requests",
+      "delta": 4214382
+    },
+    {
+      "rank": 3,
+      "hca": "rocep1s0f1",
+      "counter": "counters/unicast_rcv_packets",
+      "delta": 107057963
+    },
+    {
+      "rank": 3,
+      "hca": "rocep1s0f1",
+      "counter": "counters/port_xmit_data",
+      "delta": 92909201978
+    },
+    {
+      "rank": 3,
+      "hca": "rocep1s0f1",
+      "counter": "counters/port_rcv_packets",
+      "delta": 107057963
+    },
+    {
+      "rank": 3,
+      "hca": "rocep1s0f1",
+      "counter": "counters/unicast_xmit_packets",
+      "delta": 107057073
+    },
+    {
+      "rank": 3,
+      "hca": "rocep1s0f1",
+      "counter": "counters/port_rcv_data",
+      "delta": 92909229559
+    },
+    {
+      "rank": 3,
+      "hca": "rocep1s0f1",
+      "counter": "counters/port_xmit_packets",
+      "delta": 107057073
+    },
+    {
+      "rank": 3,
+      "hca": "rocep1s0f1",
+      "counter": "hw_counters/rx_write_requests",
+      "delta": 4214528
+    },
+    {
+      "rank": 3,
+      "hca": "roceP2p1s0f1",
+      "counter": "counters/unicast_rcv_packets",
+      "delta": 107067965
+    },
+    {
+      "rank": 3,
+      "hca": "roceP2p1s0f1",
+      "counter": "counters/port_xmit_data",
+      "delta": 92909332320
+    },
+    {
+      "rank": 3,
+      "hca": "roceP2p1s0f1",
+      "counter": "counters/port_rcv_packets",
+      "delta": 107067965
+    },
+    {
+      "rank": 3,
+      "hca": "roceP2p1s0f1",
+      "counter": "counters/unicast_xmit_packets",
+      "delta": 107061253
+    },
+    {
+      "rank": 3,
+      "hca": "roceP2p1s0f1",
+      "counter": "counters/port_rcv_data",
+      "delta": 92909436356
+    },
+    {
+      "rank": 3,
+      "hca": "roceP2p1s0f1",
+      "counter": "counters/port_xmit_packets",
+      "delta": 107061253
+    },
+    {
+      "rank": 3,
+      "hca": "roceP2p1s0f1",
+      "counter": "hw_counters/rx_write_requests",
+      "delta": 4214382
+    }
+  ],
+  "rdma_error_counter_deltas_zero": true,
+  "thermal_driver_status_after_long_request": [
+    {
+      "rank": 0,
+      "hw_thermal_slowdown_us": 0,
+      "sw_thermal_slowdown_us": 0,
+      "thermal_slowdown_active": false
+    },
+    {
+      "rank": 1,
+      "hw_thermal_slowdown_us": 0,
+      "sw_thermal_slowdown_us": 0,
+      "thermal_slowdown_active": false
+    },
+    {
+      "rank": 2,
+      "hw_thermal_slowdown_us": 0,
+      "sw_thermal_slowdown_us": 0,
+      "thermal_slowdown_active": false
+    },
+    {
+      "rank": 3,
+      "hw_thermal_slowdown_us": 0,
+      "sw_thermal_slowdown_us": 0,
+      "thermal_slowdown_active": false
+    }
+  ],
+  "limits": [
+    "One final full grid plus a focused screen; stochastic variation remains.",
+    "Finite functional and retrieval checks do not establish broad model equivalence.",
+    "999 images is a configured ceiling, not a tested worst-case memory guarantee.",
+    "DeepInfer runtime cost calibration is researched only; no code installed."
+  ],
+  "promoted_configuration_sha256": "d86c7e0725efae1ced95a4891da59753853992aaad4fda926814531145e43ca2",
+  "promotion_metadata_only": true,
+  "temporary_admin_cleanup": "temporary-admin-retired.json",
+  "fixed_action_up_verified_after_admin_cleanup": true
+}

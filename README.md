@@ -1,17 +1,17 @@
-# DeepSeek-V4.1-Flash on the four-node GB10 ring
+# DeepSeek-V4.1-Flash on four switched GB10 nodes
 
-Corrected SparkRing vLLM TP4 across two DGX Sparks and two ASUS GX10s.
+Corrected vLLM TP4 across two DGX Sparks and two ASUS GX10s on a CRS812 switch.
 API: **http://192.168.X.X:8015/v1**. Model: **DeepSeek-V4.1-Flash-TP4**.
 
-**Maintenance, October 19 HST / October 20 UTC:** DeepSeek and all mesh
-supervisors are stopped for CRS812 recabling. The switch conversion is not
-deployed yet. Do not use the ring start/recovery commands below during this
-handoff; they enable the old mesh. See the
-[current switch migration plan](results/20261019-switch-migration/PLAN.md).
+**CRS812 conversion, October 20 UTC:** switched networking and the new
+controller are installed. RoCEnante pipelined two-shot and the selected serving
+profile are qualified. The commands below operate the switched profile and leave
+all retired ring services disabled. See the
+[switch qualification report](results/20261019-switch-migration/REPORT.md).
 
-**Selected as of 2026-10-17 UTC:** official **DeepSeek-V4.1-Flash-1017** on
-the qualified October 15 eugr/KK/FlashInfer runtime. The existing RoCEnante ring
-transport and local performance plugins are preserved.
+Official **DeepSeek-V4.1-Flash-1017** remains on the qualified October 15
+eugr/KK/FlashInfer math runtime. The switched transport layer preserves its
+model corrections and local performance plugins.
 [Runtime qualification, full benchmark and final KV screen](results/20261017-runtime-upgrade/REPORT.md).
 
 Generation defaults are explicit: temperature 1, top_p 1, top_k disabled,
@@ -20,12 +20,11 @@ Chinese ideographs at either top_p 1 or 0.95. This is finite evidence, not a
 promise against rare language drift.
 
 KV allocation is **20 GiB per GPU**, exposing **16.34M logical tokens**.
-Head total used memory was **117.40 GiB immediately after loading**,
-leaving **4.28 GiB available**. The 118 GiB goal is the initial
-loaded budget; there is no automatic runtime stop guard. The decode tuning
-trials did not establish an overall gain, so the existing decode settings remain.
+Head total used memory was **117.31 GiB immediately after loading**,
+leaving **4.38 GiB available**. The 118 GiB goal is the initial
+loaded budget; there is no automatic runtime stop guard.
 The checkpoint's published precision is unchanged.
-[Decode trials, larger KV and final qualification](results/20261017-decode-tuning/REPORT.md).
+[Current transport and serving qualification](results/20261019-switch-migration/REPORT.md).
 
 Image input accepts **up to 999 images across the full request**, including
 chat history. The old four-image restriction has been removed. Distinct-image
@@ -45,11 +44,11 @@ cd ~/Agent/Builds/deepseek-v41-flash-ring
 ./scripts/ring-mode.sh status
 ```
 
-`recover-ds` stops the workload and every mesh supervisor, then starts the
-mesh and selected model together. Allow roughly 4–20 minutes for loading and
+`recover-ds` stops the workload and disables the retired mesh, then validates
+the switched fabric and starts the selected model. Allow roughly 4–20 minutes for loading and
 warmup. It returns when the API is healthy. The script is `ring-mode.sh`.
 For **RoCE GID differs**, follow the additional link repair in
-[OPERATIONS.md](OPERATIONS.md#roce-gid-differs-after-a-peer-reboot).
+[OPERATIONS.md](OPERATIONS.md#switched-link-or-gid-failure).
 
 Qwen serving on this ring was retired to make room for GLM. Its old stop
 entry points remain compatible with DeepSeek recovery; `ring-mode.sh qwen`
@@ -64,26 +63,40 @@ curl --fail --max-time 5 http://192.168.X.X:8015/health
 
 | Component | Selected version |
 |---|---|
-| SparkRing installer | `8b152d65c701f557f62ae6a9a1c3db90771c1df3`; existing switchless ring |
+| Fabric | CRS812, one physical 200G port per node, two Socket Direct rails, MTU 9000, GID 3 |
+| SparkRing package | `8b152d65c701f557f62ae6a9a1c3db90771c1df3`; retained container library, retired network services |
 | Parent | eugr ARM64 `nightly-20261015`, digest `03a956544e9f9b4b7ba91690469fbe7848bdbef29a7d2e0f5788368467bb3595` |
 | vLLM KK | `8244d1c44348ae8a5bbfc9f1b607021652283ed4` |
 | FlashInfer / B12x provider | FlashInfer 0.7.1, `91271757f7746f3dfb58f7c2aeb44a663389de9e`; B12x compatibility namespace |
 | GPU toolchain | Qualified CUDA 13.4.2 / patched NCCL 2.32.3 retained |
 | Checkpoint | Official DeepSeek-V4.1-Flash-1017, revision `1bae0e1088993b9b82de08f59de5be5a34e42170` |
-| Local image | Built October 17; identical immutable image on all four ranks |
-| Local profile | `engram-adaptive4k-query-indexer-1017-runtime1015-kv20-images999` |
+| Local image | Built October 20; `9f26f0b3718c…` on all four ranks |
+| Local profile | `engram-adaptive4k-query-indexer-1017-runtime1015-kv20-images999-switch-c1cap3` |
+| Transport | RoCEnante one-shot/gather plus ABI-8 pipelined two-shot; patched NCCL fallback |
 | KV budget | 20 GiB per GPU; 16,344,051 logical tokens |
-| GPU upper clock limit | 2350 MHz, minimum 0, persistent across reboot |
+| GPU clock policy | Driver stock boost, persistent across reboot; former 2350 MHz ceiling removed |
 
 [Deployment identity and plugin hashes](results/deployment.json),
-[selected image recipe](image/runtime-20261017/README.md), and
+[selected transport image recipe](image/rocenante-switch/README.md), and
 [selected plugin sources](image/vllm-local-plugins/README.md).
 
-Engram projection TP, native DSpark5 and adaptive verification come from this
-recipe. The two local plugins reduce the prefill scheduling quantum from 8K to
-4K when at least four decoders contend, and shard eligible long-prefill indexer
+Engram projection TP, native DSpark and adaptive verification come from this
+recipe. The draft maximum is four, with the native verification cap set to three
+for a single request and four for C2–16. The drafter still computes four
+proposals. The two local plugins reduce the prefill scheduling quantum from 8K to
+4K when at least one decoder contends, and shard eligible long-prefill indexer
 queries across the four ranks with numerical guards. The official 1017 checkpoint
 retains its published precision and full vocabulary. HF tokenization is selected.
+
+The RoCEnante pipe is 128 MiB with a 512 KiB two-shot threshold. Both switched
+rails are active and share the node's single physical 200G connection.
+This is RoCEnante with NCCL fallback; SIRCL is not enabled.
+
+The full 25-cell LIL qualification completed without request errors or detected
+loops. At 8K, C1/C8/C16 measured **64.4 / 198.8 / 268.7 tokens/s**.
+Uncached 961,724-token retrieval and mixed image/decode checks also passed.
+Sustained 70 C1 and 300 C16 were not established.
+[All contexts, repetitions and tradeoffs](RESULTS.md).
 
 ## Repository contents
 
@@ -105,7 +118,7 @@ checkout. Tracked history is recoverable from Git at `364eb87`; a complete
 pre-cleanup working snapshot also preserves uncommitted research outside the
 repository. Its local location is recorded in `.local/cleanup.json`.
 
-The [current switch migration plan](results/20261019-switch-migration/PLAN.md)
+The [completed switch migration plan](results/20261019-switch-migration/PLAN.md)
 records the shutdown, one-port 200G layout, exact ring cleanup, image options and
 validation sequence. The [earlier runtime plan](results/20261017-runtime-plan/PLAN.md)
 is historical research; its runtime upgrade was completed in the campaign above.

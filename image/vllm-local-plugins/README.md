@@ -8,10 +8,13 @@ selects the inherited `b12x_loader` and `sparkring_status` plugins.
 ## Adaptive prefill budget
 
 `dsv41_adaptive_prefill` retains the normal mixed scheduler and its 8K allocation
-ceiling. With at least four runnable decoders contending with prefill, it uses
+ceiling. The selected environment sets `DSV41_CONTENDED_MIN_DECODERS=1`.
+With at least one runnable decoder contending with prefill, it uses
 a 4K quantum for that scheduling step, restoring the configured budget afterward,
 including on exceptions. Unloaded prefill and decode-only steps retain the
 configured budget. The plugin refuses combination with native compute sharing.
+Without the environment override its historical default is four decoders;
+copy the selected environment when reproducing this profile.
 
 ## Guarded query-row indexer sharding
 

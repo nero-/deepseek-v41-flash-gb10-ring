@@ -1,10 +1,24 @@
 # CRS812 migration: one 200G link per node
 
+**Execution update, October 20 UTC:** physical conversion and host setup are
+complete. The installed layout uses **port 1**, rail A `10.10.10.0/24` and rail B
+`10.10.11.0/24`; the tentative port-0/address proposals below are superseded.
+Read [current operations](../../OPERATIONS.md#switched-fabric) and the local
+`~/Agent/Builds/spark-cluster-network.md`. Switched controller deployment,
+baseline checks and two-shot serving qualification are complete. The final
+profile uses DSpark4 with the native C1 verification cap of three and driver
+stock GPU boost. See the [completed report](REPORT.md) and
+[current deployment manifest](../deployment.json). The original preparation
+sections below are historical, including their DSpark5 and 2350 MHz assumptions.
+
 Prepared October 19 HST / October 20 UTC, 2026. This supersedes the networking
 portion of the [earlier standby plan](../20261017-runtime-plan/PLAN.md).
 The October 17 runtime upgrade is already complete.
 
-## Current state and physical handoff
+## Initial shutdown and physical handoff (historical)
+
+This section records the pre-cabling state. It is not the current operating
+procedure; use the execution update above and the linked qualification report.
 
 **DeepSeek is intentionally stopped for recabling.** All four mesh supervisors
 were stopped and disabled through the installed controller. At

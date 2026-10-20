@@ -1,0 +1,556 @@
+{
+  "status": "qualified_selected",
+  "image_id": "sha256:9f26f0b3718ccca889cfd93cb72e2165b6d4c11dd9dc93fe65f585883537f2db",
+  "source": {
+    "schema": "ds41-rocenante-switch-source-candidate/v1",
+    "vllm": "8244d1c44348ae8a5bbfc9f1b607021652283ed4",
+    "flashinfer_base": "91271757f7746f3dfb58f7c2aeb44a663389de9e",
+    "transport_fix": "f3bbd1ce79cb9a62afb88b367580b0583db167ee",
+    "stage_script_sha256": "eb2710dda4b6d055f6425ba24937e0d28ee11ba09c36637fd63862ee8edd916e",
+    "installed": false,
+    "gpu_qualified": false,
+    "requires": [
+      "Unshadow FlashInfer RoCEnante with a new verified image composition",
+      "Keep all remaining base transport files and preparation APIs together",
+      "Rebuild proxy/CuTe caches and verify imports in spawned workers",
+      "Run four-rank eager/graph/numerical/timeout tests before model use"
+    ],
+    "files": {
+      "vllm/distributed/device_communicators/b12x_roce_all_reduce.py": {
+        "before": "cca86b8c97d96b3647e4ef3f90f9638ebc4d8b5dfc1673abc2e5a7750bed9018",
+        "after": "2f6bd84dbc4da542b8b3c1803e25bc0b6db0de4fbae52411133e9a188f3f088c"
+      },
+      "flashinfer/experimental/b12x/comm/roce/_proxy.py": {
+        "before": "ae1ba421414272302a501f7d2f070b46bce742884d798f0afe9bc5e82c02cfc0",
+        "after": "e1cf801788d1bf5e73ef42f416da854923cc844df1792b79af020dee587c9680"
+      },
+      "flashinfer/experimental/b12x/comm/roce/_roce_proxy.c": {
+        "before": "7d5e2f1c719275c230725a4353ca1b47ce38a7266d9eefa24074def21fe9900a",
+        "after": "d60adff67f215e313db5760450d947d1d173be4b230273269b27d7341ba1a046"
+      },
+      "flashinfer/experimental/b12x/comm/roce/_twoshot_cute.py": {
+        "before": "4319525816ad8e5a92db370a7f9ee4322612f01920ba74d0d9c3747d3156ae97",
+        "after": "bd064a007f9ef4100afcd99a6140c9790c78e02a79dcf9eab1dd59ec2ec404b9"
+      }
+    }
+  },
+  "fabric": {
+    "type": "switched-roce-v1",
+    "switch": "MikroTik CRS812",
+    "gid_index": 3,
+    "ranks": [
+      {
+        "rank": 0,
+        "addresses": {
+          "enp1s0f1np1": "10.10.10.1/24",
+          "enP2p1s0f1np1": "10.10.11.1/24"
+        }
+      },
+      {
+        "rank": 1,
+        "addresses": {
+          "enp1s0f1np1": "10.10.10.2/24",
+          "enP2p1s0f1np1": "10.10.11.2/24"
+        }
+      },
+      {
+        "rank": 2,
+        "addresses": {
+          "enp1s0f1np1": "10.10.10.4/24",
+          "enP2p1s0f1np1": "10.10.11.4/24"
+        }
+      },
+      {
+        "rank": 3,
+        "addresses": {
+          "enp1s0f1np1": "10.10.10.3/24",
+          "enP2p1s0f1np1": "10.10.11.3/24"
+        }
+      }
+    ]
+  },
+  "fabric_gate": [
+    {
+      "rank": 0,
+      "passed": true,
+      "rails": [
+        {
+          "interface": "enp1s0f1np1",
+          "hca": "rocep1s0f1",
+          "address": "10.10.10.1/24",
+          "gid_index": 3,
+          "mtu": 9000,
+          "speed_mbps": 200000
+        },
+        {
+          "interface": "enP2p1s0f1np1",
+          "hca": "roceP2p1s0f1",
+          "address": "10.10.11.1/24",
+          "gid_index": 3,
+          "mtu": 9000,
+          "speed_mbps": 200000
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "passed": true,
+      "rails": [
+        {
+          "interface": "enp1s0f1np1",
+          "hca": "rocep1s0f1",
+          "address": "10.10.10.2/24",
+          "gid_index": 3,
+          "mtu": 9000,
+          "speed_mbps": 200000
+        },
+        {
+          "interface": "enP2p1s0f1np1",
+          "hca": "roceP2p1s0f1",
+          "address": "10.10.11.2/24",
+          "gid_index": 3,
+          "mtu": 9000,
+          "speed_mbps": 200000
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "passed": true,
+      "rails": [
+        {
+          "interface": "enp1s0f1np1",
+          "hca": "rocep1s0f1",
+          "address": "10.10.10.4/24",
+          "gid_index": 3,
+          "mtu": 9000,
+          "speed_mbps": 200000
+        },
+        {
+          "interface": "enP2p1s0f1np1",
+          "hca": "roceP2p1s0f1",
+          "address": "10.10.11.4/24",
+          "gid_index": 3,
+          "mtu": 9000,
+          "speed_mbps": 200000
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "passed": true,
+      "rails": [
+        {
+          "interface": "enp1s0f1np1",
+          "hca": "rocep1s0f1",
+          "address": "10.10.10.3/24",
+          "gid_index": 3,
+          "mtu": 9000,
+          "speed_mbps": 200000
+        },
+        {
+          "interface": "enP2p1s0f1np1",
+          "hca": "roceP2p1s0f1",
+          "address": "10.10.11.3/24",
+          "gid_index": 3,
+          "mtu": 9000,
+          "speed_mbps": 200000
+        }
+      ]
+    }
+  ],
+  "cpu_contract_tests": 7,
+  "collectives": [
+    {
+      "rank": 0,
+      "passed": true,
+      "local_cases": 58,
+      "all_reduce_bytes": [
+        16,
+        10240,
+        65536,
+        262144,
+        524288,
+        983040,
+        1048576,
+        1769472,
+        2097152,
+        4194304,
+        16777216,
+        33554432,
+        67108864,
+        83886080,
+        134217728
+      ],
+      "runtime_stats": {
+        "world_size": 4,
+        "rank": 0,
+        "hcas": [
+          "rocep1s0f1",
+          "roceP2p1s0f1"
+        ],
+        "max_size": 2097152,
+        "max_gather_bytes": 16777216,
+        "slot_bytes": 16777216,
+        "pipe_bytes": 134217728,
+        "pipe_threshold": 1048576,
+        "pipe_blocks": 4,
+        "pipe_chunk_bytes": 131072,
+        "max_varlen_bytes": 0,
+        "varlen_blocks": 4,
+        "varlen_chunk_bytes": 262144,
+        "epoch": 9184,
+        "error_seq": 0,
+        "error_peer": 0,
+        "error_hca": 0,
+        "error_kind": 0,
+        "ctrl_seq": 9184,
+        "spin_limit": 20000000,
+        "rails": 2,
+        "routes": [
+          [],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        ],
+        "ops_posted": 9184,
+        "writes_completed": 2236812,
+        "last_seq": 9184,
+        "writes_completed_per_hca": [
+          1118406,
+          1118406
+        ],
+        "bytes_posted_per_hca": [
+          158276760048,
+          158276729856
+        ]
+      },
+      "provider": "/usr/local/lib/python3.12/dist-packages/flashinfer/experimental/b12x/comm/roce/__init__.py",
+      "local_receipt_sha256": "6dddd4e6e23da42c7c1ab5b7e35d864e318f151a4503ad4fe7ec156c31d86565",
+      "upstream_passed": 23,
+      "upstream_test_sha256": "25c89a8a9099b3e32e094d775115241b7ce6085c5bf1e14ee077347b79caa0f4",
+      "upstream_log_sha256": "e55da19e8d5003fb5b9db0c6c4043772c3a40a72d768e90a988e8f5f01123b61"
+    },
+    {
+      "rank": 1,
+      "passed": true,
+      "local_cases": 58,
+      "all_reduce_bytes": [
+        16,
+        10240,
+        65536,
+        262144,
+        524288,
+        983040,
+        1048576,
+        1769472,
+        2097152,
+        4194304,
+        16777216,
+        33554432,
+        67108864,
+        83886080,
+        134217728
+      ],
+      "runtime_stats": {
+        "world_size": 4,
+        "rank": 1,
+        "hcas": [
+          "rocep1s0f1",
+          "roceP2p1s0f1"
+        ],
+        "max_size": 2097152,
+        "max_gather_bytes": 16777216,
+        "slot_bytes": 16777216,
+        "pipe_bytes": 134217728,
+        "pipe_threshold": 1048576,
+        "pipe_blocks": 4,
+        "pipe_chunk_bytes": 131072,
+        "max_varlen_bytes": 0,
+        "varlen_blocks": 4,
+        "varlen_chunk_bytes": 262144,
+        "epoch": 9184,
+        "error_seq": 0,
+        "error_peer": 0,
+        "error_hca": 0,
+        "error_kind": 0,
+        "ctrl_seq": 9184,
+        "spin_limit": 20000000,
+        "rails": 2,
+        "routes": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        ],
+        "ops_posted": 9184,
+        "writes_completed": 2236812,
+        "last_seq": 9184,
+        "writes_completed_per_hca": [
+          1118406,
+          1118406
+        ],
+        "bytes_posted_per_hca": [
+          158276760048,
+          158276729856
+        ]
+      },
+      "provider": "/usr/local/lib/python3.12/dist-packages/flashinfer/experimental/b12x/comm/roce/__init__.py",
+      "local_receipt_sha256": "0f6878e32d9a8f7c691954340e4fa44aa69f97edf5e5ba9404085bc36aa53cac",
+      "upstream_passed": 23,
+      "upstream_test_sha256": "25c89a8a9099b3e32e094d775115241b7ce6085c5bf1e14ee077347b79caa0f4",
+      "upstream_log_sha256": "f41a0ba8b9183d8691249aa4a64ef40a09f957945ccc413bbea9265065153613"
+    },
+    {
+      "rank": 2,
+      "passed": true,
+      "local_cases": 58,
+      "all_reduce_bytes": [
+        16,
+        10240,
+        65536,
+        262144,
+        524288,
+        983040,
+        1048576,
+        1769472,
+        2097152,
+        4194304,
+        16777216,
+        33554432,
+        67108864,
+        83886080,
+        134217728
+      ],
+      "runtime_stats": {
+        "world_size": 4,
+        "rank": 2,
+        "hcas": [
+          "rocep1s0f1",
+          "roceP2p1s0f1"
+        ],
+        "max_size": 2097152,
+        "max_gather_bytes": 16777216,
+        "slot_bytes": 16777216,
+        "pipe_bytes": 134217728,
+        "pipe_threshold": 1048576,
+        "pipe_blocks": 4,
+        "pipe_chunk_bytes": 131072,
+        "max_varlen_bytes": 0,
+        "varlen_blocks": 4,
+        "varlen_chunk_bytes": 262144,
+        "epoch": 9184,
+        "error_seq": 0,
+        "error_peer": 0,
+        "error_hca": 0,
+        "error_kind": 0,
+        "ctrl_seq": 9184,
+        "spin_limit": 20000000,
+        "rails": 2,
+        "routes": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        ],
+        "ops_posted": 9184,
+        "writes_completed": 2236812,
+        "last_seq": 9184,
+        "writes_completed_per_hca": [
+          1118406,
+          1118406
+        ],
+        "bytes_posted_per_hca": [
+          158276760048,
+          158276729856
+        ]
+      },
+      "provider": "/usr/local/lib/python3.12/dist-packages/flashinfer/experimental/b12x/comm/roce/__init__.py",
+      "local_receipt_sha256": "423932f4b905ea73b6179ec5c04bbc294118cc1305bdad1a781c872baa8f64cf",
+      "upstream_passed": 23,
+      "upstream_test_sha256": "25c89a8a9099b3e32e094d775115241b7ce6085c5bf1e14ee077347b79caa0f4",
+      "upstream_log_sha256": "acc7a114085bf835e078a9b21f544b853c269c74c7b9039eede6a9573e975d7a"
+    },
+    {
+      "rank": 3,
+      "passed": true,
+      "local_cases": 58,
+      "all_reduce_bytes": [
+        16,
+        10240,
+        65536,
+        262144,
+        524288,
+        983040,
+        1048576,
+        1769472,
+        2097152,
+        4194304,
+        16777216,
+        33554432,
+        67108864,
+        83886080,
+        134217728
+      ],
+      "runtime_stats": {
+        "world_size": 4,
+        "rank": 3,
+        "hcas": [
+          "rocep1s0f1",
+          "roceP2p1s0f1"
+        ],
+        "max_size": 2097152,
+        "max_gather_bytes": 16777216,
+        "slot_bytes": 16777216,
+        "pipe_bytes": 134217728,
+        "pipe_threshold": 1048576,
+        "pipe_blocks": 4,
+        "pipe_chunk_bytes": 131072,
+        "max_varlen_bytes": 0,
+        "varlen_blocks": 4,
+        "varlen_chunk_bytes": 262144,
+        "epoch": 9184,
+        "error_seq": 0,
+        "error_peer": 0,
+        "error_hca": 0,
+        "error_kind": 0,
+        "ctrl_seq": 9184,
+        "spin_limit": 20000000,
+        "rails": 2,
+        "routes": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          []
+        ],
+        "ops_posted": 9184,
+        "writes_completed": 2236812,
+        "last_seq": 9184,
+        "writes_completed_per_hca": [
+          1118406,
+          1118406
+        ],
+        "bytes_posted_per_hca": [
+          158276760048,
+          158276729856
+        ]
+      },
+      "provider": "/usr/local/lib/python3.12/dist-packages/flashinfer/experimental/b12x/comm/roce/__init__.py",
+      "local_receipt_sha256": "bc74f7629fa927229a506c08936b4e244c7fcc2a426fe3e716cf5f4c443c2d64",
+      "upstream_passed": 23,
+      "upstream_test_sha256": "25c89a8a9099b3e32e094d775115241b7ce6085c5bf1e14ee077347b79caa0f4",
+      "upstream_log_sha256": "c3da1ede9a333ace1fcc4e5356271c66abc077f1c75356dbd924b920792b42b8"
+    }
+  ],
+  "external_serving_qualification": "final-qualification.json",
+  "selected_configuration_sha256": "d86c7e0725efae1ced95a4891da59753853992aaad4fda926814531145e43ca2",
+  "source_receipt_note": "Nested source receipt preserves the pre-install staging state; completed qualification is external."
+}

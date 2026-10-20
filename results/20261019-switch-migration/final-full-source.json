@@ -1,0 +1,33 @@
+{
+  "harness_sha256": "c4c7eaed934d41b8e24f1bb9e81c635af599409276dbe580f14de5f837b09553",
+  "configuration_sha256": "0e92d034735c3e6d3170f693bd6adba706e628bcc0690bc0f74bbfd5cee960c8",
+  "checkpoint": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
+  "revision": "1bae0e1088993b9b82de08f59de5be5a34e42170",
+  "images": [
+    "sha256:9f26f0b3718ccca889cfd93cb72e2165b6d4c11dd9dc93fe65f585883537f2db",
+    "sha256:9f26f0b3718ccca889cfd93cb72e2165b6d4c11dd9dc93fe65f585883537f2db",
+    "sha256:9f26f0b3718ccca889cfd93cb72e2165b6d4c11dd9dc93fe65f585883537f2db",
+    "sha256:9f26f0b3718ccca889cfd93cb72e2165b6d4c11dd9dc93fe65f585883537f2db"
+  ],
+  "protocol": "public LIL 0.7.6; only top_p injected when requested; server/model defaults otherwise except temperature=1",
+  "scope": {
+    "contexts": "8k,16k,32k,64k,128k",
+    "concurrency": "1,2,4,8,16",
+    "coding": true
+  },
+  "clock_cap_mhz": null,
+  "clock_policy": "driver stock boost; nvidia-smi --reset-gpu-clocks",
+  "top_p_request_override": null,
+  "server_sampling_change": {
+    "top_p": 1.0,
+    "source": "official DeepSeek-V4.1-Flash-1017 recommendation; user requested candidate first",
+    "other_settings": "unchanged",
+    "explicit_defaults": {
+      "temperature": 1.0,
+      "top_p": 1.0,
+      "top_k": -1,
+      "min_p": 0.0,
+      "repetition_penalty": 1.0
+    }
+  }
+}

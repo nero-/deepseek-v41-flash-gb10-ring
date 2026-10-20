@@ -1,0 +1,40 @@
+{
+  "policy": "driver stock boost",
+  "explicit_clock_cap_mhz": null,
+  "reset_command": "nvidia-smi --reset-gpu-clocks",
+  "unit": "/etc/systemd/system/gb10-gpu-clock-cap.service",
+  "unit_sha256": "bf8b4c34df61d58fdf490dca33aca7f4cf21f9cf82d0c2cc0f086213e345d511",
+  "old_unit_sha256": "c1a5839ec049a61296cb751c8ccd1ead7be20b41de2051bdc911ecb51b11ebfd",
+  "backup": "/var/lib/deepseek-ring/experiments/stock-clocks-20261020/gb10-gpu-clock-cap.service",
+  "time_utc": "2026-10-20T12:11:09Z",
+  "nodes": [
+    {
+      "rank": 0,
+      "enabled": "enabled",
+      "active": "active",
+      "restart_stdout": "",
+      "restart_stderr": ""
+    },
+    {
+      "rank": 1,
+      "enabled": "enabled",
+      "active": "active",
+      "restart_stdout": "",
+      "restart_stderr": ""
+    },
+    {
+      "rank": 2,
+      "enabled": "enabled",
+      "active": "active",
+      "restart_stdout": "",
+      "restart_stderr": ""
+    },
+    {
+      "rank": 3,
+      "enabled": "enabled",
+      "active": "active",
+      "restart_stdout": "",
+      "restart_stderr": ""
+    }
+  ]
+}

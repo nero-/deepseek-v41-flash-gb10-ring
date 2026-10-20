@@ -1,0 +1,511 @@
+{
+  "default": {
+    "input": {
+      "source_sha256": "cc0ab6717f96e0096da3ad32e8dde26960c4ad7a90528370ed18462468266af6",
+      "args": {
+        "label": "default",
+        "blocks": 4,
+        "chunk_kib": 128,
+        "sizes": "256,512,960,1024,1920,2048,4096,16384,81920",
+        "paths": "oneshot,twoshot,nccl"
+      },
+      "image": "sha256:9f26f0b3718ccca889cfd93cb72e2165b6d4c11dd9dc93fe65f585883537f2db"
+    },
+    "results": {
+      "world": 4,
+      "args": {
+        "sizes_kib": "256,512,960,1024,1920,2048,4096,16384,81920",
+        "paths": "oneshot,twoshot,nccl",
+        "max_mib": 2,
+        "pipe_mib": 128,
+        "pipe_blocks": 4,
+        "chunk_kib": 128,
+        "ops": 20,
+        "reps": 10,
+        "output": "/receipts/micro-default.json",
+        "auto": false
+      },
+      "rows": [
+        {
+          "bytes": 262144,
+          "oneshot": 100.9,
+          "oneshot_err": 0.0,
+          "twoshot": 116.9,
+          "twoshot_err": 0.0,
+          "nccl": 150.7,
+          "nccl_err": 0.0625,
+          "bitwise_equal": true
+        },
+        {
+          "bytes": 524288,
+          "oneshot": 142.9,
+          "oneshot_err": 0.0,
+          "twoshot": 102.3,
+          "twoshot_err": 0.0,
+          "nccl": 162.8,
+          "nccl_err": 0.0625,
+          "bitwise_equal": true
+        },
+        {
+          "bytes": 983040,
+          "oneshot": 198.5,
+          "oneshot_err": 0.0,
+          "twoshot": 125.5,
+          "twoshot_err": 0.0,
+          "nccl": 188.0,
+          "nccl_err": 0.0625,
+          "bitwise_equal": true
+        },
+        {
+          "bytes": 1048576,
+          "oneshot": 206.2,
+          "oneshot_err": 0.0,
+          "twoshot": 136.1,
+          "twoshot_err": 0.0,
+          "nccl": 207.9,
+          "nccl_err": 0.0625,
+          "bitwise_equal": true
+        },
+        {
+          "bytes": 1966080,
+          "oneshot": 340.2,
+          "oneshot_err": 0.0,
+          "twoshot": 174.9,
+          "twoshot_err": 0.0,
+          "nccl": 275.9,
+          "nccl_err": 0.0625,
+          "bitwise_equal": true
+        },
+        {
+          "bytes": 2097152,
+          "oneshot": 350.2,
+          "oneshot_err": 0.0,
+          "twoshot": 192.5,
+          "twoshot_err": 0.0,
+          "nccl": 300.2,
+          "nccl_err": 0.0625,
+          "bitwise_equal": true
+        },
+        {
+          "bytes": 4194304,
+          "twoshot": 330.6,
+          "twoshot_err": 0.0,
+          "nccl": 368.8,
+          "nccl_err": 0.0625
+        },
+        {
+          "bytes": 16777216,
+          "twoshot": 1113.6,
+          "twoshot_err": 0.0,
+          "nccl": 1188.3,
+          "nccl_err": 0.0625
+        },
+        {
+          "bytes": 83886080,
+          "twoshot": 5275.7,
+          "twoshot_err": 0.0,
+          "nccl": 5547.0,
+          "nccl_err": 0.0625
+        }
+      ],
+      "stats": {
+        "world_size": 4,
+        "rank": 0,
+        "hcas": [
+          "rocep1s0f1",
+          "roceP2p1s0f1"
+        ],
+        "max_size": 2097152,
+        "max_gather_bytes": 1048576,
+        "slot_bytes": 2097152,
+        "pipe_bytes": 134217728,
+        "pipe_threshold": 1,
+        "pipe_blocks": 4,
+        "pipe_chunk_bytes": 131072,
+        "max_varlen_bytes": 0,
+        "varlen_blocks": 4,
+        "varlen_chunk_bytes": 262144,
+        "epoch": 3346,
+        "error_seq": 0,
+        "error_peer": 0,
+        "error_hca": 0,
+        "error_kind": 0,
+        "ctrl_seq": 3346,
+        "spin_limit": 20000000,
+        "rails": 2,
+        "routes": [
+          [],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        ],
+        "ops_posted": 3346,
+        "writes_completed": 323802,
+        "last_seq": 3346,
+        "writes_completed_per_hca": [
+          161901,
+          161901
+        ],
+        "bytes_posted_per_hca": [
+          20990115888,
+          20990115840
+        ]
+      }
+    },
+    "rank_status": [
+      {
+        "rank": 0,
+        "ssh": 0,
+        "exit": "0",
+        "stderr": ""
+      },
+      {
+        "rank": 1,
+        "ssh": 0,
+        "exit": "0",
+        "stderr": ""
+      },
+      {
+        "rank": 2,
+        "ssh": 0,
+        "exit": "0",
+        "stderr": ""
+      },
+      {
+        "rank": 3,
+        "ssh": 0,
+        "exit": "0",
+        "stderr": ""
+      }
+    ]
+  },
+  "chunk64": {
+    "input": {
+      "source_sha256": "cc0ab6717f96e0096da3ad32e8dde26960c4ad7a90528370ed18462468266af6",
+      "args": {
+        "label": "chunk64",
+        "blocks": 4,
+        "chunk_kib": 64,
+        "sizes": "512,1024,1920,8192,81920",
+        "paths": "twoshot"
+      },
+      "image": "sha256:9f26f0b3718ccca889cfd93cb72e2165b6d4c11dd9dc93fe65f585883537f2db"
+    },
+    "results": {
+      "world": 4,
+      "args": {
+        "sizes_kib": "512,1024,1920,8192,81920",
+        "paths": "twoshot",
+        "max_mib": 2,
+        "pipe_mib": 128,
+        "pipe_blocks": 4,
+        "chunk_kib": 64,
+        "ops": 20,
+        "reps": 10,
+        "output": "/receipts/micro-chunk64.json",
+        "auto": false
+      },
+      "rows": [
+        {
+          "bytes": 524288,
+          "twoshot": 125.2,
+          "twoshot_err": 0.0
+        },
+        {
+          "bytes": 1048576,
+          "twoshot": 110.7,
+          "twoshot_err": 0.0
+        },
+        {
+          "bytes": 1966080,
+          "twoshot": 188.4,
+          "twoshot_err": 0.0
+        },
+        {
+          "bytes": 8388608,
+          "twoshot": 591.1,
+          "twoshot_err": 0.0
+        },
+        {
+          "bytes": 83886080,
+          "twoshot": 5225.1,
+          "twoshot_err": 0.0
+        }
+      ],
+      "stats": {
+        "world_size": 4,
+        "rank": 0,
+        "hcas": [
+          "rocep1s0f1",
+          "roceP2p1s0f1"
+        ],
+        "max_size": 2097152,
+        "max_gather_bytes": 1048576,
+        "slot_bytes": 2097152,
+        "pipe_bytes": 134217728,
+        "pipe_threshold": 1,
+        "pipe_blocks": 4,
+        "pipe_chunk_bytes": 65536,
+        "max_varlen_bytes": 0,
+        "varlen_blocks": 4,
+        "varlen_chunk_bytes": 262144,
+        "epoch": 1116,
+        "error_seq": 0,
+        "error_peer": 0,
+        "error_hca": 0,
+        "error_kind": 0,
+        "ctrl_seq": 1116,
+        "spin_limit": 20000000,
+        "rails": 2,
+        "routes": [
+          [],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        ],
+        "ops_posted": 1116,
+        "writes_completed": 294366,
+        "last_seq": 1116,
+        "writes_completed_per_hca": [
+          147183,
+          147183
+        ],
+        "bytes_posted_per_hca": [
+          16024830000,
+          16024829952
+        ]
+      }
+    },
+    "rank_status": [
+      {
+        "rank": 0,
+        "ssh": 0,
+        "exit": "0",
+        "stderr": ""
+      },
+      {
+        "rank": 1,
+        "ssh": 0,
+        "exit": "0",
+        "stderr": ""
+      },
+      {
+        "rank": 2,
+        "ssh": 0,
+        "exit": "0",
+        "stderr": ""
+      },
+      {
+        "rank": 3,
+        "ssh": 0,
+        "exit": "0",
+        "stderr": ""
+      }
+    ]
+  },
+  "blocks8": {
+    "input": {
+      "source_sha256": "cc0ab6717f96e0096da3ad32e8dde26960c4ad7a90528370ed18462468266af6",
+      "args": {
+        "label": "blocks8",
+        "blocks": 8,
+        "chunk_kib": 128,
+        "sizes": "512,1024,1920,8192,81920",
+        "paths": "twoshot"
+      },
+      "image": "sha256:9f26f0b3718ccca889cfd93cb72e2165b6d4c11dd9dc93fe65f585883537f2db"
+    },
+    "results": {
+      "world": 4,
+      "args": {
+        "sizes_kib": "512,1024,1920,8192,81920",
+        "paths": "twoshot",
+        "max_mib": 2,
+        "pipe_mib": 128,
+        "pipe_blocks": 8,
+        "chunk_kib": 128,
+        "ops": 20,
+        "reps": 10,
+        "output": "/receipts/micro-blocks8.json",
+        "auto": false
+      },
+      "rows": [
+        {
+          "bytes": 524288,
+          "twoshot": 102.6,
+          "twoshot_err": 0.0
+        },
+        {
+          "bytes": 1048576,
+          "twoshot": 119.8,
+          "twoshot_err": 0.0
+        },
+        {
+          "bytes": 1966080,
+          "twoshot": 188.8,
+          "twoshot_err": 0.0
+        },
+        {
+          "bytes": 8388608,
+          "twoshot": 568.1,
+          "twoshot_err": 0.0
+        },
+        {
+          "bytes": 83886080,
+          "twoshot": 5263.6,
+          "twoshot_err": 0.0
+        }
+      ],
+      "stats": {
+        "world_size": 4,
+        "rank": 0,
+        "hcas": [
+          "rocep1s0f1",
+          "roceP2p1s0f1"
+        ],
+        "max_size": 2097152,
+        "max_gather_bytes": 1048576,
+        "slot_bytes": 2097152,
+        "pipe_bytes": 134217728,
+        "pipe_threshold": 1,
+        "pipe_blocks": 8,
+        "pipe_chunk_bytes": 131072,
+        "max_varlen_bytes": 0,
+        "varlen_blocks": 4,
+        "varlen_chunk_bytes": 262144,
+        "epoch": 1116,
+        "error_seq": 0,
+        "error_peer": 0,
+        "error_hca": 0,
+        "error_kind": 0,
+        "ctrl_seq": 1116,
+        "spin_limit": 20000000,
+        "rails": 2,
+        "routes": [
+          [],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        ],
+        "ops_posted": 1116,
+        "writes_completed": 232818,
+        "last_seq": 1116,
+        "writes_completed_per_hca": [
+          116409,
+          116409
+        ],
+        "bytes_posted_per_hca": [
+          16024830000,
+          16024829952
+        ]
+      }
+    },
+    "rank_status": [
+      {
+        "rank": 0,
+        "ssh": 0,
+        "exit": "0",
+        "stderr": ""
+      },
+      {
+        "rank": 1,
+        "ssh": 0,
+        "exit": "0",
+        "stderr": ""
+      },
+      {
+        "rank": 2,
+        "ssh": 0,
+        "exit": "0",
+        "stderr": ""
+      },
+      {
+        "rank": 3,
+        "ssh": 0,
+        "exit": "0",
+        "stderr": ""
+      }
+    ]
+  }
+}

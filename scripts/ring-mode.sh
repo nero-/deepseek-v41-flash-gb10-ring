@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Operate DeepSeek-V4.1-Flash TP4 on the four-node ring.
+# Operate DeepSeek-V4.1-Flash TP4 on the four-node switched fleet (historical command name).
 #
 #   scripts/ring-mode.sh ds                 # serve the selected SparkRing vLLM configuration
-#   scripts/ring-mode.sh recover-ds         # stop workloads, reset all mesh services, start selected vLLM
-#   scripts/ring-mode.sh ds-vllm-stock       # serve the official installer defaults
+#   scripts/ring-mode.sh recover-ds         # stop workloads, disable old mesh services, start selected vLLM
+#   scripts/ring-mode.sh ds-vllm-stock       # rejected on the switch (old ring only)
 #   scripts/ring-mode.sh qwen               # reports retired; leaves DeepSeek running
 #   scripts/ring-mode.sh stop               # stop everything (mesh left as is)
 #   scripts/ring-mode.sh status
@@ -11,9 +11,9 @@
 # Runs from any host that can SSH to spark-r0 / gx10-r0 (the Mac or a node).
 # The DeepSeek head is spark-r0.
 # ds/ds-vllm select the qualified local SparkRing configuration; ds-vllm-stock
-# selects the unchanged official installer deployment.
+# selects the old ring deployment and is rejected in switched mode.
 # Retired Qwen pair stop entry points remain compatible with DeepSeek recovery.
-# The root-owned helper coordinates the mesh lifecycle with DeepSeek.
+# The root-owned helper validates the switch; old mesh services stay disabled.
 set -euo pipefail
 RANKS=(spark-r0 spark-r1 gx10-r1 gx10-r0)
 DS_HEAD=spark-r0

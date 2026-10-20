@@ -51,6 +51,21 @@ print('Plugin manifest verified')
     parallel(lambda rank: remote(rank, ["python3", "-c", code, PLUGINS, json.dumps(manifest)]))
 
 
+def verify_fabric(document):
+    fabric = document.get("fabric")
+    if fabric is None:
+        runner = Runner(DEPLOYMENT)
+        parallel(lambda rank: runner.remote(rank, "mesh-gate"))
+        return
+    if fabric.get("type") != "switched-roce-v1":
+        raise ValueError("Unknown selected fabric")
+    code = Path(__file__).with_name("switched_fabric.py").read_text()
+    results = parallel(lambda rank: json.loads(remote(rank, [
+        "python3", "-c", code, str(rank), json.dumps(fabric),
+    ])))
+    print(json.dumps({"switched_fabric": results}), flush=True)
+
+
 def specifications():
     stat = CONFIG.stat()
     if stat.st_uid != 0 or stat.st_mode & 0o022:
@@ -117,8 +132,7 @@ def main():
                 print("Optimized DeepSeek is already healthy")
                 return
         raise RuntimeError("Partially running deployment; run down before restarting")
-    runner = Runner(DEPLOYMENT)
-    parallel(lambda rank: runner.remote(rank, "mesh-gate"))
+    verify_fabric(document)
     for rank, spec in enumerate(specs):
         if states[rank] is None:
             remote(rank, docker_create(spec))

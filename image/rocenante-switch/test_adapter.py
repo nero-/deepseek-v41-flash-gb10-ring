@@ -47,10 +47,13 @@ class AdapterContracts(unittest.TestCase):
             max_size=2 << 20, hca_names=("railA", "railB"),
         )
         self.factory = Mock(return_value=self.runtime)
+        self.factory.from_exchange_group = Mock(
+            side_effect=AssertionError("Compatibility wrapper ignores pipe settings")
+        )
         self.roce = module(
             "b12x.comm.roce", API_VERSION=1, _proxy=self.proxy,
             is_supported=lambda device: True,
-            AllReduce=NS(from_exchange_group=self.factory),
+            AllReduce=self.factory,
             query_from_runtime=lambda *a, **k: None,
             plan=lambda *a, **k: NS(request=lambda **k: NS(**k)),
         )
@@ -149,6 +152,8 @@ class AdapterContracts(unittest.TestCase):
         os.environ["DS41_ROCE_PIPE_BYTES"] = "64MiB"
         self.cls("gloo", "cuda-group", "cuda:0")
         kwargs = self.factory.call_args.kwargs
+        self.factory.from_exchange_group.assert_not_called()
+        self.assertEqual(kwargs["exchange_group"], "gloo")
         self.assertEqual(kwargs["pipe_bytes"], 64 << 20)
         self.assertEqual(kwargs["pipe_threshold"], 1 << 20)
         self.assertEqual(kwargs["max_size"], 2 << 20)

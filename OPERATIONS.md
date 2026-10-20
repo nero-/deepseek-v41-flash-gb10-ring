@@ -1,10 +1,10 @@
-# Operating the ring
+# Operating the switched TP4 cluster
 
-**Maintenance handoff, October 19 HST / October 20 UTC:** the model and all
-mesh supervisors are stopped for CRS812 recabling. Switch networking is not
-deployed yet. The start/recovery commands below still enable the old ring mesh;
-do not run them during this handoff. Use the
-[current migration plan](results/20261019-switch-migration/PLAN.md).
+**CRS812 conversion, October 20 UTC:** host networking is converted and the
+controller now validates switched RoCE without starting the retired mesh.
+The selected RoCEnante two-shot profile is qualified. Follow the installed selection and the
+[switch campaign](results/20261019-switch-migration/PLAN.md); do not replay the
+historical ring network or rollback configurations.
 
 | Mode | Nodes | API | Model |
 |---|---|---|---|
@@ -33,8 +33,8 @@ cd ~/Agent/Builds/deepseek-v41-flash-ring
 ```
 
 `ds` and `recover-ds` return when the selected API is healthy; allow roughly
-4–20 minutes for startup. `recover-ds` first stops workloads and the entire
-mesh. Both retired Qwen pair stop entry points remain idempotent for DS recovery.
+4–20 minutes for startup. `recover-ds` first stops workloads and disables the
+retired mesh, then validates the switched fabric and starts all four ranks. Both retired Qwen pair stop entry points remain idempotent for DS recovery.
 `ring-mode.sh qwen` reports retirement before any SSH, DS stop or mesh change.
 
 ## Using DeepSeek
@@ -64,18 +64,37 @@ KV uses `--kv-cache-memory-bytes 21474836480`: **20 GiB per GPU**, exposing
 changing that fraction alone has no effect while the explicit byte budget is
 present. The head's **initial loaded memory target is at most about 118 GiB
 total used**, measured as `MemTotal - MemAvailable`, not Docker RSS or GPU
-allocation alone. The selected profile started at **117.40 GiB used**,
-leaving **4.28 GiB available**. This is a startup budget,
+allocation alone. The selected profile started at **117.31 GiB used**,
+leaving **4.38 GiB available**. This is a startup budget,
 not a runtime ceiling; do not install an automatic 118 GiB stop guard.
 KV capacity is largely preallocated at startup; other caches and working
-buffers can grow afterward. Qualification peaked at **118.66 GiB**.
-[Decode trials, memory and final checks](results/20261017-decode-tuning/REPORT.md).
+buffers can grow afterward.
+[Current qualification and memory evidence](results/20261019-switch-migration/REPORT.md).
 
 The context limit is 1,048,576 tokens, with 16 active sequences. The 8K batch
 ceiling controls work per iteration; it is not a per-request reservation. The
-adaptive plugin uses 4K steps only when at least four runnable decoders contend
+adaptive plugin uses 4K steps when at least one runnable decoder contends
 with prefill. Aggregate KV capacity limits simultaneous long contexts.
 Greedy byte-repeatability is not guaranteed by this pinned runtime.
+
+The serving profile uses native DSpark with four proposals, probabilistic draft
+sampling, block rejection and adaptive verification. Its native batch-size cap
+is `[[1,1,3],[2,16,4]]`: C1 passes at most three proposals to target verification;
+the draft model still computes four. This is not a variable-width draft engine.
+The graph ladder covers the union of `4*n` and `5*n` for `n=1..16`, through 80
+rows. The target head remains BF16, with NVFP4 draft and Markov heads and the
+full vocabulary. See `results/deployment.json` for the exact speculation and
+compilation configuration.
+
+RoCEnante uses both switched rails, a 128 MiB pipe and a 512 KiB two-shot
+threshold. Small reductions and eligible gathers use one-shot; unsupported
+operations retain patched NCCL fallback. There is no SIRCL serving path.
+The complete image recipe is `image/rocenante-switch/README.md`.
+
+LIL's generic NVIDIA local-P2P override warning is not a switched-RDMA
+qualification result. Both rails and RoCEnante collectives were validated
+directly on this fleet. Do not change NVIDIA module options or reboot merely
+to clear that harness warning.
 
 ## Images and chat history
 
@@ -101,19 +120,21 @@ This is a serving flag in root-owned `/etc/deepseek-ring/optimized-specs.json`,
 not an edit to the checkpoint's `config.json`. Container commands must match the
 installed selection on every rank; changing a local README does not deploy it.
 
-If the image-count change itself must be rolled back, use the retained private
-campaign from the Mac:
+**Historical ring-only rollback:** the private command below predates the switch
+and must not be run against the switched selection. To change only image count,
+retain the current switched image/environment and coordinate a fresh selection.
+The old command is recorded for history:
 
 ```bash
 python3 ~/Agent/Diagnostics/deepseek-v41-flash-ring/image-limit-20261017/change_limit.py rollback
 ```
 
-That coordinated operation restores the four-image selection with the **same
-current image, 1017 checkpoint and 20 GiB KV**, from `ds41-before-images-rN`.
-Its head backup is
+On the former physical ring, that operation restored the four-image selection
+with the **October 17 image, 1017 checkpoint and 20 GiB KV**, from
+`ds41-before-images-rN`. Its historical head backup is
 `/var/lib/deepseek-ring/experiments/image-limit-20261017/original-selection.json`.
-Undo this selection first before using older KV/runtime rollback procedures;
-their configuration identity checks deliberately reject an unfamiliar selection.
+That old rollback chain is incompatible with switched networking. Use the
+[supported switched fallback](#rollback-on-the-switch) for software recovery.
 Ordinary `ds` / `recover-ds` keeps 999 images and needs no rollback.
 
 ## Lifecycle on spark-r0
@@ -127,15 +148,40 @@ sudo -n /usr/local/sbin/deepseek-ring-control status
 ```
 
 These fixed actions already have passwordless sudo. The root-owned helper
-validates recorded images, commands, mounts and plugin hashes, then checks the
-mesh before starting `ds41-optimized-r0` through `r3`.
+validates recorded images, commands, mounts and plugin hashes, then checks
+addresses, both 200G rails, MTU, GID 3, jumbo reachability and disabled legacy
+services before starting `ds41-optimized-r0` through `r3`.
 Inspect rank 0 with `docker logs --tail 100 ds41-optimized-r0`.
 
-`status` reports the selected deployment first, then the installer stock
-fallback. Stopped stock containers are expected. Its status can also report
-missing broad fabric routes; the selected mesh gate and API health check
-establish serving readiness. `ds-vllm-stock` remains an emergency fallback,
-but its older image predates the compressor-state fidelity fix.
+`status` reports the selected deployment and switched topology. The old
+installer stock configuration requires the physical ring and is rejected by
+`stock-up` before any running workload is stopped. Keep the installed SparkRing
+package: its container-spec library and seccomp profile are still dependencies;
+its fabric, hairpin, agent, mesh and model services stay disabled.
+
+## Switched fabric
+
+Each node uses **physical port 1**, exposing two Socket Direct rails sharing
+one 200G cable. They are not two independent 200G links. Use MTU 9000 and IPv4
+RoCEv2 GID **3** on both rails:
+
+| Rank | Node | Rail A: enp1s0f1np1 / rocep1s0f1 | Rail B: enP2p1s0f1np1 / roceP2p1s0f1 |
+|---|---|---|---|
+| 0 | spark-r0 | 10.10.10.1/24 | 10.10.11.1/24 |
+| 1 | spark-r1 | 10.10.10.2/24 | 10.10.11.2/24 |
+| 2 | gx10-r1 | 10.10.10.4/24 | 10.10.11.4/24 |
+| 3 | gx10-r0 | 10.10.10.3/24 | 10.10.11.3/24 |
+
+Host configuration is `/etc/netplan/40-switch-fabric.yaml`, rendered by
+NetworkManager, with `/etc/sysctl.d/60-switch-fabric.conf` ARP policy. Do not run
+`netplan apply` or restore old SparkRing profiles. The unused port-0 interfaces
+stay without IPv4 addresses. Management Ethernet `enP7s7` is unchanged.
+The full switch setup is in `../spark-cluster-network.md`.
+
+On CRS812, the four breakout legs use 200G-baseCR4, no autonegotiation,
+L2MTU 9216, and an isolated hardware-offloaded fabric bridge. Switch management
+is on a separate bridge. QoS/PFC/ECN were not recorded or changed in this
+campaign; passing host tests does not establish that those policies are enabled.
 
 ## After a node reboot
 
@@ -153,54 +199,20 @@ sudo -n /usr/local/sbin/deepseek-ring-control mesh-off
 sudo -n /usr/local/sbin/deepseek-ring-control up
 ```
 
-Restart the fleet together; do not restart one mesh supervisor under surviving
-DeepSeek workers. The selected containers do not serve automatically after
-reboot. SparkRing manages NetworkManager fabric profiles; do not reapply the
-old setup recipe or netplan snapshots.
+Restart the fleet together; the selected containers do not serve automatically
+after reboot. The controller never re-enables the old mesh in switched mode.
 
-### RoCE GID differs after a peer reboot
+### Switched link or GID failure
 
-In the October 6 HST incident, spark-r1 rebooted and gx10-r1's two
-counterclockwise interfaces placed IPv4 RoCE v2 in GID **4**, leaving required
-GID **3** empty. The checkpoint and images were intact. Restarting supervisors
-alone did not repair that allocation.
-
-First stop all workloads and mesh supervisors from the Mac:
-
-```bash
-./scripts/ring-mode.sh stop
-ssh -o HostName=192.168.50.219 -o ProxyCommand=none spark-r0 \
-  'sudo -n /usr/local/sbin/deepseek-ring-control mesh-off'
-```
-
-Read the affected node's error:
-
-```bash
-ssh -o HostName=192.168.50.192 -o ProxyCommand=none gx10-r1 \
-  'journalctl -u sparkring-sparkring-deepseek-v41-flash-adaefa-mesh.service -n 30 --no-pager'
-```
-
-For the **same gx10-r1 counterclockwise failure**, run on **gx10-r1**:
-
-```bash
-sudo -n nmcli connection down sparkring-sparkring-r2-ccw-primary
-sudo -n nmcli connection down sparkring-sparkring-r2-ccw-secondary
-sudo -n nmcli connection up sparkring-sparkring-r2-ccw-primary
-sudo -n nmcli connection up sparkring-sparkring-r2-ccw-secondary
-for hca in rocep1s0f1 roceP2p1s0f1; do
-  cat /sys/class/infiniband/$hca/ports/1/gids/3
-  cat /sys/class/infiniband/$hca/ports/1/gid_attrs/types/3
-done
-```
-
-Expected GID 3 values are `0000:0000:0000:0000:0000:ffff:0a0a:010b`
-and `0000:0000:0000:0000:0000:ffff:0a0b:010b`, both **RoCE v2**.
-Then run `./scripts/ring-mode.sh ds` from the Mac. The mesh gate checks all ranks.
-
-For another node or port, identify its existing `sparkring-*` profile and
-expected address first. Do not change the recipe to GID 4 or bounce the
-management LAN. `recover-ds` resets supervisors; it does not bounce fabric links.
-[Recovery audit](results/recovery-20261007T094058Z/final-audit.json).
+Read the failing interface and node from the startup gate. Check `ip -br addr`,
+`rdma link`, and the HCA's `/sys/class/infiniband/<hca>/ports/1/gids/3` and
+`gid_attrs/types/3`. GID 3 must be IPv4-mapped to that rail's address above and
+its type must be `RoCE v2`. Check all four peers and both rails before startup.
+Use `nmcli connection show` to identify the **current switch profile** if a
+link bounce is needed, and stop the fleet first. Do not bounce management
+Ethernet, activate a `sparkring-*` profile, or substitute GID 4 blindly.
+The October 7 counterclockwise-ring repair is historical and no longer applies
+on this switch; its evidence remains in Git and the retained recovery audit.
 
 ### Decode slows to roughly half speed
 
@@ -229,32 +241,39 @@ were resolved by a full power disconnect. Stop DeepSeek and all mesh
 supervisors as above, shut down the affected node cleanly, then disconnect its
 power adapter from both the wall and node for 1–2 minutes. Reconnect and boot,
 wait for SSH, then run `./scripts/ring-mode.sh recover-ds`. Check GID 3 if the
-mesh gate fails. Verify all four clocks under generation and repeat a short C1
+switched-fabric gate fails. Verify all four clocks under generation and repeat a short C1
 probe before declaring recovery. A healthy API alone does not prove normal speed.
 
 ## Fabric and host maintenance
 
-Rank order is spark-r0 → spark-r1 → gx10-r1 → gx10-r0 → spark-r0.
-Each rank's f0 cable connects to the next rank's f1. Every cable carries two
-Socket Direct RoCE planes, `10.10.N.10/11` and `10.11.N.10/11`. MTU is 9000;
-IPv4 RoCE v2 uses GID 3. SSH and APIs use the management LAN.
+Rank order remains spark-r0, spark-r1, gx10-r1, gx10-r0. All nodes now connect
+directly to CRS812 using port 1; see the [switched map](#switched-fabric).
+SSH and APIs remain on the management LAN.
 
 All four hosts run kernel `7.0.0-1019-nvidia`, driver `580.178.04`, with
 NetworkManager wait-online enabled. The enabled
-[clock-cap service](host/systemd/gb10-gpu-clock-cap.service) applies a 2350 MHz
-upper limit before Docker at boot; idle downclocking remains enabled. After a
-manual GPU/driver reset, reapply it with:
+[clock-policy service](host/systemd/gb10-gpu-clock-cap.service) resets locked
+GPU clocks to **driver stock boost** before Docker at boot. Its historical
+`gb10-gpu-clock-cap.service` name is retained. There is no explicit upper or
+lower lock; idle downclocking remains enabled. This replaces the former
+0–2350 MHz ceiling at the user's request. After a manual GPU/driver reset,
+reapply the selected policy with:
 
 ```bash
 sudo systemctl reload gb10-gpu-clock-cap.service
 ```
 
-Do not restart the mesh while serving or overlap DeepSeek with another model. Avoid
-`netplan apply` on GX10s: it can stop NetworkManager. For stopped-fleet fabric
-diagnostics, `bash ring/rdma_links.sh` checks direct links;
-`ring/mesh_paths.sh` checks hardware-forwarded opposite paths and requires
-Bash 4+ on Linux or an explicitly selected newer Bash on the Mac. Do not run
-fabric bandwidth/latency tests during serving.
+The previous exact unit is backed up on every node under
+`/var/lib/deepseek-ring/experiments/stock-clocks-20261020/`.
+Stock boost did not establish a consistent decode gain in the focused clock
+trials. A temporary 2700 MHz ceiling also failed to improve decode; do not
+infer actual operating frequency from a requested clock.
+
+Keep retired mesh services disabled and never overlap DeepSeek with another GPU
+workload. Avoid `netplan apply` on GX10s: it can stop NetworkManager. The scripts
+in `ring/` describe the old cabling and are historical; use
+`scripts/switched_fabric.py` with the installed selected fabric document for
+current checks. Run bandwidth/latency stress only with serving stopped.
 
 ## Validation and benchmarks
 
@@ -315,79 +334,40 @@ not control different hardware clocks, client placement or stochastic variation.
 | Retired Qwen source/config and stop compatibility | `~/builds/qwen-tp2` on every node; weights/caches/images removed |
 | Benchmark environment | `~/bench` on gx10-r0 |
 
-The private workstation campaign
-`~/Agent/Diagnostics/deepseek-v41-flash-ring/decode-tuning-20261017/qualified-selection.json`
-matches the live selection. The private local
-`results/20261017-runtime-upgrade/selected-runtime.json` records the prior
-16.5 GiB configuration on the same current image and is excluded from Git. The earlier
-`results/20261017-checkpoint-upgrade/selected-1017.json` records the prior
-September GPU runtime on the same 1017 weights. The September 29
-`selected-corrected.json` predates the checkpoint update. Preserve these;
-never replace the root-owned selection without checking live image identities,
-plugin manifests and container state.
+The switch campaign at
+`~/Agent/Diagnostics/deepseek-v41-flash-ring/switch-migration-20261019/`
+contains the baseline and candidate selections, exact image IDs, retained
+container receipts, and test results. Check the installed root-owned selection
+against the current deployment manifest before changing it.
 
-## Restoring the previous KV budget on the current image
+## Rollback on the switch
 
-First undo the later [image-limit selection](#images-and-chat-history); the KV
-rollback helper only accepts its own saved selection.
+The software fallback is the same October 17 image and official 1017 checkpoint
+with **switched networking**, saved as `baseline-specs.json`. Once the two-shot
+candidate is selected, the baseline containers are `ds41-before-switch-baseline-rN`.
+Stop all benchmark/client traffic and the fleet before running the private
+campaign's `restore_baseline.py`, then use the fixed-action controller to start.
+The helper checks current and retained identities; it does not start serving
+or change host networking. Update the deployment manifest after a rollback.
 
-The previous 16.5 GiB configuration is preserved in stopped
-`ds41-before-tuning-rN` containers. It uses the same current image and 1017
-weights. The root-owned config backup is
-`/var/lib/deepseek-ring/experiments/decode-tuning-20261017/original-selection.json`.
-After checking live state and stopping benchmark traffic:
+The helper accepts the qualified `c1cap3` serving specification even after
+external qualification metadata is added. It checks the stopped fallback's
+image, complete argument vector, selected environment and mounts before
+renaming any container. Root configuration replacement requires the normal
+admin method; fixed-action `up`/`down` remain passwordless.
 
-```bash
-python3 ~/Agent/Diagnostics/deepseek-v41-flash-ring/decode-tuning-20261017/tuning_cutover.py \
-  rollback --specs final-specs.json
-```
+The earlier `ds41-before-images-rN`, `ds41-before-tuning-rN`,
+`ds41-rollback-runtime-rN`, `ds41-rollback-1017-rN`, and
+`ds41-before-ring-rN` containers encode the **retired physical ring**.
+Do not start them or run their historical rollback helpers on this switch.
+Their configuration guards intentionally reject the current selection. If an
+older runtime or checkpoint is needed, create and qualify a new switched
+selection while preserving the current fabric and lifecycle controller.
 
-This restores the previous current-image selection, not the old runtime.
-Reconcile the deployment manifest from
-`results/20261017-decode-tuning/previous-deployment.json` and the selected docs
-afterward. A downgrade to the older runtime below requires this step first
-because its helper correctly
-rejects the later KV selection. No rollback is needed for ordinary recovery.
-
-## Rolling back the runtime without changing weights
-
-The previous qualified runtime is retained on every node as
-`ds41-rollback-runtime-rN`. It uses the SAME official 1017 checkpoint, so no
-weight transfer or deletion is needed. Root-owned config backups are on
-spark-r0 in `/var/lib/deepseek-ring/experiments/runtime-20261017/`.
-
-After inspecting the current configuration and stopping benchmark traffic,
-the campaign helper on the workstation can coordinate the rollback:
-
-```bash
-python3 ~/Agent/Diagnostics/deepseek-v41-flash-ring/runtime-20261017/runtime_cutover.py \
-  rollback --specs kv-specs.json
-```
-
-It checks the known selection, stops the new fleet, restores names and the
-previous root config, and starts the old runtime. It refuses an unknown later
-selection. Reconcile `results/deployment.json` using the retained
-`results/20261017-runtime-upgrade/previous-deployment.json` and update the
-operating docs after a rollback. Do not use checkpoint downgrade for an image
-or KV-budget problem.
-
-## Rolling back the 1017 checkpoint upgrade
-
-Normal `ds` / `recover-ds` uses the qualified 1017 selection. Do not use
-`stock-up` or start the retained `ds41-rollback-1017-rN` containers directly:
-the old GX10 weight shards no longer exist. Both Sparks retain verified old
-weights and all four original images remain available.
-
-The campaign at `~/Agent/Diagnostics/deepseek-v41-flash-ring/upgrade-1017-20261017/`
-contains `cutover.py rollback`, the original/qualified configurations and full
-hash/deletion receipts. Inspect current live state and those receipts first.
-First roll back the newer runtime as above so this older campaign recognizes
-the selection. Its checkpoint rollback action then stops the fleet, restores
-old container names and selection, removes only the new GX10 weight shards, copies and hash-verifies
-the old shards from adjacent Sparks over the fabric, then starts the old model.
-It needs substantial transfer/startup time and must run with all GPU workloads
-stopped. Its temporary artifact servers must be cleaned up afterward using
-recorded PID/command ownership. Do not overwrite a later unknown selection.
+The previous checkpoint remains verified on the Sparks only; restoring it to
+GX10s would require a separate fabric transfer and hash verification. No weight
+transfer is needed for the current switched transport fallback. Historical
+configuration/weight receipts remain in the prior campaign directories and Git.
 
 The earlier GLM compatibility receipt remains historical. Its checkpoint copies
 were subsequently deleted and its startup controls now reject the retirement

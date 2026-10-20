@@ -1,5 +1,5 @@
 [Unit]
-Description=GB10 GPU upper clock limit (2350 MHz)
+Description=GB10 GPU clock policy (driver stock boost)
 Wants=nvidia-persistenced.service
 After=nvidia-persistenced.service
 Before=docker.service
@@ -7,8 +7,8 @@ StartLimitIntervalSec=0
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/nvidia-smi -lgc 0,2350
-ExecReload=/usr/bin/nvidia-smi -lgc 0,2350
+ExecStart=/usr/bin/nvidia-smi --reset-gpu-clocks
+ExecReload=/usr/bin/nvidia-smi --reset-gpu-clocks
 RemainAfterExit=yes
 Restart=on-failure
 RestartSec=10
