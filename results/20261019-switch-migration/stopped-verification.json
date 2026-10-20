@@ -1,0 +1,38 @@
+{
+  "utc": "2026-10-20T05:28:12.203781+00:00",
+  "nodes": [
+    {
+      "rank": 0,
+      "containers": "",
+      "gpu_processes": "",
+      "mesh_is-active": "inactive",
+      "mesh_is-enabled": "disabled",
+      "possible_relays": ""
+    },
+    {
+      "rank": 1,
+      "containers": "",
+      "gpu_processes": "",
+      "mesh_is-active": "inactive",
+      "mesh_is-enabled": "disabled",
+      "possible_relays": ""
+    },
+    {
+      "rank": 2,
+      "containers": "",
+      "gpu_processes": "",
+      "mesh_is-active": "inactive",
+      "mesh_is-enabled": "disabled",
+      "possible_relays": ""
+    },
+    {
+      "rank": 3,
+      "containers": "",
+      "gpu_processes": "",
+      "mesh_is-active": "inactive",
+      "mesh_is-enabled": "disabled",
+      "possible_relays": ""
+    }
+  ],
+  "api_unavailable": true
+}

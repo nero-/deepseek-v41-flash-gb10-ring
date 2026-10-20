@@ -1,5 +1,10 @@
 # Standby plan: DS41-1017 runtime and switched TP4 upgrades
 
+> **October 19 HST / October 20 UTC:** the CRS812 has arrived and the fleet is
+> stopped for recabling. Use the [updated switch plan](../20261019-switch-migration/PLAN.md).
+> It incorporates the actual selected runtime, one-port breakout topology and
+> current transport audit; this document remains historical research.
+
 > **Scope update, October 17:** the user advanced the full eugr/KK/FlashInfer
 > runtime comparison ahead of the switch. Its live selection and qualification
 > are recorded in [the runtime campaign](../20261017-runtime-upgrade/REPORT.md)

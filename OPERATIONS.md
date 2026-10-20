@@ -1,5 +1,11 @@
 # Operating the ring
 
+**Maintenance handoff, October 19 HST / October 20 UTC:** the model and all
+mesh supervisors are stopped for CRS812 recabling. Switch networking is not
+deployed yet. The start/recovery commands below still enable the old ring mesh;
+do not run them during this handoff. Use the
+[current migration plan](results/20261019-switch-migration/PLAN.md).
+
 | Mode | Nodes | API | Model |
 |---|---|---|---|
 | DeepSeek vLLM TP4 | all four | `http://192.168.50.219:8015/v1` | `DeepSeek-V4.1-Flash-TP4` |
@@ -8,7 +14,7 @@ DeepSeek needs all four nodes. There are no API keys. Qwen serving on this ring
 was retired on 2026-10-12 UTC; the former port-8000 endpoints are no longer
 served. The [GLM handoff](../GLM/HANDOFF.md) records the storage cleanup and
 GLM assignment. On 2026-10-14 the user requested stopping GLM and restoring
-DeepSeek for the HF inference-change audit. DeepSeek is now serving on 8015;
+DeepSeek for the HF inference-change audit. DeepSeek's selected endpoint is 8015;
 GLM's historical Weightless alpha-2 recipe remains saved, but all GLM checkpoint
 copies were deleted at the user's request on October 17. GLM start/restart and
 profile selection are blocked by its retirement marker until a new build is

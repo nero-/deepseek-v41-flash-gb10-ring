@@ -3,6 +3,12 @@
 Corrected SparkRing vLLM TP4 across two DGX Sparks and two ASUS GX10s.
 API: **http://192.168.X.X:8015/v1**. Model: **DeepSeek-V4.1-Flash-TP4**.
 
+**Maintenance, October 19 HST / October 20 UTC:** DeepSeek and all mesh
+supervisors are stopped for CRS812 recabling. The switch conversion is not
+deployed yet. Do not use the ring start/recovery commands below during this
+handoff; they enable the old mesh. See the
+[current switch migration plan](results/20261019-switch-migration/PLAN.md).
+
 **Selected as of 2026-10-17 UTC:** official **DeepSeek-V4.1-Flash-1017** on
 the qualified October 15 eugr/KK/FlashInfer runtime. The existing RoCEnante ring
 transport and local performance plugins are preserved.
@@ -99,6 +105,7 @@ checkout. Tracked history is recoverable from Git at `364eb87`; a complete
 pre-cleanup working snapshot also preserves uncommitted research outside the
 repository. Its local location is recorded in `.local/cleanup.json`.
 
-The [switch and large-message collective plan](results/20261017-runtime-plan/PLAN.md)
-remains staged for the switch arrival. Its runtime portion was advanced in the
-campaign above; the topology, new two-shot transport and SIRCL remain unchanged.
+The [current switch migration plan](results/20261019-switch-migration/PLAN.md)
+records the shutdown, one-port 200G layout, exact ring cleanup, image options and
+validation sequence. The [earlier runtime plan](results/20261017-runtime-plan/PLAN.md)
+is historical research; its runtime upgrade was completed in the campaign above.

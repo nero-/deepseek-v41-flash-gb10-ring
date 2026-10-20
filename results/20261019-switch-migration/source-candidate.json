@@ -1,0 +1,43 @@
+{
+  "status": "source_staged_only",
+  "serving_qualified": false,
+  "gpu_tests_run": false,
+  "cpu_contract_tests": {
+    "passed": 7,
+    "command": "python3 image/rocenante-switch/test_adapter.py <stage-directory>"
+  },
+  "patch_applies_to_pinned_preimages": true,
+  "sources": {
+    "schema": "ds41-rocenante-switch-source-candidate/v1",
+    "vllm": "8244d1c44348ae8a5bbfc9f1b607021652283ed4",
+    "flashinfer_base": "91271757f7746f3dfb58f7c2aeb44a663389de9e",
+    "transport_fix": "f3bbd1ce79cb9a62afb88b367580b0583db167ee",
+    "stage_script_sha256": "84531bb5b941661be4582b9ec13170238e80aa82e0266421828f5691448c5909",
+    "installed": false,
+    "gpu_qualified": false,
+    "requires": [
+      "Unshadow FlashInfer RoCEnante with a new verified image composition",
+      "Keep all remaining base transport files and preparation APIs together",
+      "Rebuild proxy/CuTe caches and verify imports in spawned workers",
+      "Run four-rank eager/graph/numerical/timeout tests before model use"
+    ],
+    "files": {
+      "vllm/distributed/device_communicators/b12x_roce_all_reduce.py": {
+        "before": "cca86b8c97d96b3647e4ef3f90f9638ebc4d8b5dfc1673abc2e5a7750bed9018",
+        "after": "a59ffe7dfda78b28170b7c9f189684d081ba18c441825f6b7ba3bff589acafe4"
+      },
+      "flashinfer/experimental/b12x/comm/roce/_proxy.py": {
+        "before": "ae1ba421414272302a501f7d2f070b46bce742884d798f0afe9bc5e82c02cfc0",
+        "after": "e1cf801788d1bf5e73ef42f416da854923cc844df1792b79af020dee587c9680"
+      },
+      "flashinfer/experimental/b12x/comm/roce/_roce_proxy.c": {
+        "before": "7d5e2f1c719275c230725a4353ca1b47ce38a7266d9eefa24074def21fe9900a",
+        "after": "d60adff67f215e313db5760450d947d1d173be4b230273269b27d7341ba1a046"
+      },
+      "flashinfer/experimental/b12x/comm/roce/_twoshot_cute.py": {
+        "before": "4319525816ad8e5a92db370a7f9ee4322612f01920ba74d0d9c3747d3156ae97",
+        "after": "bd064a007f9ef4100afcd99a6140c9790c78e02a79dcf9eab1dd59ec2ec404b9"
+      }
+    }
+  }
+}
