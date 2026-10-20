@@ -1,0 +1,77 @@
+{
+  "timestamp_utc": "2026-10-20T21:05:39Z",
+  "selection_sha256": "d86c7e0725efae1ced95a4891da59753853992aaad4fda926814531145e43ca2",
+  "healthy": true,
+  "idle_at_start": true,
+  "flare_interlock_present": false,
+  "nodes": [
+    {
+      "rank": 0,
+      "container": "ds41-optimized-r0",
+      "container_id": "fec5cf4108b4a699be5051690883d98c53fbd156dca6abf2c514fa960423aab7",
+      "image": "sha256:9f26f0b3718ccca889cfd93cb72e2165b6d4c11dd9dc93fe65f585883537f2db",
+      "running": true,
+      "argv_environment_match": true,
+      "used_gib": 117.27191543579102,
+      "available_gib": 4.415752410888672,
+      "swap_used_gib": 0.0792388916015625,
+      "flare_agent": {
+        "active": "inactive",
+        "enabled": "disabled"
+      },
+      "persistent_clock_policy": "driver-stock-boost",
+      "meminfo": "MemTotal:       127598768 kB\nMemFree:         1456080 kB\nMemAvailable:    4630252 kB\nBuffers:           53488 kB\nCached:          5755956 kB\nSwapCached:        10624 kB\nActive:          1192388 kB\nInactive:       11238588 kB\nActive(anon):     443208 kB\nInactive(anon):  7940472 kB\nActive(file):     749180 kB\nInactive(file):  3298116 kB\nUnevictable:       24540 kB\nMlocked:           24540 kB\nSwapTotal:      16777212 kB\nSwapFree:       16694124 kB\nZswap:                 0 kB\nZswapped:              0 kB\nDirty:              5920 kB\nWriteback:             0 kB\nAnonPages:       6641304 kB\nMapped:          4400420 kB\nShmem:           1756400 kB\nKReclaimable:     191020 kB\nSlab:            2433744 kB\nSReclaimable:     191020 kB\nSUnreclaim:      2242724 kB\nKernelStack:       15808 kB\nShadowCallStack:    3992 kB\nPageTables:        44388 kB\nSecPageTables:    242612 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:    80576596 kB\nCommitted_AS:   18711396 kB\nVmallocTotal:   135288315904 kB\nVmallocUsed:      135260 kB\nVmallocChunk:          0 kB\nPercpu:            25040 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:    202752 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nCmaTotal:              0 kB\nCmaFree:               0 kB\nBalloon:               0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\n"
+    },
+    {
+      "rank": 1,
+      "container": "ds41-optimized-r1",
+      "container_id": "5bdb0d952040b82e5e5b7475c480621b31219930a4aaf6999c85d47f694bb643",
+      "image": "sha256:9f26f0b3718ccca889cfd93cb72e2165b6d4c11dd9dc93fe65f585883537f2db",
+      "running": true,
+      "argv_environment_match": true,
+      "used_gib": 116.29696655273438,
+      "available_gib": 5.3907012939453125,
+      "swap_used_gib": 0.050495147705078125,
+      "flare_agent": {
+        "active": "inactive",
+        "enabled": "disabled"
+      },
+      "persistent_clock_policy": "driver-stock-boost",
+      "meminfo": "MemTotal:       127598768 kB\nMemFree:         1242908 kB\nMemAvailable:    5652560 kB\nBuffers:           53472 kB\nCached:          6990504 kB\nSwapCached:         5568 kB\nActive:          8374988 kB\nInactive:        4340600 kB\nActive(anon):    7398820 kB\nInactive(anon):    33984 kB\nActive(file):     976168 kB\nInactive(file):  4306616 kB\nUnevictable:       23452 kB\nMlocked:           23452 kB\nSwapTotal:      16777212 kB\nSwapFree:       16724264 kB\nZswap:                 0 kB\nZswapped:              0 kB\nDirty:              6020 kB\nWriteback:             0 kB\nAnonPages:       5692656 kB\nMapped:          4419552 kB\nShmem:           1756536 kB\nKReclaimable:     191004 kB\nSlab:            2424404 kB\nSReclaimable:     191004 kB\nSUnreclaim:      2233400 kB\nKernelStack:       14560 kB\nShadowCallStack:    3688 kB\nPageTables:        38488 kB\nSecPageTables:    238672 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:    80576596 kB\nCommitted_AS:   15297404 kB\nVmallocTotal:   135288315904 kB\nVmallocUsed:      133512 kB\nVmallocChunk:          0 kB\nPercpu:            25440 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:     88064 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nCmaTotal:              0 kB\nCmaFree:               0 kB\nBalloon:               0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\n"
+    },
+    {
+      "rank": 2,
+      "container": "ds41-optimized-r2",
+      "container_id": "49ea81ee8830f7ac81a0dc35e466a9544b19598f793207d191b4a4c2c82fb471",
+      "image": "sha256:9f26f0b3718ccca889cfd93cb72e2165b6d4c11dd9dc93fe65f585883537f2db",
+      "running": true,
+      "argv_environment_match": true,
+      "used_gib": 116.49858474731445,
+      "available_gib": 5.126640319824219,
+      "swap_used_gib": 0.0,
+      "flare_agent": {
+        "active": "inactive",
+        "enabled": "disabled"
+      },
+      "persistent_clock_policy": "driver-stock-boost",
+      "meminfo": "MemTotal:       127533292 kB\nMemFree:         1592720 kB\nMemAvailable:    5375672 kB\nBuffers:           57372 kB\nCached:          6365476 kB\nSwapCached:            0 kB\nActive:          8405320 kB\nInactive:        3733196 kB\nActive(anon):    7392372 kB\nInactive(anon):    85972 kB\nActive(file):    1012948 kB\nInactive(file):  3647224 kB\nUnevictable:       23004 kB\nMlocked:           23004 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nZswap:                 0 kB\nZswapped:              0 kB\nDirty:              3288 kB\nWriteback:             0 kB\nAnonPages:       5736660 kB\nMapped:          4431552 kB\nShmem:           1758468 kB\nKReclaimable:     182400 kB\nSlab:            2425100 kB\nSReclaimable:     182400 kB\nSUnreclaim:      2242700 kB\nKernelStack:       14832 kB\nShadowCallStack:    3792 kB\nPageTables:        39088 kB\nSecPageTables:    244444 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:    63766644 kB\nCommitted_AS:   15291296 kB\nVmallocTotal:   135288315904 kB\nVmallocUsed:      121224 kB\nVmallocChunk:          0 kB\nPercpu:            24560 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:     86016 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nCmaTotal:              0 kB\nCmaFree:               0 kB\nBalloon:               0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\n"
+    },
+    {
+      "rank": 3,
+      "container": "ds41-optimized-r3",
+      "container_id": "afb425567654ed73213818686815106b33252799fc09747b2a37f933c42f864b",
+      "image": "sha256:9f26f0b3718ccca889cfd93cb72e2165b6d4c11dd9dc93fe65f585883537f2db",
+      "running": true,
+      "argv_environment_match": true,
+      "used_gib": 116.6032600402832,
+      "available_gib": 5.021968841552734,
+      "swap_used_gib": 0.0,
+      "flare_agent": {
+        "active": "inactive",
+        "enabled": "disabled"
+      },
+      "persistent_clock_policy": "driver-stock-boost",
+      "meminfo": "MemTotal:       127533296 kB\nMemFree:         1771576 kB\nMemAvailable:    5265916 kB\nBuffers:           54584 kB\nCached:          6080324 kB\nSwapCached:            0 kB\nActive:           803728 kB\nInactive:       11076624 kB\nActive(anon):     181020 kB\nInactive(anon):  7327884 kB\nActive(file):     622708 kB\nInactive(file):  3748740 kB\nUnevictable:       23372 kB\nMlocked:           23372 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nZswap:                 0 kB\nZswapped:              0 kB\nDirty:              1972 kB\nWriteback:             0 kB\nAnonPages:       5765136 kB\nMapped:          4441404 kB\nShmem:           1758812 kB\nKReclaimable:     182620 kB\nSlab:            2434936 kB\nSReclaimable:     182620 kB\nSUnreclaim:      2252316 kB\nKernelStack:       15296 kB\nShadowCallStack:    3832 kB\nPageTables:        39196 kB\nSecPageTables:    242056 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:    63766648 kB\nCommitted_AS:   15474056 kB\nVmallocTotal:   135288315904 kB\nVmallocUsed:      122344 kB\nVmallocChunk:          0 kB\nPercpu:            25040 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:     86016 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nCmaTotal:              0 kB\nCmaFree:               0 kB\nBalloon:               0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\n"
+    }
+  ]
+}

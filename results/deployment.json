@@ -42,7 +42,7 @@
       "recipe": "image/rocenante-switch/README.md"
     }
   ],
-  "clock_cap_mhz": null,
+  "clock_cap_mhz": 2350,
   "tokenizer": "huggingface",
   "source_receipt": "results/20261019-switch-migration",
   "recovery_audit": "results/20261019-switch-migration/final-qualification.json",
@@ -181,11 +181,13 @@
     "helper_requires_stopped_fleet": true
   },
   "clock_policy": {
-    "policy": "driver-stock-boost",
-    "clock_cap_mhz": null,
+    "policy": "upper-clock-cap",
+    "clock_cap_mhz": 2350,
+    "minimum_mhz": 0,
+    "idle_downclocking": true,
     "unit": "gb10-gpu-clock-cap.service",
-    "command": "nvidia-smi --reset-gpu-clocks",
-    "receipt": "results/20261019-switch-migration/persistent-clock-policy.json"
+    "command": "nvidia-smi -lgc 0,2350",
+    "receipt": "results/20261020-clock-cap/policy.json"
   },
   "math_runtime_unchanged_from_20261017": true,
   "fabric": {
@@ -295,7 +297,7 @@
     "query_indexer_sharding": "guarded; real requests only"
   },
   "operational_state": {
-    "state": "healthy-qualified-vllm-after-decode-controls",
+    "state": "healthy-qualified-vllm-2350-optimization-paused",
     "flare_selected": false,
     "flare_active": false,
     "flare_result": "all25decodecellsandthroughputschedulerfollowupslower",
@@ -308,16 +310,16 @@
     "active_start_interlock": null,
     "interlock_archive": "/etc/deepseek-ring/FLARE_TRIAL_20261020.finished.json",
     "recovery_c1_32k_tps": 63.03974774288089,
-    "startup_head_system_used_gib": 117.22208404541016,
-    "clock_policy": "driver-stock-boost",
-    "previous_tuning_campaign": "active",
+    "startup_head_system_used_gib": 117.27191543579102,
+    "clock_policy": "upper-clock-cap-2350",
+    "previous_tuning_campaign": "paused-at-user-request",
     "report": "results/20261020-decode-recovery/REPORT.md",
-    "recorded_utc": "2026-10-20T20:32:19Z",
+    "recorded_utc": "2026-10-20T21:12:33Z",
     "post_controls_head_system_used_gib": 117.90437316894531,
     "performance_goal_met": false,
     "temporary_trial_selected": false,
     "flare_report": "results/20261020-flare-trial/REPORT.md",
-    "latest_recovery_receipt": "results/20261020-decode-recovery/final-state.json",
+    "latest_recovery_receipt": "results/20261020-clock-cap/recovery-before-cap.json",
     "flare_agents_stopped_and_disabled_all_ranks": true,
     "retired_trials": [
       "old4cap3c",
@@ -327,8 +329,11 @@
       "draft5",
       "cap2hi",
       "uncapped4",
-      "cap3hi"
+      "cap3hi",
+      "livecost"
     ],
-    "next_investigation": "Measure bounded live forward/draft costs and actual graph choices; no scheduling correction is installed."
+    "next_investigation": "Paused: await user direction; no automatic continuation.",
+    "latest_host_policy_receipt": "results/20261020-clock-cap/policy.json",
+    "live_cost_diagnostic_result": "startup metadata TypeError; no live timing measurement; exact native parent restored"
   }
 }

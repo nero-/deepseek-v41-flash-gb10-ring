@@ -1,0 +1,56 @@
+{
+  "policy": "upper-clock-cap",
+  "clock_cap_mhz": 2350,
+  "minimum_mhz": 0,
+  "idle_downclocking": true,
+  "unit": "/etc/systemd/system/gb10-gpu-clock-cap.service",
+  "command": "nvidia-smi -lgc 0,2350",
+  "unit_sha256": "c1a5839ec049a61296cb751c8ccd1ead7be20b41de2051bdc911ecb51b11ebfd",
+  "backup": "/var/lib/deepseek-ring/experiments/clock-cap-2350-20261020/gb10-gpu-clock-cap.service",
+  "timestamp_utc": "2026-10-20T21:12:33Z",
+  "configuration_sha256": "d86c7e0725efae1ced95a4891da59753853992aaad4fda926814531145e43ca2",
+  "model_restarted": false,
+  "api_healthy": true,
+  "nodes": [
+    {
+      "rank": 0,
+      "enabled": true,
+      "active": true,
+      "properties": "Result=success\nExecStart={ path=/usr/bin/nvidia-smi ; argv[]=/usr/bin/nvidia-smi -lgc 0,2350 ; ignore_errors=no ; start_time=[Tue 2026-10-20 21:12:25 UTC] ; stop_time=[Tue 2026-10-20 21:12:25 UTC] ; pid=365831 ; code=exited ; status=0 }\nExecReload={ path=/usr/bin/nvidia-smi ; argv[]=/usr/bin/nvidia-smi -lgc 0,2350 ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\nActiveState=active\nSubState=exited\nDropInPaths=\nUnitFileState=enabled\n",
+      "journal": "Oct 20 12:11:01 spark-r0 systemd[1]: Finished gb10-gpu-clock-cap.service - GB10 GPU clock policy (driver stock boost).\nOct 20 21:12:25 spark-r0 systemd[1]: gb10-gpu-clock-cap.service: Deactivated successfully.\nOct 20 21:12:25 spark-r0 systemd[1]: Stopped gb10-gpu-clock-cap.service - GB10 GPU upper clock limit (2350 MHz).\nOct 20 21:12:25 spark-r0 systemd[1]: Stopping gb10-gpu-clock-cap.service - GB10 GPU upper clock limit (2350 MHz)...\nOct 20 21:12:25 spark-r0 systemd[1]: Starting gb10-gpu-clock-cap.service - GB10 GPU upper clock limit (2350 MHz)...\nOct 20 21:12:25 spark-r0 nvidia-smi[365831]: GPU clocks set to \"(gpuClkMin 0, gpuClkMax 2350)\" for GPU 0000000F:01:00.0\nOct 20 21:12:25 spark-r0 nvidia-smi[365831]: All done.\nOct 20 21:12:25 spark-r0 systemd[1]: Finished gb10-gpu-clock-cap.service - GB10 GPU upper clock limit (2350 MHz).\n",
+      "container_id": "fec5cf4108b4a699be5051690883d98c53fbd156dca6abf2c514fa960423aab7",
+      "container_restarted": false,
+      "unit_sha256": "c1a5839ec049a61296cb751c8ccd1ead7be20b41de2051bdc911ecb51b11ebfd"
+    },
+    {
+      "rank": 1,
+      "enabled": true,
+      "active": true,
+      "properties": "Result=success\nExecStart={ path=/usr/bin/nvidia-smi ; argv[]=/usr/bin/nvidia-smi -lgc 0,2350 ; ignore_errors=no ; start_time=[Tue 2026-10-20 21:12:27 UTC] ; stop_time=[Tue 2026-10-20 21:12:27 UTC] ; pid=4030700 ; code=exited ; status=0 }\nExecReload={ path=/usr/bin/nvidia-smi ; argv[]=/usr/bin/nvidia-smi -lgc 0,2350 ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\nActiveState=active\nSubState=exited\nDropInPaths=\nUnitFileState=enabled\n",
+      "journal": "Oct 20 12:11:03 spark-r1 systemd[1]: Finished gb10-gpu-clock-cap.service - GB10 GPU clock policy (driver stock boost).\nOct 20 21:12:27 spark-r1 systemd[1]: gb10-gpu-clock-cap.service: Deactivated successfully.\nOct 20 21:12:27 spark-r1 systemd[1]: Stopped gb10-gpu-clock-cap.service - GB10 GPU upper clock limit (2350 MHz).\nOct 20 21:12:27 spark-r1 systemd[1]: Stopping gb10-gpu-clock-cap.service - GB10 GPU upper clock limit (2350 MHz)...\nOct 20 21:12:27 spark-r1 systemd[1]: Starting gb10-gpu-clock-cap.service - GB10 GPU upper clock limit (2350 MHz)...\nOct 20 21:12:27 spark-r1 nvidia-smi[4030700]: GPU clocks set to \"(gpuClkMin 0, gpuClkMax 2350)\" for GPU 0000000F:01:00.0\nOct 20 21:12:27 spark-r1 nvidia-smi[4030700]: All done.\nOct 20 21:12:27 spark-r1 systemd[1]: Finished gb10-gpu-clock-cap.service - GB10 GPU upper clock limit (2350 MHz).\n",
+      "container_id": "5bdb0d952040b82e5e5b7475c480621b31219930a4aaf6999c85d47f694bb643",
+      "container_restarted": false,
+      "unit_sha256": "c1a5839ec049a61296cb751c8ccd1ead7be20b41de2051bdc911ecb51b11ebfd"
+    },
+    {
+      "rank": 2,
+      "enabled": true,
+      "active": true,
+      "properties": "Result=success\nExecStart={ path=/usr/bin/nvidia-smi ; argv[]=/usr/bin/nvidia-smi -lgc 0,2350 ; ignore_errors=no ; start_time=[Tue 2026-10-20 21:12:29 UTC] ; stop_time=[Tue 2026-10-20 21:12:29 UTC] ; pid=4177127 ; code=exited ; status=0 }\nExecReload={ path=/usr/bin/nvidia-smi ; argv[]=/usr/bin/nvidia-smi -lgc 0,2350 ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\nActiveState=active\nSubState=exited\nDropInPaths=\nUnitFileState=enabled\n",
+      "journal": "Oct 20 12:11:06 gx10-r1 systemd[1]: Finished gb10-gpu-clock-cap.service - GB10 GPU clock policy (driver stock boost).\nOct 20 21:12:29 gx10-r1 systemd[1]: gb10-gpu-clock-cap.service: Deactivated successfully.\nOct 20 21:12:29 gx10-r1 systemd[1]: Stopped gb10-gpu-clock-cap.service - GB10 GPU upper clock limit (2350 MHz).\nOct 20 21:12:29 gx10-r1 systemd[1]: Stopping gb10-gpu-clock-cap.service - GB10 GPU upper clock limit (2350 MHz)...\nOct 20 21:12:29 gx10-r1 systemd[1]: Starting gb10-gpu-clock-cap.service - GB10 GPU upper clock limit (2350 MHz)...\nOct 20 21:12:29 gx10-r1 nvidia-smi[4177127]: GPU clocks set to \"(gpuClkMin 0, gpuClkMax 2350)\" for GPU 0000000F:01:00.0\nOct 20 21:12:29 gx10-r1 nvidia-smi[4177127]: All done.\nOct 20 21:12:29 gx10-r1 systemd[1]: Finished gb10-gpu-clock-cap.service - GB10 GPU upper clock limit (2350 MHz).\n",
+      "container_id": "49ea81ee8830f7ac81a0dc35e466a9544b19598f793207d191b4a4c2c82fb471",
+      "container_restarted": false,
+      "unit_sha256": "c1a5839ec049a61296cb751c8ccd1ead7be20b41de2051bdc911ecb51b11ebfd"
+    },
+    {
+      "rank": 3,
+      "enabled": true,
+      "active": true,
+      "properties": "Result=success\nExecStart={ path=/usr/bin/nvidia-smi ; argv[]=/usr/bin/nvidia-smi -lgc 0,2350 ; ignore_errors=no ; start_time=[Tue 2026-10-20 21:12:31 UTC] ; stop_time=[Tue 2026-10-20 21:12:31 UTC] ; pid=210030 ; code=exited ; status=0 }\nExecReload={ path=/usr/bin/nvidia-smi ; argv[]=/usr/bin/nvidia-smi -lgc 0,2350 ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\nActiveState=active\nSubState=exited\nDropInPaths=\nUnitFileState=enabled\n",
+      "journal": "Oct 20 12:11:09 gx10-r0 systemd[1]: Finished gb10-gpu-clock-cap.service - GB10 GPU clock policy (driver stock boost).\nOct 20 21:12:31 gx10-r0 systemd[1]: gb10-gpu-clock-cap.service: Deactivated successfully.\nOct 20 21:12:31 gx10-r0 systemd[1]: Stopped gb10-gpu-clock-cap.service - GB10 GPU upper clock limit (2350 MHz).\nOct 20 21:12:31 gx10-r0 systemd[1]: Stopping gb10-gpu-clock-cap.service - GB10 GPU upper clock limit (2350 MHz)...\nOct 20 21:12:31 gx10-r0 systemd[1]: Starting gb10-gpu-clock-cap.service - GB10 GPU upper clock limit (2350 MHz)...\nOct 20 21:12:31 gx10-r0 nvidia-smi[210030]: GPU clocks set to \"(gpuClkMin 0, gpuClkMax 2350)\" for GPU 0000000F:01:00.0\nOct 20 21:12:31 gx10-r0 nvidia-smi[210030]: All done.\nOct 20 21:12:31 gx10-r0 systemd[1]: Finished gb10-gpu-clock-cap.service - GB10 GPU upper clock limit (2350 MHz).\n",
+      "container_id": "afb425567654ed73213818686815106b33252799fc09747b2a37f933c42f864b",
+      "container_restarted": false,
+      "unit_sha256": "c1a5839ec049a61296cb751c8ccd1ead7be20b41de2051bdc911ecb51b11ebfd"
+    }
+  ]
+}

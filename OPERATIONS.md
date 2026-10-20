@@ -11,21 +11,25 @@ FLARE's native wrapper requires that marker and refuses to overlap vLLM.
 The interrupted `old4cap3b` provider trial remains stopped under
 `ds41-flare-interrupted-old4cap3b-rN`; it is not the default. The native package
 and agents remain staged for a future release. See
-[the complete report](results/20261020-flare-trial/REPORT.md). The previous vLLM
-optimization campaign has resumed; inspect live state before acting.
+[the complete report](results/20261020-flare-trial/REPORT.md). The subsequent
+vLLM optimization campaign is now paused at the user's request.
 
-**Active decode investigation:** the qualified image and profile remain the
+**Paused decode investigation:** the qualified image and profile remain the
 recovery baseline. Reversible trials retain exact parent specs and stopped
 containers in the private `decode-recovery-20261020` campaign. Read its
 `PLAN.md`, the shared maintenance skill and the
 [comparison report](results/20261020-decode-recovery/REPORT.md). An experiment
 in `/etc/deepseek-ring/optimized-specs.json` is not a promoted default.
 Do not start a saved parent independently or replay an already-consumed
-`restore-*` receipt. Timed screens temporarily lock GPUs at 2418 MHz for
-comparison and restore persistent stock boost afterward.
+`restore-*` receipt. Historical timed screens temporarily locked GPUs at
+2418 MHz and restored stock boost afterward. Their private wrappers must be
+updated to restore the current **0–2350 MHz** policy before any future use.
 All completed trials in that report have now been unwound. The exact
 qualified configuration `d86c7e0725ef...` and native `9f26f0b3718cc...`
 containers passed the final restoration check; no trial is promoted.
+The later live-cost diagnostic failed during startup and was also unwound;
+`restore-livecost` is consumed. No live-cost result or scheduler correction was
+obtained. Do not resume experiments without the user's direction.
 
 **CRS812 conversion, October 20 UTC:** host networking is converted and the
 controller now validates switched RoCE without starting the retired mesh.
@@ -279,19 +283,20 @@ SSH and APIs remain on the management LAN.
 
 All four hosts run kernel `7.0.0-1019-nvidia`, driver `580.178.04`, with
 NetworkManager wait-online enabled. The enabled
-[clock-policy service](host/systemd/gb10-gpu-clock-cap.service) resets locked
-GPU clocks to **driver stock boost** before Docker at boot. Its historical
-`gb10-gpu-clock-cap.service` name is retained. There is no explicit upper or
-lower lock; idle downclocking remains enabled. This replaces the former
-0–2350 MHz ceiling at the user's request. After a manual GPU/driver reset,
+[clock-policy service](host/systemd/gb10-gpu-clock-cap.service) applies
+**`nvidia-smi -lgc 0,2350`** before Docker at boot. This is a 2350 MHz ceiling;
+idle downclocking remains enabled. The user restored this policy after the
+stock-clock trials showed no consistent decode gain. After a manual GPU/driver reset,
 reapply the selected policy with:
 
 ```bash
 sudo systemctl reload gb10-gpu-clock-cap.service
 ```
 
-The previous exact unit is backed up on every node under
-`/var/lib/deepseek-ring/experiments/stock-clocks-20261020/`.
+The previous stock-boost unit is backed up on every node under
+`/var/lib/deepseek-ring/experiments/clock-cap-2350-20261020/`.
+The clock service is enabled and active on all four nodes; applying it did not
+restart the model. [Installation and loaded verification](results/20261020-clock-cap/REPORT.md).
 Stock boost did not establish a consistent decode gain in the focused clock
 trials. A temporary 2700 MHz ceiling also failed to improve decode; do not
 infer actual operating frequency from a requested clock.

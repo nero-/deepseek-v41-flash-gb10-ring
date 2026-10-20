@@ -2,8 +2,15 @@
 
 The current configuration is corrected vLLM TP4 on CRS812, official 1017 weights,
 HF tokenization, Engram projection TP, adaptive 4K prefill under contention,
-guarded query-row indexer sharding and driver stock GPU boost.
+guarded query-row indexer sharding and a persistent 2350 MHz GPU ceiling.
 [Exact deployment identity](results/deployment.json).
+
+The user restored the 0–2350 MHz ceiling after the focused clock comparisons
+showed no consistent decode benefit from stock boost. The setting passed
+all-node persistence and loaded-clock checks without restarting serving.
+Historical benchmark clock settings below remain as measured; no new full
+benchmark was run for this policy change.
+[Clock-policy verification](results/20261020-clock-cap/REPORT.md).
 
 ## October 20 resumed decode investigation
 
@@ -20,9 +27,11 @@ These short protocols differ from the full grid below. The adaptive policy
 admitted materially more proposals at C16 than in the earlier full run despite
 the same configured maximum; admission fell again in the repeat. Uncapped
 draft4 and a C9–16 cap3 also failed to establish an overall improvement.
-The qualified configuration is restored, healthy and using stock boost.
-Live-cost/graph evidence is needed to separate policy variation from a useful
-setting change; no new performance improvement is claimed.
+The qualified configuration is restored and healthy. The subsequent timing
+diagnostic failed at startup on nullable metadata and produced no live-cost
+measurement. It was unwound, and the user paused optimization. The current
+clock policy is the 2350 MHz ceiling recorded above; no new performance
+improvement is claimed.
 
 The public SparkRing README's 71 / 137 / 194 row means **32K C1 / C4 / C8**
 on the original checkpoint. The official-1017 reference is **61.2 / 194.9 /
@@ -31,8 +40,8 @@ on the original checkpoint. The official-1017 reference is **61.2 / 194.9 /
 
 ## October 20 switched profile and full benchmark
 
-The CRS812 profile uses the qualified RoCEnante ABI-8 two-shot image on the
-October 15 model kernels. The selected profile has DSpark4 with the native
+This historical full-grid qualification used the RoCEnante ABI-8 two-shot image
+on the October 15 model kernels. That run used DSpark4 with the native
 C1 verification cap of three, adaptive verification, 4K prefill from one
 contending decoder, 20 GiB KV per rank and driver stock GPU boost.
 
@@ -289,9 +298,9 @@ quality or eliminate intermittent output repetition.
 - **2350 MHz cap (historical):** selected for lower power and temperature with acceptable
   measured throughput. GPU telemetry showed roughly 46–49 W total savings
   versus the first stock-clock run; this is not whole-system wall power.
-  The October 20 campaign subsequently replaced it with driver stock boost
-  at the user's authorization; the old power comparison is not a current
-  system-power measurement.
+  The October 20 campaign temporarily replaced it with driver stock boost;
+  the user subsequently restored 2350 MHz after the focused comparisons.
+  The old power comparison is not a current system-power measurement.
   [Clock comparison](results/20260930-maintenance/2350-comparison.json).
 
 The early rollback screen did not include a full grid. Later October 14,

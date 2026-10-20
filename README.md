@@ -5,10 +5,10 @@
 > its recovery check reached 62.2 t/s at 32K C1. See the
 > [evaluation and recovery report](results/20261020-flare-trial/REPORT.md).
 
-The decode optimization campaign has resumed. Its fresh controls and candidate
-screens show mixed results; no new default has been selected. See the
-[comparison audit](results/20261020-decode-recovery/REPORT.md), and check live
-status before using the API during an active trial.
+The decode optimization campaign is paused at the user's request. The qualified
+vLLM profile is restored, with a persistent **2350 MHz GPU ceiling** on all four
+nodes. See the [comparison audit](results/20261020-decode-recovery/REPORT.md)
+and [clock-policy verification](results/20261020-clock-cap/REPORT.md).
 
 Corrected vLLM TP4 across two DGX Sparks and two ASUS GX10s on a CRS812 switch.
 API: **http://192.168.X.X:8015/v1**. Model: **DeepSeek-V4.1-Flash-TP4**.
@@ -84,7 +84,7 @@ curl --fail --max-time 5 http://192.168.X.X:8015/health
 | Local profile | `engram-adaptive4k-query-indexer-1017-runtime1015-kv20-images999-switch-c1cap3` |
 | Transport | RoCEnante one-shot/gather plus ABI-8 pipelined two-shot; patched NCCL fallback |
 | KV budget | 20 GiB per GPU; 16,344,051 logical tokens |
-| GPU clock policy | Driver stock boost, persistent across reboot; former 2350 MHz ceiling removed |
+| GPU clock policy | 0–2350 MHz ceiling, persistent across reboot; idle downclocking enabled |
 
 [Deployment identity and plugin hashes](results/deployment.json),
 [selected transport image recipe](image/rocenante-switch/README.md), and
@@ -102,8 +102,8 @@ The RoCEnante pipe is 128 MiB with a 512 KiB two-shot threshold. Both switched
 rails are active and share the node's single physical 200G connection.
 This is RoCEnante with NCCL fallback; SIRCL is not enabled.
 
-The full 25-cell LIL qualification completed without request errors or detected
-loops. At 8K, C1/C8/C16 measured **64.4 / 198.8 / 268.7 tokens/s**.
+The full 25-cell LIL qualification, run with stock GPU boost, completed without
+request errors or detected loops. At 8K, C1/C8/C16 measured **64.4 / 198.8 / 268.7 tokens/s**.
 Uncached 961,724-token retrieval and mixed image/decode checks also passed.
 Sustained 70 C1 and 300 C16 were not established.
 [All contexts, repetitions and tradeoffs](RESULTS.md).
