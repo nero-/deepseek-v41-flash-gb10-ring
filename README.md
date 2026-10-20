@@ -1,5 +1,10 @@
 # DeepSeek-V4.1-Flash on four switched GB10 nodes
 
+> **FLARE evaluation (October 20):** the native FLARE trial was slower in all
+> 25 matched decode cells. The qualified vLLM build is restored and healthy;
+> its recovery check reached 62.2 t/s at 32K C1. See the
+> [evaluation and recovery report](results/20261020-flare-trial/REPORT.md).
+
 Corrected vLLM TP4 across two DGX Sparks and two ASUS GX10s on a CRS812 switch.
 API: **http://192.168.X.X:8015/v1**. Model: **DeepSeek-V4.1-Flash-TP4**.
 

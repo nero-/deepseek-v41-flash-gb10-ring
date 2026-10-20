@@ -293,5 +293,24 @@
     "markov_head": "NVFP4",
     "full_vocabulary": true,
     "query_indexer_sharding": "guarded; real requests only"
+  },
+  "operational_state": {
+    "state": "healthy-qualified-vllm-after-flare-trial",
+    "flare_selected": false,
+    "flare_active": false,
+    "flare_result": "all25decodecellsandthroughputschedulerfollowupslower",
+    "gx10_1017_weight_payloads_present": true,
+    "gx10_shards_sha256_verified_each": 48,
+    "spark_1017_weight_copies_present": true,
+    "qualified_configuration_restored": true,
+    "qualified_configuration_sha256": "d86c7e0725efae1ced95a4891da59753853992aaad4fda926814531145e43ca2",
+    "installed_configuration_is_interrupted_old4cap3b_trial": false,
+    "active_start_interlock": null,
+    "interlock_archive": "/etc/deepseek-ring/FLARE_TRIAL_20261020.finished.json",
+    "recovery_c1_32k_tps": 62.15636935344842,
+    "startup_head_system_used_gib": 117.60317993164062,
+    "clock_policy": "driver-stock-boost",
+    "previous_tuning_campaign": "paused",
+    "report": "results/20261020-flare-trial/REPORT.md"
   }
 }

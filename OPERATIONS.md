@@ -1,5 +1,19 @@
 # Operating the switched TP4 cluster
 
+**FLARE evaluation, October 20 UTC:** the native trial lost the matched full
+benchmark and was not selected. All 48 original 1017 shards on each GX10 were
+restored over fabric and SHA256-verified. The qualified spec and containers are
+restored; the 32K C1 recovery check measured 62.2 t/s and the API is healthy.
+The staging interlock was archived as
+`/etc/deepseek-ring/FLARE_TRIAL_20261020.finished.json`; no active staging marker
+remains. The controller retains its interlock check for future workload changes.
+FLARE's native wrapper requires that marker and refuses to overlap vLLM.
+The interrupted `old4cap3b` provider trial remains stopped under
+`ds41-flare-interrupted-old4cap3b-rN`; it is not the default. The native package
+and agents remain staged for a future release. See
+[the complete report](results/20261020-flare-trial/REPORT.md). The previous vLLM
+optimization campaign remains paused.
+
 **CRS812 conversion, October 20 UTC:** host networking is converted and the
 controller now validates switched RoCE without starting the retired mesh.
 The selected RoCEnante two-shot profile is qualified. Follow the installed selection and the
