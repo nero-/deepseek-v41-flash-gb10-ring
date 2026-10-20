@@ -9,8 +9,14 @@ The staging interlock was archived as
 remains. The controller retains its interlock check for future workload changes.
 FLARE's native wrapper requires that marker and refuses to overlap vLLM.
 The interrupted `old4cap3b` provider trial remains stopped under
-`ds41-flare-interrupted-old4cap3b-rN`; it is not the default. The native package
-and agents remain staged for a future release. See
+`ds41-flare-interrupted-old4cap3b-rN`; it is not the default. The old native
+package has since been deleted on all four nodes at the user's request,
+freeing about 830.25 GiB. Its metadata and results remain, alongside inactive
+agents and pairing. All stock checkpoint copies and the running vLLM deployment
+were preserved. The next authorized trial uses source-built NVIDIA FLARE with
+the existing stock 1017 checkpoint, explicitly excluding CSF checkpoint
+substitution and on-load CSF compression. No new FLARE build is deployed;
+the local handoff is `~/Agent/Builds/DS41-flare-source/HANDOFF.md`. See
 [the complete report](results/20261020-flare-trial/REPORT.md). The subsequent
 vLLM optimization campaign is now paused at the user's request.
 

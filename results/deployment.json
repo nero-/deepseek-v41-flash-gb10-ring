@@ -334,6 +334,11 @@
     ],
     "next_investigation": "Paused: await user direction; no automatic continuation.",
     "latest_host_policy_receipt": "results/20261020-clock-cap/policy.json",
-    "live_cost_diagnostic_result": "startup metadata TypeError; no live timing measurement; exact native parent restored"
+    "live_cost_diagnostic_result": "startup metadata TypeError; no live timing measurement; exact native parent restored",
+    "old_flare_package_removed_all_ranks": true,
+    "old_flare_package_allocated_bytes_removed": 891478802432,
+    "old_flare_package_cleanup_utc": "2026-10-20T21:43:11.747407+00:00",
+    "authorized_next_trial": "Source-built NVIDIA FLARE using existing stock 1017 checkpoint; no CSF checkpoint or scale compression; not yet built or deployed.",
+    "local_handoff": "~/Agent/Builds/DS41-flare-source/HANDOFF.md"
   }
 }

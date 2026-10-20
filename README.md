@@ -10,6 +10,12 @@ vLLM profile is restored, with a persistent **2350 MHz GPU ceiling** on all four
 nodes. See the [comparison audit](results/20261020-decode-recovery/REPORT.md)
 and [clock-policy verification](results/20261020-clock-cap/REPORT.md).
 
+The old FLARE model package has been retired from all four nodes; the stock
+checkpoint and qualified vLLM fallback remain intact. A source-built NVIDIA
+FLARE trial using stock 1017 weights is planned, with CSF explicitly excluded.
+It is not yet built or selected. Local handoff:
+`~/Agent/Builds/DS41-flare-source/HANDOFF.md`.
+
 Corrected vLLM TP4 across two DGX Sparks and two ASUS GX10s on a CRS812 switch.
 API: **http://192.168.X.X:8015/v1**. Model: **DeepSeek-V4.1-Flash-TP4**.
 

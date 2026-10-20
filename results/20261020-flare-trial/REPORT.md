@@ -1,5 +1,13 @@
 # FLARE qualification — October 20, 2026 UTC
 
+Later maintenance: the old package was deleted at the user's request, freeing
+830.25 GiB across the fleet. Stock 1017 checkpoints and vLLM rollback images
+were preserved; vLLM remained healthy without container restarts. Metadata and
+deletion records remain in the local FLARE project. The current persistent
+clock ceiling is 2350 MHz. A source-built NVIDIA FLARE trial with stock weights
+and no CSF is planned separately. The measurements and recovery snapshot below
+retain their original conditions.
+
 Decision: do not promote this release. The publisher recipe ran successfully, but all 25 decode cells were slower than the qualified vLLM deployment. The throughput scheduler also lost at matched 32K C1/C8/C16. The qualified vLLM deployment has been restored and verified healthy.
 
 ## Matched full benchmark
