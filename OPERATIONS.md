@@ -12,7 +12,20 @@ The interrupted `old4cap3b` provider trial remains stopped under
 `ds41-flare-interrupted-old4cap3b-rN`; it is not the default. The native package
 and agents remain staged for a future release. See
 [the complete report](results/20261020-flare-trial/REPORT.md). The previous vLLM
-optimization campaign remains paused.
+optimization campaign has resumed; inspect live state before acting.
+
+**Active decode investigation:** the qualified image and profile remain the
+recovery baseline. Reversible trials retain exact parent specs and stopped
+containers in the private `decode-recovery-20261020` campaign. Read its
+`PLAN.md`, the shared maintenance skill and the
+[comparison report](results/20261020-decode-recovery/REPORT.md). An experiment
+in `/etc/deepseek-ring/optimized-specs.json` is not a promoted default.
+Do not start a saved parent independently or replay an already-consumed
+`restore-*` receipt. Timed screens temporarily lock GPUs at 2418 MHz for
+comparison and restore persistent stock boost afterward.
+All completed trials in that report have now been unwound. The exact
+qualified configuration `d86c7e0725ef...` and native `9f26f0b3718cc...`
+containers passed the final restoration check; no trial is promoted.
 
 **CRS812 conversion, October 20 UTC:** host networking is converted and the
 controller now validates switched RoCE without starting the retired mesh.

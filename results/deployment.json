@@ -295,7 +295,7 @@
     "query_indexer_sharding": "guarded; real requests only"
   },
   "operational_state": {
-    "state": "healthy-qualified-vllm-after-flare-trial",
+    "state": "healthy-qualified-vllm-after-decode-controls",
     "flare_selected": false,
     "flare_active": false,
     "flare_result": "all25decodecellsandthroughputschedulerfollowupslower",
@@ -307,10 +307,28 @@
     "installed_configuration_is_interrupted_old4cap3b_trial": false,
     "active_start_interlock": null,
     "interlock_archive": "/etc/deepseek-ring/FLARE_TRIAL_20261020.finished.json",
-    "recovery_c1_32k_tps": 62.15636935344842,
-    "startup_head_system_used_gib": 117.60317993164062,
+    "recovery_c1_32k_tps": 63.03974774288089,
+    "startup_head_system_used_gib": 117.22208404541016,
     "clock_policy": "driver-stock-boost",
-    "previous_tuning_campaign": "paused",
-    "report": "results/20261020-flare-trial/REPORT.md"
+    "previous_tuning_campaign": "active",
+    "report": "results/20261020-decode-recovery/REPORT.md",
+    "recorded_utc": "2026-10-20T20:32:19Z",
+    "post_controls_head_system_used_gib": 117.90437316894531,
+    "performance_goal_met": false,
+    "temporary_trial_selected": false,
+    "flare_report": "results/20261020-flare-trial/REPORT.md",
+    "latest_recovery_receipt": "results/20261020-decode-recovery/final-state.json",
+    "flare_agents_stopped_and_disabled_all_ranks": true,
+    "retired_trials": [
+      "old4cap3c",
+      "tau1diag",
+      "tau08diag",
+      "pipe256",
+      "draft5",
+      "cap2hi",
+      "uncapped4",
+      "cap3hi"
+    ],
+    "next_investigation": "Measure bounded live forward/draft costs and actual graph choices; no scheduling correction is installed."
   }
 }

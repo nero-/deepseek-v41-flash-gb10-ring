@@ -5,6 +5,30 @@ HF tokenization, Engram projection TP, adaptive 4K prefill under contention,
 guarded query-row indexer sharding and driver stock GPU boost.
 [Exact deployment identity](results/deployment.json).
 
+## October 20 resumed decode investigation
+
+FLARE lost the matched full grid and was rejected. The original RoCEnante
+provider also lost mean C8/C16 throughput against the selected two-shot build.
+Draft temperature, earlier two-shot routing, five drafts and a high-concurrency
+verification cap produced mixed short-screen results; none is promoted.
+
+A fresh restoration of the exact qualified profile measured 63.84 / 191.81 /
+247.78 t/s at context0 C1/C8/C16, and 60.53 / 196.92 / 246.46 at 8K.
+After another startup with identical settings, the same protocols measured
+60.86 / 186.81 / 257.66 at context0 and 62.19 / 179.26 / 263.37 at 8K.
+These short protocols differ from the full grid below. The adaptive policy
+admitted materially more proposals at C16 than in the earlier full run despite
+the same configured maximum; admission fell again in the repeat. Uncapped
+draft4 and a C9–16 cap3 also failed to establish an overall improvement.
+The qualified configuration is restored, healthy and using stock boost.
+Live-cost/graph evidence is needed to separate policy variation from a useful
+setting change; no new performance improvement is claimed.
+
+The public SparkRing README's 71 / 137 / 194 row means **32K C1 / C4 / C8**
+on the original checkpoint. The official-1017 reference is **61.2 / 194.9 /
+275.2 at context0 C1 / C8 / C16**. Preserve those labels when comparing.
+[Protocols, all completed screens, source records and limitations](results/20261020-decode-recovery/REPORT.md).
+
 ## October 20 switched profile and full benchmark
 
 The CRS812 profile uses the qualified RoCEnante ABI-8 two-shot image on the

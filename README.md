@@ -5,6 +5,11 @@
 > its recovery check reached 62.2 t/s at 32K C1. See the
 > [evaluation and recovery report](results/20261020-flare-trial/REPORT.md).
 
+The decode optimization campaign has resumed. Its fresh controls and candidate
+screens show mixed results; no new default has been selected. See the
+[comparison audit](results/20261020-decode-recovery/REPORT.md), and check live
+status before using the API during an active trial.
+
 Corrected vLLM TP4 across two DGX Sparks and two ASUS GX10s on a CRS812 switch.
 API: **http://192.168.X.X:8015/v1**. Model: **DeepSeek-V4.1-Flash-TP4**.
 
