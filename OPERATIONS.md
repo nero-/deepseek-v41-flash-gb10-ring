@@ -1,123 +1,49 @@
 # Operating the switched TP4 cluster
 
-> **Serving now, October 24 UTC: spark-ds41f TileLang build, kept by the user.**
-> Image `2fc5565e9c15…` in containers `ds41f-tilelang-rN` serves on 8015 with
-> the same model name. It beat the previous build in the focused screen (all six cells) and in
-> 22 of 25 full-grid cells, with prefill 33–43% faster. The fleet is claimed by the start interlock,
-> so **do not run `recover-ds`**; after a reboot run
-> `python3 ../DS41-ds41f-tilelang/scripts/trial.py serve`. The selection below is the stopped,
-> unchanged fallback (`trial.py restore`). Gaps: 4 images per request, 10.5 GiB KV.
-> [Results and procedure](../DS41-ds41f-tilelang/README.md).
+**Selected since 2026-10-24:** DeepSeek-V4.1-Flash-1017 on the spark-ds41f-1022
+TileLang build (image `2fc5565e9c15…`), selection
+`4d2bc32eb4f2e9a2540ee18ca2eafbe2c7da95c4ec7f4c7e2ac8c3052fc54dfc`, containers
+`ds41-optimized-rN`, 20 GiB KV per rank, 999 images per request, persistent
+0–2350 MHz GPU ceiling. The previous five-draft B12X selection (`c87a397c…`,
+image `9f26f0b3718c…`) is a stopped, exact rollback (`ds41-before-tilelang-rN`).
+[Recipe](image/tilelang-ds41f/README.md), [qualification](results/20261024-tilelang/REPORT.md).
 
-**Current selection, October 21 UTC:** five-draft vLLM with 20 GiB KV serves
-on 8015, configuration `c87a397ccc4614c6f3fee59e566bb7599e7165c80e858bb12c84d78ef5e27775`.
-The user requested a coordinated four-node reboot and three matched retests.
-The unchanged configuration passed a clean startup, 20 API checks, loaded-clock
-checks, cold 122,280-token retrieval and all three focused screens. No NVIDIA
-allocation warning, Linux OOM kill, Xid or SSH probe failure was observed in
-startup/validation; each timed-run kernel check was clear. Three post-reboot five-draft screens completed. Median C1/C8/C16: 66.8 / 203.1 / 285.5 tok/s at 8K and 64.7 / 202.8 / 289.2 at 32K.
-
-The earlier allocation warnings are historical evidence. One clean boot does
-not establish their root cause or guarantee they cannot recur. Preserve the
-0-2350 MHz ceiling and monitor memory/kernel events during necessary recovery.
-The qualified four-draft fallback remains `ds41-before-mia-five-rN`; its unused
-exact restore helper is `../DS41-sglang-mia/scripts/vllm-five.py restore`.
-Mia was not promoted and its payload was retired. No retest or experiment is
-active. [Current evidence](results/20261021-reboot-draft5/REPORT.md).
-Historical restoration snapshots below do not override this latest state.
-
-**Stock-native source FLARE completed, October 21 UTC:** source
-`e7b8c016474f3b58d390910a7368f58a792b4744` successfully prepared and served the
-original 1017 checkpoint without CSF. Four supported settings lost all 24
-focused decode comparisons against both fresh qualified vLLM controls.
-The original `9f26f0b3718cc...` image, `d86c7e0725ef...` selection and canonical
-`ds41-optimized-rN` containers are restored and healthy on 8015. Startup head
-memory was 117.36 GiB; the restoration control reached 66.0 t/s at 32K C1.
-The persistent 0–2350 MHz ceiling remains active on all four ranks.
-
-The latest marker was archived as
-`/etc/deepseek-ring/FLARE_SOURCE_20261021.finished.json`; the active marker is
-absent and FLARE agents are stopped and disabled. All four stock checkpoint
-copies remain. The rejected source package and hardlink caches were retired,
-removing 1148.46 GiB of allocated payload. Metadata, source, binaries, useful
-compiler caches and one pinned preparation image on the head remain. A new
-trial needs fresh preparation; `DS41-flare-source/scripts/launch-head.sh`
-refuses the remote retirement marker. Do not replay consumed helpers.
-See [completed trial and recovery receipts](../DS41-flare-source/README.md) and
-[developer feedback](../DS41-flare-source/output/pdf/FLARE-stock-checkpoint-feedback.md).
-The vLLM optimization campaign remains paused.
-
-**Earlier FLARE evaluation, October 20 UTC:** the native trial lost the matched full
-benchmark and was not selected. All 48 original 1017 shards on each GX10 were
-restored over fabric and SHA256-verified. The qualified spec and containers are
-restored; the 32K C1 recovery check measured 62.2 t/s and the API is healthy.
-The staging interlock was archived as
-`/etc/deepseek-ring/FLARE_TRIAL_20261020.finished.json`; no active staging marker
-remains. The controller retains its interlock check for future workload changes.
-FLARE's native wrapper requires that marker and refuses to overlap vLLM.
-The interrupted `old4cap3b` provider trial remains stopped under
-`ds41-flare-interrupted-old4cap3b-rN`; it is not the default. The old native
-package has since been deleted on all four nodes at the user's request,
-freeing about 830.25 GiB. Its metadata and results remain, alongside inactive
-agents and pairing. All stock checkpoint copies and the running vLLM deployment
-were preserved. The subsequent source-built stock-checkpoint trial is complete
-and is recorded above. See
-[the complete report](results/20261020-flare-trial/REPORT.md). The subsequent
-vLLM optimization campaign is now paused at the user's request.
-
-**Paused decode investigation:** the qualified image and profile remain the
-recovery baseline. Reversible trials retain exact parent specs and stopped
-containers in the private `decode-recovery-20261020` campaign. Read its
-`PLAN.md`, the shared maintenance skill and the
-[comparison report](results/20261020-decode-recovery/REPORT.md). An experiment
-in `/etc/deepseek-ring/optimized-specs.json` is not a promoted default.
-Do not start a saved parent independently or replay an already-consumed
-`restore-*` receipt. Historical timed screens temporarily locked GPUs at
-2418 MHz and restored stock boost afterward. Their private wrappers must be
-updated to restore the current **0–2350 MHz** policy before any future use.
-All completed trials in that report have now been unwound. The exact
-qualified configuration `d86c7e0725ef...` and native `9f26f0b3718cc...`
-containers passed the final restoration check; no trial is promoted.
-The later live-cost diagnostic failed during startup and was also unwound;
-`restore-livecost` is consumed. No live-cost result or scheduler correction was
-obtained. Do not resume experiments without the user's direction.
-
-**CRS812 conversion, October 20 UTC:** host networking is converted and the
-controller now validates switched RoCE without starting the retired mesh.
-The selected RoCEnante two-shot profile is qualified. Follow the installed selection and the
-[switch campaign](results/20261019-switch-migration/PLAN.md); do not replay the
-historical ring network or rollback configurations.
-
-| Mode | Nodes | API | Model |
+| Workload | Nodes | API | Model |
 |---|---|---|---|
-| DeepSeek vLLM TP4 | all four | `http://192.168.50.219:8015/v1` | `DeepSeek-V4.1-Flash-TP4` |
+| DeepSeek TP4 | all four | `http://192.168.50.219:8015/v1` | `DeepSeek-V4.1-Flash-TP4` |
 
-DeepSeek needs all four nodes. There are no API keys. Qwen serving on this ring
-was retired on 2026-10-12 UTC; the former port-8000 endpoints are no longer
-served. The [GLM handoff](../GLM/HANDOFF.md) records the storage cleanup and
-GLM assignment. On 2026-10-14 the user requested stopping GLM and restoring
-DeepSeek for the HF inference-change audit. DeepSeek's selected endpoint is 8015;
-GLM's historical Weightless alpha-2 recipe remains saved, but all GLM checkpoint
-copies were deleted at the user's request on October 17. GLM start/restart and
-profile selection are blocked by its retirement marker until a new build is
-downloaded and qualified. See [GLM operations](../GLM/README.md),
-[storage retirement](../GLM/results/checkpoint-retirement-20261017/REPORT.md),
-and [the prior audit](results/20261014-hf-runtime-audit/REPORT.md).
+DeepSeek needs all four nodes. There is no API key. Never overlap it with
+another GPU workload; Qwen and GLM serving on this fleet are retired.
 
-## Switching from the Mac
+## Cluster control
 
 ```bash
-cd ~/Agent/Builds/deepseek-v41-flash-ring
-./scripts/ring-mode.sh ds
-./scripts/ring-mode.sh recover-ds
-./scripts/ring-mode.sh stop
-./scripts/ring-mode.sh status
+cd ~/Agent/Builds/deepseek-v41-flash-spark
+./cluster.sh               # TUI: nodes, workload health, actions, live output
+./cluster.sh status        # one-shot node and workload status
+./cluster.sh up            # start the default workload (asks first)
+./cluster.sh down          # stop it (asks first)
+./cluster.sh recover       # after a reboot: down, retired mesh off, switch gate, up
+./cluster.sh list          # every configured workload action
+./cluster.sh run deepseek logs
 ```
 
-`ds` and `recover-ds` return when the selected API is healthy; allow roughly
-4–20 minutes for startup. `recover-ds` first stops workloads and disables the
-retired mesh, then validates the switched fabric and starts all four ranks. Both retired Qwen pair stop entry points remain idempotent for DS recovery.
-`ring-mode.sh qwen` reports retirement before any SSH, DS stop or mesh change.
+In the TUI, the arrow keys select, `Tab` switches between nodes and
+workloads, `Enter` opens the selected item's actions, `PgUp`/`PgDn` scroll
+output, `k` stops a running action, `p` pauses polling and `q` quits.
+Actions marked `!` ask for confirmation. Node actions (clocks, containers,
+memory, kernel events, fabric links) run on the selected node.
+
+The cluster is defined in [`config/cluster.toml`](config/cluster.toml):
+nodes, SSH options, polling interval, per-node actions and workloads, each
+with a health URL and named commands run locally or on one node. Add a
+workload or node by adding a block; point at another file with
+`CLUSTER_CONFIG=path ./cluster.sh` or `--config`. The tool needs Python 3.11+
+(standard library only). Polling probes every node over SSH (`nvidia-smi`,
+`docker ps`); **close the TUI or pause polling during timed benchmarks.**
+
+`scripts/ring-mode.sh ds|recover-ds|stop|status` remains as a non-interactive
+compatibility wrapper for the same actions.
 
 ## Using DeepSeek
 
@@ -131,96 +57,35 @@ curl http://192.168.50.219:8015/v1/chat/completions \
   }'
 ```
 
-Thinking is on by default. Set `thinking: false` explicitly for ordinary
-non-thinking requests and comparable benchmarks. Send `max_tokens` to bound
-the answer. Tools and images passed the retained functional checks.
+Thinking is on by default; set `thinking: false` explicitly for ordinary
+non-thinking requests and comparable benchmarks. Sampling defaults are
+temperature 1 and top_p 1 (DeepSeek's reference). Clients can override them.
+Tools, tool continuation, streaming usage and images pass the functional checks.
 
-The official checkpoint has no `generation_config.json`. The selected command
-therefore explicitly sets temperature 1, top_p 1, top_k -1 (disabled), min_p 0
-and repetition penalty 1. Presence/frequency penalties default to zero. Clients
-can override these values. No implicit output-token cap is added by a generation
-config; keep sending a suitable `max_tokens` for the task and remaining context.
+Context is 1,048,576 tokens with 16 sequences, 8,192 batched tokens and one
+concurrent prefill. KV is **20 GiB per rank**
+(`--kv-cache-memory-bytes 21474836480`), which overrides the 0.82 memory
+fraction. Speculation is DSpark with five greedy drafts, block rejection and a
+rule-based draft budget; a single request's first token waits one extra step
+for sink rejection (about 0.1 s).
 
-KV uses `--kv-cache-memory-bytes 21474836480`: **20 GiB per GPU**, exposing
-16,344,051 logical tokens. This **overrides `--gpu-memory-utilization 0.83`**;
-changing that fraction alone has no effect while the explicit byte budget is
-present. The head's **initial loaded memory target is at most about 118 GiB
-total used**, measured as `MemTotal - MemAvailable`, not Docker RSS or GPU
-allocation alone. The final five-draft recovery started at **117.803 GiB used**,
-leaving **3.884 GiB available**. The post-reboot startup had no allocation warnings. This is a startup budget,
-not a runtime ceiling; do not install an automatic 118 GiB stop guard.
-KV capacity is largely preallocated at startup; other caches and working
-buffers can grow afterward.
-[Current qualification and memory evidence](results/20261019-switch-migration/REPORT.md).
+**Images:** up to 999 images per request, counted across the whole
+conversation history. Five 1024 px images, 16 and 64 distinct images, six
+images in history, streamed follow-ups and recovery after a rejected 1000-image
+request all pass. The count is a ceiling, not a memory guarantee: resolution,
+context and concurrency still limit large requests. A request with more than
+999 images returns HTTP 400 and the engine stays healthy.
 
-The context limit is 1,048,576 tokens, with 16 active sequences. The 8K batch
-ceiling controls work per iteration; it is not a per-request reservation. The
-adaptive plugin uses 4K steps when at least one runnable decoder contends
-with prefill. Aggregate KV capacity limits simultaneous long contexts.
-Greedy byte-repeatability is not guaranteed by this pinned runtime.
+## Memory budget
 
-The serving profile uses native DSpark with **five proposals**, probabilistic
-draft sampling, block rejection and adaptive verification. The historical C1
-three-proposal cap is removed. The graph ladder covers the union of `5*n` and
-`6*n` for `n=1..16`, through 96 rows. The target head remains BF16, with NVFP4
-draft and Markov heads and the full vocabulary. This follows the user's explicit
-draft-count policy; it is a policy choice; the latest clean startup and focused retest evidence is linked above.
-See `results/deployment.json` for exact speculation and compilation settings.
-
-RoCEnante uses both switched rails, a 128 MiB pipe and a 512 KiB two-shot
-threshold. Small reductions and eligible gathers use one-shot; unsupported
-operations retain patched NCCL fallback. There is no SIRCL serving path.
-The complete image recipe is `image/rocenante-switch/README.md`.
-
-LIL's generic NVIDIA local-P2P override warning is not a switched-RDMA
-qualification result. Both rails and RoCEnante collectives were validated
-directly on this fleet. Do not change NVIDIA module options or reboot merely
-to clear that harness warning.
-
-## Images and chat history
-
-The installed selection uses `--limit-mm-per-prompt '{"image":999}'` on
-all four ranks. This counts every image across the **entire request**, including
-images in earlier chat turns. The previous value of 4 caused HTTP 400 when a
-conversation accumulated a fifth image; the engine itself stayed healthy.
-Retry the failed message after the change. A client may need its own retry or
-conversation recovery if it retained the earlier error.
-
-999 is the upstream vLLM default count ceiling, not a guarantee that every
-999-image workload fits in RAM. The model processor exposes no separate fixed
-image-count cap. Resolution, image tokens, text/history, concurrency and
-available memory still matter. The 1,048,576-token context limit and original
-image preprocessing are unchanged. No resizing or quality reduction was added.
-The encoder retains an 8192-token compute/cache budget (eight maximum-size
-1024-token images); it does not reserve 999-image GPU batches.
-Distinct images at counts 5 (1024px square), 16 and 64 (64px fixtures), image
-history, streamed follow-up, and recovery after an over-limit request passed.
-[Validation](results/20261017-image-limit/REPORT.md).
-
-This is a serving flag in root-owned `/etc/deepseek-ring/optimized-specs.json`,
-not an edit to the checkpoint's `config.json`. Container commands must match the
-installed selection on every rank; changing a local README does not deploy it.
-
-**Historical ring-only rollback:** the private command below predates the switch
-and must not be run against the switched selection. To change only image count,
-retain the current switched image/environment and coordinate a fresh selection.
-The old command is recorded for history:
-
-```bash
-python3 ~/Agent/Diagnostics/deepseek-v41-flash-ring/image-limit-20261017/change_limit.py rollback
-```
-
-On the former physical ring, that operation restored the four-image selection
-with the **October 17 image, 1017 checkpoint and 20 GiB KV**, from
-`ds41-before-images-rN`. Its historical head backup is
-`/var/lib/deepseek-ring/experiments/image-limit-20261017/original-selection.json`.
-That old rollback chain is incompatible with switched networking. Use the
-[supported switched fallback](#rollback-on-the-switch) for software recovery.
-Ordinary `ds` / `recover-ds` keeps 999 images and needs no rollback.
+Measure spark-r0 as `MemTotal - MemAvailable`. The startup budget is **at
+most about 118 GiB used just after loading**; it is not a runtime stop guard.
+The TileLang selection started at **109.95 GiB used** (11.7 GiB available)
+with 20 GiB KV; the other ranks were about 109.1 GiB. Docker RSS is not a
+valid unified-memory measure. Raising KV further is possible within the
+budget but would need a new selection and qualification.
 
 ## Lifecycle on spark-r0
-
-When no competing model workload is running:
 
 ```bash
 sudo -n /usr/local/sbin/deepseek-ring-control up
@@ -228,23 +93,51 @@ sudo -n /usr/local/sbin/deepseek-ring-control down
 sudo -n /usr/local/sbin/deepseek-ring-control status
 ```
 
-These fixed actions already have passwordless sudo. The root-owned helper
-validates recorded images, commands, mounts and plugin hashes, then checks
-addresses, both 200G rails, MTU, GID 3, jumbo reachability and disabled legacy
-services before starting `ds41-optimized-r0` through `r3`.
-Inspect rank 0 with `docker logs --tail 100 ds41-optimized-r0`.
+These fixed actions have passwordless sudo
+([sudoers rule](host/sudoers-deepseek-ring-control)). The root-owned helper
+reads `/etc/deepseek-ring/optimized-specs.json`, verifies every container's
+image, arguments, environment and mounts, checks addresses, both 200G rails,
+MTU, GID 3, jumbo reachability and disabled legacy services, drops caches and
+starts `ds41-optimized-r0..r3`. It refuses to start while another container
+is running or while `/etc/deepseek-ring/FLARE_STAGING.json` (the shared trial
+interlock) exists. Startup takes about 2 minutes with warm caches.
 
-`status` reports the selected deployment and switched topology. The old
-installer stock configuration requires the physical ring and is rejected by
-`stock-up` before any running workload is stopped. Keep the installed SparkRing
-package: its container-spec library and seccomp profile are still dependencies;
-its fabric, hairpin, agent, mesh and model services stay disabled.
+The repository copies of the controller are `scripts/deepseek-ring-control.py`
+and `scripts/optimized_vllm.py`; editing them does not change the installed
+root-owned files. Keep the installed SparkRing package: its container-spec
+library and the loader seccomp profile are still used.
+
+## After a node reboot
+
+Wait for SSH on all four nodes, then `./cluster.sh recover` (or
+`scripts/ring-mode.sh recover-ds`). The containers do not start themselves
+after a reboot. Restart the fleet together; never restart one rank under
+surviving workers.
+
+### Switched link or GID failure
+
+Read the failing node and interface from the gate. Check `ip -br addr`,
+`rdma link`, and `/sys/class/infiniband/<hca>/ports/1/gids/3` and
+`gid_attrs/types/3`: GID 3 must be the rail's IPv4-mapped address and type
+`RoCE v2`. Compare GIDs numerically. Use `nmcli connection show` to find the
+current switch profile if a bounce is needed, and stop the fleet first. Do not
+bounce management Ethernet, activate `sparkring-*` profiles, run
+`netplan apply`, or substitute GID 4.
+
+### Decode slows to roughly half speed
+
+Check clocks **during generation** on every node (TUI node action "GPU
+clocks"). After the October 6 reboot, spark-r1 stayed at 611 MHz under load
+while drawing 10–14 W; reapplying the ceiling did not help. A clean shutdown
+and a 1–2 minute physical disconnect of its power adapter (wall and node)
+restored 2320–2333 MHz. Stop the fleet before the intervention, then
+`./cluster.sh recover`, verify all four clocks under load and run a short C1
+probe. A healthy API alone does not prove normal speed.
 
 ## Switched fabric
 
-Each node uses **physical port 1**, exposing two Socket Direct rails sharing
-one 200G cable. They are not two independent 200G links. Use MTU 9000 and IPv4
-RoCEv2 GID **3** on both rails:
+Each node uses **physical port 1**: two Socket Direct rails sharing one 200G
+cable. MTU 9000, IPv4 RoCEv2 GID **3** on both rails.
 
 | Rank | Node | Rail A: enp1s0f1np1 / rocep1s0f1 | Rail B: enP2p1s0f1np1 / roceP2p1s0f1 |
 |---|---|---|---|
@@ -253,205 +146,94 @@ RoCEv2 GID **3** on both rails:
 | 2 | gx10-r1 | 10.10.10.4/24 | 10.10.11.4/24 |
 | 3 | gx10-r0 | 10.10.10.3/24 | 10.10.11.3/24 |
 
-Host configuration is `/etc/netplan/40-switch-fabric.yaml`, rendered by
-NetworkManager, with `/etc/sysctl.d/60-switch-fabric.conf` ARP policy. Do not run
-`netplan apply` or restore old SparkRing profiles. The unused port-0 interfaces
-stay without IPv4 addresses. Management Ethernet `enP7s7` is unchanged.
-The full switch setup is in `../spark-cluster-network.md`.
+Never reorder the two GX10 ranks. Host configuration is
+`/etc/netplan/40-switch-fabric.yaml`, rendered by NetworkManager, with
+`/etc/sysctl.d/60-switch-fabric.conf` ARP policy. Management `enP7s7` is
+unchanged. The CRS812 uses 200G-baseCR4 breakout legs, no autonegotiation,
+L2MTU 9216 and an isolated hardware-offloaded bridge; QoS/PFC/ECN are not
+configured. Full switch setup: `../spark-cluster-network.md`.
 
-On CRS812, the four breakout legs use 200G-baseCR4, no autonegotiation,
-L2MTU 9216, and an isolated hardware-offloaded fabric bridge. Switch management
-is on a separate bridge. QoS/PFC/ECN were not recorded or changed in this
-campaign; passing host tests does not establish that those policies are enabled.
+The TileLang build carries small collectives on sparknet 0.5.0's one-shot
+RDMA all-reduce/all-gather in **switched clique mode** (`SPARKNET_ROCE_TOPOLOGY=direct`,
+both port-1 rails) and bulk collectives on its patched NCCL 2.30.7 with
+sparknet's switched profile. Bandwidth or latency stress needs a stopped fleet.
 
-## After a node reboot
+## Host policy
 
-Wait for SSH on all four nodes, then run on the Mac:
-
-```bash
-./scripts/ring-mode.sh recover-ds
-```
-
-From **spark-r0**, with no competing model workload running, the equivalent sequence is:
-
-```bash
-sudo -n /usr/local/sbin/deepseek-ring-control down
-sudo -n /usr/local/sbin/deepseek-ring-control mesh-off
-sudo -n /usr/local/sbin/deepseek-ring-control up
-```
-
-Restart the fleet together; the selected containers do not serve automatically
-after reboot. The controller never re-enables the old mesh in switched mode.
-
-### Switched link or GID failure
-
-Read the failing interface and node from the startup gate. Check `ip -br addr`,
-`rdma link`, and the HCA's `/sys/class/infiniband/<hca>/ports/1/gids/3` and
-`gid_attrs/types/3`. GID 3 must be IPv4-mapped to that rail's address above and
-its type must be `RoCE v2`. Check all four peers and both rails before startup.
-Use `nmcli connection show` to identify the **current switch profile** if a
-link bounce is needed, and stop the fleet first. Do not bounce management
-Ethernet, activate a `sparkring-*` profile, or substitute GID 4 blindly.
-The October 7 counterclockwise-ring repair is historical and no longer applies
-on this switch; its evidence remains in Git and the retained recovery audit.
-
-### Decode slows to roughly half speed
-
-Check clocks **during generation**, on every node:
-
-```bash
-nvidia-smi --query-gpu=clocks.sm,utilization.gpu,power.draw,temperature.gpu --format=csv
-```
-
-After the October 6 HST reboot, spark-r1 stayed at **611 MHz** under
-94–96% load and drew about 10–14 W. The other three nodes ran near 2350 MHz.
-Reapplying the clock ceiling and briefly requesting a fixed 2350 MHz both
-reported success but left the actual clock at 611 MHz. The mesh and selected
-image/configuration were intact. A physical power disconnect restored its
-clock to 2320–2333 MHz under load. The underlying power-delivery/firmware cause
-is inferred from the symptoms; stock telemetry did not expose the platform cap.
-
-The investigation also included a clean spark-r0 reboot after a memory-bandwidth
-imbalance. Final sustained LIL 8K C1 measured **60.96 tokens/s**, matching the
-retained original-checkpoint baseline of **60.98 tokens/s**. Three short prose
-C1 probes measured 64.05–69.06 tokens/s. A fresh 125K-token retrieval passed.
-The original image, checkpoint, plugins and 2350 MHz ceiling remained selected.
-
-[Similar GB10 reports](https://forums.developer.nvidia.com/t/dgx-spark-gb10-gpu-clock-pinned-at-721-mhz-under-full-load-no-throttling-not-liftable-via-nvidia-smi/376039)
-were resolved by a full power disconnect. Stop DeepSeek and all mesh
-supervisors as above, shut down the affected node cleanly, then disconnect its
-power adapter from both the wall and node for 1–2 minutes. Reconnect and boot,
-wait for SSH, then run `./scripts/ring-mode.sh recover-ds`. Check GID 3 if the
-switched-fabric gate fails. Verify all four clocks under generation and repeat a short C1
-probe before declaring recovery. A healthy API alone does not prove normal speed.
-
-## Fabric and host maintenance
-
-Rank order remains spark-r0, spark-r1, gx10-r1, gx10-r0. All nodes now connect
-directly to CRS812 using port 1; see the [switched map](#switched-fabric).
-SSH and APIs remain on the management LAN.
-
-All four hosts run kernel `7.0.0-1019-nvidia`, driver `580.178.04`, with
-NetworkManager wait-online enabled. The enabled
-[clock-policy service](host/systemd/gb10-gpu-clock-cap.service) applies
-**`nvidia-smi -lgc 0,2350`** before Docker at boot. This is a 2350 MHz ceiling;
-idle downclocking remains enabled. The user restored this policy after the
-stock-clock trials showed no consistent decode gain. After a manual GPU/driver reset,
-reapply the selected policy with:
-
-```bash
-sudo systemctl reload gb10-gpu-clock-cap.service
-```
-
-The previous stock-boost unit is backed up on every node under
-`/var/lib/deepseek-ring/experiments/clock-cap-2350-20261020/`.
-The clock service is enabled and active on all four nodes; applying it did not
-restart the model. [Installation and loaded verification](results/20261020-clock-cap/REPORT.md).
-Stock boost did not establish a consistent decode gain in the focused clock
-trials. A temporary 2700 MHz ceiling also failed to improve decode; do not
-infer actual operating frequency from a requested clock.
-
-Keep retired mesh services disabled and never overlap DeepSeek with another GPU
-workload. Avoid `netplan apply` on GX10s: it can stop NetworkManager. The scripts
-in `ring/` describe the old cabling and are historical; use
-`scripts/switched_fabric.py` with the installed selected fabric document for
-current checks. Run bandwidth/latency stress only with serving stopped.
+All four hosts run kernel `7.0.0-1019-nvidia` (4 KiB pages), driver
+`580.178.04`. The [clock-policy service](host/systemd/gb10-gpu-clock-cap.service)
+applies `nvidia-smi -lgc 0,2350` at boot and reload: a 2350 MHz ceiling with
+idle downclocking. After a manual GPU or driver reset run
+`sudo systemctl reload gb10-gpu-clock-cap.service`. Stock boost and a 2700 MHz
+ceiling did not give a consistent decode gain
+([clock receipt](results/20261020-clock-cap/REPORT.md)).
+The spark-ds41f recipe's 64 KiB kernel and memory-saver DKMS are **not**
+installed or needed for this sizing.
 
 ## Validation and benchmarks
 
-From this checkout:
-
 ```bash
 python3 bench/functional.py http://192.168.50.219:8015/v1
-python3 bench/cold-needle.py --url http://192.168.50.219:8015 \
-  --tokens 131072 --output /tmp/deepseek-needle.json
-python3 scripts/run-full-benchmark.py
+python3 bench/cold-needle.py --url http://192.168.50.219:8015 --tokens 128000 --output /tmp/needle.json
+python3 results/20261017-image-limit/check_images.py      # writes beside itself; copy it first
 ```
 
-The full runner uses the already-installed LIL v0.6.2 harness and environment
-on gx10-r0. It runs the 20-cell sustained grid, burst grid, coding probes and
-fresh retrieval through 1M tokens, recording request settings and configuration
-hashes. It requires an already healthy selected service and does not change
-serving settings. Benchmark traffic affects interactive latency; run when idle.
-`bench/indexer-startup-check.py` is the local CPU activation regression check.
-Use `--no-hw-monitor` and verify temporary benchmark collectors exit. Fourteen
-old detached GPU-polling loops were removed after the October 17 timed comparisons;
-never use broad process-name killing to clean up collectors.
+`cold-needle.py` exits 1 on this build even when it passes: the server omits
+`cached_tokens`, so `cold_confirmed` stays false. Read `needle_pass`; the
+prompt starts with a fresh nonce, so it cannot hit the prefix cache.
 
-### Comparing with public SparkRing results
-
-The runner above uses `lil_matched.py`, which explicitly forces thinking off,
-top_p=1 and top_k=-1. The public SparkRing LIL invocation does not apply those
-overrides. Both are LIL benchmarks, but the request settings differ.
-On October 14, the original build measured 197.67/271.32 tokens/s at 8K C8/C16
-with the public invocation; the clean upstream copy was slower at C8.
-See the [matched comparison](results/20261014-upstream-baseline/REPORT.md).
-
-The comparison's unmodified LIL 0.7.6 script is pinned at
-`~/bench/upstream-baseline-20261014/lil-0.7.6.py` on gx10-r0. Run it directly,
-without `lil_matched.py`, with `LLM_BENCH_NO_UPDATE_CHECK=1` and:
+Timed benchmarks use unmodified **LIL 0.7.6**
+(`~/Agent/Diagnostics/deepseek-v41-flash-ring/decode-recovery-20261020/external-client`,
+SHA-256 `c4c7eaed…9553`) from the Mac, with `LLM_BENCH_NO_UPDATE_CHECK=1`:
 
 ```text
 --host 192.168.50.219 --port 8015 --model DeepSeek-V4.1-Flash-TP4
 --no-hw-monitor --display-mode plain --no-resume --temperature 1
---concurrency 1,2,4,8,16 --contexts 8k,16k,32k,64k,128k
---duration 20 --max-tokens 2048 --coding-peak --output <unique-result.json>
+--duration 20 --max-tokens 2048 --coding-peak --output <new-file>.json
+focused screen: --concurrency 1,8,16  --contexts 8k,32k
+full grid:      --concurrency 1,2,4,8,16 --contexts 8k,16k,32k,64k,128k
 ```
 
-The October 17 runtime campaign uses this public 0.7.6 protocol;
-`bench/lil_top_p.py` can inject only top_p without changing thinking. The
-request-parser audit confirms the server defaults above. Preserve both protocols' labels and raw results. Matching a public command does
-not control different hardware clocks, client placement or stochastic variation.
+Tool-calling quality uses LIL **0.7.7**'s `--tool-eval` (tool-eval-bench at
+the community leaderboard settings: hard mode, seed 42, temperature 0,
+parallel 4). The pinned script is `results/20261024-tilelang/lil-0.7.7.py`,
+kept local and recreated from `lil-0.7.7.source.json` (tag, commit, SHA-256);
+its first run installs tool-eval-bench into `~/.cache/llm_decode_bench`.
+`results/20261024-tilelang/scripts/qualify.py` runs the gates, screens, grid
+and tool-eval with receipts. Keep the fleet free of other traffic, retain raw
+results, and compare only matching protocols: C8/C16 are aggregate output
+throughput, and short or greedy probes are not the sustained benchmark.
+
+## Rollback on the switch
+
+```bash
+python3 image/tilelang-ds41f/promote.py rollback --receipts results/rollback-<utc>
+```
+
+This is also the TUI action *rollback to B12X selection*. It stops the
+TileLang containers (renamed `ds41-tilelang-rN`), restores
+`/etc/deepseek-ring/optimized-specs.pre-tilelang-20261024.json` (`c87a397c…`)
+and the stopped `ds41-before-tilelang-rN` containers as `ds41-optimized-rN`,
+and starts them. No weight transfer is needed. Update `results/deployment.json`
+and the docs after any rollback.
+
+Older containers that encode the retired physical ring
+(`ds41-before-images-rN`, `ds41-before-tuning-rN`, `ds41-rollback-*`,
+`ds41-before-ring-rN`) must not be started on the switch.
 
 ## Installed paths
 
 | Item | Path |
 |---|---|
 | Selected config | `/etc/deepseek-ring/optimized-specs.json` on spark-r0 |
-| Selected plugins | `/usr/local/lib/deepseek-ring/plugins` on each node |
-| Selected 1017 checkpoint | `/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash-1017/1bae0e1088993b9b82de08f59de5be5a34e42170` on every node |
-| Rollback checkpoint | `/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277` on the two Sparks; GX10 weight shards removed |
-| Tuning cache | `/srv/sparkring/sparkring/cache` on every node |
-| SparkRing deployment | `/var/lib/sparkring/controller/deployments/deepseek-v41-flash-tp4-iba1b36389e5d` on spark-r0 |
-| Retired Qwen source/config and stop compatibility | `~/builds/qwen-tp2` on every node; weights/caches/images removed |
-| Benchmark environment | `~/bench` on gx10-r0 |
+| Previous selection | `/etc/deepseek-ring/optimized-specs.pre-tilelang-20261024.json` |
+| 1017 checkpoint | `/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash-1017/1bae0e1088993b9b82de08f59de5be5a34e42170` on every node |
+| Original checkpoint | `/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277` on the two Sparks |
+| TileLang cache | `/srv/sparkring/sparkring/cache/ds41f-tilelang-20261024` on every node |
+| B12X caches | `/srv/sparkring/sparkring/cache` on every node |
+| B12X plugins (rollback) | `/usr/local/lib/deepseek-ring/plugins` on each node |
+| Image build checkout | `~/builds/ds41f-tilelang-20261024/spark-ds41f` on spark-r1 |
+| Benchmark client | `~/Agent/Diagnostics/deepseek-v41-flash-ring/decode-recovery-20261020/external-client` on the Mac |
 
-The switch campaign at
-`~/Agent/Diagnostics/deepseek-v41-flash-ring/switch-migration-20261019/`
-contains the baseline and candidate selections, exact image IDs, retained
-container receipts, and test results. Check the installed root-owned selection
-against the current deployment manifest before changing it.
-
-## Rollback on the switch
-
-The software fallback is the same October 17 image and official 1017 checkpoint
-with **switched networking**, saved as `baseline-specs.json`. Once the two-shot
-candidate is selected, the baseline containers are `ds41-before-switch-baseline-rN`.
-Stop all benchmark/client traffic and the fleet before running the private
-campaign's `restore_baseline.py`, then use the fixed-action controller to start.
-The helper checks current and retained identities; it does not start serving
-or change host networking. Update the deployment manifest after a rollback.
-
-The helper accepts the qualified `c1cap3` serving specification even after
-external qualification metadata is added. It checks the stopped fallback's
-image, complete argument vector, selected environment and mounts before
-renaming any container. Root configuration replacement requires the normal
-admin method; fixed-action `up`/`down` remain passwordless.
-
-The earlier `ds41-before-images-rN`, `ds41-before-tuning-rN`,
-`ds41-rollback-runtime-rN`, `ds41-rollback-1017-rN`, and
-`ds41-before-ring-rN` containers encode the **retired physical ring**.
-Do not start them or run their historical rollback helpers on this switch.
-Their configuration guards intentionally reject the current selection. If an
-older runtime or checkpoint is needed, create and qualify a new switched
-selection while preserving the current fabric and lifecycle controller.
-
-The previous checkpoint remains verified on the Sparks only; restoring it to
-GX10s would require a separate fabric transfer and hash verification. No weight
-transfer is needed for the current switched transport fallback. Historical
-configuration/weight receipts remain in the prior campaign directories and Git.
-
-The earlier GLM compatibility receipt remains historical. Its checkpoint copies
-were subsequently deleted and its startup controls now reject the retirement
-marker. A future GLM rebuild must qualify against the current DS selection and
-reconcile its workload guards; do not use the historical starter to switch back.
+Superseded campaign reports were removed from the active checkout on
+2026-10-24 and remain at the Git tag `pre-tilelang-cleanup-20261024`.

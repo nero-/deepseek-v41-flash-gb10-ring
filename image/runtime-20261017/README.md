@@ -38,7 +38,7 @@ and top_p 1, target BF16 head, retained NVFP4 draft/Markov settings, attention
 compute `auto` to preserve the previous policy, 1M context, 16 sequences and an
 8192-token batch ceiling with adaptive 4096 contention steps. KV is explicitly
 20 GiB per rank (`21474836480` bytes); it supersedes memory utilization 0.83.
-The later [decode and KV campaign](../../results/20261017-decode-tuning/REPORT.md) retained the original
+The later [decode and KV campaign](https://github.com/nero-/deepseek-v41-flash-gb10-ring/blob/pre-tilelang-cleanup-20261024/results/20261017-decode-tuning/REPORT.md) retained the original
 decode settings after screening alternatives and sized KV against the
 118 GiB initial-loaded head target. There is no automatic runtime stop guard.
 No SIRCL or new large-message transport is enabled by this image.

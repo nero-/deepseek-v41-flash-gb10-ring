@@ -1,0 +1,194 @@
+{
+  "utc": "2026-10-24T18:47:21.179170+00:00",
+  "functional_failures": 0,
+  "images_rc": 0,
+  "cold_needle_rc": 1,
+  "containers": [
+    {
+      "rank": 0,
+      "id": "f4be444a4f14298d820c7922af5cf59f993a723929c323e268134c5ca1ff16d3"
+    },
+    {
+      "rank": 1,
+      "id": "c69b6103ae46032cd905513d5a3ab11ac8f7fc9b16597abe8b26e5714efc1e51"
+    },
+    {
+      "rank": 2,
+      "id": "42764fc48ea58f2d821d3ed4d5cdc17428e85ded1d2efcc7092b985a95ad8360"
+    },
+    {
+      "rank": 3,
+      "id": "c26f7970d36cae5770a4bde8cc4b548bf02f7eab6e838d23a31bc557915f533e"
+    }
+  ],
+  "hosts": [
+    {
+      "rank": 0,
+      "used_gib": 110.46110916137695,
+      "available_gib": 11.226558685302734
+    },
+    {
+      "rank": 1,
+      "used_gib": 109.39967727661133,
+      "available_gib": 12.28799057006836
+    },
+    {
+      "rank": 2,
+      "used_gib": 109.36833953857422,
+      "available_gib": 12.256885528564453
+    },
+    {
+      "rank": 3,
+      "used_gib": 109.33099365234375,
+      "available_gib": 12.294231414794922
+    }
+  ],
+  "kernel_events": [
+    [],
+    [],
+    [],
+    []
+  ],
+  "image_checks": [
+    {
+      "name": "5-distinct-images-1024px",
+      "stream": false,
+      "status": 200,
+      "reply": "Red, blue",
+      "pass": true,
+      "elapsed_s": 1.175,
+      "health_after": 200
+    },
+    {
+      "name": "16-distinct-images-64px",
+      "stream": true,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 2984,
+        "total_tokens": 2988,
+        "completion_tokens": 4,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "sink_rejection": {
+          "flagged_rows": 0,
+          "flagged_draft_zero": 0,
+          "flagged_drafter": 0,
+          "flagged_prompt": 0,
+          "draft_zero_rejections": 0,
+          "draft_cuts": 0,
+          "fallthroughs": 0
+        }
+      },
+      "done": true,
+      "chunks": 4,
+      "reply": "Red, blue",
+      "pass": true,
+      "elapsed_s": 0.891,
+      "health_after": 200
+    },
+    {
+      "name": "64-distinct-images-64px",
+      "stream": false,
+      "status": 200,
+      "reply": "Red, blue",
+      "pass": true,
+      "elapsed_s": 3.075,
+      "health_after": 200
+    },
+    {
+      "name": "six-images-across-chat-history",
+      "stream": true,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 1144,
+        "total_tokens": 1180,
+        "completion_tokens": 36,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "sink_rejection": {
+          "flagged_rows": 0,
+          "flagged_draft_zero": 0,
+          "flagged_drafter": 0,
+          "flagged_prompt": 0,
+          "draft_zero_rejections": 0,
+          "draft_cuts": 0,
+          "fallthroughs": 0
+        }
+      },
+      "done": true,
+      "chunks": 11,
+      "reply": "Based on the two new images provided in your last message:\n\n1.  The first image is predominantly **Red**.\n2.  The second image is predominantly **Blue**.",
+      "pass": true,
+      "elapsed_s": 0.778,
+      "health_after": 200
+    },
+    {
+      "name": "text-followup-with-image-history",
+      "stream": true,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 1197,
+        "total_tokens": 1199,
+        "completion_tokens": 2,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "sink_rejection": {
+          "flagged_rows": 0,
+          "flagged_draft_zero": 0,
+          "flagged_drafter": 0,
+          "flagged_prompt": 0,
+          "draft_zero_rejections": 0,
+          "draft_cuts": 0,
+          "fallthroughs": 0
+        }
+      },
+      "done": true,
+      "chunks": 3,
+      "reply": "391",
+      "pass": true,
+      "elapsed_s": 0.33,
+      "health_after": 200
+    },
+    {
+      "name": "1000-images-rejected",
+      "stream": false,
+      "status": 400,
+      "error": "{\"error\":{\"message\":\"At most 999 image(s) may be provided in one prompt. (parameter=image)\",\"type\":\"BadRequestError\",\"param\":\"image\",\"code\":400}}",
+      "pass": true,
+      "elapsed_s": 0.049,
+      "health_after": 200
+    },
+    {
+      "name": "text-after-rejection",
+      "stream": true,
+      "status": 200,
+      "usage": {
+        "prompt_tokens": 18,
+        "total_tokens": 20,
+        "completion_tokens": 2,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "sink_rejection": {
+          "flagged_rows": 0,
+          "flagged_draft_zero": 0,
+          "flagged_drafter": 0,
+          "flagged_prompt": 0,
+          "draft_zero_rejections": 0,
+          "draft_cuts": 0,
+          "fallthroughs": 0
+        }
+      },
+      "done": true,
+      "chunks": 3,
+      "reply": "391",
+      "pass": true,
+      "elapsed_s": 0.137,
+      "health_after": 200
+    }
+  ],
+  "note": "cold-needle exits 1 while cached_tokens is absent from usage; see needle_pass."
+}

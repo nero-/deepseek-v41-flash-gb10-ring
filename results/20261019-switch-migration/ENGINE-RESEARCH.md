@@ -204,7 +204,7 @@ sealed, passed numerical and functional checks, then failed to improve two
 matched serving screens. It was rejected in favor of the retained draft4 image.
 Schema 23 requires
 fresh tuning, including decisions for otherwise unchanged operators.
-See [the candidate recipe](../../image/moe-20261020/README.md). Checkpoint storage precision and vocabulary remain
+See [the candidate recipe](https://github.com/nero-/deepseek-v41-flash-gb10-ring/blob/pre-tilelang-cleanup-20261024/image/moe-20261020/README.md). Checkpoint storage precision and vocabulary remain
 unchanged, but changed arithmetic scheduling still requires numerical,
 graph-replay and serving qualification.
 

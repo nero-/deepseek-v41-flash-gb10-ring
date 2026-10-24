@@ -32,4 +32,4 @@ a different image ID and does not automatically replace the selected config.
 Its image receipt retains `serving_qualified: false`; serving qualification is
 recorded separately in the deployment manifest and upgrade report.
 
-[Selected identities and qualification](../../results/20261017-checkpoint-upgrade/REPORT.md).
+[Selected identities and qualification](https://github.com/nero-/deepseek-v41-flash-gb10-ring/blob/pre-tilelang-cleanup-20261024/results/20261017-checkpoint-upgrade/REPORT.md).

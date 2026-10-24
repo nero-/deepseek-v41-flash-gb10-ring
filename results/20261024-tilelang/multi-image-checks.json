@@ -1,0 +1,243 @@
+[
+  {
+    "name": "5-distinct-images-1024px",
+    "stream": false,
+    "status": 200,
+    "response": {
+      "id": "chatcmpl-8248652b04bd7ce8",
+      "object": "chat.completion",
+      "created": 1792867613,
+      "model": "DeepSeek-V4.1-Flash-TP4",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "Red, blue",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.29.1rc1.dev187+gaf1c01499-tp4-29dc6299",
+      "usage": {
+        "prompt_tokens": 3289,
+        "total_tokens": 3293,
+        "completion_tokens": 4,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "sink_rejection": {
+          "flagged_rows": 0,
+          "flagged_draft_zero": 0,
+          "flagged_drafter": 0,
+          "flagged_prompt": 0,
+          "draft_zero_rejections": 0,
+          "draft_cuts": 0,
+          "fallthroughs": 0
+        }
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    },
+    "reply": "Red, blue",
+    "pass": true,
+    "elapsed_s": 1.175,
+    "health_after": 200
+  },
+  {
+    "name": "16-distinct-images-64px",
+    "stream": true,
+    "status": 200,
+    "usage": {
+      "prompt_tokens": 2984,
+      "total_tokens": 2988,
+      "completion_tokens": 4,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "sink_rejection": {
+        "flagged_rows": 0,
+        "flagged_draft_zero": 0,
+        "flagged_drafter": 0,
+        "flagged_prompt": 0,
+        "draft_zero_rejections": 0,
+        "draft_cuts": 0,
+        "fallthroughs": 0
+      }
+    },
+    "done": true,
+    "chunks": 4,
+    "reply": "Red, blue",
+    "pass": true,
+    "elapsed_s": 0.891,
+    "health_after": 200
+  },
+  {
+    "name": "64-distinct-images-64px",
+    "stream": false,
+    "status": 200,
+    "response": {
+      "id": "chatcmpl-941e25d5da004d6d",
+      "object": "chat.completion",
+      "created": 1792867615,
+      "model": "DeepSeek-V4.1-Flash-TP4",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "Red, blue",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.29.1rc1.dev187+gaf1c01499-tp4-29dc6299",
+      "usage": {
+        "prompt_tokens": 11864,
+        "total_tokens": 11868,
+        "completion_tokens": 4,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "sink_rejection": {
+          "flagged_rows": 0,
+          "flagged_draft_zero": 0,
+          "flagged_drafter": 0,
+          "flagged_prompt": 0,
+          "draft_zero_rejections": 0,
+          "draft_cuts": 0,
+          "fallthroughs": 0
+        }
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    },
+    "reply": "Red, blue",
+    "pass": true,
+    "elapsed_s": 3.075,
+    "health_after": 200
+  },
+  {
+    "name": "six-images-across-chat-history",
+    "stream": true,
+    "status": 200,
+    "usage": {
+      "prompt_tokens": 1144,
+      "total_tokens": 1180,
+      "completion_tokens": 36,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "sink_rejection": {
+        "flagged_rows": 0,
+        "flagged_draft_zero": 0,
+        "flagged_drafter": 0,
+        "flagged_prompt": 0,
+        "draft_zero_rejections": 0,
+        "draft_cuts": 0,
+        "fallthroughs": 0
+      }
+    },
+    "done": true,
+    "chunks": 11,
+    "reply": "Based on the two new images provided in your last message:\n\n1.  The first image is predominantly **Red**.\n2.  The second image is predominantly **Blue**.",
+    "pass": true,
+    "elapsed_s": 0.778,
+    "health_after": 200
+  },
+  {
+    "name": "text-followup-with-image-history",
+    "stream": true,
+    "status": 200,
+    "usage": {
+      "prompt_tokens": 1197,
+      "total_tokens": 1199,
+      "completion_tokens": 2,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "sink_rejection": {
+        "flagged_rows": 0,
+        "flagged_draft_zero": 0,
+        "flagged_drafter": 0,
+        "flagged_prompt": 0,
+        "draft_zero_rejections": 0,
+        "draft_cuts": 0,
+        "fallthroughs": 0
+      }
+    },
+    "done": true,
+    "chunks": 3,
+    "reply": "391",
+    "pass": true,
+    "elapsed_s": 0.33,
+    "health_after": 200
+  },
+  {
+    "name": "1000-images-rejected",
+    "stream": false,
+    "status": 400,
+    "error": "{\"error\":{\"message\":\"At most 999 image(s) may be provided in one prompt. (parameter=image)\",\"type\":\"BadRequestError\",\"param\":\"image\",\"code\":400}}",
+    "pass": true,
+    "elapsed_s": 0.049,
+    "health_after": 200
+  },
+  {
+    "name": "text-after-rejection",
+    "stream": true,
+    "status": 200,
+    "usage": {
+      "prompt_tokens": 18,
+      "total_tokens": 20,
+      "completion_tokens": 2,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "sink_rejection": {
+        "flagged_rows": 0,
+        "flagged_draft_zero": 0,
+        "flagged_drafter": 0,
+        "flagged_prompt": 0,
+        "draft_zero_rejections": 0,
+        "draft_cuts": 0,
+        "fallthroughs": 0
+      }
+    },
+    "done": true,
+    "chunks": 3,
+    "reply": "391",
+    "pass": true,
+    "elapsed_s": 0.137,
+    "health_after": 200
+  }
+]

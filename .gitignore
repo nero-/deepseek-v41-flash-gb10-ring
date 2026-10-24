@@ -7,10 +7,11 @@ __pycache__/
 .DS_Store
 # Exact site-specific launch configuration; keep the public deployment summary.
 results/20260929-kk926/selected-corrected.json
-results/20261017-checkpoint-upgrade/selected-1017.json
 results/20261017-runtime-upgrade/selected-runtime.json
 # Raw kernel journals embedded in per-run kernel checks; reports keep the event summaries.
 results/*/*-kernel.json
 # The installed TileLang selection and its rendered per-rank launch (site-specific).
 results/20261024-tilelang/**/optimized-specs*.json
 results/20261024-tilelang/**/launch/
+# Third-party benchmark script; see lil-0.7.7.source.json to recreate it.
+results/20261024-tilelang/lil-0.7.7.py

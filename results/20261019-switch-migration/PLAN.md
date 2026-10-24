@@ -12,7 +12,7 @@ stock GPU boost. See the [completed report](REPORT.md) and
 sections below are historical, including their DSpark5 and 2350 MHz assumptions.
 
 Prepared October 19 HST / October 20 UTC, 2026. This supersedes the networking
-portion of the [earlier standby plan](../20261017-runtime-plan/PLAN.md).
+portion of the [earlier standby plan](https://github.com/nero-/deepseek-v41-flash-gb10-ring/blob/pre-tilelang-cleanup-20261024/results/20261017-runtime-plan/PLAN.md).
 The October 17 runtime upgrade is already complete.
 
 ## Initial shutdown and physical handoff (historical)

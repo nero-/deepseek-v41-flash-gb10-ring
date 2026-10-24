@@ -1,0 +1,93 @@
+# Cluster definition for ./cluster.sh (scripts/cluster.py).
+#
+# Nothing here is DeepSeek-specific: a cluster is a set of SSH-reachable nodes
+# and any number of workloads. A workload is a health URL plus named actions;
+# an action is a command run locally or on one node. Add a workload by adding a
+# [[workloads]] block; add a node by adding a [[nodes]] block.
+#
+# Placeholders in commands: {node} {host} {rank} {user} {repo}. {repo} is the
+# directory that contains cluster.sh.
+
+[cluster]
+name = "SparkRing"
+ssh_user = "nero"
+ssh_options = ["-o", "BatchMode=yes", "-o", "ConnectTimeout=5", "-o", "ProxyCommand=none"]
+# Node probes use SSH and nvidia-smi; close the TUI (or raise this) during timed benchmarks.
+refresh_seconds = 5
+# Optional: an action shown for every node (Enter on a node).
+node_actions = [
+  { name = "GPU clocks", command = "nvidia-smi --query-gpu=clocks.sm,utilization.gpu,power.draw,temperature.gpu --format=csv" },
+  { name = "Containers", command = "docker ps -a --format 'table {{.Names}}\t{{.Status}}\t{{.Image}}'" },
+  { name = "Memory", command = "free -g; cat /proc/pressure/memory" },
+  { name = "Kernel events (1 h)", command = "journalctl -k --since '-1h' --no-pager | grep -Ei 'oom|xid|nvrm|allocation failure' || echo none" },
+  { name = "Fabric links", command = "ip -br addr show enp1s0f1np1; ip -br addr show enP2p1s0f1np1; rdma link 2>/dev/null | grep -i ' 1/' || true" },
+]
+
+# Rank order matters for TP: never reorder the two GX10 ranks.
+[[nodes]]
+name = "spark-r0"
+host = "192.168.50.219"
+role = "head"
+
+[[nodes]]
+name = "spark-r1"
+host = "192.168.50.129"
+role = "worker"
+
+[[nodes]]
+name = "gx10-r1"
+host = "192.168.50.192"
+role = "worker"
+
+[[nodes]]
+name = "gx10-r0"
+host = "192.168.50.23"
+role = "worker"
+
+[[workloads]]
+name = "deepseek"
+description = "DeepSeek-V4.1-Flash TP4, spark-ds41f TileLang selection (root controller)"
+health_url = "http://192.168.50.219:8015/health"
+api = "http://192.168.50.219:8015/v1"
+# Container name per rank; {rank} is the node's position above.
+container = "ds41-optimized-r{rank}"
+default = true
+
+  [[workloads.actions]]
+  name = "start"
+  node = "spark-r0"
+  command = "sudo -n /usr/local/sbin/deepseek-ring-control up"
+  confirm = true
+
+  [[workloads.actions]]
+  name = "stop"
+  node = "spark-r0"
+  command = "sudo -n /usr/local/sbin/deepseek-ring-control down"
+  confirm = true
+
+  [[workloads.actions]]
+  name = "recover"
+  description = "After a reboot: stop, keep the retired mesh off, validate the switch, start"
+  node = "spark-r0"
+  command = "sudo -n /usr/local/sbin/deepseek-ring-control down && sudo -n /usr/local/sbin/deepseek-ring-control mesh-off && sudo -n /usr/local/sbin/deepseek-ring-control up"
+  confirm = true
+
+  [[workloads.actions]]
+  name = "status"
+  node = "spark-r0"
+  command = "sudo -n /usr/local/sbin/deepseek-ring-control status"
+
+  [[workloads.actions]]
+  name = "logs"
+  node = "spark-r0"
+  command = "docker logs --tail 200 ds41-optimized-r0 2>&1"
+
+  [[workloads.actions]]
+  name = "functional check"
+  command = "python3 {repo}/bench/functional.py http://192.168.50.219:8015/v1"
+
+  [[workloads.actions]]
+  name = "rollback to B12X selection"
+  description = "Reinstall the previous five-draft B12X selection (c87a397c) and start it"
+  command = "python3 {repo}/image/tilelang-ds41f/promote.py rollback --receipts {repo}/results/rollback-$(date -u +%Y%m%dT%H%M%SZ)"
+  confirm = true

@@ -1,0 +1,7 @@
+{
+  "utc": "2026-10-24T17:49:26.625823+00:00",
+  "reason": "cold-needle exited 1 only because this vLLM build omits usage.prompt_tokens_details.cached_tokens, so cold_confirmed (cached==0) cannot be true. The answer was correct (RING-6305-COBALT, 122,279 prompt tokens). The prompt begins with a fresh UUID nonce, so no 256-token prefix block can match the cache; TTFT 20.18 s is a full prefill.",
+  "functional_failures": 0,
+  "loaded_clocks_rc": 0,
+  "memory_guard_tripped": false
+}

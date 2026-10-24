@@ -1,0 +1,8 @@
+{
+  "utc": "2026-10-24T18:10:16.679002+00:00",
+  "reason": "User asked to keep testing the trial build; the restore begun at 18:03Z was interrupted and production stopped again with the controller.",
+  "ready_seconds": 117.10929679870605,
+  "head_used_gib": 100.27309799194336,
+  "head_available_gib": 21.414569854736328,
+  "moved_archive": "/etc/deepseek-ring/DS41F_TILELANG_20261024.interrupted-restore.json"
+}

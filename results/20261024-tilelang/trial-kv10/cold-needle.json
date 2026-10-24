@@ -1,0 +1,33 @@
+{
+  "args": {
+    "tokens": 128000,
+    "output": "/Users/jg/Agent/Builds/DS41-ds41f-tilelang/results/20261024-trial/cold-needle.json",
+    "url": "http://192.168.50.219:8015"
+  },
+  "nonce": "9e0423586ef54ee5a1e6cad185016ab4",
+  "prompt_sha256": "8a086662ed5a921a1ac458cbf705f5e58d76176bb4c85f734b9429ab0196b49c",
+  "expected": "RING-6305-COBALT",
+  "answer": "RING-6305-COBALT",
+  "usage": {
+    "prompt_tokens": 122279,
+    "total_tokens": 122288,
+    "completion_tokens": 9,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "sink_rejection": {
+      "flagged_rows": 0,
+      "flagged_draft_zero": 0,
+      "flagged_drafter": 0,
+      "flagged_prompt": 0,
+      "draft_zero_rejections": 0,
+      "draft_cuts": 0,
+      "fallthroughs": 0
+    }
+  },
+  "ttft_seconds": 20.17755199999374,
+  "elapsed_seconds": 20.180688540996925,
+  "cached_tokens": null,
+  "needle_pass": true,
+  "cold_confirmed": false
+}

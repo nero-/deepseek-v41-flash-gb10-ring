@@ -1,0 +1,55 @@
+{
+  "label": "promotion",
+  "started_epoch": 1792867336.15154,
+  "ended_epoch": 1792867471.070733,
+  "first_api_healthy_epoch": 1792867336.856062,
+  "stop_requested": true,
+  "guard_gib": 0.0,
+  "guard_tripped": null,
+  "nodes": [
+    {
+      "rank": 0,
+      "samples": 67,
+      "ssh_failures": [],
+      "max_ssh_seconds": 0.6094289579996257,
+      "peak_used_gib": 109.95426940917969,
+      "minimum_available_gib": 11.7333984375,
+      "peak_swap_used_gib": 0.005840301513671875,
+      "kernel_events": [],
+      "kernel_read_returncode": 0
+    },
+    {
+      "rank": 1,
+      "samples": 67,
+      "ssh_failures": [],
+      "max_ssh_seconds": 0.6871434999993653,
+      "peak_used_gib": 109.09769058227539,
+      "minimum_available_gib": 12.589977264404297,
+      "peak_swap_used_gib": 0.00170135498046875,
+      "kernel_events": [],
+      "kernel_read_returncode": 0
+    },
+    {
+      "rank": 2,
+      "samples": 67,
+      "ssh_failures": [],
+      "max_ssh_seconds": 0.6679354579973733,
+      "peak_used_gib": 109.04736709594727,
+      "minimum_available_gib": 12.577857971191406,
+      "peak_swap_used_gib": 0.0,
+      "kernel_events": [],
+      "kernel_read_returncode": 0
+    },
+    {
+      "rank": 3,
+      "samples": 67,
+      "ssh_failures": [],
+      "max_ssh_seconds": 0.5302390829965589,
+      "peak_used_gib": 109.11275100708008,
+      "minimum_available_gib": 12.512474060058594,
+      "peak_swap_used_gib": 0.0,
+      "kernel_events": [],
+      "kernel_read_returncode": 0
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "file": "lil-0.7.7.py (local only; not redistributed here)",
+  "repository": "https://github.com/local-inference-lab/llm-inference-bench",
+  "tag": "v0.7.7",
+  "commit": "c71ec1f2b34a4f1c8f702f1750ccd70da0e389e2",
+  "path": "llm_decode_bench.py",
+  "sha256": "12ff23289c8d8d4741a261ae2fb95aa3bb9b83e85732d8665011a0d0617f1dbe",
+  "license": "MIT (per the upstream README)",
+  "recreate": "git -C <clone> show v0.7.7:llm_decode_bench.py > results/20261024-tilelang/lil-0.7.7.py",
+  "used_for": "--tool-eval only; timed runs use the pinned LIL 0.7.6"
+}

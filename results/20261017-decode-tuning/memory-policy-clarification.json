@@ -1,7 +1,0 @@
-{
-  "startup_target_max_gib": 118,
-  "measurement": "MemTotal-MemAvailable",
-  "operating_ceiling": false,
-  "automatic_stop_guard": false,
-  "reason": "User clarified 118 GiB is initial loaded budget to leave about 3 GiB for runtime growth."
-}

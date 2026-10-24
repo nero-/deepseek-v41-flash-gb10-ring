@@ -1,4 +1,0 @@
-INFO 10-17 09:25:32 [importing.py:74] Triton is installed but 0 active driver(s) found (expected 1). Disabling Triton to prevent runtime errors.
-INFO 10-17 09:25:32 [importing.py:98] Triton not installed or not compatible; certain GPU-related functions will not be available.
-RESULT_JSON=[{"partial": false, "actual": {"a": "x"}, "expected": {"a": "x", "n": 12}, "pass": false}, {"partial": true, "actual": {"a": "x"}, "expected": {"a": "x", "n": 12}, "pass": false}]
-W1017 09:25:32.628000 1 torch/utils/cpp_extension.py:178] No CUDA runtime is found, using CUDA_HOME='/usr/local/cuda-13.4'

@@ -1,0 +1,105 @@
+{
+  "utc": "2026-10-24T17:19:17.571810+00:00",
+  "controller_down": "",
+  "marker": {
+    "created_utc": "2026-10-24T17:19:16.913031+00:00",
+    "owner": "DS41-ds41f-tilelang trial (spark-ds41f-1022 TileLang image, switched clique)",
+    "note": "The controller names FLARE in its refusal; this marker is the shared start interlock.",
+    "trial_readme": "~/Agent/Builds/DS41-ds41f-tilelang/README.md",
+    "fallback_selection_sha256": "c87a397ccc4614c6f3fee59e566bb7599e7165c80e858bb12c84d78ef5e27775",
+    "fallback_image": "sha256:9f26f0b3718ccca889cfd93cb72e2165b6d4c11dd9dc93fe65f585883537f2db",
+    "fallback_containers": "ds41-optimized-rN (stopped, unchanged)",
+    "clock_cap_mhz": 2350,
+    "api_port": 8015
+  },
+  "canonical_states": [
+    {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-10-21T12:23:12.668601488Z",
+      "FinishedAt": "2026-10-24T17:19:05.644455496Z",
+      "Health": {
+        "Status": "unhealthy",
+        "FailingStreak": 1,
+        "Log": [
+          {
+            "Start": "2026-10-24T17:18:24.637223383Z",
+            "End": "2026-10-24T17:18:24.736601822Z",
+            "ExitCode": 0,
+            "Output": ""
+          },
+          {
+            "Start": "2026-10-24T17:18:34.738219497Z",
+            "End": "2026-10-24T17:18:34.821596046Z",
+            "ExitCode": 0,
+            "Output": ""
+          },
+          {
+            "Start": "2026-10-24T17:18:44.8264653Z",
+            "End": "2026-10-24T17:18:44.916597003Z",
+            "ExitCode": 0,
+            "Output": ""
+          },
+          {
+            "Start": "2026-10-24T17:18:54.921722149Z",
+            "End": "2026-10-24T17:18:55.007578958Z",
+            "ExitCode": 0,
+            "Output": ""
+          },
+          {
+            "Start": "2026-10-24T17:19:05.009607724Z",
+            "End": "2026-10-24T17:19:05.113067697Z",
+            "ExitCode": 1,
+            "Output": "Traceback (most recent call last):\n  File \"/usr/lib/python3.12/urllib/request.py\", line 1344, in do_open\n    h.request(req.get_method(), req.selector, req.data, headers,\n  File \"/usr/lib/python3.12/http/client.py\", line 1365, in request\n    self._send_request(method, url, body, headers, encode_chunked)\n  File \"/usr/lib/python3.12/http/client.py\", line 1411, in _send_request\n    self.endheaders(body, encode_chunked=encode_chunked)\n  File \"/usr/lib/python3.12/http/client.py\", line 1360, in endheaders\n    self._send_output(message_body, encode_chunked=encode_chunked)\n  File \"/usr/lib/python3.12/http/client.py\", line 1120, in _send_output\n    self.send(msg)\n  File \"/usr/lib/python3.12/http/client.py\", line 1064, in send\n    self.connect()\n  File \"/usr/lib/python3.12/http/client.py\", line 1030, in connect\n    self.sock = self._create_connection(\n                ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/socket.py\", line 852, in create_connection\n    raise exceptions[0]\n  File \"/usr/lib/python3.12/socket.py\", line 837, in create_connection\n    sock.connect(sa)\nConnectionRefusedError: [Errno 111] Connection refused\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/usr/lib/python3.12/urllib/request.py\", line 215, in urlopen\n    return opener.open(url, data, timeout)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 515, in open\n    response = self._open(req, data)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 532, in _open\n    result = self._call_chain(self.handle_open, protocol, protocol +\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 492, in _call_chain\n    result = func(*args)\n             ^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 1373, in http_open\n    return self.do_open(http.client.HTTPConnection, req)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 1347, in do_open\n    raise URLError(err)\nurllib.error.URLError: <urlopen error [Errno 111] Connection refused>\n"
+          }
+        ]
+      }
+    },
+    {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-10-21T12:23:12.59357728Z",
+      "FinishedAt": "2026-10-24T17:19:16.015257908Z"
+    },
+    {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-10-21T12:23:12.558143397Z",
+      "FinishedAt": "2026-10-24T17:19:15.776530662Z"
+    },
+    {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-10-21T12:23:12.511899853Z",
+      "FinishedAt": "2026-10-24T17:19:15.953905239Z"
+    }
+  ]
+}

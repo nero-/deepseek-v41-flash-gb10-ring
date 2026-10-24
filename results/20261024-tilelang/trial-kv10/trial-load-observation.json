@@ -1,0 +1,3266 @@
+{
+  "utc": "2026-10-24T17:48:27.300186+00:00",
+  "before": [
+    {
+      "rank": 0,
+      "rocep1s0f1": {
+        "port_xmit_data": 9558340445340,
+        "port_rcv_data": 9558237363996,
+        "port_xmit_packets": 12846487804,
+        "port_rcv_packets": 12849768312,
+        "port_xmit_discards": 0,
+        "port_rcv_errors": 0
+      },
+      "roceP2p1s0f1": {
+        "port_xmit_data": 9557384557233,
+        "port_rcv_data": 9557437867128,
+        "port_xmit_packets": 12826689074,
+        "port_rcv_packets": 12830098539,
+        "port_xmit_discards": 0,
+        "port_rcv_errors": 0
+      },
+      "memory": {
+        "used_gib": 100.46052551269531,
+        "available_gib": 21.227142333984375,
+        "swap_used_gib": 0.00585174560546875
+      },
+      "gpu": "2333, 0, 21.08, 52",
+      "clock_service": "active"
+    },
+    {
+      "rank": 1,
+      "rocep1s0f1": {
+        "port_xmit_data": 9558968358369,
+        "port_rcv_data": 9559037038884,
+        "port_xmit_packets": 12866320961,
+        "port_rcv_packets": 12870743375,
+        "port_xmit_discards": 0,
+        "port_rcv_errors": 0
+      },
+      "roceP2p1s0f1": {
+        "port_xmit_data": 9557849162065,
+        "port_rcv_data": 9557916221793,
+        "port_xmit_packets": 12841199655,
+        "port_rcv_packets": 12845519248,
+        "port_xmit_discards": 0,
+        "port_rcv_errors": 0
+      },
+      "memory": {
+        "used_gib": 99.50312042236328,
+        "available_gib": 22.184547424316406,
+        "swap_used_gib": 0.00170135498046875
+      },
+      "gpu": "2333, 94, 20.02, 50",
+      "clock_service": "active"
+    },
+    {
+      "rank": 2,
+      "rocep1s0f1": {
+        "port_xmit_data": 9559723442258,
+        "port_rcv_data": 9559651673970,
+        "port_xmit_packets": 12892533732,
+        "port_rcv_packets": 12887915411,
+        "port_xmit_discards": 0,
+        "port_rcv_errors": 0
+      },
+      "roceP2p1s0f1": {
+        "port_xmit_data": 9557927785840,
+        "port_rcv_data": 9557856325768,
+        "port_xmit_packets": 12846477600,
+        "port_rcv_packets": 12841881826,
+        "port_xmit_discards": 0,
+        "port_rcv_errors": 0
+      },
+      "memory": {
+        "used_gib": 99.47462844848633,
+        "available_gib": 22.150596618652344,
+        "swap_used_gib": 0.0
+      },
+      "gpu": "2333, 94, 20.54, 49",
+      "clock_service": "active"
+    },
+    {
+      "rank": 3,
+      "rocep1s0f1": {
+        "port_xmit_data": 9559519800332,
+        "port_rcv_data": 9559625883167,
+        "port_xmit_packets": 12890371185,
+        "port_rcv_packets": 12887286497,
+        "port_xmit_discards": 0,
+        "port_rcv_errors": 0
+      },
+      "roceP2p1s0f1": {
+        "port_xmit_data": 9557158902457,
+        "port_rcv_data": 9557109901234,
+        "port_xmit_packets": 12822602679,
+        "port_rcv_packets": 12819469293,
+        "port_xmit_discards": 0,
+        "port_rcv_errors": 0
+      },
+      "memory": {
+        "used_gib": 99.51789855957031,
+        "available_gib": 22.10732650756836,
+        "swap_used_gib": 0.0
+      },
+      "gpu": "2333, 0, 18.61, 50",
+      "clock_service": "active"
+    }
+  ],
+  "during": [
+    {
+      "rank": 0,
+      "rocep1s0f1": {
+        "port_xmit_data": 9558499699212,
+        "port_rcv_data": 9558396635248,
+        "port_xmit_packets": 12846787904,
+        "port_rcv_packets": 12850068489,
+        "port_xmit_discards": 0,
+        "port_rcv_errors": 0
+      },
+      "roceP2p1s0f1": {
+        "port_xmit_data": 9557543817630,
+        "port_rcv_data": 9557597127668,
+        "port_xmit_packets": 12826986504,
+        "port_rcv_packets": 12830396016,
+        "port_xmit_discards": 0,
+        "port_rcv_errors": 0
+      },
+      "memory": {
+        "used_gib": 100.47523498535156,
+        "available_gib": 21.212432861328125,
+        "swap_used_gib": 0.00585174560546875
+      },
+      "gpu": "2333, 94, 27.74, 55",
+      "clock_service": "active"
+    },
+    {
+      "rank": 1,
+      "rocep1s0f1": {
+        "port_xmit_data": 9559127462689,
+        "port_rcv_data": 9559196164095,
+        "port_xmit_packets": 12866626295,
+        "port_rcv_packets": 12871048601,
+        "port_xmit_discards": 0,
+        "port_rcv_errors": 0
+      },
+      "roceP2p1s0f1": {
+        "port_xmit_data": 9558008321690,
+        "port_rcv_data": 9558075377046,
+        "port_xmit_packets": 12841501770,
+        "port_rcv_packets": 12845821081,
+        "port_xmit_discards": 0,
+        "port_rcv_errors": 0
+      },
+      "memory": {
+        "used_gib": 99.51105880737305,
+        "available_gib": 22.17660903930664,
+        "swap_used_gib": 0.00170135498046875
+      },
+      "gpu": "2333, 94, 26.40, 52",
+      "clock_service": "active"
+    },
+    {
+      "rank": 2,
+      "rocep1s0f1": {
+        "port_xmit_data": 9559881788158,
+        "port_rcv_data": 9559810045737,
+        "port_xmit_packets": 12892836125,
+        "port_rcv_packets": 12888217937,
+        "port_xmit_discards": 0,
+        "port_rcv_errors": 0
+      },
+      "roceP2p1s0f1": {
+        "port_xmit_data": 9558086157360,
+        "port_rcv_data": 9558014699753,
+        "port_xmit_packets": 12846776439,
+        "port_rcv_packets": 12842180836,
+        "port_xmit_discards": 0,
+        "port_rcv_errors": 0
+      },
+      "memory": {
+        "used_gib": 99.48677062988281,
+        "available_gib": 22.13845443725586,
+        "swap_used_gib": 0.0
+      },
+      "gpu": "2333, 94, 27.58, 51",
+      "clock_service": "active"
+    },
+    {
+      "rank": 3,
+      "rocep1s0f1": {
+        "port_xmit_data": 9559679677731,
+        "port_rcv_data": 9559785760519,
+        "port_xmit_packets": 12890677431,
+        "port_rcv_packets": 12887592784,
+        "port_xmit_discards": 0,
+        "port_rcv_errors": 0
+      },
+      "roceP2p1s0f1": {
+        "port_xmit_data": 9557318692315,
+        "port_rcv_data": 9557269716895,
+        "port_xmit_packets": 12822903330,
+        "port_rcv_packets": 12819770062,
+        "port_xmit_discards": 0,
+        "port_rcv_errors": 0
+      },
+      "memory": {
+        "used_gib": 99.51552200317383,
+        "available_gib": 22.109703063964844,
+        "swap_used_gib": 0.0
+      },
+      "gpu": "2333, 95, 25.22, 53",
+      "clock_service": "active"
+    }
+  ],
+  "after": [
+    {
+      "rank": 0,
+      "rocep1s0f1": {
+        "port_xmit_data": 9558716968910,
+        "port_rcv_data": 9558613880095,
+        "port_xmit_packets": 12847225872,
+        "port_rcv_packets": 12850505898,
+        "port_xmit_discards": 0,
+        "port_rcv_errors": 0
+      },
+      "roceP2p1s0f1": {
+        "port_xmit_data": 9557760859079,
+        "port_rcv_data": 9557814160434,
+        "port_xmit_packets": 12827418261,
+        "port_rcv_packets": 12830827175,
+        "port_xmit_discards": 0,
+        "port_rcv_errors": 0
+      },
+      "memory": {
+        "used_gib": 100.47462844848633,
+        "available_gib": 21.21303939819336,
+        "swap_used_gib": 0.00585174560546875
+      },
+      "gpu": "2333, 95, 23.76, 56",
+      "clock_service": "active"
+    },
+    {
+      "rank": 1,
+      "rocep1s0f1": {
+        "port_xmit_data": 9559345313226,
+        "port_rcv_data": 9559413981806,
+        "port_xmit_packets": 12867072586,
+        "port_rcv_packets": 12871494230,
+        "port_xmit_discards": 0,
+        "port_rcv_errors": 0
+      },
+      "roceP2p1s0f1": {
+        "port_xmit_data": 9558225859156,
+        "port_rcv_data": 9558292903678,
+        "port_xmit_packets": 12841941335,
+        "port_rcv_packets": 12846259947,
+        "port_xmit_discards": 0,
+        "port_rcv_errors": 0
+      },
+      "memory": {
+        "used_gib": 99.50561904907227,
+        "available_gib": 22.182048797607422,
+        "swap_used_gib": 0.00170135498046875
+      },
+      "gpu": "2333, 95, 22.60, 53",
+      "clock_service": "active"
+    },
+    {
+      "rank": 2,
+      "rocep1s0f1": {
+        "port_xmit_data": 9560100275054,
+        "port_rcv_data": 9560028517803,
+        "port_xmit_packets": 12893281175,
+        "port_rcv_packets": 12888663566,
+        "port_xmit_discards": 0,
+        "port_rcv_errors": 0
+      },
+      "roceP2p1s0f1": {
+        "port_xmit_data": 9558304358973,
+        "port_rcv_data": 9558232910170,
+        "port_xmit_packets": 12847214935,
+        "port_rcv_packets": 12842619888,
+        "port_xmit_discards": 0,
+        "port_rcv_errors": 0
+      },
+      "memory": {
+        "used_gib": 99.48153686523438,
+        "available_gib": 22.143688201904297,
+        "swap_used_gib": 0.0
+      },
+      "gpu": "2333, 94, 23.34, 50",
+      "clock_service": "active"
+    },
+    {
+      "rank": 3,
+      "rocep1s0f1": {
+        "port_xmit_data": 9559896706257,
+        "port_rcv_data": 9560002797462,
+        "port_xmit_packets": 12891120910,
+        "port_rcv_packets": 12888036762,
+        "port_xmit_discards": 0,
+        "port_rcv_errors": 0
+      },
+      "roceP2p1s0f1": {
+        "port_xmit_data": 9557535366569,
+        "port_rcv_data": 9557486377823,
+        "port_xmit_packets": 12823336592,
+        "port_rcv_packets": 12820204011,
+        "port_xmit_discards": 0,
+        "port_rcv_errors": 0
+      },
+      "memory": {
+        "used_gib": 99.51078796386719,
+        "available_gib": 22.114437103271484,
+        "swap_used_gib": 0.0
+      },
+      "gpu": "2333, 2, 20.85, 52",
+      "clock_service": "active"
+    }
+  ],
+  "generation": {
+    "request": {
+      "model": "DeepSeek-V4.1-Flash-TP4",
+      "messages": [
+        {
+          "role": "user",
+          "content": "f88b1f6e8e6a4b6b9f4d14dd6572ca4b\nWrite a detailed Python HTTP server tutorial with request parsing, error handling, tests and deployment. Explain each part."
+        }
+      ],
+      "temperature": 1,
+      "top_p": 1,
+      "max_tokens": 512,
+      "ignore_eos": true,
+      "chat_template_kwargs": {
+        "thinking": false
+      },
+      "stream": true,
+      "stream_options": {
+        "include_usage": true
+      }
+    },
+    "ttft_seconds": 0.22088233300019056,
+    "elapsed_seconds": 5.7048879169960856,
+    "chunks": [
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "role": "assistant",
+              "content": ""
+            },
+            "logprobs": null,
+            "finish_reason": null
+          }
+        ],
+        "prompt_token_ids": null,
+        "prompt_text": null
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "#"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " Building a"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " Production"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "-Ready Python HTTP Server"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": ": A Complete"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " Tutorial\n\n"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "This tutorial walks"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " through building"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " an HTTP server"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " in Python from scratch"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " \u2014"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " no"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " Flask, no"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " Django, no"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " FastAPI."
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " We'll use"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " only the standard library"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "'s `"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "socket"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "`,"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " then"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " upgrade to `"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "http.server` for"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " the"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " framework"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " layer"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "."
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " By the end"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": ", you'll understand"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " every"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " moving part of"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " HTTP"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": ":"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " TCP"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " handshakes,"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " request parsing, response"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " construction, error handling,"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " testing, and deployment.\n\n"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "---\n\n##"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " Table of Contents\n\n1."
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " [Why"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " build from"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " scratch?](#"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "1-why-build"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "-from-scratch)\n"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "2. ["
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "The"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " minimal"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " TCP server](#2"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "-the-minimal-tcp"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "-server)\n3. ["
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "Parsing HTTP requests](#3"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "-parsing-http-requests"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": ")\n4. ["
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "Constructing"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " responses](#4-constructing"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "-responses)\n5. ["
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "Routing](#5-r"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "outing)\n6. ["
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "Error handling](#6-error-hand"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "ling)\n7. ["
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "Concurrency"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "](#7-concurrency)\n"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "8. [Testing](#"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "8-testing)\n9."
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " [Deployment](#9-de"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "ployment)\n10. ["
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "Production checklist](#"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "10-production-checklist)\n\n---\n\n"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "## 1. Why build"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " from scratch?\n\n"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "Understanding"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " the HTTP"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " layers"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " below"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " the framework"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " makes you"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " dramatically better at"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " debugging"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " 500s"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": ","
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " timeouts,"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " keep-alive"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " bugs, and"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " security"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " issues. The"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " standard library"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " gives"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " us"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " everything"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " we need:\n\n-"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " `socket` \u2014 raw"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " TCP\n- `http"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": ".server` \u2014"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " RFC 723"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "0-com"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "pliant"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " message parsing\n- `"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "socketserver` \u2014"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " threaded server"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " framework\n- `unittest"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "`"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " \u2014"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " tests\n\n"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "We'll build"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " the server"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " in"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " **two layers**"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": ":\n\n"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "```\n"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "\u2500\u2510\n\u2502 "
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " Application"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " (routes, handlers"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": ")"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " \u2502"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "  \u2190 your"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " code\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524\n\u2502 "
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " Request"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " / Response"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " objects     \u2502  \u2190"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " what we build\n"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524\n"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "\u2502 "
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " Parser ("
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "http.server"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " /"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " http"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": ")    \u2502  \u2190"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " stdlib\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "\u2500\u2524\n\u2502 "
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " socketserver"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " TCP"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "               \u2502  \u2190 std"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "lib\n"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524\n"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "\u2502  OS socket"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " API                  \u2502 "
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " \u2190"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " OS\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "\u2500\u2518\n```\n\n---\n\n"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "## 2. The"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " minimal TCP server\n\n"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "Before"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " HTTP, we"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " need a TCP"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " listener."
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " This is"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " what"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " every HTTP"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " server"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " does"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " under the hood:\n\n```python"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "\n#"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " step1"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "_raw"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "_socket.py\nimport socket"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "\n\n"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "def serve"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "():\n   "
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " #"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " AF_INET"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " = IPv4, S"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": "OCK_STREAM ="
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " TCP\n   "
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": " with socket.socket(socket"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": ".AF_INET, socket"
+            },
+            "logprobs": null,
+            "finish_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [
+          {
+            "index": 0,
+            "delta": {
+              "content": ".SOCK_ST"
+            },
+            "logprobs": null,
+            "finish_reason": "length",
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ]
+      },
+      {
+        "id": "chatcmpl-bdf1843a1b6dd9ad",
+        "object": "chat.completion.chunk",
+        "created": 1792864101,
+        "model": "DeepSeek-V4.1-Flash-TP4",
+        "choices": [],
+        "usage": {
+          "prompt_tokens": 53,
+          "total_tokens": 565,
+          "completion_tokens": 512,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "sink_rejection": {
+            "flagged_rows": 0,
+            "flagged_draft_zero": 0,
+            "flagged_drafter": 0,
+            "flagged_prompt": 0,
+            "draft_zero_rejections": 0,
+            "draft_cuts": 0,
+            "fallthroughs": 0
+          }
+        },
+        "system_fingerprint": "vllm-0.29.1rc1.dev187+gaf1c01499-tp4-29dc6299"
+      }
+    ]
+  },
+  "not_a_benchmark": true
+}

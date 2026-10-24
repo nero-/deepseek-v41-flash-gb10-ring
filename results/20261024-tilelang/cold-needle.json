@@ -1,0 +1,33 @@
+{
+  "args": {
+    "tokens": 128000,
+    "output": "/Users/jg/Agent/Builds/deepseek-v41-flash-spark/results/20261024-tilelang/cold-needle.json",
+    "url": "http://192.168.50.219:8015"
+  },
+  "nonce": "a941b642427d44fca4f4af69a1d1efd8",
+  "prompt_sha256": "ea8994f1a809f9c6e8ee450f8f5e961cb720b399f30dc9f0e170b946cc93461b",
+  "expected": "RING-6305-COBALT",
+  "answer": "RING-6305-COBALT",
+  "usage": {
+    "prompt_tokens": 122282,
+    "total_tokens": 122291,
+    "completion_tokens": 9,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "sink_rejection": {
+      "flagged_rows": 0,
+      "flagged_draft_zero": 0,
+      "flagged_drafter": 0,
+      "flagged_prompt": 0,
+      "draft_zero_rejections": 0,
+      "draft_cuts": 0,
+      "fallthroughs": 0
+    }
+  },
+  "ttft_seconds": 20.364645791996736,
+  "elapsed_seconds": 20.373257207997085,
+  "cached_tokens": null,
+  "needle_pass": true,
+  "cold_confirmed": false
+}

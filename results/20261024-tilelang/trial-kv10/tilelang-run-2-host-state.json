@@ -1,0 +1,81 @@
+{
+  "utc": "2026-10-24T17:58:38.822067+00:00",
+  "nodes": [
+    {
+      "rank": 0,
+      "boot_id": "270c66b5-4a35-41c9-aa94-587ef0c0d98c",
+      "uptime": "279388.55 5166076.69",
+      "kernel": "7.0.0-1019-nvidia",
+      "used_gib": 100.61851119995117,
+      "available_gib": 21.069156646728516,
+      "swap_used_gib": 0.00585174560546875,
+      "clock": {
+        "returncode": 0,
+        "stdout": "ExecStart={ path=/usr/bin/nvidia-smi ; argv[]=/usr/bin/nvidia-smi -lgc 0,2350 ; ignore_errors=no ; start_time=[Wed 2026-10-21 12:22:21 UTC] ; stop_time=[Wed 2026-10-21 12:22:21 UTC] ; pid=2297 ; code=exited ; status=0 }\nActiveState=active\nUnitFileState=enabled\n",
+        "stderr": ""
+      },
+      "running_containers": {
+        "returncode": 0,
+        "stdout": "ds41f-tilelang-r0 2fc5565e9c15\n",
+        "stderr": ""
+      }
+    },
+    {
+      "rank": 1,
+      "boot_id": "7fa22c38-6a75-4a76-a98b-29fe26979985",
+      "uptime": "279388.65 5250935.45",
+      "kernel": "7.0.0-1019-nvidia",
+      "used_gib": 99.5839958190918,
+      "available_gib": 22.10367202758789,
+      "swap_used_gib": 0.00170135498046875,
+      "clock": {
+        "returncode": 0,
+        "stdout": "ExecStart={ path=/usr/bin/nvidia-smi ; argv[]=/usr/bin/nvidia-smi -lgc 0,2350 ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\nActiveState=active\nUnitFileState=enabled\n",
+        "stderr": ""
+      },
+      "running_containers": {
+        "returncode": 0,
+        "stdout": "ds41f-tilelang-r1 2fc5565e9c15\n",
+        "stderr": ""
+      }
+    },
+    {
+      "rank": 2,
+      "boot_id": "f125d4a8-916c-43ce-a542-373e7ec9c6d2",
+      "uptime": "279390.59 5256120.36",
+      "kernel": "7.0.0-1019-nvidia",
+      "used_gib": 99.49446868896484,
+      "available_gib": 22.130756378173828,
+      "swap_used_gib": 0.0,
+      "clock": {
+        "returncode": 0,
+        "stdout": "ExecStart={ path=/usr/bin/nvidia-smi ; argv[]=/usr/bin/nvidia-smi -lgc 0,2350 ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\nActiveState=active\nUnitFileState=enabled\n",
+        "stderr": ""
+      },
+      "running_containers": {
+        "returncode": 0,
+        "stdout": "ds41f-tilelang-r2 2fc5565e9c15\n",
+        "stderr": ""
+      }
+    },
+    {
+      "rank": 3,
+      "boot_id": "a4349b1a-14a5-4129-8e9f-37193e506745",
+      "uptime": "279390.36 5253459.69",
+      "kernel": "7.0.0-1019-nvidia",
+      "used_gib": 99.52993392944336,
+      "available_gib": 22.095291137695312,
+      "swap_used_gib": 0.0,
+      "clock": {
+        "returncode": 0,
+        "stdout": "ExecStart={ path=/usr/bin/nvidia-smi ; argv[]=/usr/bin/nvidia-smi -lgc 0,2350 ; ignore_errors=no ; start_time=[Wed 2026-10-21 12:22:18 UTC] ; stop_time=[Wed 2026-10-21 12:22:18 UTC] ; pid=2347 ; code=exited ; status=0 }\nActiveState=active\nUnitFileState=enabled\n",
+        "stderr": ""
+      },
+      "running_containers": {
+        "returncode": 0,
+        "stdout": "ds41f-tilelang-r3 2fc5565e9c15\n",
+        "stderr": ""
+      }
+    }
+  ]
+}

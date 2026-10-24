@@ -1,0 +1,294 @@
+{
+  "utc": "2026-10-24T17:48:17.003368+00:00",
+  "image_id": "sha256:2fc5565e9c15b005f3297a552131b8973a2f19fb811868a8358a3e99b33491d0",
+  "launch_manifest": {
+    "source": {
+      "repository": "https://github.com/christopherowen/spark-ds41f",
+      "commit": "9f1565f060ad84a6f06a745a9b7b4191393cc842",
+      "promoted_baseline": "2026-10-22-spark-ds41f-1022",
+      "shape": "tp4-ring",
+      "expected_labels": {
+        "local.spark3.vllm.tree": "e68aa19c8027c34a3dcfeb3ed203f6d285fc4d67",
+        "local.spark3.b12x.tree": "1a647a311ca55d45070ab83d60668d9c8fb8886c",
+        "local.spark3.nccl.tree": "6af10aa730a64fcee8781d62340a9c9184e79469",
+        "local.spark3.tilelang.tree": "222b895d04ee6cd75179155d06e0c0d450636f51",
+        "local.spark3.tile_kernels.tree": "cb2fa41c8af290204c81c547ed678ebf957cca53",
+        "local.spark3.sparknet.tree": "f997a594f03a696897e6ad8e50bb027ed877ebe9"
+      },
+      "recipe_image_tag": "vllm-ds41f-kkref:19f2c20ed4d6-1022-4"
+    },
+    "image": "sha256:2fc5565e9c15b005f3297a552131b8973a2f19fb811868a8358a3e99b33491d0",
+    "start_order": [
+      1,
+      2,
+      3,
+      0
+    ],
+    "site_changes": [
+      "fabric: oneshot-ring4 -> sparknet switched clique (topology direct, no peer map)",
+      "env: removed ring-only NCCL_ALGO=Ring",
+      "env: removed ring-only NCCL_SWITCHLESS_BIDIRECTIONAL=2",
+      "env: removed ring-only NCCL_MIN_NCHANNELS=4",
+      "env: removed ring-only NCCL_MIN_TRAFFIC_PER_CHANNEL=512",
+      "env: removed ring-only NCCL_RUNTIME_CONNECT=1",
+      "env: removed ring-only NCCL_CUMEM_HOST_ENABLE=0",
+      "env: removed ring-only NCCL_GIN_ENABLE=0",
+      "env: removed ring-only NCCL_MNNVL_ENABLE=0",
+      "env: removed ring-only NCCL_PAT_ENABLE=0",
+      "env: removed ring-only NCCL_RMA_DISABLE=1",
+      "env: removed ring-only NCCL_COLLNET_ENABLE=0",
+      "env: removed ring-only NCCL_IB_SUBNET_PREFIX_LEN=24",
+      "env: removed ring-only NCCL_THREAD_THRESHOLDS=-2 -2 -2 1 1 1",
+      "env: NCCL_BUFFSIZE '4194304' -> '1048576' (sparknet switched profile)",
+      "env: NCCL_CUMEM_ENABLE '1' -> '0' (sparknet switched profile)",
+      "env: NCCL_MAX_NCHANNELS '4' -> '8' (sparknet switched profile)",
+      "env: SPARKNET_ROCE_ALLGATHER_MAX_BYTES '2097152' -> '4194304' (sparknet switched profile)",
+      "env: NCCL_CROSS_NIC '1' -> '0' (site)",
+      "env: NCCL_IB_HCA 'rocep1s0f0,roceP2p1s0f0,rocep1s0f1,roceP2p1s0f1' -> '=rocep1s0f1,roceP2p1s0f1' (site)",
+      "env: NCCL_SOCKET_IFNAME 'enP7s7' -> 'enp1s0f1np1' (site)",
+      "env: GLOO_SOCKET_IFNAME 'enP7s7' -> 'enp1s0f1np1' (site)",
+      "env: TP_SOCKET_IFNAME 'enP7s7' -> 'enp1s0f1np1' (site)",
+      "env: SPARKNET_ROCE_TOPOLOGY None -> 'direct' (site)",
+      "env: SPARKNET_ROCE_HCA None -> 'rocep1s0f1,roceP2p1s0f1' (site)",
+      "env: PYTHONPATH '/opt/spark3/candidate/vllm:/opt/spark3/candidate/b12x' -> '/opt/spark-ds41f/candidate/vllm:/opt/spark-ds41f/candidate/b12x' (site)",
+      "bootstrap: master_addr -> 10.10.10.1 (rail A, as the qualified selection)",
+      "api: port 8000 -> 8015, model name -> DeepSeek-V4.1-Flash-TP4",
+      "mounts: local 1017 checkpoint at /hub/models--deepseek-ai--DeepSeek-V4.1-Flash-1017/snapshots/1bae0e1088993b9b82de08f59de5be5a34e42170 (ro); cache /srv/sparkring/sparkring/cache/ds41f-tilelang-20261024",
+      "security: seccomp=unconfined -> production SparkRing seccomp profile (includes io_uring)"
+    ],
+    "unchanged": "kernels, arithmetic, sizing, speculation, scheduler, sampling and all other recipe values",
+    "ranks": [
+      {
+        "rank": 0,
+        "host": "spark-r0",
+        "container": "ds41f-tilelang-r0",
+        "argv_sha256": "78a1e0b76acd906caa09f215500d295fdb49ef0642dd35f1384f9452a52441e1",
+        "path": "rank0.json"
+      },
+      {
+        "rank": 1,
+        "host": "spark-r1",
+        "container": "ds41f-tilelang-r1",
+        "argv_sha256": "5e74588b74b8af56e2b972f865f6cfc7a47bc5525eace47b3ca10078a57616f3",
+        "path": "rank1.json"
+      },
+      {
+        "rank": 2,
+        "host": "gx10-r1",
+        "container": "ds41f-tilelang-r2",
+        "argv_sha256": "ddabc45fe25c65290a0c1f622016a1ff0a648b20c719ef0399bbe3e23d640c60",
+        "path": "rank2.json"
+      },
+      {
+        "rank": 3,
+        "host": "gx10-r0",
+        "container": "ds41f-tilelang-r3",
+        "argv_sha256": "4a61fab0613676721e88ef42d91d7e2a3c94b11b258fcfe3d17f59d6b5467dec",
+        "path": "rank3.json"
+      }
+    ]
+  },
+  "launched": [
+    {
+      "rank": 1,
+      "returncode": 0,
+      "stdout": "79595cbaf4db48d8df468ba52a747c110eb0789f950748a873cc9d2f4f42f67c\n",
+      "stderr": ""
+    },
+    {
+      "rank": 2,
+      "returncode": 0,
+      "stdout": "0335d888e361922a551938849b82c7729c73ee162050d631b7b4bfdc5f37e066\n",
+      "stderr": ""
+    },
+    {
+      "rank": 3,
+      "returncode": 0,
+      "stdout": "7c0aa7356b799c7160f97ac57b0e505277ce26564ccd1d400b908a1b9c39d13e\n",
+      "stderr": ""
+    },
+    {
+      "rank": 0,
+      "returncode": 0,
+      "stdout": "a76ea186015d72ba3afc23cc89f1c6ad5f001c9c442edd923961e7517a41342d\n",
+      "stderr": ""
+    }
+  ],
+  "prebuild": [
+    {
+      "rank": 0,
+      "stdout": "sampling module ready SimpleNamespace 2.1 s\n"
+    },
+    {
+      "rank": 1,
+      "stdout": "sampling module ready SimpleNamespace 2.0 s\n"
+    },
+    {
+      "rank": 2,
+      "stdout": "sampling module ready SimpleNamespace 1.9 s\n"
+    },
+    {
+      "rank": 3,
+      "stdout": "sampling module ready SimpleNamespace 1.9 s\n"
+    }
+  ],
+  "before": [
+    {
+      "rank": 0,
+      "boot_id": "270c66b5-4a35-41c9-aa94-587ef0c0d98c",
+      "uptime": "278395.46 5148641.21",
+      "kernel": "7.0.0-1019-nvidia",
+      "used_gib": 4.305248260498047,
+      "available_gib": 117.38241958618164,
+      "swap_used_gib": 0.00585174560546875,
+      "clock": {
+        "returncode": 0,
+        "stdout": "ExecStart={ path=/usr/bin/nvidia-smi ; argv[]=/usr/bin/nvidia-smi -lgc 0,2350 ; ignore_errors=no ; start_time=[Wed 2026-10-21 12:22:21 UTC] ; stop_time=[Wed 2026-10-21 12:22:21 UTC] ; pid=2297 ; code=exited ; status=0 }\nActiveState=active\nUnitFileState=enabled\n",
+        "stderr": ""
+      },
+      "running_containers": {
+        "returncode": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    },
+    {
+      "rank": 1,
+      "boot_id": "7fa22c38-6a75-4a76-a98b-29fe26979985",
+      "uptime": "278395.54 5232920.81",
+      "kernel": "7.0.0-1019-nvidia",
+      "used_gib": 4.560131072998047,
+      "available_gib": 117.12753677368164,
+      "swap_used_gib": 0.00170135498046875,
+      "clock": {
+        "returncode": 0,
+        "stdout": "ExecStart={ path=/usr/bin/nvidia-smi ; argv[]=/usr/bin/nvidia-smi -lgc 0,2350 ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\nActiveState=active\nUnitFileState=enabled\n",
+        "stderr": ""
+      },
+      "running_containers": {
+        "returncode": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    },
+    {
+      "rank": 2,
+      "boot_id": "f125d4a8-916c-43ce-a542-373e7ec9c6d2",
+      "uptime": "278397.37 5238120.34",
+      "kernel": "7.0.0-1019-nvidia",
+      "used_gib": 4.354045867919922,
+      "available_gib": 117.27117919921875,
+      "swap_used_gib": 0.0,
+      "clock": {
+        "returncode": 0,
+        "stdout": "ExecStart={ path=/usr/bin/nvidia-smi ; argv[]=/usr/bin/nvidia-smi -lgc 0,2350 ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\nActiveState=active\nUnitFileState=enabled\n",
+        "stderr": ""
+      },
+      "running_containers": {
+        "returncode": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    },
+    {
+      "rank": 3,
+      "boot_id": "a4349b1a-14a5-4129-8e9f-37193e506745",
+      "uptime": "278397.16 5235465.36",
+      "kernel": "7.0.0-1019-nvidia",
+      "used_gib": 4.4142913818359375,
+      "available_gib": 117.21093368530273,
+      "swap_used_gib": 0.0,
+      "clock": {
+        "returncode": 0,
+        "stdout": "ExecStart={ path=/usr/bin/nvidia-smi ; argv[]=/usr/bin/nvidia-smi -lgc 0,2350 ; ignore_errors=no ; start_time=[Wed 2026-10-21 12:22:18 UTC] ; stop_time=[Wed 2026-10-21 12:22:18 UTC] ; pid=2347 ; code=exited ; status=0 }\nActiveState=active\nUnitFileState=enabled\n",
+        "stderr": ""
+      },
+      "running_containers": {
+        "returncode": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    }
+  ],
+  "ready_seconds": 369.3960990905762,
+  "head_used_gib_at_ready": 100.33233261108398,
+  "head_available_gib_at_ready": 21.355335235595703,
+  "nodes": [
+    {
+      "rank": 0,
+      "boot_id": "270c66b5-4a35-41c9-aa94-587ef0c0d98c",
+      "uptime": "278765.52 5155410.69",
+      "kernel": "7.0.0-1019-nvidia",
+      "used_gib": 100.33661651611328,
+      "available_gib": 21.351051330566406,
+      "swap_used_gib": 0.00585174560546875,
+      "clock": {
+        "returncode": 0,
+        "stdout": "ExecStart={ path=/usr/bin/nvidia-smi ; argv[]=/usr/bin/nvidia-smi -lgc 0,2350 ; ignore_errors=no ; start_time=[Wed 2026-10-21 12:22:21 UTC] ; stop_time=[Wed 2026-10-21 12:22:21 UTC] ; pid=2297 ; code=exited ; status=0 }\nActiveState=active\nUnitFileState=enabled\n",
+        "stderr": ""
+      },
+      "running_containers": {
+        "returncode": 0,
+        "stdout": "ds41f-tilelang-r0 2fc5565e9c15\n",
+        "stderr": ""
+      }
+    },
+    {
+      "rank": 1,
+      "boot_id": "7fa22c38-6a75-4a76-a98b-29fe26979985",
+      "uptime": "278765.61 5239711.57",
+      "kernel": "7.0.0-1019-nvidia",
+      "used_gib": 99.50396347045898,
+      "available_gib": 22.183704376220703,
+      "swap_used_gib": 0.00170135498046875,
+      "clock": {
+        "returncode": 0,
+        "stdout": "ExecStart={ path=/usr/bin/nvidia-smi ; argv[]=/usr/bin/nvidia-smi -lgc 0,2350 ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\nActiveState=active\nUnitFileState=enabled\n",
+        "stderr": ""
+      },
+      "running_containers": {
+        "returncode": 0,
+        "stdout": "ds41f-tilelang-r1 2fc5565e9c15\n",
+        "stderr": ""
+      }
+    },
+    {
+      "rank": 2,
+      "boot_id": "f125d4a8-916c-43ce-a542-373e7ec9c6d2",
+      "uptime": "278767.56 5244903.42",
+      "kernel": "7.0.0-1019-nvidia",
+      "used_gib": 99.41907119750977,
+      "available_gib": 22.206153869628906,
+      "swap_used_gib": 0.0,
+      "clock": {
+        "returncode": 0,
+        "stdout": "ExecStart={ path=/usr/bin/nvidia-smi ; argv[]=/usr/bin/nvidia-smi -lgc 0,2350 ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\nActiveState=active\nUnitFileState=enabled\n",
+        "stderr": ""
+      },
+      "running_containers": {
+        "returncode": 0,
+        "stdout": "ds41f-tilelang-r2 2fc5565e9c15\n",
+        "stderr": ""
+      }
+    },
+    {
+      "rank": 3,
+      "boot_id": "a4349b1a-14a5-4129-8e9f-37193e506745",
+      "uptime": "278767.32 5242248.28",
+      "kernel": "7.0.0-1019-nvidia",
+      "used_gib": 99.4789924621582,
+      "available_gib": 22.14623260498047,
+      "swap_used_gib": 0.0,
+      "clock": {
+        "returncode": 0,
+        "stdout": "ExecStart={ path=/usr/bin/nvidia-smi ; argv[]=/usr/bin/nvidia-smi -lgc 0,2350 ; ignore_errors=no ; start_time=[Wed 2026-10-21 12:22:18 UTC] ; stop_time=[Wed 2026-10-21 12:22:18 UTC] ; pid=2347 ; code=exited ; status=0 }\nActiveState=active\nUnitFileState=enabled\n",
+        "stderr": ""
+      },
+      "running_containers": {
+        "returncode": 0,
+        "stdout": "ds41f-tilelang-r3 2fc5565e9c15\n",
+        "stderr": ""
+      }
+    }
+  ]
+}
