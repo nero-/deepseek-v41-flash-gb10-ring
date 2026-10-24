@@ -217,9 +217,15 @@ and the stopped `ds41-before-tilelang-rN` containers as `ds41-optimized-rN`,
 and starts them. No weight transfer is needed. Update `results/deployment.json`
 and the docs after any rollback.
 
-Older containers that encode the retired physical ring
-(`ds41-before-images-rN`, `ds41-before-tuning-rN`, `ds41-rollback-*`,
-`ds41-before-ring-rN`) must not be started on the switch.
+Each node keeps exactly three DeepSeek containers: the running
+`ds41-optimized-rN`, the B12X rollback `ds41-before-tilelang-rN` (image
+`ds41-b12x-rollback:20261021`, `9f26f0b3718c…`) and the October 17 switched
+baseline `ds41-before-switch-baseline-rN` (image
+`ds41-b12x-switch-baseline:20261017`, `a182696cb59f…`), the older-runtime
+fallback described in the [switch report](results/20261019-switch-migration/REPORT.md).
+All retired trial, probe and ring-era containers and the GLM, FLARE, Mia and
+candidate images were removed on 2026-10-24, freeing about 108 GiB
+([manifest](results/20261024-tilelang/fleet-cleanup.json)).
 
 ## Installed paths
 

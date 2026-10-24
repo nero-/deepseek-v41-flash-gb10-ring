@@ -493,6 +493,23 @@
         "performance_note": "Three post-reboot five-draft screens completed. Median C1/C8/C16: 66.8 / 203.1 / 285.5 tok/s at 8K and 64.7 / 202.8 / 289.2 at 32K.",
         "historical_mia_closing_control_completed": false
       }
+    },
+    "image_tag": "ds41-b12x-rollback:20261021",
+    "older_fallback": {
+      "containers": "ds41-before-switch-baseline-rN",
+      "image_id": "sha256:a182696cb59fad1352ca17aae13c248e276d5cb7b7811f0fc8ead1cde4516221",
+      "image_tag": "ds41-b12x-switch-baseline:20261017",
+      "receipt": "results/20261019-switch-migration/REPORT.md"
     }
+  },
+  "fleet_cleanup": {
+    "utc": "2026-10-24",
+    "manifest": "results/20261024-tilelang/fleet-cleanup.json",
+    "freed_gib_approx": 108,
+    "kept": [
+      "ds41-optimized-rN",
+      "ds41-before-tilelang-rN",
+      "ds41-before-switch-baseline-rN"
+    ]
   }
 }
