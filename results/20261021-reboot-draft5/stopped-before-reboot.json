@@ -1,0 +1,49 @@
+{
+  "utc": "2026-10-21T12:21:48.434864+00:00",
+  "nodes": [
+    {
+      "rank": 0,
+      "services": {
+        "sparkring-fabric.service": "ActiveState=inactive\nUnitFileState=disabled\n",
+        "sparkring-hairpin.service": "ActiveState=inactive\nUnitFileState=disabled\n",
+        "sparkring-agent.service": "ActiveState=inactive\nUnitFileState=disabled\n",
+        "sparkring-sparkring-deepseek-v41-flash-adaefa-mesh.service": "ActiveState=inactive\nUnitFileState=disabled\n",
+        "sparkring-sparkring-deepseek-v41-flash-adaefa-model.service": "ActiveState=inactive\nUnitFileState=disabled\n"
+      },
+      "boot_id": "1973f304-567d-410a-9017-5670f7f88208"
+    },
+    {
+      "rank": 1,
+      "services": {
+        "sparkring-fabric.service": "ActiveState=inactive\nUnitFileState=disabled\n",
+        "sparkring-hairpin.service": "ActiveState=inactive\nUnitFileState=disabled\n",
+        "sparkring-agent.service": "ActiveState=inactive\nUnitFileState=disabled\n",
+        "sparkring-sparkring-deepseek-v41-flash-adaefa-mesh.service": "ActiveState=inactive\nUnitFileState=disabled\n",
+        "sparkring-sparkring-deepseek-v41-flash-adaefa-model.service": "ActiveState=inactive\nUnitFileState=disabled\n"
+      },
+      "boot_id": "0e43dc0c-d283-4473-bd9b-3b32de17887a"
+    },
+    {
+      "rank": 2,
+      "services": {
+        "sparkring-fabric.service": "ActiveState=inactive\nUnitFileState=disabled\n",
+        "sparkring-hairpin.service": "ActiveState=inactive\nUnitFileState=disabled\n",
+        "sparkring-agent.service": "ActiveState=inactive\nUnitFileState=disabled\n",
+        "sparkring-sparkring-deepseek-v41-flash-adaefa-mesh.service": "ActiveState=inactive\nUnitFileState=disabled\n",
+        "sparkring-sparkring-deepseek-v41-flash-adaefa-model.service": "ActiveState=inactive\nUnitFileState=disabled\n"
+      },
+      "boot_id": "aa44ae99-ad48-4458-af5c-31fa244d02fe"
+    },
+    {
+      "rank": 3,
+      "services": {
+        "sparkring-fabric.service": "ActiveState=inactive\nUnitFileState=disabled\n",
+        "sparkring-hairpin.service": "ActiveState=inactive\nUnitFileState=disabled\n",
+        "sparkring-agent.service": "ActiveState=inactive\nUnitFileState=disabled\n",
+        "sparkring-sparkring-deepseek-v41-flash-adaefa-mesh.service": "ActiveState=inactive\nUnitFileState=disabled\n",
+        "sparkring-sparkring-deepseek-v41-flash-adaefa-model.service": "ActiveState=inactive\nUnitFileState=disabled\n"
+      },
+      "boot_id": "529f060b-dafa-4330-ac48-593e2e91b669"
+    }
+  ]
+}

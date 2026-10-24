@@ -1,0 +1,29 @@
+{
+  "utc": "2026-10-21T12:21:48.950501+00:00",
+  "nodes": [
+    {
+      "rank": 0,
+      "returncode": 255,
+      "stdout": "",
+      "stderr": "Connection to 192.168.50.219 closed by remote host.\n"
+    },
+    {
+      "rank": 1,
+      "returncode": 255,
+      "stdout": "",
+      "stderr": "Connection to 192.168.50.129 closed by remote host.\n"
+    },
+    {
+      "rank": 2,
+      "returncode": 255,
+      "stdout": "",
+      "stderr": "Connection to 192.168.50.192 closed by remote host.\n"
+    },
+    {
+      "rank": 3,
+      "returncode": 255,
+      "stdout": "",
+      "stderr": "Connection to 192.168.50.23 closed by remote host.\n"
+    }
+  ]
+}

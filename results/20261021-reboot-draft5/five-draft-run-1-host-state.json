@@ -1,0 +1,85 @@
+{
+  "utc": "2026-10-21T12:33:14.731816+00:00",
+  "nodes": [
+    {
+      "rank": 0,
+      "boot_id": "270c66b5-4a35-41c9-aa94-587ef0c0d98c",
+      "uptime": "664.55 11083.14",
+      "kernel": "7.0.0-1019-nvidia",
+      "cmdline": "BOOT_IMAGE=/boot/vmlinuz-7.0.0-1019-nvidia root=UUID=d27bfd26-ff30-400e-9eca-9cdf73de9406 ro init_on_alloc=0 iommu.passthrough=0 console=tty0 plymouth.ignore-serial-consoles plymouth.use-simpledrm earlycon=uart,mmio32,0x16A00000 console=tty0 console=ttyS0,921600 crashkernel=1G-:0M quiet splash initcall_blacklist=tegra234_cbb_init kho=off pci=pcie_bus_safe vt.handoff=7",
+      "used_gib": 118.32322311401367,
+      "available_gib": 3.3644447326660156,
+      "swap_used_gib": 0.00035858154296875,
+      "clock": {
+        "returncode": 0,
+        "stdout": "ExecStart={ path=/usr/bin/nvidia-smi ; argv[]=/usr/bin/nvidia-smi -lgc 0,2350 ; ignore_errors=no ; start_time=[Wed 2026-10-21 12:22:21 UTC] ; stop_time=[Wed 2026-10-21 12:22:21 UTC] ; pid=2297 ; code=exited ; status=0 }\nActiveState=active\nUnitFileState=enabled\n",
+        "stderr": ""
+      },
+      "running_containers": {
+        "returncode": 0,
+        "stdout": "ds41-optimized-r0 9f26f0b3718c\n",
+        "stderr": ""
+      }
+    },
+    {
+      "rank": 1,
+      "boot_id": "7fa22c38-6a75-4a76-a98b-29fe26979985",
+      "uptime": "664.57 11499.10",
+      "kernel": "7.0.0-1019-nvidia",
+      "cmdline": "BOOT_IMAGE=/boot/vmlinuz-7.0.0-1019-nvidia root=UUID=d27bfd26-ff30-400e-9eca-9cdf73de9406 ro init_on_alloc=0 iommu.passthrough=0 console=tty0 plymouth.ignore-serial-consoles plymouth.use-simpledrm earlycon=uart,mmio32,0x16A00000 console=tty0 console=ttyS0,921600 crashkernel=1G-:0M quiet splash initcall_blacklist=tegra234_cbb_init kho=off pci=pcie_bus_safe vt.handoff=7",
+      "used_gib": 117.0869255065918,
+      "available_gib": 4.600742340087891,
+      "swap_used_gib": 0.000812530517578125,
+      "clock": {
+        "returncode": 0,
+        "stdout": "ExecStart={ path=/usr/bin/nvidia-smi ; argv[]=/usr/bin/nvidia-smi -lgc 0,2350 ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\nActiveState=active\nUnitFileState=enabled\n",
+        "stderr": ""
+      },
+      "running_containers": {
+        "returncode": 0,
+        "stdout": "ds41-optimized-r1 9f26f0b3718c\n",
+        "stderr": ""
+      }
+    },
+    {
+      "rank": 2,
+      "boot_id": "f125d4a8-916c-43ce-a542-373e7ec9c6d2",
+      "uptime": "666.58 11526.61",
+      "kernel": "7.0.0-1019-nvidia",
+      "cmdline": "BOOT_IMAGE=/boot/vmlinuz-7.0.0-1019-nvidia root=UUID=27173d25-12a6-445a-bdf1-41f8f9842b59 ro init_on_alloc=0 iommu.passthrough=0 console=tty0 plymouth.ignore-serial-consoles plymouth.use-simpledrm earlycon=uart,mmio32,0x16A00000 console=tty0 console=ttyS0,921600 crashkernel=1G-:0M quiet splash initcall_blacklist=tegra234_cbb_init kho=off pci=pcie_bus_safe vt.handoff=7",
+      "used_gib": 117.13037490844727,
+      "available_gib": 4.494850158691406,
+      "swap_used_gib": 0.0,
+      "clock": {
+        "returncode": 0,
+        "stdout": "ExecStart={ path=/usr/bin/nvidia-smi ; argv[]=/usr/bin/nvidia-smi -lgc 0,2350 ; ignore_errors=no ; start_time=[Wed 2026-10-21 12:22:19 UTC] ; stop_time=[Wed 2026-10-21 12:22:19 UTC] ; pid=2323 ; code=exited ; status=0 }\nActiveState=active\nUnitFileState=enabled\n",
+        "stderr": ""
+      },
+      "running_containers": {
+        "returncode": 0,
+        "stdout": "ds41-optimized-r2 9f26f0b3718c\n",
+        "stderr": ""
+      }
+    },
+    {
+      "rank": 3,
+      "boot_id": "a4349b1a-14a5-4129-8e9f-37193e506745",
+      "uptime": "666.36 11509.31",
+      "kernel": "7.0.0-1019-nvidia",
+      "cmdline": "BOOT_IMAGE=/boot/vmlinuz-7.0.0-1019-nvidia root=UUID=27173d25-12a6-445a-bdf1-41f8f9842b59 ro init_on_alloc=0 iommu.passthrough=0 console=tty0 plymouth.ignore-serial-consoles plymouth.use-simpledrm earlycon=uart,mmio32,0x16A00000 console=tty0 console=ttyS0,921600 crashkernel=1G-:0M quiet splash initcall_blacklist=tegra234_cbb_init kho=off pci=pcie_bus_safe vt.handoff=7",
+      "used_gib": 117.10321807861328,
+      "available_gib": 4.522006988525391,
+      "swap_used_gib": 0.0,
+      "clock": {
+        "returncode": 0,
+        "stdout": "ExecStart={ path=/usr/bin/nvidia-smi ; argv[]=/usr/bin/nvidia-smi -lgc 0,2350 ; ignore_errors=no ; start_time=[Wed 2026-10-21 12:22:18 UTC] ; stop_time=[Wed 2026-10-21 12:22:18 UTC] ; pid=2347 ; code=exited ; status=0 }\nActiveState=active\nUnitFileState=enabled\n",
+        "stderr": ""
+      },
+      "running_containers": {
+        "returncode": 0,
+        "stdout": "ds41-optimized-r3 9f26f0b3718c\n",
+        "stderr": ""
+      }
+    }
+  ]
+}

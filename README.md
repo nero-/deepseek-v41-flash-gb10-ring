@@ -1,20 +1,41 @@
 # DeepSeek-V4.1-Flash on four switched GB10 nodes
 
-> **FLARE evaluation (October 20):** the native FLARE trial was slower in all
-> 25 matched decode cells. The qualified vLLM build is restored and healthy;
-> its recovery check reached 62.2 t/s at 32K C1. See the
-> [evaluation and recovery report](results/20261020-flare-trial/REPORT.md).
+> **Serving now, October 24 UTC: spark-ds41f TileLang build, kept by the user.**
+> Image `2fc5565e9c15…` in containers `ds41f-tilelang-rN` serves on 8015 with
+> the same model name. It beat the previous build in the focused screen (all six cells) and in
+> 22 of 25 full-grid cells, with prefill 33–43% faster. The fleet is claimed by the start interlock,
+> so **do not run `recover-ds`**; after a reboot run
+> `python3 ../DS41-ds41f-tilelang/scripts/trial.py serve`. The selection below is the stopped,
+> unchanged fallback (`trial.py restore`). Gaps: 4 images per request, 10.5 GiB KV.
+> [Results and procedure](../DS41-ds41f-tilelang/README.md).
 
-The decode optimization campaign is paused at the user's request. The qualified
-vLLM profile is restored, with a persistent **2350 MHz GPU ceiling** on all four
-nodes. See the [comparison audit](results/20261020-decode-recovery/REPORT.md)
+> **Current state, October 21 UTC:** five-draft vLLM serves on 8015 with 20 GiB
+> KV. A coordinated four-node reboot cleared the observed allocation warnings
+> on this startup. Three focused repeats passed: median 8K C1/C8/C16
+> **66.8 / 203.1 / 285.5 tok/s**; 32K **64.7 / 202.8 / 289.2**. Exact fallback preserved.
+> [Reboot protocol, individual runs and limitations](results/20261021-reboot-draft5/REPORT.md).
+
+> **Stock-native source FLARE evaluation (October 21 UTC):** four FLARE settings
+> were slower in all 24 focused decode cells against both fresh vLLM controls.
+> No CSF was used and no candidate was promoted. Qualified vLLM is restored and
+> healthy; the restoration control measured 66.0 t/s at 32K C1. See the
+> [completed trial](../DS41-flare-source/README.md) and
+> [developer report](../DS41-flare-source/output/pdf/FLARE-stock-checkpoint-feedback.md).
+
+The broader decode optimization campaign remains paused at the user's request.
+The requested five-draft change and Mia comparison are separate authorized work.
+The persistent **2350 MHz GPU ceiling** remains on all four nodes.
+See the [comparison audit](results/20261020-decode-recovery/REPORT.md)
 and [clock-policy verification](results/20261020-clock-cap/REPORT.md).
 
-The old FLARE model package has been retired from all four nodes; the stock
-checkpoint and qualified vLLM fallback remain intact. A source-built NVIDIA
-FLARE trial using stock 1017 weights is planned, with CSF explicitly excluded.
-It is not yet built or selected. Local handoff:
-`~/Agent/Builds/DS41-flare-source/HANDOFF.md`.
+Both rejected FLARE packages have been retired; the stock checkpoint and
+qualified vLLM fallback remain intact. FLARE agents are stopped and disabled,
+and their ownership markers are archived. The separate Mia interlock is also archived.
+The completed stock-native FLARE trial removed
+1148.46 GiB of allocated package/cache payload after recovery. Its source,
+metadata, raw evidence and reproduction recipe remain in `../DS41-flare-source`.
+The [earlier October 20 trial](results/20261020-flare-trial/REPORT.md) is separate
+historical evidence and used a different package.
 
 Corrected vLLM TP4 across two DGX Sparks and two ASUS GX10s on a CRS812 switch.
 API: **http://192.168.X.X:8015/v1**. Model: **DeepSeek-V4.1-Flash-TP4**.
@@ -36,8 +57,8 @@ Chinese ideographs at either top_p 1 or 0.95. This is finite evidence, not a
 promise against rare language drift.
 
 KV allocation is **20 GiB per GPU**, exposing **16.34M logical tokens**.
-Head total used memory was **117.31 GiB immediately after loading**,
-leaving **4.38 GiB available**. The 118 GiB goal is the initial
+Head total used memory was **117.803 GiB immediately after the reboot recovery**,
+leaving **3.884 GiB available**. The post-reboot startup and three focused repeats logged no allocation warnings. The 118 GiB goal is the initial
 loaded budget; there is no automatic runtime stop guard.
 The checkpoint's published precision is unchanged.
 [Current transport and serving qualification](results/20261019-switch-migration/REPORT.md).
@@ -87,7 +108,7 @@ curl --fail --max-time 5 http://192.168.X.X:8015/health
 | GPU toolchain | Qualified CUDA 13.4.2 / patched NCCL 2.32.3 retained |
 | Checkpoint | Official DeepSeek-V4.1-Flash-1017, revision `1bae0e1088993b9b82de08f59de5be5a34e42170` |
 | Local image | Built October 20; `9f26f0b3718c…` on all four ranks |
-| Local profile | `engram-adaptive4k-query-indexer-1017-runtime1015-kv20-images999-switch-c1cap3` |
+| Local profile | `engram-adaptive4k-query-indexer-1017-runtime1015-kv20-images999-switch-draft5` (clean reboot and three focused retests passed) |
 | Transport | RoCEnante one-shot/gather plus ABI-8 pipelined two-shot; patched NCCL fallback |
 | KV budget | 20 GiB per GPU; 16,344,051 logical tokens |
 | GPU clock policy | 0–2350 MHz ceiling, persistent across reboot; idle downclocking enabled |
@@ -97,18 +118,20 @@ curl --fail --max-time 5 http://192.168.X.X:8015/health
 [selected plugin sources](image/vllm-local-plugins/README.md).
 
 Engram projection TP, native DSpark and adaptive verification come from this
-recipe. The draft maximum is four, with the native verification cap set to three
-for a single request and four for C2–16. The drafter still computes four
-proposals. The two local plugins reduce the prefill scheduling quantum from 8K to
-4K when at least one decoder contends, and shard eligible long-prefill indexer
-queries across the four ranks with numerical guards. The official 1017 checkpoint
-retains its published precision and full vocabulary. HF tokenization is selected.
+recipe. The user-requested draft maximum is **five**, with the previous C1 cap
+removed. Graph sizes cover 5*n and 6*n for n=1..16, through 96. This is a policy
+change, not a measured performance promotion. The exact original four-draft
+selection remains a stopped recovery artifact. The two local plugins reduce the
+prefill scheduling quantum from 8K to 4K when at least one decoder contends, and
+shard eligible long-prefill indexer queries across ranks with numerical guards.
+The official 1017 checkpoint retains its published precision and full vocabulary.
+HF tokenization is selected.
 
 The RoCEnante pipe is 128 MiB with a 512 KiB two-shot threshold. Both switched
 rails are active and share the node's single physical 200G connection.
 This is RoCEnante with NCCL fallback; SIRCL is not enabled.
 
-The full 25-cell LIL qualification, run with stock GPU boost, completed without
+The historical four-draft full 25-cell LIL qualification, run with stock GPU boost, completed without
 request errors or detected loops. At 8K, C1/C8/C16 measured **64.4 / 198.8 / 268.7 tokens/s**.
 Uncached 961,724-token retrieval and mixed image/decode checks also passed.
 Sustained 70 C1 and 300 C16 were not established.

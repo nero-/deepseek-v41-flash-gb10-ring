@@ -1,0 +1,111 @@
+[
+  {
+    "name": "model-alias",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "arithmetic",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "temperature-zero-accepted",
+    "passed": true,
+    "detail": "Checks API acceptance and response correctness; does not assert byte repeatability."
+  },
+  {
+    "name": "enable-thinking-false",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "thinking-false",
+    "passed": true,
+    "detail": {
+      "status": 200
+    }
+  },
+  {
+    "name": "thinking",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "tool-auto",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "tool-return",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "tool-forced",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "continuous-stream-token-usage",
+    "passed": true,
+    "detail": {
+      "usage_chunks": 82,
+      "distinct_counts": 81,
+      "last_count": 256
+    }
+  },
+  {
+    "name": "sampling-diversity-without-explicit-seed",
+    "passed": true,
+    "detail": {
+      "distinct_responses": 4,
+      "requests": 4
+    }
+  },
+  {
+    "name": "images-1",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "images-8",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "images-64",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "english-0",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "english-1",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "english-2",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "english-3",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "english-4",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "english-5",
+    "passed": true,
+    "detail": null
+  }
+]

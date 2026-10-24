@@ -1,6 +1,53 @@
 # Operating the switched TP4 cluster
 
-**FLARE evaluation, October 20 UTC:** the native trial lost the matched full
+> **Serving now, October 24 UTC: spark-ds41f TileLang build, kept by the user.**
+> Image `2fc5565e9c15…` in containers `ds41f-tilelang-rN` serves on 8015 with
+> the same model name. It beat the previous build in the focused screen (all six cells) and in
+> 22 of 25 full-grid cells, with prefill 33–43% faster. The fleet is claimed by the start interlock,
+> so **do not run `recover-ds`**; after a reboot run
+> `python3 ../DS41-ds41f-tilelang/scripts/trial.py serve`. The selection below is the stopped,
+> unchanged fallback (`trial.py restore`). Gaps: 4 images per request, 10.5 GiB KV.
+> [Results and procedure](../DS41-ds41f-tilelang/README.md).
+
+**Current selection, October 21 UTC:** five-draft vLLM with 20 GiB KV serves
+on 8015, configuration `c87a397ccc4614c6f3fee59e566bb7599e7165c80e858bb12c84d78ef5e27775`.
+The user requested a coordinated four-node reboot and three matched retests.
+The unchanged configuration passed a clean startup, 20 API checks, loaded-clock
+checks, cold 122,280-token retrieval and all three focused screens. No NVIDIA
+allocation warning, Linux OOM kill, Xid or SSH probe failure was observed in
+startup/validation; each timed-run kernel check was clear. Three post-reboot five-draft screens completed. Median C1/C8/C16: 66.8 / 203.1 / 285.5 tok/s at 8K and 64.7 / 202.8 / 289.2 at 32K.
+
+The earlier allocation warnings are historical evidence. One clean boot does
+not establish their root cause or guarantee they cannot recur. Preserve the
+0-2350 MHz ceiling and monitor memory/kernel events during necessary recovery.
+The qualified four-draft fallback remains `ds41-before-mia-five-rN`; its unused
+exact restore helper is `../DS41-sglang-mia/scripts/vllm-five.py restore`.
+Mia was not promoted and its payload was retired. No retest or experiment is
+active. [Current evidence](results/20261021-reboot-draft5/REPORT.md).
+Historical restoration snapshots below do not override this latest state.
+
+**Stock-native source FLARE completed, October 21 UTC:** source
+`e7b8c016474f3b58d390910a7368f58a792b4744` successfully prepared and served the
+original 1017 checkpoint without CSF. Four supported settings lost all 24
+focused decode comparisons against both fresh qualified vLLM controls.
+The original `9f26f0b3718cc...` image, `d86c7e0725ef...` selection and canonical
+`ds41-optimized-rN` containers are restored and healthy on 8015. Startup head
+memory was 117.36 GiB; the restoration control reached 66.0 t/s at 32K C1.
+The persistent 0–2350 MHz ceiling remains active on all four ranks.
+
+The latest marker was archived as
+`/etc/deepseek-ring/FLARE_SOURCE_20261021.finished.json`; the active marker is
+absent and FLARE agents are stopped and disabled. All four stock checkpoint
+copies remain. The rejected source package and hardlink caches were retired,
+removing 1148.46 GiB of allocated payload. Metadata, source, binaries, useful
+compiler caches and one pinned preparation image on the head remain. A new
+trial needs fresh preparation; `DS41-flare-source/scripts/launch-head.sh`
+refuses the remote retirement marker. Do not replay consumed helpers.
+See [completed trial and recovery receipts](../DS41-flare-source/README.md) and
+[developer feedback](../DS41-flare-source/output/pdf/FLARE-stock-checkpoint-feedback.md).
+The vLLM optimization campaign remains paused.
+
+**Earlier FLARE evaluation, October 20 UTC:** the native trial lost the matched full
 benchmark and was not selected. All 48 original 1017 shards on each GX10 were
 restored over fabric and SHA256-verified. The qualified spec and containers are
 restored; the 32K C1 recovery check measured 62.2 t/s and the API is healthy.
@@ -13,10 +60,8 @@ The interrupted `old4cap3b` provider trial remains stopped under
 package has since been deleted on all four nodes at the user's request,
 freeing about 830.25 GiB. Its metadata and results remain, alongside inactive
 agents and pairing. All stock checkpoint copies and the running vLLM deployment
-were preserved. The next authorized trial uses source-built NVIDIA FLARE with
-the existing stock 1017 checkpoint, explicitly excluding CSF checkpoint
-substitution and on-load CSF compression. No new FLARE build is deployed;
-the local handoff is `~/Agent/Builds/DS41-flare-source/HANDOFF.md`. See
+were preserved. The subsequent source-built stock-checkpoint trial is complete
+and is recorded above. See
 [the complete report](results/20261020-flare-trial/REPORT.md). The subsequent
 vLLM optimization campaign is now paused at the user's request.
 
@@ -101,8 +146,8 @@ KV uses `--kv-cache-memory-bytes 21474836480`: **20 GiB per GPU**, exposing
 changing that fraction alone has no effect while the explicit byte budget is
 present. The head's **initial loaded memory target is at most about 118 GiB
 total used**, measured as `MemTotal - MemAvailable`, not Docker RSS or GPU
-allocation alone. The selected profile started at **117.31 GiB used**,
-leaving **4.38 GiB available**. This is a startup budget,
+allocation alone. The final five-draft recovery started at **117.803 GiB used**,
+leaving **3.884 GiB available**. The post-reboot startup had no allocation warnings. This is a startup budget,
 not a runtime ceiling; do not install an automatic 118 GiB stop guard.
 KV capacity is largely preallocated at startup; other caches and working
 buffers can grow afterward.
@@ -114,14 +159,13 @@ adaptive plugin uses 4K steps when at least one runnable decoder contends
 with prefill. Aggregate KV capacity limits simultaneous long contexts.
 Greedy byte-repeatability is not guaranteed by this pinned runtime.
 
-The serving profile uses native DSpark with four proposals, probabilistic draft
-sampling, block rejection and adaptive verification. Its native batch-size cap
-is `[[1,1,3],[2,16,4]]`: C1 passes at most three proposals to target verification;
-the draft model still computes four. This is not a variable-width draft engine.
-The graph ladder covers the union of `4*n` and `5*n` for `n=1..16`, through 80
-rows. The target head remains BF16, with NVFP4 draft and Markov heads and the
-full vocabulary. See `results/deployment.json` for the exact speculation and
-compilation configuration.
+The serving profile uses native DSpark with **five proposals**, probabilistic
+draft sampling, block rejection and adaptive verification. The historical C1
+three-proposal cap is removed. The graph ladder covers the union of `5*n` and
+`6*n` for `n=1..16`, through 96 rows. The target head remains BF16, with NVFP4
+draft and Markov heads and the full vocabulary. This follows the user's explicit
+draft-count policy; it is a policy choice; the latest clean startup and focused retest evidence is linked above.
+See `results/deployment.json` for exact speculation and compilation settings.
 
 RoCEnante uses both switched rails, a 128 MiB pipe and a 512 KiB two-shot
 threshold. Small reductions and eligible gathers use one-shot; unsupported

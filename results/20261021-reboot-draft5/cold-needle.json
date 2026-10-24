@@ -1,0 +1,28 @@
+{
+  "args": {
+    "tokens": 128000,
+    "output": "/Users/jg/Agent/Builds/deepseek-v41-flash-ring/results/20261021-reboot-draft5/cold-needle.json",
+    "url": "http://192.168.50.219:8015"
+  },
+  "nonce": "fe1beae4ef3049608eb7e06b8231b03b",
+  "prompt_sha256": "569786b6d61b9732d758e9f0e9c65d95b201a03df2d80c96c6d49654dc33e5ec",
+  "expected": "RING-6305-COBALT",
+  "answer": "RING-6305-COBALT",
+  "usage": {
+    "prompt_tokens": 122280,
+    "total_tokens": 122289,
+    "completion_tokens": 9,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "created_cache_tokens": 122112
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  },
+  "ttft_seconds": 28.6409417919931,
+  "elapsed_seconds": 28.72389891697094,
+  "cached_tokens": 0,
+  "needle_pass": true,
+  "cold_confirmed": true
+}

@@ -1,0 +1,27 @@
+{
+  "utc": "2026-10-21T12:43:31.610517+00:00",
+  "api_health": 200,
+  "configuration_sha256": "c87a397ccc4614c6f3fee59e566bb7599e7165c80e858bb12c84d78ef5e27775",
+  "nodes": [
+    {
+      "rank": 0,
+      "transient_admin_removed": false,
+      "kernel_events": []
+    },
+    {
+      "rank": 1,
+      "transient_admin_removed": false,
+      "kernel_events": []
+    },
+    {
+      "rank": 2,
+      "transient_admin_removed": false,
+      "kernel_events": []
+    },
+    {
+      "rank": 3,
+      "transient_admin_removed": false,
+      "kernel_events": []
+    }
+  ]
+}

@@ -9,3 +9,8 @@ __pycache__/
 results/20260929-kk926/selected-corrected.json
 results/20261017-checkpoint-upgrade/selected-1017.json
 results/20261017-runtime-upgrade/selected-runtime.json
+# Raw kernel journals embedded in per-run kernel checks; reports keep the event summaries.
+results/*/*-kernel.json
+# The installed TileLang selection and its rendered per-rank launch (site-specific).
+results/20261024-tilelang/**/optimized-specs*.json
+results/20261024-tilelang/**/launch/

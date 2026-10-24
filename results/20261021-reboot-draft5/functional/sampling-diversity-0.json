@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "DeepSeek-V4.1-Flash-TP4",
+    "max_tokens": 256,
+    "temperature": 1,
+    "chat_template_kwargs": {
+      "thinking": false
+    },
+    "messages": [
+      {
+        "role": "user",
+        "content": "Invent a short opening paragraph for a story about a lighthouse. Use an unusual character and an unexpected event."
+      }
+    ],
+    "top_p": 1
+  },
+  "status": 200,
+  "response": {
+    "id": "chatcmpl-afa765948b36b742",
+    "object": "chat.completion",
+    "created": 1792585629,
+    "model": "DeepSeek-V4.1-Flash-TP4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "The lighthouse keeper was a retired cartographer who had never learned to swim, so when the sea began climbing the cliff in a single, deliberate sheet\u2014silent and glassy, like something being poured\u2014he did what any man of maps would do: he reached for a pencil and began measuring how far up the wall the water had come.",
+          "refusal": null,
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "reasoning": null
+        },
+        "logprobs": null,
+        "finish_reason": "stop",
+        "stop_reason": null,
+        "token_ids": null,
+        "routed_experts": null
+      }
+    ],
+    "service_tier": null,
+    "system_fingerprint": "vllm-0.1.dev21830+g8244d1c44.d20261015-tp4-1b26ae36",
+    "usage": {
+      "prompt_tokens": 25,
+      "total_tokens": 95,
+      "completion_tokens": 70,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "created_cache_tokens": 0,
+        "multimodal_tokens": null
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "prompt_text": null,
+    "kv_transfer_params": null,
+    "ec_transfer_params": null,
+    "metrics": null
+  },
+  "elapsed_seconds": 2.5366039579967037
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "source": "/Users/jg/Agent/Builds/DS41-sglang-mia/scripts/watch-startup.py",
+    "source_sha256": "81d766a054ce98bd6e005829c8ec08b2c2b5333116779b43a5d726be0a9ca63c",
+    "destination": "scripts/watch-startup.py",
+    "destination_sha256": "3464d4a0e41af8588ca122bbc52868134afd229d9ebb457d49ff3110c05a9395",
+    "change": "Import campaign-local common module for result paths/SSH helpers; algorithm unchanged."
+  },
+  {
+    "source": "/Users/jg/Agent/Builds/DS41-sglang-mia/scripts/load-observation.py",
+    "source_sha256": "fca8ff3c8b759bf0af994bc45146dd27a5c933ab259b2e13f7a4006329be682b",
+    "destination": "scripts/load-observation.py",
+    "destination_sha256": "0fa8e483782d011581facac787712443c8636f47e637e6852381e93ef6b06b31",
+    "change": "Import campaign-local common module for result paths/SSH helpers; algorithm unchanged."
+  }
+]

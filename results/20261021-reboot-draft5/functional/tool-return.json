@@ -1,0 +1,112 @@
+{
+  "request": {
+    "model": "DeepSeek-V4.1-Flash-TP4",
+    "max_tokens": 512,
+    "temperature": 1,
+    "chat_template_kwargs": {
+      "thinking": false
+    },
+    "messages": [
+      {
+        "role": "user",
+        "content": "Call lookup_inventory for SKU TEST-BLUE-42."
+      },
+      {
+        "role": "assistant",
+        "content": null,
+        "refusal": null,
+        "annotations": null,
+        "audio": null,
+        "function_call": null,
+        "tool_calls": [
+          {
+            "id": "chatcmpl-tool-93c3cf65a8207a62",
+            "type": "function",
+            "function": {
+              "name": "lookup_inventory",
+              "arguments": "{\"sku\": \"TEST-BLUE-42\"}"
+            }
+          }
+        ],
+        "reasoning": null
+      },
+      {
+        "role": "tool",
+        "tool_call_id": "chatcmpl-tool-93c3cf65a8207a62",
+        "content": "{\"stock_count\":7}"
+      },
+      {
+        "role": "user",
+        "content": "Reply with the stock count only."
+      }
+    ],
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "lookup_inventory",
+          "description": "Look up the stock count for a SKU.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "sku": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "sku"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "status": 200,
+  "response": {
+    "id": "chatcmpl-a881bdeb3ed1e64f",
+    "object": "chat.completion",
+    "created": 1792585623,
+    "model": "DeepSeek-V4.1-Flash-TP4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "7",
+          "refusal": null,
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "reasoning": null
+        },
+        "logprobs": null,
+        "finish_reason": "stop",
+        "stop_reason": null,
+        "token_ids": null,
+        "routed_experts": null
+      }
+    ],
+    "service_tier": null,
+    "system_fingerprint": "vllm-0.1.dev21830+g8244d1c44.d20261015-tp4-1b26ae36",
+    "usage": {
+      "prompt_tokens": 351,
+      "total_tokens": 353,
+      "completion_tokens": 2,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "created_cache_tokens": 0,
+        "multimodal_tokens": null
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "prompt_text": null,
+    "kv_transfer_params": null,
+    "ec_transfer_params": null,
+    "metrics": null
+  },
+  "elapsed_seconds": 0.3524794999975711
+}

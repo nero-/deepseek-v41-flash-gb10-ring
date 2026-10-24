@@ -1,6 +1,6 @@
 {
-  "profile": "engram-adaptive4k-query-indexer-1017-runtime1015-kv20-images999-switch-c1cap3",
-  "configuration_sha256": "d86c7e0725efae1ced95a4891da59753853992aaad4fda926814531145e43ca2",
+  "profile": "engram-adaptive4k-query-indexer-1017-runtime1015-kv20-images999-switch-draft5",
+  "configuration_sha256": "c87a397ccc4614c6f3fee59e566bb7599e7165c80e858bb12c84d78ef5e27775",
   "checkpoint": "1bae0e1088993b9b82de08f59de5be5a34e42170",
   "plugin_manifest": {
     "dsv41_adaptive_prefill.py": "dfb6a8d70194306e08850a1f56865f7984d5a8df40ea8032cf485e590486ca58",
@@ -46,7 +46,7 @@
   "tokenizer": "huggingface",
   "source_receipt": "results/20261019-switch-migration",
   "recovery_audit": "results/20261019-switch-migration/final-qualification.json",
-  "latest_validation": "results/20261019-switch-migration/final-qualification.json",
+  "latest_validation": "results/20261021-reboot-draft5/REPORT.md",
   "checkpoint_repository": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
   "frontend_corrections": [
     "1017 tool-result user-turn boundary reapplied",
@@ -55,7 +55,7 @@
   "frontend_build_utc": "2026-10-17",
   "gpu_runtime_unchanged": false,
   "compressor_source_receipt": "results/20260929-kk926",
-  "selected_utc": "2026-10-20T12:35:55Z",
+  "selected_utc": "2026-10-21T07:58:18.595790+00:00",
   "versions": {
     "torch": "2.13.0+cu130",
     "vllm": "0.1.dev21830+g8244d1c44.d20261015",
@@ -98,14 +98,14 @@
     "rank": 0,
     "metric": "MemTotal - MemAvailable",
     "startup_target_max_gib": 118,
-    "observed_startup_used_gib": 117.31111145019531,
-    "observed_startup_available_gib": 4.376556396484375,
-    "observed_qualification_peak_gib": 118.52695846557617,
+    "observed_startup_used_gib": 117.80335235595703,
+    "observed_startup_available_gib": 3.8843154907226562,
+    "observed_qualification_peak_gib": 118.35541152954102,
     "runtime_stop_guard": false,
     "hard_global_limit": false,
-    "receipt": "results/20261019-switch-migration/final-memory-thermal.json",
+    "receipt": "results/20261021-reboot-draft5/startup-reboot-draft5-summary.json",
     "policy_note": "Initial loaded budget, leaving room for growth during use; not a runtime ceiling.",
-    "peak_scope": "Five-second samples during final near-1M retrieval, not a continuous maximum of the whole campaign."
+    "peak_scope": "Sampled post-reboot startup plus API/loaded-clock/cold-retrieval validation. No NVIDIA allocation events or SSH failures observed."
   },
   "transport": {
     "all_reduce": "RoCEnante one-shot below 512 KiB; pipelined two-shot for eligible reductions from 512 KiB through 128 MiB; patched NCCL fallback",
@@ -120,7 +120,9 @@
     "qos_pfc_ecn_audited": false
   },
   "decode_tuning": {
-    "selected": {
+    "receipt": "results/20261019-switch-migration/REPORT.md",
+    "automatic_runtime_memory_guard": false,
+    "previous_qualified_selection": {
       "source_configuration": "c1cap3-specs.json",
       "speculation": {
         "method": "dspark",
@@ -146,8 +148,21 @@
       "two_shot_threshold": "512KiB",
       "receipt": "results/20261019-switch-migration/REPORT.md"
     },
-    "receipt": "results/20261019-switch-migration/REPORT.md",
-    "automatic_runtime_memory_guard": false
+    "selected": {
+      "reason": "Explicit user five-draft policy; not a claimed performance improvement",
+      "speculation": {
+        "method": "dspark",
+        "num_speculative_tokens": 5,
+        "draft_sample_method": "probabilistic",
+        "rejection_sample_method": "block",
+        "enable_adaptive_verification": true
+      },
+      "source_configuration": "../DS41-sglang-mia/config/vllm5-specs.json",
+      "qualification_complete": false,
+      "qualification_limitation": "One clean post-reboot startup and three focused screens passed. Full-grid and independent reboot replication not performed; earlier allocation-warning root cause remains unproven.",
+      "focused_retest_passed": true,
+      "startup_clean_after_reboot": true
+    }
   },
   "multimodal": {
     "image_limit_per_prompt": 999,
@@ -228,55 +243,44 @@
   "serving": {
     "speculative_config": {
       "method": "dspark",
-      "num_speculative_tokens": 4,
+      "num_speculative_tokens": 5,
       "draft_sample_method": "probabilistic",
       "rejection_sample_method": "block",
-      "enable_adaptive_verification": true,
-      "num_speculative_tokens_per_batch_size": [
-        [
-          1,
-          1,
-          3
-        ],
-        [
-          2,
-          16,
-          4
-        ]
-      ]
+      "enable_adaptive_verification": true
     },
     "compilation_config": {
       "cudagraph_mode": "FULL_AND_PIECEWISE",
       "cudagraph_capture_sizes": [
-        4,
         5,
-        8,
+        6,
         10,
         12,
         15,
-        16,
+        18,
         20,
         24,
         25,
-        28,
         30,
-        32,
         35,
         36,
         40,
-        44,
+        42,
         45,
         48,
         50,
-        52,
+        54,
         55,
-        56,
         60,
-        64,
         65,
+        66,
         70,
+        72,
         75,
-        80
+        78,
+        80,
+        84,
+        90,
+        96
       ]
     },
     "engram_config": {
@@ -287,7 +291,7 @@
     "max_model_len": 1048576,
     "max_num_seqs": 16,
     "max_num_batched_tokens": 8192,
-    "max_cudagraph_capture_size": 80,
+    "max_cudagraph_capture_size": 96,
     "adaptive_prefill_tokens": 4096,
     "contended_min_decoders": 1,
     "target_lm_head": "BF16",
@@ -297,29 +301,28 @@
     "query_indexer_sharding": "guarded; real requests only"
   },
   "operational_state": {
-    "state": "healthy-qualified-vllm-2350-optimization-paused",
+    "state": "serving-five-drafts-after-clean-reboot-and-three-passed-retests",
     "flare_selected": false,
     "flare_active": false,
-    "flare_result": "all25decodecellsandthroughputschedulerfollowupslower",
+    "flare_result": "stock-native source e7b8c016: all 24 candidate decode cells slower than both fresh vLLM controls; no promotion",
     "gx10_1017_weight_payloads_present": true,
     "gx10_shards_sha256_verified_each": 48,
     "spark_1017_weight_copies_present": true,
-    "qualified_configuration_restored": true,
+    "qualified_configuration_restored": false,
     "qualified_configuration_sha256": "d86c7e0725efae1ced95a4891da59753853992aaad4fda926814531145e43ca2",
     "installed_configuration_is_interrupted_old4cap3b_trial": false,
     "active_start_interlock": null,
-    "interlock_archive": "/etc/deepseek-ring/FLARE_TRIAL_20261020.finished.json",
-    "recovery_c1_32k_tps": 63.03974774288089,
-    "startup_head_system_used_gib": 117.27191543579102,
+    "interlock_archive": "/etc/deepseek-ring/FLARE_SOURCE_20261021.finished.json",
+    "recovery_c1_32k_tps": null,
+    "startup_head_system_used_gib": 117.80335235595703,
     "clock_policy": "upper-clock-cap-2350",
     "previous_tuning_campaign": "paused-at-user-request",
-    "report": "results/20261020-decode-recovery/REPORT.md",
-    "recorded_utc": "2026-10-20T21:12:33Z",
-    "post_controls_head_system_used_gib": 117.90437316894531,
+    "report": "results/20261021-reboot-draft5/REPORT.md",
+    "recorded_utc": "2026-10-21T12:43:45.662296+00:00",
     "performance_goal_met": false,
-    "temporary_trial_selected": false,
-    "flare_report": "results/20261020-flare-trial/REPORT.md",
-    "latest_recovery_receipt": "results/20261020-clock-cap/recovery-before-cap.json",
+    "temporary_trial_selected": true,
+    "flare_report": "../DS41-flare-source/output/pdf/FLARE-stock-checkpoint-feedback.md",
+    "latest_recovery_receipt": "results/20261021-reboot-draft5/final-state.json",
     "flare_agents_stopped_and_disabled_all_ranks": true,
     "retired_trials": [
       "old4cap3c",
@@ -332,13 +335,61 @@
       "cap3hi",
       "livecost"
     ],
-    "next_investigation": "Paused: await user direction; no automatic continuation.",
+    "next_investigation": "None queued; broader tuning remains paused.",
     "latest_host_policy_receipt": "results/20261020-clock-cap/policy.json",
     "live_cost_diagnostic_result": "startup metadata TypeError; no live timing measurement; exact native parent restored",
     "old_flare_package_removed_all_ranks": true,
     "old_flare_package_allocated_bytes_removed": 891478802432,
     "old_flare_package_cleanup_utc": "2026-10-20T21:43:11.747407+00:00",
-    "authorized_next_trial": "Source-built NVIDIA FLARE using existing stock 1017 checkpoint; no CSF checkpoint or scale compression; not yet built or deployed.",
-    "local_handoff": "~/Agent/Builds/DS41-flare-source/HANDOFF.md"
+    "authorized_next_trial": null,
+    "local_handoff": "~/Agent/Builds/DS41-sglang-mia/README.md",
+    "final_state_receipt": "results/20261021-reboot-draft5/final-state.json",
+    "completed_stock_native_flare_trial": {
+      "source": "e7b8c016474f3b58d390910a7368f58a792b4744",
+      "csf_used": false,
+      "promoted": false,
+      "candidate_cells": 24,
+      "wins_against_control_a": 0,
+      "wins_against_control_b": 0,
+      "package_retired_all_ranks": true,
+      "allocated_payload_gib_removed": 1148.464405,
+      "checkpoint_copies_preserved": 4,
+      "checkpoint_shards_per_copy": 48,
+      "checkpoint_shard_bytes_per_copy": 510296708312,
+      "cleanup_receipt": "../DS41-flare-source/results/20261020-stock-native/container-image-cleanup.json"
+    },
+    "qualified_four_draft_recovery_preserved": true,
+    "qualified_four_draft_containers": "ds41-before-mia-five-rN",
+    "sglang_selected": false,
+    "sglang_active": false,
+    "kv19_headroom_change_rejected": true,
+    "kv19_rejection_reason": "NVIDIA allocation warnings persisted",
+    "temporary_experiments_active": false,
+    "sglang_retired": true,
+    "sglang_engram_allocated_gib_removed": 188.83324432373047,
+    "sglang_interlock_archive": "/etc/deepseek-ring/SGLANG_MIA_20261021.finished.json",
+    "qualification_complete": false,
+    "active_retest_receipt": null,
+    "post_reboot_startup_clean": true,
+    "post_reboot_retests_completed": 3,
+    "active_retest": false,
+    "performance_note": "Three post-reboot five-draft screens completed. Median C1/C8/C16: 66.8 / 203.1 / 285.5 tok/s at 8K and 64.7 / 202.8 / 289.2 at 32K.",
+    "historical_mia_closing_control_completed": false,
+    "active_serving_override": {
+      "workload": "spark-ds41f-1022 TileLang build (DS41-ds41f-tilelang)",
+      "kept_by_user_utc": "2026-10-24T18:29:00+00:00",
+      "image_id": "sha256:2fc5565e9c15b005f3297a552131b8973a2f19fb811868a8358a3e99b33491d0",
+      "containers": "ds41f-tilelang-rN",
+      "port": 8015,
+      "model_name": "DeepSeek-V4.1-Flash-TP4",
+      "source": "christopherowen/spark-ds41f@9f1565f060ad84a6f06a745a9b7b4191393cc842",
+      "start_interlock": "/etc/deepseek-ring/FLARE_STAGING.json",
+      "recovery": "../DS41-ds41f-tilelang/scripts/trial.py serve",
+      "return_to_selection": "../DS41-ds41f-tilelang/scripts/trial.py restore",
+      "kv_cache_bytes_per_rank": 11274289152,
+      "images_per_request": 4,
+      "root_selection_changed": false,
+      "report": "../DS41-ds41f-tilelang/README.md"
+    }
   }
 }

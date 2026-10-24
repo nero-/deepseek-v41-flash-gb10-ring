@@ -12,6 +12,48 @@ Historical benchmark clock settings below remain as measured; no new full
 benchmark was run for this policy change.
 [Clock-policy verification](results/20261020-clock-cap/REPORT.md).
 
+## October 21 five-draft reboot and three-run retest
+
+The same five-draft image/configuration was restarted after a coordinated reboot
+of all four hosts. Startup/functional validation and all timed-run kernel checks
+were clear. No clock, KV, checkpoint, image or serving-setting change was made.
+
+| Context | Median C1 | Median C8 | Median C16 |
+| --- | --- | --- | --- |
+| 8K | 66.84 | 203.13 | 285.53 |
+| 32K | 64.70 | 202.81 | 289.22 |
+
+Three repeated focused screens on one boot, not three independent boot samples.
+All 18 cells passed request/error/loop/capacity checks. The earlier low five-draft
+run is retained; it is not representative of these post-reboot measurements.
+The root cause of the earlier startup/performance difference remains unproven.
+[All runs, ranges, step counters and limits](results/20261021-reboot-draft5/REPORT.md).
+
+## October 21 stock-native source FLARE trial
+
+Unmodified FLARE source `e7b8c016474f3b58d390910a7368f58a792b4744` prepared and
+served the original 1017 checkpoint with native expert scales and no CSF.
+Four configurations, each measured at 8K/32K and C1/C8/C16, lost all 24
+candidate-cell comparisons against both fresh vLLM controls. Default balanced
+policy with five drafts was 8.1–19.1% slower than the first control.
+Throughput policy and reduced draft depths did not earn promotion.
+
+LIL 0.7.6 used 20-second windows, temperature 1, default thinking, max 2048
+output tokens and the persistent 2350 MHz ceiling. There was one observation
+per candidate cell and nonrandomized order. Dependency versions, draft-head
+precision, graph capacity and prefill policy differ between engines; these
+deployment results do not isolate a performance cause. All 36 matrix cells
+(24 candidates and 12 controls) completed without request errors or underfill.
+
+The restored control measured 63.7 / 188.2 / 261.7 t/s at 8K C1/C8/C16 and
+66.0 / 193.3 / 252.6 at 32K. Native FLARE startup head memory was 109.33 GiB,
+versus 117.36 GiB after vLLM restoration. Focused text, tools, reasoning,
+streaming, eight-image and 122,281-token uncached retrieval checks passed.
+The full grid, 1M context and mixed latency gates were not run after the
+focused speed gate failed. Qualified vLLM is restored; the rejected package
+has been retired. [Complete results and recovery](../DS41-flare-source/README.md),
+[methods, evidence and developer feedback](../DS41-flare-source/output/pdf/FLARE-stock-checkpoint-feedback.md).
+
 ## October 20 resumed decode investigation
 
 FLARE lost the matched full grid and was rejected. The original RoCEnante
