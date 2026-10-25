@@ -1,12 +1,13 @@
 # Operating the switched TP4 cluster
 
-**Selected since 2026-10-24:** DeepSeek-V4.1-Flash-1017 on the spark-ds41f-1022
-TileLang build (image `2fc5565e9c15…`), selection
-`4d2bc32eb4f2e9a2540ee18ca2eafbe2c7da95c4ec7f4c7e2ac8c3052fc54dfc`, containers
+**Selected (re-selected 2026-10-24):** DeepSeek-V4.1-Flash-1017 on the
+five-draft B12X build (image `9f26f0b3718c…`), selection
+`c87a397ccc4614c6f3fee59e566bb7599e7165c80e858bb12c84d78ef5e27775`, containers
 `ds41-optimized-rN`, 20 GiB KV per rank, 999 images per request, persistent
-0–2350 MHz GPU ceiling. The previous five-draft B12X selection (`c87a397c…`,
-image `9f26f0b3718c…`) is a stopped, exact rollback (`ds41-before-tilelang-rN`).
-[Recipe](image/tilelang-ds41f/README.md), [qualification](results/20261024-tilelang/REPORT.md).
+0–2350 MHz GPU ceiling. The faster spark-ds41f TileLang selection (`4d2bc32e…`,
+image `2fc5565e9c15…`) is a stopped, exact alternative (`ds41-tilelang-rN`).
+[Recipe](image/rocenante-switch/README.md),
+[comparison](results/20261024-b12x-comparison/REPORT.md).
 
 | Workload | Nodes | API | Model |
 |---|---|---|---|
@@ -80,8 +81,9 @@ context and concurrency still limit large requests. A request with more than
 
 Measure spark-r0 as `MemTotal - MemAvailable`. The startup budget is **at
 most about 118 GiB used just after loading**; it is not a runtime stop guard.
-The TileLang selection started at **109.95 GiB used** (11.7 GiB available)
-with 20 GiB KV; the other ranks were about 109.1 GiB. Docker RSS is not a
+The B12X selection started at **117.83 GiB used** on 2026-10-25 with 20 GiB
+KV; the other ranks were about 116.8–117.0 GiB. TileLang starts lower, at
+109.95 GiB. Docker RSS is not a
 valid unified-memory measure. Raising KV further is possible within the
 budget but would need a new selection and qualification.
 
@@ -153,10 +155,12 @@ unchanged. The CRS812 uses 200G-baseCR4 breakout legs, no autonegotiation,
 L2MTU 9216 and an isolated hardware-offloaded bridge; QoS/PFC/ECN are not
 configured. Full switch setup: `../spark-cluster-network.md`.
 
-The TileLang build carries small collectives on sparknet 0.5.0's one-shot
-RDMA all-reduce/all-gather in **switched clique mode** (`SPARKNET_ROCE_TOPOLOGY=direct`,
-both port-1 rails) and bulk collectives on its patched NCCL 2.30.7 with
-sparknet's switched profile. Bandwidth or latency stress needs a stopped fleet.
+The B12X build carries collectives on RoCEnante ABI 8: one-shot all-reduce
+below 512 KiB, pipelined two-shot from 512 KiB to 128 MiB, one-shot
+all-gather to 16 MiB shards, and a patched NCCL fallback
+([recipe](image/rocenante-switch/README.md)). The TileLang alternative uses
+sparknet 0.5.0's one-shot collectives in switched clique mode
+(`SPARKNET_ROCE_TOPOLOGY=direct`) with patched NCCL 2.30.7. Bandwidth or latency stress needs a stopped fleet.
 
 ## Host policy
 
@@ -209,22 +213,29 @@ and tool-eval with receipts. Keep the fleet free of other traffic, retain raw
 results, and compare only matching protocols: C8/C16 are aggregate output
 throughput, and short or greedy probes are not the sustained benchmark.
 
-## Rollback on the switch
+## Switching between B12X and TileLang
+
+B12X is selected. To serve TileLang instead:
 
 ```bash
-python3 image/tilelang-ds41f/promote.py rollback --receipts results/rollback-<utc>
+python3 image/tilelang-ds41f/promote.py reselect \
+  --selection ../DS41-ds41f-tilelang/results/20261024-promotion/optimized-specs.json \
+  --receipts results/reselect-<utc>
 ```
 
-This is also the TUI action *rollback to B12X selection*. It stops the
-TileLang containers (renamed `ds41-tilelang-rN`), restores
-`/etc/deepseek-ring/optimized-specs.pre-tilelang-20261024.json` (`c87a397c…`)
-and the stopped `ds41-before-tilelang-rN` containers as `ds41-optimized-rN`,
-and starts them. No weight transfer is needed. Update `results/deployment.json`
-and the docs after any rollback.
+This is also the TUI action *switch to TileLang selection*. It checks that the
+B12X selection is installed, stages and verifies the TileLang selection
+(`4d2bc32e…`), stops the controller, renames the B12X containers
+`ds41-before-tilelang-rN` and `ds41-tilelang-rN` back to `ds41-optimized-rN`,
+installs the selection and starts it. Return to B12X with
+`promote.py rollback --receipts results/rollback-<utc>`, which restores
+`/etc/deepseek-ring/optimized-specs.pre-tilelang-20261024.json` (`c87a397c…`).
+No weight transfer is needed either way. Update `results/deployment.json` and
+the docs after any switch.
 
-Each node keeps exactly three DeepSeek containers: the running
-`ds41-optimized-rN`, the B12X rollback `ds41-before-tilelang-rN` (image
-`ds41-b12x-rollback:20261021`, `9f26f0b3718c…`) and the October 17 switched
+Each node keeps exactly three DeepSeek containers: the running B12X
+`ds41-optimized-rN` (image `ds41-b12x-rollback:20261021`, `9f26f0b3718c…`), the
+stopped TileLang `ds41-tilelang-rN` (`2fc5565e9c15…`) and the October 17 switched
 baseline `ds41-before-switch-baseline-rN` (image
 `ds41-b12x-switch-baseline:20261017`, `a182696cb59f…`), the older-runtime
 fallback described in the [switch report](results/20261019-switch-migration/REPORT.md).
@@ -237,12 +248,13 @@ candidate images were removed on 2026-10-24, freeing about 108 GiB
 | Item | Path |
 |---|---|
 | Selected config | `/etc/deepseek-ring/optimized-specs.json` on spark-r0 |
-| Previous selection | `/etc/deepseek-ring/optimized-specs.pre-tilelang-20261024.json` |
+| B12X selection backup | `/etc/deepseek-ring/optimized-specs.pre-tilelang-20261024.json` |
+| TileLang selection | `~/Agent/Builds/DS41-ds41f-tilelang/results/20261024-promotion/optimized-specs.json` on the Mac |
 | 1017 checkpoint | `/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash-1017/1bae0e1088993b9b82de08f59de5be5a34e42170` on every node |
 | Original checkpoint | `/srv/sparkring/sparkring/checkpoints/deepseek-ai--DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277` on the two Sparks |
 | TileLang cache | `/srv/sparkring/sparkring/cache/ds41f-tilelang-20261024` on every node |
 | B12X caches | `/srv/sparkring/sparkring/cache` on every node |
-| B12X plugins (rollback) | `/usr/local/lib/deepseek-ring/plugins` on each node |
+| B12X plugins | `/usr/local/lib/deepseek-ring/plugins` on each node |
 | Image build checkout | `~/builds/ds41f-tilelang-20261024/spark-ds41f` on spark-r1 |
 | Benchmark client | `~/Agent/Diagnostics/deepseek-v41-flash-ring/decode-recovery-20261020/external-client` on the Mac |
 

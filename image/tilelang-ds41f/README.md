@@ -1,7 +1,9 @@
 # spark-ds41f TileLang selection
 
-**Selected on all four ranks since 2026-10-24.** The root controller starts
-this recipe as `ds41-optimized-rN` with selection
+**The stopped alternative since 2026-10-25.** It was selected on 2026-10-24
+and stood down the same day: the user re-selected the five-draft B12X build
+for GPQA Diamond accuracy ([comparison](../../results/20261024-b12x-comparison/REPORT.md)).
+Its containers are kept as `ds41-tilelang-rN` with selection
 `4d2bc32eb4f2e9a2540ee18ca2eafbe2c7da95c4ec7f4c7e2ac8c3052fc54dfc`.
 Qualification: [results/20261024-tilelang](../../results/20261024-tilelang/REPORT.md).
 
@@ -78,16 +80,19 @@ limits the controller cannot express are set by a `bash` wrapper before
 `/etc/deepseek-ring/optimized-specs.pre-tilelang-20261024.json`, installs the
 new root-owned selection and runs the fixed-action controller `up`.
 
-## Rollback
+## Switching
 
 ```bash
+python3 promote.py reselect --selection ../../../DS41-ds41f-tilelang/results/20261024-promotion/optimized-specs.json --receipts <new-dir>
 python3 promote.py rollback --receipts <new-dir>
 ```
 
-That stops the TileLang containers (renamed `ds41-tilelang-rN`), restores the
-previous five-draft B12X selection `c87a397c…` and its stopped containers, and
-starts them. It is also the `rollback to B12X selection` action in
-`./cluster.sh`. The B12X image `9f26f0b3718c…` stays on every rank, and its
+`reselect` serves TileLang again: the B12X containers become
+`ds41-before-tilelang-rN` and `ds41-tilelang-rN` returns as `ds41-optimized-rN`.
+`rollback` is the reverse: it stops the TileLang containers (renamed
+`ds41-tilelang-rN`), restores the five-draft B12X selection `c87a397c…` and its
+containers, and starts them. Both are `./cluster.sh` actions (*switch to
+TileLang selection*, *switch back to B12X selection*). The B12X image `9f26f0b3718c…` stays on every rank, and its
 recipe chain remains in `image/rocenante-switch`, `image/runtime-20261017`,
 `image/1017`, `image/kk926` and `image/vllm-local-plugins`.
 

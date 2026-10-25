@@ -5,7 +5,41 @@ thinking, 20-second cells, max 2048 output tokens, `--no-hw-monitor`.
 Values are aggregate output tokens/s; C>1 is aggregate, not per stream.
 Compare only matching protocols and startups.
 
-## Selected: spark-ds41f TileLang (2026-10-24)
+## Selected: five-draft B12X (re-selected 2026-10-24)
+
+Selection `c87a397c…`, image `9f26f0b3718c…`, 20 GiB KV, 999 images, 2350 MHz
+ceiling. The user made it the production default again after the same-day
+comparison below, choosing GPQA Diamond accuracy over TileLang's speed:
+**186/198, 93.9%** here against about 91.5% reported for TileLang by another
+tester (not measured on this fleet; with 198 items one run resolves roughly
+±3.5 points). Switched back with `promote.py rollback` at 02:35 UTC on
+October 25; functional 0 failures, head memory 117.83 GiB
+([receipts](results/20261024-b12x-production)).
+
+Same-day grid (aggregate output tok/s; [comparison](results/20261024-b12x-comparison/REPORT.md)):
+
+| Context | C1 | C2 | C4 | C8 | C16 | Prefill |
+|---|---:|---:|---:|---:|---:|---:|
+| 8K | 63.1 | 90.7 | 140.0 | 197.7 | 272.7 | 3,898 |
+| 16K | 63.5 | 93.0 | 134.4 | 186.7 | 266.8 | 3,746 |
+| 32K | 64.0 | 93.9 | 146.1 | 197.3 | 265.8 | 4,059 |
+| 64K | 64.9 | 78.6 | 133.4 | 181.0 | 268.7 | 4,498 |
+| 128K | 62.9 | 94.8 | 136.5 | 189.2 | 260.6 | 4,305 |
+
+Tool-eval 93 and 89 (safety gate not passed).
+
+The build is the October 15 eugr/KK/FlashInfer runtime with RoCEnante ABI-8
+two-shot transport and adaptive 4K prefill and query-indexer plugins, first
+selected on 2026-10-21. After a coordinated reboot that day,
+three focused screens: medians 66.8 / 203.1 / 285.5 at 8K C1/C8/C16 and
+64.7 / 202.8 / 289.2 at 32K. Startup head memory 117.80 GiB.
+[Retest](results/20261021-reboot-draft5/REPORT.md),
+[switch qualification and October 20 grid](results/20261019-switch-migration/REPORT.md),
+[runtime qualification](results/20261017-runtime-upgrade/REPORT.md),
+[image limit](results/20261017-image-limit/REPORT.md),
+[clock policy](results/20261020-clock-cap/REPORT.md).
+
+## Alternative: spark-ds41f TileLang (selected 2026-10-24, stood down the same day)
 
 Selection `4d2bc32e…`, image `2fc5565e9c15…`, 20 GiB KV, 999 images, 2350 MHz
 ceiling. [Full report with tool-eval](results/20261024-tilelang/REPORT.md).
@@ -56,7 +90,8 @@ higher in all 25 grid cells (+0.5% to +27.8% decode, +35% to +59% prefill).
 Tool-eval: B12X 93 and 89, TileLang 90 twice (deterministic); neither passes
 the safety gate. GPQA Diamond on B12X at temperature 1, top_p 1: **186/198,
 93.9%** (Wilson 95% 89.7–96.5%), after re-asking the 19 items a client sleep
-cut off. TileLang's GPQA is being measured by another tester.
+cut off. Another tester reported about 91.5% for TileLang; the user then
+re-selected B12X.
 
 ### Clock policy
 
@@ -73,19 +108,6 @@ Functional 7/7; 5, 16 and 64 distinct images, image history and
 No kernel OOM, Xid or NVRM events. Earlier the same image with the recipe's
 10.5 GiB KV and 4-image limit measured within single-run spread of these
 figures ([trial evidence](results/20261024-tilelang/trial-kv10/TRIAL-README.md)).
-
-## Rollback: five-draft B12X (2026-10-21)
-
-Selection `c87a397c…`, image `9f26f0b3718c…`, the October 15 eugr/KK/FlashInfer
-runtime with RoCEnante ABI-8 two-shot transport, adaptive 4K prefill and
-query-indexer plugins, 20 GiB KV, 999 images. After a coordinated reboot,
-three focused screens: medians 66.8 / 203.1 / 285.5 at 8K C1/C8/C16 and
-64.7 / 202.8 / 289.2 at 32K. Startup head memory 117.80 GiB.
-[Retest](results/20261021-reboot-draft5/REPORT.md),
-[switch qualification and October 20 grid](results/20261019-switch-migration/REPORT.md),
-[runtime qualification](results/20261017-runtime-upgrade/REPORT.md),
-[image limit](results/20261017-image-limit/REPORT.md),
-[clock policy](results/20261020-clock-cap/REPORT.md).
 
 ## Rejected alternatives
 

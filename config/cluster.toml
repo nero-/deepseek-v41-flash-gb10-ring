@@ -46,7 +46,7 @@ role = "worker"
 
 [[workloads]]
 name = "deepseek"
-description = "DeepSeek-V4.1-Flash TP4, spark-ds41f TileLang selection (root controller)"
+description = "DeepSeek-V4.1-Flash TP4, five-draft B12X selection (root controller)"
 health_url = "http://192.168.50.219:8015/health"
 api = "http://192.168.50.219:8015/v1"
 # Container name per rank; {rank} is the node's position above.
@@ -87,7 +87,13 @@ default = true
   command = "python3 {repo}/bench/functional.py http://192.168.50.219:8015/v1"
 
   [[workloads.actions]]
-  name = "rollback to B12X selection"
-  description = "Reinstall the previous five-draft B12X selection (c87a397c) and start it"
+  name = "switch to TileLang selection"
+  description = "Reinstall the spark-ds41f TileLang selection (4d2bc32e) and start it"
+  command = "python3 {repo}/image/tilelang-ds41f/promote.py reselect --selection {repo}/../DS41-ds41f-tilelang/results/20261024-promotion/optimized-specs.json --receipts {repo}/results/reselect-$(date -u +%Y%m%dT%H%M%SZ)"
+  confirm = true
+
+  [[workloads.actions]]
+  name = "switch back to B12X selection"
+  description = "After switching to TileLang: reinstall the five-draft B12X selection (c87a397c) and start it"
   command = "python3 {repo}/image/tilelang-ds41f/promote.py rollback --receipts {repo}/results/rollback-$(date -u +%Y%m%dT%H%M%SZ)"
   confirm = true

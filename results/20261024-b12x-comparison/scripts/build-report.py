@@ -40,7 +40,8 @@ w('The user suspected the TileLang selection (`4d2bc32e…`, image `2fc5565e9c15
   'switched back in with `image/tilelang-ds41f/promote.py rollback` and measured with the same tools on '
   '2026-10-24, then TileLang was reselected (`promote.py reselect`). Each switch and run checked the installed '
   'selection, all four containers\' images and API health, and ran `bench/functional.py` (zero failures every '
-  'time). The fleet ends on TileLang.')
+  'time). The comparison ended on TileLang; the user then re-selected B12X as the production default '
+  '(see the end of this report).')
 w('')
 w('## Full decode/prefill grid (LIL 0.7.6)')
 w('')
@@ -113,10 +114,18 @@ w('')
 w('With 198 items one run resolves roughly ±3.5 points, so a TileLang result in the low 90s would be '
   'indistinguishable from B12X.')
 w('')
+w('## Production decision')
+w('')
+w('Another tester reported about 91.5% GPQA Diamond for TileLang (not measured on this fleet). GPQA Diamond '
+  'rankings are separated by fractions of a percent, so the user re-selected B12X as the production default, '
+  'accepting TileLang\'s speed loss. `promote.py rollback` ran at 02:35 UTC on 2026-10-25; functional 0 '
+  'failures, head memory 117.83 GiB ([receipts](../20261024-b12x-production)). TileLang stays stopped as '
+  '`ds41-tilelang-rN` and returns with `promote.py reselect`.')
+w('')
 w('## Precision')
 w('')
 w('A claim that TileLang computes the mHC stream projection in TF32 rather than FP32 applies to spark-ds41f '
-  'builds before 2026-10-11. In the selected image, `vllm/models/deepseek_v4_1/tilelang/mhc.py` splits each FP32 '
+  'builds before 2026-10-11. In the TileLang image, `vllm/models/deepseek_v4_1/tilelang/mhc.py` splits each FP32 '
   '`fn` weight into three exact TF32 parts and runs three tensor-core GEMMs into one FP32 accumulator (exact '
   'products, FP32 precision, as DeepSeek\'s reference `x.float() @ hc_fn`). `VLLM_FLOAT32_MATMUL_PRECISION` is '
   'at its `highest` default and not overridden by the selection.')
