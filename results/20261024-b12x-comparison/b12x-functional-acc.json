@@ -1,0 +1,44 @@
+{
+  "utc": "2026-10-24T21:19:37.473019+00:00",
+  "functional_failures": 0,
+  "containers": [
+    {
+      "rank": 0,
+      "id": "6763f774c58f704f79646e311dcf495a919c00656ac457b1354aac7bc17de840"
+    },
+    {
+      "rank": 1,
+      "id": "dce8f0edf1732119e34bd068f617f6a830a119e965e143cfd3fe493d80bda84f"
+    },
+    {
+      "rank": 2,
+      "id": "451a1a78d7e1af246cac1288ce1b313372edaa4c041e109193e7490269e268f7"
+    },
+    {
+      "rank": 3,
+      "id": "b831229dc7fcf2531f9a59bc10dcc6e711526eae575e007507be95487671affc"
+    }
+  ],
+  "hosts": [
+    {
+      "rank": 0,
+      "used_gib": 118.08699417114258,
+      "available_gib": 3.6006736755371094
+    },
+    {
+      "rank": 1,
+      "used_gib": 116.83169174194336,
+      "available_gib": 4.855976104736328
+    },
+    {
+      "rank": 2,
+      "used_gib": 116.88308334350586,
+      "available_gib": 4.7421417236328125
+    },
+    {
+      "rank": 3,
+      "used_gib": 116.8350715637207,
+      "available_gib": 4.790153503417969
+    }
+  ]
+}

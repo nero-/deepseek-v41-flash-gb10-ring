@@ -1,0 +1,172 @@
+{
+  "utc": "2026-10-24T23:27:19.201429+00:00",
+  "reload": [
+    {
+      "rank": 0,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "rank": 1,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "Warning: The unit file, source configuration file or drop-ins of gb10-gpu-clock-cap.service changed on disk. Run 'systemctl daemon-reload' to reload units.\n"
+    },
+    {
+      "rank": 2,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "rank": 3,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "service": [
+    {
+      "rank": 0,
+      "returncode": 0,
+      "stdout": "ExecReload={ path=/usr/bin/nvidia-smi ; argv[]=/usr/bin/nvidia-smi -lgc 0,2350 ; ignore_errors=no ; start_time=[Sat 2026-10-24 23:27:13 UTC] ; stop_time=[Sat 2026-10-24 23:27:13 UTC] ; pid=3964217 ; code=exited ; status=0 }\nActiveState=active\nUnitFileState=enabled\n",
+      "stderr": ""
+    },
+    {
+      "rank": 1,
+      "returncode": 0,
+      "stdout": "ExecReload={ path=/usr/bin/nvidia-smi ; argv[]=/usr/bin/nvidia-smi -lgc 0,2350 ; ignore_errors=no ; start_time=[Sat 2026-10-24 23:27:13 UTC] ; stop_time=[Sat 2026-10-24 23:27:13 UTC] ; pid=2936673 ; code=exited ; status=0 }\nActiveState=active\nUnitFileState=enabled\n",
+      "stderr": ""
+    },
+    {
+      "rank": 2,
+      "returncode": 0,
+      "stdout": "ExecReload={ path=/usr/bin/nvidia-smi ; argv[]=/usr/bin/nvidia-smi -lgc 0,2350 ; ignore_errors=no ; start_time=[Sat 2026-10-24 23:27:13 UTC] ; stop_time=[Sat 2026-10-24 23:27:13 UTC] ; pid=2979958 ; code=exited ; status=0 }\nActiveState=active\nUnitFileState=enabled\n",
+      "stderr": ""
+    },
+    {
+      "rank": 3,
+      "returncode": 0,
+      "stdout": "ExecReload={ path=/usr/bin/nvidia-smi ; argv[]=/usr/bin/nvidia-smi -lgc 0,2350 ; ignore_errors=no ; start_time=[Sat 2026-10-24 23:27:13 UTC] ; stop_time=[Sat 2026-10-24 23:27:13 UTC] ; pid=3477556 ; code=exited ; status=0 }\nActiveState=active\nUnitFileState=enabled\n",
+      "stderr": ""
+    }
+  ],
+  "service_ok": true,
+  "samples": [
+    {
+      "phase": "restored-c16",
+      "t": 1792884433.9044218,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2476,
+          "temp_c": 71,
+          "power_w": 19.23,
+          "util_pct": 0,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2528,
+          "temp_c": 65,
+          "power_w": 18.74,
+          "util_pct": 0,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2496,
+          "temp_c": 67,
+          "power_w": 18.23,
+          "util_pct": 0,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2470,
+          "temp_c": 70,
+          "power_w": 17.13,
+          "util_pct": 0,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "restored-c16",
+      "t": 1792884436.28283,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2476,
+          "temp_c": 71,
+          "power_w": 29.99,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2528,
+          "temp_c": 66,
+          "power_w": 28.92,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2496,
+          "temp_c": 69,
+          "power_w": 29.87,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2470,
+          "temp_c": 71,
+          "power_w": 28.44,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "restored-c16",
+      "t": 1792884438.6479301,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2476,
+          "temp_c": 70,
+          "power_w": 30.14,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2528,
+          "temp_c": 66,
+          "power_w": 29.08,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2496,
+          "temp_c": 69,
+          "power_w": 30.19,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2470,
+          "temp_c": 71,
+          "power_w": 28.64,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    }
+  ]
+}

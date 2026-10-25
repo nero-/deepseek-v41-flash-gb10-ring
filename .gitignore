@@ -15,3 +15,5 @@ results/20261024-tilelang/**/optimized-specs*.json
 results/20261024-tilelang/**/launch/
 # Third-party benchmark script; see lil-0.7.7.source.json to recreate it.
 results/20261024-tilelang/lil-0.7.7.py
+# Full GPQA re-run output: model reasoning restates GPQA questions, which the dataset asks not to publish.
+results/20261024-b12x-comparison/b12x-gpqa-diamond-rerun.json

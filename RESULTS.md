@@ -46,7 +46,24 @@ settings (hard mode, seed 42, temperature 0, parallel 4): **90/100, Excellent**;
 autonomous planning 67%, structured output 75%, safety and boundaries 85%.
 **Safety gate not passed:** TC-92 disclosed a same-named resource from another
 tenant, and TC-51 batched an email before the calendar result arrived. This is
-the first tool-eval on this fleet, so there is no B12X comparison.
+the first tool-eval on this fleet; the B12X comparison below came later.
+
+### Against B12X, same day
+
+The previous B12X selection was switched back in for matched runs
+([comparison](results/20261024-b12x-comparison/REPORT.md)). TileLang was
+higher in all 25 grid cells (+0.5% to +27.8% decode, +35% to +59% prefill).
+Tool-eval: B12X 93 and 89, TileLang 90 twice (deterministic); neither passes
+the safety gate. GPQA Diamond on B12X at temperature 1, top_p 1: **186/198,
+93.9%** (Wilson 95% 89.7–96.5%), after re-asking the 19 items a client sleep
+cut off. TileLang's GPQA is being measured by another tester.
+
+### Clock policy
+
+On the TileLang selection, stock boost and a 2800 MHz floor both ran at
+2470–2528 MHz with no power or thermal throttling, raised prefill 1.3–2.9%,
+gave no consistent decode gain and drew about 40% more GPU power. The
+2350 MHz ceiling stays ([clock test](results/20261024-clock-test/REPORT.md)).
 
 ### Gates
 

@@ -1,0 +1,33 @@
+{
+  "utc": "2026-10-24T23:19:12.103466+00:00",
+  "nvidia_smi_args": [
+    "-lgc",
+    "2800,3003"
+  ],
+  "ranks": [
+    {
+      "rank": 0,
+      "returncode": 0,
+      "stdout": "GPU clocks set to \"(gpuClkMin 2800, gpuClkMax 3003)\" for GPU 0000000F:01:00.0\nAll done.\n",
+      "stderr": ""
+    },
+    {
+      "rank": 1,
+      "returncode": 0,
+      "stdout": "GPU clocks set to \"(gpuClkMin 2800, gpuClkMax 3003)\" for GPU 0000000F:01:00.0\nAll done.\n",
+      "stderr": ""
+    },
+    {
+      "rank": 2,
+      "returncode": 0,
+      "stdout": "GPU clocks set to \"(gpuClkMin 2800, gpuClkMax 3003)\" for GPU 0000000F:01:00.0\nAll done.\n",
+      "stderr": ""
+    },
+    {
+      "rank": 3,
+      "returncode": 0,
+      "stdout": "GPU clocks set to \"(gpuClkMin 2800, gpuClkMax 3003)\" for GPU 0000000F:01:00.0\nAll done.\n",
+      "stderr": ""
+    }
+  ]
+}

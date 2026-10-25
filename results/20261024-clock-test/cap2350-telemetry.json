@@ -1,0 +1,1888 @@
+{
+  "utc": "2026-10-24T23:11:26.451228+00:00",
+  "decode": [
+    {
+      "seconds": 84.81087303161621,
+      "prompt_tokens": 45,
+      "total_tokens": 1545,
+      "completion_tokens": 1500,
+      "prompt_tokens_details": null,
+      "completion_tokens_details": {
+        "reasoning_tokens": 1500
+      },
+      "sink_rejection": {
+        "flagged_rows": 0,
+        "flagged_draft_zero": 0,
+        "flagged_drafter": 0,
+        "flagged_prompt": 0,
+        "draft_zero_rejections": 0,
+        "draft_cuts": 0,
+        "fallthroughs": 0
+      }
+    },
+    {
+      "seconds": 84.88511204719543,
+      "prompt_tokens": 45,
+      "total_tokens": 1545,
+      "completion_tokens": 1500,
+      "prompt_tokens_details": null,
+      "completion_tokens_details": {
+        "reasoning_tokens": 1500
+      },
+      "sink_rejection": {
+        "flagged_rows": 0,
+        "flagged_draft_zero": 0,
+        "flagged_drafter": 0,
+        "flagged_prompt": 0,
+        "draft_zero_rejections": 0,
+        "draft_cuts": 0,
+        "fallthroughs": 0
+      }
+    },
+    {
+      "seconds": 85.93958711624146,
+      "prompt_tokens": 45,
+      "total_tokens": 1545,
+      "completion_tokens": 1500,
+      "prompt_tokens_details": null,
+      "completion_tokens_details": {
+        "reasoning_tokens": 1500
+      },
+      "sink_rejection": {
+        "flagged_rows": 0,
+        "flagged_draft_zero": 0,
+        "flagged_drafter": 0,
+        "flagged_prompt": 0,
+        "draft_zero_rejections": 0,
+        "draft_cuts": 0,
+        "fallthroughs": 0
+      }
+    },
+    {
+      "seconds": 85.9388689994812,
+      "prompt_tokens": 45,
+      "total_tokens": 1545,
+      "completion_tokens": 1500,
+      "prompt_tokens_details": null,
+      "completion_tokens_details": {
+        "reasoning_tokens": 1500
+      },
+      "sink_rejection": {
+        "flagged_rows": 0,
+        "flagged_draft_zero": 0,
+        "flagged_drafter": 0,
+        "flagged_prompt": 0,
+        "draft_zero_rejections": 0,
+        "draft_cuts": 0,
+        "fallthroughs": 0
+      }
+    },
+    {
+      "seconds": 83.49808382987976,
+      "prompt_tokens": 45,
+      "total_tokens": 1545,
+      "completion_tokens": 1500,
+      "prompt_tokens_details": null,
+      "completion_tokens_details": {
+        "reasoning_tokens": 1500
+      },
+      "sink_rejection": {
+        "flagged_rows": 0,
+        "flagged_draft_zero": 0,
+        "flagged_drafter": 0,
+        "flagged_prompt": 0,
+        "draft_zero_rejections": 0,
+        "draft_cuts": 0,
+        "fallthroughs": 0
+      }
+    },
+    {
+      "seconds": 83.58108520507812,
+      "prompt_tokens": 45,
+      "total_tokens": 1545,
+      "completion_tokens": 1500,
+      "prompt_tokens_details": null,
+      "completion_tokens_details": {
+        "reasoning_tokens": 1500
+      },
+      "sink_rejection": {
+        "flagged_rows": 0,
+        "flagged_draft_zero": 0,
+        "flagged_drafter": 0,
+        "flagged_prompt": 0,
+        "draft_zero_rejections": 0,
+        "draft_cuts": 0,
+        "fallthroughs": 0
+      }
+    },
+    {
+      "seconds": 84.88085889816284,
+      "prompt_tokens": 45,
+      "total_tokens": 1545,
+      "completion_tokens": 1500,
+      "prompt_tokens_details": null,
+      "completion_tokens_details": {
+        "reasoning_tokens": 1500
+      },
+      "sink_rejection": {
+        "flagged_rows": 0,
+        "flagged_draft_zero": 0,
+        "flagged_drafter": 0,
+        "flagged_prompt": 0,
+        "draft_zero_rejections": 0,
+        "draft_cuts": 0,
+        "fallthroughs": 0
+      }
+    },
+    {
+      "seconds": 82.94937300682068,
+      "prompt_tokens": 45,
+      "total_tokens": 1545,
+      "completion_tokens": 1500,
+      "prompt_tokens_details": null,
+      "completion_tokens_details": {
+        "reasoning_tokens": 1500
+      },
+      "sink_rejection": {
+        "flagged_rows": 0,
+        "flagged_draft_zero": 0,
+        "flagged_drafter": 0,
+        "flagged_prompt": 0,
+        "draft_zero_rejections": 0,
+        "draft_cuts": 0,
+        "fallthroughs": 0
+      }
+    },
+    {
+      "seconds": 85.30259203910828,
+      "prompt_tokens": 45,
+      "total_tokens": 1545,
+      "completion_tokens": 1500,
+      "prompt_tokens_details": null,
+      "completion_tokens_details": {
+        "reasoning_tokens": 1500
+      },
+      "sink_rejection": {
+        "flagged_rows": 0,
+        "flagged_draft_zero": 0,
+        "flagged_drafter": 0,
+        "flagged_prompt": 0,
+        "draft_zero_rejections": 0,
+        "draft_cuts": 0,
+        "fallthroughs": 0
+      }
+    },
+    {
+      "seconds": 82.39730310440063,
+      "prompt_tokens": 45,
+      "total_tokens": 1545,
+      "completion_tokens": 1500,
+      "prompt_tokens_details": null,
+      "completion_tokens_details": {
+        "reasoning_tokens": 1500
+      },
+      "sink_rejection": {
+        "flagged_rows": 0,
+        "flagged_draft_zero": 0,
+        "flagged_drafter": 0,
+        "flagged_prompt": 0,
+        "draft_zero_rejections": 0,
+        "draft_cuts": 0,
+        "fallthroughs": 0
+      }
+    },
+    {
+      "seconds": 86.18325614929199,
+      "prompt_tokens": 45,
+      "total_tokens": 1545,
+      "completion_tokens": 1500,
+      "prompt_tokens_details": null,
+      "completion_tokens_details": {
+        "reasoning_tokens": 1500
+      },
+      "sink_rejection": {
+        "flagged_rows": 0,
+        "flagged_draft_zero": 0,
+        "flagged_drafter": 0,
+        "flagged_prompt": 0,
+        "draft_zero_rejections": 0,
+        "draft_cuts": 0,
+        "fallthroughs": 0
+      }
+    },
+    {
+      "seconds": 77.41048502922058,
+      "prompt_tokens": 45,
+      "total_tokens": 1545,
+      "completion_tokens": 1500,
+      "prompt_tokens_details": null,
+      "completion_tokens_details": {
+        "reasoning_tokens": 1500
+      },
+      "sink_rejection": {
+        "flagged_rows": 0,
+        "flagged_draft_zero": 0,
+        "flagged_drafter": 0,
+        "flagged_prompt": 0,
+        "draft_zero_rejections": 0,
+        "draft_cuts": 0,
+        "fallthroughs": 0
+      }
+    },
+    {
+      "seconds": 80.70993614196777,
+      "prompt_tokens": 45,
+      "total_tokens": 1545,
+      "completion_tokens": 1500,
+      "prompt_tokens_details": null,
+      "completion_tokens_details": {
+        "reasoning_tokens": 1500
+      },
+      "sink_rejection": {
+        "flagged_rows": 0,
+        "flagged_draft_zero": 0,
+        "flagged_drafter": 0,
+        "flagged_prompt": 0,
+        "draft_zero_rejections": 0,
+        "draft_cuts": 0,
+        "fallthroughs": 0
+      }
+    },
+    {
+      "seconds": 86.99251198768616,
+      "prompt_tokens": 45,
+      "total_tokens": 1545,
+      "completion_tokens": 1500,
+      "prompt_tokens_details": null,
+      "completion_tokens_details": {
+        "reasoning_tokens": 1500
+      },
+      "sink_rejection": {
+        "flagged_rows": 0,
+        "flagged_draft_zero": 0,
+        "flagged_drafter": 0,
+        "flagged_prompt": 0,
+        "draft_zero_rejections": 0,
+        "draft_cuts": 0,
+        "fallthroughs": 0
+      }
+    },
+    {
+      "seconds": 83.2279851436615,
+      "prompt_tokens": 45,
+      "total_tokens": 1545,
+      "completion_tokens": 1500,
+      "prompt_tokens_details": null,
+      "completion_tokens_details": {
+        "reasoning_tokens": 1500
+      },
+      "sink_rejection": {
+        "flagged_rows": 0,
+        "flagged_draft_zero": 0,
+        "flagged_drafter": 0,
+        "flagged_prompt": 0,
+        "draft_zero_rejections": 0,
+        "draft_cuts": 0,
+        "fallthroughs": 0
+      }
+    },
+    {
+      "seconds": 85.93693399429321,
+      "prompt_tokens": 45,
+      "total_tokens": 1545,
+      "completion_tokens": 1500,
+      "prompt_tokens_details": null,
+      "completion_tokens_details": {
+        "reasoning_tokens": 1500
+      },
+      "sink_rejection": {
+        "flagged_rows": 0,
+        "flagged_draft_zero": 0,
+        "flagged_drafter": 0,
+        "flagged_prompt": 0,
+        "draft_zero_rejections": 0,
+        "draft_cuts": 0,
+        "fallthroughs": 0
+      }
+    }
+  ],
+  "prefill": {
+    "seconds": 7.970013856887817,
+    "prompt_tokens": 47906,
+    "total_tokens": 47907,
+    "completion_tokens": 1,
+    "prompt_tokens_details": null,
+    "completion_tokens_details": {
+      "reasoning_tokens": 1
+    },
+    "sink_rejection": {
+      "flagged_rows": 0,
+      "flagged_draft_zero": 0,
+      "flagged_drafter": 0,
+      "flagged_prompt": 0,
+      "draft_zero_rejections": 0,
+      "draft_cuts": 0,
+      "fallthroughs": 0
+    }
+  },
+  "samples": [
+    {
+      "phase": "decode-c16",
+      "t": 1792883391.453917,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 65,
+          "power_w": 21.27,
+          "util_pct": 0,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2320,
+          "temp_c": 60,
+          "power_w": 20.11,
+          "util_pct": 0,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 64,
+          "power_w": 21.17,
+          "util_pct": 46,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 63,
+          "power_w": 19.57,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883393.828196,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 69,
+          "power_w": 33.23,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2320,
+          "temp_c": 63,
+          "power_w": 31.56,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 65,
+          "power_w": 33.01,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 66,
+          "power_w": 31.2,
+          "util_pct": 94,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883396.219137,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 69,
+          "power_w": 33.28,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2320,
+          "temp_c": 63,
+          "power_w": 31.82,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 65,
+          "power_w": 33.19,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 66,
+          "power_w": 31.27,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883398.598909,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 69,
+          "power_w": 33.59,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2320,
+          "temp_c": 63,
+          "power_w": 32.0,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.49,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 66,
+          "power_w": 31.61,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883400.985666,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 69,
+          "power_w": 33.58,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2320,
+          "temp_c": 63,
+          "power_w": 32.01,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.47,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 66,
+          "power_w": 31.58,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883403.358037,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 69,
+          "power_w": 33.51,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2320,
+          "temp_c": 63,
+          "power_w": 31.92,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.51,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 66,
+          "power_w": 31.53,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883405.719209,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 69,
+          "power_w": 33.67,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2320,
+          "temp_c": 64,
+          "power_w": 32.03,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.56,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 66,
+          "power_w": 31.65,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883408.104414,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 69,
+          "power_w": 33.66,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2320,
+          "temp_c": 64,
+          "power_w": 32.08,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.52,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 67,
+          "power_w": 31.68,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883410.5098062,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 70,
+          "power_w": 33.44,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2320,
+          "temp_c": 63,
+          "power_w": 31.91,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.19,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 67,
+          "power_w": 31.42,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883412.908017,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 70,
+          "power_w": 33.57,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2320,
+          "temp_c": 64,
+          "power_w": 31.99,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.45,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 67,
+          "power_w": 31.59,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883415.296643,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 70,
+          "power_w": 33.61,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2320,
+          "temp_c": 64,
+          "power_w": 32.01,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.51,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 67,
+          "power_w": 31.63,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883417.678941,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 70,
+          "power_w": 33.56,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2320,
+          "temp_c": 64,
+          "power_w": 31.93,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.35,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 67,
+          "power_w": 31.52,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883420.064822,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 70,
+          "power_w": 33.52,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2320,
+          "temp_c": 64,
+          "power_w": 31.82,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.29,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 67,
+          "power_w": 31.52,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883422.469949,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 70,
+          "power_w": 33.51,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2320,
+          "temp_c": 64,
+          "power_w": 31.89,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.28,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 67,
+          "power_w": 31.44,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883424.852148,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 70,
+          "power_w": 33.68,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2320,
+          "temp_c": 64,
+          "power_w": 32.01,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.54,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 67,
+          "power_w": 31.58,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883427.231807,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 70,
+          "power_w": 33.56,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2320,
+          "temp_c": 64,
+          "power_w": 31.89,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.34,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 67,
+          "power_w": 31.48,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883429.630507,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 70,
+          "power_w": 33.58,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2320,
+          "temp_c": 64,
+          "power_w": 31.86,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.37,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 67,
+          "power_w": 31.57,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883432.0161111,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 70,
+          "power_w": 33.85,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2320,
+          "temp_c": 64,
+          "power_w": 32.11,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.61,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 67,
+          "power_w": 31.79,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883434.391449,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 70,
+          "power_w": 33.79,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2320,
+          "temp_c": 64,
+          "power_w": 32.04,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.5,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 67,
+          "power_w": 31.6,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883436.765493,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 70,
+          "power_w": 33.77,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2340,
+          "temp_c": 64,
+          "power_w": 32.08,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.58,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 67,
+          "power_w": 31.76,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883439.159044,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 70,
+          "power_w": 33.75,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2340,
+          "temp_c": 64,
+          "power_w": 32.07,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.54,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 67,
+          "power_w": 31.72,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883441.574494,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 70,
+          "power_w": 33.73,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2340,
+          "temp_c": 64,
+          "power_w": 32.07,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.56,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 67,
+          "power_w": 31.69,
+          "util_pct": 94,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883443.974087,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 70,
+          "power_w": 33.56,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2340,
+          "temp_c": 64,
+          "power_w": 31.93,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.31,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 67,
+          "power_w": 31.48,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883446.3656151,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 71,
+          "power_w": 33.93,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2340,
+          "temp_c": 64,
+          "power_w": 32.24,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.6,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 68,
+          "power_w": 31.86,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883448.756779,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 71,
+          "power_w": 33.79,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2340,
+          "temp_c": 65,
+          "power_w": 32.04,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.32,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 68,
+          "power_w": 31.67,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883451.165619,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 71,
+          "power_w": 33.72,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2340,
+          "temp_c": 65,
+          "power_w": 32.14,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.32,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 68,
+          "power_w": 31.72,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883453.7769809,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 71,
+          "power_w": 33.67,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2340,
+          "temp_c": 65,
+          "power_w": 31.89,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.1,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 68,
+          "power_w": 31.62,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883456.176001,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 71,
+          "power_w": 33.78,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2340,
+          "temp_c": 65,
+          "power_w": 31.99,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.34,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 68,
+          "power_w": 31.67,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883458.5553112,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 71,
+          "power_w": 33.55,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2340,
+          "temp_c": 65,
+          "power_w": 32.15,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.19,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 68,
+          "power_w": 31.58,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883460.971804,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 71,
+          "power_w": 33.66,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2340,
+          "temp_c": 65,
+          "power_w": 32.2,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.34,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 68,
+          "power_w": 31.7,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883463.366789,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 71,
+          "power_w": 33.53,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2340,
+          "temp_c": 65,
+          "power_w": 31.92,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 67,
+          "power_w": 33.12,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 68,
+          "power_w": 31.52,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883465.7600179,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 71,
+          "power_w": 33.71,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2340,
+          "temp_c": 65,
+          "power_w": 32.09,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.37,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 68,
+          "power_w": 31.69,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883468.161397,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 70,
+          "power_w": 33.8,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2340,
+          "temp_c": 65,
+          "power_w": 32.11,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.29,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 68,
+          "power_w": 31.73,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883470.5248692,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 71,
+          "power_w": 33.75,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2340,
+          "temp_c": 65,
+          "power_w": 32.07,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.25,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 68,
+          "power_w": 31.68,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883472.910625,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 71,
+          "power_w": 33.79,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2340,
+          "temp_c": 65,
+          "power_w": 32.15,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 33.39,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 68,
+          "power_w": 31.74,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883475.3210409,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 71,
+          "power_w": 33.31,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2340,
+          "temp_c": 65,
+          "power_w": 31.74,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 32.92,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 68,
+          "power_w": 31.26,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "decode-c16",
+      "t": 1792883477.714934,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 70,
+          "power_w": 30.42,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2340,
+          "temp_c": 64,
+          "power_w": 29.08,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 66,
+          "power_w": 29.97,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 67,
+          "power_w": 28.24,
+          "util_pct": 93,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "prefill-32k",
+      "t": 1792883478.463287,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 70,
+          "power_w": 26.88,
+          "util_pct": 95,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2340,
+          "temp_c": 63,
+          "power_w": 25.87,
+          "util_pct": 55,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 64,
+          "power_w": 26.6,
+          "util_pct": 94,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 67,
+          "power_w": 24.69,
+          "util_pct": 93,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "prefill-32k",
+      "t": 1792883480.80562,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 74,
+          "power_w": 52.74,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2340,
+          "temp_c": 66,
+          "power_w": 48.35,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 68,
+          "power_w": 50.99,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 72,
+          "power_w": 49.36,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "prefill-32k",
+      "t": 1792883483.1512718,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 73,
+          "power_w": 48.56,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2340,
+          "temp_c": 66,
+          "power_w": 45.29,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 67,
+          "power_w": 47.11,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 71,
+          "power_w": 45.66,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "phase": "prefill-32k",
+      "t": 1792883485.506676,
+      "ranks": [
+        {
+          "rank": 0,
+          "sm_mhz": 2333,
+          "temp_c": 73,
+          "power_w": 48.08,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 1,
+          "sm_mhz": 2340,
+          "temp_c": 66,
+          "power_w": 44.52,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 2,
+          "sm_mhz": 2327,
+          "temp_c": 69,
+          "power_w": 46.72,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        },
+        {
+          "rank": 3,
+          "sm_mhz": 2340,
+          "temp_c": 68,
+          "power_w": 45.07,
+          "util_pct": 96,
+          "reasons": "0x0000000000000000"
+        }
+      ]
+    }
+  ]
+}

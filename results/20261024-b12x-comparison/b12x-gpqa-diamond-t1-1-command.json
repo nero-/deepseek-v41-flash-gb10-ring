@@ -1,0 +1,27 @@
+{
+  "utc": "2026-10-24T21:19:37.549033+00:00",
+  "argv": [
+    "/Users/jg/Agent/Diagnostics/deepseek-v41-flash-ring/decode-recovery-20261020/external-client/.venv/bin/python",
+    "/Users/jg/Agent/Diagnostics/deepseek-v41-flash-ring/decode-recovery-20261020/external-client/lil-0.7.6.py",
+    "--host",
+    "192.168.50.219",
+    "--port",
+    "8015",
+    "--model",
+    "DeepSeek-V4.1-Flash-TP4",
+    "--no-hw-monitor",
+    "--display-mode",
+    "plain",
+    "--no-resume",
+    "--test-profile",
+    "gpqa-diamond",
+    "--completion-stats-concurrency",
+    "16",
+    "--completion-stats-temperature",
+    "1",
+    "--completion-stats-top-p",
+    "1",
+    "--output",
+    "/Users/jg/Agent/Builds/deepseek-v41-flash-spark/results/20261024-b12x-comparison/b12x-gpqa-diamond-t1-1.json"
+  ]
+}

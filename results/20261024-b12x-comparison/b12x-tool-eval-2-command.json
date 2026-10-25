@@ -1,0 +1,20 @@
+{
+  "utc": "2026-10-24T20:26:47.351910+00:00",
+  "argv": [
+    "/Users/jg/Agent/Diagnostics/deepseek-v41-flash-ring/decode-recovery-20261020/external-client/.venv/bin/python",
+    "/Users/jg/Agent/Builds/deepseek-v41-flash-spark/results/20261024-tilelang/lil-0.7.7.py",
+    "--host",
+    "192.168.50.219",
+    "--port",
+    "8015",
+    "--model",
+    "DeepSeek-V4.1-Flash-TP4",
+    "--no-hw-monitor",
+    "--display-mode",
+    "plain",
+    "--no-resume",
+    "--tool-eval",
+    "--output",
+    "/Users/jg/Agent/Builds/deepseek-v41-flash-spark/results/20261024-b12x-comparison/b12x-tool-eval-2.json"
+  ]
+}

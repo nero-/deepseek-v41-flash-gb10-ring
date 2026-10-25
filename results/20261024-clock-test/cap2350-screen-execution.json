@@ -1,0 +1,110 @@
+{
+  "utc": "2026-10-24T23:09:51.453042+00:00",
+  "argv": [
+    "/Users/jg/Agent/Diagnostics/deepseek-v41-flash-ring/decode-recovery-20261020/external-client/.venv/bin/python",
+    "/Users/jg/Agent/Diagnostics/deepseek-v41-flash-ring/decode-recovery-20261020/external-client/lil-0.7.6.py",
+    "--host",
+    "192.168.50.219",
+    "--port",
+    "8015",
+    "--model",
+    "DeepSeek-V4.1-Flash-TP4",
+    "--no-hw-monitor",
+    "--display-mode",
+    "plain",
+    "--no-resume",
+    "--temperature",
+    "1",
+    "--duration",
+    "20",
+    "--max-tokens",
+    "2048",
+    "--coding-peak",
+    "--concurrency",
+    "1,8,16",
+    "--contexts",
+    "8k,32k,128k",
+    "--output",
+    "/Users/jg/Agent/Builds/deepseek-v41-flash-spark/results/20261024-clock-test/cap2350-screen.json"
+  ],
+  "returncode": 0,
+  "elapsed_seconds": 382.39494800567627,
+  "containers": [
+    {
+      "rank": 0,
+      "id": "f4be444a4f14298d820c7922af5cf59f993a723929c323e268134c5ca1ff16d3"
+    },
+    {
+      "rank": 1,
+      "id": "c69b6103ae46032cd905513d5a3ab11ac8f7fc9b16597abe8b26e5714efc1e51"
+    },
+    {
+      "rank": 2,
+      "id": "42764fc48ea58f2d821d3ed4d5cdc17428e85ded1d2efcc7092b985a95ad8360"
+    },
+    {
+      "rank": 3,
+      "id": "c26f7970d36cae5770a4bde8cc4b548bf02f7eab6e838d23a31bc557915f533e"
+    }
+  ],
+  "counters_before": [
+    {
+      "rank": 0,
+      "SW Power Capping": 792494831,
+      "SW Thermal Slowdown": 0,
+      "HW Thermal Slowdown": 0,
+      "HW Power Braking": 0
+    },
+    {
+      "rank": 1,
+      "SW Power Capping": 770806615,
+      "SW Thermal Slowdown": 0,
+      "HW Thermal Slowdown": 0,
+      "HW Power Braking": 0
+    },
+    {
+      "rank": 2,
+      "SW Power Capping": 773239976,
+      "SW Thermal Slowdown": 0,
+      "HW Thermal Slowdown": 0,
+      "HW Power Braking": 0
+    },
+    {
+      "rank": 3,
+      "SW Power Capping": 709598068,
+      "SW Thermal Slowdown": 0,
+      "HW Thermal Slowdown": 0,
+      "HW Power Braking": 0
+    }
+  ],
+  "counters_after": [
+    {
+      "rank": 0,
+      "SW Power Capping": 792494831,
+      "SW Thermal Slowdown": 0,
+      "HW Thermal Slowdown": 0,
+      "HW Power Braking": 0
+    },
+    {
+      "rank": 1,
+      "SW Power Capping": 770806615,
+      "SW Thermal Slowdown": 0,
+      "HW Thermal Slowdown": 0,
+      "HW Power Braking": 0
+    },
+    {
+      "rank": 2,
+      "SW Power Capping": 773239976,
+      "SW Thermal Slowdown": 0,
+      "HW Thermal Slowdown": 0,
+      "HW Power Braking": 0
+    },
+    {
+      "rank": 3,
+      "SW Power Capping": 709598068,
+      "SW Thermal Slowdown": 0,
+      "HW Thermal Slowdown": 0,
+      "HW Power Braking": 0
+    }
+  ]
+}

@@ -9,6 +9,8 @@ install   requires the trial interlock and a stopped fleet apart from the
           fixed-action `deepseek-ring-control up`.
 rollback  the exact reverse: controller down, new containers renamed to
           ds41-tilelang-rN, previous containers and selection restored, up.
+reselect  after a rollback, swap back: the TileLang containers and selection
+          return as ds41-optimized-rN and the B12X ones as ds41-before-tilelang-rN.
 
 Root writes run in a network-less container with /etc/deepseek-ring mounted,
 as earlier campaigns did; nothing else on the hosts is changed.
@@ -203,6 +205,49 @@ print("previous selection restored")
     log("PREVIOUS_SELECTION_SERVING", PREVIOUS_SHA256)
 
 
+def reselect(args):
+    """Return to the TileLang selection after a rollback: the reverse of rollback."""
+    out = args.receipts
+    out.mkdir(parents=True, exist_ok=True)
+    selection = Path(args.selection).read_bytes()
+    digest = hashlib.sha256(selection).hexdigest()
+    installed = hashlib.sha256(fleet.remote(0, ["cat", "/etc/deepseek-ring/optimized-specs.json"]).stdout.encode())
+    assert installed.hexdigest() == PREVIOUS_SHA256, "the B12X selection is not the installed one"
+    for rank in range(4):
+        assert RETIRED.format(rank=rank) in names(rank), f"rank {rank}: no {RETIRED} to reselect"
+        assert PREVIOUS.format(rank=rank) not in names(rank), f"rank {rank}: {PREVIOUS} already exists"
+    fleet.remote(0, ["bash", "-c", f"cat > {STAGE}/optimized-specs.json"], data=selection.decode())
+    print(root(f'''
+import hashlib
+from pathlib import Path
+assert hashlib.sha256(Path("/stage/optimized-specs.json").read_bytes()).hexdigest() == {digest!r}
+print("staged TileLang selection verified")
+'''))
+    down = controller("down")
+    assert down.returncode == 0, down.stderr
+    assert not any(fleet.parallel(running)), "containers still running"
+    fleet.parallel(lambda rank: fleet.remote(rank, ["docker", "rename", CANONICAL.format(rank=rank),
+                                                    PREVIOUS.format(rank=rank)]))
+    fleet.parallel(lambda rank: fleet.remote(rank, ["docker", "rename", RETIRED.format(rank=rank),
+                                                    CANONICAL.format(rank=rank)]))
+    print(root(f'''
+import os
+from pathlib import Path
+control = Path("/control")
+temporary = control / ".optimized-specs.json.new"
+temporary.write_bytes(Path("/stage/optimized-specs.json").read_bytes())
+os.chown(temporary, 0, 0); os.chmod(temporary, 0o644)
+os.replace(temporary, control / "optimized-specs.json")
+print("TileLang selection reinstalled")
+'''))
+    started = time.time()
+    up = controller("up")
+    save(out, "reselect.json", {"returncode": up.returncode, "elapsed_seconds": time.time() - started,
+                                "selection_sha256": digest, "stdout": up.stdout[-4000:], "stderr": up.stderr[-4000:]})
+    assert up.returncode == 0 and health() == 200, up.stderr[-1500:]
+    log("TILELANG_SELECTION_SERVING", digest)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = parser.add_subparsers(dest="action", required=True)
@@ -211,8 +256,11 @@ def main():
     one.add_argument("--receipts", type=Path, required=True)
     two = sub.add_parser("rollback")
     two.add_argument("--receipts", type=Path, required=True)
+    three = sub.add_parser("reselect")
+    three.add_argument("--selection", required=True, help="the TileLang selection (sha 4d2bc32e...)")
+    three.add_argument("--receipts", type=Path, required=True)
     args = parser.parse_args()
-    {"install": install, "rollback": rollback}[args.action](args)
+    {"install": install, "rollback": rollback, "reselect": reselect}[args.action](args)
 
 
 if __name__ == "__main__":

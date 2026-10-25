@@ -1,0 +1,32 @@
+{
+  "utc": "2026-10-24T23:11:26.993186+00:00",
+  "nvidia_smi_args": [
+    "-rgc"
+  ],
+  "ranks": [
+    {
+      "rank": 0,
+      "returncode": 0,
+      "stdout": "All done.\n",
+      "stderr": ""
+    },
+    {
+      "rank": 1,
+      "returncode": 0,
+      "stdout": "All done.\n",
+      "stderr": ""
+    },
+    {
+      "rank": 2,
+      "returncode": 0,
+      "stdout": "All done.\n",
+      "stderr": ""
+    },
+    {
+      "rank": 3,
+      "returncode": 0,
+      "stdout": "All done.\n",
+      "stderr": ""
+    }
+  ]
+}

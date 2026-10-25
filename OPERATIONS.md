@@ -194,6 +194,11 @@ focused screen: --concurrency 1,8,16  --contexts 8k,32k
 full grid:      --concurrency 1,2,4,8,16 --contexts 8k,16k,32k,64k,128k
 ```
 
+Keep the Mac on AC power and run long benchmarks under `caffeinate -i`: an
+idle sleep during GPQA on 2026-10-24 left 16 streams stalled and 3 requests
+failed while the server finished them normally
+([comparison](results/20261024-b12x-comparison/REPORT.md)).
+
 Tool-calling quality uses LIL **0.7.7**'s `--tool-eval` (tool-eval-bench at
 the community leaderboard settings: hard mode, seed 42, temperature 0,
 parallel 4). The pinned script is `results/20261024-tilelang/lil-0.7.7.py`,
