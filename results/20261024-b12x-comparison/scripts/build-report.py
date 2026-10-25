@@ -116,8 +116,8 @@ w('With 198 items one run resolves roughly ±3.5 points, so a TileLang result in
 w('')
 w('## Production decision')
 w('')
-w('Another tester reported about 91.5% GPQA Diamond for TileLang (not measured on this fleet). GPQA Diamond '
-  'rankings are separated by fractions of a percent, so the user re-selected B12X as the production default, '
+w('Another tester measured 90.91% GPQA Diamond for TileLang and saw it loop and get stuck on some '
+  'questions (not measured on this fleet). GPQA Diamond rankings are separated by fractions of a percent, so the user re-selected B12X as the production default, '
   'accepting TileLang\'s speed loss. `promote.py rollback` ran at 02:35 UTC on 2026-10-25; functional 0 '
   'failures, head memory 117.83 GiB ([receipts](../20261024-b12x-production)). TileLang stays stopped as '
   '`ds41-tilelang-rN` and returns with `promote.py reselect`.')

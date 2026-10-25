@@ -326,7 +326,7 @@
     {
       "selection": "c87a397c",
       "from_utc": "2026-10-25T02:35:47.505592+00:00",
-      "reason": "User re-selected B12X for answer quality: GPQA Diamond 93.9% here against about 91.5% reported by another tester for TileLang; TileLang is faster in all 25 grid cells.",
+      "reason": "User re-selected B12X for answer quality: GPQA Diamond 93.9% here against 90.91% measured by another tester for TileLang, which also looped on some questions; TileLang is faster in all 25 grid cells.",
       "receipt": "results/20261024-b12x-production/rollback.json",
       "comparison": "results/20261024-b12x-comparison/REPORT.md"
     }

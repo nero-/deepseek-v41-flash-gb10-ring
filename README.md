@@ -26,8 +26,8 @@ GPQA Diamond at temperature 1, top_p 1: **186/198 = 93.9%** (Wilson 95%
 89.7–96.5%). Tool-calling quality (tool-eval-bench, leaderboard settings):
 93 and 89 in two runs; the safety gate did not pass. TileLang was faster in
 every grid cell (+0.5% to +27.8% decode, +35% to +59% prefill) and scored 90
-on tool-eval twice, but another tester reported about 91.5% on GPQA Diamond
-for it, so the user chose B12X.
+on tool-eval twice, but another tester measured 90.91% on GPQA Diamond for
+it and saw it loop and get stuck on some questions, so the user chose B12X.
 
 ## Start, stop and recover
 

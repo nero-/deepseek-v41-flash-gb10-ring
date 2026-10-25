@@ -10,8 +10,9 @@ Compare only matching protocols and startups.
 Selection `c87a397c…`, image `9f26f0b3718c…`, 20 GiB KV, 999 images, 2350 MHz
 ceiling. The user made it the production default again after the same-day
 comparison below, choosing GPQA Diamond accuracy over TileLang's speed:
-**186/198, 93.9%** here against about 91.5% reported for TileLang by another
-tester (not measured on this fleet; with 198 items one run resolves roughly
+**186/198, 93.9%** here against 90.91% measured for TileLang by another
+tester, who also saw it loop and get stuck on some questions (not measured on
+this fleet; with 198 items one run resolves roughly
 ±3.5 points). Switched back with `promote.py rollback` at 02:35 UTC on
 October 25; functional 0 failures, head memory 117.83 GiB
 ([receipts](results/20261024-b12x-production)).
@@ -90,8 +91,8 @@ higher in all 25 grid cells (+0.5% to +27.8% decode, +35% to +59% prefill).
 Tool-eval: B12X 93 and 89, TileLang 90 twice (deterministic); neither passes
 the safety gate. GPQA Diamond on B12X at temperature 1, top_p 1: **186/198,
 93.9%** (Wilson 95% 89.7–96.5%), after re-asking the 19 items a client sleep
-cut off. Another tester reported about 91.5% for TileLang; the user then
-re-selected B12X.
+cut off. Another tester measured 90.91% for TileLang, with looping on some
+questions; the user then re-selected B12X.
 
 ### Clock policy
 
