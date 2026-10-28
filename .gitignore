@@ -1,4 +1,5 @@
 # Local configuration, secrets and generated work.
+config/cluster.local.toml
 .env*
 .local/
 .*-work/

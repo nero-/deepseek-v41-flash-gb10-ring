@@ -7,8 +7,9 @@
 #   ./cluster.sh up|down|recover    start / stop / post-reboot recovery of the default workload
 #   ./cluster.sh run WORKLOAD ACTION [--yes]
 #
-# The cluster is defined in config/cluster.toml (override with CLUSTER_CONFIG=path
-# or --config path). Needs Python 3.11+ for tomllib; the newest python3.x on PATH is used.
+# The cluster is defined in config/cluster.local.toml if it exists, else
+# config/cluster.toml (override with CLUSTER_CONFIG=path or --config path).
+# Needs Python 3.11+ for tomllib; the newest python3.x on PATH is used.
 set -euo pipefail
 here=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
@@ -23,8 +24,10 @@ done
 [[ -n $python ]] || { echo "cluster.sh needs Python 3.11 or newer" >&2; exit 2; }
 
 cli=("$python" "$here/scripts/cluster.py")
+config=$here/config/cluster.toml
+[[ -f $here/config/cluster.local.toml ]] && config=$here/config/cluster.local.toml
 default_workload() {
-    "$python" - "${CLUSTER_CONFIG:-$here/config/cluster.toml}" <<'PY'
+    "$python" - "${CLUSTER_CONFIG:-$config}" <<'PY'
 import sys, tomllib
 workloads = tomllib.load(open(sys.argv[1], "rb")).get("workloads", [])
 print(next((w["name"] for w in workloads if w.get("default")), workloads[0]["name"] if workloads else ""))

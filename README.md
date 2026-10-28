@@ -8,6 +8,15 @@ production default on 2026-10-27, replacing the five-draft B12X vLLM build.
 
 API: **http://192.168.X.X:8015/v1** · model **DeepSeek-V4.1-Flash-TP4** · no API key.
 
+## Install on your own cluster
+
+To run the same setup on another four GB10 nodes, follow
+**[flare/INSTALL.md](flare/INSTALL.md)**. It covers FLARE install, agents and
+pairing, the download, the launch, and the cluster TUI
+([`config/cluster.example.toml`](config/cluster.example.toml)), with the
+problems we hit already worked around. The rest of this README describes our
+own fleet.
+
 ## Performance
 
 Public LIL 0.7.6 grid, temperature 1, model-default thinking, 20 s cells,
@@ -82,10 +91,11 @@ Spark. Their records stay in [RESULTS.md](RESULTS.md) and `results/`.
 
 ## Repository contents
 
+- [flare/INSTALL.md](flare/INSTALL.md): install guide for any four-node GB10 cluster.
 - [flare/](flare/README.md): FLARE install, download, launch and upgrade guide for this fleet.
 - [OPERATIONS.md](OPERATIONS.md): runbook — control, recovery, fabric, memory, benchmarks.
 - [RESULTS.md](RESULTS.md): current measurements and earlier selections.
-- `cluster.sh`, `scripts/cluster.py`, `config/cluster.toml`: cluster TUI and CLI.
+- `cluster.sh`, `scripts/cluster.py`, `config/cluster.toml`: cluster TUI and CLI (`config/cluster.example.toml` is the template for other clusters).
 - `scripts/`: fabric check and repair, fleet SSH helpers, root controller sources.
 - `bench/`: functional, retrieval, mixed-traffic, consistency and fabric checks.
 - `host/`: clock-cap service, controller sudoers rule, SSH config block.

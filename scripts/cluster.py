@@ -2,7 +2,8 @@
 """Configurable cluster control: a curses TUI plus scriptable subcommands.
 
 The cluster (nodes, workloads, actions) comes from a TOML file, by default
-config/cluster.toml next to this repository's cluster.sh. Standard library
+config/cluster.local.toml if it exists, else config/cluster.toml, next to this
+repository's cluster.sh. Standard library
 only; Python 3.11 or newer (tomllib).
 
   cluster.py                      interactive TUI
@@ -28,7 +29,8 @@ import urllib.request
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
-DEFAULT_CONFIG = REPO / "config/cluster.toml"
+LOCAL_CONFIG = REPO / "config/cluster.local.toml"
+DEFAULT_CONFIG = LOCAL_CONFIG if LOCAL_CONFIG.exists() else REPO / "config/cluster.toml"
 PLACEHOLDERS = ("node", "host", "rank", "user", "repo")
 
 # One SSH round trip per node: host memory, uptime, GPU telemetry, containers and

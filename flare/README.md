@@ -7,6 +7,7 @@ It follows the publisher's [TP4 README](https://huggingface.co/local-inference-l
 and [SPARK-DS4-GUIDE](https://huggingface.co/local-inference-lab/DeepSeek-V4.1-Flash-1017-FLARE/blob/gb10/SPARK-DS4-GUIDE.md),
 with the site differences listed below. Serving needs no Docker, Python or
 root: an APT package, a user-level agent on every node, and one controller.
+To set up another cluster, use [INSTALL.md](INSTALL.md) instead.
 
 | Role | Where |
 |---|---|

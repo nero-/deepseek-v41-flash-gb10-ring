@@ -1,0 +1,93 @@
+# Template for another four-node GB10 cluster running FLARE (flare/INSTALL.md).
+#
+# Copy to config/cluster.local.toml, which cluster.sh prefers and Git ignores:
+#
+#   cp config/cluster.example.toml config/cluster.local.toml
+#
+# then replace the node names, addresses and SSH user. The names spark1..spark4,
+# the Orbit cluster "sparks", the group "deepseek" and port 8000 follow the
+# publisher's TP4 README; change them together if yours differ.
+#
+# Placeholders in commands: {node} {host} {rank} {user} {repo}. {repo} is the
+# directory that contains cluster.sh.
+
+[cluster]
+name = "GB10 cluster"
+ssh_user = "YOUR_USER"
+ssh_options = ["-o", "BatchMode=yes", "-o", "ConnectTimeout=5"]
+refresh_seconds = 5
+node_actions = [
+  { name = "GPU clocks", command = "nvidia-smi --query-gpu=clocks.sm,utilization.gpu,power.draw,temperature.gpu --format=csv" },
+  { name = "GPU processes", command = "nvidia-smi --query-compute-apps=pid,process_name,used_memory --format=csv; pgrep -a -f 'flare run' | cut -c1-200 || echo 'no FLARE rank'" },
+  { name = "FLARE agent", command = "systemctl --user status flare-agent --no-pager -n 20" },
+  { name = "Memory", command = "free -g; cat /proc/pressure/memory" },
+  { name = "Kernel events (1 h)", command = "journalctl -k --since '-1h' --no-pager | grep -Ei 'oom|xid|nvrm|allocation failure' || echo none" },
+]
+
+# Same order as [cluster.sparks] in the controller's orbit.toml: it assigns ranks.
+[[nodes]]
+name = "spark1"
+host = "192.168.1.11"
+role = "head"
+
+[[nodes]]
+name = "spark2"
+host = "192.168.1.12"
+role = "worker"
+
+[[nodes]]
+name = "spark3"
+host = "192.168.1.13"
+role = "worker"
+
+[[nodes]]
+name = "spark4"
+host = "192.168.1.14"
+role = "worker"
+
+[[workloads]]
+name = "deepseek"
+description = "DeepSeek-V4.1-Flash-1017 TP4 on FLARE (Orbit group deepseek, controller spark1)"
+health_url = "http://192.168.1.11:8000/health"
+api = "http://192.168.1.11:8000/v1"
+default = true
+
+  [[workloads.actions]]
+  name = "start"
+  description = "Start the saved group; under 30 seconds once every rank's package is cached"
+  node = "spark1"
+  command = "flare orbit run --name deepseek --cluster sparks --detach"
+  confirm = true
+
+  [[workloads.actions]]
+  name = "stop"
+  node = "spark1"
+  command = "flare orbit stop deepseek --cluster sparks"
+  confirm = true
+
+  [[workloads.actions]]
+  name = "recover"
+  description = "After a reboot (SSH up on all four): stop leftovers, start the group"
+  command = "{repo}/cluster.sh run deepseek stop --yes; {repo}/cluster.sh run deepseek start --yes"
+  confirm = true
+
+  [[workloads.actions]]
+  name = "status"
+  node = "spark1"
+  command = "flare orbit ls --cluster sparks && flare orbit status --cluster sparks"
+
+  [[workloads.actions]]
+  name = "logs"
+  description = "Retained rank output (startup checklist, request errors)"
+  node = "spark1"
+  command = "timeout 15 flare orbit attach deepseek --cluster sparks </dev/null 2>&1 | grep -v PENDING | tail -200"
+
+  [[workloads.actions]]
+  name = "packages"
+  description = "Package cache on every node"
+  node = "spark1"
+  command = "flare orbit packages --cluster sparks; flare models list --plain --model-cache ~/flare-models"
+
+  [[workloads.actions]]
+  name = "functional check"
+  command = "python3 {repo}/bench/functional.py http://192.168.1.11:8000/v1"
