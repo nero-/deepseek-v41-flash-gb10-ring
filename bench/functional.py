@@ -6,28 +6,36 @@ Counting, arithmetic and code with thinking off; an automatic and a forced
 tool call; one generated image (left half red, right half blue); and the same
 arithmetic question with thinking on, which must return reasoning text. Each
 check prints PASS or FAIL with the reply; the exit status counts failures.
+
+Written for FLARE: thinking is switched off with `enable_thinking` (FLARE
+rejects vLLM's `thinking` option) and sampling uses the package defaults,
+because the prepared package fixes temperature and top_p at 1.
 """
 import base64
 import json
 import re
 import struct
 import sys
+import urllib.error
 import urllib.request
 import zlib
 
 base = sys.argv[1].rstrip("/")
 model = json.loads(urllib.request.urlopen(base + "/models", timeout=30).read())["data"][0]["id"]
-OFF = {"chat_template_kwargs": {"thinking": False}}
+OFF = {"chat_template_kwargs": {"enable_thinking": False}}
 WEATHER = {"type": "function", "function": {
     "name": "get_weather", "description": "Current weather for a city",
     "parameters": {"type": "object", "properties": {"city": {"type": "string"}}, "required": ["city"]}}}
 
 
 def chat(messages, max_tokens=256, **extra):
-    body = {"model": model, "messages": messages, "max_tokens": max_tokens, "temperature": 0, **extra}
+    body = {"model": model, "messages": messages, "max_tokens": max_tokens, **extra}
     request = urllib.request.Request(base + "/chat/completions", data=json.dumps(body).encode(),
                                      headers={"Content-Type": "application/json"})
-    return json.loads(urllib.request.urlopen(request, timeout=600).read())["choices"][0]["message"]
+    try:
+        return json.loads(urllib.request.urlopen(request, timeout=600).read())["choices"][0]["message"]
+    except urllib.error.HTTPError as error:
+        return {"content": f"HTTP {error.code}: {error.read().decode(errors='replace')[:200]}"}
 
 
 def png(width=64, height=64):

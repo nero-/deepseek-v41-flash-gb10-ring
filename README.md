@@ -1,33 +1,38 @@
 # DeepSeek-V4.1-Flash on four switched GB10 nodes
 
 DeepSeek-V4.1-Flash-1017, tensor-parallel across two DGX Sparks and two ASUS
-GX10s on a MikroTik CRS812 switch, served by the **five-draft B12X build**:
-the October 15 eugr/KK/FlashInfer runtime with RoCEnante two-shot transport.
-It was re-selected as the production default on 2026-10-24 for answer quality.
-The faster spark-ds41f TileLang build is kept, stopped, as the alternative.
+GX10s on a MikroTik CRS812 switch, served by **FLARE** (Local Inference Lab's
+native engine) from the signed TP4 package
+`local-inference-lab/DeepSeek-V4.1-Flash-1017-FLARE@gb10`. FLARE became the
+production default on 2026-10-27, replacing the five-draft B12X vLLM build.
 
 API: **http://192.168.X.X:8015/v1** · model **DeepSeek-V4.1-Flash-TP4** · no API key.
 
-## Performance and quality
+## Performance
 
 Public LIL 0.7.6 grid, temperature 1, model-default thinking, 20 s cells,
-max 2048 tokens; aggregate output tokens/s, measured 2026-10-24
-([comparison](results/20261024-b12x-comparison/REPORT.md)):
+max 2048 tokens; aggregate output tokens/s, measured 2026-10-27
+([report](results/20261027-flare/REPORT.md)):
 
 | Context | C1 | C2 | C4 | C8 | C16 | Prefill |
 |---|---:|---:|---:|---:|---:|---:|
-| 8K | 63.1 | 90.7 | 140.0 | 197.7 | 272.7 | 3,898 |
-| 16K | 63.5 | 93.0 | 134.4 | 186.7 | 266.8 | 3,746 |
-| 32K | 64.0 | 93.9 | 146.1 | 197.3 | 265.8 | 4,059 |
-| 64K | 64.9 | 78.6 | 133.4 | 181.0 | 268.7 | 4,498 |
-| 128K | 62.9 | 94.8 | 136.5 | 189.2 | 260.6 | 4,305 |
+| 8K | 58.9 | 99.9 | 141.1 | 179.4 | 253.8 | 3,873 |
+| 16K | 60.1 | 95.7 | 143.2 | 168.9 | 253.4 | 4,102 |
+| 32K | 63.6 | 98.3 | 146.5 | 176.1 | 246.7 | 4,444 |
+| 64K | 63.4 | 98.6 | 140.2 | 200.4 | 245.8 | 4,479 |
+| 128K | 61.0 | 95.9 | 136.7 | 198.4 | 261.0 | 4,411 |
 
-GPQA Diamond at temperature 1, top_p 1: **186/198 = 93.9%** (Wilson 95%
-89.7–96.5%). Tool-calling quality (tool-eval-bench, leaderboard settings):
-93 and 89 in two runs; the safety gate did not pass. TileLang was faster in
-every grid cell (+0.5% to +27.8% decode, +35% to +59% prefill) and scored 90
-on tool-eval twice, but another tester measured 90.91% on GPQA Diamond for
-it and saw it loop and get stuck on some questions, so the user chose B12X.
+Against the B12X grid of 2026-10-24: C1 −3.6% on average, C2 +8.9%, C4
++2.6%, C8 −2.8%, C16 −5.5%, prefill +4.1%; coding peak median 100.3 against
+104.1. Functional checks 7/7, uncached retrieval at 122K and 923K tokens,
+1000 images in one request. GPQA Diamond and tool-eval have not been run on
+FLARE yet (B12X: 93.9% and 93/89).
+
+**Known issue:** in default (thinking) mode, a few positions in the first 128
+tokens get context-free logits, so short replies can contain a spliced stray
+token or, once, the model's `<ds_safety>` annotation. `enable_thinking: false`
+avoids it ([details](results/20261027-flare/REPORT.md#known-issue-stray-tokens),
+[upstream #118](https://github.com/NVIDIA/local-inference/issues/118)).
 
 ## Start, stop and recover
 
@@ -35,15 +40,16 @@ it and saw it loop and get stuck on some questions, so the user chose B12X.
 cd ~/Agent/Builds/deepseek-v41-flash-spark
 ./cluster.sh               # TUI: nodes, health, actions, live output
 ./cluster.sh status
-./cluster.sh up            # start (asks first)
-./cluster.sh down          # stop (asks first)
+./cluster.sh up            # start the FLARE group (asks first)
+./cluster.sh down          # stop it (asks first)
 ./cluster.sh recover       # after a reboot: wait for SSH on all four nodes first
 ```
 
-The TUI and its actions are defined in [`config/cluster.toml`](config/cluster.toml)
-and are not DeepSeek-specific: add nodes, workloads and commands there.
-`scripts/ring-mode.sh ds|recover-ds|stop|status` still works. Startup takes
-about 2 minutes with warm caches. Details: [OPERATIONS.md](OPERATIONS.md).
+The actions run `flare orbit` on spark-r0 (controller and rank 0); the agents
+on all four nodes start at boot, the group does not. Startup takes under 30
+seconds once each node holds its package. The TUI is defined in
+[`config/cluster.toml`](config/cluster.toml). Details:
+[OPERATIONS.md](OPERATIONS.md) and the [FLARE guide](flare/README.md).
 
 ```bash
 curl --fail --max-time 5 http://192.168.X.X:8015/health
@@ -53,41 +59,40 @@ curl --fail --max-time 5 http://192.168.X.X:8015/health
 
 | Component | Selected |
 |---|---|
-| Recipe | [RoCEnante switch image](image/rocenante-switch/README.md) on the October 15 runtime ([lineage](image/runtime-20261017)) |
-| vLLM | local-inference-lab/vllm `8244d1c4` (0.1.dev21830), torch 2.13.0+cu130 |
-| Kernels | B12X from local-inference-lab/flashinfer `91271757`, FlashInfer 0.7.1, CUTLASS DSL 4.7.0 |
-| Collectives | RoCEnante ABI 8: one-shot below 512 KiB, pipelined two-shot to 128 MiB, patched NCCL fallback |
-| Plugins | adaptive 4K prefill, guarded query-indexer TP sharding (`/usr/local/lib/deepseek-ring/plugins`) |
-| Image | `sha256:9f26f0b3718c…` on all four ranks |
-| Checkpoint | Official DeepSeek-V4.1-Flash-1017 `1bae0e1088993b9b82de08f59de5be5a34e42170`, native precision |
-| Speculation | DSpark, five probabilistic drafts, block rejection, adaptive verification |
-| Serving | 1,048,576 context, 16 sequences, 20 GiB KV per rank (16.34M tokens), 999 images per request |
-| Fabric | CRS812, one 200G port-1 cable per node, two Socket Direct rails, MTU 9000, GID 3 |
+| Engine | `flare-inference 0.1.0~git20261027170349.7c22369f-1` from `ppa.local-inference-lab.ai`, same binary on all four nodes |
+| Package | `DeepSeek-V4.1-Flash-1017-FLARE@gb10` commit `607c1abf`, deployment `0a377833…`, TP4, native expert scales, signed |
+| Orbit | controller spark-r0, cluster `ds41`, persistent group `ds41-flare` ([launch](flare/launch.sh)) |
+| Speculation | MTP, up to five drafts, adaptive verification |
+| Serving | 1,048,576 context, 32 requests, 4,096-token prefill chunks, Engram tables on disk with RAM scales and 1 GiB row cache |
+| KV | 16.6 GiB per GPU, **19,306,112 tokens** (`--memory-limit=-2G`) |
+| Memory | spark-r0 110.9 GiB used after loading (budget about 118 GiB) |
+| Fabric | CRS812, one 200G port-1 cable per node, two Socket Direct rails, MTU 9000, GID 3; RoCE on both rails |
 | GPU clocks | 0–2350 MHz ceiling, persistent; idle downclocking enabled |
-| Selection | `c87a397c…` in root-owned `/etc/deepseek-ring/optimized-specs.json` |
 
-Exact identities: [results/deployment.json](results/deployment.json). Startup
-head memory 117.8 GiB (budget about 118 GiB).
+Exact identities: [results/deployment.json](results/deployment.json).
 
-**Alternative:** the spark-ds41f TileLang selection (`4d2bc32e…`, image
-`2fc5565e9c15…`) is kept exactly as stopped `ds41-tilelang-rN` containers;
-`image/tilelang-ds41f/promote.py reselect` switches to it
-([OPERATIONS](OPERATIONS.md#switching-between-b12x-and-tilelang)).
+Clients: thinking is on by default; turn it off with
+`"chat_template_kwargs": {"enable_thinking": false}` (vLLM's `thinking`
+option is rejected). Temperature and top_p are fixed at 1 by the package.
+
+**Retired:** the B12X and TileLang vLLM builds. Their containers and images
+remain on every node, but the GX10 copies of the 1017 checkpoint were removed
+to make room for FLARE, so neither can start without copying it back from a
+Spark. Their records stay in [RESULTS.md](RESULTS.md) and `results/`.
 
 ## Repository contents
 
-- [OPERATIONS.md](OPERATIONS.md): runbook — control, recovery, fabric, memory, benchmarks, switching builds.
-- [RESULTS.md](RESULTS.md): current measurements and the previous selection's.
+- [flare/](flare/README.md): FLARE install, download, launch and upgrade guide for this fleet.
+- [OPERATIONS.md](OPERATIONS.md): runbook — control, recovery, fabric, memory, benchmarks.
+- [RESULTS.md](RESULTS.md): current measurements and earlier selections.
 - `cluster.sh`, `scripts/cluster.py`, `config/cluster.toml`: cluster TUI and CLI.
-- `image/rocenante-switch`, `image/runtime-20261017`, `image/1017`, `image/kk926`,
-  `image/vllm-local-plugins`: the selected B12X image lineage and its plugins.
-- `image/tilelang-ds41f/`: the TileLang alternative (render, selection, promote/rollback/reselect).
-- `scripts/`: controller sources, fleet SSH helpers, switched-fabric gate.
+- `scripts/`: fabric check and repair, fleet SSH helpers, root controller sources.
 - `bench/`: functional, retrieval, mixed-traffic, consistency and fabric checks.
 - `host/`: clock-cap service, controller sudoers rule, SSH config block.
-- `results/`: qualification evidence for the selected and alternative builds.
+- `image/`: the retired B12X and TileLang vLLM image lineages.
+- `results/`: qualification evidence.
 - [Agent maintenance skill](../SKILL.md): fleet guidance shared by any agent.
 
-This is an operating repository for this fleet; root-owned configuration,
-checkpoints and caches live on the nodes. Superseded campaigns were removed on
-2026-10-24 and remain at the Git tag `pre-tilelang-cleanup-20261024`.
+This is an operating repository for this fleet; packages, caches and
+root-owned configuration live on the nodes. Superseded campaigns removed on
+2026-10-24 remain at the Git tag `pre-tilelang-cleanup-20261024`.

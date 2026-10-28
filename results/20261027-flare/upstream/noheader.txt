@@ -1,0 +1,7 @@
+no-header nothink user='Say hi.' positions=58 range=7-73 blanks_at: 
+no-header nothink user='Hello there' positions=61 range=6-72 blanks_at: 
+no-header nothink user='Greet me briefly.' positions=57 range=9-75 blanks_at: 
+system-prompt (no header) nothink positions=59 range=28-94 blanks_at: 
+system-prompt (no header) think positions=58 range=29-95 blanks_at: 
+effort-header nothink positions=62 range=33-99 blanks_at: 41 45 
+effort-header think positions=62 range=34-100 blanks_at: 42 46 

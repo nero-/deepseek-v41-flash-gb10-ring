@@ -5,7 +5,34 @@ thinking, 20-second cells, max 2048 output tokens, `--no-hw-monitor`.
 Values are aggregate output tokens/s; C>1 is aggregate, not per stream.
 Compare only matching protocols and startups.
 
-## Selected: five-draft B12X (re-selected 2026-10-24)
+## Selected: FLARE (2026-10-27)
+
+`flare-inference 7c22369f`, package `DeepSeek-V4.1-Flash-1017-FLARE@gb10`
+(`607c1abf`, deployment `0a377833…`), MTP up to five drafts, 16.6 GiB KV per
+GPU (19,306,112 tokens), 2350 MHz ceiling. Made the default by the user;
+B12X was not re-run after the cutover. Startup head memory 110.86 GiB
+([report](results/20261027-flare/REPORT.md)).
+
+| Context | C1 | C2 | C4 | C8 | C16 | Prefill |
+|---|---:|---:|---:|---:|---:|---:|
+| 8K | 58.9 | 99.9 | 141.1 | 179.4 | 253.8 | 3,873 |
+| 16K | 60.1 | 95.7 | 143.2 | 168.9 | 253.4 | 4,102 |
+| 32K | 63.6 | 98.3 | 146.5 | 176.1 | 246.7 | 4,444 |
+| 64K | 63.4 | 98.6 | 140.2 | 200.4 | 245.8 | 4,479 |
+| 128K | 61.0 | 95.9 | 136.7 | 198.4 | 261.0 | 4,411 |
+
+Against B12X on 2026-10-24 (same harness and arguments, single runs): C1
+−0.6% to −6.7%, C2 +1.2% to +25.4%, C4 +0.1% to +6.5%, C8 −10.7% to +10.7%
+(lower to 32K, higher at 64K–128K), C16 −8.5% to +0.2%, prefill −0.6% to
++9.5%. Coding peak median 100.3 (B12X 104.1). The October 20 FLARE release had
+been 6–24% slower than vLLM in every cell.
+
+Functional 7/7; uncached retrieval at 122,280 and 923,228 prompt tokens; 1000
+distinct images in one request. Known issue: occasional spliced stray tokens
+in short chat replies, once the internal `<ds_safety>` annotation (about 2 in
+60 with varied seeds). GPQA Diamond and tool-eval not yet run on FLARE.
+
+## Retired: five-draft B12X (production 2026-10-24 to 2026-10-27)
 
 Selection `c87a397c…`, image `9f26f0b3718c…`, 20 GiB KV, 999 images, 2350 MHz
 ceiling. The user made it the production default again after the same-day
@@ -40,7 +67,7 @@ three focused screens: medians 66.8 / 203.1 / 285.5 at 8K C1/C8/C16 and
 [image limit](results/20261017-image-limit/REPORT.md),
 [clock policy](results/20261020-clock-cap/REPORT.md).
 
-## Alternative: spark-ds41f TileLang (selected 2026-10-24, stood down the same day)
+## Retired: spark-ds41f TileLang (selected 2026-10-24, stood down the same day)
 
 Selection `4d2bc32e…`, image `2fc5565e9c15…`, 20 GiB KV, 999 images, 2350 MHz
 ceiling. [Full report with tool-eval](results/20261024-tilelang/REPORT.md).
@@ -112,7 +139,7 @@ figures ([trial evidence](results/20261024-tilelang/trial-kv10/TRIAL-README.md))
 
 ## Rejected alternatives
 
-FLARE (native and stock-native, October 20–21), SGLang/Mia, CSF and TensorFold
+The October 20–21 FLARE releases (native and stock-native), SGLang/Mia, CSF and TensorFold
 packages, Fastokens, an MXFP4 MoE backport, SIRCL, several draft-depth and
 verification-cap variants, stock or 2700 MHz clocks and the clean upstream
 vLLM copy did not beat the selection of their time. Their reports are at the

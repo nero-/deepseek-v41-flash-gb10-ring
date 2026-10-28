@@ -1,0 +1,24 @@
+{
+  "args": {
+    "tokens": 960000,
+    "output": "results/20261027-flare/cold-needle-960000.json",
+    "url": "http://192.168.50.219:8015"
+  },
+  "nonce": "2a0dcf0e809247bdb00943ede913b788",
+  "prompt_sha256": "3a8f18685d9856ac25061030169f82f243de295b2c847fe47f1b3a5026eacaf9",
+  "expected": "RING-6305-COBALT",
+  "answer": "RING-6305-COBALT",
+  "usage": {
+    "prompt_tokens": 923228,
+    "completion_tokens": 9,
+    "total_tokens": 923237,
+    "prompt_tokens_details": {
+      "cached_tokens": 1
+    }
+  },
+  "ttft_seconds": 315.8862401670194,
+  "elapsed_seconds": 315.9127857499989,
+  "cached_tokens": 1,
+  "needle_pass": true,
+  "cold_confirmed": false
+}

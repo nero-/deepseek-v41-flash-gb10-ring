@@ -31,20 +31,28 @@ REPO = Path(__file__).resolve().parents[1]
 DEFAULT_CONFIG = REPO / "config/cluster.toml"
 PLACEHOLDERS = ("node", "host", "rank", "user", "repo")
 
-# One SSH round trip per node: host memory, uptime, GPU telemetry and containers as JSON.
+# One SSH round trip per node: host memory, uptime, GPU telemetry, containers and
+# GPU processes (FLARE ranks run natively, not in containers) as JSON.
 PROBE = r"""
 import json, pathlib, subprocess
 def run(*a):
     try: return subprocess.run(a, capture_output=True, text=True, timeout=8).stdout.strip()
     except Exception: return ""
+def process(pid):
+    try: argv = pathlib.Path(f'/proc/{pid}/cmdline').read_bytes().decode().split('\0')
+    except OSError: return None
+    name = pathlib.Path(argv[0]).name
+    return f"{name}:r{argv[argv.index('--rank') + 1]}" if '--rank' in argv[:-1] else name
 m = {l.split()[0].rstrip(':'): int(l.split()[1]) for l in pathlib.Path('/proc/meminfo').read_text().splitlines()}
 gpu = run('nvidia-smi', '--query-gpu=clocks.sm,utilization.gpu,power.draw,temperature.gpu',
           '--format=csv,noheader,nounits').splitlines()
+pids = run('nvidia-smi', '--query-compute-apps=pid', '--format=csv,noheader').split()
 print(json.dumps({
     'uptime_s': float(pathlib.Path('/proc/uptime').read_text().split()[0]),
     'mem_total_gib': m['MemTotal'] / 2**20, 'mem_used_gib': (m['MemTotal'] - m['MemAvailable']) / 2**20,
     'gpu': [x.strip() for x in gpu[0].split(',')] if gpu else None,
     'containers': run('docker', 'ps', '--format', '{{.Names}}').split(),
+    'gpu_processes': [p for p in map(process, pids) if p],
 }))
 """
 
@@ -147,7 +155,7 @@ def node_row(config, node, state):
     if not state.get("ok"):
         return f"{node['name']:<10} {node.get('role', ''):<7} DOWN  {state.get('error', '')[:60]}"
     gpu = state.get("gpu") or ["-", "-", "-", "-"]
-    containers = " ".join(state.get("containers", [])) or "-"
+    containers = " ".join(state.get("containers", []) + state.get("gpu_processes", [])) or "-"
     return (f"{node['name']:<10} {node.get('role', ''):<7} up {uptime(state['uptime_s']):>7}  "
             f"mem {state['mem_used_gib']:5.1f}/{state['mem_total_gib']:5.1f}G  "
             f"gpu {gpu[0]:>4}MHz {gpu[1]:>3}% {gpu[2]:>6}W {gpu[3]:>3}C  {containers}")

@@ -1,0 +1,17 @@
+filler=0 first_pt=42 last_pt=79 positions=33 blanks_at(pt): 
+filler=6 first_pt=47 last_pt=84 positions=34 blanks_at(pt): 72 
+filler=18 first_pt=59 last_pt=96 positions=34 blanks_at(pt): 84 
+filler=30 first_pt=71 last_pt=108 positions=33 blanks_at(pt): 
+filler=44 first_pt=85 last_pt=122 positions=33 blanks_at(pt): 
+filler=52 first_pt=93 last_pt=130 positions=33 blanks_at(pt): 
+filler=66 first_pt=107 last_pt=144 positions=33 blanks_at(pt): 
+filler=72 first_pt=113 last_pt=150 positions=33 blanks_at(pt): 
+filler=86 first_pt=127 last_pt=164 positions=33 blanks_at(pt): 
+filler=90 first_pt=131 last_pt=168 positions=33 blanks_at(pt): 
+filler=94 first_pt=135 last_pt=172 positions=33 blanks_at(pt): 
+filler=98 first_pt=139 last_pt=176 positions=33 blanks_at(pt): 
+filler=110 first_pt=151 last_pt=188 positions=33 blanks_at(pt): 
+filler=130 first_pt=171 last_pt=208 positions=33 blanks_at(pt): 
+filler=160 first_pt=201 last_pt=238 positions=33 blanks_at(pt): 
+filler=240 first_pt=281 last_pt=318 positions=33 blanks_at(pt): 
+filler=400 first_pt=441 last_pt=478 positions=33 blanks_at(pt): 

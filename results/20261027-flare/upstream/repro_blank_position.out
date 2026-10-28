@@ -1,0 +1,4 @@
+BLANK prompt_tokens= 42  default chat render, 42 tokens     '\n' -2.25 | '#' -2.37 | '<' -2.74 | '##' -3.09
+BLANK prompt_tokens= 42  same, Reasoning Effort 50          '\n' -2.47 | '<' -2.57 | '#' -2.91 | '##' -3.23
+ok    prompt_tokens= 16  same, no effort header             ' mind' 0.00 | 'mind' -17.56 | ' agenda' -20.26 | ' Mind' -21.36
+ok    prompt_tokens=142  same, ~100 tokens of notes first   ' mind' 0.00 | 'mind' -15.10 | ' river' -15.65 | '<｜end▁of▁sentence｜>' -17.41

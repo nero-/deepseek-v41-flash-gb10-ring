@@ -1,0 +1,48 @@
+[
+ {
+  "images": 1,
+  "px": 64,
+  "status": 200,
+  "reply": "Red",
+  "prompt_tokens": 205
+ },
+ {
+  "images": 8,
+  "px": 64,
+  "status": 200,
+  "reply": "Red",
+  "prompt_tokens": 1500
+ },
+ {
+  "images": 16,
+  "px": 64,
+  "status": 200,
+  "reply": "Red",
+  "prompt_tokens": 2980
+ },
+ {
+  "images": 64,
+  "px": 64,
+  "status": 200,
+  "reply": "Red",
+  "prompt_tokens": 11860
+ },
+ {
+  "images": 1,
+  "px": 1024,
+  "status": 200,
+  "reply": "Red",
+  "prompt_tokens": 673
+ },
+ {
+  "images": 4,
+  "px": 1024,
+  "status": 200,
+  "reply": "Red",
+  "prompt_tokens": 2632
+ },
+ {
+  "health_after": 200
+ }
+]
+[{"images": 256, "px": 64, "status": 200, "reply": "Red", "prompt_tokens": 47380}, {"images": 1000, "px": 64, "status": 200, "reply": "Red", "prompt_tokens": 185021}, {"health_after": 200}]

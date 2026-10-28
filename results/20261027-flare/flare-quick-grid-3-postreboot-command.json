@@ -1,0 +1,30 @@
+{
+  "utc": "2026-10-28T03:27:14.833986+00:00",
+  "engine": "flare 7c22369f, group ds41-flare, package gb10 607c1abf, after reboot of all four nodes",
+  "argv": [
+    "/Users/jg/Agent/Diagnostics/deepseek-v41-flash-ring/decode-recovery-20261020/external-client/.venv/bin/python",
+    "/Users/jg/Agent/Diagnostics/deepseek-v41-flash-ring/decode-recovery-20261020/external-client/lil-0.7.6.py",
+    "--host",
+    "192.168.50.219",
+    "--port",
+    "8015",
+    "--model",
+    "DeepSeek-V4.1-Flash-TP4",
+    "--no-hw-monitor",
+    "--display-mode",
+    "plain",
+    "--no-resume",
+    "--temperature",
+    "1",
+    "--duration",
+    "20",
+    "--max-tokens",
+    "2048",
+    "--concurrency",
+    "1,4,8,16",
+    "--contexts",
+    "8k,64k,128k",
+    "--output",
+    "/Users/jg/Agent/Builds/deepseek-v41-flash-spark/results/20261027-flare/flare-quick-grid-3-postreboot.json"
+  ]
+}

@@ -12,11 +12,13 @@
 name = "SparkRing"
 ssh_user = "nero"
 ssh_options = ["-o", "BatchMode=yes", "-o", "ConnectTimeout=5", "-o", "ProxyCommand=none"]
-# Node probes use SSH and nvidia-smi; close the TUI (or raise this) during timed benchmarks.
+# Node probes use SSH, nvidia-smi and docker; close the TUI (or raise this) during timed benchmarks.
 refresh_seconds = 5
 # Optional: an action shown for every node (Enter on a node).
 node_actions = [
   { name = "GPU clocks", command = "nvidia-smi --query-gpu=clocks.sm,utilization.gpu,power.draw,temperature.gpu --format=csv" },
+  { name = "GPU processes", command = "nvidia-smi --query-compute-apps=pid,process_name,used_memory --format=csv; pgrep -a -f 'flare run' | cut -c1-200 || echo 'no FLARE rank'" },
+  { name = "FLARE agent", command = "systemctl --user status flare-agent --no-pager -n 20" },
   { name = "Containers", command = "docker ps -a --format 'table {{.Names}}\t{{.Status}}\t{{.Image}}'" },
   { name = "Memory", command = "free -g; cat /proc/pressure/memory" },
   { name = "Kernel events (1 h)", command = "journalctl -k --since '-1h' --no-pager | grep -Ei 'oom|xid|nvrm|allocation failure' || echo none" },
@@ -46,54 +48,61 @@ role = "worker"
 
 [[workloads]]
 name = "deepseek"
-description = "DeepSeek-V4.1-Flash TP4, five-draft B12X selection (root controller)"
+description = "DeepSeek-V4.1-Flash-1017 TP4 on FLARE (Orbit group ds41-flare, controller spark-r0)"
 health_url = "http://192.168.50.219:8015/health"
 api = "http://192.168.50.219:8015/v1"
-# Container name per rank; {rank} is the node's position above.
-container = "ds41-optimized-r{rank}"
 default = true
 
+  # The group's package, serving flags and endpoint are saved in spark-r0's
+  # ~/.config/flare/orbit.toml ([[group]] ds41-flare); flare/launch.sh recreates it.
   [[workloads.actions]]
   name = "start"
+  description = "Start the saved group; under 30 seconds once every rank's package is cached"
   node = "spark-r0"
-  command = "sudo -n /usr/local/sbin/deepseek-ring-control up"
+  command = "flare orbit run --name ds41-flare --cluster ds41 --detach"
   confirm = true
 
   [[workloads.actions]]
   name = "stop"
   node = "spark-r0"
-  command = "sudo -n /usr/local/sbin/deepseek-ring-control down"
+  command = "flare orbit stop ds41-flare --cluster ds41"
   confirm = true
 
   [[workloads.actions]]
   name = "recover"
-  description = "After a reboot: stop, keep the retired mesh off, validate the switch, start"
-  node = "spark-r0"
-  command = "sudo -n /usr/local/sbin/deepseek-ring-control down && sudo -n /usr/local/sbin/deepseek-ring-control mesh-off && sudo -n /usr/local/sbin/deepseek-ring-control up"
+  description = "After a reboot (SSH up on all four): stop leftovers, check GID 3 on all rails, start the group"
+  command = "{repo}/cluster.sh run deepseek stop --yes; python3 {repo}/scripts/fabric_check.py && {repo}/cluster.sh run deepseek start --yes"
   confirm = true
 
   [[workloads.actions]]
   name = "status"
   node = "spark-r0"
-  command = "sudo -n /usr/local/sbin/deepseek-ring-control status"
+  command = "flare orbit ls --cluster ds41 && flare orbit status --cluster ds41"
 
   [[workloads.actions]]
   name = "logs"
+  description = "Retained rank output (startup checklist, request errors)"
   node = "spark-r0"
-  command = "docker logs --tail 200 ds41-optimized-r0 2>&1"
+  command = "timeout 15 flare orbit attach ds41-flare --cluster ds41 </dev/null 2>&1 | grep -v PENDING | tail -200"
+
+  [[workloads.actions]]
+  name = "packages"
+  description = "Package cache on every node"
+  node = "spark-r0"
+  command = "flare orbit packages --cluster ds41; flare models list --plain --model-cache ~/flare-models"
+
+  [[workloads.actions]]
+  name = "fabric check"
+  description = "Read-only: is the IPv4 RoCEv2 GID at index 3 on all eight rails?"
+  command = "python3 {repo}/scripts/fabric_check.py"
+
+  [[workloads.actions]]
+  name = "repair fabric"
+  description = "After a switch link drop (RDMA retry errors): stop, re-register GID 3, start; needs the installed root controller with fabric-repair"
+  node = "spark-r0"
+  command = "flare orbit stop ds41-flare --cluster ds41; sudo -n /usr/local/sbin/deepseek-ring-control fabric-repair && flare orbit run --name ds41-flare --cluster ds41 --detach"
+  confirm = true
 
   [[workloads.actions]]
   name = "functional check"
   command = "python3 {repo}/bench/functional.py http://192.168.50.219:8015/v1"
-
-  [[workloads.actions]]
-  name = "switch to TileLang selection"
-  description = "Reinstall the spark-ds41f TileLang selection (4d2bc32e) and start it"
-  command = "python3 {repo}/image/tilelang-ds41f/promote.py reselect --selection {repo}/../DS41-ds41f-tilelang/results/20261024-promotion/optimized-specs.json --receipts {repo}/results/reselect-$(date -u +%Y%m%dT%H%M%SZ)"
-  confirm = true
-
-  [[workloads.actions]]
-  name = "switch back to B12X selection"
-  description = "After switching to TileLang: reinstall the five-draft B12X selection (c87a397c) and start it"
-  command = "python3 {repo}/image/tilelang-ds41f/promote.py rollback --receipts {repo}/results/rollback-$(date -u +%Y%m%dT%H%M%SZ)"
-  confirm = true

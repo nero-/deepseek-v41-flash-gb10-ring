@@ -22,7 +22,7 @@ paragraphs = [f"Record {i}: the {rng.choice(words)} keeper counted {rng.randint(
 paragraphs.insert(len(paragraphs)//2, f"\nThe access code is {code}.\n")
 content = nonce + "\n" + "".join(paragraphs) + "\nWhat is the access code? Reply with the code only."
 body = {"model": "DeepSeek-V4.1-Flash-TP4", "messages": [{"role": "user", "content": content}],
-        "temperature": 0, "max_tokens": 32, "chat_template_kwargs": {"thinking": False},
+        "max_tokens": 32, "chat_template_kwargs": {"enable_thinking": False},
         "stream": True, "stream_options": {"include_usage": True}}
 request = urllib.request.Request(a.url + "/v1/chat/completions", data=json.dumps(body).encode(), headers={"Content-Type": "application/json"})
 started = time.monotonic()
