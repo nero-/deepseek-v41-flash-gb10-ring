@@ -6,8 +6,8 @@
   "guide": "flare/README.md",
   "flare": {
     "package": "flare-inference",
-    "version": "0.1.0~git20261027170349.7c22369f-1",
-    "binary_sha256": "4cb29623fa38d22e7fc8bcbd7aae5f69f4675986753c8663bc6877b15fddb8d3",
+    "version": "0.1.0~git20261030013211.a161b17f-1",
+    "binary_sha256": "531f04f28c8f49141b58cb97eaaddf4894916dd1beee1e5859a9a7860ff0c096",
     "apt_repository": "https://ppa.local-inference-lab.ai noble main",
     "apt_key_fingerprint": "22C46BE0A4C3F708F74C1E75213A79D33E50FC06",
     "agent": {
@@ -30,11 +30,11 @@
   "model_package": {
     "repository": "local-inference-lab/DeepSeek-V4.1-Flash-1017-FLARE",
     "revision": "gb10",
-    "commit": "607c1abfc2fc2e14bf9dcc9cdc8d4a6128a081a9",
+    "commit": "ab4f07af7b4a515b768baa3c7d8343c54f8144e9",
     "primary": "model.safetensors",
-    "primary_bytes": 43046937,
-    "primary_sha256": "b89ba04cae27bcc73cbce4f1db690b960880612f1ccb223a6b5a4f7f5ceb926a",
-    "deployment": "0a377833bb1c431ab417837a50bb18a8",
+    "primary_bytes": 35842073,
+    "primary_sha256": "4920f78139e342932f9ef6185784518a57dfbcb2ac618cff751315cc2ccfa0d2",
+    "deployment": "7cf40bec5c5b4026a4abc801e615226c",
     "tensor_parallel": 4,
     "format": "payload v2, native expert scales",
     "publisher": "local-inference-lab",
@@ -42,14 +42,21 @@
     "base_checkpoint": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
     "storage": {
       "spark-r0": {
-        "path": "/home/nero/flare-models/models/checkpoint-expanded-scales/gb10-tp4-202610271726",
-        "gib": 489.39,
+        "path": "/home/nero/flare-models/models/checkpoint-expanded-scales/gb10-tp4-202610302102",
+        "gib": 476.8,
         "snapshot": "/home/nero/flare-models.keep (hardlinks)"
       },
       "peers": {
-        "path": "/home/nero/.cache/flare/models/checkpoint-expanded-scales/gb10-tp4-202610272052",
-        "gib_each": 264.0
+        "path": "/home/nero/.cache/flare/models/checkpoint-expanded-scales/gb10-tp4-202610302308",
+        "gib_each": 260.85
       }
+    },
+    "requires_flare": "0.1.0~git20261030013211.a161b17f-1 or newer",
+    "previous": {
+      "commit": "607c1abfc2fc2e14bf9dcc9cdc8d4a6128a081a9",
+      "deployment": "0a377833bb1c431ab417837a50bb18a8",
+      "flare": "0.1.0~git20261027170349.7c22369f-1",
+      "removed_utc": "2026-10-30"
     }
   },
   "serving": {
@@ -57,12 +64,12 @@
     "served_model_name": "DeepSeek-V4.1-Flash-TP4",
     "max_context_tokens": 1048576,
     "max_concurrency": 32,
-    "prefill_chunk_tokens": 4096,
-    "speculation": "MTP, up to 5 drafts, adaptive verification",
+    "prefill_chunk_tokens": 8192,
+    "speculation": "MTP, up to 5 drafts, adaptive verification, alpha 0.5",
     "embedding_tables": "disk, resident scales, 1 GiB row cache",
     "memory_limit": "-2G (free reserve per GPU)",
-    "kv_cache_gib_per_gpu": 16.6,
-    "kv_cache_tokens": 19306112,
+    "kv_cache_gib_per_gpu": 17.9,
+    "kv_cache_tokens": 20942336,
     "sampling": "temperature 1 and top_p 1 fixed by the package; default seed 0",
     "thinking_off": {
       "chat_template_kwargs": {
@@ -75,12 +82,12 @@
     "rank": 0,
     "metric": "MemTotal - MemAvailable",
     "startup_target_max_gib": 118,
-    "observed_startup_used_gib": 110.86,
-    "observed_startup_available_gib": 10.83,
+    "observed_startup_used_gib": 111.46,
+    "observed_startup_available_gib": 10.22,
     "other_ranks_used_gib": [
-      111.09,
-      111.31,
-      111.31
+      111.26,
+      111.29,
+      111.35
     ],
     "runtime_stop_guard": false
   },
@@ -459,5 +466,7 @@
         "ds41-before-switch-baseline-rN"
       ]
     }
-  }
+  },
+  "package_updated_utc": "2026-10-30T23:22:39+00:00",
+  "package_update_report": "results/20261030-flare-ab4f07af/REPORT.md"
 }

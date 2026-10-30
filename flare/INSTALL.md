@@ -18,9 +18,9 @@ Replace the names with yours.
 |---|---|
 | Nodes | Four GB10 nodes with 128 GB, DGX OS (Ubuntu) and the NVIDIA driver. Sparks and GX10s can be mixed. |
 | Fabric | RoCE between all four: a switch or direct cables. Agents need TCP 29900 between nodes, peers need TCP 29800 on `spark1`, and clients need the API port. |
-| Disk | About **1 TB free on `spark1`** (the download is 489 GiB and staging peaks near twice that) and **about 270 GiB free on each peer** (each rank's 264 GiB share). |
+| Disk | About **1 TB free on `spark1`** (the download is 477 GiB and staging peaks near twice that) and **about 270 GiB free on each peer** (each rank's 261 GiB share). |
 | Workstation | SSH keys to all four nodes as the same user, and Python 3.11+ for `./cluster.sh`. |
-| Time | About 2–2.3 hours of download at 70–100 MB/s, then about 15 minutes for the first launch. |
+| Time | About 2–2.3 hours of download at 70–100 MB/s, then about 14 minutes for the first launch. |
 
 Serving needs no Docker, Python or root. Root is only needed to install the
 APT package and to enable lingering.
@@ -111,6 +111,10 @@ flare download local-inference-lab/DeepSeek-V4.1-Flash-1017-FLARE --revision gb1
 flare models list --plain --model-cache ~/flare-models
 ```
 
+The current package (commit `ab4f07af`, 2026-10-30) needs
+`flare-inference` **0.1.0~git20261030013211.a161b17f-1 or newer**. Older
+builds can't load it.
+
 **Always pass `--model-cache`.** The default store, `~/.cache/flare/packages`,
 is also the agent's own cache folder, and the agent deletes everything there
 after a transfer. We lost a finished 490 GiB download that way
@@ -141,17 +145,21 @@ below. It replaces an existing group of the same name.
 | `FLARE_PORT` | `8015` | the API port (the publisher uses 8000) |
 | `FLARE_MODEL_NAME` | `DeepSeek-V4.1-Flash-TP4` | the model name clients send |
 | `FLARE_MEMORY_LIMIT` | `-2G` | memory to leave free on each node |
+| `FLARE_VERIFY_ALPHA` | `0.5` | `--mtp-adaptive-verification-alpha`; `1.0` is FLARE's default scoring |
 
 - **The memory reserve:** `-2G` leaves 2 GiB free on each node instead of the
-  package's default reserve. That gives 16.6 GiB of KV cache per GPU
-  (19.3 million tokens) instead of 10.1 GiB, with about 111 GiB in use after
-  loading. If the nodes run anything else, use a larger reserve such as
+  package's default reserve. That gives 17.9 GiB of KV cache per GPU
+  (20.9 million tokens) instead of about 10.6 GiB, with about 111.5 GiB in
+  use after loading. If the nodes run anything else, use a larger reserve such as
   `FLARE_MEMORY_LIMIT=-8G`.
-- **The first launch** sends every peer its 264 GiB share over the fabric and
-  verifies it, which took us about 15 minutes. Later starts reuse the copy and
+- **Verification alpha 0.5** is the publisher's recommendation. On our
+  cluster it raised decode with 8 concurrent requests by 7–9% and changed
+  nothing measurable at 1, 4 or 16.
+- **The first launch** sends every peer its 261 GiB share over the fabric and
+  verifies it, which took us about 14 minutes. Later starts reuse the copy and
   take under 30 seconds.
 - **Don't run `flare orbit push` first.** It stores a separate copy that
-  `orbit run` doesn't use, so each peer briefly holds two 264 GiB copies.
+  `orbit run` doesn't use, so each peer briefly holds two copies of its share.
 
 Watch startup (Ctrl-C detaches without stopping the ranks), then test:
 
@@ -198,9 +206,22 @@ flare agent install --listen 0.0.0.0:29900                           # every nod
 APT doesn't restart the agent, which runs its own copy in
 `~/.local/lib/flare-agent/flare`. Keep the controller and all agents on one
 release: `sha256sum /usr/bin/flare ~/.local/lib/flare-agent/flare` should
-match on every node. A new package version needs another `launch.sh`, and on
-a peer with a small disk, remove the old version first
-(`flare models remove`).
+match on every node.
+
+**A new package version** may need a newer FLARE first. Download it while the
+old one serves, upgrade every node, then stop the group, reinstall the
+agents, remove the old version from every node, and launch:
+
+```bash
+flare models list --plain --model-cache ~/.cache/flare          # on each peer: find the old version
+flare models remove checkpoint-expanded-scales@OLD --model-cache ~/.cache/flare
+flare models remove checkpoint-expanded-scales@OLD --model-cache ~/flare-models   # on spark1
+flare models gc --model-cache ~/flare-models                    # frees the old version's data
+```
+
+`flare models remove` only deletes the version's folder; `gc` frees its data.
+If you keep a `cp -al` backup of `~/flare-models`, delete it before `gc` and
+make it again afterwards, or the old data stays on disk.
 
 ## Using the API
 

@@ -11,8 +11,8 @@
 #
 # Only needed for a new package or a changed flag. A plain restart of the saved
 # group is `flare orbit run --name ds41-flare --cluster ds41 --detach`
-# (./cluster.sh up). The first launch of a package copies each peer's 264 GiB
-# share over the fabric and verifies it (about 15 minutes); later starts reuse it.
+# (./cluster.sh up). The first launch of a package copies each peer's 261 GiB
+# share over the fabric and verifies it (about 14 minutes); later starts reuse it.
 set -euo pipefail
 
 head=${FLARE_HEAD:-spark-r0}                          # this host's name in orbit.toml
@@ -22,6 +22,7 @@ models=${FLARE_MODELS:-$HOME/flare-models}            # the --model-cache used f
 port=${FLARE_PORT:-8015}
 model_name=${FLARE_MODEL_NAME:-DeepSeek-V4.1-Flash-TP4}
 memory_limit=${FLARE_MEMORY_LIMIT:--2G}
+verify_alpha=${FLARE_VERIFY_ALPHA:-0.5}                # 1.0 is FLARE's default scoring
 
 package=${1:-}
 if [[ -z $package ]]; then
@@ -35,10 +36,12 @@ flare orbit rm "$group" 2>/dev/null || true
 
 # Publisher recipe (TP4 README) plus site settings: port 8015 and the historical
 # model name for existing clients, and a 2 GiB reserve instead of the package
-# default, which gives 16.6 GiB KV per GPU (19.3M tokens) at about 111 GiB used.
+# default, which gives 17.9 GiB KV per GPU (20.9M tokens) at about 111.5 GiB used.
+# Alpha 0.5 (the publisher's recommendation) raised C8 decode 7-9% here.
 exec flare orbit run "$head:$package" \
     --cluster "$cluster" --name "$group" --persistent --detach \
     --max-concurrency 32 --mtp-draft-tokens 5 --mtp-adaptive-verification \
+    --mtp-adaptive-verification-alpha "$verify_alpha" \
     --embedding-table-storage disk --embedding-table-resident-scales \
     --embedding-table-cache-size 1GiB \
     --memory-limit="$memory_limit" \

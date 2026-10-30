@@ -5,7 +5,26 @@ thinking, 20-second cells, max 2048 output tokens, `--no-hw-monitor`.
 Values are aggregate output tokens/s; C>1 is aggregate, not per stream.
 Compare only matching protocols and startups.
 
-## Selected: FLARE (2026-10-27)
+## Selected: FLARE, package update (2026-10-30)
+
+`flare-inference a161b17f`, package `@gb10` commit `ab4f07af` (deployment
+`7cf40bec…`, 8,192-token prefill chunks), verification alpha 0.5, 17.9 GiB
+KV per GPU (20,942,336 tokens). Quick grid against the old package after its
+reboot, single runs ([report](results/20261030-flare-ab4f07af/REPORT.md)):
+
+| Context | C1 | C4 | C8 | C16 | Prefill |
+|---|---:|---:|---:|---:|---:|
+| 8K | 68.4 (68.0) | 143.6 (145.3) | 202.0 (189.2) | 272.3 (275.6) | 4,000 (4,000) |
+| 64K | 66.9 (66.0) | 158.8 (143.0) | 197.4 (182.1) | 267.2 (259.6) | 4,871 (4,499) |
+| 128K | 64.3 (66.5) | 143.8 (152.4) | 201.4 (188.6) | 255.9 (260.0) | 4,832 (4,589) |
+
+Old package in parentheses. C8 gains 7–8% from alpha 0.5 (with alpha 1.0
+it was 177–191), and prefill gains 5–8% at 64K–128K. C1, C4 and C16 are
+within single-cell noise. Functional 7/7. The stray-token issue
+([NVIDIA/local-inference#118](https://github.com/NVIDIA/local-inference/issues/118))
+still reproduces.
+
+## FLARE cutover (2026-10-27)
 
 `flare-inference 7c22369f`, package `DeepSeek-V4.1-Flash-1017-FLARE@gb10`
 (`607c1abf`, deployment `0a377833…`), MTP up to five drafts, 16.6 GiB KV per

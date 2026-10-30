@@ -1,12 +1,13 @@
 # Operating the switched TP4 cluster
 
-**Selected (2026-10-27):** DeepSeek-V4.1-Flash-1017 on **FLARE**
-`flare-inference 0.1.0~git20261027170349.7c22369f-1`, package
-`local-inference-lab/DeepSeek-V4.1-Flash-1017-FLARE@gb10` (commit `607c1abf`,
-deployment `0a377833…`), persistent Orbit group `ds41-flare` controlled from
-spark-r0, 16.6 GiB KV per GPU (19,306,112 tokens), persistent 0–2350 MHz GPU
-ceiling. [FLARE guide](flare/README.md),
-[cutover report](results/20261027-flare/REPORT.md).
+**Selected (2026-10-27, package updated 2026-10-30):** DeepSeek-V4.1-Flash-1017
+on **FLARE** `flare-inference 0.1.0~git20261030013211.a161b17f-1`, package
+`local-inference-lab/DeepSeek-V4.1-Flash-1017-FLARE@gb10` (commit `ab4f07af`,
+deployment `7cf40bec…`), persistent Orbit group `ds41-flare` controlled from
+spark-r0, 17.9 GiB KV per GPU (20,942,336 tokens), verification alpha 0.5,
+persistent 0–2350 MHz GPU ceiling. [FLARE guide](flare/README.md),
+[cutover report](results/20261027-flare/REPORT.md),
+[package update](results/20261030-flare-ab4f07af/REPORT.md).
 
 | Workload | Nodes | API | Model |
 |---|---|---|---|
@@ -66,7 +67,7 @@ recreates it for a new package or flag change. Each node runs the user
 service `flare-agent` (port 29900 on all interfaces, `LimitNOFILE=65536`);
 agents start at boot through lingering but do not restart groups. Startup
 with cached packages takes under 30 seconds; a package's first launch copies
-each peer's 264 GiB share over the fabric first (about 15 minutes). Installing,
+each peer's 261 GiB share over the fabric first (about 14 minutes). Installing,
 downloading, upgrading and storage rules are in the
 [FLARE guide](flare/README.md).
 
@@ -99,12 +100,13 @@ curl http://192.168.50.219:8015/v1/chat/completions \
   fixed. Other values such as 0.6 are accepted without error; `temperature: 0`
   is rejected. The default `seed` is 0, so identical requests return
   identical text; send a `seed` to vary.
-- Context 1,048,576 tokens, 32 concurrent requests, 4,096-token prefill
-  chunks, MTP with up to five drafts and adaptive verification.
+- Context 1,048,576 tokens, 32 concurrent requests, 8,192-token prefill
+  chunks, MTP with up to five drafts and adaptive verification (alpha 0.5).
 - Tools, tool continuation, streaming usage and images pass the functional
   checks. A forced named `tool_choice` is enforced: if the model does not
   produce the call the request fails with HTTP 500 (`required tool choice was
-  not satisfied`); the server stays healthy.
+  not satisfied`); the server stays healthy. A forced call that fits the
+  question works with thinking on or off.
 - Images: 1000 distinct small images in one request (185K prompt tokens) and
   four 1024 px images pass; the limit is context and memory, not a count.
 - **Known issue:** occasional spliced stray tokens in short chat replies, once
@@ -116,9 +118,9 @@ curl http://192.168.50.219:8015/v1/chat/completions \
 Measure spark-r0 as `MemTotal - MemAvailable`. The startup budget is **at
 most about 118 GiB used just after loading**; it is not a runtime stop guard.
 FLARE plans KV from free memory: with `--memory-limit=-2G` (a 2 GiB reserve
-per GPU) the startup `Plan cache` line reads about 89 GiB loaded and 16.6 GiB
-cache per GPU, and spark-r0 used **110.86 GiB** with 10.8 GiB available
-(other ranks 111.1–111.3 GiB). The Engram row cache (1 GiB) and resident
+per GPU) the startup `Plan cache` line reads about 88.1–88.5 GiB loaded and
+17.9–18.3 GiB cache budget per GPU, and spark-r0 used **111.46 GiB** with
+10.2 GiB available (other ranks 111.3–111.4 GiB). The Engram row cache (1 GiB) and resident
 scales (about 1.4 GiB) come out of the same memory. A smaller reserve raises KV
 one-for-one out of that headroom; `--kv-cache-limit context` shrinks it to one
 1M context.
@@ -249,7 +251,7 @@ until 2026-10-27) and the TileLang selection (`4d2bc32e…`, image
 (`ds41-optimized-rN`, `ds41-tilelang-rN`, `ds41-before-switch-baseline-rN`) and
 images (about 73 GB per node), and `/etc/deepseek-ring/optimized-specs.json`
 still holds the B12X selection. The GX10 copies of the 1017 checkpoint (476 GB
-each) were deleted on 2026-10-27 so each GX10 could hold FLARE's 264 GiB share;
+each) were deleted on 2026-10-27 so each GX10 could hold FLARE's rank share (now 261 GiB);
 manifests are in `~/Agent/Diagnostics/deepseek-v41-flash-ring/20261027-flare-cutover/`.
 Restoring vLLM would mean stopping FLARE, copying the checkpoint back from a
 Spark over the fabric (about 510 GB per GX10, as on 2026-10-20) and removing
@@ -260,9 +262,9 @@ or relocating FLARE data on the GX10s. The B12X and TileLang procedures are in
 
 | Item | Path |
 |---|---|
-| FLARE package (rank 0, source) | `~/flare-models/models/checkpoint-expanded-scales/gb10-tp4-202610271726` on spark-r0 |
+| FLARE package (rank 0, source) | `~/flare-models/models/checkpoint-expanded-scales/gb10-tp4-202610302102` on spark-r0 |
 | Hardlink snapshot | `~/flare-models.keep` on spark-r0 |
-| Rank packages | `~/.cache/flare/models/checkpoint-expanded-scales/gb10-tp4-202610272052` on spark-r1, gx10-r1, gx10-r0 |
+| Rank packages | `~/.cache/flare/models/checkpoint-expanded-scales/gb10-tp4-202610302308` on spark-r1, gx10-r1, gx10-r0 |
 | Orbit file, controller key | `~/.config/flare/orbit.toml`, `~/.config/flare/orbit/controller.key` on spark-r0 |
 | Agent | `~/.local/lib/flare-agent/flare`, `~/.config/systemd/user/flare-agent.service.d/limits.conf` on every node |
 | Logs | `~/flare-logs/` on spark-r0 (download, push, launch) |

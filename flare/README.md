@@ -88,8 +88,13 @@ cp -al ~/flare-models ~/flare-models.keep        # hardlink snapshot, no extra s
 
 - `--filename` is required (the revision has many `.safetensors` companions)
   and `--tensor-parallel 4` selects the TP4 deployment.
-- About 525 GB arrive from Hugging Face (2–2.3 hours at 70–100 MB/s), then the
-  store holds **489.4 GiB**; staging peaks near twice that on spark-r0.
+- A fresh download is about 525 GB from Hugging Face (2–2.3 hours at
+  70–100 MB/s), and staging peaks near twice that on spark-r0. An update
+  reuses unchanged files already in the store: the 2026-10-30 package
+  (`ab4f07af`, **476.8 GiB**) fetched 309 GB in 95 minutes.
+- The new CLI can download before the nodes are upgraded: `apt-get download
+  flare-inference=VERSION` and `dpkg-deb -x` into a folder in `~`, then run
+  its `usr/bin/flare download …`. The old version keeps serving meanwhile.
 - On 2026-10-27 an `ec0a3126` agent deleted a finished download that lived
   in `~/.cache/flare/packages` ("removed superseded … blobs/models/…"): the
   agent and `flare download` share that default root. `~/flare-models` is
@@ -103,9 +108,11 @@ ssh spark-r0 'bash -s' < flare/launch.sh
 
 [`launch.sh`](launch.sh) recreates the persistent group from the newest
 version in `~/flare-models`. Rank zero reads the package in place; on the first
-launch every peer receives and verifies its **264 GiB** share over the fabric
-(about 1.6 GB/s out of spark-r0, about 15 minutes with verification) into
-`~/.cache/flare/models/…` and reuses it afterwards.
+launch every peer receives and verifies its **261 GiB** share over the fabric
+(about 1.7 GB/s out of spark-r0, 13–14 minutes with verification) into
+`~/.cache/flare/models/…` and reuses it afterwards. The share is staged in
+`~/.cache/flare/staging` and then moved, so it needs its own size free, not
+twice that.
 
 **Do not `flare orbit push` first.** Push stores a separate
 `~/.cache/flare/packages/<deployment>-rankN` copy that `orbit run` does not
@@ -118,12 +125,17 @@ Site differences from the publisher's launch command:
 |---|---|---|---|
 | `--port` | 8015 | 8000 | existing clients |
 | `--served-model-name` | `DeepSeek-V4.1-Flash-TP4` | package name | existing clients |
-| `--memory-limit` | `-2G` | package reserve | 16.6 GiB KV per GPU, **19,306,112 tokens** (default 10.1 GiB, 11.5M) |
+| `--memory-limit` | `-2G` | package reserve | 17.9 GiB KV per GPU, **20,942,336 tokens** (default about 10.6 GiB, 12.1M) |
 | `--persistent --name ds41-flare` | yes | optional | restart by name |
 
-The startup `Plan cache` line reports per GPU about 89.0–89.3 GiB loaded and
-16.6 GiB cache budget. Head memory after loading is 110.9 GiB used
-(`MemTotal - MemAvailable`), within the 118 GiB budget, with 10.8 GiB
+The publisher's command also has `--mtp-adaptive-verification-alpha 0.5`,
+which `launch.sh` uses (`FLARE_VERIFY_ALPHA=1.0` restores the default
+scoring). Here it raised C8 decode by 7–9% and left C1, C4 and C16 within
+noise ([update report](../results/20261030-flare-ab4f07af/REPORT.md)).
+
+The startup `Plan cache` line reports per GPU about 88.1–88.5 GiB loaded and
+17.9–18.3 GiB cache budget. Head memory after loading is 111.5 GiB used
+(`MemTotal - MemAvailable`), within the 118 GiB budget, with 10.2 GiB
 available. A smaller reserve buys more KV directly out of that headroom.
 
 ## Upgrade
@@ -142,20 +154,48 @@ APT does not restart the agent; the agent runs its own copy in
 `~/.local/lib/flare-agent/flare`. Keep the controller, all agents and the
 package on one release: check with
 `sha256sum /usr/bin/flare ~/.local/lib/flare-agent/flare` on each node.
+The package has no install scripts, so upgrading APT on a node while the
+group serves is safe; only the agent reinstall stops it.
+
+### New package
+
+A package revision can require a newer `flare-inference` (`ab4f07af` needs
+`a161b17f` or later). In this order:
+
+1. Download it into `~/flare-models` while the old version serves (see
+   above).
+2. Upgrade APT on every node.
+3. `./cluster.sh down`, reinstall every agent, then **remove the old
+   version** from every node before launching the new one:
+
+   ```bash
+   # peers (spark-r1, gx10-r1, gx10-r0)
+   flare models remove checkpoint-expanded-scales@OLD_PEER_VERSION --model-cache ~/.cache/flare
+   # spark-r0
+   flare models remove checkpoint-expanded-scales@OLD_VERSION --model-cache ~/flare-models
+   rm -rf ~/flare-models.keep
+   flare models gc --model-cache ~/flare-models     # remove only frees the version folder, not its blobs
+   cp -al ~/flare-models ~/flare-models.keep
+   ```
+
+   `flare models list --plain --model-cache …` shows the version names.
+   Removing the old version first is the user's preference, even though the
+   GX10s can hold both versions.
+4. `ssh spark-r0 'bash -s' < flare/launch.sh`, then run the validation in
+   `OPERATIONS.md`.
 
 ## Disk
 
-| Node | FLARE data | Free after cutover |
+| Node | FLARE data | Free (2026-10-30) |
 |---|---|---|
-| spark-r0 | `~/flare-models` 489 GiB (+ `.keep` hardlinks) | ~1.74 TB |
-| spark-r1 | `~/.cache/flare/models` 264 GiB | ~2.0 TB |
-| gx10-r1 / gx10-r0 | `~/.cache/flare/models` 264 GiB each | ~406 / 409 GB |
+| spark-r0 | `~/flare-models` 477 GiB (+ `.keep` hardlinks) | 1,755 GiB |
+| spark-r1 | `~/.cache/flare/models` 261 GiB | 2,043 GiB |
+| gx10-r1 / gx10-r0 | `~/.cache/flare/models` 261 GiB each | 409 / 413 GiB |
 
 Each rank stores its layer shards plus **both full Engram tables** (about
 183 GiB). The GX10s (916 GB disks) only fit after their vLLM 1017 checkpoints
-were removed. A second version on a GX10 needs ~264 GiB free while the first
-exists; remove the old version (`flare models remove`, or `flare models gc`
-with `--model-cache /home/nero/.cache/flare`) before launching a new one.
+were removed. Remove the old version before launching a new one (see
+[New package](#new-package)).
 
 ## Client notes
 
@@ -168,14 +208,17 @@ with `--model-cache /home/nero/.cache/flare`) before launching a new one.
   a `seed` for varied samples.
 - A forced named `tool_choice` returns HTTP 500 (`required tool choice was not
   satisfied`) when the model does not produce the call; it is enforced, not
-  constrained.
+  constrained. A forced call that fits the question works with thinking on or
+  off.
 - Images: 1000 distinct 64 px images in one request (185,021 prompt tokens)
   and four 1024 px images pass; the limit is context and memory, not a count.
 - Known issue: about 2 of 60 short chat replies contained spliced stray tokens,
   once the model's internal `<ds_safety>…` annotation. These come from
   context-free logits at a few positions below 128 tokens when the thinking-mode
-  `Reasoning Effort` header is present; `enable_thinking: false` avoids it. See
-  [the report](../results/20261027-flare/REPORT.md#known-issue-stray-tokens).
+  `Reasoning Effort` header is present; `enable_thinking: false` avoids it. Still
+  present with package `ab4f07af` on `a161b17f`. See
+  [the report](../results/20261027-flare/REPORT.md#known-issue-stray-tokens)
+  and [upstream #118](https://github.com/NVIDIA/local-inference/issues/118).
 - `flare download` must not use the default `~/.cache/flare/packages`: the agent
   evicts everything there after a transfer
   ([upstream #119](https://github.com/NVIDIA/local-inference/issues/119)).

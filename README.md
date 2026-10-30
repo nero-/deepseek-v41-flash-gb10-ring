@@ -68,17 +68,18 @@ curl --fail --max-time 5 http://192.168.X.X:8015/health
 
 | Component | Selected |
 |---|---|
-| Engine | `flare-inference 0.1.0~git20261027170349.7c22369f-1` from `ppa.local-inference-lab.ai`, same binary on all four nodes |
-| Package | `DeepSeek-V4.1-Flash-1017-FLARE@gb10` commit `607c1abf`, deployment `0a377833…`, TP4, native expert scales, signed |
+| Engine | `flare-inference 0.1.0~git20261030013211.a161b17f-1` from `ppa.local-inference-lab.ai`, same binary on all four nodes |
+| Package | `DeepSeek-V4.1-Flash-1017-FLARE@gb10` commit `ab4f07af` (updated 2026-10-30), deployment `7cf40bec…`, TP4, native expert scales, signed |
 | Orbit | controller spark-r0, cluster `ds41`, persistent group `ds41-flare` ([launch](flare/launch.sh)) |
-| Speculation | MTP, up to five drafts, adaptive verification |
-| Serving | 1,048,576 context, 32 requests, 4,096-token prefill chunks, Engram tables on disk with RAM scales and 1 GiB row cache |
-| KV | 16.6 GiB per GPU, **19,306,112 tokens** (`--memory-limit=-2G`) |
-| Memory | spark-r0 110.9 GiB used after loading (budget about 118 GiB) |
+| Speculation | MTP, up to five drafts, adaptive verification with alpha 0.5 |
+| Serving | 1,048,576 context, 32 requests, 8,192-token prefill chunks, Engram tables on disk with RAM scales and 1 GiB row cache |
+| KV | 17.9 GiB per GPU, **20,942,336 tokens** (`--memory-limit=-2G`) |
+| Memory | spark-r0 111.5 GiB used after loading (budget about 118 GiB) |
 | Fabric | CRS812, one 200G port-1 cable per node, two Socket Direct rails, MTU 9000, GID 3; RoCE on both rails |
 | GPU clocks | 0–2350 MHz ceiling, persistent; idle downclocking enabled |
 
-Exact identities: [results/deployment.json](results/deployment.json).
+Exact identities: [results/deployment.json](results/deployment.json). Package update and
+benchmarks: [results/20261030-flare-ab4f07af/REPORT.md](results/20261030-flare-ab4f07af/REPORT.md).
 
 Clients: thinking is on by default; turn it off with
 `"chat_template_kwargs": {"enable_thinking": false}` (vLLM's `thinking`
