@@ -218,7 +218,7 @@ were removed. Remove the old version before launching a new one (see
   `Reasoning Effort` header is present; `enable_thinking: false` avoids it. Still
   present with package `ab4f07af` on `a161b17f`. See
   [the report](../results/20261027-flare/REPORT.md#known-issue-stray-tokens)
-  and [upstream #118](https://github.com/NVIDIA/local-inference/issues/118).
+  and [upstream #118](https://github.com/NVIDIA/spark-local-inference/issues/118).
 - `flare download` must not use the default `~/.cache/flare/packages`: the agent
   evicts everything there after a transfer
-  ([upstream #119](https://github.com/NVIDIA/local-inference/issues/119)).
+  ([upstream #119](https://github.com/NVIDIA/spark-local-inference/issues/119)).

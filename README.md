@@ -41,7 +41,7 @@ FLARE yet (B12X: 93.9% and 93/89).
 tokens get context-free logits, so short replies can contain a spliced stray
 token or, once, the model's `<ds_safety>` annotation. `enable_thinking: false`
 avoids it ([details](results/20261027-flare/REPORT.md#known-issue-stray-tokens),
-[upstream #118](https://github.com/NVIDIA/local-inference/issues/118)).
+[upstream #118](https://github.com/NVIDIA/spark-local-inference/issues/118)).
 
 ## Start, stop and recover
 

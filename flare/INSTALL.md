@@ -118,7 +118,7 @@ builds can't load it.
 **Always pass `--model-cache`.** The default store, `~/.cache/flare/packages`,
 is also the agent's own cache folder, and the agent deletes everything there
 after a transfer. We lost a finished 490 GiB download that way
-([NVIDIA/local-inference#119](https://github.com/NVIDIA/local-inference/issues/119)).
+([NVIDIA/spark-local-inference#119](https://github.com/NVIDIA/spark-local-inference/issues/119)).
 Optionally, make a hardlinked backup that takes no extra space:
 `cp -al ~/flare-models ~/flare-models.keep`.
 
@@ -234,7 +234,7 @@ make it again afterwards, or the old data stays on disk.
 - **Known issue:** short chats in thinking mode can get stray tokens spliced
   into the reply, sometimes `<ds_safety>…` text. It only happens while the
   reply is still in the first 128 tokens of the context
-  ([NVIDIA/local-inference#118](https://github.com/NVIDIA/local-inference/issues/118)).
+  ([NVIDIA/spark-local-inference#118](https://github.com/NVIDIA/spark-local-inference/issues/118)).
   `enable_thinking: false` or a longer system prompt avoids it.
 
 More client notes: [README.md](README.md#client-notes).

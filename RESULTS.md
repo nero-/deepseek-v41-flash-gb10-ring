@@ -21,7 +21,7 @@ reboot, single runs ([report](results/20261030-flare-ab4f07af/REPORT.md)):
 Old package in parentheses. C8 gains 7–8% from alpha 0.5 (with alpha 1.0
 it was 177–191), and prefill gains 5–8% at 64K–128K. C1, C4 and C16 are
 within single-cell noise. Functional 7/7. The stray-token issue
-([NVIDIA/local-inference#118](https://github.com/NVIDIA/local-inference/issues/118))
+([NVIDIA/spark-local-inference#118](https://github.com/NVIDIA/spark-local-inference/issues/118))
 still reproduces.
 
 ## FLARE cutover (2026-10-27)

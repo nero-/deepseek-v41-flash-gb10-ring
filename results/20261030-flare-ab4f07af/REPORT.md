@@ -110,9 +110,11 @@ their `-command.json`.
   the old build too. A forced call that fits the question works with
   thinking on and off, and `tool_choice: "required"` works.
 - `check_images.py`: pass, health 200 afterwards.
-- **Stray tokens ([NVIDIA/local-inference#118](https://github.com/NVIDIA/local-inference/issues/118))
+- **Stray tokens ([NVIDIA/spark-local-inference#118](https://github.com/NVIDIA/spark-local-inference/issues/118))
   still reproduce**, with the same blank distribution at the same positions
   (`'\n'` −2.25, `'#'` −2.37, `'<'` −2.75 at prompt length 42 with the
   effort prefix; clean without it or past position 128). Workarounds are
   unchanged.
+  Reported on the issue
+  ([comment](https://github.com/NVIDIA/spark-local-inference/issues/118#issuecomment-6537885695)).
 - The 2350 MHz clock cap service is active on all four nodes.

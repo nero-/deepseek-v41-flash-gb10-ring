@@ -134,7 +134,7 @@ with default settings or `thinking_mode: "chat"`, streamed and not). Structured 
 arithmetic, code, tools and retrieval were unaffected. GPQA Diamond and
 tool-eval have not been run on FLARE.
 
-**Cause (traced the same day, [NVIDIA/local-inference#118](https://github.com/NVIDIA/local-inference/issues/118)):**
+**Cause (traced the same day, [NVIDIA/spark-local-inference#118](https://github.com/NVIDIA/spark-local-inference/issues/118)):**
 the logprobs at the corrupted token are a fixed, context-free document-start
 distribution (`'\n'` −2.25, `'#'` −2.37, `'<'` −2.74) where the model is
 otherwise certain (after "What's on your", `' mind'` scores 0.00 one token
